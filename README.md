@@ -1,2 +1,4 @@
-# sds-bamm-aspect-meta-model
-Public repository dedicated to the Semantic Data Structuring for the aspect meta model.
+# BAMM Aspect Meta Model
+Public repository dedicated to the Semantic Data Structuring for the BAMM aspect meta model.
+
+Stay tuned: content coming soon!
