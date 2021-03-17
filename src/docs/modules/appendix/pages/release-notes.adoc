@@ -1,0 +1,17 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+:sectnums:
+
+[[release-notes]]
+== Release Notes - {meta-model-full-name}
+
+[[bamm-1.0.0]]
+=== Release 1.0.0
+
+This is the initial release for OMP.

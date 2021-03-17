@@ -1,0 +1,39 @@
+# Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+# If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+
+# tag::prefixes[]
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix unit: <{unit}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+# end::prefixes[]
+
+# tag::aspect[]
+:Temperature a bamm:Aspect ;
+   bamm:name "Temperature" ;
+   bamm:preferredName "Temperature"@en ;
+   bamm:description "Describes the measured temperature in degree Celsius"@en ;
+   bamm:properties ( :temperatureValue ) ;
+   bamm:operations ( ) .
+# end::aspect[]
+
+# tag::property[]
+:temperatureValue a bamm:Property ;
+   bamm:name "temperatureValue" ;
+   bamm:preferredName "Temperature Value"@en ;
+   bamm:description "The value of the temperature in degree Celsius"@en ;
+   bamm:exampleValue "100.0"^^xsd:float ;
+   bamm:characteristic :TemperatureMeasurement .
+# end::property[]
+
+# tag::characteristic[]
+:TemperatureMeasurement a bamm-c:Measurement ;
+   bamm:name "TemperatureMeasurement" ;
+   bamm:preferredName "Temperature Measurement"@en ;
+   bamm:description "Temperature in degree Celsius"@en ;
+   bamm:dataType xsd:float ;
+   bamm-c:unit unit:degreeCelsius .
+# end::characteristic[]

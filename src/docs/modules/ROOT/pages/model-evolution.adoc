@@ -1,0 +1,213 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+
+[[model-evolution]]
+= Model Evolution
+
+[[why-is-model-evolution-needed]]
+== Why is Model Evolution needed?
+
+An Aspect model can seldomly be created completely in one step from ideation to conceptualization.
+As described in the xref:modeling-guidelines.adoc#aspect-modeling-process[Aspect Modeling Process],
+authoring an Aspect Model is comparable to the creation of a software artifact. At first, a domain
+model draft or concept map is created to capture the understanding of the respective domain experts
+(cf. domain-driven design), which is then formalized into an actual Aspect model. After multiple
+iterations, each of which improves the modeled concepts and the overall quality of the model, a
+first "complete" version is created. This first version might contain the minimal subset of relevant
+Properties complete with correct Characteristics and proper descriptions.
+
+This "Version 1.0" of the model can then be used to implement the first version of the corresponding
+Aspect. Imagine that the service is running and delivers data that corresponds to the "Version 1.0"
+of the Aspect model. Clients are developed as well, possibly by different parties, and happily
+consume the Aspect data. Now the following happens: The domain experts find out that the model is
+indeed not correct, it could be missing relevant Properties, existing Properties could use wrong
+Characteristics, descriptions or names, or are missing localizations. This can happen for many
+reasons:
+
+. The modelled device or asset changes,
+. Clients find that they need certain pieces of data that were originally deemed unimportant and
+thus excluded from the Aspect model, or that should have a different structure,
+. In the original model, something was modelled in the wrong way,
+. As part of the natural evolution of the model when the initial minimal subset of Properties is
+expanded to a comprehensive description of the domain,
+. etc.
+
+It is to be expected that an Aspect model is continually improved upon (to a certain point, when it
+is considered "finished"). The domain experts can always change the Aspect model as they see fit and
+release a new version. But what happens with the running Aspects and clients? Do all of them have to
+be changed immediately every time?
+
+[[decoupling-of-models-and-payload]]
+== Decoupling of Models and Payload
+
+The first measure towards a graceful evolution of Aspect models in a living system (i.e., the models
+don't live in a vacuum but are actually used by Aspects and Clients) is the decoupling of models and
+payload. In the section that describes the xref:payloads#mapping-to-json[mapping of Aspect models to
+corresponding JSON payloads], you can see that the JSON payloads have no indication of the Aspect
+model that describes them. In particular, they do not contain a reference to the URN of the
+corresponding Aspect model. This is similar to how the structure of a JSON document can be validated
+against a JSON Schema.footnote:[However, a JSON Schema only describes a document's structure, not
+its meaning or content.]
+
+Therefore there are changes that can be made in the Aspect model so that the structure of the
+corresponding JSON payload does not change. We will call this type of changes _safe changes_. When a
+new version of an Aspect model is released that contains only safe changes and a corresponding
+Aspect delivers only data that is valid in regards to the new version of the Aspect model, it is
+possible to update the entry of the Aspect in the Digital Twin Registry with the new model version
+_without having to change the Aspect_. In fact, both the previous version of the Aspect model and
+the updated version can and should both be registered _simultaneously_ with both pointing to the
+same Aspect endpoint. This allows clients that only understand the previous version of the Aspect
+model to still consume data from the Aspect (although they do not benefit from the updates
+introduced in the new model version), while clients that are updated to use the new Aspect model can
+benefit from the update.
+
+At some point, older versions of the model can be removed from the Aspect. However, the exact
+conditions of when this can be done depend heavily on the concrete use case and are therefore out of
+scope of this document.
+
+[[safe-changes]]
+== Safe Changes for Graceful Model Evolution
+
+Every change to the Aspect model that does not change the JSON payload corresponding to the model is
+a _safe change_. The following table gives an overview of the safe and unchanges that mainly concern
+the structure of the data.
+
+[cols="a,a", options="header"]
+|====
+| Safe Changes | Unsafe Changes
+|
+* Adding, removing or changing attributes that are never part of payloads, e.g.
+  `bamm:preferredName`, `bamm:description` and `bamm:see`
+* Adding a new Property
+* Making a mandatory Property optional
+* Changing a data type _a_ to type _b_ when _a_ xref:datatypes.adoc#data-types[can be cast to] _b_
+* Removing values from an Enumeration
+|
+* Renaming an existing Property
+* Making an optional Property mandatory
+* Changing a data type _a_ to type _b_ when _a_ xref:datatypes.adoc#data-types[can not be cast to] _b_
+* Adding values to an Enumeration
+* Changing values in an Enumeration
+|====
+
+Deciding whether a change to a Characteristic is safe depends on the change itself. Basically, a
+change that adds restrictions on the value range is safe, while removing restrictions is unsafe, _if
+and only if_ the effective value range was equivalent in the first place. For example, adding a
+xref:characteristics.adoc#regular-expression-constraint[Regular Expression Constraint] that
+restricts values on a xref:characteristics.adoc#text-characteristic[Text Characteristic] is safe,
+because an Aspect that delivers data which is valid for both the previous version of the Aspect
+model (without the Constraint) and for the new version (with the Constraint) will only ever deliver
+data that clients using the previous version of the Aspect model can understand. Adding the
+constraint in the model just makes the previous implicit assumption explicit and visible. If the
+Constraint on the other hand signifies an actual change, i.e. values that were previously valid are
+no longer valid in the new version, this is an unsafe change.
+
+If the value range is effectively the same and has the same meaning, for example by replacing a
+Regular Expression Expression on a Text Characteristic with an Enumeration that has the same values
+as those that would be parsed by the Regular Expression, or vice versa, this is a safe change as
+well. Changes such as this can be made when an Aspect model is refactored to be better readable or
+understandable. Another example is changing a Characteristic with a
+xref:datatypes.adoc#data-types[string-like value space] into a
+xref:characteristics.adoc#structured-value-characteristics[Structured Value]: The payload does not
+change, but the meaning is specified in greater detail by describing all logical parts of the value.
+
+IMPORTANT: If the value range is effectively the same but the meaning is different, this is not
+considered a safe change, because the domain semantics captured by the Aspect model are not the
+same. For example, if the unit of a
+xref:characteristics.adoc#measurement-characteristic[Measurement] Characteristic is changed from
+`unit:metre` to `unit:inch` but both versions use `xsd:int` as a data type, values have obviously
+different meanings. This means that a specific Aspect endpoint using this Aspect model must not be
+registered with both versions of the Aspect model simultaneously. Of course, the Aspect can
+implement both versions and make them available on different endpoints.
+
+TIP: When only safe changes are made to the Aspect model, the model author can choose between
+increasing the MINOR part of the version (e.g. from 1.0.0 to 1.1.0) or the PATCH part of the version
+(e.g. from 1.0.0 to 1.0.1). Otherwise, the model author can choose between increasing the MINOR part
+or the MAJOR part of the version (e.g. from 1.0.0 to 2.0.0). The latter change should be used to
+indicate structural and semantic incompatibility between versions.
+
+[[example]]
+== Example: Evolution of an Aspect Model
+
+Let's consider a simple Aspect model `MachineOnlineStatus` that describes a Property `onlineStatus`
+which represents the information about whether a machine is online, offline, starting up or
+undefined (if the current status can not be retrieved).
+
+[cols="a,a"]
+|====
+|
+[source,turtle,subs="attributes+"]
+----
+include::example$model-evolution.ttl[]
+----
+|
+{empty} +
+In version 1.0.0 of the model, the modeler decides to first represent the Property
+itself using an `OnlineStatus` Characteristic ①. They use the `string` datatype to be able to
+represent the four valid states given in the target machine's data sheet.
+|
+[source,turtle,subs="attributes+"]
+----
+include::example$model-evolution2.ttl[]
+----
+|
+{empty} +
+The modeler decides to reify the possible status values by using an Enumeration as the
+characteristic ②. Because the Property still has the `string` datatype, payloads for the previous
+and the current model version do not differ. Taking into account that the description in the
+previous model version states the valid values and they do not differ to the Enumeration's values,
+this makes the change a safe change. Therefore, the Aspect model's version is increased to 1.0.1.
+|
+[source,turtle,subs="attributes+"]
+----
+include::example$model-evolution3.ttl[]
+----
+|
+{empty} +
+By carefully reading the machine's data sheet, the modeler determined that the UNKNOWN online status
+can only ever occur before some machine-internal controller is initialized, which only occurs during
+booting the device. Thus, they remove the UNKNOWN status from the enumeration ③, because BOOTING can
+always be used in its place. This results in the following points:
+
+* The status that is confusing to users and downstream developers is removed. The model more clearly
+  states its purpose.
+* By removing the machine-specific idiosyncrasy, the model is more generally applicable and can be
+  used with other devices as well.
+* The implementation of the Aspect can no longer just pass-through the value read from the device
+  but has to clean up the value. In this case this is trivial, but in more complex scenarios this
+  might require according complex logic. However, it is always preferable to perform data clean up
+  in the Aspect and therefore present an interface via the Aspect model that is as "clean" as
+  possible.
+
+Removal of the UNKNOWN status is a safe change: Clients that can deal with the previous status set,
+can also deal with the sub-set that does not include UNKNOWN. For this reason, the version is
+increased to 1.0.2.
+|
+[source,turtle,subs="attributes+"]
+----
+include::example$model-evolution4.ttl[]
+----
+|
+{empty} +
+The modeler decides that the Property name `machineOnlineStatus` is too long and redundant and
+renames it to `onlineStatus` ④. This is an unsafe change, because the JSON payload that corresponds
+to the Aspect model is now changed structurally. The Aspect model version is increased to 1.1.0: The
+Aspect model still represents the same data which means that an increase of the major version is not
+warranted, but payloads are not any longer directly compatible, so the minor version is increased.
+To indicate the relation between `machineOnlineStatus` in the previous model version and
+`onlineStatus` in the current model version, an explicit link is added using `bamm:see` ⑤. This is
+optional and purely informational and will show up in the Aspect model's generated documentation,
+but it is not a piece of information that consumers of the Aspect model programmatically rely on.
+|====
+
+IMPORTANT: In the example scenario, when registering Aspect endpoints with a Digital Twin, three
+Aspect entries for the `MachineOnlineStatus` Aspect could be registered on a Digital Twin (one for
+each of the versions 1.0.0, 1.0.1 and 1.0.2) with the _same_ Aspect HTTP (or MQTT) endpoint that
+only actually implements model version 1.0.2, because payloads are compatible. For model version
+1.1.0, a separate endpoint needs to be provided by the Aspect implementation.

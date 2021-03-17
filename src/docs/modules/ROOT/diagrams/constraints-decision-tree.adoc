@@ -1,0 +1,97 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+[plantuml,constraints-decision-tree,svg]
+----
+@startuml
+skinparam shadowing false
+
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontName Roboto Condensed
+  FontSize 16
+  ArrowColor Black
+}
+
+skinparam activityDiamond {
+  BackgroundColor White
+  BorderColor Black
+  FontName Roboto Condensed
+  FontSize 16
+  ArrowColor Black
+}
+
+(*) --> "Is the value\na collection?"
+
+if "" then
+  -->[yes] "Is there a known\nminimum and/or\nmaximum length?" as CollectionMinMax
+else
+  -->[no] "Is the value\na number?" as NumberKind
+endif
+
+CollectionMinMax --> if "" then
+  -->[yes] "Length Constraint" as CollectionLengthConstraint #b7c9e3
+else
+  -->[no] "No Constraint\nneeded" as NoConstraint
+endif
+
+NumberKind --> if "" then
+  -->[yes] "Is the value a fixed point number?" as FixedPointNumber
+else
+  -->[no] "Is there a known\nminimum and/or\nmaximum length?" as StringMinMax
+endif
+
+FixedPointNumber --> if "" then
+  -->[yes] "Fixed Point Constraint" #b7c9e3
+  --> "Is there a known\nminimum and/or\nmaximum value?" as NumberMinMax
+else
+  -->[no] NumberMinMax
+endif
+
+NumberMinMax --> if "" then
+  -->[yes] "Range Constraint" #b7c9e3
+else
+  -->[no] NoConstraint
+endif
+
+StringMinMax --> if "" then
+  -->[yes] "Length Constraint" as StringLengthConstraint #b7c9e3
+  --> "Does the value\nuse UTF-8 encoding?" as Utf
+else
+  -->[no] Utf
+endif
+
+Utf --> if "" then
+  -left->[no] "Encoding Constraint" #b7c9e3
+  --> "Is the value a text\nin a specific\nlanguage?" as Language
+else
+  -->[yes] Language
+endif
+
+Language --> if "" then
+  -->[yes] "How is the language\nspecified?" as LangSpec
+else
+  -->[no] "Can the value be\nconstrained using a\nregular expression?" as Regex
+endif
+
+LangSpec --> if "" then
+  -->[ISO 639,\ne.g., 'en'] "Language Constraint" #b7c9e3
+  --> Regex
+else
+  -->[BCP 47,\ne.g., 'en-US'] "Locale Constraint" #b7c9e3
+  --> Regex
+endif
+
+Regex --> if "" then
+  -left->[yes] "Regular Expression Constraint" #b7c9e3
+else
+  -right->[no] "No more Constraints\nneeded"
+endif
+
+@enduml
+----

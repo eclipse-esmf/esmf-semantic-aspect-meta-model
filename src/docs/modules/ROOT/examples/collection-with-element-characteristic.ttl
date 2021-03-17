@@ -1,0 +1,35 @@
+# Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+# If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+
+:Test a bamm:Aspect ;
+  bamm:name "Test" ;
+  bamm:properties ( :numbers ) ;
+  bamm:operations ( ) .
+
+# tag::content[]
+:numbers a bamm:Property ;
+   bamm:name "numbers" ;
+   bamm:characteristic :NumberList .
+
+:NumberList a bamm-c:List ;
+   bamm:name "NumberList" ;
+   bamm-c:elementCharacteristic [
+      a bamm-c:RangeConstraint ;
+      bamm:name "ElementRange" ;
+	  bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
+      bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
+      bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+      bamm:baseCharacteristic :Number ;
+   ] .
+
+:Number a bamm:Characteristic ;
+   bamm:name "Number" ;
+   bamm:dataType xsd:nonNegativeInteger .
+# end::content[]

@@ -1,0 +1,606 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+
+[[aspects]]
+= Aspects
+
+== General
+
+=== Notes
+
+* As mentioned in the xref:index.adoc[Introduction], Aspect models are described in RDF Turtle
+  xref:bamm-specification:appendix:appendix.adoc#turtle[[turtle\]]. The aspect specification will
+  therefore assume basic familiarity with Turtle.
+* For the definition of the different Model elements please refer to the
+  xref:meta-model-elements.adoc[Meta Model Elements].
+
+
+[[naming-rules]]
+=== Naming rules
+
+The naming of Model Elements follows the naming
+https://en.wikipedia.org/wiki/Naming_convention_(programming)#Java[Java naming conventions] for
+classes, properties and methods.
+
+* The names of Aspects, Entities, Constraints and Characteristics follow the naming conventions for
+  Java classes, i.e. UpperCamelCase.
+* The names of Properties, Operations and Units follow the naming conventions of Java methods, i.e.
+  lowerCamelCase.
+
+[[rdf-turtle-formatting-rules]]
+=== RDF/Turtle formatting rules
+
+* Each Aspect Model is defined in a separate TTL (Turtle) file.
+* The Turtle file containing an Aspect Model must have the same name as the Aspect.
+* Aspect Model files must be UTF-8 encoded and should not contain a
+  https://en.wikipedia.org/wiki/Byte_order_mark[byte order mark].
+* There should be one empty line between model element definitions.
+* Indentation should be done with three spaces.
+* There should be a space before every separating semicolon.
+* There should be padding spaces inside RDF lists and anonymous nodes (i.e. inside brackets and
+  square brackets)
+
+[[attributes-that-all-model-elements-have]]
+=== Attributes that all model elements have
+
+Every model element (Aspects, Properties, Characteristics, Entities, Operations) has the following
+attributes:
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:name` | The name of the property. This name must be defined in Camel
+  Case and be valid a Java Property name (i.e. can not contain spaces, dashes etc.). | {ok}
+| `bamm:preferredName` | Human readable name in a specific language. This attribute may be defined
+  multiple times for different languages but only once for a specific language. There should be at
+  least one preferredName defined with an "en" language tag. | {nok}
+| `bamm:description` | Human readable description in a specific language. This attribute may be
+  defined multiple times for different languages but only once for a specific language. There should
+  be at least one description defined with an "en" language tag. | {nok}
+| `bamm:see` | A reference to a related element in an external taxonomy, ontology or other standards
+  document. The datatype is `xsd:anyURI`. This attribute may be defined multiple times. | {nok}
+|===
+
+NOTE: Although both `bamm:preferredName` and `bamm:description` should be set at least once in every
+model element, in the following examples we will mostly leave them out to improve readability.
+
+[[declaring-model-elements]]
+== Declaring model elements
+
+[[using-namespaces]]
+=== Using Namespaces
+
+An Aspect model file should start with the {meta-model-abbr} prefix definitions. The empty namespace
+":" should be used as local namespace, i.e. the versioned namespace in which the Aspect and its
+elements are defined. Other customer or domain specific namespaces can be defined additionally.
+However, the bamm-* namespaces are reserved for the meta model. Third party locations can be
+referred via other namespaces (e.g., "xsd:"). See
+xref:namespaces.adoc#namespaces-and-versions[Namespaces and Versions] for more details on the topic.
+
+[source,turtle,subs="attributes+,+quotes"]
+----
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix bamm-e: <{bamm-e}> .
+@prefix unit: <{unit}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+----
+
+[[declaring-aspects]]
+=== Declaring Aspects
+
+An Aspect is defined by marking its identifier with `a bamm:Aspect` and additional attributes. Note
+that the `a` is just a https://www.w3.org/TR/turtle/#sec-iri[syntactic shortcut] for `rdf:type`. In
+addition to the general attributes, every Aspect Model element has the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Required
+| `bamm:properties` | The list of Properties of this Aspect. The attribute must be present, but the
+  list may be empty. | {ok}
+| `bamm:operations` | The list of Operations of this Aspect. The attribute must be present, but the
+  list may be empty. | {ok}
+|===
+
+* Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
+* Each Aspect model must be defined in its own file. The file name must be the same as the Aspect's
+  name.
+* The name part in the Aspect's identifying URN must be the same as the Aspect's `bamm:name`.
+* The hierarchical namespace part in the Aspect's URN can be freely chosen.
+
+The definition of an Aspect should therefore have the following structure in TTL syntax; note though
+that unused namespaces can be left out:
+
+[source,turtle,subs="attributes+,+quotes"]
+----
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix bamm-e: <{bamm-e}> .
+@prefix unit: <{unit}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+include::example$aspect-sample.ttl[tags=aspect-declaration]
+----
+
+[[declaring-properties]]
+=== Declaring Properties
+
+In addition to the xref:modeling-guidelines#declaring-model-elements#attributes-that-all-model-elements-have[attributes
+that all model elements have], Properties have the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Required
+| `bamm:characteristic` | The xref:characteristics.adoc#characteristics[Characteristic] describing
+  this Property. | {ok}
+| `bamm:exampleValue` | An exemplary value the Property can take on that helps to understand the
+intended meaning of the property better. This can only be set for Properties with scalar data types
+(e.g., `xsd:string` or `xsd:float`, but not Entities). The data type of the `bamm:exampleValue` must
+be convertible to the effective data type of the Property's Characteristic. For example, if the
+Characteristic's `bamm:dataType` is `xsd:int`, `xsd:short` is also a valid type for the
+`bamm:exampleValue`. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
+for more details. | {nok}
+|===
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=property-declaration]
+----
+
+The characteristic attribute may be omitted. This allows users to reuse the Property or the Entity
+using this Property and set the Characteristic specific to the users domain at a later point in
+time. A Property which is declared without a Characteristic must always be _refined_, i.e.
+overridden, in an Aspect Model, i.e. an Aspect Model may not contain a Property where the
+Characteristic has not been set either directly or by refining the Property. A Property can be
+refined by using the `bamm:refines` attribute and setting the `bamm:characteristic` attribute. The
+main use case is to be able to create shared Entities which have some Properties which are fixed and
+some Properties which can be further refined in an Aspect Model that uses the shared Entity (see
+<<declaring-time-series>> below as an example).
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=refining-declaration]
+----
+
+[[declaring-characteristics]]
+=== Declaring Characteristics
+
+The attributes for Characteristics are described in detail in section
+xref:characteristics.adoc#characteristics[Characteristics].
+
+The `dataType` attribute may be omitted when creating a subclass of a Characteristic. The `dataType`
+attribute must be set when creating an instance of a Characteristic, except when the `dataType`
+attribute has been set in the class or one of the super-classes. When the `dataType` has been set in
+a superclass, the `dataType` may be set to a subclass of the `dataType` from one of the
+Characteristic superclasses. This allows the definition of generic Characteristics such as
+Collections, where all the semantics are fixed, except for the data type. For a Collection for
+example it is possible to define whether the collection is sorted or not and this definition can be
+then reused with different data types to define different collections.
+
+NOTE: A guide for how to decide on which Characteristic to use can be found in
+xref:modeling-guildlines.adoc#choosing-a-characteristic[Choosing a Characteristic].
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=state-declaration]
+----
+
+[[declaring-quantifiable-values-and-measurements]]
+==== Declaring Quantifiables and Measurements
+
+Whenever a Property represents a numeric, scalar value that the result of a measurent of some kind
+(e.g., using a sensor) and has a well-defined physical unit which is known at modeling time, use the
+_Measurement_ Characteristic. If the value is numeric and has a physical unit but is not the result
+of a measurement (e.g., when it is calculated from other values), use the _Quantifiable_
+Characteristic.
+
+See the following example that uses _Measurement_ -- usage of _Quantifiable_ is analogous.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=measurement-declaration]
+----
+See section xref:units.adoc#units[Units] for information about the valid values for the `bamm-c:unit` attribute.
+
+[[declaring-single-entity]]
+==== Declaring Single Entity
+
+The following example shows how a Property is defined that uses the
+xref:characteristics.adoc#single-entity-characteristic[Single Entity] Characteristic to specify an Entity as its dataType.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=single-entity-declaration]
+----
+
+[[declaring-constraints]]
+==== Declaring Constraints
+
+Consider the `numbers` Property that uses an instance of the `List` Characteristic:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$regular-numberlist.ttl[tags=content]
+----
+
+To add a xref:characteristics.adoc#length-constraint[Length Constraint] to the list, replace the use
+of the Characteristic with the corresponding Constraint instance while at the same time setting the
+Constraint's `baseCharacteristic` to the original Characteristic:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$constrained-numberlist.ttl[tags=content]
+----
+
+Another more complex example is given below: The Property `someIdentifier` is defined that uses a
+xref:characteristics.adoc#code-characteristic[Code] instance using a dataType of `xsd:string`,
+combined with two Constraints: An xref:characteristics.adoc#encoding-constraint[Encoding Constraint]
+that restricts the value space to US-ASCII and a xref:characteristics.adoc#length-constraint[Length
+Constraint] that limits the string to 80 characters.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$constrained-stringcode.ttl[tags=content]
+----
+
+An example showing the xref:characteristics.adoc#regular-expression-constraint[Regular Expression Constraint] is given below:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
+----
+
+[[declaring-collections]]
+==== Declaring Collections
+
+There are four basic predefined types of Collections:
+xref:characteristics.adoc#collection-characteristic[Collection],
+xref:characteristics.adoc#list-characteristic[List],
+xref:characteristics.adoc#set-characteristic[Set] and
+xref:characteristics.adoc#sortedset-characteristic[Sorted Set]. The Collection definitions are
+shared and are available globally. They determine whether a specific collection is ordered or not
+and whether a specific collection may contain duplicates or not. In some cases the data type is also
+set in the shared Collection Characteristic.
+
+These shared Collection Characteristics may not be changed in an Aspect Model, hence it is not
+allowed to create a subclass of the Collection Characteristic in an Aspect Model. To create a
+Collection Characteristic for a specific domain, the user should instantiate one of the Collection
+classes and define the data type or the element Characteristic for the Collection. In this example,
+the Characteristic resulting from the combination of Code, Length Constraint and Encoding Constraint
+is not defined inline in the Property, but defined standalone.
+
+[cols="a,a"]
+|====
+| Example with a scalar data type:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=scalar-collection]
+----
+| Example with a custom Entity as data type:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=entity-collection]
+----
+|====
+
+TIP: The data type for the elements of a Collection can either be defined in the usual manner using
+the `bamm:dataType` attribute (see the examples above) or by defining a Characteristic for the
+Collection elements using the `bamm-c:elementCharacteristic` attribute, see the example below. It is
+recommended to explicitly create a Characteristic for the Collection elements instead of only
+defining the data type, since it allows to completely express the semantics of the elements.
+
+Example with the `bamm-c:elementCharacteristic` attribute:
+[source,turtle,subs="attributes+"]
+----
+include::example$collection-with-element-characteristic.ttl[tags=content]
+----
+
+[[declaring-enumerations]]
+==== Declaring Enumerations
+
+Describes a Property which may have a value from a predefined list of values. Also see
+xref:characteristics.adoc#enumeration-characteristic[Enumeration].
+
+Example with literal `xsd:string` values:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-string]
+----
+
+Example with literal `xsd:integer` values. Note that for `xsd:integer`, Turtle's numeric literal
+syntax can be used: [source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-integer]
+----
+
+Example with literal `xsd:int` values:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-int]
+----
+
+Example with literal `xsd:date` values:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-date]
+----
+
+Example with complex values:
+
+Declaring an Enumeration with a complex value is usally done in order to add a description to the
+actual value, e.g., the `state` in the example below, which provides information regarding the
+meaning of the value. This description only exists in the aspect model and is not part of the
+payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
+part of the runtime data, the `bamm:notInPayload` attribute is used.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-complex-declaration]
+----
+
+CAUTION: If the Property is part of the runtime data (like `status` in the example), it is directly
+referenced. Writing `bamm:notInPayload false` is _not_ allowed.
+
+[[declaring-state]]
+==== Declaring State
+
+As described in xref:characteristics.adoc#state-characteristic[State Characteristic], State inherits
+from Enumeration and extends it with the default value attribute.
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=state-declaration]
+----
+
+[[declaring-time-series]]
+==== Declaring Time Series
+
+The `xref:characteristics.adoc#time-series-characteristic[TimeSeries]` Characteristic is a special
+kind of Collection. A Time Series is defined as a list of tuples of values with their respective
+specific point in time when they where recorded. This is, the Time Series is represented by a list
+of key/value pairs where the key is the time-stamp denoting when the value was recorded and the
+value is the recorded value. In order to describe these semantics the shared `TimeSeries`
+Characteristic is used. This is a subclass of the `SortedSet` Characteristic and defines that the
+`dataType` must be a subclass of the `TimeSeriesEntity`.
+
+The `xref:entities.adoc#time-series-entity[TimeSeriesEntity]` has the two Properties `timestamp` and
+`value`. The `timestamp` Property is defined with the `Timestamp` Characteristic which describes
+values containing timestamps conforming to `xref:datatypes.adoc#data-types[xsd:dateTime]`, a date
+and time with or without time zone. The `value` Property is defined without a Characteristic, hence
+the semantics of the value can be defined in the specific Aspect Model.
+
+To create a Time Series for a specific domain, the user should instantiate the `TimeSeries`
+Collection Characteristic and set the `dataType` to an Entity which refines the `TimeSeries` Entity
+in order to define the semantics for the `value` Property in the context of the specific domain.
+Please see the xref:modeling-guidelines.adoc#declaring-entities[Declaring Entities] section for
+information on how to refine an Entity.
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tag=timeseries-declaration]
+
+include::example$aspect-sample.ttl[tag=state-declaration]
+----
+
+TIP: An Aspect should only have one Collection at root level. When modeling an Aspect with two or
+more collections at root level which contain related data, consider creating the model so that the
+related data is explicitly linked and contained in a single Collection. When modeling an Aspect with
+two or more collections at root level which contain unrelated data, consider creating separate
+Aspects each containing a single Collection.
+
+[[declaring-either]]
+==== Declaring Either
+
+Describes a Property whose value can have one of two possible types (a disjoint union). This
+Characteristic is special since it does not directly define a data type. The data type is defined in
+the two Characteristics which define the left and right value of the disjoint union. Also see
+xref:characteristics.adoc#either-characteristic[Either].
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=either-declaration]
+----
+
+[[declaring-structured-value]]
+==== Declaring Structured Value
+
+xref:characteristics.adoc#structured-value-characteristic[Structured Values] are intended to be used
+for Properties when all of the following conditions are met:
+
+* The value has a scalar, xref:datatypes.adoc#data-types[string-like value space]
+* The value has a well-known structure consisting of different, separate parts
+* The parts can and should be described in more detail
+* The Property should not be decomposed/deconstructed into an Entity with separate Properties for
+  each part
+
+One of the main use cases is complex identifiers that encode context information such as provenance
+information, version numbers, locations codes and so on. It is unreasonable to split such a value up
+into separate Properties, because it complicates working with corresponding data: For example, such
+values could appear in payloads, databases or documents and would have to be converted back and
+forth, often times manually. On the other hand, properly describing the value and the parts it
+comprises can be difficult, especially in a machine-readable way.
+
+Therefore, the Structured Value Characteristic can be used to describe the deconstruction of a value
+into its parts and linking each part to a separate Property definition.
+
+The following table gives some simple examples to demonstate the basic applicability of the
+Characteristic, and after that a complete concrete example is given.
+
+[width="100%", options="header"]
+|===
+| Name | Example Value | Deconstruction Rule | Elements
+| ISO 8601 date | "2019-09-27"^^`xsd:date` | `(\d\{4})-(\d\{2})-(\d\{2})` | ( `:year` "-" `:month`
+  "-" `:day` )
+| Email Address | "\user4711@example.com" | `([\w\.-]+)@([\w\.-]+\.\w{2,4})` | ( `:username` "@" `:host` )
+| Hex-encoded color | "0xAC03BE" | `0x([0-9A-Fa-f]\{2})([0-9A-Fa-f]\{2})([0-9A-Fa-f]\{2})` | ( "0x"
+  `:red` `:green` `:blue` )
+|===
+
+The following code shows the Aspect model for the first example from the table. Note that when
+writing the `deconstructionRule`, backslashes (`\`) need to be escaped in order to produce valid
+RDF/Turtle syntax, i.e. write `\\` instead of `\`.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$structured-value-sample.ttl[tags=content]
+----
+
+NOTE: Technically, `bamm-c:elements` would not be required just to parse corresponding payload; the
+regular expression given in the `bamm-c:deconstructionRule` would be sufficient. However, the
+`elements` fields serves two purposes: Firstly, it concisely describes how the meaning of the
+deconstruction rule corresponds with the named fields; secondly, it is used for validation: When a
+`bamm:exampleValue` is given (like in the example), the Aspect Model validator can automatically
+check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
+i.e., that the deconstruction rule actually does what the model author intended.
+
+[[declaring-entities]]
+=== Declaring Entities
+
+Entities have the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Required
+| `bamm:properties` | The list of Properties which make up the Entity | {ok}
+|===
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=entity-declaration]
+----
+
+When an Entity is defined with a Property which has no Characteristic, for example the shared
+`xref:entities.adoc#time-series-entity[Time Series]` Entity, the Entity needs to be refined in order
+to use it. This is done by declaring an Entity with `bamm:refines` and with a Property that in turn
+refines another Property. See the following example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=refining-entity-declaration]
+----
+
+[[declaring-operations]]
+=== Declaring Operations
+
+Operations have the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Required
+| `bamm:input` | A list of references to Properties that describe the input to the operation. The
+  attribute must be present, but the list may be empty. | {ok}
+| `bamm:output` | A single reference to a Property that describes the output of the operation. |
+  {ok}
+|===
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=operation-declaration]
+----
+
+[[adding-external-references]]
+=== Adding external references
+
+The `bamm:see` attribute can be used to add references to related elements in an external taxonomy,
+ontology or standards document to Aspect model elements. Values for `bamm:see` must be URIs. The
+meaning of the reference is informative and implies no semantics such as equality or subsumption in
+either direction.
+
+In the following example, `bamm:see` adds two references to external well-known vocabularies that
+have identifiers which are also valid URLs:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=see-url-declaration]
+----
+
+If an external model element should be referenced that has a unique identifier which is not a URI,
+but a well-known resolver exists, you can either use the resolver's URL or a synthetic URN. For
+example, for the Digital Object Identifier (DOI,
+xref:bamm-specification:appendix:appendix.adoc#doi[[DOI\]]) `10.1109/NetSys.2017.7903949`, you can
+use as the value for `bamm:see` either the URL `\https://doi.org/10.1109/NetSys.2017.7903949` or the
+URN `urn:doi:10.1109/NetSys.2017.7903949`.
+
+If an external model element should be referenced that has a unique identifier which is not a URI
+and there is no well-known resolver, use a synthetic URN structure. One example are Object
+Identifiers as specified by ITU and ISO/IEC (OID) and the mapping to URNs in RFC 3061
+xref:bamm-specification:appendix:appendix.adoc#rfc3061[[rfc3061\]], so for example, for the OID
+`1.3.6.1.4.1.1919.1.1.2`, the corresponding `bamm:see` value would be
+`urn:oid:1.3.6.1.4.1.1919.1.1.2`:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=see-oid-declaration]
+----
+
+If an external element should be referenced that has no unique identifier, `bamm:see` should not be
+used. In this case, refer to the external element in the current model element's `bamm:description`,
+for example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=see-dontuse]
+----
+
+[[optional-properties]]
+=== Optional Properties
+
+When Properties are used in Aspects and Entities, they can be marked as optional. This means that a
+Property's _usage_ is optional, not the Property itself, which would make reusing a Property more
+difficult. In the following example, the Property `toggleStatus` is mandatory and the Property
+`errorMessage` is marked as optional in the Aspect. Note how the `bamm:properties` of the Aspect are
+defined, and how the definition for the `toggleStatus` Property itself does not differ from that of
+`errorMessage`.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$optional-properties-sample.ttl[tags=optional-properties-declaration]
+----
+
+CAUTION: If the Property's use is optional, it is marked with `bamm:optional true` (like
+`errorMessage` in the example). However, if its use is mandatory (like `toggleStatus` in the
+example), the Property is directly referenced. Writing `bamm:optional false` is _not_ allowed.
+
+[[syntactic-shortcuts]]
+=== Syntactic Shortcuts
+
+When Properties use Characteristics classes, i.e. Characteristics that need to be instantiated, and
+the Characteristic instance is used in only one Property, the Characteristic may also be defined
+inline. Note that other Aspect Models can not refer to the Characteristic any more, because it no
+longer has an identifier.
+
+[cols="a,a"]
+|====
+| Example: Regular definition of a Property
+[source,turtle,subs="attributes+"]
+----
+include::example$regular-numberlist.ttl[tags=content]
+----
+| Example: Inlining the Characteristic definition
+[source,turtle,subs="attributes+"]
+----
+include::example$inline-numberlist.ttl[tags=content]
+----
+|====

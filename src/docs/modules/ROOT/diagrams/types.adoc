@@ -1,0 +1,160 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+[graphviz,aspect-model-types,svg,layout=neato]
+----
+digraph aspect_model_types {
+  splines=ortho
+
+include::diagram-style.dot[]
+
+  // Wider nodes
+  anyType [pos="-1,0!", fillcolor="white"]
+  anySimpleType [pos="-1,-1!", fillcolor="white"]
+  Entity [pos="2,-1!"]
+  decimal [pos="0,-2!"]
+  duration [pos="2,-2!"]
+  dateTime [pos="6,-2!"]
+  integer [pos="0,-3!"]
+  dayTimeDuration [pos="2,-3!"]
+  yearMonthDuration [pos="4,-3!"]
+  dateTimeStamp [pos="6,-3!"]
+  nonPositiveInteger [pos="0,-4!"]
+  nonNegativeInteger [pos="4,-4!"]
+  negativeInteger [pos="0,-5!"]
+  positiveInteger [pos="2,-5!"]
+  unsignedLong [pos="4,-5!"]
+  long [pos="6,-5!"]
+  unsignedInt [pos="4,-6!"]
+  int [pos="6,-6!"]
+  unsignedShort [pos="4,-7!"]
+  short [pos="6,-7!"]
+  string [pos="0,-8!"]
+  langString [pos="2,-8!"]
+  unsignedByte [pos="4,-8!"]
+  byte [pos="6,-8!"]
+
+  // Narrower nodes
+  node [width=1.0]
+  date [pos="0,-9! "]
+  time [pos="1.3,-9!"]
+  gYearMonth [pos="2.6,-9!"]
+  gMonth [pos="3.9,-9!"]
+  gDay [pos="5.2,-9!"]
+  gMonthDay [pos="6.5,-9!"]
+  gYear [pos="7.8,-9!"]
+  anyURI [pos="0,-10! "]
+  double [pos="1.3,-10!"]
+  float [pos="2.6,-10!"]
+  boolean [pos="3.9,-10!"]
+  base64Binary [pos="5.2,-10!"]
+  hexBinary [pos="6.5,-10!"]
+  curie [pos="7.8,-10!"]
+
+  // Support points
+  //node [shape=rectangle, label="", height=0.0, width=0.0]
+  above_anySimpleType [pos="-1,-0.5!", shape=point, label="", height=0.0, width=0.0]
+  below_anySimpleType [pos="-1,-1.5!", shape=point, label="", height=0.0, width=0.0]
+  above_decimal [pos="0,-1.5!", shape=point, label="", height=0.0, width=0.0]
+  above_duration [pos="2,-1.5!", shape=point, label="", height=0.0, width=0.0]
+  above_dateTime [pos="6,-1.5!", shape=point, label="", height=0.0, width=0.0]
+  above_dayTimeDuration [pos="2,-2.5!", shape=point, label="", height=0.0, width=0.0]
+  above_yearMonthDuration [pos="4,-2.5!", shape=point, label="", height=0.0, width=0.0]
+  above_nonPositiveInteger [pos="0,-3.5!", shape=point, label="", height=0.0, width=0.0]
+  above_nonNegativeInteger [pos="4,-3.5!", shape=point, label="", height=0.0, width=0.0]
+  above_unsignedLong [pos="4,-4.5!", shape=point, label="", height=0.0, width=0.0]
+  below_anySimpleType2 [pos="-1,-7.5!", shape=point, label="", height=0.0, width=0.0]
+  above_string [pos="0,-7.5!", shape=point, label="", height=0.0, width=0.0]
+  above_langString [pos="2,-7.5!", shape=point, label="", height=0.0, width=0.0]
+  below_anySimpleType3 [pos="-1,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_date [pos="0,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_time [pos="1.3,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_gYearMonth [pos="2.6,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_gMonth [pos="3.9,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_gDay [pos="5.2,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_gMonthDay [pos="6.5,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_gYear [pos="7.8,-8.5!", shape=point, label="", height=0.0, width=0.0]
+  above_anyURI [pos="0,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  above_double [pos="1.3,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  above_float [pos="2.6,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  above_boolean [pos="3.9,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  above_base64Binary [pos="5.2,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  above_hexBinary [pos="6.5,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  below_anySimpleType4 [pos="-1,-9.5!", shape=point, label="", height=0.0, width=0.0]
+  above_curie [pos="7.8,-9.5!", shape=point, label="", height=0.0, width=0.0]
+
+  // Edges with arrows
+  above_anySimpleType -> anyType
+  below_anySimpleType -> anySimpleType
+  integer -> decimal
+  above_dayTimeDuration -> duration
+  dateTimeStamp -> dateTime
+  above_nonPositiveInteger -> integer
+  negativeInteger -> nonPositiveInteger
+  above_unsignedLong -> nonNegativeInteger
+  unsignedInt -> unsignedLong
+  int -> long
+  unsignedShort -> unsignedInt
+  short -> int
+  unsignedByte -> unsignedShort
+  byte -> short
+
+  // Edges without arrows
+  anySimpleType -> above_anySimpleType [arrowhead=none]
+  Entity -> above_anySimpleType [arrowhead=none]
+  decimal -> above_decimal [arrowhead=none]
+  above_decimal -> below_anySimpleType [arrowhead=none]
+  duration -> above_duration [arrowhead=none]
+  above_duration -> above_decimal [arrowhead=none]
+  dateTime -> above_dateTime [arrowhead=none]
+  above_dateTime -> above_duration [arrowhead=none]
+  dayTimeDuration -> above_dayTimeDuration [arrowhead=none]
+  yearMonthDuration -> above_yearMonthDuration [arrowhead=none]
+  above_yearMonthDuration -> above_dayTimeDuration [arrowhead=none]
+  nonPositiveInteger -> above_nonPositiveInteger [arrowhead=none]
+  nonNegativeInteger -> above_nonNegativeInteger [arrowhead=none]
+  above_nonNegativeInteger -> above_nonPositiveInteger [arrowhead=none]
+  long -> above_nonNegativeInteger [arrowhead=none]
+  unsignedLong -> above_unsignedLong [arrowhead=none]
+  positiveInteger -> above_unsignedLong [arrowhead=none]
+  string -> above_string [arrowhead=none]
+  above_string -> below_anySimpleType2 [arrowhead=none]
+  below_anySimpleType2 -> below_anySimpleType [arrowhead=none]
+  langString -> above_langString [arrowhead=none]
+  above_langString -> above_string [arrowhead=none]
+  date -> above_date [arrowhead=none]
+  above_date -> below_anySimpleType3 [arrowhead=none]
+  below_anySimpleType3 -> below_anySimpleType2 [arrowhead=none]
+  time -> above_time [arrowhead=none]
+  gYearMonth -> above_gYearMonth [arrowhead=none]
+  gMonth -> above_gMonth [arrowhead=none]
+  gDay -> above_gDay [arrowhead=none]
+  gMonthDay -> above_gMonthDay [arrowhead=none]
+  gYear -> above_gYear [arrowhead=none]
+  above_time -> above_date [arrowhead=none]
+  above_gYearMonth -> above_time [arrowhead=none]
+  above_gMonth -> above_gYearMonth [arrowhead=none]
+  above_gDay -> above_gMonth [arrowhead=none]
+  above_gMonthDay -> above_gDay [arrowhead=none]
+  above_gYear -> above_gMonthDay [arrowhead=none]
+  below_anySimpleType4 -> below_anySimpleType3 [arrowhead=none]
+  above_anyURI -> below_anySimpleType4 [arrowhead=none]
+  above_double -> above_anyURI [arrowhead=none]
+  above_float -> above_double [arrowhead=none]
+  above_boolean -> above_float [arrowhead=none]
+  above_base64Binary -> above_boolean [arrowhead=none]
+  above_hexBinary -> above_base64Binary [arrowhead=none]
+  anyURI -> above_anyURI [arrowhead=none]
+  double -> above_double [arrowhead=none]
+  float -> above_float [arrowhead=none]
+  boolean -> above_boolean [arrowhead=none]
+  base64Binary -> above_base64Binary [arrowhead=none]
+  hexBinary -> above_hexBinary [arrowhead=none]
+  above_curie -> above_hexBinary [arrowhead=none]
+  curie -> above_curie [arrowhead=none]
+}
+----

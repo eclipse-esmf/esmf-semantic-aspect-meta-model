@@ -1,0 +1,22 @@
+# Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+# If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:MachineOnlineStatus a bamm:Aspect ;
+   bamm:name "MachineOnlineStatus" ;
+   bamm:properties ( :machineOnlineStatus ) ;
+   bamm:operations ( ) .
+
+:machineOnlineStatus a bamm:Property ;
+   bamm:name "machineOnlineStatus" ;
+   bamm:description "The current machine online status. Can be either ON, OFF, BOOTING or UNDEFINED."@en ;
+   bamm:characteristic [ # <1>
+      a bamm:Characteristic ;
+      bamm:name "OnlineStatus" ;
+      bamm:dataType xsd:string
+   ] .

@@ -1,0 +1,182 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+[plantuml,characteristics-decision-tree,svg]
+----
+@startuml
+skinparam shadowing false
+
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontName Roboto Condensed
+  FontSize 16
+  ArrowColor Black
+}
+
+skinparam activityDiamond {
+  BackgroundColor White
+  BorderColor Black
+  FontName Roboto Condensed
+  FontSize 16
+  ArrowColor Black
+}
+
+(*) --> "Is the value\nan Object?"
+
+if "" then
+  -right->[yes] "Single Entity" #b7c9e3
+else
+  -->[no] "Is the value\na compound value\nof multiple parts?" as IsStructuredValue
+endif
+
+IsStructuredValue --> if "" then
+  -right->[yes] "Structured Value" #b7c9e3
+else
+  -->[no] "Is the value\na disjoint union\nof two values?" as IsEither
+endif
+
+IsEither --> if "" then
+  -right->[yes] "Either" #b7c9e3
+else
+  -->[no] "Is the value\na collection?" as ACollection
+endif
+
+ACollection --> if "" then
+  -left->[yes] "Are the values\nordered?" as Ordered
+else
+  -right->[no] "Is the value\na number?" as NumberKind
+endif
+
+partition Collections {
+  Ordered --> if "" then
+    -->[yes] "Are duplicates\nallowed?" as Duplicates1
+  else
+    -->[no] "Are duplicates\nallowed?" as Duplicates2
+  endif
+
+  Duplicates1 --> if "" then
+    -->[yes] "List" #b7c9e3
+  else
+    -->[no] "Are the values\nrecorded with\na timestamp?" as HaveTimestamp
+  endif
+
+  HaveTimestamp --> if "" then
+    -->[yes] "Time Series" #b7c9e3
+  else
+    -->[no] "Sorted Set" #b7c9e3
+  endif
+
+  Duplicates2 --> if "" then
+    -->[yes] "Collection" #b7c9e3
+  else
+    -->[no] "Set" #b7c9e3
+  endif
+}
+
+NumberKind --> if "" then
+  -->[yes] "Are the possible\nvalues known?" as NumberValuesKnown
+else
+  -->[no] "Is the value a boolean?" as BooleanKind
+endif
+
+partition "Nominal scaled values" {
+  BooleanKind --> if "" then
+    -->[yes] "Boolean" #b7c9e3
+  else
+    -->[no] "Are the possible\nvalues known?" as StringValuesKnown
+  endif
+
+  StringValuesKnown --> if "" then
+    -->[yes] "Is there a\ndefault value?" as DefaultValue
+  else
+    -->[no] "Is the value\na kind of code\nor identifier?" as Identifier
+  endif
+
+  Identifier --> if "" then
+    -->[yes] "Code" #b7c9e3
+  else
+    -->[no] "Does the value\nrepresent a\npoint in time?" as PointInTime
+  endif
+
+  PointInTime --> if "" then
+    -->[yes] "Timestamp" #b7c9e3
+  else
+    -->[no] "Does the value\nrepresent a\nlanguage?" as IsLanguage
+  endif
+
+  IsLanguage --> if "" then
+    -->[yes] "What does the\nvalue look like?" as LanguageCode
+  else
+    -->[no] "Does the value\ncontain a\nMIME Type?" as IsMime
+  endif
+
+  LanguageCode --> if "" then
+    -->[ISO 639,\ne.g., 'en'] "Language" #b7c9e3
+  else
+    -->[BCP 47,\ne.g., 'en-US'] "Locale" #b7c9e3
+  endif
+
+  IsMime --> if "" then
+   -right->[yes] "MIME Type" #b7c9e3
+  else
+   -->[no] "Does the value\nrefer to a\nresource?" as IsResource
+  endif
+
+  IsResource --> if "" then
+    -right->[yes] "ResourcePath" #b7c9e3
+  else
+    -->[no] "Does the value\nrefer to a\nunit?" as IsUnit
+  endif
+
+  IsUnit --> if "" then
+    -right->[yes] "UnitReference" #b7c9e3
+  else
+    -->[no] "Is the value\na text meant\nonly for\nhumans?" as Humans
+  endif
+
+  Humans --> if "" then
+    -->[yes] "Is the text\ninternationalized?" as Intl
+  else
+    -->[no] "Introduce a\ncustom Characteristic"
+  else
+
+  Intl --> if "" then
+    -->[yes] "Multi Language Text" #b7c9e3
+  else
+    -->[no] "Text" #b7c9e3
+  endif
+
+  DefaultValue --> if "" then
+    -->[yes] "State" #b7c9e3
+  else
+    -->[no] "Enumeration" #b7c9e3
+  endif
+}
+
+NumberValuesKnown --> if "" then
+  -->[yes] "Is there a\ndefault value?" as DefaultValue
+else
+  -->[no] "Does it describe\na time duration?" as TimeDuration
+endif
+
+partition "Interval/Ratio scaled values" {
+  TimeDuration --> if "" then
+    -->[yes] "Duration" #b7c9e3
+  else
+    -->[no] "Is it a\nmeasured value?" as MeasuredValue
+  endif
+
+  MeasuredValue --> if "" then
+    -->[yes] "Measurement" #b7c9e3
+  else
+    -->[no] "Quantifiable" #b7c9e3
+  endif
+}
+
+@enduml
+----

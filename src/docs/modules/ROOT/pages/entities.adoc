@@ -1,0 +1,60 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+
+[[entities]]
+= Entities
+
+As defined in the xref:meta-model-elements.adoc#meta-model-elements[Meta Model Elements], an
+_Entity_ has a number of _Properties_. This section describes a number of generally applicable
+Entities that are pre-defined in the `bamm-e` namespace.
+
+[[time-series-entity]]
+== Time Series Entity
+
+The Time Series Entity is used with the xref:characteristics.adoc#time-series-characteristic[Time
+Series] Characteristic. It wraps the two Properties `timestamp` and `value` to represent a value at
+a point in time.
+
+See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,40,30"]
+|===
+| Property | Description | Characteristic
+| `bamm-e:timestamp` | The point in time | xref:characteristics.adoc#timestamp-characteristic[Timestamp]
+| `bamm-e:value` | Any value | This Property has no Characteristic set and thus needs to be
+  xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
+|===
+
+[[point-3d]]
+== Point 3D
+
+Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³].
+
+[width="100%", options="header", cols="30,40,30"]
+|===
+| Property | Description | Characteristic
+| `bamm-e:x` | The position along the X axis | This Property has no Characteristic set and thus
+  needs to be xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
+| `bamm-e:y` | The position along the Y axis | This Property has no Characteristic set and thus
+  needs to be xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
+| `bamm-e:z` | The position along the Z axis | This Property has no Characteristic set and thus
+  needs to be xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
+|===
+
+[[file-resource-entity]]
+== File Resource
+
+Describes a resource with a relative or absolute location and a MIME type.
+
+[width="100%", options="header", cols="30,40,30"]
+|===
+| Property | Description | Characteristic
+| `bamm-e:resource` | The location of the resource |  xref:characteristics.adoc#resource-path-characteristic[Resource Path]
+| `bamm-e:mimeType` | The MIME type of the resource | xref:characteristics.adoc#mime-typecharacteristic[MIME Type]
+|===

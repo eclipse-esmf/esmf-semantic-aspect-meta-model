@@ -1,0 +1,98 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+
+[[namespaces-and-versions]]
+= Namespaces and Versions
+
+[[meta-model-identifiers-definition]]
+== Meta Model Identifiers Definition
+
+Identifiers for elements of the meta model _must_ use the URN syntax
+xref:bamm-specification:appendix:appendix.adoc#rfc2141[[rfc2141\]] and the following schema:
+
+....
+urn:bamm:org.open-manufacturing.digitaltwin:<element-type>:<version>#<element-name>
+....
+
+where the variable parts are interpreted as follows:
+
+* *element-type* -- a selector describing the kind of thing the URN describes, must be one of:
+** `meta-model` - For meta model elements
+** `characteristic` - For Characteristics that are defined in the scope of the meta model
+** `entity` - For Entities that are defined inside the scope of the meta model
+** `unit` - For the xref:units.adoc#units[catalog of units and quantity kinds]
+* *version* -- The version of the respective namespace, _must_ be given in the form "X.Y.Z", with X,
+   Y and Z being integers.
+* *element-name* -- The name of the model element
+
+*Examples for valid meta model URNs:*
+
+* `{bamm}Aspect` -- URN of the `Aspect` concept in Meta Model version {meta-model-version}
+* `{bamm-c}Measurement` -- URN of the
+  xref:characteristics.adoc#measurement-characteristic[Measurement] Characteristic in Meta Model version {meta-model-version}
+* `{bamm-e}Point3D` -- URN of the
+  xref:entities.adoc#point-3d[Point 3D] entity
+* `{unit}kilogram` -- URN of the xref:appendix:appendix.adoc#unit-kilogram[Kilogram] unit
+
+[[aspect-model-element-identifiers-definition]]
+== Aspect Model Element Identifiers Definition
+
+Identifiers of elements that are defined on the model level -- i.e., Aspects, Properties, Entities,
+Operations, Characteristics, Events, Units -- _must_ use the following schema:
+
+....
+urn:bamm:<namespace>:<version>#<element-name>
+....
+
+where the variable parts are interpreted as follows:
+
+* *namespace* -- Defines the hierarchical namespace in which the element resides. This is given in
+   https://en.wikipedia.org/wiki/Reverse_domain_name_notation[Reverse Domain Name Notation]. To
+   avoid confusion with the The Bosch Aspect Meta Model, this _should not_ be equal to
+   `org.open-manufacturing.digitaltwin`.
+* *version* -- The version of the respective namespace, must be given in the form "X.Y.Z", with X, Y
+   and Z being integers.
+* *element-name* -- The name of the element:
+** For Aspects, Entities and Characteristics, the name must be given in
+   https://en.wikipedia.org/wiki/Camel_case[UpperCamelCase]
+** For Properties, Operations and Units, the name must be given in
+   https://en.wikipedia.org/wiki/Camel_case[lowerCamelCase]
+
+*Examples for valid URNs:*
+
+* `urn:bamm:{example-ns}:1.0.0#MyAspect` -- URN of an Aspect in the given namespace
+* `urn:bamm:{example-ns}:1.0.0#MyEntity` -- URN of an Entity in the given namespace
+* `urn:bamm:{example-ns}:1.0.0#someProperty` -- URN of a Property in the given namespace
+
+[[prefixes]]
+== Prefixes
+
+The following rules apply to contexts that allow the use of CURIEs (Compact URI,
+xref:bamm-specification:appendix:appendix.adoc#curie[[curie\]]), i.e., the shortening of URIs by
+pre-defining a short name for common parts of URIs in a local context (in particular, XML namespaces
+xref:bamm-specification:appendix:appendix.adoc#xmlns[[xmlns\]],
+https://www.w3.org/TR/turtle/#sec-iri[@prefix] in RDF/Turtle
+xref:bamm-specification:appendix:appendix.adoc#turtle[[turtle\]] and
+https://www.w3.org/TR/sparql11-query/#QSynIRI[PREFIX] in SPARQL
+xref:bamm-specification:appendix:appendix.adoc#sparql[[sparql\]]):
+
+* The prefix "bamm" shall be used for the URN `{bamm}`
+* The prefix "bamm-c" shall be used for the URN `{bamm-c}`
+* The prefix "bamm-e" shall be used for the URN `{bamm-e}`
+* The prefix "unit" shall be used for the URN `{unit}`
+* The empty prefix (":" in RDF/Turtle) shall be used for the URN prefix of the current model scope, i.e.
+  everything up to and including the `#` of the model elements that are being defined
+* For other elements, use prefixes that do not contain the string `bamm`.
+
+*Example of Aspect Model description in RDF/Turtle, with prefix declarations and usage:*
+
+[source,turtle,subs="attributes+"]
+----
+include::example$prefixes-sample.ttl[tags=content]
+----

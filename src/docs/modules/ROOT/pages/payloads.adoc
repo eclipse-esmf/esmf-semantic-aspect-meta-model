@@ -1,0 +1,131 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+
+[[mapping-to-json]]
+= Mapping to JSON
+
+== Rules for the construction of JSON payloads matching an Aspect model
+image::payloads-diagram.svg[opts=interactive, width=100%]
+
+For understanding the construction rules, we define the following terms:
+
+* A Property's _leaf Characteristic_ means the Property's Characteristic if it is not a Constraint,
+  otherwise it means transitively following the Constraint's `bamm:baseCharacteristic` until the
+  value is not a Constraint any more.
+* A Property's _effective data type_ means the Property's leaf Characteristic's `bamm:dataType`.
+* A data type is scalar, if it is one of the xref:datatypes.adoc#data-types[allowed data types], but not a `bamm:Entity`.
+
+In order to create JSON payloads that correspond to an Aspect model, the following rules are
+applied. The other way round they can also be used to describe a validation algorithm.
+
+* An Aspect model is always serialized as an unnamed JSON object.
+* For each Property:
+** If it is marked as optional, it may or may not be included in the payload. If, and only if, the
+   Property is marked as optional and is included in the payload, then its value may be `null`,
+   which is equivalent to it not being included in the payload.
+** If the Property's effective data type is scalar with any date type other than `rdf:langString`,
+   the Property is serialized as `$\{propertyName\}: $\{value\}` where `$\{value\}` is the JSON
+   serialization of the respective Property's value, details on mapping of the data types are given
+   in <<data-type-mappings>>. The value must adhere to the value range defined by the Property's
+   effective data type and possible Constraints on the Property's Characteristic.
+** If the Property's effective data type is scalar with the data type `rdf:langString`, the Property
+   is serialized as a named JSON object (with `$\{propertyName\}` being the name of the JSON
+   property), with keys for each available language tag of the Property and the corresponding
+   localized string as the value.
+** If the Property's effective data type is not scalar, it is serialized as a named JSON object
+   (with `$\{propertyName\}` being the name of the JSON property), recursively using the same rules.
+** If the Property's effective data type is an Entity which refines another Entity, it is serialized
+   as a named JSON object (with `$\{propertyName\}` being the name of the JSON property), with the
+   Properties for the Entity being the refining Properties as well as the Properties from the
+   refined Entity which are themselves not refined.
+** If the Property's leaf Characteristic is a
+   xref:characteristics.adoc#collection-characteristic[Collection],
+   xref:characteristics.adoc#collection-characteristic[List],
+   xref:characteristics.adoc#collection-characteristic[Set] or
+   xref:characteristics.adoc#collection-characteristic[Sorted Set], it is serialized as a named JSON
+   array (with `$\{propertyName\}` being the name of the JSON array property).
+* Characteristics defined in the Aspect model other than the ones mentioned above are not subject to
+  serialization.
+* Operations defined in the Aspect model are not subject to serialization.
+
+[[data-type-mappings]]
+== Data type mappings
+
+A xref:datatypes.adoc#data-types[rich type tree] is used in an Aspect model. As JSON offers only a
+very limited set of data types for primitive type values there are less options on how to represent
+the data. The mappings are described in the following table.
+
+|===
+| | Aspect model data type | Corresponding JSON data type
+.4+| Core Types
+| `xsd:string` | String
+| `xsd:boolean` | Boolean
+| `xsd:decimal` | Number
+| `xsd:integer` | Number
+.2+| IEEE-floating-point numbers
+| `xsd:double` | Number
+| `xsd:float` | Number
+.4+| Time and date
+| `xsd:date` | String
+| `xsd:time` | String
+| `xsd:dateTime` | String
+| `xsd:dateTimeStamp` | String
+.8+| Recurring and partial dates
+| `xsd:gYear` | String
+| `xsd:gMonth` | String
+| `xsd:gDay` | String
+| `xsd:gYearMonth` | String
+| `xsd:gMonthDay` | String
+| `xsd:duration` | String
+| `xsd:yearMonthDuration` | String
+| `xsd:dayTimeDuration` | String
+.12+| Limited-range integer numbers
+| `xsd:byte` | Number
+| `xsd:short` | Number
+| `xsd:int` | Number
+| `xsd:long` | Number
+| `xsd:unsignedByte` | Number
+| `xsd:unsignedShort` | Number
+| `xsd:unsignedInt` | Number
+| `xsd:unsignedLong` | Number
+| `xsd:positiveInteger` | Number
+| `xsd:nonNegativeInteger` | Number
+| `xsd:negativeInteger` | Number
+| `xsd:nonPositiveInteger` | Number
+.2+| Encoded binary data
+| `xsd:hexBinary` | String
+| `xsd:base64Binary` | String
+.3+| Miscellaneous types
+| `xsd:anyURI` | String
+| `bamm:curie` | String
+| `rdf:langString`
+| A JSON object with a structure as described in the rules above.
+|===
+
+For example, a Property `errorMessage` with effective data type `rdf:langString` and the values
+`"Could not load data"@en` and `"Konnte Daten nicht laden"@de` would be serialized in the JSON
+payload as follows: [source,json]
+----
+{
+  "errorMessage": {
+    "en": "Could not load data",
+    "de": "Konnte Daten nicht laden"
+  }
+}
+----
+
+CAUTION: Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
+represention of numbers] in JSON, the maximum integer number that can be used without losing
+precision is 2⁵³-1 (defined as
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER[Number.MAX_SAFE_INTEGER]).
+This means that even if the Aspect model data type would allow higher or lower values, if they can
+not be represented in JSON, they can not be used. Affected data types are the unbounded numeric
+types `xsd:decimal`, `xsd:integer`, `xsd:positiveInteger`, `xsd:nonNegativeInteger`,
+`xsd:negativeInteger`, `xsd:nonPositiveInteger` and the bounded type `xsd:unsignedLong`. The other
+numeric types are not affected.

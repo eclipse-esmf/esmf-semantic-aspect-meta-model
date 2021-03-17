@@ -1,4 +1,3 @@
-# BAMM Aspect Meta Model
-Public repository dedicated to the Semantic Data Structuring for the BAMM aspect meta model.
+# BAMM Aspect Meta Model - Specification
 
-Stay tuned: content coming soon!
+This repository contains the source documents of the specification for the BAMM Aspect Meta Model.

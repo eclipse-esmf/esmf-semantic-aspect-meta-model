@@ -1,0 +1,510 @@
+// Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
+
+////
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+////
+
+:page-partial:
+
+[[characteristics]]
+= Characteristics
+
+[[characteristics-classes]]
+== Characteristics Classes
+
+Characteristics Classes describe abstract concepts that need to be made specific when they are used.
+So for example, the Enumeration Characteristic represents the concept "one of multiple predefined
+values". In order to use the Characteristic, an instance of it needs to be specified in the
+corresponding Aspect Model, that determines which values are valid for the respective Property.
+
+The following diagram shows the Characteristics Classes defined in the scope of the
+{meta-model-full-name}.
+
+image::characteristics-classes.svg[width=100%]
+
+[[characteristic-characteristic]]
+=== Characteristic
+
+Base class of all characteristics. This Characteristics Class can also be instantiated directly
+(i.e., without creating a subclass).
+
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:name` | Unique name of characteristic | {ok}
+| `bamm:preferredName` | Human readable name in a specific language | {nok}
+| `bamm:description` | Human readable description in a specific language | {nok}
+| `bamm:dataType` | Reference to a scalar or complex (Entity) data type. See Section "Type System"
+  in the Aspect Meta Model | {ok}
+|===
+
+[[constraint-characteristic]]
+=== Constraint
+
+Special Characteristic class that constrains another Characteristic in some way, e.g., the
+<<range-constraint>> limits the value range for a Property.
+
+See xref:modeling-guidelines.adoc#declaring-constraints[declaring constraints] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:baseCharacteristic` | Reference to the Characteristic on which the Constraint is being
+  applied | {ok}
+|===
+
+[[language-constraint]]
+=== Language Constraint
+
+Restricts a value to a specific language.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:languageCode` | An ISO 639-1
+  xref:bamm-specification:appendix:appendix.adoc#iso639[[iso639\]] language code for the language of
+  the value of the constrained Property, e.g., "de". | {ok}
+|===
+
+[[locale-constraint]]
+=== Locale Constraint
+
+Restricts a value to a specific locale, i.e., a language with additional region information.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:localeCode` | An IETF BCP 47 xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]]
+  language code for the locale of the value of the constrained Property, e.g., "de-DE". | {ok}
+|===
+
+[[range-constraint]]
+=== Range Constraint
+
+Whether the `bamm-c:maxValue` and `bamm-c:minValue` are inclusive or exclusive can be defined using
+the `bamm-c:upperBoundDefinition` and `bamm-c:lowerBoundDefinition` attributes.
+
+NOTE: The values for `maxValue` and `minValue` must be given in the same effective dataType that the
+constrained Characteristic uses.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:maxValue` | The upper bound of a range | {nok}
+| `bamm-c:minValue` | The lower bound of a range | {nok}
+| `bamm-c:upperBoundDefinition` | Defines whether the upper bound of a range is inclusive or
+  exclusive. Possible values are `bamm-c:AT_MOST` and `bamm-c:LESS_THAN` | {nok}
+| `bamm-c:lowerBoundDefinition` | Defines whether the lower bound of a range is inclusive or
+  exclusive. Possible values are `bamm-c:AT_LEAST` and `bamm-c:GREATER_THAN` | {nok}
+|===
+
+NOTE: When either the `bamm-c:minValue` or the `bamm-c:maxValue` is not given, the Range is defined
+as having an open lower or upper boundary.
+
+NOTE: The `AT_LEAST` and `AT_MOST` values for `lowerBoundDefinition` and `upperBoundDefinition`
+define that the values for `minValue` and `maxValue` are inclusive. The `LESS_THAN` and
+`GREATER_THAN` values for the `lowerBoundDefinition` and `upperBoundDefinition` define that the
+values for `minValue` and `maxValue` are exclusive.
+
+This Constraint can be used to restrict Characteristics with one of two kinds of data types:
+
+* Characteristics that have a xref:datatypes.adoc#data-types[numeric data type]; in this case the
+Constraint restricts the range of the value. The scalar data types that can be restricted are:
+`xsd:double`, `xsd:float`, `xsd:decimal`, `xsd:integer`, `xsd:byte`, `xsd:short`, `xsd:int`,
+`xsd:long`, `xsd:unsignedByte`, `xsd:unsignedShort`, `xsd:unsignedInt`, `xsd:unsignedLong`,
+`xsd:positiveInteger` , `xsd:nonPositiveInteger`, `xsd:negativeInteger` and
+`xsd:nonNegativeInteger`.
+* Characteristics that have a xref:datatypes.adoc#data-types[time and date data type];. In this case
+the Constraint restricts the scalar data types: `xsd:date`,`xsd:time`, `xsd:dateTime`,
+`xsd:dateTimeStamp`, `xsd:gYear`, `xsd:gMonth`, `xsd:gMonthDay`, `xsd:duration`,
+`xsd:yearMonthDuration`, `xsd:dayTimeDuration`.
+
+Restricts the value range of a Property. At least one of `bamm-c:maxValue` or `bamm-c:minValue` must
+be present in a Range Constraint. By default both `bamm-c:maxValue` and `bamm-c:minValue` are
+inclusive.
+
+[[encoding-constraint]]
+=== Encoding Constraint
+
+Restricts the encoding of a Property.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:value` | Configures the encoding. This may be one of the following: `bamm:US-ASCII`,
+  `bamm:ISO-8859-1`, `bamm:UTF-8`, `bamm:UTF-16`, `bamm:UTF-16BE` or `bamm:UTF-16LE`. | {ok}
+|===
+
+NOTE: The default encoding for values with a xref:datatypes.adoc#data-types[string-like value space]
+is UTF-8, therefore using an Encoding Constraint with a `bamm:value` of `bamm:UTF-8` is only
+necessary when a Property's encoding is changed during an Aspect model version increase _from_ some
+other encoding _to_ UTF-8 to indicate that the other encoding is not any longer used.
+
+[[length-constraint]]
+=== Length Constraint
+
+This Constraint can be used to restrict two types of Characteristics:
+
+* Characteristics that have a xref:datatypes.adoc#data-types[string-like value space]; in this case
+the Constraint restricts the length of the (string-) value. The scalar data types that can be
+restricted are: `xsd:string`, `xsd:date`, `xsd:time`, `xsd:dateTime`, `xsd:dateTimeStamp`,
+`xsd:gYear`, `xsd:gMonth`, `xsd:gMonthDay`, `xsd:duration`, `xsd:yearMonthDuration`,
+`xsd:dayTimeDuration`, `xsd:hexBinary`, `xsd:base64Binary`, `xsd:anyURI`, `bamm:curie` and
+`rdf:langString`.
+* Collection Characteristics (<<collection-characteristic>>, <<set-characteristic>>,
+  <<sorted-set-characteristic>>, <<list-characteristic>>). In this case the Constraint restricts the
+  number of elements in the collection.
+
+At least one of `bamm-c:maxValue` or `bamm-c:minValue` must be present in a Length Constraint.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:maxValue` | The maximum length. Must be given as `xsd:nonNegativeInteger`. | {nok}
+| `bamm-c:minValue` | The minimum length. Must be given as `xsd:nonNegativeInteger`. | {nok}
+|===
+
+[[regular-expression-constraint]]
+=== Regular Expression Constraint
+
+Restricts a string value to a regular expression as defined by XQuery 1.0 and XPath 2.0 Functions
+and Operators xref:bamm-specification:appendix:appendix.adoc#xpath-functions[[xpath-functions\]].
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:value` | The regular expression | {ok}
+|===
+
+[[fixed-point-constraint]]
+=== Fixed Point Constraint
+
+Defines the scaling factor as well as the amount of integral numbers for a fixed point number. The
+constraint may only be used in conjunction with Characteristics which use the `xsd:decimal` data
+type.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:scale` | The scaling factor for a fixed point number. Must be given as
+  `xsd:positiveInteger`. | {ok}
+| `bamm-c:integer` | The number of integral digits for a fixed point number. Must be given as
+  `xsd:positiveInteger`. | {ok}
+|===
+
+[[quantifiable-characteristic]]
+=== Quantifiable
+
+A value which can be quantified and may have a unit, e.g., the number of bolts required for a
+processing step or the expected torque with which these bolts should be tightened.
+
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:unit` | Reference to a Unit as defined in the  xref:units.adoc#units[Unit catalog] | {nok}
+|===
+
+[[measurement-characteristic]]
+=== Measurement
+
+A measurement is a numeric value with an associated unit and quantity kind.
+
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:unit` | Reference to a Unit as defined in the xref:units.adoc#units[Unit catalog] | {ok}
+|===
+
+[[enumeration-characteristic]]
+=== Enumeration
+
+An enumeration represents a list of possible values.
+
+See xref:modeling-guidelines.adoc#declaring-enumerations[declaring enumerations] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:values` | List of possible values. The `dataType` of each of the values must match the
+  `dataType` of the Enumeration. | {ok}
+|===
+
+[[state-characteristic]]
+=== State
+
+A state is subclass of Enumeration with a default value.
+
+See xref:modeling-guidelines.adoc#declaring-state[declaring state] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:defaultValue` | The default value for the state | {ok}
+|===
+
+[[duration-characteristic]]
+=== Duration
+
+A time duration.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:unit` | Reference to a Unit as defined in the xref:units.adoc#units[Unit catalog]. The
+referenced unit or its referenceUnit must have the quantityKind
+`xref:appendix:appendix.adoc#quantitykind-time[unit:time]`. Currently, the following units can
+therefore be used: `xref:appendix:appendix.adoc#unit-centipoisePerBar[unit:centipoisePerBar]`
+`xref:appendix:appendix.adoc#unit-commonYear[unit:commonYear]`
+`xref:appendix:appendix.adoc#unit-day[unit:day]`
+`xref:appendix:appendix.adoc#unit-henryPerKiloohm[unit:henryPerKiloohm]`
+`xref:appendix:appendix.adoc#unit-henryPerOhm[unit:henryPerOhm]`
+`xref:appendix:appendix.adoc#unit-hour[unit:hour]`
+`xref:appendix:appendix.adoc#unit-kilosecond[unit:kilosecond]`
+`xref:appendix:appendix.adoc#unit-microhenryPerKiloohm[unit:microhenryPerKiloohm]`
+`xref:appendix:appendix.adoc#unit-microhenryPerOhm[unit:microhenryPerOhm]`
+`xref:appendix:appendix.adoc#unit-microsecond[unit:microsecond]`
+`xref:appendix:appendix.adoc#unit-millihenryPerKiloohm[unit:millihenryPerKiloohm]`
+`xref:appendix:appendix.adoc#unit-millihenryPerOhm[unit:millihenryPerOhm]`
+`xref:appendix:appendix.adoc#unit-millipascalSecondPerBar[unit:millipascalSecondPerBar]`
+`xref:appendix:appendix.adoc#unit-millisecond[unit:millisecond]`
+`xref:appendix:appendix.adoc#unit-minuteUnitOfTime[unit:minuteUnitOfTime]`
+`xref:appendix:appendix.adoc#unit-month[unit:month]`
+`xref:appendix:appendix.adoc#unit-nanosecond[unit:nanosecond]`
+`xref:appendix:appendix.adoc#unit-pascalSecondPerBar[unit:pascalSecondPerBar]`
+`xref:appendix:appendix.adoc#unit-picosecond[unit:picosecond]`
+`xref:appendix:appendix.adoc#unit-poisePerBar[unit:poisePerBar]`
+`xref:appendix:appendix.adoc#unit-poisePerPascal[unit:poisePerPascal]`
+`xref:appendix:appendix.adoc#unit-reciprocalMinute[unit:reciprocalMinute]`
+`xref:appendix:appendix.adoc#unit-secondUnitOfTime[unit:secondUnitOfTime]`
+`xref:appendix:appendix.adoc#unit-shake[unit:shake]`
+`xref:appendix:appendix.adoc#unit-siderealYear[unit:siderealYear]`
+`xref:appendix:appendix.adoc#unit-tropicalYear[unit:tropicalYear]`
+`xref:appendix:appendix.adoc#unit-week[unit:week]`
+`xref:appendix:appendix.adoc#unit-year[unit:year]` | {ok}
+|===
+
+[[collection-characteristic]]
+=== Collection
+
+A group of values which may be either of a scalar or Entity type. The values may be duplicated and
+are not ordered (i.e., bag semantics).
+
+NOTE: In the _Collection_ characteristics and its sub-Characteristics _List_, _Set_ and _Sorted
+Set_, the respective values for the attributes `bamm-c:allowDuplicates` and `bamm-c:ordered` have
+fixed values.
+
+See xref:modeling-guidelines.adoc#declaring-collections[declaring collections] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:allowDuplicates` | Set to true | {ok}
+| `bamm-c:ordered` | Set to false | {ok}
+| `bamm:dataType` | Reference to a scalar or complex (Entity) data type. See Section "Type System"
+  in the Aspect Meta Model. | {nok}
+| `bamm-c:elementCharacteristic` | Reference to a Characteristic which describes the individual
+  elements contained in the Collection. | {nok}
+|===
+
+[[list-characteristic]]
+=== List
+
+A subclass of <<collection-characteristic>> which may contain duplicates and is ordered.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:allowDuplicates` | Set to true | {ok}
+| `bamm-c:ordered` | Set to true | {ok}
+|===
+
+[[set-characteristic]]
+=== Set
+
+A subclass of <<collection-characteristic>> which may not contain duplicates and is unordered.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:allowDuplicates` | Set to false | {ok}
+| `bamm-c:ordered` | Set to false | {ok}
+|===
+
+[[sorted-set-characteristic]]
+=== Sorted Set
+
+A subclass of <<collection-characteristic>> which may not contain duplicates and is ordered.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:allowDuplicates` | Set to false | {ok}
+| `bamm-c:ordered` | Set to true | {ok}
+|===
+
+[[time-series-characteristic]]
+=== Time Series
+
+A subclass of <<sorted-set-characteristic>> containing values with the exact point in time when the
+values where recorded. The values for the allowDuplicates and ordered attributes are inherited from
+the Sorted Set.
+
+See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm:dataType` | Set to `bamm-e:TimeSeriesEntity`. This Entity consists of two Properties, namely
+  `bamm-e:timestamp` and `bamm-e:value`.
+
+As such the structure for time series data is fixed to a collection of key/value pairs with the
+timestamp being the key and the value being the value.
+
+The `bamm-e:timestamp` property has a fixed Characteristic of `bamm-c:Timestamp`. The Characteristic
+of the `bamm-e:value` Property is set in the specific Aspect Model giving the value domain specific
+semantics. | {ok}
+|===
+
+[[code-characteristic]]
+=== Code
+
+Describes a Property which contains any kind of code. Note that this Characteristic does not define
+a `bamm:dataType`, this must therefore be done when instantiating the Characteristic.
+
+[[either-characteristic]]
+=== Either
+
+Describes a Property whose value can have one of two possible types (a disjoint union).
+
+See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:left` | The left side of the Either. The attribute references another Characteristic which
+  describes the value. | {ok}
+| `bamm-c:right` | The right side of the Either. The attribute references another Characteristic
+  which describes the value. | {ok}
+|===
+
+[[single-entity-characteristic]]
+=== Single Entity
+
+Describes a Property whose data type is an Entity. The Entity used as data type may be defined in
+the same Aspect Model or the shared Entity namespace of the {meta-model-full-name}.
+
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+
+[[structured-value-characteristic]]
+=== Structured Value
+
+Describes a Property which contains a scalar xref:datatypes.adoc#data-types[string-like value space]
+value with a well-defined structure. The Structured Value Characteristic allows the description of
+the parts of the Property's value by linking to a separate Property definition for each part. To
+define the parts, the value is deconstructed using a regular expression.
+
+See xref:modeling-guidelines.adoc#declaring-structured-value[declaring structured value] for usage in an Aspect model.
+
+[width="100%", options="header", cols="30,60,10"]
+|===
+| Attributes | Description | Required
+| `bamm-c:deconstructionRule` | The regular expression used to deconstruct the value into parts that
+  are mapped to separate Properties. This regular expression must contain the same number of capture
+  groups as there are Properties given in the `elements` list. The _n_&#8203;th capture group maps
+  to the _n_&#8203;th Property in the `elements` list. | {ok}
+| `bamm-c:elements` | A list of entries each of which can either be a Property reference or a string
+  literal. The list must contain at least one Property reference. | {ok}
+|===
+
+Concatenating the values of the Properties in the `elements` list with the string literals in the
+given order should yield a value that corresponds to the original value that has this Structured
+Value Characteristic. While the `deconstructionRule` is used for deconstruction, the string literals
+in the `elements` list are used for construction. When the Property using the Structured Value
+Characteristic also defines an `exampleValue`, construction and deconstruction of the value are
+tested when validating the model.
+
+[[characteristics-instances]]
+== Characteristics Instances
+
+A number of concrete Characteristics are defined in conjunction with the Aspect Meta Model. They can
+be used as-is as Characteristics for Properties in Aspect Models. The following diagram shows the
+Characteristics Instances defined in the scope of the {meta-model-full-name}.
+
+image::characteristics-instances.svg[width=100%]
+
+[[timestamp-characteristic]]
+=== Timestamp
+
+Describes a Property which contains the date and time with an optional timezone.
+
+dataType: `xref:datatypes.adoc#data-types[xsd:dateTime]`
+
+[[text-characteristic]]
+=== Text
+
+Describes a Property which contains plain text. This is intended exclusively for human readable
+strings, not for identifiers, measurement values, etc.
+
+dataType: `xref:datatypes.adoc#data-types[xsd:string]`
+
+[[multi-language-text-characteristic]]
+=== Multi-Language Text
+
+Describes a Property which contains plain text in multiple languages. This is intended exclusively
+for human readable strings, not for identifiers, measurement values, etc.
+
+dataType: `xref:datatypes.adoc#data-types[rdf:langString]`
+
+[[boolean-characteristic]]
+=== Boolean
+
+Represents a boolean value (i.e., a "flag").
+
+dataType: `xref:datatypes.adoc#data-types[xsd:boolean]`
+
+[[locale-characteristic]]
+=== Locale
+
+Describes a Property containing a locale according to IETF BCP 47
+xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]], for example "de-DE".
+
+dataType: `xref:datatypes.adoc#data-types[xsd:string]`
+
+[[language-characteristic]]
+=== Language
+
+Describes a Property containing a language according to ISO 639-1
+xref:bamm-specification:appendix:appendix.adoc#iso639[[iso639\]], for example "de".
+
+dataType: `xref:datatypes.adoc#data-types[xsd:string]`
+
+[[resource-path-characteristic]]
+=== Resource Path
+
+Describes a Property that contains the path to a relative or absolute resource.
+
+dataType: `xref:datatypes.adoc#data-types[xsd:anyURI]`
+
+[[mime-type-characteristic]]
+=== MIME Type
+
+Describes a Property that contains a MIME type as defined by RFC 2046
+xref:bamm-specification:appendix:appendix.adoc#rfc2046[[rfc2046\]], for example "application/json",
+"application/xls" or "image/png".
+
+dataType: `xref:datatypes.adoc#data-types[xsd:string]`
+
+[[unit-reference-characteristic]]
+=== Unit Reference
+
+Describes a Property containing a reference to one of the units in the
+xref:appendix:appendix.adoc#unit-catalog[Unit catalog].
+
+dataType: `xref:datatypes.adoc#data-types[bamm:curie]`
