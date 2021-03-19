@@ -24,7 +24,7 @@ where the variable parts are interpreted as follows:
 
 * *element-type* -- a selector describing the kind of thing the URN describes, must be one of:
 ** `meta-model` - For meta model elements
-** `characteristic` - For Characteristics that are defined in the scope of the meta model
+** `characteristic` - For Characteristics and Constraints that are defined in the scope of the meta model
 ** `entity` - For Entities that are defined inside the scope of the meta model
 ** `unit` - For the xref:units.adoc#units[catalog of units and quantity kinds]
 * *version* -- The version of the respective namespace, _must_ be given in the form "X.Y.Z", with X,
