@@ -23,10 +23,10 @@
    bamm-c:elementCharacteristic [
       a bamm-c:RangeConstraint ;
       bamm:name "ElementRange" ;
-	  bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
+      bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
       bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
       bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
-      bamm:baseCharacteristic :Number ;
+      bamm-c:baseCharacteristic :Number ;
    ] .
 
 :Number a bamm:Characteristic ;

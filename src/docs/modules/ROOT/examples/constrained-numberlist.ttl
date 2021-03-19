@@ -17,12 +17,15 @@
 :numbers a bamm:Property ;
    bamm:name "numbers" ;
    bamm:characteristic [
-      a bamm-c:LengthConstraint ;
-      bamm:name "NumberListLength" ;
-      bamm:description "Limits the number list to 10 elements"@en ;
-      bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
-      bamm:baseCharacteristic :NumberList ;
-   ] .
+     a bamm-c:Trait ;
+     bamm:name "LimitedNumberList" ;
+     bamm-c:constraint [
+       a bamm-c:LengthConstraint ;
+       bamm:description "Limits the number list to 10 elements"@en ;
+       bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+       bamm-c:baseCharacteristic :NumberList ;
+     ]
+   ]  .
 
 :NumberList a bamm-c:List ;
    bamm:name "NumberList" ;
