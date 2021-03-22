@@ -5,8 +5,9 @@ site:
 content:
   sources:
     - url: .
-      branches: HEAD
+      branches: [main]
       start_path: src/docs
+      tags: '*'
 ui:
   bundle:
     url: ./src/docs/ui-bundle.zip
