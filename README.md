@@ -7,12 +7,12 @@
 ## Introduction
 The BAMM Aspect Meta Model (BAMM) allows the creation of models to describe the semantics of digital twins by defining their domain specific aspects.
 In this context, digital twins are the digital representation of a physical or virtual object that bundles and combines several aspects.
-The aspect *meta* model (BAMM) provides a set of predefined objects (as depicted below) that allow a domain expert to define aspect models and complement a digital twin with a semantic foundation.
+The BAMM Aspect *Meta* Model (BAMM) provides a set of predefined objects (as depicted below) that allow a domain expert to define aspect models and complement a digital twin with a semantic foundation.
 
 This repository contains the detailed documentation of the BAMM specification as an AsciiDoc documentation.
-The source files (AsciiDoc) are built using gradle and [Antora](https://antora.org/), which generates the documentation as HTML files.
+The source files (AsciiDoc) are built using [Gradle](https://gradle.org/) and [Antora](https://antora.org/), which generates the documentation as HTML files.
 
-![OMP work package overview](images/aspect-meta-model-simplified.svg)
+![BAMM Aspect Meta Model (BAMM) Elements](images/aspect-meta-model-simplified.svg)
 
 ## Example Usage
 BAMM standardizes the creation of domain specific aspect models and also makes them reusable.
@@ -26,7 +26,7 @@ This modularization and reusabaility simplifies the creation of highly complex u
 ## Build and contribute
 To build the Antora documentation locally, clone the repository and run
 
-```gradle build antora```
+```./gradlew antora```
 
 inside the repository folder.
 
