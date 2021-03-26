@@ -163,6 +163,7 @@ build
 
 # Images (configure exceptions below if necessary)
 *.png
+!images/*.png
 
 # Locally committed Antora UI
 !src/docs/ui-bundle.zip
