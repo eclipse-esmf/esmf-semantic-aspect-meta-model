@@ -66,8 +66,34 @@ When opening a `PR` please consider the following topics:
 * Each `PR` should only contain changes related to a single work item. If the changes cover more than one work item or feature, then create one `PR` per work item. You may need to create new more specific `Issues` to reference if you split up the work into multiple `feature branches`.
 * Commit changes often. A `PR` may contain one or more commits.
 
-### CLA
-To contribute to this repository, you may have to sign a CLA (Contributor License Agreement). This item is currently in clarification with the OMP.
+## Paperwork and DCO
+The OMP is a [JDF project (Joint Developement Foundation)](https://www.jointdevelopment.org/) following the project and working group charters as defined in JDF charter template 4.0.1
+ 
+For source code contribution the project charter requests for non-working group participants the following:
+ 
+```
+Non-Working Group Participant Feedback and Participation. Upon the Approval of the Working Group Participants, the Working Group can request feedback from and/or allow Non-Working Group Participant participation in a Working Group, subject to each Non-Working Group Participant executing the Feedback Agreement set forth in Appendix B.
+```
+
+``Appendix B`` with the placeholders set to: 
+- [Project Name] = ”OMP” 
+- [Projects’s Source Code License] = “MPL 2.0”
+- [name of deliverable] = ”BAMM Aspect Meta Model”
+
+states:
+
+>### OMP Feedback Agreement
+>**
+>
+>Feedback
+> 
+>The OMP (“Project”) is developing the BAMM Aspect Meta Model (the “Materials”). Project would like to receive input, suggestions and other feedback (“Feedback”) on the Materials. By signing below, you (on behalf of yourself if you are an individual and your company if you are providing Feedback on behalf of the company) grant the Project under all applicable intellectual property rights owned or controlled by you or your company a non-exclusive, non-transferable, worldwide, perpetual, irrevocable, royalty-free license to use, disclose, copy, publish, license, modify, sublicense or otherwise distribute and exploit Feedback you provide for the purpose of developing and promoting the Materials and in connection with any product that implements and complies with the Materials. You warrant to the best of your knowledge that you have rights to provide this Feedback, and if you are providing Feedback on behalf of a company, you warrant that you have the rights to provide Feedback on behalf of your company. You also acknowledge that the Project is not required to incorporate your Feedback into any version of the Materials. You further agree that you and your company will not disclose it or distribute drafts of the Project Materials to third parties. Unless the parties agree otherwise, this obligation of non-disclosure will expire five (5) years from the date the material was disclosed to you.
+>
+>Source Code
+> 
+>Any source code you provide to the Project is subject to the Developer Certificate of Origin version 1.1, available at http://developercertificate.org/ and the MPL 2.0.
+
+This means, before making a pull request or providing an issue please sign the OMP Feedback Agreement for the working group “Semantic Data Structuring”.
 
 ## Labeling
 After new `Issues` or `PRs` are created, the Chair or one of the maintainers may further assign a `label` to it according to this table:
