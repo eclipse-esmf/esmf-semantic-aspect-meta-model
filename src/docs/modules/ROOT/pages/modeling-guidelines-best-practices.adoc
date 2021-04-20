@@ -1,0 +1,189 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+[[best-practices]]
+== Best Practices
+
+[[naming-elements]]
+=== Naming Elements
+
+In addition to the <<naming-rules>>, the following points should be considered when naming elements
+such as Aspects, Properties or Entities:
+
+* Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be
+  misunderstood in different contexts. For example, "temp" could mean "temperature" or "temporary".
+  On the other hand, abbreviating "minimum" and "maximum" with "min" and "max", respectively, is
+  fine. The Aspect model should be reasonably expressive. Do not add alleged premature optimizations
+  that belong in the Aspect implementation.
+
+* Do not use redundant naming parts. In particular, the name of an Aspect should not end with
+  "Aspect".
+
+* Do not use redundant prefixes, e.g. when authoring an Aspect model for the domain _Foo_, do not
+  name your Properties _fooCount_, _fooId_ etc. Remember that the full identifier of a Property is
+  the versioned namespace concatenated with the element name, e.g.
+  `urn:bamm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
+  `count`&#8203;'s identifier.
+
+* The attributes `preferredName` and `description` are meant to provide a human-readable and
+  description, respectively, for example for the generation of documentation from the Aspect model.
+  If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
+** Make the name upper case
+** If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g. the name
+   `machineTemperature` should become the preferredName `Machine Temperature`.
+
+* If there is exactly one Property in an Aspect that has a
+xref:characteristics.adoc#collection-characteristic[Collection],
+xref:characteristics.adoc#list-characteristic[List],
+xref:characteristics.adoc#set-characteristic[Set],
+xref:characteristics.adoc#sorted-set-characteristic[Sorted Set] or
+xref:characteristics.adoc#time-series-characteristic[Time Series] Characteristic (and no other
+Properties), the Property should be named `items`.
+
+* If there is exactly one Property in an Aspect that has a
+  xref:characteristics.adoc#collection-characteristic[Collection],
+  xref:characteristics.adoc#list-characteristic[List],
+  xref:characteristics.adoc#set-characteristic[Set] or
+  xref:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic (and no other
+  Properties), the Aspect's name should be in plural. Otherwise, if there is exactly one Property in
+  the Aspect that has a xref:characteristics.adoc#time-series-characteristic[Time Series]
+  Characteristic, the Aspect's name should end with "History". Otherwise, the Aspect's name should
+  be in singular.
+
+[[choosing-a-numeric-type]]
+=== Choosing a Numeric Type
+
+While JSON only distinguishes between _number_ (floating point) and _integer_, the
+xref:datatypes.adoc#data-types[type hierarchy] for Aspect models provides many more options. There
+is a distinction between the numeric core types (`xsd:integer` and the fixed-point type
+`xsd:decimal`) and the limited range numbers that correspond to the numeric types as defined in most
+programming languages (`xsd:float` and `xsd:double` as well as the integer types `xsd:int`,
+`xsd:short` etc.).
+
+IMPORTANT: As an Aspect model ideally captures as much of the domain semantics as possible, it
+should not limit itself according to implementation-specific restrictions. In particular, limited
+range numbers should only be used when the semantics of the numeric range are relevant beyond the
+implementation of the Aspect. For example, a Property `temperature` of a sensor could use a limited
+range type such as `xsd:int`, when the physical sensor can never provide a value outside of this
+range, while a Property such as `numberOfProducedItems` is not logically limited, so it should use
+`xsd:integer`.
+
+[[choosing-a-unit]]
+=== Choosing a Unit
+
+When trying to refer to a physical unit, please see the
+xref:appendix:appendix.adoc#unit-catalog[Unit Catalog]. When searching for the unit, remember that
+the unit catalog uses British English.
+
+[[choosing-a-characteristic]]
+=== Choosing a Characteristic
+
+The following decision tree helps finding the right Characteristic for a Property.
+
+IMPORTANT: A common error is using the `Text` Characteristic for anything resembling a string.
+`Text` is intended for values that are meant _only_ for humans, for example a description of a
+device that is entered by a user as free text. Values such as identifiers, hostnames, table names,
+license plate numbers etc. should not use the `Text` Characteristic.
+
+If you create Characteristics that are not limited to your modeled domain but are generally useful,
+please consider contributing them, so that they can be included in the {meta-model-full-name}'s
+Characteristic catalog.
+
+image::characteristics-decision-tree.svg[width=100%]
+
+[[choosing-constraints]]
+=== Choosing Constraints
+
+Constraints are used to precisely specify limiting conditions of Characteristics. It is recommended
+to use Constraints thoroughly:
+
+. It makes the intent of the respective Property clear for humans reading the model or documentation
+generated from the model
+. It allows tooling to generate code for the Aspect that can take the Constraints into account. Validation code
+corresponding to the Constraints can be directly inserted, thus reducing manual implementation effort.
+
+The following decision tree helps finding matching Constraints for a Characteristic. Note that
+multiple Constraints can be combined.
+
+CAUTION: If and only if the value has a xref:datatypes.adoc#data-types[string-like value space] and
+does _not_ use UTF-8 as an encoding, use an xref:characteristics.adoc#encoding-constraint[Encoding
+Constraint] for the Property. This will ensure that consumers of the Aspect will not end up with
+broken special characters.
+
+image::constraints-decision-tree.svg[width=100%]
+
+=== Historic Data Aspects
+
+When an Aspect describes historic data, i.e., not a single data set but data indexed by time stamps,
+there are a number of <<naming-elements,best practices for naming elements>>to apply:
+
+* Append the suffix _History_ to the Aspect name
+* The Aspect should have exactly one Property called `items`
+* The `items` Property should have the xref:characteristics.adoc#time-series-characteristic[Time Series] Characteristic
+
+In the following example, we first consider a simple Aspect model that provides the current value
+for a temperature sensor and that does not provide historic data. After that, we introduce a new
+Aspect model that provides historic data for the temperature sensor. The example shows how the
+historic data Aspect model is built and how it can reuse elements from the original model.
+
+[[original-aspect]]
+==== Original Aspect
+[source,turtle,subs="attributes+"]
+----
+include::example$non-history-aspect.ttl[tags=prefixes]
+----
+The Aspect's name is `Temperature`, which indicates that it represents a single measurement.
+[source,turtle,subs="attributes+"]
+----
+include::example$non-history-aspect.ttl[tags=aspect]
+----
+The `value` Property describes the temperature measurement.
+[source,turtle,subs="attributes+"]
+----
+include::example$non-history-aspect.ttl[tags=property]
+----
+The `TemperatureMeasurement` is the `value`&#8203;'s Characteristic.
+[source,turtle,subs="attributes+"]
+----
+include::example$non-history-aspect.ttl[tags=characteristic]
+----
+
+[[historic-data-aspect]]
+==== Historic Data Aspect
+
+NOTE: The original Temperature Aspect is bound to the prefix `temperature` here in order to re-use
+elements from the non-historic data aspect.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$history-aspect.ttl[tags=prefixes]
+@prefix myapp: <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+----
+The historic data Aspect's name is `TemperatureHistory` which indicates that it provides historic
+data.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$history-aspect.ttl[tags=aspect]
+----
+Define the `items` property and <<declaring-time-series,refine the Time Series Characteristic>>.
+[source,turtle,subs="attributes+"]
+----
+include::example$history-aspect.ttl[tags=items]
+----
+The `temperatureValue` Property `refines` the xref:entities.adoc#time-series-entity[Time Series
+  `bamm-e:value`]. It reuses the `TemperatureMeasurement` Characteristic from the original
+  `Temperature` Aspect. This is of course no requirement, but when both Aspect models are evolved in
+  conjunction it can make sense to share elements.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$history-aspect.ttl[tags=property]
+----

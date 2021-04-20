@@ -1,0 +1,87 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+[[aspect-modeling-process]]
+== Aspect Modeling Process
+
+[[top-down-modeling-process]]
+=== Top-down Modeling Process
+
+In the top-down modeling process, you start with the idea for an Aspect model but have no prior data
+model (e.g., JSON structure).
+
+NOTE: This type of process is recommended, because it usually yields cleanly structured models that
+do not make concessions towards an already existing implementation.
+
+. Collect and understand the data that _needs_ to be contained in Aspects
+.. Is it relevant? How is it going to be used?
++
+TIP: Avoid bloating models with Properties or other structure that "might be needed at some point".
+Model evolution should be preferred over adding a lot of structure upfront.
++
+.. Consider creating a rough (informal) domain model draft or concept map to validate a shared
+understanding with the expert(s)
+. Separate data into Aspects to maximize
+https://en.wikipedia.org/wiki/Cohesion_(computer_science)[cohesion] and reusability
++
+TIP: There is no single "correct" way to separate data into Aspects, but one rule of thumb is to put
+those Properties together into one Aspect model that most likely are going to be queried together at
+runtime.
++
+[[top-down-model-meta-data]] Decide on the meta data of the model
+.. Pick a descriptive but concise model name
+.. Pick a version for the model. If this is the first version, start with 1.0.0
+.. Pick a namespace for the model
+. Analyze each designated Property in your model draft
+.. Give the Property a speaking name. Consider <<naming-rules,naming rules>> and <<naming-elements,best
+practices>> for naming elements.
+.. Can a predefined xref:characteristics.adoc#characteristics-instances[Characteristic instance] be
+used for the Property, or one of the predefined
+xref:characteristics.adoc#characteristics-classes[Characteristics classes] be instantiated? Follow
+the best practice for <<choosing-a-characteristic>> to find out which existing element might be
+suitable.
++
+TIP: It is always preferable to use something that is already there. It makes the model easier to
+understand and the resulting Aspect easier to use. For example, the SDK might already offer some
+convenience for Characteristic instances in implementations and solutions.
++
+. Add xref:characteristics.adoc#constraint-characteristic[Constraints] to the Characteristic as
+necessary. Follow the best practice for <<choosing-constraints>>.
+. Complete the model
+.. Define example values where it makes sense
+.. Add proper descriptions and preferred names, at least in English
+.. Check names and descriptions for typos and grammar mistakes
+
+[[bottom-up-modeling-process]]
+=== Bottom-up Modeling Process
+
+In the bottom-up modeling process, you start with an existing data model, i.e., you already have a
+REST service and you want the payload structure that follows the Aspect model to match the existing
+JSON structure. This might be necessary when you want to make the existing service a valid Aspect
+but can not or want not change its data structure.
+
+The existing data structure replaces the model draft as compared to the top-down modeling process.
+
+. Enter <<top-down-model-meta-data,step 3>> from the top-down modeling process
+. When defining a Property, you need to use the name of the existing corresponding key in the data structure
+. Make sure that the result of mapping the Aspect model to its corresponding JSON payload as
+described in section xref:payloads.adoc#mapping-to-json[Mapping to JSON] matches your input data
+model
+
+CAUTION: When building an Aspect model to match an existing data structure, there may be mismatches
+in the defined value spaces of the Characteristics used in the model and the runtime data provided
+by the Aspect. For example, you might want to define a Property `timestamp` and use the existing
+xref:characteristics.adoc#timestamp-characteristic[Timestamp] Characteristic, but the existing data
+model expects numeric values (i.e., https://en.wikipedia.org/wiki/Unix_time[numbers of seconds]),
+while the Timestamp Characteristic has a dataType of `xsd:dateTime` which in turn expects values
+such as "2000-01-01T14:23:00". Mismatches like this can either be resolved in the model (i.e., do not
+use the Timestamp Characteristic) or in the Aspect implementation (e.g., by on-the-fly conversion of
+values). Either way, the provided runtime value _must_ match the Characteristic of the Property in
+the model.

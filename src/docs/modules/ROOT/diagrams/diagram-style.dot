@@ -1,0 +1,17 @@
+node [
+    fontname="Roboto Condensed"
+    fontsize=12
+    style="filled"
+    shape="record"
+    gradientangle=0
+    fillcolor="#e8eef7:#b7c9e3"
+    color="#000000"
+    fontcolor="#000000"
+]
+
+edge [
+    fontname="Roboto Condensed"
+    fontsize=10
+    color="#000000"
+    fontcolor="#000000"
+]

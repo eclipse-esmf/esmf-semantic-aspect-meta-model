@@ -1,0 +1,126 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+[graphviz,characteristics-classes,svg,layout=dot]
+----
+digraph characteristics_classes {
+  splines=ortho
+  rankdir=BT
+include::diagram-style.dot[]
+  node [
+        width = 2
+  ]
+
+  edge [
+        arrowhead = empty
+  ]
+
+  size="20,30!"
+  ratio="compress"
+  ranksep=0.8
+
+  // Wide nodes
+  Characteristic [label="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}", href="../characteristics.html#characteristic-characteristic"]
+  RangeConstraint [label="{ RangeConstraint|minValue\lmaxValue\l}", href="../characteristics.html#range-constraint"]
+  EncodingConstraint [label="{ EncodingConstraint|value\l}", href="../characteristics.html#encoding-constraint"]
+  LanguageConstraint [label="{ LanguageConstraint|languageCode\l}", href="../characteristics.html#language-constraint"]
+  LocaleConstraint [label="{ LocaleConstraint|localeCode\l}", href="../characteristics.html#locale-constraint"]
+  LengthConstraint [label="{ LengthConstraint|minValue\lmaxValue\l}", href="../characteristics.html#length-constraint"]
+  RegularExpressionConstraint [label="{ RegularExpressionConstraint|value\l}", href="../characteristics.html#regular-expression-constraint"]
+  StructuredValue [label="{ StructuredValue|deconstructionRule\lelements\l}", href="../characteristics.html#structured-value-characteristic"]
+  FixedPointConstraint [label="{ FixedPointConstraint|scale\linteger\l}", href="../characteristics.html#fixed-point-constraint"]
+
+  // Narrow nodes
+  node [
+    width = 1.2
+  ]
+
+  Quantifiable [label="{ Quantifiable|unit\l}", href="../characteristics.html#quantifiable-characteristic"]
+  Either [label="{ Either|left\lright\l}", href="../characteristics.html#either-characteristic"]
+  Enumeration [label="{ Enumeration|values\l}", href="../characteristics.html#enumeration-characteristic"]
+  Collection [label="{ Collection|allowDuplicates\lordered\l}", href="../characteristics.html#collection-characteristic"]
+  Constraint [label="{ Constraint|baseCharacteristic\l}", href="../characteristics.html#constraint-characteristic"]
+  State [label="{ State|defaultValue\l}", href="../characteristics.html#state-characteristic"]
+  Set [label="{ Set|}", href="../characteristics.html#set-characteristic"]
+  List [label="{ List|}", href="../characteristics.html#list-characteristic"]
+  TimeSeries [label="{ TimeSeries|}", href="../characteristics.html#time-series-characteristic"]
+  Duration [label="{ Duration|}", href="../characteristics.html#duration-characteristic"]
+  Measurement [label="{ Measurement|}", href="../characteristics.html#measurement-characteristic"]
+  Code [label="{ Code|}", href="../characteristics.html#code-characteristic"]
+  SingleEntity [label="{ SingleEntity|}", href="../characteristics.html#single-entity-characteristic"]
+  SortedSet [label="{ SortedSet|}", href="../characteristics.html#sorted-set-characteristic"]
+
+  Either -> Characteristic
+  Enumeration -> Characteristic
+  SingleEntity -> Characteristic
+  State -> Enumeration
+  Quantifiable -> Characteristic
+  Duration -> Quantifiable
+  Measurement -> Quantifiable
+  Collection -> Characteristic
+  Set -> Collection
+  List -> Collection
+  SortedSet -> Collection
+  TimeSeries -> SortedSet
+  Constraint -> Characteristic
+  RangeConstraint -> Constraint
+  LanguageConstraint -> Constraint
+  LocaleConstraint -> Constraint
+  EncodingConstraint -> Constraint
+  LengthConstraint -> Constraint
+  RegularExpressionConstraint -> Constraint
+  Code -> Characteristic
+  StructuredValue -> Characteristic
+  FixedPointConstraint -> Constraint
+
+  subgraph cluster_0 {
+    color=white
+    Either;
+    Enumeration;
+    Collection;
+    Code;
+    StructuredValue
+  }
+
+  subgraph cluster_1 {
+    color=white
+    State;
+    Set;
+    SingleEntity;
+  }
+  subgraph cluster_2 {
+    color=white
+    Quantifiable;
+    List;
+  }
+  subgraph cluster_3 {
+    color=white
+    Duration;
+    Measurement;
+    TimeSeries;
+    Constraint;
+  }
+  subgraph cluster_4 {
+    color=white
+    RangeConstraint;
+    RegularExpressionConstraint;
+    LengthConstraint;
+    FixedPointConstraint;
+  }
+  subgraph cluster_5 {
+    color=white
+    EncodingConstraint;
+    LanguageConstraint;
+    LocaleConstraint;
+  }
+
+  LengthConstraint -> LocaleConstraint [ltail=cluster_4, lhead=cluster_5, style=invis]
+}
+----
