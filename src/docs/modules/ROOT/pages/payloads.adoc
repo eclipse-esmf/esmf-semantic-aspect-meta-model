@@ -19,7 +19,7 @@ image::payloads-diagram.svg[opts=interactive, width=100%]
 For understanding the construction rules, we define the following terms:
 
 * A Property's _leaf Characteristic_ means the Property's Characteristic if it is not a Constraint,
-  otherwise it means transitively following the Constraint's `bamm:baseCharacteristic` until the
+  otherwise it means transitively following the Constraint's `bamm-c:baseCharacteristic` until the
   value is not a Constraint any more.
 * A Property's _effective data type_ means the Property's leaf Characteristic's `bamm:dataType`.
 * A data type is scalar, if it is one of the xref:datatypes.adoc#data-types[allowed data types], but not a `bamm:Entity`.

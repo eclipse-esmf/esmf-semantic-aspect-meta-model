@@ -228,43 +228,6 @@ xref:characteristics.adoc#single-entity-characteristic[Single Entity] Characteri
 include::example$aspect-sample.ttl[tags=single-entity-declaration]
 ----
 
-[[declaring-constraints]]
-==== Declaring Constraints
-
-Consider the `numbers` Property that uses an instance of the `List` Characteristic:
-
-[source,turtle,subs="attributes+"]
-----
-include::example$regular-numberlist.ttl[tags=content]
-----
-
-To add a xref:characteristics.adoc#length-constraint[Length Constraint] to the list, replace the use
-of the Characteristic with the corresponding Constraint instance while at the same time setting the
-Constraint's `baseCharacteristic` to the original Characteristic:
-
-[source,turtle,subs="attributes+"]
-----
-include::example$constrained-numberlist.ttl[tags=content]
-----
-
-Another more complex example is given below: The Property `someIdentifier` is defined that uses a
-xref:characteristics.adoc#code-characteristic[Code] instance using a dataType of `xsd:string`,
-combined with two Constraints: An xref:characteristics.adoc#encoding-constraint[Encoding Constraint]
-that restricts the value space to US-ASCII and a xref:characteristics.adoc#length-constraint[Length
-Constraint] that limits the string to 80 characters.
-
-[source,turtle,subs="attributes+"]
-----
-include::example$constrained-stringcode.ttl[tags=content]
-----
-
-An example showing the xref:characteristics.adoc#regular-expression-constraint[Regular Expression Constraint] is given below:
-
-[source,turtle,subs="attributes+"]
-----
-include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
-----
-
 [[declaring-collections]]
 ==== Declaring Collections
 
@@ -473,6 +436,44 @@ deconstruction rule corresponds with the named fields; secondly, it is used for 
 `bamm:exampleValue` is given (like in the example), the Aspect Model validator can automatically
 check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
 i.e., that the deconstruction rule actually does what the model author intended.
+
+[[declaring-constraints]]
+=== Declaring Constraints
+
+Consider the `numbers` Property that uses an instance of the `List` Characteristic:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$regular-numberlist.ttl[tags=content]
+----
+
+To add a xref:characteristics.adoc#length-constraint[Length Constraint] to the list, replace the use
+of the Characteristic with a new xref:characteristics.adoc#trait-characteristic[Trait] instance. Set
+the original Characteristic as the Trait's `bamm-c:baseCharacteristic` and add the required
+Constraint as a `bamm-c:constraint` to the Trait:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$constrained-numberlist.ttl[tags=content]
+----
+
+Another more complex example is given below: The Property `someIdentifier` is defined that uses a
+xref:characteristics.adoc#code-characteristic[Code] instance using a dataType of `xsd:string`,
+combined with two Constraints: An xref:characteristics.adoc#encoding-constraint[Encoding Constraint]
+that restricts the value space to US-ASCII and a xref:characteristics.adoc#length-constraint[Length
+Constraint] that limits the string to 80 characters.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$constrained-stringcode.ttl[tags=content]
+----
+
+An example showing the xref:characteristics.adoc#regular-expression-constraint[Regular Expression Constraint] is given below:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
+----
 
 [[declaring-entities]]
 === Declaring Entities

@@ -29,9 +29,17 @@ skinparam activityDiamond {
   ArrowColor Black
 }
 
-(*) --> "Is the value\nan Object?"
+(*) -> "Should the value\nuse Constraints?"
 
 if "" then
+ -right->[yes] "Trait" #b7c9e3
+ --> "Continue to follow\ndecision tree\nfor Trait's\nbaseCharacteristic"
+ --> "Is the value\nan Object?" as IsObject
+else
+ -->[no] IsObject
+endif
+
+IsObject --> if "" then
   -right->[yes] "Single Entity" #b7c9e3
 else
   -->[no] "Is the value\na compound value\nof multiple parts?" as IsStructuredValue
