@@ -16,7 +16,7 @@ SPDX-License-Identifier: MPL-2.0
 The {meta-model-full-name} ({meta-model-abbr}) specifies the elements from which an Aspect Model can
 be built. The following diagram shows the basic building blocks:
 
-image::aspect-meta-model-simplified.svg[width=100%]
+image::aspect-meta-model.svg[width=100%]
 
 * A _Property_ represents a named value.
 
@@ -26,12 +26,12 @@ image::aspect-meta-model-simplified.svg[width=100%]
   such as its data type, if it is a collection, that a string value is to be interpreted as one of a
   fixed number of valid states or that a numeric value has an associated physical unit.
 
-* A _Constraint_ is a special type of Characteristic that acts as a constraint (for example on the
-  value range) on another Characteristic, which is referred to as the _Base Characteristic_.
+* A _Constraint_ represents a limitation that is applied to another Characteristic (for example on the
+  numeric value range or the maximum length of string).
 
-Characteristics, just like model element descriptions, are _not part of the data_ an Aspect sends,
-but only exist in its model. A number of commonly used Characteristics are predefined in the scope
-of the {meta-model-full-name}, see section
+Characteristics, Constraints and element descriptions, are _not part of the data_ an Aspect sends,
+but only exist in its model. A number of commonly used Characteristics and Constraints are
+predefined in the scope of the {meta-model-full-name}, see section
 xref:characteristics.adoc#characteristics[Characteristics] for more information.
 
 * An _Operation_ represents an action that can be triggered on the Aspect. Depending on the Aspect,
