@@ -1,7 +1,7 @@
 # BAMM Aspect Meta Model
 
 - [Introduction](#introduction)
-- [Application](#application)
+- [Example Usage](#example-usage)
 - [Build and contribute](#build-and-contribute)
 
 ## Introduction
