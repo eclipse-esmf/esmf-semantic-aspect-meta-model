@@ -149,9 +149,10 @@ The header should follow the following template:
 Copyright (c) {YEAR} {NAME OF COMPANY X} 
 Copyright (c) {YEAR} {NAME OF COMPANY Y} 
 
-See the AUTHORS file(s) distributed with this work for additional
-information regarding authorship.
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
 
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 SPDX-License-Identifier: MPL-2.0
 ////
 ```
