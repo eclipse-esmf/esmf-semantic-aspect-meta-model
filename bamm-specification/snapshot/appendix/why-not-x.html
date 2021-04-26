@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/appendix/why-not-x.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">BAMM Aspect Meta Model</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="snapshot">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../modeling-guidelines.html">Aspects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">snapshot</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">snapshot</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/edit/main/src/docs/modules/appendix/pages/why-not-x.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="why-not-x"><a class="anchor" href="#why-not-x"></a>Appendix A: Why not X instead of BAMM Aspect Meta Model?</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="why-not-use-x-to-specify-aspect-models"><a class="anchor" href="#why-not-use-x-to-specify-aspect-models"></a>A.1. Why not use X to specify Aspect Models?</h3>
+<div class="paragraph">
+<p>An extensive evaluation based on preliminary use cases was conducted to classify existing formats
+and languages for the formulation of Aspect Models. This section summarizes the criteria and
+candidates.</p>
+</div>
+<div class="sect3">
+<h4 id="general-assumptions"><a class="anchor" href="#general-assumptions"></a>A.1.1. General Assumptions</h4>
+<div class="paragraph">
+<p>Generally, the goal of Aspect Models is describing <em>information models</em> (as opposed to <em>data
+models</em>). This means that the Meta Model used to describe Aspect Models should allow the
+specification of context beyond mere data. For example, a data model would specify for a
+<code>temperature</code> property the data type <code>float</code>, while an information model would also specify
+information about the fact that the value was measured from a sensor, that the value has a certain
+range (that corresponds to the value range given in the data sheet of the respective sensor), that
+the value is given in degrees Celsius and a human-readable documentation.</p>
+</div>
+<div class="paragraph">
+<p>Beyond this, the following use cases should specifically be supported:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Code generation for Aspect Implementations and Solution Client implementations. As multiple
+programming languages and environments are going to be supported (e.g., Java, .NET Core, JavaScript),
+the model format should be implementation language agnostic.</p>
+</li>
+<li>
+<p>Validation of data. Constraints, such as which properties in which classes and which data ranges
+on which properties need to be validated against data at runtime. The necessary validation code (or
+comparable constructs) should be able to use the model or be directly generated from the model.</p>
+</li>
+<li>
+<p>Enable interchange between different tooling for the description of domain-specific modeling
+tools. The format needs to be flexible and generic enough to allow model mapping or model
+transformation to other formalisms. Being based on an open standard or de-facto standard and
+consequently being supported by existing/third-party tools is a plus.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-not-json-schema-or-entity-relationship-modeling"><a class="anchor" href="#why-not-json-schema-or-entity-relationship-modeling"></a>A.1.2. Why not JSON Schema or Entity-Relationship-Modeling?</h4>
+<div class="paragraph">
+<p>The goal of describing <em>information models</em> rules out modeling approaches that are only applicable
+to the data itself. Examples of such models are JSON Schema (and similar techniques such as XML
+schema) and Entity-Relationship-Models. While existing tool support for data validation is good, the
+thorough description of domain semantics is not the focus of such approaches and therefore ranges
+between being inconvenient to outright impossible.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-not-eclipse-vortos-dsl"><a class="anchor" href="#why-not-eclipse-vortos-dsl"></a>A.1.3. Why not Eclipse Vorto&#8217;s DSL?</h4>
+<div class="paragraph">
+<p><a href="https://www.eclipse.org/vorto/">Eclipse Vorto</a> provides a DSL (Domain Specific Language) with a
+custom syntax for the specification of device interfaces. The expressive power of the language is
+intentionally limited to the domain concepts of IoT device interfaces. Vorto provides model
+validation and code generators that take models as an input. However, there is a strong conceptual
+mismatch between the intended use of Vorto&#8217;s DSL and the goals of Aspect Models that can not easily
+be dispelled due to intrinsic meta-model structure and semantics. For example, Vorto Models have no
+concept comparable to Characteristics, don&#8217;t allow the specification of Entity or Characteristics
+instances and use a different terminology than Aspect Models with no option to change or customize.
+Furthermore, due to the fact that the DSL is specific to Vorto, there are no other tools or
+libraries that support working with the models.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-not-owl"><a class="anchor" href="#why-not-owl"></a>A.1.4. Why not OWL?</h4>
+<div class="paragraph">
+<p>The Web Ontology Language (OWL, <a href="#owl2">[owl2]</a>) is the de-facto standard language for the description of
+<em><a href="https://en.wikipedia.org/wiki/Ontology%20(information_science)">Ontologies</a></em>, i.e., the formal
+description of things, sets of things and relations between things. &#8220;OWL is a computational
+logic-based language such that knowledge expressed in OWL can be reasoned with by computer programs
+either to verify the consistency of that knowledge or to make implicit knowledge explicit.&#8221; <a href="#owl2">[owl2]</a>
+When speaking of semantic modeling, OWL is often the first choice of modeling language.</p>
+</div>
+<div class="paragraph">
+<p>In OWL, both the verification of consistency and inference of knowledge are based on the
+<a href="https://en.wikipedia.org/wiki/Open-world_assumption">open-world assumption</a>, which means that what is
+not known to be true or false is unknown. For example, having a class <code>Person</code> that requires a
+property <code>name</code> and an instance of <code>Person</code> that has no <code>name</code> specified is no inconsistency&#8201;&#8212;&#8201;it
+just means that its <code>name</code> is currently unknown. This makes OWL well-suited to describe parts of a
+domain that are later combined with other descriptions of parts of the same domain to end up with a
+consistent and preferably complete overall description. Verification and inference are based on data
+that is structured in a directed graph.</p>
+</div>
+<div class="paragraph">
+<p>However, the main features of OWL&#8201;&#8212;&#8201;ascertaining consistency in a potentially incompletely modeled
+world and the inference of knowledge&#8201;&#8212;&#8201;are both not goals of Aspect Models. On the other hand,
+while some of the (mainly structural) constraints of an Aspect Model could be represented in OWL,
+other parts focused on the validation of runtime data can not be represented. For example, a fact
+like &#8220;there needs to be a certain tool in a certain machine&#8221; could easily be modeled in OWL, while
+facts like &#8220;this Property describes an ordered set of data of a given structure&#8221; are
+disproportionately complex to model in comparison to what OWL provides that an Aspect Model can make
+use of. Additionally, closed-world semantics (the opposite of the open-world assumption) are
+required for Aspect Models, as they are used to model data where, for example, a missing mandatory
+property should directly result in a validation error.</p>
+</div>
+<div class="paragraph">
+<p>Standard tools such as reasoners could therefore not be used unchanged to validate Aspect Models
+described in OWL. Many conceptual constraints on what Aspect Models should be able to express are
+based on the assumption that runtime data that corresponds to an Aspect is structured in a tree
+(e.g., given in JSON). While possible to express in OWL, this would place the responsibility to get
+this right on the model creator, who would need to be intimately familiar with the discipline of
+Ontology Engineering, because standard OWL semantics allow more degrees of freedom. Figuratively
+speaking, OWL is an all-terrain vehicle while we try to build a rail network. To a certain degree,
+we want to exchange flexibility with ease of use in the target domain, increase modeling speed and
+reduce the number of potential modeling errors by reducing the degrees of freedom.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-not-use-x-to-specify-the-aspect-meta-model-itself"><a class="anchor" href="#why-not-use-x-to-specify-the-aspect-meta-model-itself"></a>A.2. Why not use X to specify the Aspect Meta Model itself?</h3>
+<div class="paragraph">
+<p>After deciding that a custom meta model and a suitable way to specify it is required for the
+description of Aspect Models, an evaluation of how to specify the meta model itself was conducted.
+As Aspect Models are specified in RDF, a straightforward and extensible way based on open standards
+was adopted for the implementation of the Aspect Meta Model. The Aspect Meta Model is defined as a
+combination of RDF vocabularies and a number of &#8220;shapes&#8221; defined SHACL <a href="#shacl">[shacl]</a>, a language for
+validating RDF graphs against a set of conditions which in turn is based on SPARQL <a href="#sparql">[sparql]</a>, the
+RDF query language. This combination of technologies is a natural fit for the description of
+BAMM Aspect Meta Model&#8217;s closed world semantics.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OWL could not have been used for this for reasons similar to its unfitness for the description of
+Aspect Models, i.e., in addition to OWL&#8217;s intrinsic semantics, many validations would have to be
+implemented manually in addition to standard reasoning, thus diminishing OWL&#8217;s overall value. This
+said, it would be possible to express parts of BAMM Aspect Meta Model&#8217;s semantics in OWL if
+necessary.</p>
+</li>
+<li>
+<p>The Meta Model could have been implemented in a combination of
+<a href="https://en.wikipedia.org/wiki/Unified_Modeling_Language">UML</a> and
+<a href="https://en.wikipedia.org/wiki/Object_Constraint_Language">OCL</a>. However, on the one hand, this
+approach would have required increased complexity due to the use of an UML-to-RDF-mapping and on
+the other hand, there exists not as much documentation and tool support for the respective
+technologies.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-not-use-well-known-rdf-vocabularies-or-namespaces"><a class="anchor" href="#why-not-use-well-known-rdf-vocabularies-or-namespaces"></a>A.3. Why not use well-known RDF vocabularies or namespaces?</h3>
+<div class="paragraph">
+<p>For model authors that have worked with RDF before, the use of the <code>bamm:</code> namespace as opposed to
+using well-known vocabularies such as RDFS or
+<a href="http://www.dublincore.org/specifications/dublin-core/dcmi-terms/">Dublin Core</a> is noticeable. With
+the exception of the XSD namespace for datatypes, BAMM and Aspect Models define their
+vocabulary in namespaces specific to BAMM. There are two reasons for this:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BAMM namespaces use URNs instead of URLs as element identifiers. This is to avoid
+confusion about resolvability: Working with Aspect Models (e.g., validating them or generating code
+from them) must work in a stand-alone (i.e., offline) fashion. Avoiding using URLs that are not
+supposed to be resolved avoids confusion among developers.</p>
+</li>
+<li>
+<p>BAMM namespaces are all versioned: Each version&#8217;s semantics are self-contained.
+Should semantics of one version change, elements of previous versions can still be processed as
+before. This is not possible when relying on externally defined, non-versioned namespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/bamm-specification/snapshot/appendix/why-not-x.html"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mapping to JSON :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/payloads.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">BAMM Aspect Meta Model</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="snapshot">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling-guidelines.html">Aspects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">snapshot</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">snapshot</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">BAMM Aspect Meta Model</a></li>
+    <li><a href="payloads.html">Mapping to JSON</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/edit/main/src/docs/modules/ROOT/pages/payloads.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Mapping to JSON</h1>
+<div class="sect1">
+<h2 id="rules-for-the-construction-of-json-payloads-matching-an-aspect-model"><a class="anchor" href="#rules-for-the-construction-of-json-payloads-matching-an-aspect-model"></a>Rules for the construction of JSON payloads matching an Aspect model</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<object type="image/svg+xml" data="_images/payloads-diagram.svg" width="100%"><span class="alt">payloads diagram</span></object>
+</div>
+</div>
+<div class="paragraph">
+<p>For understanding the construction rules, we define the following terms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Property&#8217;s <em>leaf Characteristic</em> means the Property&#8217;s Characteristic if it is not a Constraint,
+otherwise it means transitively following the Constraint&#8217;s <code>bamm-c:baseCharacteristic</code> until the
+value is not a Constraint any more.</p>
+</li>
+<li>
+<p>A Property&#8217;s <em>effective data type</em> means the Property&#8217;s leaf Characteristic&#8217;s <code>bamm:dataType</code>.</p>
+</li>
+<li>
+<p>A data type is scalar, if it is one of the <a href="datatypes.html#data-types" class="page">allowed data types</a>, but not a <code>bamm:Entity</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In order to create JSON payloads that correspond to an Aspect model, the following rules are
+applied. The other way round they can also be used to describe a validation algorithm.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An Aspect model is always serialized as an unnamed JSON object.</p>
+</li>
+<li>
+<p>For each Property:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If it is marked as optional, it may or may not be included in the payload. If, and only if, the
+Property is marked as optional and is included in the payload, then its value may be <code>null</code>,
+which is equivalent to it not being included in the payload.</p>
+</li>
+<li>
+<p>If the Property&#8217;s effective data type is scalar with any date type other than <code>rdf:langString</code>,
+the Property is serialized as <code>${propertyName}: ${value}</code> where <code>${value}</code> is the JSON
+serialization of the respective Property&#8217;s value, details on mapping of the data types are given
+in <a href="#data-type-mappings">Data type mappings</a>. The value must adhere to the value range defined by the Property&#8217;s
+effective data type and possible Constraints on the Property&#8217;s Characteristic.</p>
+</li>
+<li>
+<p>If the Property&#8217;s effective data type is scalar with the data type <code>rdf:langString</code>, the Property
+is serialized as a named JSON object (with <code>${propertyName}</code> being the name of the JSON
+property), with keys for each available language tag of the Property and the corresponding
+localized string as the value.</p>
+</li>
+<li>
+<p>If the Property&#8217;s effective data type is not scalar, it is serialized as a named JSON object
+(with <code>${propertyName}</code> being the name of the JSON property), recursively using the same rules.</p>
+</li>
+<li>
+<p>If the Property&#8217;s effective data type is an Entity which refines another Entity, it is serialized
+as a named JSON object (with <code>${propertyName}</code> being the name of the JSON property), with the
+Properties for the Entity being the refining Properties as well as the Properties from the
+refined Entity which are themselves not refined.</p>
+</li>
+<li>
+<p>If the Property&#8217;s leaf Characteristic is a
+<a href="characteristics.html#collection-characteristic" class="page">Collection</a>,
+<a href="characteristics.html#collection-characteristic" class="page">List</a>,
+<a href="characteristics.html#collection-characteristic" class="page">Set</a> or
+<a href="characteristics.html#collection-characteristic" class="page">Sorted Set</a>, it is serialized as a named JSON
+array (with <code>${propertyName}</code> being the name of the JSON array property).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Characteristics defined in the Aspect model other than the ones mentioned above are not subject to
+serialization.</p>
+</li>
+<li>
+<p>Operations defined in the Aspect model are not subject to serialization.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-type-mappings"><a class="anchor" href="#data-type-mappings"></a>Data type mappings</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="datatypes.html#data-types" class="page">rich type tree</a> is used in an Aspect model. As JSON offers only a
+very limited set of data types for primitive type values there are less options on how to represent
+the data. The mappings are described in the following table.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aspect model data type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Corresponding JSON data type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Core Types</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:decimal</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">IEEE-floating-point numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:double</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:float</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Time and date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:dateTime</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:dateTimeStamp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock">Recurring and partial dates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:gYear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:gMonth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:gDay</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:gYearMonth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:gMonthDay</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:duration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:yearMonthDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:dayTimeDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="12"><p class="tableblock">Limited-range integer numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:byte</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:short</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:int</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:long</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedByte</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedShort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedInt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedLong</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:positiveInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonNegativeInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:negativeInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonPositiveInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Encoded binary data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:hexBinary</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:base64Binary</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Miscellaneous types</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:anyURI</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:curie</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rdf:langString</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A JSON object with a structure as described in the rules above.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For example, a Property <code>errorMessage</code> with effective data type <code>rdf:langString</code> and the values
+<code>"Could not load data"@en</code> and <code>"Konnte Daten nicht laden"@de</code> would be serialized in the JSON
+payload as follows: [source,json]</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "errorMessage": {
+    "en": "Could not load data",
+    "de": "Konnte Daten nicht laden"
+  }
+}</pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Due to the <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.5">limits in the
+represention of numbers</a> in JSON, the maximum integer number that can be used without losing
+precision is 2⁵³-1 (defined as
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER">Number.MAX_SAFE_INTEGER</a>).
+This means that even if the Aspect model data type would allow higher or lower values, if they can
+not be represented in JSON, they can not be used. Affected data types are the unbounded numeric
+types <code>xsd:decimal</code>, <code>xsd:integer</code>, <code>xsd:positiveInteger</code>, <code>xsd:nonNegativeInteger</code>,
+<code>xsd:negativeInteger</code>, <code>xsd:nonPositiveInteger</code> and the bounded type <code>xsd:unsignedLong</code>. The other
+numeric types are not affected.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/snapshot/payloads.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

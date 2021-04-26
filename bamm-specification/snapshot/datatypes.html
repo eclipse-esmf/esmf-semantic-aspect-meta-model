@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Data Types :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/datatypes.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">BAMM Aspect Meta Model</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="snapshot">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling-guidelines.html">Aspects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">snapshot</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">snapshot</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">BAMM Aspect Meta Model</a></li>
+    <li>Specification</li>
+    <li><a href="datatypes.html">Data Types</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/edit/main/src/docs/modules/ROOT/pages/datatypes.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Data Types</h1>
+<div class="sect1">
+<h2 id="type-hierarchy"><a class="anchor" href="#type-hierarchy"></a>Type Hierarchy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The system of types used in the BAMM Aspect Meta Model (and subsequently in the models conforming to
+the BAMM Aspect Meta Model) is largely based on a subset of the XML Schema Definition 1.1 (XSD,
+<a href="appendix/appendix.html#xmlschema11-2" class="page">[xmlschema11-2]</a>), including the types
+such as data ranges. In addition to types from XSD, the type <code>langString</code> is included as described
+in the RDF <a href="appendix/appendix.html#rdf11" class="page">[rdf11]</a> specification; it is used
+to represent strings with an explicit language tag. Using these types allows for example the
+distinction between a plain string and a dateTime string, unlike in JSON. The JSON data of a
+Property with a certain type uses the most convenient corresponding JSON type, i.e. booleans for XSD
+boolean, number for all numeric types, JSON object for Entities and string for everying else.</p>
+</div>
+<div class="paragraph">
+<p>The following figure shows the type hierarchy, in which arrows are interpreted as "is a subtype of
+and can therefore be cast to". The types <code>anyType</code> and <code>anySimpleType</code> are "special" types of the
+XSD type hierarchy and should not be directly used.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All data types inheriting from <code>anySimpleType</code> are called <em>scalar</em>, i.e. every allowed data
+type except <code>bamm:Entity</code> is scalar.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>Entity</code> type corresponds to the Entity Meta Model element as described in section
+<a href="meta-model-elements.html#meta-model-elements" class="page">Meta Model Elements</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/aspect-model-types.svg" alt="aspect model types" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>The following table lists the types allowed in the Aspect Models, with references to their
+definition in the respective standards and an informative description of their value space.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Data Types</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Data Type</th>
+<th class="tableblock halign-left valign-top">Value Range</th>
+<th class="tableblock halign-left valign-top">Sample Values</th>
+<th class="tableblock halign-left valign-top">String-like value space</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Core Types</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#string">xsd:string</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Character strings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'Hello world', 'Καλημέρα κόσμε', 'コンニチハ'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#boolean">xsd:boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true, false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true, false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#decimal">xsd:decimal</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arbitrary-precision decimal numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.23, 126789672374892739424.543233, +100000.00, 210</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#integer">xsd:integer</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arbitrary-size integer numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, 0, 126789675432332938792837429837429837429, +100000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">IEEE-floating-point numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#double">xsd:double</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64-bit floating point numbers incl. ±Inf, ±0, NaN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.0, +0.0, -0.0, 234.567e8, -INF, NaN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#float">xsd:float</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32-bit floating point numbers incl. ±Inf, ±0, NaN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.0, +0.0, -0.0, 234.567e8, -INF, NaN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Time and date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#date">xsd:date</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dates (yyyy-mm-dd) with or without timezone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2000-01-01', '2000-01-01Z', '2000-01-01+12:05'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#time">xsd:time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Times (hh:mm:ss.sss&#8230;&#8203;) with or without timezone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'14:23:00', '14:23:00.527634Z', '14:23:00+03:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#dateTime">xsd:dateTime</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date and time with or without timezone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2000-01-01T14:23:00', '2000-01-01T14:23:00.66372+14:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#dateTimeStamp">xsd:dateTimeStamp</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date and time with required timezone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2000-01-01T14:23:00.66372+14:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock">Recurring and partial dates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#gYear">xsd:gYear</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gregorian calendar year</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2000', '2000+03:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#gMonth">xsd:gMonth</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gregorian calendar month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'--04', '--04+03:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#gDay">xsd:gDay</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gregorian calendar day of the month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'---04', '---04+03:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#gYearMonth">xsd:gYearMonth</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gregorian calendar year and month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'2000-01', '2000-01+03:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#gMonthDay">xsd:gMonthDay</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gregorian calendar month and day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'--01-01', '--01-01+03:00'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#duration">xsd:duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Duration of time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'P30D', '-P1Y2M3DT1H', 'PT1H5M0S'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#yearMonthDuration">xsd:yearMonthDuration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Duration of time (months and years only)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'P10M', 'P5Y2M'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration">xsd:dayTimeDuration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Duration of time (days, hours, minutes, seconds only)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'P30D', 'P1DT5H', 'PT1H5M0S'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="12"><p class="tableblock">Limited-range integer numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#byte">xsd:byte</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-128…+127 (8 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, 0, 127</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#short">xsd:short</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-32768…+32767 (16 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, 0, 32767</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#int">xsd:int</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2147483648…+2147483647 (32 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, 0, 2147483647</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#long">xsd:long</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-9223372036854775808…+9223372036854775807 (64 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, 0, 9223372036854775807</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#unsignedByte">xsd:unsignedByte</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0…255 (8 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0, 1, 255</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#unsignedShort">xsd:unsignedShort</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0…65535 (16 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0, 1, 65535</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#unsignedInt">xsd:unsignedInt</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0…4294967295 (32 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0, 1, 4294967295</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#unsignedLong">xsd:unsignedLong</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0…18446744073709551615 (64 bit)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0, 1, 18446744073709551615</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#positiveInteger">xsd:positiveInteger</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer numbers &gt;0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1, 7345683746578364857368475638745</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#nonNegativeInteger">xsd:nonNegativeInteger</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer numbers ≥0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0, 1, 7345683746578364857368475638745</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#negativeInteger">xsd:negativeInteger</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer numbers &lt;0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, -23487263847628376482736487263847</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#nonPositiveInteger">xsd:nonPositiveInteger</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer numbers ≤0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1, 0, -93845837498573987498798987394</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Encoded binary data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#hexBinary">xsd:hexBinary</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hex-encoded binary data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'6b756d6f77617368657265'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#base64Binary">xsd:base64Binary</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base64-encoded binary data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'a3Vtb3dhc2hlcmU='</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Miscellaneous types</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/xmlschema11-2/#anyURI">xsd:anyURI</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Absolute or relative <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a>s and <a href="https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'http://example.org/', 'urn:bamm:com.mycompany.myapplication:1.0.0#errorState'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/curie/">bamm:curie</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compact URI/IRI (well-known prefix + element name)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'xsd:string', 'unit:hectopascal'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://www.w3.org/TR/rdf11-concepts/#section-Graph-Literal">rdf:langString</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Strings with language tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Hello"@en, "Hallo"@de. Note that this is written in RDF/Turtle syntax, and that only "Hello" and "Hallo" are the actual values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following types defined by the XSD and RDF specifications, respectively, are considered
+unsuitable in Aspect models and should not be used:</p>
+</div>
+<div class="paragraph">
+<p><code>xsd:language</code>, <code>xsd:normalizedString</code>, <code>xsd:token</code>, <code>xsd:NMTOKEN</code>, <code>xsd:Name</code>, <code>xsd:NCName</code>,
+<code>xsd:QName</code>, <code>xsd:ENTITY</code>, <code>xsd:ID</code>, <code>xsd:IDREF</code>, <code>xsd:NOTATION</code>, <code>xsd:IDREFS</code>, <code>xsd:ENTITIES</code>,
+<code>xsd:NMTOKENS</code>, <code>rdf:HTML</code> and <code>rdf:XMLLiteral</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implicit-conversions"><a class="anchor" href="#implicit-conversions"></a>Implicit Conversions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following implicit data type conversions are allowed, i.e. when a type <em>A</em> can be cast to type
+<em>B</em> according to the following table, <em>A</em> is allowed where <em>B</em> is required. Implicit conversion is
+transitive, i.e. when <em>A</em> can be cast to <em>B</em> and <em>B</em> can be cast to <em>C</em> then <em>A</em> can also be cast to
+<em>C</em>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Allowed implicit conversions</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:byte</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:short</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:short</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:int</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:int</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:long</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:long</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:integer</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:decimal</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedByte</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedShort</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedShort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedInt</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedInt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedLong</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:unsignedLong</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonNegativeInteger</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:positiveInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonNegativeInteger</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonNegativeInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:integer</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:negativeInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonPositiveInteger</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:nonPositiveInteger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:integer</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:dateTimeStamp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:dateTime</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:yearMonthDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:duration</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:dayTimeDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can be cast to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:duration</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Currently, implicit type conversions are allowed for the
+<a href="modeling-guidelines.html#declaring-properties" class="page">description of example values of Properties</a>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/snapshot/datatypes.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
