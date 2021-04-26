@@ -1,0 +1,40 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+[[site-notice]]
+= Site Notice
+
+This project is maintained by the https://open-manufacturing.org[Open Manufacturing Platform (OMP)].
+
+[[authors]]
+== Authors
+
+* Birgit Boss, Robert Bosch GmbH
+* Daniel Ewert, Robert Bosch GmbH, daniel.ewert@bosch.com
+* Sven Erik Jeroschewski, Bosch.IO GmbH
+* Lukas Römer, Bosch.IO GmbH, Lukas.roemer@bosch.io
+* Michele Santoro
+* Andreas Schilling, andreas.schilling3@de.bosch.com
+* Georg Schmidt-Dumont, Robert Bosch GmbH, georg.schmidt-dumont@de.bosch.com 
+* Andreas Textor, Andreas.Textor@de.bosch.com
+
+[[github]]
+== GitHub
+
+https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model
+
+[[participate]]
+== Participate
+
+https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/main/CONTRIBUTING.md
+
+
+This work is provided by the copyright holders under the license MPL-2.0 as defined in https://www.mozilla.org/en-US/MPL/2.0/.
+As the separate files in this project are developed independently from each other, copyright notices and alike, are part of those separate files.
