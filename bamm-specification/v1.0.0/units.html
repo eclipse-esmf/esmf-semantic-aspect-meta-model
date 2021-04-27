@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Units :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/units.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">BAMM Aspect Meta Model</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="v1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling-guidelines.html">Aspects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">v1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../snapshot/index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../snapshot/index.html">snapshot</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">v1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../snapshot/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">BAMM Aspect Meta Model</a></li>
+    <li>Specification</li>
+    <li><a href="units.html">Units</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">v1.0.0</button>
+  <div class="version-menu">
+    <a class="version" href="../snapshot/units.html">snapshot</a>
+    <a class="version is-current" href="units.html">v1.0.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/v1.0.0/src/docs/modules/ROOT/pages/units.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Units</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A catalog of physical units and quantity kinds ("length" would be the quantity kind for the units
+"metre", "inch", "millimetre" and so on) is part of the Aspect Meta Model. As such, the unit catalog
+is provided in a machine readable fashion. The catalog is based on the UNECE Recommendation 20
+<a href="../snapshot/appendix/appendix.html#rec20" class="page">[rec20]</a> and comprises about 1,800 units. The
+units are used in Characteristics such as Measurement and Duration. The full catalog is available in
+tabular form in Appendix <a href="appendix/appendix.html#unit-catalog" class="page">Unit Catalog</a>. Please note that,
+while in principle preferred names in multiple languages can be added to quantity kinds and units,
+the catalog provides preferred names in english only.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The unit names in UNECE Recommendation 20 (and therefore in the units catalog) are given in
+British English, e.g., <em>metre</em>, not <em>meter</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A quantity kind has the following attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Present in every quantity kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique name of quantity kind</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:preferredName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human readable name in a specific language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>A unit has the following attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Present in every unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique name of unit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:preferredName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human readable name in a specific language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unit:commonCode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Normalized short code for unit; please refer to the
+<a href="../snapshot/appendix/appendix.html#rec20" class="page">original specification</a> for more details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span><sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unit:conversionFactor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the unit is derived from a reference unit, the <em>human readable</em> multiplication factor,
+  e.g., "10⁻²⁸ m²"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unit:numericConversionFactor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the unit is derived from a reference unit, the <em>numeric</em> multiplication factor,
+  e.g., "1.0E-28"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unit:quantityKind</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of quantity kinds, for example unit <em>litre</em> has quantity kind
+  <em>volume</em>, unit <em>metre</em> has quantity kinds <em>length</em>, <em>distance</em>, <em>diameter</em> etc.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unit:referenceUnit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unit this unit is derived from, e.g., <em>centimetre</em> is derived from
+  <em>metre</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unit:symbol</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unit&#8217;s symbol, e.g., for <em>centimetre</em> the symbol is <em>cm</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. Every unit originating from UNECE Recommendation 20 has a commonCode defined by the standardization process, units added in the scope of the BAMM therefore do not have one. For example, no commonCode is added to <code><a href="appendix/appendix.html#unit-cubicMicrometre" class="page">unit:cubicMicrometre</a></code>.
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/v1.0.0/units.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

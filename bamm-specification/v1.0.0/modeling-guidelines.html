@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Aspects :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/modeling-guidelines.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">BAMM Aspect Meta Model</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="v1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="units.html">Units</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="modeling-guidelines.html">Aspects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">v1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../snapshot/index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../snapshot/index.html">snapshot</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">v1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../snapshot/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">BAMM Aspect Meta Model</a></li>
+    <li>Specification</li>
+    <li><a href="modeling-guidelines.html">Aspects</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">v1.0.0</button>
+  <div class="version-menu">
+    <a class="version" href="../snapshot/modeling-guidelines.html">snapshot</a>
+    <a class="version is-current" href="modeling-guidelines.html">v1.0.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/v1.0.0/src/docs/modules/ROOT/pages/modeling-guidelines.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Aspects</h1>
+<div class="sect1">
+<h2 id="general"><a class="anchor" href="#general"></a>General</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="notes"><a class="anchor" href="#notes"></a>Notes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>As mentioned in the <a href="index.html" class="page">Introduction</a>, Aspect models are described in RDF Turtle
+<a href="../snapshot/appendix/appendix.html#turtle" class="page">[turtle]</a>. The aspect specification will
+therefore assume basic familiarity with Turtle.</p>
+</li>
+<li>
+<p>For the definition of the different Model elements please refer to the
+<a href="meta-model-elements.html" class="page">Meta Model Elements</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="naming-rules"><a class="anchor" href="#naming-rules"></a>Naming rules</h3>
+<div class="paragraph">
+<p>The naming of Model Elements follows the naming
+<a href="https://en.wikipedia.org/wiki/Naming_convention_(programming)#Java">Java naming conventions</a> for
+classes, properties and methods.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The names of Aspects, Entities, Constraints and Characteristics follow the naming conventions for
+Java classes, i.e. UpperCamelCase.</p>
+</li>
+<li>
+<p>The names of Properties, Operations and Units follow the naming conventions of Java methods, i.e.
+lowerCamelCase.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rdf-turtle-formatting-rules"><a class="anchor" href="#rdf-turtle-formatting-rules"></a>RDF/Turtle formatting rules</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Each Aspect Model is defined in a separate TTL (Turtle) file.</p>
+</li>
+<li>
+<p>The Turtle file containing an Aspect Model must have the same name as the Aspect.</p>
+</li>
+<li>
+<p>Aspect Model files must be UTF-8 encoded and should not contain a
+<a href="https://en.wikipedia.org/wiki/Byte_order_mark">byte order mark</a>.</p>
+</li>
+<li>
+<p>There should be one empty line between model element definitions.</p>
+</li>
+<li>
+<p>Indentation should be done with three spaces.</p>
+</li>
+<li>
+<p>There should be a space before every separating semicolon.</p>
+</li>
+<li>
+<p>There should be padding spaces inside RDF lists and anonymous nodes (i.e. inside brackets and
+square brackets)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="attributes-that-all-model-elements-have"><a class="anchor" href="#attributes-that-all-model-elements-have"></a>Attributes that all model elements have</h3>
+<div class="paragraph">
+<p>Every model element (Aspects, Properties, Characteristics, Entities, Operations) has the following
+attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the property. This name must be defined in Camel
+  Case and be valid a Java Property name (i.e. can not contain spaces, dashes etc.).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:preferredName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human readable name in a specific language. This attribute may be defined
+  multiple times for different languages but only once for a specific language. There should be at
+  least one preferredName defined with an "en" language tag.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human readable description in a specific language. This attribute may be
+  defined multiple times for different languages but only once for a specific language. There should
+  be at least one description defined with an "en" language tag.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:see</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to a related element in an external taxonomy, ontology or other standards
+  document. The datatype is <code>xsd:anyURI</code>. This attribute may be defined multiple times.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Although both <code>bamm:preferredName</code> and <code>bamm:description</code> should be set at least once in every
+model element, in the following examples we will mostly leave them out to improve readability.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="declaring-model-elements"><a class="anchor" href="#declaring-model-elements"></a>Declaring model elements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="using-namespaces"><a class="anchor" href="#using-namespaces"></a>Using Namespaces</h3>
+<div class="paragraph">
+<p>An Aspect model file should start with the BAMM prefix definitions. The empty namespace
+":" should be used as local namespace, i.e. the versioned namespace in which the Aspect and its
+elements are defined. Other customer or domain specific namespaces can be defined additionally.
+However, the bamm-* namespaces are reserved for the meta model. Third party locations can be
+referred via other namespaces (e.g., "xsd:"). See
+<a href="namespaces.html#namespaces-and-versions" class="page">Namespaces and Versions</a> for more details on the topic.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix : &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .
+@prefix bamm: &lt;urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#&gt; .
+@prefix bamm-c: &lt;urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#&gt; .
+@prefix bamm-e: &lt;urn:bamm:org.open-manufacturing.digitaltwin:entity:1.0.0#&gt; .
+@prefix unit: &lt;urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="declaring-aspects"><a class="anchor" href="#declaring-aspects"></a>Declaring Aspects</h3>
+<div class="paragraph">
+<p>An Aspect is defined by marking its identifier with <code>a bamm:Aspect</code> and additional attributes. Note
+that the <code>a</code> is just a <a href="https://www.w3.org/TR/turtle/#sec-iri">syntactic shortcut</a> for <code>rdf:type</code>. In
+addition to the general attributes, every Aspect Model element has the following attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:properties</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of Properties of this Aspect. The attribute must be present, but the
+  list may be empty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:operations</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of Operations of this Aspect. The attribute must be present, but the
+  list may be empty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.</p>
+</li>
+<li>
+<p>Each Aspect model must be defined in its own file. The file name must be the same as the Aspect&#8217;s
+name.</p>
+</li>
+<li>
+<p>The name part in the Aspect&#8217;s identifying URN must be the same as the Aspect&#8217;s <code>bamm:name</code>.</p>
+</li>
+<li>
+<p>The hierarchical namespace part in the Aspect&#8217;s URN can be freely chosen.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The definition of an Aspect should therefore have the following structure in TTL syntax; note though
+that unused namespaces can be left out:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix : &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .
+@prefix bamm: &lt;urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#&gt; .
+@prefix bamm-c: &lt;urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#&gt; .
+@prefix bamm-e: &lt;urn:bamm:org.open-manufacturing.digitaltwin:entity:1.0.0#&gt; .
+@prefix unit: &lt;urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+:MyAspect a bamm:Aspect ;
+   bamm:name "MyAspect" ;
+   bamm:preferredName "My Aspect"@en ;
+   bamm:preferredName "Mein Aspekt"@de ;
+   bamm:description "This Aspect is an example."@en ;
+   bamm:description "Dieser Aspekt ist ein Beispiel."@de ;
+   bamm:properties ( :myProperty :anotherProperty ) ;
+   # In this example, there are no operations.
+   bamm:operations ( ) .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="declaring-properties"><a class="anchor" href="#declaring-properties"></a>Declaring Properties</h3>
+<div class="paragraph">
+<p>In addition to the <a href="#declaring-model-elements#attributes-that-all-model-elements-have">attributes
+that all model elements have</a>, Properties have the following attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:characteristic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="characteristics.html#characteristics" class="page">Characteristic</a> describing
+  this Property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:exampleValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An exemplary value the Property can take on that helps to understand the
+intended meaning of the property better. This can only be set for Properties with scalar data types
+(e.g., <code>xsd:string</code> or <code>xsd:float</code>, but not Entities). The data type of the <code>bamm:exampleValue</code> must
+be convertible to the effective data type of the Property&#8217;s Characteristic. For example, if the
+Characteristic&#8217;s <code>bamm:dataType</code> is <code>xsd:int</code>, <code>xsd:short</code> is also a valid type for the
+<code>bamm:exampleValue</code>. Refer to section <a href="datatypes.html#implicit-conversions" class="page">Implicit Conversions</a>
+for more details.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:materialNumber a bamm:Property ;
+   bamm:name "materialNumber" ;
+   bamm:preferredName "Material number"@en ;
+   bamm:description "A material number"@en ;
+   bamm:exampleValue "ABC123456-000" ;
+   bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The characteristic attribute may be omitted. This allows users to reuse the Property or the Entity
+using this Property and set the Characteristic specific to the users domain at a later point in
+time. A Property which is declared without a Characteristic must always be <em>refined</em>, i.e.
+overridden, in an Aspect Model, i.e. an Aspect Model may not contain a Property where the
+Characteristic has not been set either directly or by refining the Property. A Property can be
+refined by using the <code>bamm:refines</code> attribute and setting the <code>bamm:characteristic</code> attribute. The
+main use case is to be able to create shared Entities which have some Properties which are fixed and
+some Properties which can be further refined in an Aspect Model that uses the shared Entity (see
+<a href="#declaring-time-series">Declaring Time Series</a> below as an example).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
+   bamm:name "propertyRefiningPropertyWithoutCharacteristic" ;
+   bamm:characteristic :MachineState .
+
+:propertyWithoutCharacteristic a bamm:Property ;
+   bamm:name "propertyWithoutCharacteristic" .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="declaring-characteristics"><a class="anchor" href="#declaring-characteristics"></a>Declaring Characteristics</h3>
+<div class="paragraph">
+<p>The attributes for Characteristics are described in detail in section
+<a href="characteristics.html#characteristics" class="page">Characteristics</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>dataType</code> attribute may be omitted when creating a subclass of a Characteristic. The <code>dataType</code>
+attribute must be set when creating an instance of a Characteristic, except when the <code>dataType</code>
+attribute has been set in the class or one of the super-classes. When the <code>dataType</code> has been set in
+a superclass, the <code>dataType</code> may be set to a subclass of the <code>dataType</code> from one of the
+Characteristic superclasses. This allows the definition of generic Characteristics such as
+Collections, where all the semantics are fixed, except for the data type. For a Collection for
+example it is possible to define whether the collection is sorted or not and this definition can be
+then reused with different data types to define different collections.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A guide for how to decide on which Characteristic to use can be found in
+<a href="#modeling-guildlines.adoc#choosing-a-characteristic" class="page unresolved">Choosing a Characteristic</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MachineState a bamm-c:State ;
+   bamm:name "MachineState" ;
+   bamm:dataType xsd:string ;
+   bamm-c:defaultValue "STANDBY" ;
+   bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-quantifiable-values-and-measurements"><a class="anchor" href="#declaring-quantifiable-values-and-measurements"></a>Declaring Quantifiables and Measurements</h4>
+<div class="paragraph">
+<p>Whenever a Property represents a numeric, scalar value that the result of a measurent of some kind
+(e.g., using a sensor) and has a well-defined physical unit which is known at modeling time, use the
+<em>Measurement</em> Characteristic. If the value is numeric and has a physical unit but is not the result
+of a measurement (e.g., when it is calculated from other values), use the <em>Quantifiable</em>
+Characteristic.</p>
+</div>
+<div class="paragraph">
+<p>See the following example that uses <em>Measurement</em>&#8201;&#8212;&#8201;usage of <em>Quantifiable</em> is analogous.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:ToolTemperature a bamm-c:Measurement ;
+   bamm:name "ToolTemperature" ;
+   bamm:dataType xsd:float ;
+   bamm-c:unit unit:degreeCelsius .
+
+:drillHeadTemperature a bamm:Property ;
+   bamm:name "drillHeadTemperature" ;
+   bamm:characteristic :ToolTemperature .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See section <a href="units.html#units" class="page">Units</a> for information about the valid values for the <code>bamm-c:unit</code> attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-single-entity"><a class="anchor" href="#declaring-single-entity"></a>Declaring Single Entity</h4>
+<div class="paragraph">
+<p>The following example shows how a Property is defined that uses the
+<a href="characteristics.html#single-entity-characteristic" class="page">Single Entity</a> Characteristic to specify an Entity as its dataType.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:AccelerationVector a bamm:Entity ;
+   bamm:name "AccelerationVector" ;
+   bamm:properties ( :x :y :z ) .
+
+# Definition of Properties x, y and z for the Entity here
+# ...
+
+:acceleration a bamm:Property ;
+   bamm:name "acceleration" ;
+   bamm:characteristic [
+      a bamm-c:SingleEntity ;
+      bamm:name "Acceleration" ;
+      bamm:dataType :AccelerationVector
+   ] .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-collections"><a class="anchor" href="#declaring-collections"></a>Declaring Collections</h4>
+<div class="paragraph">
+<p>There are four basic predefined types of Collections:
+<a href="characteristics.html#collection-characteristic" class="page">Collection</a>,
+<a href="characteristics.html#list-characteristic" class="page">List</a>,
+<a href="characteristics.html#set-characteristic" class="page">Set</a> and
+<a href="characteristics.html#sortedset-characteristic" class="page">Sorted Set</a>. The Collection definitions are
+shared and are available globally. They determine whether a specific collection is ordered or not
+and whether a specific collection may contain duplicates or not. In some cases the data type is also
+set in the shared Collection Characteristic.</p>
+</div>
+<div class="paragraph">
+<p>These shared Collection Characteristics may not be changed in an Aspect Model, hence it is not
+allowed to create a subclass of the Collection Characteristic in an Aspect Model. To create a
+Collection Characteristic for a specific domain, the user should instantiate one of the Collection
+classes and define the data type or the element Characteristic for the Collection. In this example,
+the Characteristic resulting from the combination of Code, Length Constraint and Encoding Constraint
+is not defined inline in the Property, but defined standalone.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Example with a scalar data type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:NumberList a bamm-c:List ;
+   bamm:name "NumberList" ;
+   bamm:dataType xsd:float .</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Example with a custom Entity as data type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MyEntity a bamm:Entity ;
+   bamm:name "MyEntity" ;
+   bamm:properties ( ) ;
+   # ...
+   .
+
+:MyEntityList a bamm-c:List ;
+   bamm:name "MyEntityList" ;
+   bamm:dataType :MyEntity .</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The data type for the elements of a Collection can either be defined in the usual manner using
+the <code>bamm:dataType</code> attribute (see the examples above) or by defining a Characteristic for the
+Collection elements using the <code>bamm-c:elementCharacteristic</code> attribute, see the example below. It is
+recommended to explicitly create a Characteristic for the Collection elements instead of only
+defining the data type, since it allows to completely express the semantics of the elements.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example with the <code>bamm-c:elementCharacteristic</code> attribute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
+   bamm:name "numbers" ;
+   bamm:characteristic :NumberList .
+
+:NumberList a bamm-c:List ;
+   bamm:name "NumberList" ;
+   bamm-c:elementCharacteristic [
+      a bamm-c:RangeConstraint ;
+      bamm:name "ElementRange" ;
+      bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
+      bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
+      bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+      bamm-c:baseCharacteristic :Number ;
+   ] .
+
+:Number a bamm:Characteristic ;
+   bamm:name "Number" ;
+   bamm:dataType xsd:nonNegativeInteger .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-enumerations"><a class="anchor" href="#declaring-enumerations"></a>Declaring Enumerations</h4>
+<div class="paragraph">
+<p>Describes a Property which may have a value from a predefined list of values. Also see
+<a href="characteristics.html#enumeration-characteristic" class="page">Enumeration</a>.</p>
+</div>
+<div class="paragraph">
+<p>Example with literal <code>xsd:string</code> values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Status a bamm-c:Enumeration ;
+   bamm:name "Status" ;
+   bamm:dataType xsd:string ;
+   bamm-c:values ( "Complete" "In Progress" "Created" ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example with literal <code>xsd:integer</code> values. Note that for <code>xsd:integer</code>, Turtle&#8217;s numeric literal
+syntax can be used: [source,turtle,subs="attributes+"]</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>:PrimesBelowTwenty a bamm-c:Enumeration ;
+   bamm:name "PrimesBelowTwenty" ;
+   bamm:dataType xsd:integer ;
+   bamm-c:values ( 2 3 5 7 11 13 17 19 ) .</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example with literal <code>xsd:int</code> values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:ValidOffsets a bamm-c:Enumeration ;
+   bamm:name "ValidOffsets" ;
+   bamm:dataType xsd:int ;
+   bamm-c:values ( "-1"^^xsd:int "1"^^xsd:int ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example with literal <code>xsd:date</code> values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MaintenanceDates a bamm-c:Enumeration ;
+   bamm:name "MaintenanceDates" ;
+   bamm:dataType xsd:date ;
+   bamm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example with complex values:</p>
+</div>
+<div class="paragraph">
+<p>Declaring an Enumeration with a complex value is usally done in order to add a description to the
+actual value, e.g., the <code>state</code> in the example below, which provides information regarding the
+meaning of the value. This description only exists in the aspect model and is not part of the
+payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
+part of the runtime data, the <code>bamm:notInPayload</code> attribute is used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Results a bamm-c:Enumeration ;
+   bamm:name "Results" ;
+   bamm:dataType :Result ;
+   bamm-c:values ( :Success :Failed ) .
+
+:Result a bamm:Entity ;
+   bamm:name "Result" ;
+   bamm:properties ( :status [ bamm:property :description; bamm:notInPayload "true"^^xsd:boolean ] ) .
+
+:Success a :Result ;
+   :status "SUCCESS" ;
+   :description "The process completed successfully." .
+
+:Failed a :Result ;
+   :status "FAILURE" ;
+   :description "The process did not complete successfully." .</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If the Property is part of the runtime data (like <code>status</code> in the example), it is directly
+referenced. Writing <code>bamm:notInPayload false</code> is <em>not</em> allowed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-state"><a class="anchor" href="#declaring-state"></a>Declaring State</h4>
+<div class="paragraph">
+<p>As described in <a href="characteristics.html#state-characteristic" class="page">State Characteristic</a>, State inherits
+from Enumeration and extends it with the default value attribute.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MachineState a bamm-c:State ;
+   bamm:name "MachineState" ;
+   bamm:dataType xsd:string ;
+   bamm-c:defaultValue "STANDBY" ;
+   bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-time-series"><a class="anchor" href="#declaring-time-series"></a>Declaring Time Series</h4>
+<div class="paragraph">
+<p>The <code><a href="characteristics.html#time-series-characteristic" class="page">TimeSeries</a></code> Characteristic is a special
+kind of Collection. A Time Series is defined as a list of tuples of values with their respective
+specific point in time when they where recorded. This is, the Time Series is represented by a list
+of key/value pairs where the key is the time-stamp denoting when the value was recorded and the
+value is the recorded value. In order to describe these semantics the shared <code>TimeSeries</code>
+Characteristic is used. This is a subclass of the <code>SortedSet</code> Characteristic and defines that the
+<code>dataType</code> must be a subclass of the <code>TimeSeriesEntity</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code><a href="entities.html#time-series-entity" class="page">TimeSeriesEntity</a></code> has the two Properties <code>timestamp</code> and
+<code>value</code>. The <code>timestamp</code> Property is defined with the <code>Timestamp</code> Characteristic which describes
+values containing timestamps conforming to <code><a href="datatypes.html#data-types" class="page">xsd:dateTime</a></code>, a date
+and time with or without time zone. The <code>value</code> Property is defined without a Characteristic, hence
+the semantics of the value can be defined in the specific Aspect Model.</p>
+</div>
+<div class="paragraph">
+<p>To create a Time Series for a specific domain, the user should instantiate the <code>TimeSeries</code>
+Collection Characteristic and set the <code>dataType</code> to an Entity which refines the <code>TimeSeries</code> Entity
+in order to define the semantics for the <code>value</code> Property in the context of the specific domain.
+Please see the <a href="#declaring-entities">Declaring Entities</a> section for
+information on how to refine an Entity.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MachineStateTimeSeries a bamm-c:TimeSeries ;
+   bamm:name "MachineStateTimeSeries" ;
+   bamm:dataType :MachineStateTimeSeriesEntity .
+
+:MachineStateTimeSeriesEntity bamm:refines bamm-e:TimeSeriesEntity ;
+   bamm:name "MachineStateTimeSeriesEntity" ;
+   bamm:properties ( :machineState ) .
+
+:machineState bamm:refines bamm-e:value ;
+   bamm:name "machineState" ;
+   bamm:characteristic :MachineState .
+
+:MachineState a bamm-c:State ;
+   bamm:name "MachineState" ;
+   bamm:dataType xsd:string ;
+   bamm-c:defaultValue "STANDBY" ;
+   bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+An Aspect should only have one Collection at root level. When modeling an Aspect with two or
+more collections at root level which contain related data, consider creating the model so that the
+related data is explicitly linked and contained in a single Collection. When modeling an Aspect with
+two or more collections at root level which contain unrelated data, consider creating separate
+Aspects each containing a single Collection.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-either"><a class="anchor" href="#declaring-either"></a>Declaring Either</h4>
+<div class="paragraph">
+<p>Describes a Property whose value can have one of two possible types (a disjoint union). This
+Characteristic is special since it does not directly define a data type. The data type is defined in
+the two Characteristics which define the left and right value of the disjoint union. Also see
+<a href="characteristics.html#either-characteristic" class="page">Either</a>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Result a bamm:Either ;
+   bamm:name "Result" ;
+   bamm:left :ErrorCode ;
+   bamm:right :SuccessCode .
+
+:ErrorCode a bamm-c:SingleEntity ;
+   bamm:name "ErrorCode" ;
+   bamm:dataType :ErrorEntity .
+
+:SuccessCode a bamm-c:SingleEntity ;
+   bamm:name "SuccessCode" ;
+   bamm:dataType :SuccessEntity .
+
+:ErrorEntity a bamm:Entity ;
+   bamm:name "ErrorEntity" ;
+   bamm:properties ( :errorCode :errorDescription ) .
+
+:SuccessEntity a bamm:Entity ;
+   bamm:name "SuccessEntity" ;
+   bamm:properties ( :status ) .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-structured-value"><a class="anchor" href="#declaring-structured-value"></a>Declaring Structured Value</h4>
+<div class="paragraph">
+<p><a href="characteristics.html#structured-value-characteristic" class="page">Structured Values</a> are intended to be used
+for Properties when all of the following conditions are met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The value has a scalar, <a href="datatypes.html#data-types" class="page">string-like value space</a></p>
+</li>
+<li>
+<p>The value has a well-known structure consisting of different, separate parts</p>
+</li>
+<li>
+<p>The parts can and should be described in more detail</p>
+</li>
+<li>
+<p>The Property should not be decomposed/deconstructed into an Entity with separate Properties for
+each part</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>One of the main use cases is complex identifiers that encode context information such as provenance
+information, version numbers, locations codes and so on. It is unreasonable to split such a value up
+into separate Properties, because it complicates working with corresponding data: For example, such
+values could appear in payloads, databases or documents and would have to be converted back and
+forth, often times manually. On the other hand, properly describing the value and the parts it
+comprises can be difficult, especially in a machine-readable way.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, the Structured Value Characteristic can be used to describe the deconstruction of a value
+into its parts and linking each part to a separate Property definition.</p>
+</div>
+<div class="paragraph">
+<p>The following table gives some simple examples to demonstate the basic applicability of the
+Characteristic, and after that a complete concrete example is given.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Example Value</th>
+<th class="tableblock halign-left valign-top">Deconstruction Rule</th>
+<th class="tableblock halign-left valign-top">Elements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO 8601 date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"2019-09-27"^^<code>xsd:date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(\d{4})-(\d{2})-(\d{2})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">( <code>:year</code> "-" <code>:month</code>
+  "-" <code>:day</code> )</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Email Address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"user4711@example.com"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>([\w\.-]+)@([\w\.-]+\.\w{2,4})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">( <code>:username</code> "@" <code>:host</code> )</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hex-encoded color</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0xAC03BE"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">( "0x"
+  <code>:red</code> <code>:green</code> <code>:blue</code> )</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following code shows the Aspect model for the first example from the table. Note that when
+writing the <code>deconstructionRule</code>, backslashes (<code>\</code>) need to be escaped in order to produce valid
+RDF/Turtle syntax, i.e. write <code>\\</code> instead of <code>\</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:StructuredValueTest a bamm:Aspect ;
+   bamm:name "StructuredValueTest" ;
+   bamm:properties ( :date ) ;
+   bamm:operations () .
+
+:date a bamm:Property ;
+   bamm:name "date" ;
+   bamm:exampleValue "2019-09-27"^^xsd:date ;
+   bamm:characteristic :StructuredDate .
+
+:StructuredDate a bamm-c:StructuredValue ;
+   bamm:name "StructuredDate" ;
+   bamm:dataType xsd:date ;
+   bamm-c:deconstructionRule "(\\d{4})-(\\d{2})-(\\d{2})" ;
+   bamm-c:elements ( :year "-" :month "-" :day ) .
+
+:year a bamm:Property ;
+   bamm:name "year" ;
+   bamm:characteristic :Year .
+
+:month a bamm:Property ;
+   bamm:name "month" ;
+   bamm:characteristic :Month .
+
+:day a bamm:Property ;
+   bamm:name "day" ;
+   bamm:characteristic :Day .
+
+:Year a bamm:Characteristic ;
+   bamm:name "Year" ;
+   bamm:dataType xsd:int .
+
+:Month a bamm:Characteristic ;
+   bamm:name "Month" ;
+   bamm:dataType xsd:int .
+
+:Day a bamm:Characteristic ;
+   bamm:name "Day" ;
+   bamm:dataType xsd:int .</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Technically, <code>bamm-c:elements</code> would not be required just to parse corresponding payload; the
+regular expression given in the <code>bamm-c:deconstructionRule</code> would be sufficient. However, the
+<code>elements</code> fields serves two purposes: Firstly, it concisely describes how the meaning of the
+deconstruction rule corresponds with the named fields; secondly, it is used for validation: When a
+<code>bamm:exampleValue</code> is given (like in the example), the Aspect Model validator can automatically
+check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
+i.e., that the deconstruction rule actually does what the model author intended.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="declaring-constraints"><a class="anchor" href="#declaring-constraints"></a>Declaring Constraints</h3>
+<div class="paragraph">
+<p>Consider the <code>numbers</code> Property that uses an instance of the <code>List</code> Characteristic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
+   bamm:name "numbers" ;
+   bamm:characteristic :NumberList .
+
+:NumberList a bamm-c:List ;
+   bamm:name "NumberList" ;
+   bamm:dataType xsd:integer .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To add a <a href="characteristics.html#length-constraint" class="page">Length Constraint</a> to the list, replace the use
+of the Characteristic with a new <a href="characteristics.html#trait-characteristic" class="page">Trait</a> instance. Set
+the original Characteristic as the Trait&#8217;s <code>bamm-c:baseCharacteristic</code> and add the required
+Constraint as a <code>bamm-c:constraint</code> to the Trait:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
+   bamm:name "numbers" ;
+   bamm:characteristic [
+     a bamm-c:Trait ;
+     bamm:name "LimitedNumberList" ;
+     bamm-c:constraint [
+       a bamm-c:LengthConstraint ;
+       bamm:description "Limits the number list to 10 elements"@en ;
+       bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+       bamm-c:baseCharacteristic :NumberList ;
+     ]
+   ]  .
+
+:NumberList a bamm-c:List ;
+   bamm:name "NumberList" ;
+   bamm:dataType xsd:integer .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another more complex example is given below: The Property <code>someIdentifier</code> is defined that uses a
+<a href="characteristics.html#code-characteristic" class="page">Code</a> instance using a dataType of <code>xsd:string</code>,
+combined with two Constraints: An <a href="characteristics.html#encoding-constraint" class="page">Encoding Constraint</a>
+that restricts the value space to US-ASCII and a <a href="characteristics.html#length-constraint" class="page">Length
+Constraint</a> that limits the string to 80 characters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:someIdentifier a bamm:Property ;
+   bamm:name "someIdentifier" ;
+   bamm:preferredName "Some identifier"@en ;
+   bamm:description "An ASCII-encoded identifier with a maximum length of 80 characters"@en ;
+   bamm:characteristic :CodeWithLengthAndAscii .
+
+:CodeWithLengthAndAscii a bamm-c:Trait ;
+   bamm:name "CodeWithLengthAndAscii" ;
+   bamm:description "A string code limited to 80 ASCII characters" ;
+   bamm-c:baseCharacteristic [
+      a bamm-c:Code ;
+      bamm:name "StringCode" ;
+      bamm:description "Denotes some kind of code with a string datatype"@en ;
+      bamm:dataType xsd:string ;
+   ] ;
+   bamm-c:constraint [
+      a bamm-c:EncodingConstraint ;
+      bamm:value bamm:US-ASCII ;
+      bamm:description "Limits the character encoding to US-ASCII"@en ;
+   ] ;
+   bamm-c:constraint [
+      a bamm-c:LengthConstraint ;
+      bamm:name "CodeWithLength" ;
+      bamm:description "Limits the length to 80 characters"@en ;
+      bamm-c:maxValue "80"^^xsd:nonNegativeInteger ;
+   ] .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An example showing the <a href="characteristics.html#regular-expression-constraint" class="page">Regular Expression Constraint</a> is given below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:timeStampsInJanuary a bamm:Property ;
+   bamm:name "timeStampsInJanuary" ;
+   bamm:preferredName "Timestamps in January"@en ;
+   bamm:description "Contains only timestamps in January of any year"@en ;
+   bamm:characteristic [
+      a bamm-c:RegularExpressionConstraint ;
+      bamm:name "TimestampInJanuary" ;
+      bamm:value "\\d{4}-01-\\d\\dT.*" ;
+      bamm-c:baseCharacteristic bamm-c:Timestamp
+   ] .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="declaring-entities"><a class="anchor" href="#declaring-entities"></a>Declaring Entities</h3>
+<div class="paragraph">
+<p>Entities have the following attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:properties</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of Properties which make up the Entity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Error a bamm:Entity ;
+   bamm:name "Error" ;
+   bamm:properties ( :errorCode :severity ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When an Entity is defined with a Property which has no Characteristic, for example the shared
+<code><a href="entities.html#time-series-entity" class="page">Time Series</a></code> Entity, the Entity needs to be refined in order
+to use it. This is done by declaring an Entity with <code>bamm:refines</code> and with a Property that in turn
+refines another Property. See the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:RefiningEntity bamm:refines :EntityToBeRefined ;
+    bamm:name "RefiningEntity" ;
+    bamm:properties ( :propertyRefiningPropertyWithoutCharacteristic ) .
+
+:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
+    bamm:name "propertyRefiningPropertyWithoutCharacteristic" ;
+    bamm:characteristic :MetricTemperature .
+
+:EntityToBeRefined a bamm:Entity ;
+    bamm:name "EntityToBeRefined" ;
+    bamm:properties ( :propertyWithCharacteristic :propertyWithoutCharacteristic ) .
+
+:propertyWithCharacteristic a bamm:Property ;
+    bamm:name "propertyWithoutCharacteristic" ;
+    bamm:characteristic bamm-c:Timestamp .
+
+:propertyWithoutCharacteristic a bamm:Property ;
+    bamm:name "propertyWithoutCharacteristic" .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="declaring-operations"><a class="anchor" href="#declaring-operations"></a>Declaring Operations</h3>
+<div class="paragraph">
+<p>Operations have the following attributes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:input</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of references to Properties that describe the input to the operation. The
+  attribute must be present, but the list may be empty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:output</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A single reference to a Property that describes the output of the operation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:toggle a bamm:Operation ;
+   bamm:name "toggle" ;
+   bamm:preferredName "Toggle"@en ;
+   bamm:description "Switches the device on or off"@en ;
+   bamm:input ( :toggleArgument ) ;
+   bamm:output :toggleResult .
+
+:toggleArgument a bamm:Property ;
+   bamm:name "toggleArgument" ;
+   bamm:preferredName "Toggle argument"@en ;
+   bamm:description "The argument for the toggling operation"@en ;
+   bamm:characteristic :ToggleValues .
+
+:ToggleValues a bamm-c:Enumeration ;
+   bamm:name "ToggleValues" ;
+   bamm:preferredName "Toggle values"@en ;
+   bamm:description "The possible input values for the toggle operation"@en ;
+   bamm:dataType xsd:string ;
+   bamm-c:values ( "on" "off" ) .
+
+:toggleResult a bamm:Property ;
+   bamm:name "toggleResult" ;
+   bamm:preferredName "Toggle result"@en ;
+   bamm:description "The result of the toggle operation"@en ;
+   bamm:characteristic :ToggleResult .
+
+:ToggleResult a bamm-c:Enumeration ;
+   bamm:name "ToggleResult" ;
+   bamm:preferredName "Toggle result"@en ;
+   bamm:description "The possible results of the toggle operation"@en ;
+   bamm:dataType xsd:string ;
+   bamm-c:values ( "ok" "denied" "unknown" ) .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-external-references"><a class="anchor" href="#adding-external-references"></a>Adding external references</h3>
+<div class="paragraph">
+<p>The <code>bamm:see</code> attribute can be used to add references to related elements in an external taxonomy,
+ontology or standards document to Aspect model elements. Values for <code>bamm:see</code> must be URIs. The
+meaning of the reference is informative and implies no semantics such as equality or subsumption in
+either direction.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, <code>bamm:see</code> adds two references to external well-known vocabularies that
+have identifiers which are also valid URLs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:lastName a bamm:Property ;
+    bamm:name "lastName" ;
+    bamm:see &lt;https://schema.org/familyName&gt; ;
+    bamm:see &lt;http://xmlns.com/foaf/0.1/lastName&gt; ;
+    bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If an external model element should be referenced that has a unique identifier which is not a URI,
+but a well-known resolver exists, you can either use the resolver&#8217;s URL or a synthetic URN. For
+example, for the Digital Object Identifier (DOI,
+<a href="../snapshot/appendix/appendix.html#doi" class="page">[DOI]</a>) <code>10.1109/NetSys.2017.7903949</code>, you can
+use as the value for <code>bamm:see</code> either the URL <code>https://doi.org/10.1109/NetSys.2017.7903949</code> or the
+URN <code>urn:doi:10.1109/NetSys.2017.7903949</code>.</p>
+</div>
+<div class="paragraph">
+<p>If an external model element should be referenced that has a unique identifier which is not a URI
+and there is no well-known resolver, use a synthetic URN structure. One example are Object
+Identifiers as specified by ITU and ISO/IEC (OID) and the mapping to URNs in RFC 3061
+<a href="../snapshot/appendix/appendix.html#rfc3061" class="page">[rfc3061]</a>, so for example, for the OID
+<code>1.3.6.1.4.1.1919.1.1.2</code>, the corresponding <code>bamm:see</code> value would be
+<code>urn:oid:1.3.6.1.4.1.1919.1.1.2</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:filterName a bamm:Property ;
+    bamm:name "filterName" ;
+    bamm:see &lt;urn:oid:1.3.6.1.4.1.1919.1.1.2&gt; ;
+    bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If an external element should be referenced that has no unique identifier, <code>bamm:see</code> should not be
+used. In this case, refer to the external element in the current model element&#8217;s <code>bamm:description</code>,
+for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:organizationPerson a bamm:Property ;
+    bamm:name "organizationPerson" ;
+    bamm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
+    bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="optional-properties"><a class="anchor" href="#optional-properties"></a>Optional Properties</h3>
+<div class="paragraph">
+<p>When Properties are used in Aspects and Entities, they can be marked as optional. This means that a
+Property&#8217;s <em>usage</em> is optional, not the Property itself, which would make reusing a Property more
+difficult. In the following example, the Property <code>toggleStatus</code> is mandatory and the Property
+<code>errorMessage</code> is marked as optional in the Aspect. Note how the <code>bamm:properties</code> of the Aspect are
+defined, and how the definition for the <code>toggleStatus</code> Property itself does not differ from that of
+<code>errorMessage</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix : &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .
+@prefix bamm: &lt;urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#&gt; .
+@prefix bamm-c: &lt;urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+:MyAspect a bamm:Aspect ;
+   bamm:name "MyAspect" ;
+   bamm:properties (
+     :toggleStatus
+     [ bamm:property :errorMessage; bamm:optional true ]
+   ) ;
+   bamm:operations ( ) .
+
+:toggleStatus a bamm:Property ;
+   bamm:name "statusNumber" ;
+   bamm:characteristic bamm-c:Boolean .
+
+:errorMessage a bamm:Property ;
+   bamm:name "errorMessage" ;
+   bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If the Property&#8217;s use is optional, it is marked with <code>bamm:optional true</code> (like
+<code>errorMessage</code> in the example). However, if its use is mandatory (like <code>toggleStatus</code> in the
+example), the Property is directly referenced. Writing <code>bamm:optional false</code> is <em>not</em> allowed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="syntactic-shortcuts"><a class="anchor" href="#syntactic-shortcuts"></a>Syntactic Shortcuts</h3>
+<div class="paragraph">
+<p>When Properties use Characteristics classes, i.e. Characteristics that need to be instantiated, and
+the Characteristic instance is used in only one Property, the Characteristic may also be defined
+inline. Note that other Aspect Models can not refer to the Characteristic any more, because it no
+longer has an identifier.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Example: Regular definition of a Property</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
+   bamm:name "numbers" ;
+   bamm:characteristic :NumberList .
+
+:NumberList a bamm-c:List ;
+   bamm:name "NumberList" ;
+   bamm:dataType xsd:integer .</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Example: Inlining the Characteristic definition</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
+   bamm:name "numbers" ;
+   bamm:characteristic [
+      a bamm-c:List;
+      bamm:name "NumberList" ;
+      bamm:dataType xsd:integer
+   ] .</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/v1.0.0/modeling-guidelines.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

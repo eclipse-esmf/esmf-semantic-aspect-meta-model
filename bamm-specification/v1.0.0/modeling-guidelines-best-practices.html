@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/modeling-guidelines-best-practices.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">BAMM Aspect Meta Model</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="v1.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling-guidelines.html">Aspects</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">v1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../snapshot/index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../snapshot/index.html">snapshot</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">v1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../snapshot/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">v1.0.0</button>
+  <div class="version-menu">
+    <a class="version" href="../snapshot/modeling-guidelines-best-practices.html">snapshot</a>
+    <a class="version is-current" href="modeling-guidelines-best-practices.html">v1.0.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/v1.0.0/src/docs/modules/ROOT/pages/modeling-guidelines-best-practices.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="best-practices"><a class="anchor" href="#best-practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="naming-elements"><a class="anchor" href="#naming-elements"></a>Naming Elements</h3>
+<div class="paragraph">
+<p>In addition to the <a href="#naming-rules">[naming-rules]</a>, the following points should be considered when naming elements
+such as Aspects, Properties or Entities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be
+misunderstood in different contexts. For example, "temp" could mean "temperature" or "temporary".
+On the other hand, abbreviating "minimum" and "maximum" with "min" and "max", respectively, is
+fine. The Aspect model should be reasonably expressive. Do not add alleged premature optimizations
+that belong in the Aspect implementation.</p>
+</li>
+<li>
+<p>Do not use redundant naming parts. In particular, the name of an Aspect should not end with
+"Aspect".</p>
+</li>
+<li>
+<p>Do not use redundant prefixes, e.g. when authoring an Aspect model for the domain <em>Foo</em>, do not
+name your Properties <em>fooCount</em>, <em>fooId</em> etc. Remember that the full identifier of a Property is
+the versioned namespace concatenated with the element name, e.g.
+<code>urn:bamm:com.mycompany.myapplication:1.0.0#count</code>, so the context is already part of
+<code>count</code>&#8203;'s identifier.</p>
+</li>
+<li>
+<p>The attributes <code>preferredName</code> and <code>description</code> are meant to provide a human-readable and
+description, respectively, for example for the generation of documentation from the Aspect model.
+If you copy and paste the element&#8217;s name to the <code>preferredName</code>, make sure to adjust it:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Make the name upper case</p>
+</li>
+<li>
+<p>If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g. the name
+<code>machineTemperature</code> should become the preferredName <code>Machine Temperature</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If there is exactly one Property in an Aspect that has a
+<a href="characteristics.html#collection-characteristic" class="page">Collection</a>,
+<a href="characteristics.html#list-characteristic" class="page">List</a>,
+<a href="characteristics.html#set-characteristic" class="page">Set</a>,
+<a href="characteristics.html#sorted-set-characteristic" class="page">Sorted Set</a> or
+<a href="characteristics.html#time-series-characteristic" class="page">Time Series</a> Characteristic (and no other
+Properties), the Property should be named <code>items</code>.</p>
+</li>
+<li>
+<p>If there is exactly one Property in an Aspect that has a
+<a href="characteristics.html#collection-characteristic" class="page">Collection</a>,
+<a href="characteristics.html#list-characteristic" class="page">List</a>,
+<a href="characteristics.html#set-characteristic" class="page">Set</a> or
+<a href="characteristics.html#sorted-set-characteristic" class="page">Sorted Set</a> Characteristic (and no other
+Properties), the Aspect&#8217;s name should be in plural. Otherwise, if there is exactly one Property in
+the Aspect that has a <a href="characteristics.html#time-series-characteristic" class="page">Time Series</a>
+Characteristic, the Aspect&#8217;s name should end with "History". Otherwise, the Aspect&#8217;s name should
+be in singular.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="choosing-a-numeric-type"><a class="anchor" href="#choosing-a-numeric-type"></a>Choosing a Numeric Type</h3>
+<div class="paragraph">
+<p>While JSON only distinguishes between <em>number</em> (floating point) and <em>integer</em>, the
+<a href="datatypes.html#data-types" class="page">type hierarchy</a> for Aspect models provides many more options. There
+is a distinction between the numeric core types (<code>xsd:integer</code> and the fixed-point type
+<code>xsd:decimal</code>) and the limited range numbers that correspond to the numeric types as defined in most
+programming languages (<code>xsd:float</code> and <code>xsd:double</code> as well as the integer types <code>xsd:int</code>,
+<code>xsd:short</code> etc.).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+As an Aspect model ideally captures as much of the domain semantics as possible, it
+should not limit itself according to implementation-specific restrictions. In particular, limited
+range numbers should only be used when the semantics of the numeric range are relevant beyond the
+implementation of the Aspect. For example, a Property <code>temperature</code> of a sensor could use a limited
+range type such as <code>xsd:int</code>, when the physical sensor can never provide a value outside of this
+range, while a Property such as <code>numberOfProducedItems</code> is not logically limited, so it should use
+<code>xsd:integer</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="choosing-a-unit"><a class="anchor" href="#choosing-a-unit"></a>Choosing a Unit</h3>
+<div class="paragraph">
+<p>When trying to refer to a physical unit, please see the
+<a href="appendix/appendix.html#unit-catalog" class="page">Unit Catalog</a>. When searching for the unit, remember that
+the unit catalog uses British English.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="choosing-a-characteristic"><a class="anchor" href="#choosing-a-characteristic"></a>Choosing a Characteristic</h3>
+<div class="paragraph">
+<p>The following decision tree helps finding the right Characteristic for a Property.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+A common error is using the <code>Text</code> Characteristic for anything resembling a string.
+<code>Text</code> is intended for values that are meant <em>only</em> for humans, for example a description of a
+device that is entered by a user as free text. Values such as identifiers, hostnames, table names,
+license plate numbers etc. should not use the <code>Text</code> Characteristic.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you create Characteristics that are not limited to your modeled domain but are generally useful,
+please consider contributing them, so that they can be included in the BAMM Aspect Meta Model&#8217;s
+Characteristic catalog.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/characteristics-decision-tree.svg" alt="characteristics decision tree" width="100%">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="choosing-constraints"><a class="anchor" href="#choosing-constraints"></a>Choosing Constraints</h3>
+<div class="paragraph">
+<p>Constraints are used to precisely specify limiting conditions of Characteristics. It is recommended
+to use Constraints thoroughly:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It makes the intent of the respective Property clear for humans reading the model or documentation
+generated from the model</p>
+</li>
+<li>
+<p>It allows tooling to generate code for the Aspect that can take the Constraints into account. Validation code
+corresponding to the Constraints can be directly inserted, thus reducing manual implementation effort.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following decision tree helps finding matching Constraints for a Characteristic. Note that
+multiple Constraints can be combined.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If and only if the value has a <a href="datatypes.html#data-types" class="page">string-like value space</a> and
+does <em>not</em> use UTF-8 as an encoding, use an <a href="characteristics.html#encoding-constraint" class="page">Encoding
+Constraint</a> for the Property. This will ensure that consumers of the Aspect will not end up with
+broken special characters.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/constraints-decision-tree.svg" alt="constraints decision tree" width="100%">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="historic-data-aspects"><a class="anchor" href="#historic-data-aspects"></a>Historic Data Aspects</h3>
+<div class="paragraph">
+<p>When an Aspect describes historic data, i.e., not a single data set but data indexed by time stamps,
+there are a number of <a href="#naming-elements">best practices for naming elements</a>to apply:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Append the suffix <em>History</em> to the Aspect name</p>
+</li>
+<li>
+<p>The Aspect should have exactly one Property called <code>items</code></p>
+</li>
+<li>
+<p>The <code>items</code> Property should have the <a href="characteristics.html#time-series-characteristic" class="page">Time Series</a> Characteristic</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the following example, we first consider a simple Aspect model that provides the current value
+for a temperature sensor and that does not provide historic data. After that, we introduce a new
+Aspect model that provides historic data for the temperature sensor. The example shows how the
+historic data Aspect model is built and how it can reuse elements from the original model.</p>
+</div>
+<div class="sect3">
+<h4 id="original-aspect"><a class="anchor" href="#original-aspect"></a>Original Aspect</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix bamm: &lt;urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#&gt; .
+@prefix bamm-c: &lt;urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#&gt; .
+@prefix unit: &lt;urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix : &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Aspect&#8217;s name is <code>Temperature</code>, which indicates that it represents a single measurement.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Temperature a bamm:Aspect ;
+   bamm:name "Temperature" ;
+   bamm:preferredName "Temperature"@en ;
+   bamm:description "Describes the measured temperature in degree Celsius"@en ;
+   bamm:properties ( :temperatureValue ) ;
+   bamm:operations ( ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>value</code> Property describes the temperature measurement.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:temperatureValue a bamm:Property ;
+   bamm:name "temperatureValue" ;
+   bamm:preferredName "Temperature Value"@en ;
+   bamm:description "The value of the temperature in degree Celsius"@en ;
+   bamm:exampleValue "100.0"^^xsd:float ;
+   bamm:characteristic :TemperatureMeasurement .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>TemperatureMeasurement</code> is the <code>value</code>&#8203;'s Characteristic.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:TemperatureMeasurement a bamm-c:Measurement ;
+   bamm:name "TemperatureMeasurement" ;
+   bamm:preferredName "Temperature Measurement"@en ;
+   bamm:description "Temperature in degree Celsius"@en ;
+   bamm:dataType xsd:float ;
+   bamm-c:unit unit:degreeCelsius .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="historic-data-aspect"><a class="anchor" href="#historic-data-aspect"></a>Historic Data Aspect</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The original Temperature Aspect is bound to the prefix <code>temperature</code> here in order to re-use
+elements from the non-historic data aspect.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix bamm: &lt;urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#&gt; .
+@prefix bamm-c: &lt;urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#&gt; .
+@prefix bamm-e: &lt;urn:bamm:org.open-manufacturing.digitaltwin:entity:1.0.0#&gt; .
+@prefix unit: &lt;urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix : &lt;urn:bamm:com.mycompany.newapplication:1.0.0#&gt; .
+@prefix myapp: &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The historic data Aspect&#8217;s name is <code>TemperatureHistory</code> which indicates that it provides historic
+data.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:TemperatureHistory a bamm:Aspect ;
+   bamm:name "TemperatureHistory" ;
+   bamm:preferredName "Temperature History"@en ;
+   bamm:description "Describes the last ten measured temperature values in degree Celsius"@en ;
+   bamm:properties ( :items ) ;
+   bamm:operations ( ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define the <code>items</code> property and <a href="#declaring-time-series">refine the Time Series Characteristic</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:items a bamm:Property ;
+   bamm:name "items" ;
+   bamm:preferredName "Items"@en ;
+   bamm:description "Collection of temperature values in degree Celsius"@en ;
+   bamm:characteristic :TemperatureTimeSeries .
+
+:TemperatureTimeSeries a bamm-c:TimeSeries ;
+   bamm:name "TemperatureTimeSeries" ;
+   bamm:preferredName "Temperature Time Series"@en ;
+   bamm:description "Represents the temperature over time as key/value pair with the timestamp being the key and the recorded value being the value"@en ;
+   bamm:dataType :TemperatureTimeSeriesEntity .
+
+:TemperatureTimeSeriesEntity bamm:refines bamm-e:TimeSeriesEntity ;
+   bamm:name "TemperatureTimeSeriesEntity" ;
+   bamm:preferredName "Temperature Time Series Entity"@en ;
+   bamm:description "Defines the temperature as a time series value"@en ;
+   bamm:properties ( :temperatureValue ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>temperatureValue</code> Property <code>refines</code> the <a href="entities.html#time-series-entity" class="page">Time Series
+  <code>bamm-e:value</code></a>. It reuses the <code>TemperatureMeasurement</code> Characteristic from the original
+  <code>Temperature</code> Aspect. This is of course no requirement, but when both Aspect models are evolved in
+  conjunction it can make sense to share elements.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:temperatureValue bamm:refines bamm-e:value;
+   bamm:name "temperatureValue" ;
+   bamm:preferredName "Temperature Value"@en ;
+   bamm:description "The value of the temperature in degree Celsius at a certain point in time"@en ;
+   bamm:characteristic myapp:TemperatureMeasurement .</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/v1.0.0/modeling-guidelines-best-practices.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
