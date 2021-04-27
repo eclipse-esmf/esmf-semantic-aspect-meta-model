@@ -12,7 +12,7 @@ The BAMM Aspect *Meta* Model (BAMM) provides a set of predefined objects (as dep
 This repository contains the detailed documentation of the BAMM specification as an AsciiDoc documentation.
 The source files (AsciiDoc) are built using [Gradle](https://gradle.org/) and [Antora](https://antora.org/), which generates the documentation as HTML files.
 
-![BAMM Aspect Meta Model (BAMM) Elements](images/aspect-meta-model-simplified.svg)
+![BAMM Aspect Meta Model (BAMM) Elements](src/docs/modules/ROOT/images/aspect-meta-model.svg)
 
 ## Example Usage
 BAMM standardizes the creation of domain specific aspect models and also makes them reusable.
