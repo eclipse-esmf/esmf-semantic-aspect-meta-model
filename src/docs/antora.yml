@@ -1,6 +1,6 @@
 name: bamm-specification
 title: BAMM Aspect Meta Model
-version: 'snapshot'
+version: 'v1.0.0'
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
