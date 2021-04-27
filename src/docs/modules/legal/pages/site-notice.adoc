@@ -11,7 +11,7 @@ SPDX-License-Identifier: MPL-2.0
 [[site-notice]]
 = Site Notice
 
-This project is maintained by the https://open-manufacturing.org[Open Manufacturing Platform (OMP)].
+This is an approved deliverable by the https://open-manufacturing.org[Open Manufacturing Platform (OMP)].
 
 [[authors]]
 == Authors
