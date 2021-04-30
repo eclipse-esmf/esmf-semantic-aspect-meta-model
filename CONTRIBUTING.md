@@ -35,6 +35,7 @@ name of branch | description
 `v{version_number}-RC` | A state on which the working group agreed on as a release candidate but which is missing the approval by the OMP. 
 {version_number} | A release of the respective version which is approved by the working group and the OMP. 
 `feature/{feature-name}` | Contains the development on a specific feature and is intended to be merged back into the `main` branch as soon as possible. Note, that it is recommended for contributors to create and develop feature branches in a personal fork and not the upstream repository.
+`bug/{bug-name}` | Contains the development of (usually smaller) changes in files of the repository that do not introduce new functionality but fix mistakes, errors or inconsistencies. These branches should be merged back into the `main`branch as soon as possible.
 
 ## Issues
 We use the `Issues` feature of GitHub for tracking all types of work in the repository.
