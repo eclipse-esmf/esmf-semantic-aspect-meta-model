@@ -226,13 +226,10 @@ distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 If it is not possible or desirable to put the notice in a particular file, then You may include the notice in a location 
 (such as a LICENSE file in a relevant directory) where a recipient would be likely to look for such a notice.
 
-Copyright (c) 2020 Robert Bosch GmbH
+You may add additional accurate notices of copyright ownership.
 
 Exhibit B - “Incompatible With Secondary Licenses” Notice
 This Source Code Form is “Incompatible With Secondary Licenses”, as defined by the Mozilla Public License, v. 2.0.
 
----- Additional notices on copyright according to Exhibit A ----
-
-Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH, all rights reserved
 
 

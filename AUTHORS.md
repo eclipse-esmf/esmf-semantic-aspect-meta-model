@@ -10,5 +10,6 @@ The following people have contributed to this repository:
 * Andreas Schilling, andreas.schilling3@de.bosch.com
 * Georg Schmidt-Dumont, Robert Bosch GmbH, georg.schmidt-dumont@de.bosch.com 
 * Andreas Textor, Andreas.Textor@de.bosch.com
+* Dominic Schabel
 
 Please add yourself to this list, if you contribute to the content.
