@@ -20,7 +20,7 @@ Identifiers for elements of the meta model _must_ use the URN syntax
 xref:bamm-specification:appendix:appendix.adoc#rfc2141[[rfc2141\]] and the following schema:
 
 ....
-urn:bamm:org.open-manufacturing.digitaltwin:<element-type>:<version>#<element-name>
+urn:bamm:io.openmanufacturing:<element-type>:<version>#<element-name>
 ....
 
 where the variable parts are interpreted as follows:

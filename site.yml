@@ -33,9 +33,9 @@ asciidoc:
     meta-model-abbr: BAMM
     omp: Open Manufacturing Platform
     omp-abbr: OMP
-    bamm: urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#@
-    bamm-c: urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#@
-    bamm-e: urn:bamm:org.open-manufacturing.digitaltwin:entity:1.0.0#@
-    unit:  urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#@
+    bamm: urn:bamm:io.openmanufacturing:meta-model:1.0.0#@
+    bamm-c: urn:bamm:io.openmanufacturing:characteristic:1.0.0#@
+    bamm-e: urn:bamm:io.openmanufacturing:entity:1.0.0#@
+    unit:  urn:bamm:io.openmanufacturing:unit:1.0.0#@
     example-ns: com.mycompany@
 
