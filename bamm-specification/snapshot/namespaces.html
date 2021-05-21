@@ -155,7 +155,7 @@
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>urn:bamm:org.open-manufacturing.digitaltwin:&lt;element-type&gt;:&lt;version&gt;#&lt;element-name&gt;</pre>
+<pre>urn:bamm:io.openmanufacturing:&lt;element-type&gt;:&lt;version&gt;#&lt;element-name&gt;</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -197,18 +197,18 @@ Y and Z being integers.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#Aspect</code>&#8201;&#8212;&#8201;URN of the <code>Aspect</code> concept in Meta Model version 1.0.0</p>
+<p><code>urn:bamm:io.openmanufacturing:meta-model:1.0.0#Aspect</code>&#8201;&#8212;&#8201;URN of the <code>Aspect</code> concept in Meta Model version 1.0.0</p>
 </li>
 <li>
-<p><code>urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#Measurement</code>&#8201;&#8212;&#8201;URN of the
+<p><code>urn:bamm:io.openmanufacturing:characteristic:1.0.0#Measurement</code>&#8201;&#8212;&#8201;URN of the
 <a href="characteristics.html#measurement-characteristic" class="page">Measurement</a> Characteristic in Meta Model version 1.0.0</p>
 </li>
 <li>
-<p><code>urn:bamm:org.open-manufacturing.digitaltwin:entity:1.0.0#Point3D</code>&#8201;&#8212;&#8201;URN of the
+<p><code>urn:bamm:io.openmanufacturing:entity:1.0.0#Point3D</code>&#8201;&#8212;&#8201;URN of the
 <a href="entities.html#point-3d" class="page">Point 3D</a> entity</p>
 </li>
 <li>
-<p><code>urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#kilogram</code>&#8201;&#8212;&#8201;URN of the <a href="appendix/appendix.html#unit-kilogram" class="page">Kilogram</a> unit</p>
+<p><code>urn:bamm:io.openmanufacturing:unit:1.0.0#kilogram</code>&#8201;&#8212;&#8201;URN of the <a href="appendix/appendix.html#unit-kilogram" class="page">Kilogram</a> unit</p>
 </li>
 </ul>
 </div>
@@ -292,16 +292,16 @@ pre-defining a short name for common parts of URIs in a local context (in partic
 <div class="ulist">
 <ul>
 <li>
-<p>The prefix "bamm" shall be used for the URN <code>urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#</code></p>
+<p>The prefix "bamm" shall be used for the URN <code>urn:bamm:io.openmanufacturing:meta-model:1.0.0#</code></p>
 </li>
 <li>
-<p>The prefix "bamm-c" shall be used for the URN <code>urn:bamm:org.open-manufacturing.digitaltwin:characteristic:1.0.0#</code></p>
+<p>The prefix "bamm-c" shall be used for the URN <code>urn:bamm:io.openmanufacturing:characteristic:1.0.0#</code></p>
 </li>
 <li>
-<p>The prefix "bamm-e" shall be used for the URN <code>urn:bamm:org.open-manufacturing.digitaltwin:entity:1.0.0#</code></p>
+<p>The prefix "bamm-e" shall be used for the URN <code>urn:bamm:io.openmanufacturing:entity:1.0.0#</code></p>
 </li>
 <li>
-<p>The prefix "unit" shall be used for the URN <code>urn:bamm:org.open-manufacturing.digitaltwin:unit:1.0.0#</code></p>
+<p>The prefix "unit" shall be used for the URN <code>urn:bamm:io.openmanufacturing:unit:1.0.0#</code></p>
 </li>
 <li>
 <p>The empty prefix (":" in RDF/Turtle) shall be used for the URN prefix of the current model scope, i.e.
@@ -317,7 +317,7 @@ everything up to and including the <code>#</code> of the model elements that are
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix bamm: &lt;urn:bamm:org.open-manufacturing.digitaltwin:meta-model:1.0.0#&gt; .
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix bamm: &lt;urn:bamm:io.openmanufacturing:meta-model:1.0.0#&gt; .
 @prefix : &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .
 
 :Error a bamm:Aspect ;
