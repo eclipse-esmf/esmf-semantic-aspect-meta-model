@@ -17,3 +17,4 @@ SPDX-License-Identifier: MPL-2.0
 * xref:entities.adoc[Entities]
 * xref:units.adoc[Units]
 * xref:modeling-guidelines.adoc[Aspects]
+* xref:payloads.adoc[Payloads]
