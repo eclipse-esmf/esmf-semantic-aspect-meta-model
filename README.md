@@ -31,6 +31,8 @@ Are you having trouble with BAMM Aspect Meta Model? We want to help!
 * Having issues with BAMM? Open a [GitHub issue]( https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/issues).
 
 ## Build and contribute
+
+### Build the documentation
 To build the Antora documentation locally, clone the repository and run
 
 ```./gradlew antora```
@@ -39,6 +41,14 @@ inside the repository folder.
 
 Navigate to *build* > *site* and open the `index.html` page in your web browser to see the result.
 Repeat the steps everytime you make any changes in the documentation and want to inspect the final outcome.
+
+### Build the BAMM artifact
+To build the BAMM Aspect Meta Model, run
+
+```./gradlew build```.
+
+This will compile the code and run all tests. The resulting JAR file can be found under build > libs.
+Please be aware, that you need JDK 11 to run build and tests.
 
 Before making a contribution, please take a look at the [contribution guidelines](CONTRIBUTING.md).
 Please keep in mind to create an issue first before opening a pull request.
