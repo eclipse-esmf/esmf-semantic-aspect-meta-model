@@ -37,6 +37,10 @@ bamm:Entity rdfs:subClassOf mmm:NamedConcept, mmm:ConceptWithProperties ;
    rdfs:label "Entity" ;
    rdfs:comment "An Entity is a logical encapsulation of multiple values. It has a number of Properties." .
 
+bamm:AbstractEntity rdfs:subClassOf mmm:NamedConcept, mmm:ConceptWithProperties ;
+   rdfs:label "AbstractEntity" ;
+   rdfs:comment "An Abstract Entity is a logical encapsulation of a shared concept." .
+
 bamm:Property rdfs:subClassOf mmm:NamedConcept ;
    rdfs:label "Property" ;
    rdfs:comment "A Property represents a named value." .
@@ -142,9 +146,9 @@ bamm:exampleValue a mmm:Attribute ;
    rdfs:domain bamm:Property ;
    rdfs:range rdfs:Resource .
 
-bamm:refines a mmm:Attribute ;
-   rdfs:label "refines" ;
-   rdfs:comment "Defines that the target refines the source" ;
+bamm:extends a mmm:Attribute ;
+   rdfs:label "extends" ;
+   rdfs:comment "Defines that the target extends the source" ;
    rdfs:domain mmm:Concept ;
    rdfs:range rdfs:Resource .
 
