@@ -493,7 +493,7 @@ bamm-c:SingleEntityShape
             select $this $value
             where {
                $this bamm:dataType ?value .
-               filter( not exists { ?value bamm:refines?/rdf:type* bamm:Entity } )
+               filter( not exists { ?value rdf:type* bamm:Entity } )
             }
          """
       ] ;

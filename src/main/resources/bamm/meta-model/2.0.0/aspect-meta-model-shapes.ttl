@@ -84,9 +84,9 @@ bamm:AspectShape
             where {
                $this bamm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?value .
-               filter ( not exists { ?value bamm:property?/bamm:refines?/rdf:type/rdfs:subClassOf* bamm:Property }
+               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
                    || ( isBlank( ?value ) && not exists { ?value bamm:optional true } ) )
-               filter (not exists { ?value bamm:property?/bamm:refines?/rdf:type/rdfs:subClassOf* bamm:Property }
+               filter (not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
                    || ( isBlank( ?value ) && not exists { ?value bamm:payloadName ?any } ))
             }
          """
@@ -129,7 +129,7 @@ bamm:EntityShape
       sh:select """
          select $this
          where {
-            $this bamm:refines?/rdf:type/rdfs:subClassOf* bamm:Entity .
+            $this rdf:type/rdfs:subClassOf* bamm:Entity .
          }
       """
    ] ;
@@ -151,11 +151,11 @@ bamm:EntityShape
             where {
                $this bamm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?value .
-               filter ( not exists { ?value bamm:property?/bamm:refines?/rdf:type/rdfs:subClassOf* bamm:Property }
+               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
                    || ( isBlank( ?value ) && not exists { ?value bamm:optional true } ) )
-               filter ( not exists { ?value bamm:property?/bamm:refines?/rdf:type/rdfs:subClassOf* bamm:Property }
+               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
                    || ( isBlank( ?value ) && not exists { ?value bamm:notInPayload true } ) )
-               filter ( not exists { ?value bamm:property?/bamm:refines?/rdf:type/rdfs:subClassOf* bamm:Property }
+               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
                    || ( isBlank( ?value ) && not exists { ?value bamm:payloadName ?any } ) )
             }
          """
@@ -230,21 +230,6 @@ bamm:EntityShape
             }
          """
       ] ;
-      sh:sparql [
-         a sh:SPARQLConstraint ;
-         sh:message "Entity refining another Entity may not declare additional Properties." ;
-         sh:prefixes bamm:prefixDeclarations ;
-         sh:select """
-            select $this ?properties
-            where {
-               $this bamm:refines ?elementBeingRefined .
-               filter ( exists { ?elementBeingRefined rdf:type/rdfs:subClassOf* bamm:Entity } ) .
-               $this bamm:properties ?properties .
-               ?properties rdf:rest*/rdf:first ?item .
-               filter ( not exists { ?item bamm:refines [] } )
-            }
-         """
-      ] ;
    ] .
 
 bamm:PropertyShape
@@ -256,33 +241,6 @@ bamm:PropertyShape
       sh:class bamm:Characteristic ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "A Property without a Characteristic has not been refined." ;
-         sh:prefixes bamm:prefixDeclarations ;
-         sh:select """
-            select $this ?anything
-            where {
-              $this rdf:type bamm:Property .
-              filter ( not exists { $this bamm:characteristic [] } )
-              filter ( not exists { ?anything bamm:refines $this } )
-              filter( !strstarts( str( $this ), str( bamm-e: ) ) )
-            }
-         """
-      ] ;
-      sh:sparql [
-         a sh:SPARQLConstraint ;
-         sh:message "A Property with a Characteristic may not be refined." ;
-         sh:prefixes bamm:prefixDeclarations ;
-         sh:select """
-            select $this ?anything
-            where {
-               $this rdf:type bamm:Property .
-               filter ( exists { $this bamm:characteristic [] } ) .
-               filter ( exists { ?anything bamm:refines $this } ) .
-            }
-         """
-      ] ;
-      sh:sparql [
-         a sh:SPARQLConstraint ;
          sh:message "A cycle in the Aspect Model was detected" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
@@ -290,7 +248,7 @@ bamm:PropertyShape
             where {
               $this bamm:characteristic ?characteristic
               filter( exists {
-                $this bamm:characteristic/bamm-c:baseCharacteristic*/bamm-c:left*/bamm-c:right*/bamm:dataType/bamm:refines*/bamm:properties/rdf:rest*/rdf:first $this .
+                $this bamm:characteristic/bamm-c:baseCharacteristic*/bamm-c:left*/bamm-c:right*/bamm:dataType/bamm:properties/rdf:rest*/rdf:first $this .
               } && not exists { ?characteristic rdf:type/rdfs:subClassOf* bamm-c:Collection } )
             }
          """
@@ -374,7 +332,7 @@ bamm:CharacteristicShape
             select distinct $this $value
             where {
                $this (bamm-c:left*|bamm-c:right*|bamm-c:baseCharacteristic*)/bamm:dataType ?value .
-               filter( not exists { ?value bamm:refines?/rdf:type*/rdfs:subClassOf* mmm:Concept }
+               filter( not exists { ?value rdf:type*/rdfs:subClassOf* mmm:Concept }
                       && ?value not in (
                         xsd:string,
                         xsd:boolean,
