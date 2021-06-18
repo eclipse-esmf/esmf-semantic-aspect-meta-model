@@ -711,6 +711,106 @@ bamm:EntityInstancesHaveOnlyKnownProperties
       """
    ] .
 
+bamm:AbstractEntityDirectlyInstantiated
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdf:type bamm:AbstractEntity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "Abstract Entities may not be directly instantiated." ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this ?value
+         where {
+           $this a ?value .
+         }
+      """
+   ] .
+
+bamm:ExtendsShape
+   a sh:NodeShape ;
+   sh:targetSubjectsOf bamm:extends ;
+   sh:property [
+      sh:path bamm:extends ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+   ] .
+
+bamm:AmbiguousEntityShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this bamm:extends/bamm:extends* ?extendedEntity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The Entity {$this} contains a Property with name {?thisName} which causes ambiguity in combination with the {?other} Entity." ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?thisName ?other
+         where {
+           optional { $this bamm:extends ?other }
+           optional { ?other bamm:extends $this }
+
+           $this bamm:properties/rdf:rest*/rdf:first ?thisPropertyNode .
+           ?other bamm:properties/rdf:rest*/rdf:first ?otherPropertyNode .
+
+           optional { ?thisPropertyNode bamm:name|(bamm:property/bamm:name) ?thisDirectName } .
+           optional { ?thisPropertyNode bamm:payloadName ?thisPayloadName } .
+           bind( coalesce( ?thisPayloadName, ?thisDirectName ) as ?thisName  ) .
+
+           optional { ?otherPropertyNode bamm:name|(bamm:property/bamm:name) ?otherDirectName } .
+           optional { ?otherPropertyNode bamm:payloadName ?otherPayloadName } .
+           bind( coalesce( ?otherPayloadName, ?otherDirectName ) as ?otherName  ) .
+
+           filter( ?thisName = ?otherName )
+           bind( ?thisName as ?value )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The Entity {$this} contains a Property with name {?thisName} which causes ambiguity in combination with the {?other} Entity." ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?thisName ?other
+         where {
+           optional { $this bamm:extends ?extendedEntityA }
+           optional { ?other bamm:extends ?extendedEntityB }
+           filter( ?extendedEntityA = ?extendedEntityB )
+           filter( ?this != ?other )
+
+           $this bamm:properties/rdf:rest*/rdf:first ?thisPropertyNode .
+           ?other bamm:properties/rdf:rest*/rdf:first ?otherPropertyNode .
+
+           optional { ?thisPropertyNode bamm:name|(bamm:property/bamm:name) ?thisDirectName } .
+           optional { ?thisPropertyNode bamm:payloadName ?thisPayloadName } .
+           bind( coalesce( ?thisPayloadName, ?thisDirectName ) as ?thisName  ) .
+
+           optional { ?otherPropertyNode bamm:name|(bamm:property/bamm:name) ?otherDirectName } .
+           optional { ?otherPropertyNode bamm:payloadName ?otherPayloadName } .
+           bind( coalesce( ?otherPayloadName, ?otherDirectName ) as ?otherName  ) .
+
+           filter( ?thisName = ?otherName )
+           bind( ?thisName as ?value )
+         }
+      """
+   ] .
+
 bamm:ConstrainListTypeUsageShape
    a sh:NodeShape ;
    sh:targetSubjectsOf mmm:listType ;
