@@ -59,6 +59,10 @@ public abstract class AbstractShapeTest {
       return versionsAsOf( KnownVersion.BAMM_2_0_0 );
    }
 
+   protected static Stream<KnownVersion> versionsUpTo1_0_0() {
+      return versionsUpToIncluding( KnownVersion.BAMM_1_0_0 );
+   }
+
    final String VIOLATION_URN = "http://www.w3.org/ns/shacl#Violation";
    final String WARNING_URN = "http://www.w3.org/ns/shacl#Warning";
 
