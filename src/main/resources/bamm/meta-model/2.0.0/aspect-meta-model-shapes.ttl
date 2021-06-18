@@ -495,7 +495,7 @@ bamm:ValidEntityInstances
          select $this ?value
          where {
            $this a ?entityType .
-           ?entityType bamm:properties/rdf:rest*/rdf:first ?property .
+           ?entityType bamm:extends*/bamm:properties/rdf:rest*/rdf:first ?property .
 
            # Select only the non-optional Properties
            filter( exists { ?property a bamm:Property } || ( isBlank( ?property ) && exists { ?property bamm:notInPayload true } ) ) .
@@ -517,7 +517,7 @@ bamm:ValidEntityInstances
          select $this ?value ?path
          where {
            $this a ?entityType .
-           ?entityType bamm:properties/rdf:rest*/rdf:first ?property .
+           ?entityType bamm:extends*/bamm:properties/rdf:rest*/rdf:first ?property .
            ?property bamm:characteristic/bamm-c:baseCharacteristic*/bamm:dataType ?characteristicDataType .
            $this ?property ?instanceValue .
            bind( datatype( ?instanceValue ) as ?providedType )
@@ -536,7 +536,7 @@ bamm:ValidEntityInstances
 		   select $this ?path
 		   where {
 		     $this a ?entityType .
-			 ?entityType bamm:properties/rdf:rest*/rdf:first ?property .
+			 ?entityType bamm:extends*/bamm:properties/rdf:rest*/rdf:first ?property .
 			 ?property bamm:characteristic/bamm-c:baseCharacteristic* ?characteristic .
 			 filter ( exists { ?characteristic rdf:type/rdfs:subClassOf* bamm-c:Collection } )
 			 ?characteristic bamm:dataType ?characteristicDataType .
@@ -554,7 +554,7 @@ bamm:ValidEntityInstances
 		   select $this ?value ?path
 			where {
 			  $this a ?entityType .
-			  ?entityType bamm:properties/rdf:rest*/rdf:first ?property .
+			  ?entityType bamm:extends*/bamm:properties/rdf:rest*/rdf:first ?property .
 			  ?property bamm:characteristic/bamm-c:baseCharacteristic* ?characteristic .
 			  filter ( exists { ?characteristic rdf:type/rdfs:subClassOf* bamm-c:Collection } )
 			  ?property bamm:characteristic/bamm-c:baseCharacteristic*/bamm:dataType ?characteristicDataType .
@@ -659,11 +659,11 @@ bamm:EntityInstancesHaveOnlyKnownProperties
           $this a ?entityType .
           $this ?property [] .
           filter( ?property != rdf:type )
-            filter ( not exists { ?entityType bamm:properties/rdf:rest*/rdf:first ?property } )
-            filter ( not exists {
-               ?entityType bamm:properties/rdf:rest*/rdf:first ?blankProperty .
-               ?blankProperty bamm:property ?property .
-            } )
+          filter ( not exists { ?entityType bamm:extends*/bamm:properties/rdf:rest*/rdf:first ?property } )
+          filter ( not exists {
+            ?entityType bamm:extends*/bamm:properties/rdf:rest*/rdf:first ?blankProperty .
+            ?blankProperty bamm:property ?property .
+          } )
           bind( ?property as ?value )
         }
       """
