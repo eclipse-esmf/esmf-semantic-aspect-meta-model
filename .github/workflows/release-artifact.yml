@@ -7,6 +7,12 @@ on:
         required: true
 jobs:
   build-and-maven-release:
+    env:
+      OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+      PGP_KEY: ${{ secrets.PGP_KEY }}
+      PGP_KEY_PASSWORD: ${{ secrets.PGP_KEY_PASSWORD }}
+      REPOSITORY_URL: ${{ secrets.REPOSITORY_URL }}
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -22,12 +28,6 @@ jobs:
       run: |
         ./gradlew clean build
         ./gradlew publishMavenReleasePublicationToMavenRepository
-      env:
-        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-        PGP_KEY: ${{ secrets.PGP_KEY }}
-        PGP_KEY_PASSWORD: ${{ secrets.PGP_KEY_PASSWORD }}
-        REPOSITORY_URL: ${{ secrets.REPOSITORY_URL }}
     - name: Upload BAMM JAR
       uses: actions/upload-artifact@v2
       with:
