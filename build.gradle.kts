@@ -78,7 +78,7 @@ publishing {
                 username = System.getenv("OSSRH_USERNAME")
                 password = System.getenv("OSSRH_TOKEN")
             }
-            var repositoryUrl : String? = System.getenv("REPOSITORY_URL")
+            var repositoryUrl : String? = System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             url = uri(repositoryUrl)
         }
     }
