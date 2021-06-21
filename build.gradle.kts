@@ -12,6 +12,11 @@ plugins {
 group = "io.openmanufacturing"
 version = "1.0.0"
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 tasks.withType<JavaCompile> {
     sourceCompatibility = "11"
     targetCompatibility = "11"
@@ -43,13 +48,38 @@ publishing {
 
             pom {
                 name.set("BAMM Aspect Meta Model")
+                description.set("BAMM Aspect Meta Model")
+                url.set("https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/index.html")
                 licenses {
                     license {
                         name.set("Mozilla Public License, Version 2.0")
                         url.set("https://www.mozilla.org/en-US/MPL/2.0/")
                     }
                 }
+                scm {
+                    connection.set("scm:git:git://github.com:OpenManufacturingPlatform/sds-bamm-aspect-meta-model.git")
+                    developerConnection.set("scm:git:ssh://git@github.com:OpenManufacturingPlatform/sds-bamm-aspect-meta-model.git")
+                    url.set("https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model")
+                }
+                developers {
+                    developer {
+                        name.set("Semantic Data Structuring Working Group")
+                        email.set("artifacts@open-manufacturing.org")
+                        organization.set("Open Manufacturing Platform")
+                        organizationUrl.set("https://open-manufacturing.org")
+                    }
+                }
             }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username = System.getenv("OSSRH_USERNAME")
+                password = System.getenv("OSSRH_TOKEN")
+            }
+            var repositoryUrl : String? = System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            url = uri(repositoryUrl)
         }
     }
 }
