@@ -15,8 +15,21 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:InstantiatedAbstractTestEntity a bamm:AbstractEntity ;
-   bamm:name "InstantiatedAbstractTestEntity" ;
+:AbstractTestEntityIsNotExtended a bamm:Aspect ;
+   bamm:name "AbstractTestEntityIsNotExtended" ;
+   bamm:properties ( :aspectProperty ) ;
+   bamm:operations () .
+
+:aspectProperty a bamm:Property ;
+   bamm:name "aspectProperty" ;
+   bamm:characteristic [
+      a bamm-c:SingleEntity ;
+      bamm:name "AbstractEntity" ;
+      bamm:dataType :AbstractTestEntity
+   ] .
+
+:AbstractTestEntity a bamm:AbstractEntity ;
+   bamm:name "AbstractTestEntity" ;
    bamm:properties ( :abstractTestProperty ).
 
 :abstractTestProperty a bamm:Property ;
@@ -25,20 +38,4 @@
       a bamm:Characteristic ;
       bamm:name "Integer" ;
       bamm:dataType xsd:integer
-   ] .
-
-:AbstractEntityInstance a :InstantiatedAbstractTestEntity ;
-   :abstractTestProperty 12 .
-
-:ExtendingEntity a bamm:Entity ;
-   bamm:name "ExtendingEntity" ;
-   bamm:extends :InstantiatedAbstractTestEntity ;
-   bamm:properties ( :testProperty ) .
-
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:name "String" ;
-      bamm:dataType xsd:string
    ] .

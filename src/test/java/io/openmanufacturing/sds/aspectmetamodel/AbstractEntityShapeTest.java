@@ -123,4 +123,13 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
             metaModelVersion, resultForAmbiguousEntityA, resultForAmbiguousEntityB );
    }
 
+   @ParameterizedTest
+   @MethodSource( value = "versionsAsOf2_0_0" )
+   public void testAbstractEntityIsNotExtendedExpectFailure( final KnownVersion metaModelVersion ) {
+      SemanticError result = new SemanticError( "The Abstract Entity :AbstractTestEntity which is used as the data-type for AbstractEntity has not been extended.",
+            TEST_NAMESPACE_PREFIX + "AbstractTestEntity", "", VIOLATION_URN, "" );
+      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityIsNotExtended",
+            metaModelVersion, result );
+   }
+
 }

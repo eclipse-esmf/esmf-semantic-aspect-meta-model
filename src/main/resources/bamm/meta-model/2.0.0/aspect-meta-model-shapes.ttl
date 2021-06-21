@@ -669,6 +669,26 @@ bamm:EntityInstancesHaveOnlyKnownProperties
       """
    ] .
 
+bamm:AbstractEntityDataTypeShape
+   a sh:NodeShape ;
+   sh:targetClass bamm:AbstractEntity ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The Abstract Entity {$this} which is used as the data-type for {?characteristicName} has not been extended." ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?characteristicName
+         where {
+           $this rdf:type bamm:AbstractEntity .
+           filter ( exists { ?property bamm:characteristic/bamm-c:baseCharacteristic*/bamm:dataType $this } ) .
+           filter( not exists { [] bamm:extends $this } ) .
+           ?property bamm:characteristic ?characteristic .
+           ?characteristic bamm:name ?characteristicName .
+           bind( "" as ?value )
+         }
+      """
+   ] .
+
 bamm:AbstractEntityDirectlyInstantiated
    a sh:NodeShape ;
    sh:target [
