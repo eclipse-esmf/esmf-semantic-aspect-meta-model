@@ -22,6 +22,8 @@ image::aspect-meta-model.svg[width=100%]
 
 * An _Entity_ is a logical encapsulation of multiple values. It has a number of Properties.
 
+* An _Abstract Entity_ is a logical encapsulation of a shared concept.
+
 * A _Characteristic_ describes a Property's meaning in the context of the Aspect with information
   such as its data type, if it is a collection, that a string value is to be interpreted as one of a
   fixed number of valid states or that a numeric value has an associated physical unit.
