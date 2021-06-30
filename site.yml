@@ -10,7 +10,7 @@ content:
       tags: '*'
 ui:
   bundle:
-    url: ./src/docs/ui-bundle.zip
+    url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.0.0/sds-antora-ui-bundle-1.0.0.zip
     snapshot: true
   supplemental_files:
   - path: ui.yml
