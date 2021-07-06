@@ -18,7 +18,7 @@
 :AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty a bamm:AbstractEntity ;
    bamm:name "AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty" ;
    bamm:properties ( :abstractTestProperty
-                     [ bamm:property :abstractOptionalProperty ; bamm:optional "true"^^xsd:boolean ] ).
+                     [ bamm:property :abstractOptionalProperty ; bamm:optional true ] ).
 
 :abstractTestProperty a bamm:Property ;
    bamm:name "abstractTestProperty" ;
@@ -39,4 +39,4 @@
 :ExtendingEntity a bamm:Entity ;
    bamm:name "ExtendingEntity" ;
    bamm:extends :AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty ;
-   bamm:properties ( [ bamm:property :abstractOptionalProperty ; bamm:optional "true"^^xsd:boolean ] ) .
+   bamm:properties ( [ bamm:property :abstractOptionalProperty ; bamm:optional true ] ) .

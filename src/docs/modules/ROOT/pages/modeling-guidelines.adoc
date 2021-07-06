@@ -493,6 +493,9 @@ include::example$aspect-sample.ttl[tags=extending-entity-declaration]
 The extending Entities `:Student` and `:Teacher` contain the Properties declared in the extended Entity `:Person` as well as
 the Properties in their own declarations.
 
+The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the `bamm:name` of the Property,
+must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
+
 [[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 

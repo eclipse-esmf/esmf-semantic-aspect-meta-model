@@ -23,7 +23,7 @@
 :AbstractTestEntity a bamm:AbstractEntity ;
    bamm:name "AbstractTestEntity" ;
    bamm:properties ( :abstractTestProperty
-                     [ bamm:property :optionalAbstractTestProperty ; bamm:optional "true"^^xsd:boolean ]) .
+                     [ bamm:property :optionalAbstractTestProperty ; bamm:optional true ]) .
 
 :abstractTestProperty a bamm:Property ;
    bamm:name "abstractTestProperty" ;

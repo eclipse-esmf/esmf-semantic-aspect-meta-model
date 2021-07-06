@@ -31,7 +31,7 @@
    bamm:name "A" ;
    bamm:extends :AbstractTestEntityWithExtendingEntitiesWithPayloadNameEqualToPropertyName ;
    bamm:properties ( :a
-                     [ bamm:property :b ; bamm:optional "true"^^xsd:boolean ]) .
+                     [ bamm:property :b ; bamm:optional true ]) .
 
 :a a bamm:Property ;
    bamm:name "a" ;
@@ -44,7 +44,7 @@
 :B a bamm:Entity ;
    bamm:name "B" ;
    bamm:extends :AbstractTestEntityWithExtendingEntitiesWithPayloadNameEqualToPropertyName ;
-   bamm:properties (  :b ) .
+   bamm:properties ( :b ) .
 
 :b a bamm:Property ;
    bamm:name "b" ;

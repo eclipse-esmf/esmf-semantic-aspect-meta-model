@@ -30,7 +30,7 @@
 :A a bamm:Entity ;
    bamm:name "A" ;
    bamm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
-   bamm:properties ( [ bamm:property :a ; bamm:optional "true"^^xsd:boolean ] ) .
+   bamm:properties ( [ bamm:property :a ; bamm:optional true ] ) .
 
 :a a bamm:Property ;
    bamm:name "a" ;
@@ -43,4 +43,4 @@
 :B a bamm:Entity ;
    bamm:name "B" ;
    bamm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
-   bamm:properties ( [ bamm:property :a ; bamm:optional "true"^^xsd:boolean ] ) .
+   bamm:properties ( [ bamm:property :a ; bamm:optional true ] ) .
