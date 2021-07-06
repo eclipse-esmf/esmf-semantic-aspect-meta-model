@@ -38,7 +38,7 @@ public class UniqueEntityInstancesShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testIdenticalExtendingEntityInstancesExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance";
       final SemanticError resultForIdenticalInstance = new SemanticError( MESSAGE_IDENTICAL_INSTANCES, focusNode, "",

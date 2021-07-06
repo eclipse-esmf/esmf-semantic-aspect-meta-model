@@ -51,15 +51,15 @@ public abstract class AbstractShapeTest {
       return allVersions().takeWhile( v -> version.isNewerThan( v ) || v.equals( version ) );
    }
 
-   protected static Stream<KnownVersion> versionsAsOf( final KnownVersion version ) {
+   protected static Stream<KnownVersion> versionsStartingWith( final KnownVersion version ) {
       return allVersions().dropWhile( version::isNewerThan );
    }
 
-   protected static Stream<KnownVersion> versionsAsOf2_0_0() {
-      return versionsAsOf( KnownVersion.BAMM_2_0_0 );
+   protected static Stream<KnownVersion> versionsStartingWith2_0_0() {
+      return versionsStartingWith( KnownVersion.BAMM_2_0_0 );
    }
 
-   protected static Stream<KnownVersion> versionsUpTo1_0_0() {
+   protected static Stream<KnownVersion> versionsUpToIncluding1_0_0() {
       return versionsUpToIncluding( KnownVersion.BAMM_1_0_0 );
    }
 

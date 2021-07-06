@@ -30,7 +30,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "valid-entity-instance-shape", "ExtendingEntityInstance", metaModelVersion );
    }
@@ -128,7 +128,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceMissingRequiredPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultForMissingProperty = new SemanticError( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY,
             TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "", VIOLATION_URN,
@@ -138,13 +138,13 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceMissingOptionalPropertyExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "valid-entity-instance-shape", "ExtendingEntityMissingOptionalProperty", metaModelVersion );
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceInvalidValueType( final KnownVersion metaModelVersion ) {
       final SemanticError resultForMissingProperty = new SemanticError( MESSAGE_INSTANCE_INVALID_VALUE_TYPE,
             TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", TEST_NAMESPACE_PREFIX + "abstractTestProperty",
@@ -154,7 +154,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceMissingNotInPayloadProperty( final KnownVersion metaModelVersion ) {
       final SemanticError validationError = getSingleSemanticValidationError(
             "valid-entity-instance-shape",

@@ -31,7 +31,7 @@ public class EntityInstancesHaveOnlyKnownPropertiesShapeTest extends AbstractSha
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAdditionalUnknownPropertyInExtendingEntityInstanceExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultForName = new SemanticError(
             MESSAGE_INSTANCE_UNKNOWN_PROPERTY, TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "",

@@ -21,19 +21,19 @@ import io.openmanufacturing.sds.validation.SemanticError;
 public class AbstractEntityShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingAbstractEntityValidationExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "abstract-entity-shape", "AbstractTestEntity", metaModelVersion );
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityValidationExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "abstract-entity-shape", "ExtendedTestEntity", metaModelVersion );
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0")
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testInstantiatingAbstractEntityExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "AbstractEntityInstance";
       final String value = TEST_NAMESPACE_PREFIX + "InstantiatedAbstractTestEntity";
@@ -45,7 +45,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingMultipleEntitiesExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityExtendingMultipleEntities";
@@ -57,7 +57,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAmbiguousEntitiesDueToPropertyNamesExpectFailure( final KnownVersion metaModelVersion ) {
 
       //test extending Entities use the same Property
@@ -104,7 +104,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAmbiguousEntitiesDueToOptionalPropertyCombinationsExpectFailure( final KnownVersion metaModelVersion ) {
 
       //test Abstract Entity has optional Property and extending Entity uses same Property without optional
@@ -137,7 +137,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsAsOf2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAbstractEntityIsNotExtendedExpectFailure( final KnownVersion metaModelVersion ) {
       SemanticError result = new SemanticError( "The Abstract Entity :AbstractTestEntity which is used as the data-type for AbstractEntity has not been extended.",
             TEST_NAMESPACE_PREFIX + "AbstractTestEntity", "", VIOLATION_URN, TEST_NAMESPACE_PREFIX + "AbstractEntity" );
