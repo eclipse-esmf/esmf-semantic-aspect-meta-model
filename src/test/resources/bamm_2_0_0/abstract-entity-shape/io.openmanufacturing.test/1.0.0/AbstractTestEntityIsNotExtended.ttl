@@ -22,11 +22,11 @@
 
 :aspectProperty a bamm:Property ;
    bamm:name "aspectProperty" ;
-   bamm:characteristic [
-      a bamm-c:SingleEntity ;
-      bamm:name "AbstractEntity" ;
-      bamm:dataType :AbstractTestEntity
-   ] .
+   bamm:characteristic :AbstractEntity .
+
+:AbstractEntity a bamm-c:SingleEntity ;
+   bamm:name "AbstractEntity" ;
+   bamm:dataType :AbstractTestEntity .
 
 :AbstractTestEntity a bamm:AbstractEntity ;
    bamm:name "AbstractTestEntity" ;

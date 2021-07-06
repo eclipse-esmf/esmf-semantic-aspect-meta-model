@@ -17,7 +17,8 @@ bamm-e:TimeSeriesEntity a bamm:AbstractEntity ;
    bamm:name "TimeSeriesEntity" ;
    bamm:preferredName "Time Series Entity"@en ;
    bamm:description "An Entity which represents a key/value pair. The key is the timestamp when the value was recorded and the value is the value which was recorded."@en ;
-   bamm:properties ( bamm-e:timestamp ).
+   bamm:properties ( bamm-e:timestamp ) ;
+   bamm:see <https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/v1.0.0/entities.html#time-series-entity> .
 
 bamm-e:timestamp a bamm:Property ;
    bamm:name "timestamp" ;

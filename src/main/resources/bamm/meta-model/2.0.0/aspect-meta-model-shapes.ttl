@@ -14,6 +14,7 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dash: <http://datashapes.org/dash#> .
@@ -684,7 +685,7 @@ bamm:AbstractEntityDataTypeShape
            filter( not exists { [] bamm:extends $this } ) .
            ?property bamm:characteristic ?characteristic .
            ?characteristic bamm:name ?characteristicName .
-           bind( "" as ?value )
+           bind( ?characteristic as ?value )
          }
       """
    ] .
@@ -736,6 +737,7 @@ bamm:AmbiguousEntityShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
+      rdfs:comment "Ensures that all Entities in a chain of extending Entities do not use ambiguous Property naming." ;
       sh:message "The Entity {$this} contains a Property with name {?thisName} which causes ambiguity in combination with the {?other} Entity." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
@@ -762,6 +764,7 @@ bamm:AmbiguousEntityShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
+      rdfs:comment "Ensures that Entities extending the same Entity do not use ambiguous Property naming." ;
       sh:message "The Entity {$this} contains a Property with name {?thisName} which causes ambiguity in combination with the {?other} Entity." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """

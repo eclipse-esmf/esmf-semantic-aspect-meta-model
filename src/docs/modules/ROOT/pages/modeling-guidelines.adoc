@@ -336,7 +336,7 @@ defined, hence the semantics of the value can be defined in the specific Aspect 
 To create a Time Series for a specific domain, the user should instantiate the `TimeSeries`
 Collection Characteristic and set the `dataType` to an Entity which extends the Abstract `TimeSeries` Entity
 in order to define the semantics for the `value` Property in the context of the specific domain.
-Please see the xref:modeling-guidelines.adoc#_declaring_abstract_entities[Declaring Abstract Entities] section for
+Please see the xref:modeling-guidelines.adoc#declaring-abstract-entities[Declaring Abstract Entities] section for
 information on how to extend an Abstract Entity.
 
 Example:
@@ -478,9 +478,10 @@ Example:
 include::example$aspect-sample.ttl[tags=entity-declaration]
 ----
 
+[[extending-entities]]
 ==== Extending Entities
 
-Declaring that an Entity extends another Entity may be done using the `bamm:extends` attribute in the Entity declaration.
+Declaring that an Entity extends another Entity is done using the `bamm:extends` attribute in the Entity declaration.
 
 Example:
 
@@ -492,6 +493,7 @@ include::example$aspect-sample.ttl[tags=extending-entity-declaration]
 The extending Entities `:Student` and `:Teacher` contain the Properties declared in the extended Entity `:Person` as well as
 the Properties in their own declarations.
 
+[[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 
 It is also possible to declare Abstract Entities to share Properties across multiple Entities. An Abstract Entity must
