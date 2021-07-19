@@ -159,6 +159,29 @@ include::diagram-style.dot[]
   help21 -> help22 [arrowhead="none"]
   help22 -> abstract_entity_east1 [arrowhead="ediamond"]
 
+  // Entity --[extends]--> AbstractEntity
+  entity_south1 [shape="point", pos="-1,-3.46!", label="", height=0.0, width=0.0]
+  abstract_entity_north1 [shape="point", pos="-1,-3.95!", label="", height=0.0, width=0.0]
+  entity_south1 -> abstract_entity_north1 [arrowhead="none", label="0..1"]
+
+  // Entity --[extends]--> Entity
+  entity_south2 [shape="point", pos="0,-3.46!", label="", height=0.0, width=0.0]
+  entity_south3 [shape="point", pos="1.3,-3.46!", label="", height=0.0, width=0.0]
+  help23 [shape="point", pos="0,-3.7!", label="", height=0.0, width=0.0]
+  help24 [shape="point", pos="1.3,-3.7!", label="", height=0.0, width=0.0]
+  entity_south2 -> help23 [arrowhead="none", label="0..1"]
+  entity_south3 -> help24 [arrowhead="none"]
+  help23 -> help24 [arrowhead="none"]
+
+  // Abstract Entity --[extends]--> Abstract Entity
+  abstract_entity_south1 [shape="point", pos="0,-5.05!", label="", height=0.0, width=0.0]
+  abstract_entity_south2 [shape="point", pos="1.3,-5.05!", label="", height=0.0, width=0.0]
+  help25 [shape="point", pos="0,-5.3!", label="", height=0.0, width=0.0]
+  help26 [shape="point", pos="1.3,-5.3!", label="", height=0.0, width=0.0]
+  abstract_entity_south1 -> help25 [arrowhead="none", label="0..1"]
+  abstract_entity_south2 -> help26 [arrowhead="none"]
+  help25 -> help26 [arrowhead="none"]
+
   // Edge labels
   properties_label1 [label="properties", pos="-2.5,-0.6!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
   input_label [label="input", pos="-2.5,-2.8!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
@@ -174,6 +197,9 @@ include::diagram-style.dot[]
   referenceUnit_label2 [label="referenceUnit", pos="4.6,-5.4!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.7, height=0.2, fixedsize=true]
   constraint_label [label="constraint", pos="3.0,0.35!", color="white", fillcolor="white", fontsize=9, shape="box", width="0.7", height="0.2", fixedsize=true]
  properties_label3 [label="properties", pos="2.2,-4.15!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
+ extends_label1 [label="extends", pos="-0.8,-3.8!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
+ extends_label2 [label="extends", pos="0.65,-3.7!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
+ extends_label3 [label="extends", pos="0.65,-5.3!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
 
 }
 ----

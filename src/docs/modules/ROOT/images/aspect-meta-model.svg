@@ -710,89 +710,195 @@
 <path fill="none" stroke="#000000" d="M413.86,-257C411.89,-257 390.25,-257 376.01,-257"/>
 <polygon fill="none" stroke="#000000" points="375.74,-257 369.74,-261 363.74,-257 369.74,-253 375.74,-257"/>
 </g>
-<!-- properties_label1 -->
+<!-- entity_south1 -->
 <g id="node67" class="node">
+<title>entity_south1</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="176.4" cy="-331.88" rx="0" ry="0"/>
+</g>
+<!-- abstract_entity_north1 -->
+<g id="node68" class="node">
+<title>abstract_entity_north1</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="176.4" cy="-296.6" rx="0" ry="0"/>
+</g>
+<!-- entity_south1&#45;&gt;abstract_entity_north1 -->
+<g id="edge41" class="edge">
+<title>entity_south1&#45;&gt;abstract_entity_north1</title>
+<path fill="none" stroke="#000000" d="M176.4,-331.78C176.4,-329.77 176.4,-298.64 176.4,-296.7"/>
+<text text-anchor="middle" x="167.9" y="-317.24" font-family="Roboto Condensed" font-size="10.00" fill="#000000">0..1</text>
+</g>
+<!-- entity_south2 -->
+<g id="node69" class="node">
+<title>entity_south2</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="248.4" cy="-331.88" rx="0" ry="0"/>
+</g>
+<!-- help23 -->
+<g id="node71" class="node">
+<title>help23</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="248.4" cy="-314.6" rx="0" ry="0"/>
+</g>
+<!-- entity_south2&#45;&gt;help23 -->
+<g id="edge42" class="edge">
+<title>entity_south2&#45;&gt;help23</title>
+<path fill="none" stroke="#000000" d="M248.4,-331.83C248.4,-330.85 248.4,-315.6 248.4,-314.65"/>
+<text text-anchor="middle" x="239.9" y="-315.24" font-family="Roboto Condensed" font-size="10.00" fill="#000000">0..1</text>
+</g>
+<!-- entity_south3 -->
+<g id="node70" class="node">
+<title>entity_south3</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="342" cy="-331.88" rx="0" ry="0"/>
+</g>
+<!-- help24 -->
+<g id="node72" class="node">
+<title>help24</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="342" cy="-314.6" rx="0" ry="0"/>
+</g>
+<!-- entity_south3&#45;&gt;help24 -->
+<g id="edge43" class="edge">
+<title>entity_south3&#45;&gt;help24</title>
+<path fill="none" stroke="#000000" d="M342,-331.83C342,-330.85 342,-315.6 342,-314.65"/>
+</g>
+<!-- help23&#45;&gt;help24 -->
+<g id="edge44" class="edge">
+<title>help23&#45;&gt;help24</title>
+<path fill="none" stroke="#000000" d="M248.47,-314.6C251.26,-314.6 339.19,-314.6 341.93,-314.6"/>
+</g>
+<!-- abstract_entity_south1 -->
+<g id="node73" class="node">
+<title>abstract_entity_south1</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="248.4" cy="-217.4" rx="0" ry="0"/>
+</g>
+<!-- help25 -->
+<g id="node75" class="node">
+<title>help25</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="248.4" cy="-199.4" rx="0" ry="0"/>
+</g>
+<!-- abstract_entity_south1&#45;&gt;help25 -->
+<g id="edge45" class="edge">
+<title>abstract_entity_south1&#45;&gt;help25</title>
+<path fill="none" stroke="#000000" d="M248.4,-217.35C248.4,-216.33 248.4,-200.44 248.4,-199.45"/>
+<text text-anchor="middle" x="239.9" y="-200.4" font-family="Roboto Condensed" font-size="10.00" fill="#000000">0..1</text>
+</g>
+<!-- abstract_entity_south2 -->
+<g id="node74" class="node">
+<title>abstract_entity_south2</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="342" cy="-217.4" rx="0" ry="0"/>
+</g>
+<!-- help26 -->
+<g id="node76" class="node">
+<title>help26</title>
+<ellipse fill="#e8eef7" stroke="#000000" cx="342" cy="-199.4" rx="0" ry="0"/>
+</g>
+<!-- abstract_entity_south2&#45;&gt;help26 -->
+<g id="edge46" class="edge">
+<title>abstract_entity_south2&#45;&gt;help26</title>
+<path fill="none" stroke="#000000" d="M342,-217.35C342,-216.33 342,-200.44 342,-199.45"/>
+</g>
+<!-- help25&#45;&gt;help26 -->
+<g id="edge47" class="edge">
+<title>help25&#45;&gt;help26</title>
+<path fill="none" stroke="#000000" d="M248.47,-199.4C251.26,-199.4 339.19,-199.4 341.93,-199.4"/>
+</g>
+<!-- properties_label1 -->
+<g id="node77" class="node">
 <title>properties_label1</title>
 <polygon fill="white" stroke="white" points="86.4,-544.8 50.4,-544.8 50.4,-530.8 86.4,-530.8 86.4,-544.8"/>
 <text text-anchor="middle" x="68.4" y="-535.6" font-family="Roboto Condensed" font-size="9.00" fill="#000000">properties</text>
 </g>
 <!-- input_label -->
-<g id="node68" class="node">
+<g id="node78" class="node">
 <title>input_label</title>
 <polygon fill="white" stroke="white" points="86.4,-386.4 50.4,-386.4 50.4,-372.4 86.4,-372.4 86.4,-386.4"/>
 <text text-anchor="middle" x="68.4" y="-377.2" font-family="Roboto Condensed" font-size="9.00" fill="#000000">input</text>
 </g>
 <!-- output_label -->
-<g id="node69" class="node">
+<g id="node79" class="node">
 <title>output_label</title>
 <polygon fill="white" stroke="white" points="122.4,-357.6 86.4,-357.6 86.4,-343.6 122.4,-343.6 122.4,-357.6"/>
 <text text-anchor="middle" x="104.4" y="-348.4" font-family="Roboto Condensed" font-size="9.00" fill="#000000">output</text>
 </g>
 <!-- operations_label -->
-<g id="node70" class="node">
+<g id="node80" class="node">
 <title>operations_label</title>
 <polygon fill="white" stroke="white" points="57.6,-415.2 21.6,-415.2 21.6,-401.2 57.6,-401.2 57.6,-415.2"/>
 <text text-anchor="middle" x="39.6" y="-406" font-family="Roboto Condensed" font-size="9.00" fill="#000000">operations</text>
 </g>
 <!-- events_label -->
-<g id="node71" class="node">
+<g id="node81" class="node">
 <title>events_label</title>
 <polygon fill="white" stroke="white" points="36,-300 0,-300 0,-286 36,-286 36,-300"/>
 <text text-anchor="middle" x="18" y="-290.8" font-family="Roboto Condensed" font-size="9.00" fill="#000000">events</text>
 </g>
 <!-- parameters_label -->
-<g id="node72" class="node">
+<g id="node82" class="node">
 <title>parameters_label</title>
 <polygon fill="white" stroke="white" points="453.6,-228 417.6,-228 417.6,-214 453.6,-214 453.6,-228"/>
 <text text-anchor="middle" x="435.6" y="-218.8" font-family="Roboto Condensed" font-size="9.00" fill="#000000">parameters</text>
 </g>
 <!-- characteristic_label -->
-<g id="node73" class="node">
+<g id="node83" class="node">
 <title>characteristic_label</title>
 <polygon fill="white" stroke="white" points="479,-508.8 421,-508.8 421,-494.8 479,-494.8 479,-508.8"/>
 <text text-anchor="middle" x="450" y="-499.6" font-family="Roboto Condensed" font-size="9.00" fill="#000000">characteristic</text>
 </g>
 <!-- baseCharacteristic_label -->
-<g id="node74" class="node">
+<g id="node84" class="node">
 <title>baseCharacteristic_label</title>
 <polygon fill="white" stroke="white" points="662.4,-541.2 626.4,-541.2 626.4,-527.2 662.4,-527.2 662.4,-541.2"/>
 <text text-anchor="middle" x="644.4" y="-532" font-family="Roboto Condensed" font-size="9.00" fill="#000000">baseCharacteristic</text>
 </g>
 <!-- unit_label -->
-<g id="node75" class="node">
+<g id="node85" class="node">
 <title>unit_label</title>
 <polygon fill="white" stroke="white" points="489.6,-357.6 453.6,-357.6 453.6,-343.6 489.6,-343.6 489.6,-357.6"/>
 <text text-anchor="middle" x="471.6" y="-348.4" font-family="Roboto Condensed" font-size="9.00" fill="#000000">unit</text>
 </g>
 <!-- properties_label2 -->
-<g id="node76" class="node">
+<g id="node86" class="node">
 <title>properties_label2</title>
 <polygon fill="white" stroke="white" points="396,-433.2 360,-433.2 360,-419.2 396,-419.2 396,-433.2"/>
 <text text-anchor="middle" x="378" y="-424" font-family="Roboto Condensed" font-size="9.00" fill="#000000">properties</text>
 </g>
 <!-- quantityKind_label2 -->
-<g id="node77" class="node">
+<g id="node87" class="node">
 <title>quantityKind_label2</title>
 <polygon fill="white" stroke="white" points="496.8,-199.2 460.8,-199.2 460.8,-185.2 496.8,-185.2 496.8,-199.2"/>
 <text text-anchor="middle" x="478.8" y="-190" font-family="Roboto Condensed" font-size="9.00" fill="#000000">quantityKind</text>
 </g>
 <!-- referenceUnit_label2 -->
-<g id="node78" class="node">
+<g id="node88" class="node">
 <title>referenceUnit_label2</title>
 <polygon fill="white" stroke="white" points="604.6,-199.2 554.6,-199.2 554.6,-185.2 604.6,-185.2 604.6,-199.2"/>
 <text text-anchor="middle" x="579.6" y="-190" font-family="Roboto Condensed" font-size="9.00" fill="#000000">referenceUnit</text>
 </g>
 <!-- constraint_label -->
-<g id="node79" class="node">
+<g id="node89" class="node">
 <title>constraint_label</title>
 <polygon fill="white" stroke="white" points="489.4,-613.2 439.4,-613.2 439.4,-599.2 489.4,-599.2 489.4,-613.2"/>
 <text text-anchor="middle" x="464.4" y="-604" font-family="Roboto Condensed" font-size="9.00" fill="#000000">constraint</text>
 </g>
 <!-- properties_label3 -->
-<g id="node80" class="node">
+<g id="node90" class="node">
 <title>properties_label3</title>
 <polygon fill="white" stroke="white" points="424.8,-289.2 388.8,-289.2 388.8,-275.2 424.8,-275.2 424.8,-289.2"/>
 <text text-anchor="middle" x="406.8" y="-280" font-family="Roboto Condensed" font-size="9.00" fill="#000000">properties</text>
+</g>
+<!-- extends_label1 -->
+<g id="node91" class="node">
+<title>extends_label1</title>
+<polygon fill="white" stroke="white" points="208.8,-314.4 172.8,-314.4 172.8,-300.4 208.8,-300.4 208.8,-314.4"/>
+<text text-anchor="middle" x="190.8" y="-305.2" font-family="Roboto Condensed" font-size="9.00" fill="#000000">extends</text>
+</g>
+<!-- extends_label2 -->
+<g id="node92" class="node">
+<title>extends_label2</title>
+<polygon fill="white" stroke="white" points="313.2,-321.6 277.2,-321.6 277.2,-307.6 313.2,-307.6 313.2,-321.6"/>
+<text text-anchor="middle" x="295.2" y="-312.4" font-family="Roboto Condensed" font-size="9.00" fill="#000000">extends</text>
+</g>
+<!-- extends_label3 -->
+<g id="node93" class="node">
+<title>extends_label3</title>
+<polygon fill="white" stroke="white" points="313.2,-206.4 277.2,-206.4 277.2,-192.4 313.2,-192.4 313.2,-206.4"/>
+<text text-anchor="middle" x="295.2" y="-197.2" font-family="Roboto Condensed" font-size="9.00" fill="#000000">extends</text>
 </g>
 </g>
 </svg>
