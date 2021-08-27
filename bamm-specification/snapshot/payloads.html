@@ -211,10 +211,10 @@ localized string as the value.</p>
 (with <code>${propertyName}</code> being the name of the JSON property), recursively using the same rules.</p>
 </li>
 <li>
-<p>If the Property&#8217;s effective data type is an Entity which refines another Entity, it is serialized
-as a named JSON object (with <code>${propertyName}</code> being the name of the JSON property), with the
-Properties for the Entity being the refining Properties as well as the Properties from the
-refined Entity which are themselves not refined.</p>
+<p>If the Property&#8217;s effective data type is an Entity which extends another Entity, it is serialized
+as a named JSON object (with <code>${propertyName}</code> being the name of the JSON property). The Properties included for
+the Entity, are the Properties from the Entity itself as well as all Properties from the extended Entities, i.e.
+all Properties from <code>?thisEntity bamm:extends* []</code>.</p>
 </li>
 <li>
 <p>If the Property&#8217;s leaf Characteristic is a

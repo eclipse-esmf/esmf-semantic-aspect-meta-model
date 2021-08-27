@@ -435,27 +435,6 @@ for more details.</p></td>
    bamm:characteristic bamm-c:Text .</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The characteristic attribute may be omitted. This allows users to reuse the Property or the Entity
-using this Property and set the Characteristic specific to the users domain at a later point in
-time. A Property which is declared without a Characteristic must always be <em>refined</em>, i.e.
-overridden, in an Aspect Model, i.e. an Aspect Model may not contain a Property where the
-Characteristic has not been set either directly or by refining the Property. A Property can be
-refined by using the <code>bamm:refines</code> attribute and setting the <code>bamm:characteristic</code> attribute. The
-main use case is to be able to create shared Entities which have some Properties which are fixed and
-some Properties which can be further refined in an Aspect Model that uses the shared Entity (see
-<a href="#declaring-time-series">Declaring Time Series</a> below as an example).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
-   bamm:name "propertyRefiningPropertyWithoutCharacteristic" ;
-   bamm:characteristic :MachineState .
-
-:propertyWithoutCharacteristic a bamm:Property ;
-   bamm:name "propertyWithoutCharacteristic" .</code></pre>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="declaring-characteristics"><a class="anchor" href="#declaring-characteristics"></a>Declaring Characteristics</h3>
@@ -775,18 +754,17 @@ Characteristic is used. This is a subclass of the <code>SortedSet</code> Charact
 <code>dataType</code> must be a subclass of the <code>TimeSeriesEntity</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code><a href="entities.html#time-series-entity" class="page">TimeSeriesEntity</a></code> has the two Properties <code>timestamp</code> and
-<code>value</code>. The <code>timestamp</code> Property is defined with the <code>Timestamp</code> Characteristic which describes
-values containing timestamps conforming to <code><a href="datatypes.html#data-types" class="page">xsd:dateTime</a></code>, a date
-and time with or without time zone. The <code>value</code> Property is defined without a Characteristic, hence
-the semantics of the value can be defined in the specific Aspect Model.</p>
+<p>The <code><a href="entities.html#time-series-entity" class="page">TimeSeriesEntity</a></code> is declared as an Abstract Entity. It defines the
+<code>timestamp</code> Property with the <code>Timestamp</code> Characteristic, which describes values containing timestamps conforming
+to <code><a href="datatypes.html#data-types" class="page">xsd:dateTime</a></code>, a date and time with or without time zone. No <code>value</code> Property is
+defined, hence the semantics of the value can be defined in the specific Aspect Model.</p>
 </div>
 <div class="paragraph">
 <p>To create a Time Series for a specific domain, the user should instantiate the <code>TimeSeries</code>
-Collection Characteristic and set the <code>dataType</code> to an Entity which refines the <code>TimeSeries</code> Entity
+Collection Characteristic and set the <code>dataType</code> to an Entity which extends the Abstract <code>TimeSeries</code> Entity
 in order to define the semantics for the <code>value</code> Property in the context of the specific domain.
-Please see the <a href="#declaring-entities">Declaring Entities</a> section for
-information on how to refine an Entity.</p>
+Please see the <a href="#declaring-abstract-entities">Declaring Abstract Entities</a> section for
+information on how to extend an Abstract Entity.</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -797,11 +775,12 @@ information on how to refine an Entity.</p>
    bamm:name "MachineStateTimeSeries" ;
    bamm:dataType :MachineStateTimeSeriesEntity .
 
-:MachineStateTimeSeriesEntity bamm:refines bamm-e:TimeSeriesEntity ;
+:MachineStateTimeSeriesEntity a bamm:Entity ;
    bamm:name "MachineStateTimeSeriesEntity" ;
+   bamm:extends bamm-e:TimeSeriesEntity ;
    bamm:properties ( :machineState ) .
 
-:machineState bamm:refines bamm-e:value ;
+:machineState a bamm:Property ;
    bamm:name "machineState" ;
    bamm:characteristic :MachineState .
 
@@ -1131,6 +1110,11 @@ Constraint</a> that limits the string to 80 characters.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The list of Properties which make up the Entity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:extends</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Entity which is extended by this Entity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -1143,32 +1127,65 @@ Constraint</a> that limits the string to 80 characters.</p>
    bamm:properties ( :errorCode :severity ) .</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="extending-entities"><a class="anchor" href="#extending-entities"></a>Extending Entities</h4>
 <div class="paragraph">
-<p>When an Entity is defined with a Property which has no Characteristic, for example the shared
-<code><a href="entities.html#time-series-entity" class="page">Time Series</a></code> Entity, the Entity needs to be refined in order
-to use it. This is done by declaring an Entity with <code>bamm:refines</code> and with a Property that in turn
-refines another Property. See the following example:</p>
+<p>Declaring that an Entity extends another Entity is done using the <code>bamm:extends</code> attribute in the Entity declaration.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:RefiningEntity bamm:refines :EntityToBeRefined ;
-    bamm:name "RefiningEntity" ;
-    bamm:properties ( :propertyRefiningPropertyWithoutCharacteristic ) .
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Student a bamm:Entity ;
+    bamm:name "Student" ;
+    bamm:extends :Person ;
+    bamm:properties ( :studentNumber ) .
 
-:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
-    bamm:name "propertyRefiningPropertyWithoutCharacteristic" ;
-    bamm:characteristic :MetricTemperature .
+:Teacher a bamm:Entity ;
+    bamm:name "Teacher" ;
+    bamm:extends :Person ;
+    bamm:properties ( :employeeNumber ) .
 
-:EntityToBeRefined a bamm:Entity ;
-    bamm:name "EntityToBeRefined" ;
-    bamm:properties ( :propertyWithCharacteristic :propertyWithoutCharacteristic ) .
+:Person a bamm:Entity ;
+    bamm:name "Person" ;
+    bamm:properties ( :name :surname ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The extending Entities <code>:Student</code> and <code>:Teacher</code> contain the Properties declared in the extended Entity <code>:Person</code> as well as
+the Properties in their own declarations.</p>
+</div>
+<div class="paragraph">
+<p>The effective Property names, i.e. the payload name when <code>bamm:payloadName</code> is used, or the <code>bamm:name</code> of the Property,
+must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="declaring-abstract-entities"><a class="anchor" href="#declaring-abstract-entities"></a>Declaring Abstract Entities</h4>
+<div class="paragraph">
+<p>It is also possible to declare Abstract Entities to share Properties across multiple Entities. An Abstract Entity must
+be extended by one or more Entities.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:VehicleComponent a bamm:AbstractEntity ;
+    bamm:name "VehicleComponent" ;
+    bamm:properties ( :typeNumber :manufacturer ) .
 
-:propertyWithCharacteristic a bamm:Property ;
-    bamm:name "propertyWithoutCharacteristic" ;
-    bamm:characteristic bamm-c:Timestamp .
+:Steeringwheel a bamm:Entity ;
+   bamm:name "Steeringwheel " ;
+   bamm:extends :VehicleComponent ;
+   bamm:properties ( :isMultifunction  ) .
 
-:propertyWithoutCharacteristic a bamm:Property ;
-    bamm:name "propertyWithoutCharacteristic" .</code></pre>
+:Seat a bamm:Entity ;
+   bamm:name "Seat" ;
+   bamm:extends :VehicleComponent ;
+   bamm:properties ( :material )</code></pre>
+</div>
 </div>
 </div>
 </div>
