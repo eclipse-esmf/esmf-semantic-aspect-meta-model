@@ -161,17 +161,11 @@ therefore be used: `xref:appendix:appendix.adoc#unit-centipoisePerBar[unit:centi
 A group of values which may be either of a scalar or Entity type. The values may be duplicated and
 are not ordered (i.e., bag semantics).
 
-NOTE: In the _Collection_ characteristics and its sub-Characteristics _List_, _Set_ and _Sorted
-Set_, the respective values for the attributes `bamm-c:allowDuplicates` and `bamm-c:ordered` have
-fixed values.
-
 See xref:modeling-guidelines.adoc#declaring-collections[declaring collections] for usage in an Aspect model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm-c:allowDuplicates` | Set to true | {ok}
-| `bamm-c:ordered` | Set to false | {ok}
 | `bamm:dataType` | Reference to a scalar or complex (Entity) data type. See Section "Type System"
   in the Aspect Meta Model. | {nok}
 | `bamm-c:elementCharacteristic` | Reference to a Characteristic which describes the individual
@@ -183,43 +177,19 @@ See xref:modeling-guidelines.adoc#declaring-collections[declaring collections] f
 
 A subclass of <<collection-characteristic>> which may contain duplicates and is ordered.
 
-[width="100%", options="header", cols="30,60,10"]
-|===
-| Attributes | Description | Required
-| `bamm-c:allowDuplicates` | Set to true | {ok}
-| `bamm-c:ordered` | Set to true | {ok}
-|===
-
 [[set-characteristic]]
 === Set
 
 A subclass of <<collection-characteristic>> which may not contain duplicates and is unordered.
 
-[width="100%", options="header", cols="30,60,10"]
-|===
-| Attributes | Description | Required
-| `bamm-c:allowDuplicates` | Set to false | {ok}
-| `bamm-c:ordered` | Set to false | {ok}
-|===
-
 [[sorted-set-characteristic]]
 === Sorted Set
-
-A subclass of <<collection-characteristic>> which may not contain duplicates and is ordered.
-
-[width="100%", options="header", cols="30,60,10"]
-|===
-| Attributes | Description | Required
-| `bamm-c:allowDuplicates` | Set to false | {ok}
-| `bamm-c:ordered` | Set to true | {ok}
-|===
 
 [[time-series-characteristic]]
 === Time Series
 
 A subclass of <<sorted-set-characteristic>> containing values with the exact point in time when the
-values where recorded. The values for the allowDuplicates and ordered attributes are inherited from
-the Sorted Set.
+values where recorded.
 
 See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect model.
 
