@@ -25,6 +25,8 @@ public enum KnownVersion {
 
    /**
     * Returns this version as a standard version string, e.g. 1.2.3
+    *
+    * @return version string representation
     */
    public String toVersionString() {
       return toString().replaceFirst( "BAMM_(\\d+)_(\\d+)_(\\d+)", "$1.$2.$3" );
