@@ -614,12 +614,15 @@ defining the data type, since it allows to completely express the semantics of t
 :NumberList a bamm-c:List ;
    bamm:name "NumberList" ;
    bamm-c:elementCharacteristic [
-      a bamm-c:RangeConstraint ;
+      a bamm-c:Trait ;
       bamm:name "ElementRange" ;
-      bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
-      bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
-      bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
       bamm-c:baseCharacteristic :Number ;
+      bamm-c:constraint [
+         a bamm-c:RangeConstraint ;
+         bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
+         bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
+         bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+      ] ;
    ] .
 
 :Number a bamm:Characteristic ;
@@ -647,14 +650,14 @@ defining the data type, since it allows to completely express the semantics of t
 </div>
 <div class="paragraph">
 <p>Example with literal <code>xsd:integer</code> values. Note that for <code>xsd:integer</code>, Turtle&#8217;s numeric literal
-syntax can be used: [source,turtle,subs="attributes+"]</p>
+syntax can be used:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>:PrimesBelowTwenty a bamm-c:Enumeration ;
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:PrimesBelowTwenty a bamm-c:Enumeration ;
    bamm:name "PrimesBelowTwenty" ;
    bamm:dataType xsd:integer ;
-   bamm-c:values ( 2 3 5 7 11 13 17 19 ) .</pre>
+   bamm-c:values ( 2 3 5 7 11 13 17 19 ) .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1078,10 +1081,13 @@ Constraint</a> that limits the string to 80 characters.</p>
    bamm:preferredName "Timestamps in January"@en ;
    bamm:description "Contains only timestamps in January of any year"@en ;
    bamm:characteristic [
-      a bamm-c:RegularExpressionConstraint ;
+      a bamm-c:Trait ;
       bamm:name "TimestampInJanuary" ;
-      bamm:value "\\d{4}-01-\\d\\dT.*" ;
-      bamm-c:baseCharacteristic bamm-c:Timestamp
+      bamm-c:baseCharacteristic bamm-c:Timestamp ;
+      bamm-c:constraint [
+         a bamm-c:RegularExpressionConstraint ;
+         bamm:value "\\d{4}-01-\\d\\dT.*" ;
+      ] ;
    ] .</code></pre>
 </div>
 </div>
