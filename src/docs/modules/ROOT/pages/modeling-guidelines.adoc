@@ -271,7 +271,8 @@ include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-string]
 ----
 
 Example with literal `xsd:integer` values. Note that for `xsd:integer`, Turtle's numeric literal
-syntax can be used: [source,turtle,subs="attributes+"]
+syntax can be used:
+[source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-integer]
 ----

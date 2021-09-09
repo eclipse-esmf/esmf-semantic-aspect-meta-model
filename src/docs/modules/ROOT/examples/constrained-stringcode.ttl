@@ -1,6 +1,6 @@
 # Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-# See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 # This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -51,9 +51,12 @@
    bamm:preferredName "Timestamps in January"@en ;
    bamm:description "Contains only timestamps in January of any year"@en ;
    bamm:characteristic [
-      a bamm-c:RegularExpressionConstraint ;
+      a bamm-c:Trait ;
       bamm:name "TimestampInJanuary" ;
-      bamm:value "\\d\{4\}-01-\\d\\dT.*" ;
-      bamm-c:baseCharacteristic bamm-c:Timestamp
+      bamm-c:baseCharacteristic bamm-c:Timestamp ;
+      bamm-c:constraint [
+         a bamm-c:RegularExpressionConstraint ;
+         bamm:value "\\d\{4\}-01-\\d\\dT.*" ;
+      ] ;
    ] .
 # end::regular-expression-sample[]
