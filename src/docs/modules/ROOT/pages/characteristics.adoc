@@ -363,7 +363,7 @@ Restricts a value to a specific language.
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm:languageCode` | An ISO 639-1
+| `bamm-c:languageCode` | An ISO 639-1
   xref:bamm-specification:appendix:appendix.adoc#iso639[[iso639\]] language code for the language of
   the value of the constrained Property, e.g., "de". | {ok}
 |===
@@ -376,7 +376,7 @@ Restricts a value to a specific locale, i.e., a language with additional region 
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm:localeCode` | An IETF BCP 47 xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]]
+| `bamm-c:localeCode` | An IETF BCP 47 xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]]
   language code for the locale of the value of the constrained Property, e.g., "de-DE". | {ok}
 |===
 
