@@ -436,20 +436,6 @@ therefore be used: <code><a href="appendix/appendix.html#unit-centipoisePerBar" 
 <p>A group of values which may be either of a scalar or Entity type. The values may be duplicated and
 are not ordered (i.e., bag semantics).</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In the <em>Collection</em> characteristics and its sub-Characteristics <em>List</em>, <em>Set</em> and <em>Sorted
-Set</em>, the respective values for the attributes <code>bamm-c:allowDuplicates</code> and <code>bamm-c:ordered</code> have
-fixed values.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>See <a href="modeling-guidelines.html#declaring-collections" class="page">declaring collections</a> for usage in an Aspect model.</p>
 </div>
@@ -467,16 +453,6 @@ fixed values.
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:allowDuplicates</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:ordered</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:dataType</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a scalar or complex (Entity) data type. See Section "Type System"
@@ -497,103 +473,22 @@ fixed values.
 <div class="paragraph">
 <p>A subclass of <a href="#collection-characteristic">Collection</a> which may contain duplicates and is ordered.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 60%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Attributes</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:allowDuplicates</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:ordered</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="set-characteristic"><a class="anchor" href="#set-characteristic"></a>Set</h3>
 <div class="paragraph">
 <p>A subclass of <a href="#collection-characteristic">Collection</a> which may not contain duplicates and is unordered.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 60%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Attributes</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:allowDuplicates</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:ordered</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="sorted-set-characteristic"><a class="anchor" href="#sorted-set-characteristic"></a>Sorted Set</h3>
-<div class="paragraph">
-<p>A subclass of <a href="#collection-characteristic">Collection</a> which may not contain duplicates and is ordered.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 30%;">
-<col style="width: 60%;">
-<col style="width: 10%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Attributes</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:allowDuplicates</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:ordered</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set to true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-</tbody>
-</table>
+
 </div>
 <div class="sect2">
 <h3 id="time-series-characteristic"><a class="anchor" href="#time-series-characteristic"></a>Time Series</h3>
 <div class="paragraph">
 <p>A subclass of <a href="#sorted-set-characteristic">Sorted Set</a> containing values with the exact point in time when the
-values where recorded. The values for the allowDuplicates and ordered attributes are inherited from
-the Sorted Set.</p>
+values where recorded.</p>
 </div>
 <div class="paragraph">
 <p>See <a href="modeling-guidelines.html#declaring-time-series" class="page">declaring time series</a> for usage in an Aspect model.</p>
