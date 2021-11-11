@@ -131,8 +131,12 @@ tasks.register<NodeTask>("antoraLocal") {
     setWorkingDir(project.projectDir)
 }
 
-tasks.findByName("publishToMavenLocal").also {
-    tasks.withType<Sign>().configureEach {
-        setEnabled(false)
+val disableSigning by tasks.registering {
+    doLast {
+        tasks.withType<Sign>().configureEach {
+            isEnabled = false
+        }
     }
 }
+
+tasks.getByName("publishToMavenLocal").dependsOn(disableSigning)
