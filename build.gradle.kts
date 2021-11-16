@@ -4,9 +4,9 @@ import com.moowork.gradle.node.task.NodeTask
 
 plugins {
     id("com.github.node-gradle.node") version "2.2.4"
-    id ("java-library")
-    id ("maven-publish")
-    id ("signing")
+    id("java-library")
+    id("maven-publish")
+    id("signing")
 }
 
 group = "io.openmanufacturing"
@@ -31,10 +31,10 @@ tasks.test {
 }
 
 dependencies {
-    testImplementation ("org.junit.jupiter:junit-jupiter:5.6.3")
-    testImplementation ("org.assertj:assertj-core:3.18.1")
-    testImplementation ("org.topbraid:shacl:1.3.1")
-    testImplementation ("io.vavr:vavr:0.10.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
+    testImplementation("org.assertj:assertj-core:3.18.1")
+    testImplementation("org.topbraid:shacl:1.3.1")
+    testImplementation("io.vavr:vavr:0.10.3")
 }
 
 publishing {
@@ -78,27 +78,28 @@ publishing {
                 username = System.getenv("OSSRH_USERNAME")
                 password = System.getenv("OSSRH_TOKEN")
             }
-            var repositoryUrl : String? = System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            val repositoryUrl: String =
+                System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             url = uri(repositoryUrl)
         }
     }
 }
 
 signing {
-    var signingKey : String? = System.getenv("PGP_KEY")
-    var signingPassword : String? = System.getenv("PGP_KEY_PASSWORD")
+    val signingKey: String? = System.getenv("PGP_KEY")
+    val signingPassword: String? = System.getenv("PGP_KEY_PASSWORD")
     useInMemoryPgpKeys(signingKey, signingPassword)
 
     sign(publishing.publications["mavenRelease"])
 }
 
 configure<NodeExtension> {
-    setVersion("12.13.1")
-    setNpmVersion("6.9.0")
-    setDownload(true)
-    setWorkDir(file("${project.buildDir}/node"))
-    setNpmWorkDir(file("${project.buildDir}/npm"))
-    setNodeModulesDir(file("${project.buildDir}"))
+    version = "12.13.1"
+    npmVersion = "6.9.0"
+    isDownload = true
+    workDir = file("${project.buildDir}/node")
+    npmWorkDir = file("${project.buildDir}/npm")
+    nodeModulesDir = file("${project.buildDir}")
 }
 
 val downloadAntoraCli = tasks.register<NpmTask>("downloadAntoraCli") {
@@ -118,14 +119,24 @@ val downloadPlantUml = tasks.register<NpmTask>("downloadPlantUml") {
 
 tasks.register<NodeTask>("antora") {
     setDependsOn(listOf(downloadAntoraCli, downloadAntoraSiteGeneratorLunr, downloadPlantUml))
-    setScript(file("${project.buildDir}/node_modules/@antora/cli/bin/antora"))
+    script = file("${project.buildDir}/node_modules/@antora/cli/bin/antora")
     setArgs(listOf("--generator", "antora-site-generator-lunr", "site.yml", "--stacktrace"))
     setWorkingDir(project.projectDir)
 }
 
 tasks.register<NodeTask>("antoraLocal") {
     setDependsOn(listOf(downloadAntoraCli, downloadAntoraSiteGeneratorLunr, downloadPlantUml))
-    setScript(file("${project.buildDir}/node_modules/@antora/cli/bin/antora"))
+    script = file("${project.buildDir}/node_modules/@antora/cli/bin/antora")
     setArgs(listOf("--generator", "antora-site-generator-lunr", "site-local.yml", "--stacktrace"))
     setWorkingDir(project.projectDir)
 }
+
+val disableSigning by tasks.registering {
+    doLast {
+        tasks.withType<Sign>().configureEach {
+            isEnabled = false
+        }
+    }
+}
+
+tasks.getByName("publishToMavenLocal").dependsOn(disableSigning)
