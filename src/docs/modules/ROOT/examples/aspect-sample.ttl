@@ -153,10 +153,10 @@
    bamm:characteristic bamm-c:Text .
 
 # tag::either-declaration[]
-:Result a bamm:Either ;
+:Result a bamm-c:Either ;
    bamm:name "Result" ;
-   bamm:left :ErrorCode ;
-   bamm:right :SuccessCode .
+   bamm-c:left :ErrorCode ;
+   bamm-c:right :SuccessCode .
 
 :ErrorCode a bamm-c:SingleEntity ;
    bamm:name "ErrorCode" ;
