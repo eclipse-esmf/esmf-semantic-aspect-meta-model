@@ -32,7 +32,7 @@ More specifically the repository has the following branches:
 name of branch | description
 ----| ----
 `main` | Contains the latest state of the repository
-`v{version_number}-RC` | A state on which the working group agreed on as a release candidate but which is missing the approval by the OMP. 
+`v{version_number}-agreement` | A state on which the working group agreed on, but which is missing the approval by the organization team of the OMP. 
 `v{version_number}` | A release of the respective version which is approved by the working group and the OMP. 
 `feature/{feature-name}` | Contains the development on a specific feature and is intended to be merged back into the `main` branch as soon as possible. Note, that it is recommended for contributors to create and develop feature branches in a personal fork and not the upstream repository.
 `bug/{bug-name}` | Contains the development of (usually smaller) changes in files of the repository that do not introduce new functionality but fix mistakes, errors or inconsistencies. These branches should be merged back into the `main`branch as soon as possible.
@@ -181,6 +181,15 @@ Additional labels for pre-release and build metadata are available as extensions
 ````
  
 Whereas the Major version must be incremented if the API has backward-incompatible changes (e.g., has breaking changes), the Minor version must be changed if new backward-compatible features are introduced and, the Patch version must be incremented if backward-compatible bugfixes are introduced.
+
+### Pre-Release
+The working group may decide to add a pre-release identifier to the release number. This identifies the state of the released content as agreed but not finalized and thus being subject to change. Hence, it is not advised to use releases which include a pre-release identifier for productive scenarios. 
+
+For the pre-release identifieres the working group distinguishes between the following:
+* "M" - Milestone: A milestone release represents an intermediate state on the path to a new actual release. There is the option for further breaking changes between a milestone and the subsequent release. The aim of a milstone release is to allow early adopters to make first evaluation of new features. 
+* "RC" - Release Candidate:  A release candidate that may be released prior to an actual release to allow final testing and feedback. Hence, the differences between the subsequent release and the RC should be as small and do not add new major features. 
+
+
 ### Breaking Changes
 For the definition of a breaking change, we follow the definition as in the [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#123-definition-of-a-breaking-change) which are licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0). This definition states:
 ````
