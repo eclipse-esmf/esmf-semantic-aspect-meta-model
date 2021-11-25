@@ -199,7 +199,7 @@ Examples for breaking changes are:
 * Renaming an existing Property
 * Making an optional Property mandatory
 * Removing an existing Characteristic
-* Remove of an attribute of an existing class
+* Removing an attribute of an existing class
 * Change of the relationship between two classes (inheritance, aggregation, composition, etc.)
 
 ### Version Syntax for Specific Environments
