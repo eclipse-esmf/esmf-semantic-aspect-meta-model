@@ -49,6 +49,7 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 The Trait is used to add one or more <<constraints>> to another Characteristic, which is referred to
 as the "base Characteristic".
+A Trait itself has no `bamm:dataType`, because it inherits the type of its `bamm-c:baseCharacteristic`.
 
 See xref:modeling-guidelines.adoc#declaring-constraints[declaring constraints] for usage in an Aspect model.
 
@@ -217,6 +218,7 @@ a `bamm:dataType`, this must therefore be done when instantiating the Characteri
 === Either
 
 Describes a Property whose value can have one of two possible types (a disjoint union).
+This Characteristic does not have one explicit `bamm:dataType`, as it can be the datatype of either the left or the right.
 
 See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage in an Aspect model.
 
