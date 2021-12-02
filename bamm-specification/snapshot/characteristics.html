@@ -222,7 +222,8 @@ BAMM Aspect Meta Model.</p>
 <h3 id="trait-characteristic"><a class="anchor" href="#trait-characteristic"></a>Trait</h3>
 <div class="paragraph">
 <p>The Trait is used to add one or more <a href="#constraints">Constraints</a> to another Characteristic, which is referred to
-as the "base Characteristic".</p>
+as the "base Characteristic".
+A Trait itself has no <code>bamm:dataType</code>, because it inherits the type of its <code>bamm-c:baseCharacteristic</code>.</p>
 </div>
 <div class="paragraph">
 <p>See <a href="modeling-guidelines.html#declaring-constraints" class="page">declaring constraints</a> for usage in an Aspect model.</p>
@@ -535,7 +536,8 @@ a <code>bamm:dataType</code>, this must therefore be done when instantiating the
 <div class="sect2">
 <h3 id="either-characteristic"><a class="anchor" href="#either-characteristic"></a>Either</h3>
 <div class="paragraph">
-<p>Describes a Property whose value can have one of two possible types (a disjoint union).</p>
+<p>Describes a Property whose value can have one of two possible types (a disjoint union).
+This Characteristic does not have one explicit <code>bamm:dataType</code>, as it can be the datatype of either the left or the right.</p>
 </div>
 <div class="paragraph">
 <p>See <a href="modeling-guidelines.html#declaring-either" class="page">declaring either</a> for usage in an Aspect model.</p>
