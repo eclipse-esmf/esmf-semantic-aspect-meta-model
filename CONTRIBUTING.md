@@ -203,12 +203,14 @@ The following table gives examples for breaking and non-breaking changes:
 Examples for non-breaking changes are:
 * Adding a new Property
 * Making a mandatory Property optional
+* Adding a new Characteristic
 
 Examples for breaking changes are:
 * Renaming an existing Property
 * Making an optional Property mandatory
-* Adding values to an Enumeration
-* Changing values in an Enumeration
+* Removing an existing Characteristic
+* Removing an attribute of an existing class
+* Change of the relationship between two classes (inheritance, aggregation, composition, etc.)
 
 ### Version Syntax for Specific Environments
 
