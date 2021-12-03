@@ -521,7 +521,7 @@ Operations have the following attributes:
 | `bamm:input` | A list of references to Properties that describe the input to the operation. The
   attribute must be present, but the list may be empty. | {ok}
 | `bamm:output` | A single reference to a Property that describes the output of the operation. |
-  {ok}
+  {nok}
 |===
 
 Example:
