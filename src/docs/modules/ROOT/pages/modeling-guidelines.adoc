@@ -423,7 +423,7 @@ check if it can be deconstructed using the deconstruction rule and reconstructed
 i.e., that the deconstruction rule actually does what the model author intended.
 
 [[declaring-constraints]]
-=== Declaring Constraints
+=== Declaring Constraints and Traits
 
 Consider the `numbers` Property that uses an instance of the `List` Characteristic:
 
