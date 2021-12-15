@@ -460,6 +460,8 @@ An example showing the xref:characteristics.adoc#regular-expression-constraint[R
 include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
 ----
 
+NOTE: When writing the `bamm:value`, backslashes (`\`) need to be escaped in order to produce valid RDF/Turtle syntax, i.e. write `\\` instead of `\`.
+
 [[declaring-entities]]
 === Declaring Entities
 
