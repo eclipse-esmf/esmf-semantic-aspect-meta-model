@@ -150,9 +150,20 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
       final String instanceName = "TestCharacteristicInstanceWithDisallowedDataType";
       final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
       final SemanticError resultForDataType = new SemanticError(
-            "The dataType (see value) that is used as dataType on the Characteristic (see focusNode) is neither an allowed xsd or rdf type, nor a type that is defined as rdfs:Class.",
-            instanceId, bammUrns.datatypeUrn, VIOLATION_URN,
-            "http://www.w3.org/2001/XMLSchema#maxExclusive" );
+            MESSAGE_INVALID_DATA_TYPE, instanceId, bammUrns.datatypeUrn, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#maxExclusive" );
+      expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
+   public void testCharacteristicInstanceWithCharacteristicAsDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+
+      final String instanceName = "TestCharacteristicInstanceWithCharacteristicAsDataType";
+      final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
+      final String value = String.format( "urn:bamm:io.openmanufacturing:characteristic:%s#Text", metaModelVersion.toVersionString() );
+      final SemanticError resultForDataType = new SemanticError(
+            MESSAGE_INVALID_DATA_TYPE, instanceId, bammUrns.datatypeUrn, VIOLATION_URN, value );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
    }
 }
