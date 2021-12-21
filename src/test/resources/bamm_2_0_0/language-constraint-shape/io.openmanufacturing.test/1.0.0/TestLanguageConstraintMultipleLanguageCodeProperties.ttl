@@ -17,5 +17,5 @@
 
 :TestLanguageConstraintMultipleLanguageCodeProperties a bamm-c:LanguageConstraint ;
    bamm:name "TestLanguageConstraintMultipleLanguageCodeProperties" ;
-   bamm-c:languageCode "DE_de" ;
-   bamm-c:languageCode "EN_en" .
+   bamm-c:languageCode "de" ;
+   bamm-c:languageCode "en" .
