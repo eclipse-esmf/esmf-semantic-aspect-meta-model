@@ -140,3 +140,55 @@ val disableSigning by tasks.registering {
 }
 
 tasks.getByName("publishToMavenLocal").dependsOn(disableSigning)
+
+/**
+ * Downloads the BCP 47 Language Tag Registry as defined by iana,
+ * @see <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry</a>,
+ * is JSON format.
+ * The types which are required for the validation of the Locale Constraint, are extracted and written to a javascript file.
+ */
+val downloadBCP47LanguageTagRegistry = tasks.register( "downloadBCP47LanguageTagRegistry" ) {
+    val languageTagRegistryScriptFile = file( "src/main/resources/bamm/scripts/languageRegistry.js" )
+    val languageTagRegistryUrl = uri( "https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json" ).toURL()
+    val languageTagRegistry: ArrayList<Map<String, String>> = groovy.json.JsonSlurper().parse( languageTagRegistryUrl ) as ArrayList<Map<String, String>>
+    val cleanedLanguageTagRegistry = kotlin.collections.HashMap<String, ArrayList<String>>()
+    val grandfathered = ArrayList<String>()
+    val languages = ArrayList<String>()
+    val extlangs = ArrayList<String>()
+    val scripts = ArrayList<String>()
+    val regions = ArrayList<String>()
+    val variants = ArrayList<String>()
+    languageTagRegistry.forEach {
+        val type = it["Type"]
+        if ( type.equals( "grandfathered" ) ) {
+            it["Tag"]?.let { tag -> grandfathered.add( tag ) }
+        }
+        if ( type.equals( "language" ) ) {
+            it["Subtag"]?.let { subtag -> languages.add( subtag ) }
+        }
+        if ( type.equals( "extlang" ) ) {
+            it["Subtag"]?.let { subtag -> extlangs.add( subtag ) }
+        }
+        if ( type.equals( "script" ) ) {
+            it["Subtag"]?.let { subtag -> scripts.add( subtag ) }
+        }
+        if ( type.equals( "region" ) ) {
+            it["Subtag"]?.let { subtag -> regions.add( subtag ) }
+        }
+        if ( type.equals( "variant" ) ) {
+            it["Subtag"]?.let { subtag -> variants.add( subtag ) }
+        }
+    }
+    cleanedLanguageTagRegistry["grandfathered"] = grandfathered
+    cleanedLanguageTagRegistry["languages"] = languages
+    cleanedLanguageTagRegistry["extlangs"] = extlangs
+    cleanedLanguageTagRegistry["scripts"] = scripts
+    cleanedLanguageTagRegistry["regions"] = regions
+    cleanedLanguageTagRegistry["variants"] = variants
+
+    val cleanedLanguageTagRegistryJson = groovy.json.JsonOutput.toJson( cleanedLanguageTagRegistry )
+    val languageRegistryScript = "var languageRegistryAsJson = '$cleanedLanguageTagRegistryJson'"
+    languageTagRegistryScriptFile.outputStream().write( languageRegistryScript.toByteArray() )
+}
+
+tasks.compileJava.get().dependsOn( downloadBCP47LanguageTagRegistry )

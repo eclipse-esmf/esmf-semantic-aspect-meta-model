@@ -213,7 +213,12 @@ bamm-c:LocaleConstraintShape
       sh:minCount 1 ;
       sh:maxCount 1 ;
       sh:name "localeCode" ;
-      sh:description "An IETF BCP 47 locale code for the language of the value of the constrained Property"
+      sh:description "An IETF BCP 47 locale code for the language of the value of the constrained Property" ;
+      sh:js [
+         a sh:JSConstraint ;
+         sh:jsLibrary bamm:jsValidations ;
+         sh:jsFunctionName "isValidBCP47LanguageTag" ;
+      ] ;
    ] .
 
 bamm-c:EncodingConstraintShape
