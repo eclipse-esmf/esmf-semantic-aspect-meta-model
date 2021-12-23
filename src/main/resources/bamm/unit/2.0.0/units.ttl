@@ -49,7 +49,7 @@
    a                         rdf:Property ;
    bamm:name                 "quantityKind" ;
    rdfs:domain               :Unit ;
-   rdfs:range                :quantityKind .
+   rdfs:range                :QuantityKind .
 
 :referenceUnit
    a                         rdf:Property ;
