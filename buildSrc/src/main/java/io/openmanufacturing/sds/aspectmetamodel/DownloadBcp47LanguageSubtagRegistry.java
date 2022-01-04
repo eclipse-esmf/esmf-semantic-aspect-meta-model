@@ -43,7 +43,8 @@ public class DownloadBcp47LanguageSubtagRegistry extends DefaultTask {
    public void run() throws IOException {
       final File languageTagRegistryScriptFile = Path.of( "src/main/resources/bamm/scripts/language-registry.js" )
                                                      .toFile();
-      if ( !languageTagRegistryScriptFile.getParentFile().mkdirs() ) {
+      final File targetDirectory = languageTagRegistryScriptFile.getParentFile();
+      if ( !targetDirectory.exists() && !targetDirectory.mkdirs() ) {
          throw new IOException( "Could not create directory: " + languageTagRegistryScriptFile.getParent() );
       }
       final URL languageTagRegistryUrl = URI.create(
