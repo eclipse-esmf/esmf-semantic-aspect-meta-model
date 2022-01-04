@@ -28,7 +28,7 @@ public class DownloadBcp47LanguageSubtagRegistry extends DefaultTask {
    @TaskAction
    @SuppressWarnings( "unchecked" )
    public void run() throws IOException {
-      final File languageTagRegistryScriptFile = Path.of( "src/main/resources/bamm/scripts/languageRegistry.js" )
+      final File languageTagRegistryScriptFile = Path.of( "src/main/resources/bamm/scripts/language-registry.js" )
                                                      .toFile();
       if ( !languageTagRegistryScriptFile.getParentFile().mkdirs() ) {
          throw new IOException( "Could not create directory: " + languageTagRegistryScriptFile.getParent() );
