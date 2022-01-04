@@ -64,4 +64,4 @@ bamm:jsValidations
 
 bamm:languageRegistry
    a sh:JSLibrary ;
-   sh:jsLibraryURL "bamm://scripts/languageRegistry.js"^^xsd:anyURI .
+   sh:jsLibraryURL "bamm://scripts/language-registry.js"^^xsd:anyURI .
