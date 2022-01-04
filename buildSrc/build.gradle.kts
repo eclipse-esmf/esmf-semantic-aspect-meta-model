@@ -1,5 +1,9 @@
 plugins {
-    `java-gradle-plugin`
+    java
+}
+
+dependencies {
+    gradleApi()
 }
 
 repositories {
