@@ -182,7 +182,7 @@ bamm-c:LanguageConstraintShape
       sh:path bamm-c:languageCode ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The language code must be a valid according to ISO 639 1." ;
+         sh:message "The language code must be a valid according to ISO 639-1." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value

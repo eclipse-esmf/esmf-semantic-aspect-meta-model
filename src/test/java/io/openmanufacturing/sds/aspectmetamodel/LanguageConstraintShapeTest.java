@@ -58,7 +58,7 @@ public class LanguageConstraintShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLanguageConstraintInvalidLanguageCode";
 
-      final SemanticError result = new SemanticError( "The language code must be a valid according to ISO 639 1.", focusNode,
+      final SemanticError result = new SemanticError( "The language code must be a valid according to ISO 639-1.", focusNode,
             bammUrns.languageCodeUrn, VIOLATION_URN, "DE_de" );
       expectSemanticValidationErrors( "language-constraint-shape", "TestLanguageConstraintInvalidLanguageCode", metaModelVersion, result );
    }
