@@ -15,6 +15,6 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestLanguageConstraint a bamm-c:LanguageConstraint ;
-   bamm:name "TestLanguageConstraint" ;
-   bamm-c:languageCode "de" .
+:TestLanguageConstraintInvalidLanguageCode a bamm-c:LanguageConstraint ;
+   bamm:name "TestLanguageConstraintInvalidLanguageCode" ;
+   bamm-c:languageCode "DE_de" .
