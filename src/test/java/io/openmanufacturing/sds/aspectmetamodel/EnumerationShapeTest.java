@@ -54,18 +54,6 @@ public class EnumerationShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testValueIsNotOfTypePropertyExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEnumerationValueIsNotOfTypeProperty";
-
-      final SemanticError resultForName = new SemanticError( MESSAGE_VALUE_NOT_OF_DATATYPE,
-            focusNode, bammUrns.valuesUrn, VIOLATION_URN, "" );
-      expectSemanticValidationErrors( "enumeration-shape", "TestEnumerationValueIsNotOfTypeProperty",
-            metaModelVersion, resultForName );
-   }
-
-   @ParameterizedTest
-   @MethodSource( value = "allVersions" )
    public void testValueIsNotALiteralTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEnumerationValueIsNotALiteralType";
