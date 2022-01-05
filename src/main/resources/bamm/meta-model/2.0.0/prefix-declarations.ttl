@@ -59,4 +59,9 @@ bamm:prefixDeclarations
 
 bamm:jsValidations
    a sh:JSLibrary ;
-   sh:jsLibraryURL "bamm://characteristic/2.0.0/characteristic-validations.js"^^xsd:anyURI .
+   sh:jsLibraryURL "bamm://characteristic/2.0.0/characteristic-validations.js"^^xsd:anyURL ;
+   sh:jsLibrary bamm:languageRegistry .
+
+bamm:languageRegistry
+   a sh:JSLibrary ;
+   sh:jsLibraryURL "bamm://scripts/language-registry.js"^^xsd:anyURI .

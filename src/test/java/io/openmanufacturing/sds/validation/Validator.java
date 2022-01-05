@@ -142,6 +142,11 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
             return Optional.ofNullable( resource ).map( URL::toString );
          } );
       }
+      if ( bammUrl.startsWith( "bamm://scripts/" ) ) {
+         final String resourcePath = bammUrl.replace( "bamm://", "bamm/" );
+         final URL resource = Validator.class.getClassLoader().getResource( resourcePath );
+         return Optional.ofNullable( resource ).map( URL::toString );
+      }
       return Optional.empty();
    }
 }
