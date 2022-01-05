@@ -1,6 +1,7 @@
 import com.moowork.gradle.node.NodeExtension
 import com.moowork.gradle.node.npm.NpmTask
 import com.moowork.gradle.node.task.NodeTask
+import io.openmanufacturing.sds.aspectmetamodel.DownloadBcp47LanguageSubtagRegistry
 
 plugins {
     id("com.github.node-gradle.node") version "2.2.4"
@@ -141,8 +142,5 @@ val disableSigning by tasks.registering {
 
 tasks.getByName("publishToMavenLocal").dependsOn(disableSigning)
 
-val downloadBCP47LanguageTagRegistry = tasks.register( "downloadBCP47LanguageTagRegistry" ) {
-    io.openmanufacturing.sds.aspectmetamodel.BuildHelper.downloadBCP47LanguageTagRegistry()
-}
-
-tasks.compileJava.get().dependsOn( downloadBCP47LanguageTagRegistry )
+val downloadBcp47LanguageSubtagRegistry = tasks.register<DownloadBcp47LanguageSubtagRegistry>( "downloadBcp47LanguageSubtagRegistry" )
+tasks.compileJava.get().dependsOn( downloadBcp47LanguageSubtagRegistry )
