@@ -15,15 +15,8 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEnumerationValueIsNotOfTypeProperty a bamm-c:Enumeration ;
-   bamm:name "TestEnumerationValueIsNotOfTypeProperty" ;
-   bamm:dataType bamm:Property ;
-   bamm-c:values ( "OK" :testProperty ) .
-
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "NumericList" ;
-      bamm:dataType xsd:integer
-   ] .
+:TestCharacteristicInstanceWithCharacteristicAsDataType a bamm:Characteristic ;
+   bamm:name "TestCharacteristicInstanceWithCharacteristicAsDataType" ;
+   bamm:preferredName "Test Characteristic Instance"@en ;
+   bamm:description "Test Characteristic Instance"@en ;
+   bamm:dataType bamm-c:Text .

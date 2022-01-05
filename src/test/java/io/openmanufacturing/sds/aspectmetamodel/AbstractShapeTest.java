@@ -121,6 +121,7 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_DATA_TYPE_NOT_STRING = "Value must be a valid literal of type string";
    final String MESSAGE_RECURSIVE_PROPERTY = "A cycle in the Aspect Model was detected";
    final String MESSAGE_INSTANTIATED_ABSTRACT_ENTITY = "Abstract Entities may not be directly instantiated.";
+   final String MESSAGE_INVALID_DATA_TYPE = "The dataType (see value) that is used as dataType on the Characteristic (see focusNode) is neither an allowed xsd or rdf type, nor a type that is defined as rdfs:Class.";
 
    Model loadMetaModelDefinitions( final KnownVersion version ) {
       return ModelLoader.createModel( List.of(

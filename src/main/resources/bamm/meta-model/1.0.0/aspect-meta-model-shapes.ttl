@@ -374,7 +374,7 @@ bamm:CharacteristicShape
             select distinct $this $value
             where {
                $this (bamm-c:left*|bamm-c:right*|bamm-c:baseCharacteristic*)/bamm:dataType ?value .
-               filter( not exists { ?value bamm:refines?/rdf:type*/rdfs:subClassOf* mmm:Concept }
+               filter( not exists { ?value bamm:refines?/rdf:type*/rdfs:subClassOf* bamm:Entity }
                       && ?value not in (
                         xsd:string,
                         xsd:boolean,
