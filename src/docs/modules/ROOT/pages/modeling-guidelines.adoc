@@ -175,9 +175,6 @@ Collections, where all the semantics are fixed, except for the data type. For a 
 example it is possible to define whether the collection is sorted or not and this definition can be
 then reused with different data types to define different collections.
 
-NOTE: A guide for how to decide on which Characteristic to use can be found in
-xref:modeling-guildlines.adoc#choosing-a-characteristic[Choosing a Characteristic].
-
 Example:
 
 [source,turtle,subs="attributes+"]
