@@ -167,3 +167,6 @@ build
 
 # Locally committed Antora UI
 !src/docs/ui-bundle.zip
+
+# Generated javascript
+/src/main/resources/bamm/scripts/*.js

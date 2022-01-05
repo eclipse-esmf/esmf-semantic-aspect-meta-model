@@ -17,4 +17,4 @@
 
 :TestLanguageConstraint a bamm-c:LanguageConstraint ;
    bamm:name "TestLanguageConstraint" ;
-   bamm-c:languageCode "de-DE" .
+   bamm-c:languageCode "de" .
