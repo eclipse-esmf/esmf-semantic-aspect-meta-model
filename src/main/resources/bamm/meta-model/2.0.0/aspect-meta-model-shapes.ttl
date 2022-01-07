@@ -50,15 +50,7 @@ bamm:ConceptShape
 bamm:NamedConceptShape
    a sh:NodeShape ;
    sh:targetClass mmm:NamedConcept ;
-   sh:property [
-      sh:path bamm:name ;
-      sh:datatype xsd:string ;
-      sh:minCount 1 ;
-      sh:maxCount 1 ;
-      sh:minLength 1 ;
-      sh:name "name" ;
-      sh:description "The name of the model element." ;
-   ] .
+   sh:nodeKind sh:IRI .
 
 bamm:AspectShape
    a sh:NodeShape ;
@@ -685,7 +677,7 @@ bamm:AbstractEntityDataTypeShape
            filter ( exists { ?property bamm:characteristic/bamm-c:baseCharacteristic*/bamm:dataType $this } ) .
            filter( not exists { [] bamm:extends $this } ) .
            ?property bamm:characteristic ?characteristic .
-           ?characteristic bamm:name ?characteristicName .
+           bind( strafter( str( ?characteristic ), "#" ) as ?characteristicName )
            bind( ?characteristic as ?value )
          }
       """
@@ -750,12 +742,48 @@ bamm:AmbiguousEntityShape
            $this bamm:properties/rdf:rest*/rdf:first ?thisPropertyNode .
            ?other bamm:properties/rdf:rest*/rdf:first ?otherPropertyNode .
 
-           optional { ?thisPropertyNode bamm:name|(bamm:property/bamm:name) ?thisDirectName } .
-           optional { ?thisPropertyNode bamm:payloadName ?thisPayloadName } .
-           bind( coalesce( ?thisPayloadName, ?thisDirectName ) as ?thisName  ) .
+           # Matches usage of an actual Property, e.g.,
+           # :Foo bamm:properties ( :myProperty )
+           optional {
+             ?thisPropertyNode a bamm:Property .
+             bind( strafter( str( ?thisPropertyNode ), "#" ) as ?thisDirectName )
+           }
 
-           optional { ?otherPropertyNode bamm:name|(bamm:property/bamm:name) ?otherDirectName } .
-           optional { ?otherPropertyNode bamm:payloadName ?otherPayloadName } .
+           # Matches usage of a Property usage, e.g.,
+           # :Foo bamm:properties ( [ bamm:property :myProperty ; bamm:optional true ] )
+           optional {
+             ?thisPropertyNode bamm:property/rdf:type bamm:Property .
+             bind( strafter( str( ?thisPropertyNode ), "#" ) as ?thisDirectName )
+           }
+
+           # Matches usage of a Property usage with a payloadName, e.g.,
+           # :Foo bamm:properties ( [ bamm:property :myProperty ; bamm:payloadName "MyProperty" ] )
+           optional {
+             ?thisPropertyNode bamm:property/rdf:type bamm:Property .
+             ?thisPropertyNode bamm:payloadName ?thisPayloadName
+           }
+           bind( coalesce( ?thisPayloadName, ?thisDirectName ) as ?thisName ) .
+
+           # Matches usage of an actual Property, e.g.,
+           # :Foo bamm:properties ( :myProperty )
+           optional {
+             ?otherPropertyNode a bamm:Property .
+             bind( strafter( str( ?otherPropertyNode ), "#" ) as ?otherDirectName )
+           }
+
+           # Matches usage of a Property usage, e.g.,
+           # :Foo bamm:properties ( [ bamm:property :myProperty ; bamm:optional true ] )
+           optional {
+             ?otherPropertyNode bamm:property/rdf:type bamm:Property .
+             bind( strafter( str( ?otherPropertyNode ), "#" ) as ?otherDirectName )
+           }
+
+           # Matches usage of a Property usage with a payloadName, e.g.,
+           # :Foo bamm:properties ( [ bamm:property :myProperty ; bamm:payloadName "MyProperty" ] )
+           optional {
+             ?otherPropertyNode bamm:property/rdf:type bamm:Property .
+             ?otherPropertyNode bamm:payloadName ?otherPayloadName
+           }
            bind( coalesce( ?otherPayloadName, ?otherDirectName ) as ?otherName  ) .
 
            filter( ?thisName = ?otherName )
