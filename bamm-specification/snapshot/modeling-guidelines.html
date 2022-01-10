@@ -1379,6 +1379,61 @@ example), the Property is directly referenced. Writing <code>bamm:optional false
 </div>
 </div>
 <div class="sect2">
+<h3 id="declaring-payload-names-for-properties"><a class="anchor" href="#declaring-payload-names-for-properties"></a>Declaring Payload Names for Properties</h3>
+<div class="paragraph">
+<p>When Properties are used in Aspects and Entities, a runtime payload name can be defined for the
+Property. This means that in the context of the Aspect or Entity where the Property is used, the key
+of that Property in the runtime payload diverges from the Property&#8217;s <code>bamm:name</code>. This allows for
+the separation of the semantic name of the Property and the corresponding key in the runtime
+payload. In the following example we define a Property <code>errorMessage</code>. In the Aspect it is defined
+that the corresponding key in the payload is <code>error</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The value for the <code>bamm:payloadName</code> attribute must be of type <code>xsd:string</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">@prefix : &lt;urn:bamm:com.mycompany.myapplication:1.0.0#&gt; .
+@prefix bamm: &lt;urn:bamm:io.openmanufacturing:meta-model:1.0.0#&gt; .
+@prefix bamm-c: &lt;urn:bamm:io.openmanufacturing:characteristic:1.0.0#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+:MyAspect a bamm:Aspect ;
+   bamm:name "MyAspect" ;
+   bamm:properties (
+     [ bamm:property :errorMessage; bamm:payloadName "error" ]
+   ) ;
+   bamm:operations ( ) .
+
+:errorMessage a bamm:Property ;
+   bamm:name "errorMessage" ;
+   bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+A Property may not be marked as not being included in the payload using <code>bamm:notInPayload
+true</code> and have a payload name declared using <code>bamm:payloadName</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="syntactic-shortcuts"><a class="anchor" href="#syntactic-shortcuts"></a>Syntactic Shortcuts</h3>
 <div class="paragraph">
 <p>When Properties use Characteristics classes, i.e. Characteristics that need to be instantiated, and
