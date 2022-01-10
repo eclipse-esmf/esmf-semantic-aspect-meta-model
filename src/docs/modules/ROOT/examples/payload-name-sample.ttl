@@ -1,0 +1,17 @@
+# tag::payload-name-declaration[]
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:MyAspect a bamm:Aspect ;
+   bamm:name "MyAspect" ;
+   bamm:properties (
+     [ bamm:property :errorMessage; bamm:payloadName "error" ]
+   ) ;
+   bamm:operations ( ) .
+
+:errorMessage a bamm:Property ;
+   bamm:name "errorMessage" ;
+   bamm:characteristic bamm-c:Text .
+# end::payload-name-declaration[]
