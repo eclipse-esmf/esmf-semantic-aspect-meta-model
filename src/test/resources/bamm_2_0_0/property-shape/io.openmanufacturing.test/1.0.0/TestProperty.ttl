@@ -15,22 +15,18 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
 :TestProperty a bamm:Aspect ;
-   bamm:name "TestProperty" ;
    bamm:properties ( :entityList ) ;
    bamm:operations ( ) .
 
 :entityList a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:preferredName "Test Property"@en ;
    bamm:preferredName "Test Property"@de ;
    bamm:description "A test property."@en ;
    bamm:description "Eine test Property."@de ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "EntityList" ;
       bamm:dataType :TestEntity
    ] .
 
 :TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
    bamm:properties ( ).

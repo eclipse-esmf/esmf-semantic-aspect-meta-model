@@ -16,6 +16,5 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestConstraintWithEmptyProperties a bamm:Constraint ;
-   bamm:name "" ;
    bamm:preferredName ""@en ;
    bamm:description ""@en .

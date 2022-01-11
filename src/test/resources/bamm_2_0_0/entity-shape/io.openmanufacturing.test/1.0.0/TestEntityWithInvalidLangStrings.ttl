@@ -14,7 +14,6 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
 :TestEntityWithInvalidLangStrings a bamm:Entity ;
-   bamm:name "TestEntityWithInvalidLangStrings" ;
    bamm:preferredName "Test Entity" ;
    bamm:description "A test Entity" ;
    bamm:properties ( ).

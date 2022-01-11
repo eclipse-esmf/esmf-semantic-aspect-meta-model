@@ -16,33 +16,27 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEntityWithNotInPayloadAndOptionalProperty a bamm:Aspect ;
-   bamm:name "TestEntityWithNotInPayloadAndOptionalProperty" ;
    bamm:properties ( :testProperty ) ;
    bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:characteristic :TestEnumeration .
 
 :TestEnumeration a bamm-c:Enumeration ;
-   bamm:name "TestEnumeration" ;
    bamm:dataType :TestEntity ;
    bamm-c:values ( :TestEntityInstance ) .
 
 :TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
    bamm:preferredName "Test Entity"@en ;
    bamm:description "A test Entity"@en ;
    bamm:properties ( [ bamm:property :testPropertyTwo; bamm:notInPayload true ; bamm:optional true ] :testPropertyThree ).
 
 :testPropertyTwo a bamm:Property ;
-   bamm:name "testPropertyTwo" ;
    bamm:preferredName "Test Property"@en ;
    bamm:description "A property with a text value."@en ;
    bamm:characteristic bamm-c:Text .
 
 :testPropertyThree a bamm:Property ;
-   bamm:name "testPropertyThree" ;
    bamm:characteristic bamm-c:Text .
 
 :TestEntityInstance a :TestEntity ;

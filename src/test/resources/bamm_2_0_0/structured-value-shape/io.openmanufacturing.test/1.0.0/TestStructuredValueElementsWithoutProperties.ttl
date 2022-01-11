@@ -17,7 +17,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestStructuredValueElementsWithoutProperties a bamm-c:StructuredValue ;
-   bamm:name "TestStructuredValueElementsWithoutProperties" ;
    bamm:dataType xsd:string ;
    bamm-c:deconstructionRule ".*" ;
    bamm-c:elements ( "foo" ) .

@@ -16,5 +16,4 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestLanguageConstraintInvalidLanguageCode a bamm-c:LanguageConstraint ;
-   bamm:name "TestLanguageConstraintInvalidLanguageCode" ;
    bamm-c:languageCode "DE_de" .

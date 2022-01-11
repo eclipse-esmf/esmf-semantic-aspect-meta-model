@@ -15,17 +15,14 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
 :TestOperationWithInvalidOutput a bamm:Aspect ;
-   bamm:name "TestOperationWithInvalidOutput" ;
    bamm:properties ( ) ;
    bamm:operations ( :TestOperation ) .
 
 :TestOperation a bamm:Operation ;
-   bamm:name "TestOperation" ;
    bamm:preferredName "Test Operation"@en ;
    bamm:description "Test Operation."@en ;
    bamm:input ( ) ;
    bamm:output :output .
 
 :output a bamm:Entity ;
-   bamm:name "output" ;
    bamm:properties ( ) .

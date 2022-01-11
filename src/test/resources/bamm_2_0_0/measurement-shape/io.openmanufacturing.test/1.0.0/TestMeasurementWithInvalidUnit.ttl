@@ -17,12 +17,10 @@
 @prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 
 :TestMeasurementWithInvalidUnit a bamm-c:Measurement ;
-   bamm:name "TestMeasurementWithInvalidUnit" ;
    bamm:preferredName "Test Measurement"@en ;
    bamm:description "Test Measurement"@en ;
    bamm:dataType xsd:float ;
    bamm-c:unit :Entity .
 
 :Entity a bamm:Entity ;
-	bamm:name "Entity" ;
 	bamm:properties ( ) .

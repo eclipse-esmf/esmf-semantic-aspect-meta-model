@@ -14,7 +14,6 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
 :TestAspect a bamm:Aspect ;
-   bamm:name "TestAspect" ;
    bamm:properties ( ) ;
    bamm:operations ( :TestOperationMissingRequiredProperties ) .
 

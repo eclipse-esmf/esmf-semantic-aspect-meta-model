@@ -15,7 +15,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :ExtendsUsedInModelElement a bamm:Aspect ;
-   bamm:name "ExtendsUsedInModelElement" ;
    bamm:extends ( :Characteristic ) ;
    bamm:properties ( ) ;
    bamm:operations ( ) .

@@ -16,13 +16,10 @@
 @prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
 
 :TestCollectionWithInvalidCharacteristic a bamm-c:Collection ;
-   bamm:name "TestCollectionWithInvalidCharacteristic" ;
    bamm-c:elementCharacteristic :TestEntity .
 
 :TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
    bamm:properties ( :entityProperty ) .
 
 :entityProperty a bamm:Property ;
-   bamm:name "entityProperty" ;
    bamm:characteristic bamm-c:Text .

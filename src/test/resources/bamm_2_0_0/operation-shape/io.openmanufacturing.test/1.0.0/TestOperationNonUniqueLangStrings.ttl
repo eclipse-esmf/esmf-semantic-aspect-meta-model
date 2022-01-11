@@ -15,12 +15,10 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
 :TestOperationNonUniqueLangStrings a bamm:Aspect ;
-   bamm:name "TestOperationNonUniqueLangStrings" ;
    bamm:properties ( ) ;
    bamm:operations ( :TestOperation ) .
 
 :TestOperation a bamm:Operation ;
-   bamm:name "TestOperation" ;
    bamm:preferredName "Test Operation"@en ;
    bamm:preferredName "Test Funktion"@en ;
    bamm:description "Test Operation."@en ;

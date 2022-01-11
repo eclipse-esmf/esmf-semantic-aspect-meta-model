@@ -15,7 +15,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestCharacteristicInstanceNonUniqueLangStrings a bamm:Characteristic ;
-   bamm:name "TestCharacteristicInstanceNonUniqueLangStrings" ;
    bamm:preferredName "Test Characteristic Instance"@en ;
    bamm:preferredName "Test Charakteristik Instanz"@en ;
    bamm:description "Test Characteristic Instance"@en ;

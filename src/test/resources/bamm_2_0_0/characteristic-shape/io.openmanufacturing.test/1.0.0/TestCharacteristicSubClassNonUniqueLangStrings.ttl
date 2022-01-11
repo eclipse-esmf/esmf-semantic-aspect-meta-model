@@ -15,7 +15,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestCharacteristicSubClassNonUniqueLangStrings a bamm:Characteristic ;
-   bamm:name "TestCharacteristicSubClassNonUniqueLangStrings" ;
    bamm:preferredName "Test Characteristic SubClass"@en ;
    bamm:preferredName "Test Charakteristik Unterklasse"@en ;
    bamm:description "Test Characteristic SubClass"@en ;

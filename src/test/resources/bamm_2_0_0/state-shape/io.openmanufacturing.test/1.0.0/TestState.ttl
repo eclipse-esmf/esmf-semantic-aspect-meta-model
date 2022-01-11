@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestState a bamm-c:State ;
-   bamm:name "TestState" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "OK" ;
    bamm-c:values ( "OK" "ERR" ) .

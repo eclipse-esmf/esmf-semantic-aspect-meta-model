@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestConstraintNonUniqueLangStrings a bamm:Constraint ;
-   bamm:name "TestConstraintNonUniqueLangStrings" ;
    bamm:preferredName "Test Constraint"@en ;
    bamm:preferredName "Test Einschränkung"@en ;
    bamm:description "TestConstraint"@en ;

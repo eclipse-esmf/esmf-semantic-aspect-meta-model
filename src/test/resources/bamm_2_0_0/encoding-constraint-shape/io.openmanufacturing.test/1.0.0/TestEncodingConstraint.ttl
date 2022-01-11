@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEncodingConstraint a bamm-c:EncodingConstraint ;
-   bamm:name "TestEncodingConstraint" ;
    bamm:preferredName "Test Constraint"@en ;
    bamm:description "TestConstraint"@en ;
    bamm:value bamm:UTF-8 .

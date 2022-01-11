@@ -16,15 +16,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEitherDefinesDataType a bamm-c:Either ;
-   bamm:name "TestEitherDefinesDataType" ;
    bamm-c:left :LeftType ;
    bamm-c:right :RightType ;
    bamm:dataType xsd:int .
 
 :LeftType a bamm:Characteristic ;
-   bamm:name "LeftType" ;
    bamm:dataType xsd:float .
 
 :RightType a bamm:Characteristic ;
-   bamm:name "RightType" ;
    bamm:dataType xsd:string .

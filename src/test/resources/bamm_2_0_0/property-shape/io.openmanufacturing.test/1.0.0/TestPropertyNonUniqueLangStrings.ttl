@@ -16,18 +16,15 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestPropertyNonUniqueLangStrings a bamm:Aspect ;
-   bamm:name "TestPropertyNonUniqueLangStrings" ;
    bamm:properties ( :testProperty ) ;
    bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:preferredName "Test Property"@en ;
    bamm:preferredName "Test Eigenschaft"@en ;
    bamm:description "A property with a list of numeric values."@en ;
    bamm:description "Eine Liste mit numerischen Werten."@en ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "NumberList" ;
       bamm:dataType xsd:double
    ] .
