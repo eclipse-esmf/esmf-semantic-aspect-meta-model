@@ -30,7 +30,6 @@ A quantity kind has the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Present in every quantity kind
-| `bamm:name` | Unique name of quantity kind | {ok}
 | `bamm:preferredName` | Human readable name in a specific language | {ok}
 |===
 
@@ -40,7 +39,6 @@ A unit has the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Present in every unit
-| `bamm:name` | Unique name of unit | {ok}
 | `bamm:preferredName` | Human readable name in a specific language | {ok}
 | `unit:commonCode` | Normalized short code for unit; please refer to the
 xref:bamm-specification:appendix:appendix.adoc#rec20[original specification] for more details |

@@ -13,7 +13,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:properties (
      :toggleStatus
      [ bamm:property :errorMessage; bamm:optional true ]
@@ -21,10 +20,8 @@
    bamm:operations ( ) .
 
 :toggleStatus a bamm:Property ;
-   bamm:name "statusNumber" ;
    bamm:characteristic bamm-c:Boolean .
 
 :errorMessage a bamm:Property ;
-   bamm:name "errorMessage" ;
    bamm:characteristic bamm-c:Text .
 # end::optional-properties-declaration[]

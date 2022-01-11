@@ -12,13 +12,11 @@
 @prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
 
 :Error a bamm:Aspect ;
-  bamm:name "Error" ;
   bamm:preferredName "Error Aspect"@en ;
   bamm:properties ( :errors ) ;
   bamm:operations ( ) .
 
 :errors a bamm:Property ;
-  bamm:name "errors" ;
   bamm:preferredName "Errors"@en ;
 # ...
 # end::content[]
