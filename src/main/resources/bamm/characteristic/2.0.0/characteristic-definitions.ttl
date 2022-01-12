@@ -52,10 +52,6 @@ bamm-c:unit a mmm:Attribute ;
    rdfs:label "unit" ;
    rdfs:comment "Reference to a Unit as defined in the Unit catalog."@en .
 
-bamm-c:pieces a rdf:Property ;
-   rdfs:label "pieces" ;
-   rdfs:label "Pieces" .
-
 bamm-c:minValue a rdf:Property ;
    rdfs:label "minValue" ;
    rdfs:comment "The lower bound of a range."@en .
