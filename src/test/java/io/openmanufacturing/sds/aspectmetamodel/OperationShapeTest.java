@@ -28,8 +28,8 @@ public class OperationShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testMissingRequiredPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
+   @MethodSource( value = "versionsUpToIncluding1_0_0" )
+   public void testMissingRequiredPropertiesExpectFailureBamm_1_0_0( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final String operationName = "TestOperationMissingRequiredProperties";
@@ -43,8 +43,21 @@ public class OperationShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testEmptyPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testMissingRequiredPropertiesExpectFailureBamm_2_0_0( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+
+      final String operationName = "TestOperationMissingRequiredProperties";
+      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
+      final SemanticError resultForInput = new SemanticError(
+            MESSAGE_MISSING_REQUIRED_PROPERTY, operationId, bammUrns.inputUrn, VIOLATION_URN, "" );
+      expectSemanticValidationErrors( "operation-shape", operationName,
+            metaModelVersion, resultForInput );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsUpToIncluding1_0_0" )
+   public void testEmptyPropertiesExpectFailureBamm_1_0_0( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final String aspectName = "TestOperationWithEmptyProperties";
@@ -58,6 +71,22 @@ public class OperationShapeTest extends AbstractShapeTest {
             operationId, bammUrns.descriptionUrn, VIOLATION_URN, "@en" );
       expectSemanticValidationErrors( "operation-shape", aspectName,
             metaModelVersion, resultForName, resultForPreferredName, resultForDescription );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testEmptyPropertiesExpectFailureBamm_2_0_0( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+
+      final String aspectName = "TestOperationWithEmptyProperties";
+      final String operationName = "TestOperation";
+      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
+      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
+            operationId, bammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
+      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
+            operationId, bammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      expectSemanticValidationErrors( "operation-shape", aspectName,
+            metaModelVersion, resultForPreferredName, resultForDescription );
    }
 
    @ParameterizedTest
