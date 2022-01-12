@@ -85,7 +85,8 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_NO_OPERATION = "Value must be an instance of bamm:Operation";
    final String MESSAGE_VALUE_IS_NO_PROPERTY = "Value must be an instance of bamm:Property";
    final String MESSAGE_NO_ADDITIONAL_PROPERTIES = "Entity refining another Entity may not declare additional Properties.";
-   final String MESSAGE_IS_NO_UNIT = "Value is not an instance or subclass of unit:Unit";
+   final String MESSAGE_IS_NO_UNIT_LEGACY = "Value is not an instance or subclass of unit:Unit";
+   final String MESSAGE_IS_NO_UNIT = "Value is not an instance or subclass of bamm:Unit";
    final String MESSAGE_INVALID_ENCODING = "Value must be one of [bamm:US-ASCII bamm:ISO-8859-1 bamm:UTF-8 bamm:UTF-16 bamm:UTF-16BE bamm:UTF-16LE]";
    final String MESSAGE_RANGE_NEEDS_MIN_MAX = "The RangeConstraint must have at least one minValue or maxValue.";
    final String MESSAGE_LENGTH_CONSTRAINT_DATA_TYPE = "The LengthConstraint is not applicable to the base Characteristic's data type.";
