@@ -44,13 +44,13 @@ bamm-c:QuantifiableShape
       sh:path bamm-c:unit ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Value is not an instance or subclass of unit:Unit" ;
+         sh:message "Value is not an instance or subclass of bamm:Unit" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
             where {
                $this bamm-c:unit ?value .
-               filter( not exists { ?value rdf:type/rdfs:subClassOf* unit:Unit } ) .
+               filter( not exists { ?value rdf:type/rdfs:subClassOf* bamm:Unit } ) .
             }
          """
       ] ;
@@ -449,7 +449,7 @@ bamm-c:DurationShape
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:Duration .
                $this bamm-c:unit ?unit .
-               filter( not exists { ?unit unit:referenceUnit?/unit:quantityKind unit:time } )
+               filter( not exists { ?unit bamm:referenceUnit?/bamm:quantityKind unit:time } )
                bind( str( ?unit ) as ?value )
             }
          """
