@@ -243,7 +243,7 @@ bamm-c:RegularExpressionConstraint rdfs:subClassOf bamm:Constraint ;
    bamm:see <http://www.w3.org/TR/xpath-functions/#regex-syntax> .
 
 bamm-c:FixedPointConstraint rdfs:subClassOf bamm:Constraint ;
-   rdfs:label "FixedPoint" ;
+   rdfs:label "FixedPointConstraint" ;
    rdfs:comment "Defines the scaling factor for a fixed point number."@en .
 
 # Constants
