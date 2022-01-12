@@ -253,4 +253,4 @@ bamm-c:LESS_THAN a mmm:Constant .
 
 bamm-c:AT_LEAST a mmm:Constant .
 
-bamm-c:GREATER_THAN a mmm:CONSTANT .
+bamm-c:GREATER_THAN a mmm:Constant .
