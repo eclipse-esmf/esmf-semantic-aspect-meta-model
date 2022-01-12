@@ -20,12 +20,10 @@
 # Meta meta model attributes
 mmm:allowDuplicates a rdf:Property ;
    rdfs:label "allowDuplicates" ;
-   rdfs:label "Allow Duplicates" ;
    rdfs:comment "Indicates whether a Collection may contain duplicate values."@en .
 
 mmm:ordered a rdf:Property ;
    rdfs:label "ordered" ;
-   rdfs:label "Ordered" ;
    rdfs:comment "Indicates whether the values in a Collection are ordered."@en .
 
 # Meta model attributes
@@ -52,7 +50,6 @@ bamm-c:localeCode a mmm:Attribute ;
 
 bamm-c:unit a mmm:Attribute ;
    rdfs:label "unit" ;
-   rdfs:label "Unit" ;
    rdfs:comment "Reference to a Unit as defined in the Unit catalog."@en .
 
 bamm-c:pieces a rdf:Property ;
@@ -61,37 +58,30 @@ bamm-c:pieces a rdf:Property ;
 
 bamm-c:minValue a rdf:Property ;
    rdfs:label "minValue" ;
-   rdfs:label "Minimum Value" ;
    rdfs:comment "The lower bound of a range."@en .
 
 bamm-c:maxValue a rdf:Property ;
    rdfs:label "maxValue" ;
-   rdfs:label "Maximum Value" ;
    rdfs:comment "The upper bound of a range."@en .
 
 bamm-c:values a rdf:Property ;
    rdfs:label "values" ;
-   rdfs:label "Values" ;
    rdfs:comment """List of possible values of the same type, e.g. ( "up" "down" "degraded" )."""@en .
 
 bamm-c:defaultValue a rdf:Property ;
    rdfs:label "defaultValue" ;
-   rdfs:label "Default Value" ;
    rdfs:comment "The default value for the state."@en .
 
 bamm-c:left a rdf:Property ;
    rdfs:label "left" ;
-   rdfs:label "Left" ;
    rdfs:comment "The left side of the Either. The attribute references another Characteristic which describes the value."@en .
 
 bamm-c:right a rdf:Property ;
    rdfs:label "right" ;
-   rdfs:label "Right" ;
    rdfs:comment "The right side of the Either. The attribute references another Characteristic which describes the value."@en .
 
 bamm-c:lowerBoundDefinition a rdf:Property ;
    rdfs:label "lowerBoundDefinition" ;
-   rdfs:label "Lower Bound Definition" ;
    rdfs:comment """Defines how the "minValue" property of the Range Constraint is to be interpreted. Possible values are "AT_LEAST" and "GREATER_THAN". This is an optional property. By default the "minValue" is interpreted with "AT_LEAST" semantics."""@en .
 
 bamm-c:upperBoundDefinition a rdf:Property ;
@@ -105,22 +95,18 @@ bamm-c:elements a rdf:Property ;
 
 bamm-c:deconstructionRule a rdf:Property ;
    rdfs:label "deconstructionRule" ;
-   rdfs:label "Deconstruction Rule" ;
    rdfs:comment "A regular expression that defines the groups contained in a string."@en .
 
 bamm-c:scale a rdf:Property ;
    rdfs:label "scale" ;
-   rdfs:label "Scale" ;
    rdfs:comment "The scaling factor for a fixed point number."@en .
 
 bamm-c:integer a rdf:Property ;
    rdfs:label "integer" ;
-   rdfs:label "Integer" ;
    rdfs:comment "The number of integral digits for a fixed point number."@en .
 
 bamm-c:elementCharacteristic a rdf:Property ;
    rdfs:label "elementCharacteristic" ;
-   rdfs:label "Element Characteristic" ;
    rdfs:comment "The Characteristic which defines the elements in a Collection."@en .
 
 # Characteristics
