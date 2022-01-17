@@ -61,6 +61,14 @@ bamm:Event rdfs:subClassOf mmm:NamedConcept ;
    rdfs:label "Event" ;
    rdfs:comment "An Event is a model element that represents a single occurence where the timing is important. Assets can for instance emit events to notify other assets in case of special occurences." .
 
+bamm:Unit rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "Unit" ;
+   rdfs:comment "A Unit refers to a physical unit, such as metre or degree celsius." .
+
+bamm:QuantityKind rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "QuantityKind" ;
+   rdfs:comment "A Quantity Kind describes the kind a Unit refers to, such as length or temperature.".
+
 # Meta meta model attributes used in Shapes
 mmm:listType a rdf:Property ;
    rdfs:label "listType" ;
@@ -181,6 +189,42 @@ bamm:see a mmm:Attribute ;
    rdfs:comment "Contains a link to an external taxonomy/ontology." ;
    rdfs:domain mmm:Concept ;
    rdfs:range rdfs:Resource .
+
+bamm:commonCode a mmm:Attribute ;
+   rdfs:label "commonCode" ;
+   rdfs:comment "Normalized short code for a unit." ;
+   rdfs:domain bamm:Unit ;
+   rdfs:range xsd:string .
+
+bamm:conversionFactor a mmm:Attribute ;
+   rdfs:label "conversionFactor" ;
+   rdfs:comment "If the unit is derived from a reference unit, the human readable multiplication factor, e.g., \"10⁻²⁸ m²\"" ;
+   rdfs:domain bamm:Unit ;
+   rdfs:range xsd:string .
+
+bamm:numericConversionFactor a mmm:Attribute ;
+   rdfs:label "numericConversionFactor" ;
+   rdfs:comment "If the unit is derived from a reference unit, the numeric multiplication factor, e.g., \"1.0E-28\"" ;
+   rdfs:domain bamm:Unit ;
+   rdfs:range xsd:double .
+
+bamm:quantityKind a mmm:Attribute ;
+   rdfs:label "quantityKind" ;
+   rdfs:comment "A quantity kind for this unit, for example the unit litre has the quantity kind volume, the unit metre has the quantity kinds length, distance, diameter etc." ;
+   rdfs:domain bamm:Unit ;
+   rdfs:range bamm:QuantityKind .
+
+bamm:referenceUnit a mmm:Attribute ;
+   rdfs:label "referenceUnit" ;
+   rdfs:comment "The unit this unit is derived from, e.g., centimetre is derived from metre" ;
+   rdfs:domain bamm:Unit ;
+   rdfs:range bamm:Unit .
+
+bamm:symbol a mmm:Attribute ;
+   rdfs:label "symbol" ;
+   rdfs:comment "The unit’s symbol, e.g., for centimetre the symbol is cm" ;
+   rdfs:domain bamm:Unit ;
+   rdfs:range xsd:string .
 
 # Constants
 bamm:US-ASCII a mmm:Constant .

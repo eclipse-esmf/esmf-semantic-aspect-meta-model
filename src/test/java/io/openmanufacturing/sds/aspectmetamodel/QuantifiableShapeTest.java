@@ -50,7 +50,10 @@ public class QuantifiableShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestQuantifiableWithInvalidUnit";
 
-      final SemanticError error = new SemanticError( MESSAGE_IS_NO_UNIT, focusNode,
+      final String expectedErrorMessage = metaModelVersion == KnownVersion.BAMM_1_0_0
+            ? MESSAGE_IS_NO_UNIT_LEGACY
+            : MESSAGE_IS_NO_UNIT;
+      final SemanticError error = new SemanticError( expectedErrorMessage, focusNode,
             bammUrns.unitUrn, VIOLATION_URN, TEST_NAMESPACE_PREFIX + "Entity" );
       expectSemanticValidationErrors( "quantifiable-shape", "TestQuantifiableWithInvalidUnit",
             metaModelVersion, error );
