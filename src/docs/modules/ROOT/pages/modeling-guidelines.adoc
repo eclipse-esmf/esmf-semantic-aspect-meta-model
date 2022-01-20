@@ -389,7 +389,7 @@ comprises can be difficult, especially in a machine-readable way.
 Therefore, the Structured Value Characteristic can be used to describe the deconstruction of a value
 into its parts and linking each part to a separate Property definition.
 
-The following table gives some simple examples to demonstate the basic applicability of the
+The following table gives some simple examples to demonstrate the basic applicability of the
 Characteristic, and after that a complete concrete example is given.
 
 [width="100%", options="header"]
