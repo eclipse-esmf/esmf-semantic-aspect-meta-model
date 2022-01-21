@@ -14,19 +14,16 @@
 @prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
 
 bamm-e:FileResource a bamm:Entity ;
-   bamm:name "FileResource" ;
    bamm:preferredName "File Resource" ;
    bamm:description "A file in a specific format"@en ;
    bamm:properties ( bamm-e:resource bamm-e:mimeType ) .
 
 bamm-e:resource a bamm:Property ;
-   bamm:name "resource" ;
    bamm:preferredName "Resource"@en ;
    bamm:description "Location of a resource"@en ;
    bamm:characteristic bamm-c:ResourcePath .
 
 bamm-e:mimeType a bamm:Property ;
-   bamm:name "mimeType" ;
    bamm:preferredName "MIME Type"@en ;
    bamm:description "A MIME type as defined in RFC 2046."@en ;
    bamm:exampleValue "application/json" ;
