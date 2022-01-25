@@ -40,7 +40,7 @@ A unit has the following attributes:
 |===
 | Attributes | Description | Present in every unit
 | `bamm:preferredName` | Human readable name in a specific language | {ok}
-| `unit:commonCode` | Normalized short code for unit; please refer to the
+| `bamm:commonCode` | Normalized short code for unit; please refer to the
 xref:bamm-specification:appendix:appendix.adoc#rec20[original specification] for more details |
 {nok}footnote:[Every unit originating from UNECE Recommendation 20 has a commonCode defined by the
 standardization process, units added in the scope of the {meta-model-abbr} therefore do not
@@ -48,11 +48,11 @@ have one. For example, no commonCode is added to
 `xref:appendix:appendix.adoc#unit-cubicMicrometre[unit:cubicMicrometre\]`.]
 | `unit:conversionFactor` | If the unit is derived from a reference unit, the _human readable_ multiplication factor,
   e.g., "10⁻²⁸ m²" | {nok}
-| `unit:numericConversionFactor` | If the unit is derived from a reference unit, the _numeric_ multiplication factor,
+| `bamm:numericConversionFactor` | If the unit is derived from a reference unit, the _numeric_ multiplication factor,
   e.g., "1.0E-28" | {nok}
-| `unit:quantityKind` | The list of quantity kinds, for example unit _litre_ has quantity kind
+| `bamm:quantityKind` | The list of quantity kinds, for example unit _litre_ has quantity kind
   _volume_, unit _metre_ has quantity kinds _length_, _distance_, _diameter_ etc. | {nok}
-| `unit:referenceUnit` | The unit this unit is derived from, e.g., _centimetre_ is derived from
+| `bamm:referenceUnit` | The unit this unit is derived from, e.g., _centimetre_ is derived from
   _metre_| {nok}
-| `unit:symbol` | The unit's symbol, e.g., for _centimetre_ the symbol is _cm_ | {nok}
+| `bamm:symbol` | The unit's symbol, e.g., for _centimetre_ the symbol is _cm_ | {nok}
 |===

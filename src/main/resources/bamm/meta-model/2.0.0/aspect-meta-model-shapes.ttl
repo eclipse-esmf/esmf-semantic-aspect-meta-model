@@ -460,6 +460,57 @@ bamm:EventShape
       ]
    ] .
 
+bamm:UnitShape
+   a sh:NodeShape ;
+   sh:targetClass bamm:Unit ;
+   sh:property [
+      sh:order 3 ;
+      sh:path bamm:commonCode ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1;
+      sh:name "commonCode" ;
+      sh:description "Normalized short code for a unit." ;
+   ] ;
+   sh:property [
+      sh:order 4 ;
+      sh:path bamm:conversionFactor ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:name "conversionFactor" ;
+      sh:description "If the unit is derived from a reference unit, the human readable multiplication factor, e.g., \"10⁻²⁸ m²\"" ;
+   ] ;
+   sh:property [
+      sh:order 5 ;
+      sh:path bamm:numericConversionFactor ;
+      sh:datatype xsd:double ;
+      sh:maxCount 1 ;
+      sh:name "numericConversionFactor" ;
+      sh:description "If the unit is derived from a reference unit, the numeric multiplication factor, e.g., \"1.0E-28\"" ;
+   ] ;
+   sh:property [
+      sh:order 6 ;
+      sh:path bamm:quantityKind ;
+      sh:class bamm:QuantityKind ;
+      sh:name "quantityKind" ;
+      sh:description "A quantity kind for this unit, for example the unit litre has the quantity kind volume, the unit metre has the quantity kinds length, distance, diameter etc." ;
+   ] ;
+   sh:property [
+      sh:order 7 ;
+      sh:path bamm:referenceUnit ;
+      sh:class bamm:Unit ;
+      sh:maxCount 1 ;
+      sh:name "referenceUnit" ;
+      sh:description "The unit this unit is derived from, e.g., centimetre is derived from metre" ;
+   ] ;
+   sh:property [
+      sh:order 8 ;
+      sh:path bamm:symbol ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:name "symbol" ;
+      sh:description "The unit’s symbol, e.g., for centimetre the symbol is cm" ;
+   ] .
+
 bamm:PayloadNameShape
    a sh:NodeShape ;
    sh:targetSubjectsOf bamm:payloadName ;
