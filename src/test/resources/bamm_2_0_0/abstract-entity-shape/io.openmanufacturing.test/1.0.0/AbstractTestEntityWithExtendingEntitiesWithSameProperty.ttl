@@ -16,31 +16,24 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :AbstractTestEntityWithExtendingEntitiesWithSameProperty a bamm:Entity ;
-   bamm:name "AbstractTestEntityWithExtendingEntitiesWithSameProperty" ;
    bamm:properties ( :integer ).
 
 :integer a bamm:Property ;
-   bamm:name "integer" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .
 
 :A a bamm:Entity ;
-   bamm:name "A" ;
    bamm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
    bamm:properties ( :a ) .
 
 :a a bamm:Property ;
-   bamm:name "a" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "PositiveInteger" ;
       bamm:dataType xsd:positiveInteger
    ] .
 
 :B a bamm:Entity ;
-   bamm:name "B" ;
    bamm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
    bamm:properties ( :a ) .

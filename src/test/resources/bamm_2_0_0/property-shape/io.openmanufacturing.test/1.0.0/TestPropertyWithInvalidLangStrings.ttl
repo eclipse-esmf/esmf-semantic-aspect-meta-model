@@ -16,16 +16,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestPropertyWithInvalidLangStrings a bamm:Aspect ;
-   bamm:name "TestPropertyWithInvalidLangStrings" ;
    bamm:properties ( :testProperty ) ;
    bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:preferredName "Test Property" ;
    bamm:description "A property with a list of numeric values." ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "NumberList" ;
       bamm:dataType xsd:double
    ] .

@@ -16,5 +16,4 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :TestCharacteristicSubClassWithDisallowedDataType rdfs:subClassOf bamm:Characteristic ;
-   bamm:name "TestCharacteristicSubClassWithDisallowedDataType" ;
    bamm:dataType xsd:maxExclusive .

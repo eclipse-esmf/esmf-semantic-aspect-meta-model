@@ -16,6 +16,5 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestLocaleConstraintMultipleLocaleCodeProperties a bamm-c:LocaleConstraint ;
-   bamm:name "TestLocaleConstraintMultipleLocaleCodeProperties" ;
    bamm-c:localeCode "de" ;
    bamm-c:localeCode "en" .

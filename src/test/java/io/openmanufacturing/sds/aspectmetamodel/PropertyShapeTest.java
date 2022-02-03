@@ -29,7 +29,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsUpToIncluding1_0_0" )
    public void testMissingRequiredPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
@@ -57,8 +57,8 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testEmptyPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
+   @MethodSource( value = "versionsUpToIncluding1_0_0" )
+   public void testEmptyPropertiesExpectFailureBamm_1_0_0( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
@@ -69,6 +69,19 @@ public class PropertyShapeTest extends AbstractShapeTest {
             FOCUS_NODE, bammUrns.descriptionUrn, VIOLATION_URN, "@en" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithEmptyProperties",
             metaModelVersion, resultForName, resultForPreferredName, resultForDescription );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testEmptyPropertiesExpectFailureBamm_2_0_0( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+
+      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
+            FOCUS_NODE, bammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
+      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
+            FOCUS_NODE, bammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      expectSemanticValidationErrors( "property-shape", "TestPropertyWithEmptyProperties",
+            metaModelVersion, resultForPreferredName, resultForDescription );
    }
 
    @ParameterizedTest

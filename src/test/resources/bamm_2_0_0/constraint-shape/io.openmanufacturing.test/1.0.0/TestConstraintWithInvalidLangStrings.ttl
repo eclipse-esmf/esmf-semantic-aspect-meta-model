@@ -16,6 +16,5 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestConstraintWithInvalidLangStrings a bamm:Constraint ;
-   bamm:name "TestConstraintWithInvalidLangStrings" ;
    bamm:preferredName "Test Constraint" ;
    bamm:description "TestConstraint" .

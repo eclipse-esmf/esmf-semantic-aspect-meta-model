@@ -18,7 +18,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :AspectWithEvent a bamm:Aspect ;
-   bamm:name "AspectWithEvent" ;
    bamm:preferredName "Aspect With Event"@en ;
    bamm:description "An Aspect with an Event"@en ;
    bamm:properties ( ) ;
@@ -26,12 +25,10 @@
    bamm:events ( :TextEvent ) .
 
 :TextEvent a bamm:Event ;
-   bamm:name "TextEvent" ;
    bamm:preferredName "Text Event"@en ;
    bamm:description "An event that contains a text string"@en ;
    bamm:parameters ( :textParameter ) .
 
 :textParameter a bamm:Property ;
-   bamm:name "textParameter" ;
    bamm:preferredName "Text Parameter"@en ;
    bamm:characteristic bamm-c:Text .

@@ -16,32 +16,25 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :ExtendingEntityInstanceInvalidValueType a bamm:Aspect ;
-   bamm:name "ExtendingEntityInstanceInvalidValueType" ;
    bamm:properties ( ) ;
    bamm:operations ( ) .
 
 :AbstractTestEntity a bamm:AbstractEntity ;
-   bamm:name "AbstractTestEntity" ;
    bamm:properties ( :abstractTestProperty ) .
 
 :abstractTestProperty a bamm:Property ;
-   bamm:name "abstractTestProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "String" ;
       bamm:dataType xsd:string
    ] .
 
 :ExtendingEntity a bamm:Entity ;
-   bamm:name "Entity" ;
    bamm:extends :AbstractTestEntity ;
    bamm:properties ( :intProperty ) .
 
 :intProperty a bamm:Property ;
-   bamm:name "intProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .
 

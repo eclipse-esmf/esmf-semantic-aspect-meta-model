@@ -50,4 +50,8 @@ public enum KnownVersion {
    public boolean isNewerThan( final KnownVersion otherVersion ) {
       return toVersionString().compareTo( otherVersion.toVersionString() ) > 0;
    }
+
+   public boolean isOlderThan( final KnownVersion otherVersion ) {
+      return toVersionString().compareTo( otherVersion.toVersionString() ) < 0;
+   }
 }

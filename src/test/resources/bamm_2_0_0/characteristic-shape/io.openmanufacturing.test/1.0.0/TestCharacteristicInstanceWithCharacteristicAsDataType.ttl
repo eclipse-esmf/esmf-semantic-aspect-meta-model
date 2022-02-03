@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestCharacteristicInstanceWithCharacteristicAsDataType a bamm:Characteristic ;
-   bamm:name "TestCharacteristicInstanceWithCharacteristicAsDataType" ;
    bamm:preferredName "Test Characteristic Instance"@en ;
    bamm:description "Test Characteristic Instance"@en ;
    bamm:dataType bamm-c:Text .

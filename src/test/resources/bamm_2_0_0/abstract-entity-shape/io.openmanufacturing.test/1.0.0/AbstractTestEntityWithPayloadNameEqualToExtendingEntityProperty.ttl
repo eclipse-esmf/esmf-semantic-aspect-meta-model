@@ -16,38 +16,29 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty a bamm:Entity ;
-   bamm:name "AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty" ;
    bamm:properties ( :integer [ bamm:property :string ; bamm:payloadName "abstractString" ] ).
 
 :integer a bamm:Property ;
-   bamm:name "integer" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .
 
 :string a bamm:Property ;
-   bamm:name "string" ;
    bamm:characteristic :String .
 
 :String a bamm:Characteristic ;
-   bamm:name "String" ;
    bamm:dataType xsd:string .
 
 :A a bamm:Entity ;
-   bamm:name "A" ;
    bamm:extends :AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty ;
    bamm:properties ( :a :abstractString ) .
 
 :a a bamm:Property ;
-   bamm:name "a" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "PositiveInteger" ;
       bamm:dataType xsd:positiveInteger
    ] .
 
 :abstractString a bamm:Property ;
-   bamm:name "abstractString" ;
    bamm:characteristic :String .

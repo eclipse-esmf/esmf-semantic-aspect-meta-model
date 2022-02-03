@@ -15,18 +15,14 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
 :TestPropertyRecursiveProperty a bamm:Aspect ;
-    bamm:name "TestPropertyRecursiveProperty" ;
     bamm:properties ( :testProperty ) ;
     bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
-    bamm:name "testProperty" ;
     bamm:characteristic :testItemCharacteristic .
 
 :testItemCharacteristic a bamm-c:SingleEntity ;
-    bamm:name "testItemCharacteristic" ;
     bamm:dataType :testEntity .
 
 :testEntity a bamm:Entity ;
-    bamm:name "testEntity" ;
     bamm:properties ( :testProperty ) .

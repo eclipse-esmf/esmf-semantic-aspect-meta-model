@@ -16,14 +16,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEitherLeftAttributeNotACharacteristic a bamm-c:Either ;
-   bamm:name "TestEitherLeftAttributeNotACharacteristic" ;
    bamm-c:left :LeftType ;
    bamm-c:right :RightType .
 
 :LeftType a bamm:Entity ;
-   bamm:name "LeftType" ;
    bamm:properties () .
 
 :RightType a bamm:Characteristic ;
-   bamm:name "RightType" ;
    bamm:dataType xsd:string .

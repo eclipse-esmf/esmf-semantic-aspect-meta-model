@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestLengthConstraintWithOnlyMinValue a bamm-c:LengthConstraint ;
-   bamm:name "TestLengthConstraintWithOnlyMinValue" ;
    bamm:preferredName "Test Length Constraint"@en ;
    bamm:description "Test Length Constraint"@en ;
    bamm-c:minValue "5"^^xsd:nonNegativeInteger .

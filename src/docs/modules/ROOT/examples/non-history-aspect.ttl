@@ -16,7 +16,6 @@
 
 # tag::aspect[]
 :Temperature a bamm:Aspect ;
-   bamm:name "Temperature" ;
    bamm:preferredName "Temperature"@en ;
    bamm:description "Describes the measured temperature in degree Celsius"@en ;
    bamm:properties ( :temperatureValue ) ;
@@ -25,7 +24,6 @@
 
 # tag::property[]
 :temperatureValue a bamm:Property ;
-   bamm:name "temperatureValue" ;
    bamm:preferredName "Temperature Value"@en ;
    bamm:description "The value of the temperature in degree Celsius"@en ;
    bamm:exampleValue "100.0"^^xsd:float ;
@@ -34,7 +32,6 @@
 
 # tag::characteristic[]
 :TemperatureMeasurement a bamm-c:Measurement ;
-   bamm:name "TemperatureMeasurement" ;
    bamm:preferredName "Temperature Measurement"@en ;
    bamm:description "Temperature in degree Celsius"@en ;
    bamm:dataType xsd:float ;

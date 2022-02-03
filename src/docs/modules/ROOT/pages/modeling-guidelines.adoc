@@ -58,8 +58,6 @@ attributes:
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm:name` | The name of the property. This name must be defined in Camel
-  Case and be valid a Java Property name (i.e. can not contain spaces, dashes etc.). | {ok}
 | `bamm:preferredName` | Human readable name in a specific language. This attribute may be defined
   multiple times for different languages but only once for a specific language. There should be at
   least one preferredName defined with an "en" language tag. | {nok}
@@ -115,7 +113,6 @@ addition to the general attributes, every Aspect Model element has the following
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
 * Each Aspect model must be defined in its own file. The file name must be the same as the Aspect's
   name.
-* The name part in the Aspect's identifying URN must be the same as the Aspect's `bamm:name`.
 * The hierarchical namespace part in the Aspect's URN can be freely chosen.
 
 The definition of an Aspect should therefore have the following structure in TTL syntax; note though
@@ -493,7 +490,7 @@ include::example$aspect-sample.ttl[tags=extending-entity-declaration]
 The extending Entities `:Student` and `:Teacher` contain the Properties declared in the extended Entity `:Person` as well as
 the Properties in their own declarations.
 
-The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the `bamm:name` of the Property,
+The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
 
 [[declaring-abstract-entities]]

@@ -16,16 +16,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestTrait a bamm-c:Trait ;
-   bamm:name "TestTrait" ;
    bamm-c:constraint :TestLengthConstraintWithCollection ;
    bamm-c:baseCharacteristic [
       a bamm-c:List ;
-      bamm:name "IntList" ;
       bamm:dataType xsd:int
    ] .
 
 :TestLengthConstraintWithCollection a bamm-c:LengthConstraint ;
-   bamm:name "TestLengthConstraintWithCollection" ;
    bamm:preferredName "Test Length Constraint"@en ;
    bamm:description "Test Length Constraint"@en ;
    bamm-c:minValue "5"^^xsd:nonNegativeInteger ;

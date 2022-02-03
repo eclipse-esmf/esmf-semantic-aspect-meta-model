@@ -16,33 +16,26 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :ExtendingEntityInstanceMissingNotInPayloadProperty a bamm:Aspect ;
-   bamm:name "ExtendingEntityInstanceMissingNotInPayloadProperty" ;
    bamm:properties ( ) ;
    bamm:operations ( ) .
 
 :AbstractTestEntity a bamm:AbstractEntity ;
-   bamm:name "AbstractTestEntity" ;
    bamm:properties ( :abstractTestProperty
                      [ bamm:property :abstractNotInPayloadProperty ; bamm:notInPayload "true"^^xsd:boolean ]) .
 
 :abstractTestProperty a bamm:Property ;
-   bamm:name "abstractTestProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "String" ;
       bamm:dataType xsd:string
    ] .
 
 :ExtendingEntity a bamm:Entity ;
-   bamm:name "Entity" ;
    bamm:extends :AbstractTestEntity ;
    bamm:properties ( :intProperty ) .
 
 :intProperty a bamm:Property ;
-   bamm:name "intProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .
 

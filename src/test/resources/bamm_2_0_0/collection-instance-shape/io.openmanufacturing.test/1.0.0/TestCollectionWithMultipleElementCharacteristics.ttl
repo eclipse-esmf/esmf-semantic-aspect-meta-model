@@ -16,6 +16,5 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
 :TestCollectionWithMultipleElementCharacteristics a bamm-c:Collection ;
-   bamm:name "TestCollectionWithMultipleElementCharacteristics" ;
    bamm-c:elementCharacteristic bamm-c:Text ;
    bamm-c:elementCharacteristic bamm-c:Boolean .

@@ -13,17 +13,14 @@
 @prefix previousVersion: <urn:bamm:{example-ns}.myapplication:1.0.2#> .
 
 :MachineOnlineStatus a bamm:Aspect ;
-   bamm:name "MachineOnlineStatus" ;
    bamm:properties ( :onlineStatus ) ;
    bamm:operations ( ) .
 
 :onlineStatus a bamm:Property ; # <4>
-   bamm:name "onlineStatus" ;
    bamm:description "The current machine online status."@en ;
    bamm:see previousVersion:machineOnlineStatus ; # <5>
    bamm:characteristic [
       a bamm-c:Enumeration ;
-      bamm:name "StatusEnumeration" ;
       bamm:dataType xsd:string ;
       bamm-c:values ( "ON" "OFF" "BOOTING" )
    ] .

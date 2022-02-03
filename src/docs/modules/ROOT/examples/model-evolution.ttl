@@ -11,15 +11,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :MachineOnlineStatus a bamm:Aspect ;
-   bamm:name "MachineOnlineStatus" ;
    bamm:properties ( :machineOnlineStatus ) ;
    bamm:operations ( ) .
 
 :machineOnlineStatus a bamm:Property ;
-   bamm:name "machineOnlineStatus" ;
    bamm:description "The current machine online status. Can be either ON, OFF, BOOTING or UNDEFINED."@en ;
    bamm:characteristic [ # <1>
       a bamm:Characteristic ;
-      bamm:name "OnlineStatus" ;
       bamm:dataType xsd:string
    ] .

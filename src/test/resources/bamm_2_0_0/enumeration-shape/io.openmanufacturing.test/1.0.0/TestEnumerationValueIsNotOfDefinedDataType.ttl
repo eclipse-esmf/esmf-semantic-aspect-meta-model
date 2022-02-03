@@ -16,6 +16,5 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEnumerationValueIsNotOfDefinedDataType a bamm-c:Enumeration ;
-   bamm:name "TestEnumerationValueIsNotOfDefinedDataType" ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "OK" "1.0"^^xsd:double ).

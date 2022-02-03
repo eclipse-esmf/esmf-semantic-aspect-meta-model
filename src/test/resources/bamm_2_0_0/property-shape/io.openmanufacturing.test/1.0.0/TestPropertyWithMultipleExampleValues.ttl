@@ -16,16 +16,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestPropertyWithMultipleExampleValues a bamm:Aspect ;
-   bamm:name "TestPropertyWithMultipleExampleValues" ;
    bamm:properties ( :numericList ) ;
    bamm:operations ( ) .
 
 :numericList a bamm:Property ;
-   bamm:name "numericList" ;
    bamm:exampleValue "25.12"^^xsd:double ;
    bamm:exampleValue "234.2"^^xsd:double ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "NumericList" ;
       bamm:dataType xsd:double
    ] .

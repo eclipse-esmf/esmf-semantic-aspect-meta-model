@@ -16,5 +16,4 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
 :TestCollectionWithInvalidElementCharacteristic a bamm-c:Collection ;
-   bamm:name "TestCollectionWithInvalidElementCharacteristic" ;
    bamm-c:elementCharacteristic "bamm-c:Text" .

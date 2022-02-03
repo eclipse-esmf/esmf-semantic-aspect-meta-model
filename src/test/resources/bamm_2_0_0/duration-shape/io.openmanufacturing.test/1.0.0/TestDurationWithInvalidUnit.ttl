@@ -17,7 +17,6 @@
 @prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 
 :TestDurationWithInvalidUnit a bamm-c:Duration ;
-   bamm:name "TestDurationWithInvalidUnit" ;
    bamm:preferredName "Test Duration"@en ;
    bamm:description "Test Duration"@en ;
    bamm:dataType xsd:int ;

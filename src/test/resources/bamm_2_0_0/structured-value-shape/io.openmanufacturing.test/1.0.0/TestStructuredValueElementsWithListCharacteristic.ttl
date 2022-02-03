@@ -17,15 +17,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestStructuredValueElementsWithListCharacteristic a bamm-c:StructuredValue ;
-   bamm:name "TestStructuredValueElementsWithListCharacteristic" ;
    bamm:dataType xsd:string ;
    bamm-c:deconstructionRule "(.*)" ;
    bamm-c:elements ( :prop ) .
 
 :prop a bamm:Property ;
-   bamm:name "prop" ;
    bamm:characteristic :TestList .
 
 :TestList a bamm-c:List ;
-   bamm:name "TestList" ;
    bamm:dataType xsd:string .

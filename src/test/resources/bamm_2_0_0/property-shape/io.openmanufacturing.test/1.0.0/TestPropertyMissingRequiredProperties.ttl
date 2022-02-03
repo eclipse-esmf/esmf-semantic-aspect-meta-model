@@ -15,13 +15,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestPropertyMissingRequiredProperties a bamm:Aspect ;
-   bamm:name "TestPropertyMissingRequiredProperties" ;
    bamm:properties ( :testProperty ) ;
    bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "TestCharacteristic" ;
       bamm:dataType xsd:double
    ] .

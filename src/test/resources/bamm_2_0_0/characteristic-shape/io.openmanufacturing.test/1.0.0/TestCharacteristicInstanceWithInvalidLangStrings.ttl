@@ -15,7 +15,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestCharacteristicInstanceWithInvalidLangStrings a bamm:Characteristic ;
-   bamm:name "TestCharacteristicInstanceWithInvalidLangStrings" ;
    bamm:preferredName "Test Characteristic Instance" ;
    bamm:description "Test Characteristic Instance" ;
    bamm:dataType xsd:float .

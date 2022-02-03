@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestStateDefaultValueNotInValues a bamm-c:State ;
-   bamm:name "TestStateDefaultValueNotInValues" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "WARN" ;
    bamm-c:values ( "OK" "ERR" ) .

@@ -76,12 +76,6 @@ mmm:listType a rdf:Property ;
    rdfs:range rdfs:Resource .
 
 # Meta model attributes
-bamm:name a mmm:Attribute ;
-   rdfs:label "name" ;
-   rdfs:comment "The local name of a model element. This must be identical to the local part of its URI." ;
-   rdfs:domain mmm:NamedConcept ;
-   rdfs:range xsd:string .
-
 bamm:preferredName a mmm:Attribute ;
    rdfs:label "preferredName" ;
    rdfs:comment "Human readable name in a specific language." ;

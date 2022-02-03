@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspectWithInvalidLangStrings a bamm:Aspect ;
-   bamm:name "TestAspectWithInvalidLangStrings" ;
    bamm:preferredName "Test Aspect" ;
    bamm:description "Test Aspect Description" ;
    bamm:properties ( ) ;
