@@ -13,14 +13,10 @@
 
 package io.openmanufacturing.sds.aspectmetamodel;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.apache.jena.rdf.model.Model;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import io.openmanufacturing.sds.validation.SemanticError;
-import io.openmanufacturing.sds.validation.ValidationReport;
 
 public class EnumerationShapeTest extends AbstractShapeTest {
 
@@ -67,15 +63,5 @@ public class EnumerationShapeTest extends AbstractShapeTest {
             bammUrns.valuesUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "enumeration-shape", "TestEnumerationValueIsNotALiteralType",
             metaModelVersion, resultForName );
-   }
-
-   @ParameterizedTest
-   @MethodSource( value = "versionsStartingWith2_0_0" )
-   public void testAnonymousEnumerationExpectFailure( final KnownVersion metaModelVersion ) {
-      final Model anonymousTestEnumeration = loadModel( "enumeration-shape", "AnonymousTestEnumeration", metaModelVersion );
-      final ValidationReport validationReport = validator.apply( anonymousTestEnumeration, metaModelVersion );
-      assertThat( validationReport.getValidationErrors() ).hasSize( 1 );
-      final SemanticError semanticError = validationReport.getValidationErrors().iterator().next();
-      assertThat( semanticError.getResultMessage() ).isEqualTo( "Value does not have node kind IRI" );
    }
 }
