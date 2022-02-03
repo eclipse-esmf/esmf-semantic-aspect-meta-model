@@ -243,12 +243,6 @@ attributes:</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the property. This name must be defined in Camel
-  Case and be valid a Java Property name (i.e. can not contain spaces, dashes etc.).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:preferredName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Human readable name in a specific language. This attribute may be defined
   multiple times for different languages but only once for a specific language. There should be at
@@ -355,9 +349,6 @@ addition to the general attributes, every Aspect Model element has the following
 name.</p>
 </li>
 <li>
-<p>The name part in the Aspect&#8217;s identifying URN must be the same as the Aspect&#8217;s <code>bamm:name</code>.</p>
-</li>
-<li>
 <p>The hierarchical namespace part in the Aspect&#8217;s URN can be freely chosen.</p>
 </li>
 </ul>
@@ -376,7 +367,6 @@ that unused namespaces can be left out:</p>
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:preferredName "My Aspect"@en ;
    bamm:preferredName "Mein Aspekt"@de ;
    bamm:description "This Aspect is an example."@en ;
@@ -432,7 +422,6 @@ for more details.</p></td>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:materialNumber a bamm:Property ;
-   bamm:name "materialNumber" ;
    bamm:preferredName "Material number"@en ;
    bamm:description "A material number"@en ;
    bamm:exampleValue "ABC123456-000" ;
@@ -462,7 +451,6 @@ then reused with different data types to define different collections.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MachineState a bamm-c:State ;
-   bamm:name "MachineState" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "STANDBY" ;
    bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .</code></pre>
@@ -483,12 +471,10 @@ Characteristic.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:ToolTemperature a bamm-c:Measurement ;
-   bamm:name "ToolTemperature" ;
    bamm:dataType xsd:float ;
    bamm-c:unit unit:degreeCelsius .
 
 :drillHeadTemperature a bamm:Property ;
-   bamm:name "drillHeadTemperature" ;
    bamm:characteristic :ToolTemperature .</code></pre>
 </div>
 </div>
@@ -505,17 +491,14 @@ Characteristic.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:AccelerationVector a bamm:Entity ;
-   bamm:name "AccelerationVector" ;
    bamm:properties ( :x :y :z ) .
 
 # Definition of Properties x, y and z for the Entity here
 # ...
 
 :acceleration a bamm:Property ;
-   bamm:name "acceleration" ;
    bamm:characteristic [
       a bamm-c:SingleEntity ;
-      bamm:name "Acceleration" ;
       bamm:dataType :AccelerationVector
    ] .</code></pre>
 </div>
@@ -554,7 +537,6 @@ is not defined inline in the Property, but defined standalone.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm:dataType xsd:float .</code></pre>
 </div>
 </div></div></td>
@@ -564,13 +546,11 @@ is not defined inline in the Property, but defined standalone.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MyEntity a bamm:Entity ;
-   bamm:name "MyEntity" ;
    bamm:properties ( ) ;
    # ...
    .
 
 :MyEntityList a bamm-c:List ;
-   bamm:name "MyEntityList" ;
    bamm:dataType :MyEntity .</code></pre>
 </div>
 </div></div></td>
@@ -599,14 +579,11 @@ defining the data type, since it allows to completely express the semantics of t
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic :NumberList .
 
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm-c:elementCharacteristic [
       a bamm-c:Trait ;
-      bamm:name "ElementRange" ;
       bamm-c:baseCharacteristic :Number ;
       bamm-c:constraint [
          a bamm-c:RangeConstraint ;
@@ -617,7 +594,6 @@ defining the data type, since it allows to completely express the semantics of t
    ] .
 
 :Number a bamm:Characteristic ;
-   bamm:name "Number" ;
    bamm:dataType xsd:nonNegativeInteger .</code></pre>
 </div>
 </div>
@@ -634,7 +610,6 @@ defining the data type, since it allows to completely express the semantics of t
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Status a bamm-c:Enumeration ;
-   bamm:name "Status" ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "Complete" "In Progress" "Created" ) .</code></pre>
 </div>
@@ -646,7 +621,6 @@ syntax can be used:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:PrimesBelowTwenty a bamm-c:Enumeration ;
-   bamm:name "PrimesBelowTwenty" ;
    bamm:dataType xsd:integer ;
    bamm-c:values ( 2 3 5 7 11 13 17 19 ) .</code></pre>
 </div>
@@ -657,7 +631,6 @@ syntax can be used:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:ValidOffsets a bamm-c:Enumeration ;
-   bamm:name "ValidOffsets" ;
    bamm:dataType xsd:int ;
    bamm-c:values ( "-1"^^xsd:int "1"^^xsd:int ) .</code></pre>
 </div>
@@ -668,7 +641,6 @@ syntax can be used:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MaintenanceDates a bamm-c:Enumeration ;
-   bamm:name "MaintenanceDates" ;
    bamm:dataType xsd:date ;
    bamm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .</code></pre>
 </div>
@@ -686,12 +658,10 @@ part of the runtime data, the <code>bamm:notInPayload</code> attribute is used.<
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Results a bamm-c:Enumeration ;
-   bamm:name "Results" ;
    bamm:dataType :Result ;
    bamm-c:values ( :Success :Failed ) .
 
 :Result a bamm:Entity ;
-   bamm:name "Result" ;
    bamm:properties ( :status [ bamm:property :description; bamm:notInPayload "true"^^xsd:boolean ] ) .
 
 :Success a :Result ;
@@ -729,7 +699,6 @@ from Enumeration and extends it with the default value attribute.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MachineState a bamm-c:State ;
-   bamm:name "MachineState" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "STANDBY" ;
    bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .</code></pre>
@@ -766,20 +735,16 @@ information on how to extend an Abstract Entity.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:MachineStateTimeSeries a bamm-c:TimeSeries ;
-   bamm:name "MachineStateTimeSeries" ;
    bamm:dataType :MachineStateTimeSeriesEntity .
 
 :MachineStateTimeSeriesEntity a bamm:Entity ;
-   bamm:name "MachineStateTimeSeriesEntity" ;
    bamm:extends bamm-e:TimeSeriesEntity ;
    bamm:properties ( :machineState ) .
 
 :machineState a bamm:Property ;
-   bamm:name "machineState" ;
    bamm:characteristic :MachineState .
 
 :MachineState a bamm-c:State ;
-   bamm:name "MachineState" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "STANDBY" ;
    bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .</code></pre>
@@ -816,24 +781,19 @@ the two Characteristics which define the left and right value of the disjoint un
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Result a bamm-c:Either ;
-   bamm:name "Result" ;
    bamm-c:left :ErrorCode ;
    bamm-c:right :SuccessCode .
 
 :ErrorCode a bamm-c:SingleEntity ;
-   bamm:name "ErrorCode" ;
    bamm:dataType :ErrorEntity .
 
 :SuccessCode a bamm-c:SingleEntity ;
-   bamm:name "SuccessCode" ;
    bamm:dataType :SuccessEntity .
 
 :ErrorEntity a bamm:Entity ;
-   bamm:name "ErrorEntity" ;
    bamm:properties ( :errorCode :errorDescription ) .
 
 :SuccessEntity a bamm:Entity ;
-   bamm:name "SuccessEntity" ;
    bamm:properties ( :status ) .</code></pre>
 </div>
 </div>
@@ -923,43 +883,34 @@ RDF/Turtle syntax, i.e. write <code>\\</code> instead of <code>\</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:StructuredValueTest a bamm:Aspect ;
-   bamm:name "StructuredValueTest" ;
    bamm:properties ( :date ) ;
    bamm:operations () .
 
 :date a bamm:Property ;
-   bamm:name "date" ;
    bamm:exampleValue "2019-09-27"^^xsd:date ;
    bamm:characteristic :StructuredDate .
 
 :StructuredDate a bamm-c:StructuredValue ;
-   bamm:name "StructuredDate" ;
    bamm:dataType xsd:date ;
    bamm-c:deconstructionRule "(\\d{4})-(\\d{2})-(\\d{2})" ;
    bamm-c:elements ( :year "-" :month "-" :day ) .
 
 :year a bamm:Property ;
-   bamm:name "year" ;
    bamm:characteristic :Year .
 
 :month a bamm:Property ;
-   bamm:name "month" ;
    bamm:characteristic :Month .
 
 :day a bamm:Property ;
-   bamm:name "day" ;
    bamm:characteristic :Day .
 
 :Year a bamm:Characteristic ;
-   bamm:name "Year" ;
    bamm:dataType xsd:int .
 
 :Month a bamm:Characteristic ;
-   bamm:name "Month" ;
    bamm:dataType xsd:int .
 
 :Day a bamm:Characteristic ;
-   bamm:name "Day" ;
    bamm:dataType xsd:int .</code></pre>
 </div>
 </div>
@@ -991,11 +942,9 @@ i.e., that the deconstruction rule actually does what the model author intended.
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic :NumberList .
 
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm:dataType xsd:integer .</code></pre>
 </div>
 </div>
@@ -1008,10 +957,8 @@ Constraint as a <code>bamm-c:constraint</code> to the Trait:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic [
      a bamm-c:Trait ;
-     bamm:name "LimitedNumberList" ;
      bamm-c:constraint [
        a bamm-c:LengthConstraint ;
        bamm:description "Limits the number list to 10 elements"@en ;
@@ -1021,7 +968,6 @@ Constraint as a <code>bamm-c:constraint</code> to the Trait:</p>
    ]  .
 
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm:dataType xsd:integer .</code></pre>
 </div>
 </div>
@@ -1035,17 +981,14 @@ Constraint</a> that limits the string to 80 characters.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:someIdentifier a bamm:Property ;
-   bamm:name "someIdentifier" ;
    bamm:preferredName "Some identifier"@en ;
    bamm:description "An ASCII-encoded identifier with a maximum length of 80 characters"@en ;
    bamm:characteristic :CodeWithLengthAndAscii .
 
 :CodeWithLengthAndAscii a bamm-c:Trait ;
-   bamm:name "CodeWithLengthAndAscii" ;
    bamm:description "A string code limited to 80 ASCII characters" ;
    bamm-c:baseCharacteristic [
       a bamm-c:Code ;
-      bamm:name "StringCode" ;
       bamm:description "Denotes some kind of code with a string datatype"@en ;
       bamm:dataType xsd:string ;
    ] ;
@@ -1056,7 +999,6 @@ Constraint</a> that limits the string to 80 characters.</p>
    ] ;
    bamm-c:constraint [
       a bamm-c:LengthConstraint ;
-      bamm:name "CodeWithLength" ;
       bamm:description "Limits the length to 80 characters"@en ;
       bamm-c:maxValue "80"^^xsd:nonNegativeInteger ;
    ] .</code></pre>
@@ -1068,12 +1010,10 @@ Constraint</a> that limits the string to 80 characters.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:timeStampsInJanuary a bamm:Property ;
-   bamm:name "timeStampsInJanuary" ;
    bamm:preferredName "Timestamps in January"@en ;
    bamm:description "Contains only timestamps in January of any year"@en ;
    bamm:characteristic [
       a bamm-c:Trait ;
-      bamm:name "TimestampInJanuary" ;
       bamm-c:baseCharacteristic bamm-c:Timestamp ;
       bamm-c:constraint [
          a bamm-c:RegularExpressionConstraint ;
@@ -1132,7 +1072,6 @@ When writing the <code>bamm:value</code>, backslashes (<code>\</code>) need to b
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Error a bamm:Entity ;
-   bamm:name "Error" ;
    bamm:properties ( :errorCode :severity ) .</code></pre>
 </div>
 </div>
@@ -1147,17 +1086,14 @@ When writing the <code>bamm:value</code>, backslashes (<code>\</code>) need to b
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Student a bamm:Entity ;
-    bamm:name "Student" ;
     bamm:extends :Person ;
     bamm:properties ( :studentNumber ) .
 
 :Teacher a bamm:Entity ;
-    bamm:name "Teacher" ;
     bamm:extends :Person ;
     bamm:properties ( :employeeNumber ) .
 
 :Person a bamm:Entity ;
-    bamm:name "Person" ;
     bamm:properties ( :name :surname ) .</code></pre>
 </div>
 </div>
@@ -1166,7 +1102,7 @@ When writing the <code>bamm:value</code>, backslashes (<code>\</code>) need to b
 the Properties in their own declarations.</p>
 </div>
 <div class="paragraph">
-<p>The effective Property names, i.e. the payload name when <code>bamm:payloadName</code> is used, or the <code>bamm:name</code> of the Property,
+<p>The effective Property names, i.e. the payload name when <code>bamm:payloadName</code> is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.</p>
 </div>
 </div>
@@ -1182,16 +1118,13 @@ be extended by one or more Entities.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:VehicleComponent a bamm:AbstractEntity ;
-    bamm:name "VehicleComponent" ;
     bamm:properties ( :typeNumber :manufacturer ) .
 
 :Steeringwheel a bamm:Entity ;
-   bamm:name "Steeringwheel " ;
    bamm:extends :VehicleComponent ;
    bamm:properties ( :isMultifunction  ) .
 
 :Seat a bamm:Entity ;
-   bamm:name "Seat" ;
    bamm:extends :VehicleComponent ;
    bamm:properties ( :material )</code></pre>
 </div>
@@ -1236,33 +1169,28 @@ be extended by one or more Entities.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:toggle a bamm:Operation ;
-   bamm:name "toggle" ;
    bamm:preferredName "Toggle"@en ;
    bamm:description "Switches the device on or off"@en ;
    bamm:input ( :toggleArgument ) ;
    bamm:output :toggleResult .
 
 :toggleArgument a bamm:Property ;
-   bamm:name "toggleArgument" ;
    bamm:preferredName "Toggle argument"@en ;
    bamm:description "The argument for the toggling operation"@en ;
    bamm:characteristic :ToggleValues .
 
 :ToggleValues a bamm-c:Enumeration ;
-   bamm:name "ToggleValues" ;
    bamm:preferredName "Toggle values"@en ;
    bamm:description "The possible input values for the toggle operation"@en ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "on" "off" ) .
 
 :toggleResult a bamm:Property ;
-   bamm:name "toggleResult" ;
    bamm:preferredName "Toggle result"@en ;
    bamm:description "The result of the toggle operation"@en ;
    bamm:characteristic :ToggleResult .
 
 :ToggleResult a bamm-c:Enumeration ;
-   bamm:name "ToggleResult" ;
    bamm:preferredName "Toggle result"@en ;
    bamm:description "The possible results of the toggle operation"@en ;
    bamm:dataType xsd:string ;
@@ -1285,7 +1213,6 @@ have identifiers which are also valid URLs:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:lastName a bamm:Property ;
-    bamm:name "lastName" ;
     bamm:see &lt;https://schema.org/familyName&gt; ;
     bamm:see &lt;http://xmlns.com/foaf/0.1/lastName&gt; ;
     bamm:characteristic bamm-c:Text .</code></pre>
@@ -1310,7 +1237,6 @@ Identifiers as specified by ITU and ISO/IEC (OID) and the mapping to URNs in RFC
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:filterName a bamm:Property ;
-    bamm:name "filterName" ;
     bamm:see &lt;urn:oid:1.3.6.1.4.1.1919.1.1.2&gt; ;
     bamm:characteristic bamm-c:Text .</code></pre>
 </div>
@@ -1323,7 +1249,6 @@ for example:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:organizationPerson a bamm:Property ;
-    bamm:name "organizationPerson" ;
     bamm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
     bamm:characteristic bamm-c:Text .</code></pre>
 </div>
@@ -1347,7 +1272,6 @@ defined, and how the definition for the <code>toggleStatus</code> Property itsel
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:properties (
      :toggleStatus
      [ bamm:property :errorMessage; bamm:optional true ]
@@ -1355,11 +1279,9 @@ defined, and how the definition for the <code>toggleStatus</code> Property itsel
    bamm:operations ( ) .
 
 :toggleStatus a bamm:Property ;
-   bamm:name "statusNumber" ;
    bamm:characteristic bamm-c:Boolean .
 
 :errorMessage a bamm:Property ;
-   bamm:name "errorMessage" ;
    bamm:characteristic bamm-c:Text .</code></pre>
 </div>
 </div>
@@ -1454,11 +1376,9 @@ longer has an identifier.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic :NumberList .
 
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm:dataType xsd:integer .</code></pre>
 </div>
 </div></div></td>
@@ -1468,10 +1388,8 @@ longer has an identifier.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic [
       a bamm-c:List;
-      bamm:name "NumberList" ;
       bamm:dataType xsd:integer
    ] .</code></pre>
 </div>
