@@ -16,6 +16,5 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :TestCharacteristicSubClassWithMultipleDataTypes rdfs:subClassOf bamm:Characteristic ;
-   bamm:name "TestCharacteristicSubClassWithMultipleDataTypes" ;
    bamm:dataType xsd:float ;
    bamm:dataType xsd:double .

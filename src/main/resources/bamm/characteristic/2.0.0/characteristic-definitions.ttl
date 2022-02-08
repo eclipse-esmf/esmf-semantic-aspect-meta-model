@@ -20,18 +20,17 @@
 # Meta meta model attributes
 mmm:allowDuplicates a rdf:Property ;
    rdfs:label "allowDuplicates" ;
-   rdfs:label "Allow Duplicates" ;
    rdfs:comment "Indicates whether a Collection may contain duplicate values."@en .
 
 mmm:ordered a rdf:Property ;
    rdfs:label "ordered" ;
-   rdfs:label "Ordered" ;
    rdfs:comment "Indicates whether the values in a Collection are ordered."@en .
 
 # Meta model attributes
 bamm-c:baseCharacteristic a mmm:Attribute ;
    rdfs:label "baseCharacteristic" ;
    rdfs:comment "Reference to the Characteristic on which a Constraint is being applied." ;
+   rdfs:domain bamm-c:Trait ;
    rdfs:range rdfs:Resource .
 
 bamm-c:constraint a mmm:Attribute ;
@@ -43,85 +42,102 @@ bamm-c:constraint a mmm:Attribute ;
 bamm-c:languageCode a mmm:Attribute ;
    rdfs:label "languageCode" ;
    rdfs:comment """An ISO 639-1 language code for the language of the value of the constrained Property, e.g. "de".""" ;
+   rdfs:domain bamm-c:LanguageConstraint ;
    rdfs:range xsd:string .
 
 bamm-c:localeCode a mmm:Attribute ;
    rdfs:label "localeCode" ;
    rdfs:comment """An IETF BCP 47 locale code for the language of the value of the constrained Property, e.g. "de-DE".""" ;
+   rdfs:domain bamm-c:LocaleConstraint ;
    rdfs:range xsd:string .
 
 bamm-c:unit a mmm:Attribute ;
    rdfs:label "unit" ;
-   rdfs:label "Unit" ;
-   rdfs:comment "Reference to a Unit as defined in the Unit catalog."@en .
-
-bamm-c:pieces a rdf:Property ;
-   rdfs:label "pieces" ;
-   rdfs:label "Pieces" .
+   rdfs:comment "Reference to a Unit as defined in the Unit catalog."@en ;
+   rdfs:domain bamm-c:Quantifiable ;
+   rdfs:range bamm:Unit .
 
 bamm-c:minValue a rdf:Property ;
    rdfs:label "minValue" ;
-   rdfs:label "Minimum Value" ;
    rdfs:comment "The lower bound of a range."@en .
+   # Note: rdfs:domain is the union of bamm-c:RangeConstraint, bamm-c:LengthConstraint
+   # Note: rdfs:range can't be given since for usage in bamm-cLengthConstraint it's
+   #  xsd:nonNegativeInteger while for usage in a bamm-c:RangeConstraint, it depends on the
+   #  bamm:dataType of the bamm-c:baseCharacteristic the constraint is used in
 
 bamm-c:maxValue a rdf:Property ;
    rdfs:label "maxValue" ;
-   rdfs:label "Maximum Value" ;
    rdfs:comment "The upper bound of a range."@en .
+   # Note: rdfs:domain is the union of bamm-c:RangeConstraint, bamm-c:LengthConstraint
+   # Note: rdfs:range can't be given since for usage in bamm-cLengthConstraint it's
+   #  xsd:nonNegativeInteger while for usage in a bamm-c:RangeConstraint, it depends on the
+   #  bamm:dataType of the bamm-c:baseCharacteristic the constraint is used in
 
 bamm-c:values a rdf:Property ;
    rdfs:label "values" ;
-   rdfs:label "Values" ;
-   rdfs:comment """List of possible values of the same type, e.g. ( "up" "down" "degraded" )."""@en .
+   rdfs:comment """List of possible values of the same type, e.g. ( "up" "down" "degraded" )."""@en ;
+   rdfs:domain bamm-c:Enumeration ;
+   rdfs:range rdf:List .
 
 bamm-c:defaultValue a rdf:Property ;
    rdfs:label "defaultValue" ;
-   rdfs:label "Default Value" ;
-   rdfs:comment "The default value for the state."@en .
+   rdfs:comment "The default value for the state."@en ;
+   rdfs:domain bamm-c:State .
+   # Note: rdfs:range depends on the bamm:dataType of the bamm-c:State the defaultValue is used in
 
 bamm-c:left a rdf:Property ;
    rdfs:label "left" ;
-   rdfs:label "Left" ;
-   rdfs:comment "The left side of the Either. The attribute references another Characteristic which describes the value."@en .
+   rdfs:comment "The left side of the Either. The attribute references another Characteristic which describes the value."@en ;
+   rdfs:domain bamm-c:Either ;
+   rdfs:range bamm:Characteristic .
 
 bamm-c:right a rdf:Property ;
    rdfs:label "right" ;
-   rdfs:label "Right" ;
-   rdfs:comment "The right side of the Either. The attribute references another Characteristic which describes the value."@en .
+   rdfs:comment "The right side of the Either. The attribute references another Characteristic which describes the value."@en ;
+   rdfs:domain bamm-c:Either ;
+   rdfs:range bamm:Characteristic .
 
 bamm-c:lowerBoundDefinition a rdf:Property ;
    rdfs:label "lowerBoundDefinition" ;
-   rdfs:label "Lower Bound Definition" ;
-   rdfs:comment """Defines how the "minValue" property of the Range Constraint is to be interpreted. Possible values are "AT_LEAST" and "GREATER_THAN". This is an optional property. By default the "minValue" is interpreted with "AT_LEAST" semantics."""@en .
+   rdfs:comment """Defines how the "minValue" property of the Range Constraint is to be interpreted. Possible values are "AT_LEAST" and "GREATER_THAN". This is an optional property. By default the "minValue" is interpreted with "AT_LEAST" semantics."""@en ;
+   rdfs:domain bamm-c:RangeConstraint ;
+   rdfs:range mmm:Constant .
 
 bamm-c:upperBoundDefinition a rdf:Property ;
    rdfs:label "upperBoundDefinition" ;
-   rdfs:label "Upper Bound Definition" ;
-   rdfs:comment """Defines how the "maxValue" property of the Range Constraint is to be interpreted. Possible values are "LESS_THAN" and "AT_MOST". This is an optional property. By default the "maxValue" is interpreted with "AT_MOST" semantics"""@en .
+   rdfs:comment """Defines how the "maxValue" property of the Range Constraint is to be interpreted; Possible values are "LESS_THAN" and "AT_MOST". This is an optional property. By default the "maxValue" is interpreted with "AT_MOST" semantics"""@en ;
+   rdfs:domain bamm-c:RangeConstraint ;
+   rdfs:range mmm:Constant .
 
 bamm-c:elements a rdf:Property ;
    rdfs:label "elements" ;
-   rdfs:comment """List of elements of possibly different types, e.g. ( "literal value" :reference )"""@en .
+   rdfs:comment """List of elements of possibly different types, e.g. ( "literal value" :reference )"""@en ;
+   rdfs:domain bamm-c:StructuredValue ;
+   rdfs:range rdf:List .
 
 bamm-c:deconstructionRule a rdf:Property ;
    rdfs:label "deconstructionRule" ;
-   rdfs:label "Deconstruction Rule" ;
-   rdfs:comment "A regular expression that defines the groups contained in a string."@en .
+   rdfs:comment "A regular expression that defines the groups contained in a string."@en ;
+   rdfs:domain bamm-c:StructuredValue ;
+   rdfs:range xsd:string .
 
 bamm-c:scale a rdf:Property ;
    rdfs:label "scale" ;
-   rdfs:label "Scale" ;
-   rdfs:comment "The scaling factor for a fixed point number."@en .
+   rdfs:comment "The scaling factor for a fixed point number."@en ;
+   rdfs:domain bamm-c:FixedPointConstraint ;
+   rdfs:range xsd:positiveInteger .
 
 bamm-c:integer a rdf:Property ;
    rdfs:label "integer" ;
-   rdfs:label "Integer" ;
-   rdfs:comment "The number of integral digits for a fixed point number."@en .
+   rdfs:comment "The number of integral digits for a fixed point number."@en ;
+   rdfs:domain bamm-c:FixedPointConstraint ;
+   rdfs:range xsd:positiveInteger .
 
 bamm-c:elementCharacteristic a rdf:Property ;
    rdfs:label "elementCharacteristic" ;
-   rdfs:label "Element Characteristic" ;
-   rdfs:comment "The Characteristic which defines the elements in a Collection."@en .
+   rdfs:comment "The Characteristic which defines the elements in a Collection."@en ;
+   rdfs:domain bamm-c:Collection ;
+   rdfs:range bamm:Characteristic .
 
 # Characteristics
 bamm-c:Trait rdfs:subClassOf bamm:Characteristic ;
@@ -227,5 +243,14 @@ bamm-c:RegularExpressionConstraint rdfs:subClassOf bamm:Constraint ;
    bamm:see <http://www.w3.org/TR/xpath-functions/#regex-syntax> .
 
 bamm-c:FixedPointConstraint rdfs:subClassOf bamm:Constraint ;
-   rdfs:label "FixedPoint" ;
+   rdfs:label "FixedPointConstraint" ;
    rdfs:comment "Defines the scaling factor for a fixed point number."@en .
+
+# Constants
+bamm-c:AT_MOST a mmm:Constant .
+
+bamm-c:LESS_THAN a mmm:Constant .
+
+bamm-c:AT_LEAST a mmm:Constant .
+
+bamm-c:GREATER_THAN a mmm:Constant .

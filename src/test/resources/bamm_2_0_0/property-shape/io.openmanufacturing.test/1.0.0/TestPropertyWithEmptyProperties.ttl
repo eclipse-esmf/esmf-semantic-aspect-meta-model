@@ -16,16 +16,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestPropertyWithEmptyProperties a bamm:Aspect ;
-   bamm:name "TestPropertyWithEmptyProperties" ;
    bamm:properties ( :testProperty ) ;
    bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "" ;
    bamm:preferredName ""@en ;
    bamm:description ""@en ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "NumberList" ;
       bamm:dataType xsd:double
    ] .

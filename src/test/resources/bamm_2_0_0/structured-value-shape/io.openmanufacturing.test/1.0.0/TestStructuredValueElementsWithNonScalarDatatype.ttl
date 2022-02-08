@@ -22,13 +22,10 @@
    bamm-c:elements ( :prop ) .
 
 :prop a bamm:Property ;
-   bamm:name "prop" ;
    bamm:characteristic :EntityCharacteristic .
 
 :EntityCharacteristic a bamm-c:SingleEntity ;
-   bamm:name "EntityCharacteristic" ;
    bamm:dataType :TestEntity .
 
 :TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
    bamm:properties ( ) .

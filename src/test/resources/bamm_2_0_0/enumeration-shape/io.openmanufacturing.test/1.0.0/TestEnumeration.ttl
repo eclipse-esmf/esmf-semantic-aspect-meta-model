@@ -16,6 +16,5 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEnumeration a bamm-c:Enumeration ;
-   bamm:name "TestEnumeration" ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "OK" "ERR" ).

@@ -14,12 +14,10 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
 :TestOperationWithEmptyProperties a bamm:Aspect ;
-   bamm:name "TestOperationWithEmptyProperties" ;
    bamm:properties ( ) ;
    bamm:operations ( :TestOperation ) .
 
 :TestOperation a bamm:Operation ;
-   bamm:name "" ;
    bamm:preferredName ""@en ;
    bamm:description ""@en ;
    bamm:input ( ) .

@@ -16,41 +16,32 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :ExtendingEntityMissingOptionalProperty a bamm:Aspect ;
-   bamm:name "ExtendingEntityMissingOptionalProperty" ;
    bamm:properties ( ) ;
    bamm:operations ( ) .
 
 :AbstractTestEntity a bamm:AbstractEntity ;
-   bamm:name "AbstractTestEntity" ;
    bamm:properties ( :abstractTestProperty
                      [ bamm:property :optionalAbstractTestProperty ; bamm:optional true ]) .
 
 :abstractTestProperty a bamm:Property ;
-   bamm:name "abstractTestProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "String" ;
       bamm:dataType xsd:string
    ] .
 
 :optionalAbstractTestProperty a bamm:Property ;
-   bamm:name "optionalAbstractTestProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Boolean" ;
       bamm:dataType xsd:boolean
    ] .
 
 :ExtendingEntity a bamm:Entity ;
-   bamm:name "Entity" ;
    bamm:extends :AbstractTestEntity ;
    bamm:properties ( :intProperty ) .
 
 :intProperty a bamm:Property ;
-   bamm:name "intProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .
 

@@ -17,7 +17,6 @@
 @prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 
 :TestRangeWithInvalidUpperBoundDefinition a bamm-c:RangeConstraint ;
-   bamm:name "TestRangeWithInvalidUpperBoundDefinition" ;
    bamm:preferredName "Test Range"@en ;
    bamm:description "Test Range"@en ;
    bamm-c:minValue "2.3"^^xsd:float ;

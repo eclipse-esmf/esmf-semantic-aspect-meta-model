@@ -13,42 +13,33 @@
 
 # tag::content[]
 :StructuredValueTest a bamm:Aspect ;
-   bamm:name "StructuredValueTest" ;
    bamm:properties ( :date ) ;
    bamm:operations () .
 
 :date a bamm:Property ;
-   bamm:name "date" ;
    bamm:exampleValue "2019-09-27"^^xsd:date ;
    bamm:characteristic :StructuredDate .
 
 :StructuredDate a bamm-c:StructuredValue ;
-   bamm:name "StructuredDate" ;
    bamm:dataType xsd:date ;
    bamm-c:deconstructionRule "(\\d\{4\})-(\\d\{2\})-(\\d\{2\})" ;
    bamm-c:elements ( :year "-" :month "-" :day ) .
 
 :year a bamm:Property ;
-   bamm:name "year" ;
    bamm:characteristic :Year .
 
 :month a bamm:Property ;
-   bamm:name "month" ;
    bamm:characteristic :Month .
 
 :day a bamm:Property ;
-   bamm:name "day" ;
    bamm:characteristic :Day .
 
 :Year a bamm:Characteristic ;
-   bamm:name "Year" ;
    bamm:dataType xsd:int .
 
 :Month a bamm:Characteristic ;
-   bamm:name "Month" ;
    bamm:dataType xsd:int .
 
 :Day a bamm:Characteristic ;
-   bamm:name "Day" ;
    bamm:dataType xsd:int .
 # end::content[]

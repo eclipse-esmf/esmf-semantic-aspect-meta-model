@@ -16,14 +16,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspectWithMissingOptionalProperty a bamm:Aspect ;
-   bamm:name "TestAspectWithMissingOptionalProperty" ;
    bamm:preferredName "Test Aspect"@en ;
    bamm:description "Test Aspect"@en ;
    bamm:properties ( [ bamm:optional true ] ) ;
    bamm:operations ( ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:preferredName "Test Property"@en ;
    bamm:description "A property with a text value."@en ;
    bamm:characteristic bamm-c:Text .

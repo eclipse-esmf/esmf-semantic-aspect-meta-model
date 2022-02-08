@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestSeePropertyDoesNotHaveNodeKindIri a bamm:Aspect ;
-   bamm:name "TestAspect" ;
    bamm:see "http://open-manufacturing.org/"^^xsd:string ;
    bamm:properties ( ) ;
    bamm:operations ( ) .

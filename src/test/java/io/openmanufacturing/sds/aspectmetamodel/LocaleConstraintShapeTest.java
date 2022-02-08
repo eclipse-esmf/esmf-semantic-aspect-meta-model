@@ -28,6 +28,12 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
+   public void testValidGrandfatheredLanguageTagExpectSuccess( final KnownVersion metaModelVersion ) {
+      checkValidity( "locale-constraint-shape", "TestLocaleConstraintValidGrandfatheredLanguageTag", metaModelVersion );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
    public void testMissingRequiredProperties2( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintMissingRequiredProperties";
@@ -48,6 +54,32 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
             bammUrns.localeCodeUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintMultipleLocaleCodeProperties",
+            metaModelVersion, result );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
+   public void testInvalidLanguageTagExpectError( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintInvalidLanguageTag";
+
+      final SemanticError result = new SemanticError( "Invalid language in locale code.", focusNode,
+            bammUrns.localeCodeUrn, VIOLATION_URN, "ac" );
+      expectSemanticValidationErrors(
+            "locale-constraint-shape", "TestLocaleConstraintInvalidLanguageTag",
+            metaModelVersion, result );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
+   public void testValidLanguageInvalidRegionExpectError( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintValidLanguageInvalidRegion";
+
+      final SemanticError result = new SemanticError( "Invalid region in locale code.", focusNode,
+            bammUrns.localeCodeUrn, VIOLATION_URN, "de-AB" );
+      expectSemanticValidationErrors(
+            "locale-constraint-shape", "TestLocaleConstraintValidLanguageInvalidRegion",
             metaModelVersion, result );
    }
 }

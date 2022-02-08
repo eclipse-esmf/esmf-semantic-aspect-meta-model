@@ -18,19 +18,15 @@
 @prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
 
 :TestPropertyWithRecursivePropertyWithOptional a bamm:Aspect ;
-    bamm:name "TestPropertyWithRecursivePropertyWithOptional" ;
     bamm:properties ( :testProperty ) ;
     bamm:operations ( ).
 
 :testProperty a bamm:Property ;
-    bamm:name "testProperty" ;
     bamm:characteristic :testItemCharacteristic .
 
 :testItemCharacteristic a bamm-c:SingleEntity ;
-    bamm:name "testItemCharacteristic" ;
     bamm:dataType :TestEntity .
 
 :TestEntity a bamm:Entity ;
-    bamm:name "TestEntity" ;
     bamm:properties ( [ bamm:property :testProperty ; bamm:optional true ; ] ) .
 

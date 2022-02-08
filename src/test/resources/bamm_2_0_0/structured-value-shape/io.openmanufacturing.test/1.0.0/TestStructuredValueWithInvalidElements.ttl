@@ -17,11 +17,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestStructuredValueWithInvalidElements a bamm-c:StructuredValue ;
-   bamm:name "TestStructuredValueWithInvalidElements" ;
    bamm:dataType xsd:string ;
    bamm-c:deconstructionRule "(.*)" ;
    bamm-c:elements ( :prop 42 ) .
 
 :prop a bamm:Property ;
-   bamm:name "prop" ;
    bamm:characteristic bamm-c:Text .

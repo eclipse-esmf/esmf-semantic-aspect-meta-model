@@ -16,7 +16,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :TestCharacteristicSubClassWithEmptyProperties rdfs:subClassOf bamm:Characteristic ;
-   bamm:name "" ;
    bamm:preferredName ""@en ;
    bamm:description ""@en ;
    bamm:dataType xsd:float .

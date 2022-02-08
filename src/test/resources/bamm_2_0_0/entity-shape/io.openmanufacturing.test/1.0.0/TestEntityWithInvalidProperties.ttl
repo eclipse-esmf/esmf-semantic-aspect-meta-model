@@ -14,7 +14,6 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
 :TestEntityWithInvalidProperties a bamm:Entity ;
-   bamm:name "TestEntityWithInvalidProperties" ;
    bamm:preferredName "Test Entity"@en ;
    bamm:preferredName "Test Entität"@de ;
    bamm:description "A test Entity"@en ;
@@ -22,5 +21,4 @@
    bamm:properties ( :SecondTestEntity ).
 
 :SecondTestEntity a bamm:Entity ;
-   bamm:name "SecondTestEntity" ;
    bamm:properties ( ) .

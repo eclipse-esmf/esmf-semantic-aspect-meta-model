@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
    bamm:preferredName "Test Entity"@en ;
    bamm:preferredName "Test Entität"@de ;
    bamm:description "A test Entity"@en ;
@@ -24,29 +23,24 @@
    bamm:properties ( :entityList :integerList ).
 
 :entityList a bamm:Property ;
-   bamm:name "entityList" ;
    bamm:preferredName "Entity List"@en ;
    bamm:preferredName "Entitätliste"@de ;
    bamm:description "A property with a list of complex value."@en ;
    bamm:description "Eine Property mit einer Liste mit komplexen Werten."@de ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "EntityList" ;
       bamm:dataType :SecondTestEntity
    ] .
 
 :integerList a bamm:Property ;
-   bamm:name "integerList" ;
    bamm:preferredName "Integer List"@en ;
    bamm:preferredName "Numerische Liste"@de ;
    bamm:description "A property with a list of numeric value."@en ;
    bamm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "NumericList" ;
       bamm:dataType xsd:integer
    ] .
 
 :SecondTestEntity a bamm:Entity ;
-   bamm:name "SecondTestEntity" ;
    bamm:properties ( ) .

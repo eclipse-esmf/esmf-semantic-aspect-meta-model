@@ -58,8 +58,6 @@ attributes:
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm:name` | The name of the property. This name must be defined in Camel
-  Case and be valid a Java Property name (i.e. can not contain spaces, dashes etc.). | {ok}
 | `bamm:preferredName` | Human readable name in a specific language. This attribute may be defined
   multiple times for different languages but only once for a specific language. There should be at
   least one preferredName defined with an "en" language tag. | {nok}
@@ -115,7 +113,6 @@ addition to the general attributes, every Aspect Model element has the following
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
 * Each Aspect model must be defined in its own file. The file name must be the same as the Aspect's
   name.
-* The name part in the Aspect's identifying URN must be the same as the Aspect's `bamm:name`.
 * The hierarchical namespace part in the Aspect's URN can be freely chosen.
 
 The definition of an Aspect should therefore have the following structure in TTL syntax; note though
@@ -174,9 +171,6 @@ Characteristic superclasses. This allows the definition of generic Characteristi
 Collections, where all the semantics are fixed, except for the data type. For a Collection for
 example it is possible to define whether the collection is sorted or not and this definition can be
 then reused with different data types to define different collections.
-
-NOTE: A guide for how to decide on which Characteristic to use can be found in
-xref:modeling-guildlines.adoc#choosing-a-characteristic[Choosing a Characteristic].
 
 Example:
 
@@ -392,7 +386,7 @@ comprises can be difficult, especially in a machine-readable way.
 Therefore, the Structured Value Characteristic can be used to describe the deconstruction of a value
 into its parts and linking each part to a separate Property definition.
 
-The following table gives some simple examples to demonstate the basic applicability of the
+The following table gives some simple examples to demonstrate the basic applicability of the
 Characteristic, and after that a complete concrete example is given.
 
 [width="100%", options="header"]
@@ -460,6 +454,8 @@ An example showing the xref:characteristics.adoc#regular-expression-constraint[R
 include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
 ----
 
+NOTE: When writing the `bamm:value`, backslashes (`\`) need to be escaped in order to produce valid RDF/Turtle syntax, i.e. write `\\` instead of `\`.
+
 [[declaring-entities]]
 === Declaring Entities
 
@@ -494,7 +490,7 @@ include::example$aspect-sample.ttl[tags=extending-entity-declaration]
 The extending Entities `:Student` and `:Teacher` contain the Properties declared in the extended Entity `:Person` as well as
 the Properties in their own declarations.
 
-The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the `bamm:name` of the Property,
+The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
 
 [[declaring-abstract-entities]]
@@ -521,7 +517,7 @@ Operations have the following attributes:
 | `bamm:input` | A list of references to Properties that describe the input to the operation. The
   attribute must be present, but the list may be empty. | {ok}
 | `bamm:output` | A single reference to a Property that describes the output of the operation. |
-  {ok}
+  {nok}
 |===
 
 Example:
@@ -593,6 +589,25 @@ include::example$optional-properties-sample.ttl[tags=optional-properties-declara
 CAUTION: If the Property's use is optional, it is marked with `bamm:optional true` (like
 `errorMessage` in the example). However, if its use is mandatory (like `toggleStatus` in the
 example), the Property is directly referenced. Writing `bamm:optional false` is _not_ allowed.
+
+=== Declaring Payload Names for Properties
+
+When Properties are used in Aspects and Entities, a runtime payload name can be defined for the
+Property. This means that in the context of the Aspect or Entity where the Property is used, the key
+of that Property in the runtime payload diverges from the Property's `bamm:name`. This allows for
+the separation of the semantic name of the Property and the corresponding key in the runtime
+payload. In the following example we define a Property `errorMessage`. In the Aspect it is defined
+that the corresponding key in the payload is `error`.
+
+NOTE: The value for the `bamm:payloadName` attribute must be of type `xsd:string`.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$payload-name-sample.ttl[tags=payload-name-declaration]
+----
+
+CAUTION: A Property may not be marked as not being included in the payload using `bamm:notInPayload
+true` and have a payload name declared using `bamm:payloadName`.
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts

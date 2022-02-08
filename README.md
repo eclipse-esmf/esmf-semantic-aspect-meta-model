@@ -6,9 +6,10 @@
 - [Build and contribute](#build-and-contribute)
 
 ## Introduction
-The [BAMM Aspect Meta Model](https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/index.html) (BAMM) allows the creation of models to describe the semantics of digital twins by defining their domain specific aspects.
+The [BAMM Aspect Meta Model](https://openmanufacturingplatform.github.io/sds-documentation/bamm-specification/snapshot/index.html) (BAMM) allows the creation of models to describe the semantics of digital twins by defining their domain specific aspects.
 In this context, digital twins are the digital representation of a physical or virtual object that bundles and combines several aspects.
 The BAMM Aspect *Meta* Model (BAMM) provides a set of predefined objects (as depicted below) that allow a domain expert to define aspect models and complement a digital twin with a semantic foundation.
+In case you were wondering what the B in BAMM refers to: BAMM is recursively defined and thus the B refers to BAMM itself.
 
 This repository contains the detailed documentation of the BAMM specification as an AsciiDoc documentation.
 The source files (AsciiDoc) are built using [Gradle](https://gradle.org/) and [Antora](https://antora.org/), which generates the documentation as HTML files.
@@ -27,7 +28,7 @@ This modularization and reusabaility simplifies the creation of highly complex u
 ## Getting help
 Are you having trouble with BAMM Aspect Meta Model? We want to help!
 
-* Check the reference [documentation](https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/index.html)
+* Check the reference [documentation](https://openmanufacturingplatform.github.io/sds-documentation/bamm-specification/snapshot/index.html)
 * Having issues with BAMM? Open a [GitHub issue]( https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/issues).
 
 ## Build and contribute

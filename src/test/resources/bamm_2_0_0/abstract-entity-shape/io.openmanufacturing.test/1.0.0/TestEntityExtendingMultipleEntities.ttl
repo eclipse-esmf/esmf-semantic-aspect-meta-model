@@ -16,39 +16,30 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEntityExtendingMultipleEntities a bamm:Entity ;
-   bamm:name "TestEntityExtendingMultipleEntities" ;
    bamm:extends :AbstractTestEntity ;
    bamm:extends :ExtendedTestEntity ;
    bamm:properties ( :string ).
 
 :string a bamm:Property ;
-   bamm:name "string" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "String" ;
       bamm:dataType xsd:string
    ] .
 
 :AbstractTestEntity a bamm:AbstractEntity ;
-   bamm:name "AbstractTestEntity" ;
    bamm:properties ( :abstractTestProperty ).
 
 :abstractTestProperty a bamm:Property ;
-   bamm:name "abstractTestProperty" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .
 
 :ExtendedTestEntity a bamm:Entity ;
-   bamm:name "ExtendedTestEntity" ;
    bamm:properties ( :integer ).
 
 :integer a bamm:Property ;
-   bamm:name "integer" ;
    bamm:characteristic [
       a bamm:Characteristic ;
-      bamm:name "Integer" ;
       bamm:dataType xsd:integer
    ] .

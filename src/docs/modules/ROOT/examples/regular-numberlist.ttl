@@ -12,16 +12,13 @@
 @prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
 
 :Test a bamm:Aspect ;
-  bamm:name "Test" ;
   bamm:properties ( :numbers ) ;
   bamm:operations ( ) .
 
 # tag::content[]
 :numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic :NumberList .
 
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm:dataType xsd:integer .
 # end::content[]

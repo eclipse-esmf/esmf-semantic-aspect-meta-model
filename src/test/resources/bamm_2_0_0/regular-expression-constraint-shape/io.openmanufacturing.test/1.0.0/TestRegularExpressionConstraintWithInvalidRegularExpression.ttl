@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestRegularExpressionConstraintWithInvalidRegularExpression a bamm-c:RegularExpressionConstraint ;
-   bamm:name "TestRegularExpressionConstraintWithInvalidRegularExpression" ;
    bamm:preferredName "Test Regular Expression Constraint"@en ;
    bamm:description "Test Regular Expression Constraint"@en ;
    bamm:value "(" .

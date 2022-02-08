@@ -18,7 +18,6 @@
 
 # tag::aspect[]
 :TemperatureHistory a bamm:Aspect ;
-   bamm:name "TemperatureHistory" ;
    bamm:preferredName "Temperature History"@en ;
    bamm:description "Describes the last ten measured temperature values in degree Celsius"@en ;
    bamm:properties ( :items ) ;
@@ -27,19 +26,16 @@
 
 # tag::items[]
 :items a bamm:Property ;
-   bamm:name "items" ;
    bamm:preferredName "Items"@en ;
    bamm:description "Collection of temperature values in degree Celsius"@en ;
    bamm:characteristic :TemperatureTimeSeries .
 
 :TemperatureTimeSeries a bamm-c:TimeSeries ;
-   bamm:name "TemperatureTimeSeries" ;
    bamm:preferredName "Temperature Time Series"@en ;
    bamm:description "Represents the temperature over time as key/value pair with the timestamp being the key and the recorded value being the value"@en ;
    bamm:dataType :TemperatureTimeSeriesEntity .
 
 :TemperatureTimeSeriesEntity bamm:refines bamm-e:TimeSeriesEntity ;
-   bamm:name "TemperatureTimeSeriesEntity" ;
    bamm:preferredName "Temperature Time Series Entity"@en ;
    bamm:description "Defines the temperature as a time series value"@en ;
    bamm:properties ( :temperatureValue ) .
@@ -47,14 +43,12 @@
 
 # tag::property[]
 :temperatureValue bamm:refines bamm-e:value;
-   bamm:name "temperatureValue" ;
    bamm:preferredName "Temperature Value"@en ;
    bamm:description "The value of the temperature in degree Celsius at a certain point in time"@en ;
    bamm:characteristic myapp:TemperatureMeasurement .
 # end::property[]
 
 myapp:TemperatureMeasurement a bamm-c:Measurement ;
-   bamm:name "TemperatureMeasurement" ;
    bamm:preferredName "Temperature Measurement"@en ;
    bamm:description "Temperature in degree Celsius"@en ;
    bamm:dataType xsd:float ;

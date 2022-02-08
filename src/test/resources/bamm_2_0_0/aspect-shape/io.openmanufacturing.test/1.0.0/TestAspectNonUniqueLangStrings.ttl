@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspectNonUniqueLangStrings a bamm:Aspect ;
-   bamm:name "TestAspectNonUniqueLangStrings" ;
    bamm:preferredName "Test Aspect"@en ;
    bamm:preferredName "Test Aspekt"@en ;
    bamm:description "Test Aspect Description"@en ;

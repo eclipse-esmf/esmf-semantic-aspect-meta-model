@@ -14,9 +14,7 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
 :TestPropertyWithoutCharacteristicUnrefined a bamm:Aspect ;
-   bamm:name "TestPropertyWithoutCharacteristicUnrefined" ;
    bamm:properties ( :testProperty ) ;
    bamm:operations ( ) .
 
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" .
+:testProperty a bamm:Property .

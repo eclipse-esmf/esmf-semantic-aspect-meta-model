@@ -85,7 +85,8 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_NO_OPERATION = "Value must be an instance of bamm:Operation";
    final String MESSAGE_VALUE_IS_NO_PROPERTY = "Value must be an instance of bamm:Property";
    final String MESSAGE_NO_ADDITIONAL_PROPERTIES = "Entity refining another Entity may not declare additional Properties.";
-   final String MESSAGE_IS_NO_UNIT = "Value is not an instance or subclass of unit:Unit";
+   final String MESSAGE_IS_NO_UNIT_LEGACY = "Value is not an instance or subclass of unit:Unit";
+   final String MESSAGE_IS_NO_UNIT = "Value is not an instance or subclass of bamm:Unit";
    final String MESSAGE_INVALID_ENCODING = "Value must be one of [bamm:US-ASCII bamm:ISO-8859-1 bamm:UTF-8 bamm:UTF-16 bamm:UTF-16BE bamm:UTF-16LE]";
    final String MESSAGE_RANGE_NEEDS_MIN_MAX = "The RangeConstraint must have at least one minValue or maxValue.";
    final String MESSAGE_LENGTH_CONSTRAINT_DATA_TYPE = "The LengthConstraint is not applicable to the base Characteristic's data type.";
@@ -121,6 +122,7 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_DATA_TYPE_NOT_STRING = "Value must be a valid literal of type string";
    final String MESSAGE_RECURSIVE_PROPERTY = "A cycle in the Aspect Model was detected";
    final String MESSAGE_INSTANTIATED_ABSTRACT_ENTITY = "Abstract Entities may not be directly instantiated.";
+   final String MESSAGE_INVALID_DATA_TYPE = "The dataType (see value) that is used as dataType on the Characteristic (see focusNode) is neither an allowed xsd or rdf type, nor a type that is defined as rdfs:Class.";
 
    Model loadMetaModelDefinitions( final KnownVersion version ) {
       return ModelLoader.createModel( List.of(
