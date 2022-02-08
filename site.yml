@@ -13,10 +13,10 @@ ui:
     url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.0.0/sds-antora-ui-bundle-1.0.0.zip
     snapshot: true
   supplemental_files:
-  - path: ui.yml
-    contents: |
-      static_files: [ .nojekyll ]
-  - path: .nojekyll
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll ]
+    - path: .nojekyll
 runtime:
   cache_dir: ./.cache/antora
 asciidoc:
@@ -28,14 +28,14 @@ asciidoc:
     stem: 'asciimath'
     ok: 'icon:check-circle[role="green",size="2x"]'
     nok: 'icon:times-circle[role="red",size="2x"]'
-    meta-model-version: 1.0.0@
+    meta-model-version: 2.0.0
     meta-model-full-name: BAMM Aspect Meta Model
     meta-model-abbr: BAMM
     omp: Open Manufacturing Platform
     omp-abbr: OMP
-    bamm: urn:bamm:io.openmanufacturing:meta-model:1.0.0#@
-    bamm-c: urn:bamm:io.openmanufacturing:characteristic:1.0.0#@
-    bamm-e: urn:bamm:io.openmanufacturing:entity:1.0.0#@
-    unit:  urn:bamm:io.openmanufacturing:unit:1.0.0#@
+    bamm: urn:bamm:org.open-manufacturing.digitaltwin:meta-model:2.0.0#@
+    bamm-c: urn:bamm:org.open-manufacturing.digitaltwin:characteristic:2.0.0#@
+    bamm-e: urn:bamm:org.open-manufacturing.digitaltwin:entity:2.0.0#@
+    unit: urn:bamm:org.open-manufacturing.digitaltwin:unit:2.0.0#@
     example-ns: com.mycompany@
 

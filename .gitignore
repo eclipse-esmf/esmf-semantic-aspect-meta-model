@@ -154,7 +154,8 @@ node_modules
 yarn.lock
 .gradle
 build
-
+buildSrc/.gradle
+buildSrc/build
 # Generated html
 *.html
 
