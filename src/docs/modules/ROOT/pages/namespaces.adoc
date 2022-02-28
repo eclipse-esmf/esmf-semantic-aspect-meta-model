@@ -58,7 +58,8 @@ where the variable parts are interpreted as follows:
 * *namespace* -- Defines the hierarchical namespace in which the element resides. This is given in
    https://en.wikipedia.org/wiki/Reverse_domain_name_notation[Reverse Domain Name Notation]. To
    avoid confusion with the BAMM Aspect Meta Model, this _should not_ be equal to
-   `org.open-manufacturing.digitaltwin`.
+   `org.open-manufacturing.digitaltwin`. A namespace shall always be in lowercase.
+   It should also contain at least two ASCII letters and should have at least two parts. So a minimal example of a namespace would be 'io.om'.
 * *version* -- The version of the respective namespace, must be given in the form "X.Y.Z", with X, Y
    and Z being integers.
 * *element-name* -- The name of the element:
