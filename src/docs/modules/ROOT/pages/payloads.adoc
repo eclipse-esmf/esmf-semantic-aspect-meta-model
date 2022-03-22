@@ -14,55 +14,43 @@ SPDX-License-Identifier: MPL-2.0
 = Mapping to JSON
 
 == Rules for the construction of JSON payloads matching an Aspect model
-image::payloads-diagram.svg[opts=interactive, width=100%]
+
+image::payloads-diagram.svg[opts=interactive,width=100%]
 
 For understanding the construction rules, we define the following terms:
 
-* A Property's _leaf Characteristic_ means the Property's Characteristic if it is not a Constraint,
-  otherwise it means transitively following the Constraint's `bamm-c:baseCharacteristic` until the
-  value is not a Constraint any more.
+* A Property's _leaf Characteristic_ means the Property's Characteristic if it is not a Constraint, otherwise it means transitively following the Constraint's `bamm-c:baseCharacteristic` until the value is not a Constraint any more.
 * A Property's _effective data type_ means the Property's leaf Characteristic's `bamm:dataType`.
 * A data type is scalar, if it is one of the xref:datatypes.adoc#data-types[allowed data types], but not a `bamm:Entity`.
 
-In order to create JSON payloads that correspond to an Aspect model, the following rules are
-applied. The other way round they can also be used to describe a validation algorithm.
+In order to create JSON payloads that correspond to an Aspect model, the following rules are applied.
+The other way round they can also be used to describe a validation algorithm.
 
 * An Aspect model is always serialized as an unnamed JSON object.
 * For each Property:
-** If it is marked as optional, it may or may not be included in the payload. If, and only if, the
-   Property is marked as optional and is included in the payload, then its value may be `null`,
-   which is equivalent to it not being included in the payload.
-** If the Property's effective data type is scalar with any date type other than `rdf:langString`,
-   the Property is serialized as `$\{propertyName\}: $\{value\}` where `$\{value\}` is the JSON
-   serialization of the respective Property's value, details on mapping of the data types are given
-   in <<data-type-mappings>>. The value must adhere to the value range defined by the Property's
-   effective data type and possible Constraints on the Property's Characteristic.
-** If the Property's effective data type is scalar with the data type `rdf:langString`, the Property
-   is serialized as a named JSON object (with `$\{propertyName\}` being the name of the JSON
-   property), with keys for each available language tag of the Property and the corresponding
-   localized string as the value.
-** If the Property's effective data type is not scalar, it is serialized as a named JSON object
-   (with `$\{propertyName\}` being the name of the JSON property), recursively using the same rules.
-** If the Property's effective data type is an Entity which extends another Entity, it is serialized
-   as a named JSON object (with `$\{propertyName\}` being the name of the JSON property). The Properties included for
-   the Entity, are the Properties from the Entity itself as well as all Properties from the extended Entities, i.e.
-   all Properties from `?thisEntity bamm:extends* []`.
+** If it is marked as optional, it may or may not be included in the payload.
+If, and only if, the Property is marked as optional and is included in the payload, then its value may be `null`, which is equivalent to it not being included in the payload.
+** If the Property's effective data type is scalar with any date type other than `rdf:langString`, the Property is serialized as `$\{propertyName\}: $\{value\}` where `$\{value\}` is the JSON serialization of the respective Property's value, details on mapping of the data types are given in <<data-type-mappings>>.
+The value must adhere to the value range defined by the Property's effective data type and possible Constraints on the Property's Characteristic.
+** If the Property's effective data type is scalar with the data type `rdf:langString`, the Property is serialized as a named JSON object (with `$\{propertyName\}` being the name of the JSON property), with keys for each available language tag of the Property and the corresponding localized string as the value.
+** If the Property's effective data type is not scalar, it is serialized as a named JSON object (with `$\{propertyName\}` being the name of the JSON property), recursively using the same rules.
+** If the Property's effective data type is an Entity which extends another Entity, it is serialized as a named JSON object (with `$\{propertyName\}` being the name of the JSON property).
+The Properties included for the Entity, are the Properties from the Entity itself as well as all Properties from the extended Entities, i.e. all Properties from `?thisEntity bamm:extends* []`.
 ** If the Property's leaf Characteristic is a
-   xref:characteristics.adoc#collection-characteristic[Collection],
-   xref:characteristics.adoc#collection-characteristic[List],
-   xref:characteristics.adoc#collection-characteristic[Set] or
-   xref:characteristics.adoc#collection-characteristic[Sorted Set], it is serialized as a named JSON
-   array (with `$\{propertyName\}` being the name of the JSON array property).
-* Characteristics defined in the Aspect model other than the ones mentioned above are not subject to
-  serialization.
+xref:characteristics.adoc#collection-characteristic[Collection],
+xref:characteristics.adoc#collection-characteristic[List],
+xref:characteristics.adoc#collection-characteristic[Set] or
+xref:characteristics.adoc#collection-characteristic[Sorted Set], it is serialized as a named JSON array (with `$\{propertyName\}` being the name of the JSON array property).
+* Characteristics defined in the Aspect model other than the ones mentioned above are not subject to serialization.
 * Operations defined in the Aspect model are not subject to serialization.
+* Events defined in the Aspect model are not subject to serialization.
 
 [[data-type-mappings]]
 == Data type mappings
 
-A xref:datatypes.adoc#data-types[rich type tree] is used in an Aspect model. As JSON offers only a
-very limited set of data types for primitive type values there are less options on how to represent
-the data. The mappings are described in the following table.
+A xref:datatypes.adoc#data-types[rich type tree] is used in an Aspect model.
+As JSON offers only a very limited set of data types for primitive type values there are less options on how to represent the data.
+The mappings are described in the following table.
 
 |===
 | | Aspect model data type | Corresponding JSON data type
@@ -87,8 +75,7 @@ the data. The mappings are described in the following table.
 | `xsd:gMonthDay` | String
 | `xsd:duration` | String
 | `xsd:yearMonthDuration` | String
-| `xsd:dayTimeDuration` | String
-.12+| Limited-range integer numbers
+| `xsd:dayTimeDuration` | String .12+| Limited-range integer numbers
 | `xsd:byte` | Number
 | `xsd:short` | Number
 | `xsd:int` | Number
@@ -112,8 +99,8 @@ the data. The mappings are described in the following table.
 |===
 
 For example, a Property `errorMessage` with effective data type `rdf:langString` and the values
-`"Could not load data"@en` and `"Konnte Daten nicht laden"@de` would be serialized in the JSON
-payload as follows: [source,json]
+`"Could not load data"@en` and `"Konnte Daten nicht laden"@de` would be serialized in the JSON payload as follows: [source,json]
+
 ----
 {
   "errorMessage": {
@@ -124,11 +111,9 @@ payload as follows: [source,json]
 ----
 
 CAUTION: Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
-represention of numbers] in JSON, the maximum integer number that can be used without losing
-precision is 2⁵³-1 (defined as
+represention of numbers] in JSON, the maximum integer number that can be used without losing precision is 2⁵³-1 (defined as
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER[Number.MAX_SAFE_INTEGER]).
-This means that even if the Aspect model data type would allow higher or lower values, if they can
-not be represented in JSON, they can not be used. Affected data types are the unbounded numeric
-types `xsd:decimal`, `xsd:integer`, `xsd:positiveInteger`, `xsd:nonNegativeInteger`,
-`xsd:negativeInteger`, `xsd:nonPositiveInteger` and the bounded type `xsd:unsignedLong`. The other
-numeric types are not affected.
+This means that even if the Aspect model data type would allow higher or lower values, if they can not be represented in JSON, they can not be used.
+Affected data types are the unbounded numeric types `xsd:decimal`, `xsd:integer`, `xsd:positiveInteger`, `xsd:nonNegativeInteger`,
+`xsd:negativeInteger`, `xsd:nonPositiveInteger` and the bounded type `xsd:unsignedLong`.
+The other numeric types are not affected.
