@@ -75,7 +75,8 @@ The mappings are described in the following table.
 | `xsd:gMonthDay` | String
 | `xsd:duration` | String
 | `xsd:yearMonthDuration` | String
-| `xsd:dayTimeDuration` | String .12+| Limited-range integer numbers
+| `xsd:dayTimeDuration` | String 
+.12+| Limited-range integer numbers
 | `xsd:byte` | Number
 | `xsd:short` | Number
 | `xsd:int` | Number
@@ -99,7 +100,9 @@ The mappings are described in the following table.
 |===
 
 For example, a Property `errorMessage` with effective data type `rdf:langString` and the values
-`"Could not load data"@en` and `"Konnte Daten nicht laden"@de` would be serialized in the JSON payload as follows: [source,json]
+`"Could not load data"@en` and `"Konnte Daten nicht laden"@de` would be serialized in the JSON payload as follows:
+
+[source,json]
 
 ----
 {
