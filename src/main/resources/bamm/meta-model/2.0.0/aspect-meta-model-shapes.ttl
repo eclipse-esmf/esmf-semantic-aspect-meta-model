@@ -60,7 +60,7 @@ bamm:AspectShape
       sh:path bamm:properties ;
       sh:node dash:ListShape ;
       mmm:listType bamm:Property ;
-      sh:minCount 1 ;
+      sh:minCount 0 ;
       sh:maxCount 1 ;
       sh:name "properties" ;
       sh:description "A list of Properties exposed by the Aspect." ;
@@ -90,7 +90,7 @@ bamm:AspectShape
       sh:path bamm:operations ;
       sh:node dash:ListShape ;
       mmm:listType bamm:Operation ;
-      sh:minCount 1 ;
+      sh:minCount 0 ;
       sh:maxCount 1 ;
       sh:name "operations" ;
       sh:description "A list of Operations exposed by the Aspect." ;
@@ -131,7 +131,7 @@ bamm:EntityShape
       sh:path bamm:properties ;
       sh:node dash:ListShape ;
       mmm:listType bamm:Property ;
-      sh:minCount 1 ;
+      sh:minCount 0 ;
       sh:maxCount 1 ;
       sh:name "properties" ;
       sh:description "A list of properties defined in the scope of the Entity." ;
