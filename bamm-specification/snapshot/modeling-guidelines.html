@@ -959,11 +959,11 @@ Constraint as a <code>bamm-c:constraint</code> to the Trait:</p>
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:numbers a bamm:Property ;
    bamm:characteristic [
      a bamm-c:Trait ;
+     bamm-c:baseCharacteristic :NumberList ;
      bamm-c:constraint [
        a bamm-c:LengthConstraint ;
        bamm:description "Limits the number list to 10 elements"@en ;
        bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
-       bamm-c:baseCharacteristic :NumberList ;
      ]
    ]  .
 
