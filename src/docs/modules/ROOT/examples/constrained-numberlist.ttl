@@ -18,7 +18,7 @@
 # tag::content[]
 :numbers a bamm:Property ;
    bamm:characteristic [
-     a bamm-c:Trait;
+     a bamm-c:Trait ;
      bamm-c:baseCharacteristic :NumberList ;
      bamm-c:constraint [
        a bamm-c:LengthConstraint ;
