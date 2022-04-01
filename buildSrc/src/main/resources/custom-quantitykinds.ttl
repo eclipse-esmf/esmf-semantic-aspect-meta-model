@@ -15,12 +15,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-:dimensionless a :QuantityKind ;
+:dimensionless a bamm:QuantityKind ;
    bamm:preferredName "dimensionless"@en .
 
-:informationEntropy a :QuantityKind ;
+:informationEntropy a bamm:QuantityKind ;
    bamm:preferredName "Information entropy"@en .
 
-:dataRate a :QuantityKind ;
+:dataRate a bamm:QuantityKind ;
    bamm:preferredName "Data rate"@en .
-
