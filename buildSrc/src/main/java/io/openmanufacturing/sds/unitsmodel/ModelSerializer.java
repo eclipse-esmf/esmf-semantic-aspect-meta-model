@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
@@ -47,8 +48,7 @@ public class ModelSerializer {
    private final PrintWriter writer;
    private UnitsResources unitsResources;
 
-   private final Comparator<Statement> subjectComparator = Comparator.comparing( statement -> serialize(
-         statement.getSubject() ) );
+   private final Comparator<Statement> subjectComparator = Comparator.comparing( statement -> serialize( statement.getSubject() ) );
 
    private final Comparator<Statement> propertyComparator = ( statement1, statement2 ) -> {
       final Property predicate1 = statement1.getPredicate();
@@ -59,17 +59,16 @@ public class ModelSerializer {
       if ( predicate2.equals( RDF.type ) ) {
          return 1;
       }
-      if ( predicate1.equals( this.unitsResources.getPreferredNameProperty() ) ) {
+      if ( predicate1.equals( unitsResources.getPreferredNameProperty() ) ) {
          return -1;
       }
-      if ( predicate2.equals( this.unitsResources.getPreferredNameProperty() ) ) {
+      if ( predicate2.equals( unitsResources.getPreferredNameProperty() ) ) {
          return 1;
       }
       return predicate1.getLocalName().compareTo( predicate2.getLocalName() );
    };
 
-   private final Comparator<Statement> objectComparator = Comparator.comparing( statement -> serialize(
-         statement.getObject() ) );
+   private final Comparator<Statement> objectComparator = Comparator.comparing( statement -> serialize( statement.getObject() ) );
 
    public ModelSerializer( final Model model, final OutputStream outputStream, final UnitsResources unitsResources ) {
       this.model = model;
@@ -92,18 +91,19 @@ public class ModelSerializer {
    }
 
    private void writeCopyrightHeader() {
-      writer.format( "# Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH %n"
-            + "# %n"
+      final int currentYear = Calendar.getInstance().get( Calendar.YEAR );
+      writer.format( "# Copyright (c) " + currentYear + " Robert Bosch Manufacturing Solutions GmbH %n"
+            + "#%n"
             + "# See the AUTHORS file(s) distributed with this work for additional %n"
             + "# information regarding authorship. %n"
-            + "# %n"
+            + "#%n"
             + "# This Source Code Form is subject to the terms of the Mozilla Public %n"
             + "# License, v. 2.0. If a copy of the MPL was not distributed with this %n"
             + "# file, You can obtain one at https://mozilla.org/MPL/2.0/. %n"
-            + "# %n"
+            + "#%n"
             + "# SPDX-License-Identifier: MPL-2.0 %n"
-            + "# %n"
-            + "# This file was automatically generated, do not modify.%n" );
+            + "#%n"
+            + "# This file was generated automatically, do not modify.%n" );
    }
 
    private void writePrefixes() {
@@ -142,8 +142,7 @@ public class ModelSerializer {
       return PrintUtil.print( rdfNode ).replace( '\'', '"' );
    }
 
-   private Stream<Statement> getStatements( final Resource s, final Property p, final Resource o,
-         final Comparator<Statement> comparator ) {
+   private Stream<Statement> getStatements( final Resource s, final Property p, final Resource o, final Comparator<Statement> comparator ) {
       final Iterable<Statement> statementIterable = () -> model.listStatements( s, p, o );
       return StreamSupport.stream( statementIterable.spliterator(), false )
             .sorted( comparator );
@@ -159,7 +158,7 @@ public class ModelSerializer {
    }
 
    private String serializeQuantityKinds( final Resource resource ) {
-      return getStatements( resource, this.unitsResources.getQuantityKindProperty(), null, objectComparator )
+      return getStatements( resource, unitsResources.getQuantityKindProperty(), null, objectComparator )
             .map( Statement::getObject )
             .map( RDFNode::asResource )
             .map( Resource::getLocalName )
@@ -173,23 +172,26 @@ public class ModelSerializer {
    }
 
    private void writeResource( final Resource resource ) {
-      writer.format( ":%s%n", resource.getLocalName() );
-      final String serialized = getStatementsForResource( resource ).filter( distinctProperty() ).map( statement -> {
-         final Resource predicate = statement.getPredicate();
-         final String serializedObject = predicate.equals( this.unitsResources.getQuantityKindProperty() ) ?
-               serializeQuantityKinds( resource ) : serialize( statement.getObject() );
-         return String.format( "%s%-25s %s", INDENT, serialize( predicate ), serializedObject );
-      } ).collect( Collectors.joining( " ;\n", "", " ." ) );
+      writer.format( "%s a %s ;%n", serialize( resource ), serialize( resource.getPropertyResourceValue( RDF.type ) ) );
+      final String serialized = getStatementsForResource( resource )
+            .filter( distinctProperty() )
+            .filter( statement -> !statement.getPredicate().equals( RDF.type ) )
+            .map( statement -> {
+               final Resource predicate = statement.getPredicate();
+               final String serializedObject = predicate.equals( unitsResources.getQuantityKindProperty() ) ?
+                     serializeQuantityKinds( resource ) : serialize( statement.getObject() );
+               return String.format( "%s%-29s %s", INDENT, serialize( predicate ), serializedObject );
+            } ).collect( Collectors.joining( " ;\n", "", " ." ) );
       writer.format( "%s%n%n", serialized );
    }
 
    private void writeQuantityKinds() {
       writer.format( "# Quantity Kinds%n%n" );
-      getResourcesByType( this.unitsResources.getQuantityKindClass() ).forEach( this::writeResource );
+      getResourcesByType( unitsResources.getQuantityKindClass() ).forEach( this::writeResource );
    }
 
    private void writeUnits() {
       writer.format( "# Units%n%n" );
-      getResourcesByType( this.unitsResources.getUnitClass() ).forEach( this::writeResource );
+      getResourcesByType( unitsResources.getUnitClass() ).forEach( this::writeResource );
    }
 }

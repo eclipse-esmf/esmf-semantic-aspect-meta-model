@@ -13,7 +13,9 @@
 
 package io.openmanufacturing.sds.unitsmodel;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -25,10 +27,13 @@ import org.apache.jena.riot.RDFLanguages;
 public class StaticRdfProvider implements Supplier<Stream<Statement>> {
    private final Model model;
 
-   public StaticRdfProvider( final String filename ) {
-      final InputStream inputStream = StaticRdfProvider.class.getClassLoader().getResourceAsStream( filename );
-      model = ModelFactory.createDefaultModel();
-      model.read( inputStream, "", RDFLanguages.TURTLE.getName() );
+   public StaticRdfProvider( final File file ) {
+      try ( final FileInputStream inputStream = new FileInputStream( file ) ) {
+         model = ModelFactory.createDefaultModel();
+         model.read( inputStream, "", RDFLanguages.TURTLE.getName() );
+      } catch ( final IOException exception ) {
+         throw new RuntimeException( exception );
+      }
    }
 
    @Override

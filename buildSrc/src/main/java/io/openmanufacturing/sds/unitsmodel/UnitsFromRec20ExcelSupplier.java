@@ -13,6 +13,11 @@
 
 package io.openmanufacturing.sds.unitsmodel;
 
+import static org.apache.jena.rdf.model.ResourceFactory.createLangLiteral;
+import static org.apache.jena.rdf.model.ResourceFactory.createPlainLiteral;
+import static org.apache.jena.rdf.model.ResourceFactory.createResource;
+import static org.apache.jena.rdf.model.ResourceFactory.createStatement;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +29,6 @@ import java.util.stream.StreamSupport;
 import org.apache.commons.text.CaseUtils;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -38,7 +42,7 @@ import org.slf4j.LoggerFactory;
  */
 public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> {
    public UnitsFromRec20ExcelSupplier( final UnitsResources unitsResources ) {
-      this.unitsResource = unitsResources;
+      unitsResource = unitsResources;
    }
 
    private final UnitsResources unitsResource;
@@ -128,13 +132,12 @@ public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> 
 
       return quantityKindPreferredNames.flatMap( quantityKindPreferredName -> {
          final String quantityName = getNameForPreferredName( quantityKindPreferredName );
-         final Resource quantity = ResourceFactory.createResource( this.unitsResource.getNamespaceUnits() + quantityName );
-         final Literal preferredNameLiteral = ResourceFactory.createLangLiteral( quantityKindPreferredName, "en" );
+         final Resource quantity = createResource( unitsResource.getNamespaceUnits() + quantityName );
+         final Literal preferredNameLiteral = createLangLiteral( quantityKindPreferredName, "en" );
 
          return Stream.of(
-               ResourceFactory.createStatement( quantity, RDF.type, this.unitsResource.getQuantityKindClass() ),
-               ResourceFactory
-                     .createStatement( quantity, this.unitsResource.getPreferredNameProperty(), preferredNameLiteral ) );
+               createStatement( quantity, RDF.type, unitsResource.getQuantityKindClass() ),
+               createStatement( quantity, unitsResource.getPreferredNameProperty(), preferredNameLiteral ) );
       } );
    }
 
@@ -170,38 +173,29 @@ public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> 
 
       final String preferredName = sanitizeIdentifier( tableEntry.getName() );
       final String unitName = getNameForUnitPreferredName( preferredName );
-      final Resource unit = ResourceFactory.createResource( this.unitsResource.getNamespaceUnits() + unitName );
-      final Literal nameLiteral = ResourceFactory.createPlainLiteral( unitName );
-      final Literal preferredNameLiteral = ResourceFactory.createLangLiteral( preferredName, "en" );
-      final Literal commonCodeLiteral = ResourceFactory.createPlainLiteral( tableEntry.getCommonCode() );
+      final Resource unit = createResource( unitsResource.getNamespaceUnits() + unitName );
+      final Literal preferredNameLiteral = createLangLiteral( preferredName, "en" );
+      final Literal commonCodeLiteral = createPlainLiteral( tableEntry.getCommonCode() );
       final Stream<Literal> conversionFactorLiteral = tableEntry.getConversionFactor().isEmpty() ?
-            Stream.empty() : Stream.of( ResourceFactory
-            .createPlainLiteral( sanitizeConversionFactor( tableEntry.getConversionFactor() ) ) );
+            Stream.empty() : Stream.of( createPlainLiteral( sanitizeConversionFactor( tableEntry.getConversionFactor() ) ) );
       final Stream<Literal> symbolLiteral = tableEntry.getSymbol().isEmpty() ?
             Stream.empty() :
-            Stream.of( ResourceFactory.createPlainLiteral( sanitizeIdentifier( tableEntry.getSymbol() ) ) );
+            Stream.of( createPlainLiteral( sanitizeIdentifier( tableEntry.getSymbol() ) ) );
 
       final Stream<Statement> quantityKindReferences = extractQuantityKindPreferredNames( tableEntry.getQuantity() )
             .map( this::getNameForPreferredName ).flatMap( quantityKindName -> {
-                     final Resource quantityKind = ResourceFactory
-                           .createResource( this.unitsResource.getNamespaceUnits() + quantityKindName );
-                     final Statement quantityKindReference = ResourceFactory
-                           .createStatement( unit, this.unitsResource.getQuantityKindProperty(), quantityKind );
+                     final Resource quantityKind = createResource( unitsResource.getNamespaceUnits() + quantityKindName );
+                     final Statement quantityKindReference = createStatement( unit, unitsResource.getQuantityKindProperty(), quantityKind );
                      return Stream.of( quantityKindReference );
                   }
             );
 
       final Stream<Statement> unitStream = Stream.of(
-                  Stream.of( ResourceFactory.createStatement( unit, RDF.type, this.unitsResource.getUnitClass() ) ),
-                  Stream.of( ResourceFactory
-                        .createStatement( unit, this.unitsResource.getPreferredNameProperty(), preferredNameLiteral ) ),
-                  Stream.of(
-                        ResourceFactory.createStatement( unit, this.unitsResource.getCommonCodeProperty(), commonCodeLiteral ) ),
-                  conversionFactorLiteral
-                        .map( literal -> ResourceFactory
-                              .createStatement( unit, this.unitsResource.getConversionFactorProperty(), literal ) ),
-                  symbolLiteral
-                        .map( literal -> ResourceFactory.createStatement( unit, this.unitsResource.getSymbolProperty(), literal ) ) )
+                  Stream.of( createStatement( unit, RDF.type, unitsResource.getUnitClass() ) ),
+                  Stream.of( createStatement( unit, unitsResource.getPreferredNameProperty(), preferredNameLiteral ) ),
+                  Stream.of( createStatement( unit, unitsResource.getCommonCodeProperty(), commonCodeLiteral ) ),
+                  conversionFactorLiteral.map( literal -> createStatement( unit, unitsResource.getConversionFactorProperty(), literal ) ),
+                  symbolLiteral.map( literal -> createStatement( unit, unitsResource.getSymbolProperty(), literal ) ) )
             .reduce( Stream.empty(), Stream::concat );
 
       return Stream.of( unitStream, convertQuantityStringToRdf( tableEntry.getQuantity() ), quantityKindReferences )
@@ -209,13 +203,11 @@ public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> 
             .orElse( Stream.empty() );
    }
 
-   private Stream<TableEntry> getExcelTableEntriesForAnnex( final Workbook wb,
-         final WorksheetConfiguration configuration ) {
+   private Stream<TableEntry> getExcelTableEntriesForAnnex( final Workbook wb, final WorksheetConfiguration configuration ) {
       final Sheet sheet = wb.getSheetAt( configuration.worksheetNumber );
 
       return StreamSupport.stream( sheet.spliterator(), false ).skip( 1 ).map( row -> {
-         final String quantity =
-               configuration.columnQuantity > 0 ? row.getCell( configuration.columnQuantity ).toString() : "";
+         final String quantity = configuration.columnQuantity > 0 ? row.getCell( configuration.columnQuantity ).toString() : "";
          final String commonCode = row.getCell( configuration.columnCommonCode ).toString();
          final String name = row.getCell( configuration.columnName ).toString();
          final String conversionFactor = row.getCell( configuration.columnConversionFactor ).toString();

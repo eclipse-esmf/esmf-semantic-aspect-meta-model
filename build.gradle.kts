@@ -80,7 +80,7 @@ publishing {
                 password = System.getenv("OSSRH_TOKEN")
             }
             val repositoryUrl: String =
-                System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             url = uri(repositoryUrl)
         }
     }
@@ -146,8 +146,8 @@ val disableSigning by tasks.registering {
 
 tasks.getByName("publishToMavenLocal").dependsOn(disableSigning)
 
-val downloadBcp47LanguageSubtagRegistry = tasks.register<DownloadBcp47LanguageSubtagRegistry>( "downloadBcp47LanguageSubtagRegistry" )
-tasks.compileJava.get().dependsOn( downloadBcp47LanguageSubtagRegistry )
+val downloadBcp47LanguageSubtagRegistry = tasks.register<DownloadBcp47LanguageSubtagRegistry>("downloadBcp47LanguageSubtagRegistry")
+tasks.compileJava.get().dependsOn(downloadBcp47LanguageSubtagRegistry)
 
 val downloadUnits = tasks.register("downloadUnits") {
     val target = uri("http://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev7e_2010.zip")
@@ -173,7 +173,9 @@ val downloadUnits = tasks.register("downloadUnits") {
 
 val unitsWriter = tasks.register<io.openmanufacturing.sds.unitsmodel.UnitsWriter>("unitsWriter")
 {
-    setOutputPath("$buildDir/../buildSrc/src/main/resources/units.ttl")
+    setMetaModelModelVersion(version.toString())
+    setCustomRdfInputDirectory("${project.projectDir}/buildSrc/src/main/resources/")
+    setOutputPath("${project.projectDir}/src/main/resources/bamm/unit/$version/units.ttl")
 }
 unitsWriter.get().dependsOn(downloadUnits)
 tasks.compileJava.get().dependsOn(unitsWriter)

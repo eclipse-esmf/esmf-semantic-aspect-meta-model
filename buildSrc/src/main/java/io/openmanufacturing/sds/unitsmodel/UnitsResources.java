@@ -12,45 +12,27 @@
  */
 package io.openmanufacturing.sds.unitsmodel;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 /**
  * Configures model element URIs
  */
 public class UnitsResources {
-   public UnitsResources( final String namespacePrefix, final String version ) {
-      var versionToSet = StringUtils.isAllBlank( version ) ? getVersion() : version;
-      var namespacePrefixToSet = StringUtils.isAllBlank( namespacePrefix ) ? "urn:bamm:io.openmanufacturing:" : namespacePrefix;
-      namespaceUnits = String.format( namespacePrefixToSet + "unit:%s#", versionToSet );
-      namespaceBamm = String.format( namespacePrefixToSet + "meta-model:%s#", versionToSet );
+   public UnitsResources( final String metaModelVersion ) {
+      final String namespacePrefix = "urn:bamm:io.openmanufacturing:";
+      namespaceUnits = String.format( namespacePrefix + "unit:%s#", metaModelVersion );
+      namespaceBamm = String.format( namespacePrefix + "meta-model:%s#", metaModelVersion );
       preferredNameProperty = ResourceFactory.createProperty( namespaceBamm + "preferredName" );
-      quantityKindClass = ResourceFactory.createResource( namespaceUnits + QUANTITY_KIND_CLASS_NAME );
-      unitClass = ResourceFactory.createResource( namespaceUnits + UNIT_CLASS_NAME );
-      quantityKindProperty = ResourceFactory.createProperty( namespaceUnits + QUANTITY_KIND_PROPERTY_NAME );
-      commonCodeProperty = ResourceFactory.createProperty( namespaceUnits + COMMON_CODE_PROPERTY_NAME );
-      conversionFactorProperty = ResourceFactory.createProperty( namespaceUnits + CONVERSION_FACTOR_PROPERTY_NAME );
-      symbolProperty = ResourceFactory.createProperty( namespaceUnits + SYMBOL_PROPERTY_NAME );
-      referenceUnitProperty = ResourceFactory.createProperty( namespaceUnits + REFERENCE_UNIT_NAME );
-      numericConversionFactorProperty = ResourceFactory.createProperty( namespaceUnits + NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME );
-   }
-
-   private String getVersion() {
-      ObjectMapper mapper = new ObjectMapper( new YAMLFactory() );
-      try {
-         var site = mapper.readTree( new File( "site.yml" ) );
-         return site.at( "/asciidoc/attributes/meta-model-version" ).textValue();
-      } catch ( IOException e ) {
-         throw new RuntimeException( "The version couldn't be extracted from the site.yml." );
-      }
+      quantityKindClass = ResourceFactory.createResource( namespaceBamm + QUANTITY_KIND_CLASS_NAME );
+      unitClass = ResourceFactory.createResource( namespaceBamm + UNIT_CLASS_NAME );
+      quantityKindProperty = ResourceFactory.createProperty( namespaceBamm + QUANTITY_KIND_PROPERTY_NAME );
+      commonCodeProperty = ResourceFactory.createProperty( namespaceBamm + COMMON_CODE_PROPERTY_NAME );
+      conversionFactorProperty = ResourceFactory.createProperty( namespaceBamm + CONVERSION_FACTOR_PROPERTY_NAME );
+      symbolProperty = ResourceFactory.createProperty( namespaceBamm + SYMBOL_PROPERTY_NAME );
+      referenceUnitProperty = ResourceFactory.createProperty( namespaceBamm + REFERENCE_UNIT_NAME );
+      numericConversionFactorProperty = ResourceFactory.createProperty( namespaceBamm + NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME );
    }
 
    static final String QUANTITY_KIND_CLASS_NAME = "QuantityKind";

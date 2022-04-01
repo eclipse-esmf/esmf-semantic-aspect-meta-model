@@ -13,6 +13,7 @@
 
 package io.openmanufacturing.sds.unitsmodel;
 
+import java.io.File;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -27,15 +28,17 @@ import org.apache.jena.vocabulary.XSD;
  */
 public class Units {
    private final UnitsResources unitsResources;
+   private final String customRdfInputDirectory;
 
-   public Units( final UnitsResources unitsResources ) {
+   public Units( final UnitsResources unitsResources, final String customRdfInputDirectory ) {
       this.unitsResources = unitsResources;
+      this.customRdfInputDirectory = customRdfInputDirectory;
    }
 
    private Model create() {
       final Model model = ModelFactory.createDefaultModel();
 
-      model.setNsPrefix( "", unitsResources.getNamespaceUnits() );
+      model.setNsPrefix( "unit", unitsResources.getNamespaceUnits() );
       model.setNsPrefix( "rdf", RDF.getURI() );
       model.setNsPrefix( "rdfs", RDFS.getURI() );
       model.setNsPrefix( "xsd", XSD.getURI() );
@@ -53,9 +56,12 @@ public class Units {
       final Model model = addRec20( create() );
 
       Stream.of(
-                  new StaticRdfProvider( "custom-quantitykinds.ttl" ),
-                  new StaticRdfProvider( "custom-units.ttl" ) )
-            .flatMap( Supplier::get ).forEach( model::add );
+                  "custom-quantitykinds.ttl",
+                  "custom-units.ttl" )
+            .map( filename -> new File( customRdfInputDirectory + filename ) )
+            .map( StaticRdfProvider::new )
+            .flatMap( Supplier::get )
+            .forEach( model::add );
 
       return model;
    }
