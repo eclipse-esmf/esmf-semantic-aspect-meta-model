@@ -174,3 +174,7 @@ buildSrc/build
 
 # Local playbook
 site-local.yml
+
+# Rec20 unit catalog artifacts
+buildSrc/*.xls
+buildSrc/*.pdf
