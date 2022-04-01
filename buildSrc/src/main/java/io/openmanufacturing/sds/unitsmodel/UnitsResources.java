@@ -12,9 +12,11 @@
  */
 package io.openmanufacturing.sds.unitsmodel;
 
+import static org.apache.jena.rdf.model.ResourceFactory.createProperty;
+import static org.apache.jena.rdf.model.ResourceFactory.createResource;
+
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.ResourceFactory;
 
 /**
  * Configures model element URIs
@@ -24,15 +26,15 @@ public class UnitsResources {
       final String namespacePrefix = "urn:bamm:io.openmanufacturing:";
       namespaceUnits = String.format( namespacePrefix + "unit:%s#", metaModelVersion );
       namespaceBamm = String.format( namespacePrefix + "meta-model:%s#", metaModelVersion );
-      preferredNameProperty = ResourceFactory.createProperty( namespaceBamm + "preferredName" );
-      quantityKindClass = ResourceFactory.createResource( namespaceBamm + QUANTITY_KIND_CLASS_NAME );
-      unitClass = ResourceFactory.createResource( namespaceBamm + UNIT_CLASS_NAME );
-      quantityKindProperty = ResourceFactory.createProperty( namespaceBamm + QUANTITY_KIND_PROPERTY_NAME );
-      commonCodeProperty = ResourceFactory.createProperty( namespaceBamm + COMMON_CODE_PROPERTY_NAME );
-      conversionFactorProperty = ResourceFactory.createProperty( namespaceBamm + CONVERSION_FACTOR_PROPERTY_NAME );
-      symbolProperty = ResourceFactory.createProperty( namespaceBamm + SYMBOL_PROPERTY_NAME );
-      referenceUnitProperty = ResourceFactory.createProperty( namespaceBamm + REFERENCE_UNIT_NAME );
-      numericConversionFactorProperty = ResourceFactory.createProperty( namespaceBamm + NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME );
+      preferredNameProperty = createProperty( namespaceBamm + "preferredName" );
+      quantityKindClass = createResource( namespaceBamm + QUANTITY_KIND_CLASS_NAME );
+      unitClass = createResource( namespaceBamm + UNIT_CLASS_NAME );
+      quantityKindProperty = createProperty( namespaceBamm + QUANTITY_KIND_PROPERTY_NAME );
+      commonCodeProperty = createProperty( namespaceBamm + COMMON_CODE_PROPERTY_NAME );
+      conversionFactorProperty = createProperty( namespaceBamm + CONVERSION_FACTOR_PROPERTY_NAME );
+      symbolProperty = createProperty( namespaceBamm + SYMBOL_PROPERTY_NAME );
+      referenceUnitProperty = createProperty( namespaceBamm + REFERENCE_UNIT_NAME );
+      numericConversionFactorProperty = createProperty( namespaceBamm + NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME );
    }
 
    static final String QUANTITY_KIND_CLASS_NAME = "QuantityKind";
