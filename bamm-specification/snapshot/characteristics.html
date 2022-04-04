@@ -173,6 +173,13 @@ BAMM Aspect Meta Model.</p>
 </div>
 <div class="sect2">
 <h3 id="characteristic-characteristic"><a class="anchor" href="#characteristic-characteristic"></a>Characteristic</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Characteristic</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Base class of all characteristics. This Characteristics Class can also be instantiated directly
 (i.e., without creating a subclass).</p>
@@ -215,6 +222,13 @@ BAMM Aspect Meta Model.</p>
 </div>
 <div class="sect2">
 <h3 id="trait-characteristic"><a class="anchor" href="#trait-characteristic"></a>Trait</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Trait</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>The Trait is used to add one or more <a href="#constraints">Constraints</a> to another Characteristic, which is referred to
 as the "base Characteristic".
@@ -243,7 +257,7 @@ A Trait itself has no <code>bamm:dataType</code>, because it inherits the type o
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bamm-c:constraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:constraint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A Constraint that is applicable to the base Characteristic. This attribute may
   be used multiple times, to add multiple Constraints to the base Characteristic.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
@@ -253,6 +267,13 @@ A Trait itself has no <code>bamm:dataType</code>, because it inherits the type o
 </div>
 <div class="sect2">
 <h3 id="quantifiable-characteristic"><a class="anchor" href="#quantifiable-characteristic"></a>Quantifiable</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Quantifiable</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A value which can be quantified and may have a unit, e.g., the number of bolts required for a
 processing step or the expected torque with which these bolts should be tightened.</p>
@@ -284,6 +305,13 @@ processing step or the expected torque with which these bolts should be tightene
 </div>
 <div class="sect2">
 <h3 id="measurement-characteristic"><a class="anchor" href="#measurement-characteristic"></a>Measurement</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Measurement</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A measurement is a numeric value with an associated unit and quantity kind.</p>
 </div>
@@ -314,6 +342,13 @@ processing step or the expected torque with which these bolts should be tightene
 </div>
 <div class="sect2">
 <h3 id="enumeration-characteristic"><a class="anchor" href="#enumeration-characteristic"></a>Enumeration</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Enumeration</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>An enumeration represents a list of possible values.</p>
 </div>
@@ -345,6 +380,13 @@ processing step or the expected torque with which these bolts should be tightene
 </div>
 <div class="sect2">
 <h3 id="state-characteristic"><a class="anchor" href="#state-characteristic"></a>State</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#State</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A state is subclass of Enumeration with a default value.</p>
 </div>
@@ -375,6 +417,13 @@ processing step or the expected torque with which these bolts should be tightene
 </div>
 <div class="sect2">
 <h3 id="duration-characteristic"><a class="anchor" href="#duration-characteristic"></a>Duration</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Duration</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A time duration.</p>
 </div>
@@ -432,6 +481,13 @@ therefore be used: <code><a href="appendix/appendix.html#unit-centipoisePerBar" 
 </div>
 <div class="sect2">
 <h3 id="collection-characteristic"><a class="anchor" href="#collection-characteristic"></a>Collection</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Collection</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A group of values which may be either of a scalar or Entity type. The values may be duplicated and
 are not ordered (i.e., bag semantics).</p>
@@ -470,22 +526,52 @@ are not ordered (i.e., bag semantics).</p>
 </div>
 <div class="sect2">
 <h3 id="list-characteristic"><a class="anchor" href="#list-characteristic"></a>List</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#List</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A subclass of <a href="#collection-characteristic">Collection</a> which may contain duplicates and is ordered.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="set-characteristic"><a class="anchor" href="#set-characteristic"></a>Set</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Set</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A subclass of <a href="#collection-characteristic">Collection</a> which may not contain duplicates and is unordered.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="sorted-set-characteristic"><a class="anchor" href="#sorted-set-characteristic"></a>Sorted Set</h3>
-
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#SortedSet</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A subclass of <a href="#collection-characteristic">Collection</a> which may not contain duplicates and is ordered.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="time-series-characteristic"><a class="anchor" href="#time-series-characteristic"></a>Time Series</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#TimeSeries</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>A subclass of <a href="#sorted-set-characteristic">Sorted Set</a> containing values with the exact point in time when the
 values where recorded.</p>
@@ -523,6 +609,13 @@ semantics.</p></td>
 </div>
 <div class="sect2">
 <h3 id="code-characteristic"><a class="anchor" href="#code-characteristic"></a>Code</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Code</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property which contains any kind of code. Note that this Characteristic does not define
 a <code>bamm:dataType</code>, this must therefore be done when instantiating the Characteristic.</p>
@@ -530,6 +623,13 @@ a <code>bamm:dataType</code>, this must therefore be done when instantiating the
 </div>
 <div class="sect2">
 <h3 id="either-characteristic"><a class="anchor" href="#either-characteristic"></a>Either</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Either</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property whose value can have one of two possible types (a disjoint union).
 This Characteristic does not have one explicit <code>bamm:dataType</code>, as it can be the datatype of either the left or the right.</p>
@@ -568,6 +668,13 @@ This Characteristic does not have one explicit <code>bamm:dataType</code>, as it
 </div>
 <div class="sect2">
 <h3 id="single-entity-characteristic"><a class="anchor" href="#single-entity-characteristic"></a>Single Entity</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#SingleEntity</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property whose data type is an Entity. The Entity used as data type may be defined in
 the same Aspect Model or the shared Entity namespace of the BAMM Aspect Meta Model.</p>
@@ -578,6 +685,13 @@ the same Aspect Model or the shared Entity namespace of the BAMM Aspect Meta Mod
 </div>
 <div class="sect2">
 <h3 id="structured-value-characteristic"><a class="anchor" href="#structured-value-characteristic"></a>Structured Value</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#StructuredValue</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property which contains a scalar <a href="datatypes.html#data-types" class="page">string-like value space</a>
 value with a well-defined structure. The Structured Value Characteristic allows the description of
@@ -643,6 +757,13 @@ Characteristics Instances defined in the scope of the BAMM Aspect Meta Model.</p
 </div>
 <div class="sect2">
 <h3 id="timestamp-characteristic"><a class="anchor" href="#timestamp-characteristic"></a>Timestamp</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Timestamp</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property which contains the date and time with an optional timezone.</p>
 </div>
@@ -652,6 +773,13 @@ Characteristics Instances defined in the scope of the BAMM Aspect Meta Model.</p
 </div>
 <div class="sect2">
 <h3 id="text-characteristic"><a class="anchor" href="#text-characteristic"></a>Text</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Text</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property which contains plain text. This is intended exclusively for human readable
 strings, not for identifiers, measurement values, etc.</p>
@@ -662,6 +790,13 @@ strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="multi-language-text-characteristic"><a class="anchor" href="#multi-language-text-characteristic"></a>Multi-Language Text</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#MultiLanguageText</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property which contains plain text in multiple languages. This is intended exclusively
 for human readable strings, not for identifiers, measurement values, etc.</p>
@@ -672,6 +807,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="boolean-characteristic"><a class="anchor" href="#boolean-characteristic"></a>Boolean</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Boolean</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Represents a boolean value (i.e., a "flag").</p>
 </div>
@@ -681,6 +823,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="locale-characteristic"><a class="anchor" href="#locale-characteristic"></a>Locale</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Locale</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property containing a locale according to IETF BCP 47
 <a href="appendix/appendix.html#bcp47" class="page">[bcp47]</a>, for example "de-DE".</p>
@@ -691,6 +840,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="language-characteristic"><a class="anchor" href="#language-characteristic"></a>Language</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Language</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property containing a language according to ISO 639-1
 <a href="appendix/appendix.html#iso639" class="page">[iso639]</a>, for example "de".</p>
@@ -701,6 +857,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="resource-path-characteristic"><a class="anchor" href="#resource-path-characteristic"></a>Resource Path</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#ResourcePath</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property that contains the path to a relative or absolute resource.</p>
 </div>
@@ -710,6 +873,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="mime-type-characteristic"><a class="anchor" href="#mime-type-characteristic"></a>MIME Type</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#MimeType</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property that contains a MIME type as defined by RFC 2046
 <a href="appendix/appendix.html#rfc2046" class="page">[rfc2046]</a>, for example "application/json",
@@ -721,6 +891,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="unit-reference-characteristic"><a class="anchor" href="#unit-reference-characteristic"></a>Unit Reference</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#UnitReference</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Describes a Property containing a reference to one of the units in the
 <a href="appendix/appendix.html#unit-catalog" class="page">Unit catalog</a>.</p>
@@ -736,6 +913,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="constraint"><a class="anchor" href="#constraint"></a>Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Constraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Base class for other constraints that constrain a Characteristic in some way, e.g., the
 <a href="#range-constraint">Range Constraint</a> limits the value range for a Property.</p>
@@ -746,6 +930,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="language-constraint"><a class="anchor" href="#language-constraint"></a>Language Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#LanguageConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Restricts a value to a specific language.</p>
 </div>
@@ -775,6 +966,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="locale-constraint"><a class="anchor" href="#locale-constraint"></a>Locale Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#LocaleConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Restricts a value to a specific locale, i.e., a language with additional region information.</p>
 </div>
@@ -803,6 +1001,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 <div class="sect2">
 <h3 id="range-constraint"><a class="anchor" href="#range-constraint"></a>Range Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#RangeConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Whether the <code>bamm-c:maxValue</code> and <code>bamm-c:minValue</code> are inclusive or exclusive can be defined using
 the <code>bamm-c:upperBoundDefinition</code> and <code>bamm-c:lowerBoundDefinition</code> attributes.</p>
@@ -915,6 +1120,13 @@ inclusive.</p>
 </div>
 <div class="sect2">
 <h3 id="encoding-constraint"><a class="anchor" href="#encoding-constraint"></a>Encoding Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#EncodingConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Restricts the encoding of a Property.</p>
 </div>
@@ -958,6 +1170,13 @@ other encoding <em>to</em> UTF-8 to indicate that the other encoding is not any 
 </div>
 <div class="sect2">
 <h3 id="length-constraint"><a class="anchor" href="#length-constraint"></a>Length Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#LengthConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>This Constraint can be used to restrict two types of Characteristics:</p>
 </div>
@@ -1010,6 +1229,13 @@ number of elements in the collection.</p>
 </div>
 <div class="sect2">
 <h3 id="regular-expression-constraint"><a class="anchor" href="#regular-expression-constraint"></a>Regular Expression Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#RegularExpressionConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Restricts a string value to a regular expression as defined by XQuery 1.0 and XPath 2.0 Functions
 and Operators <a href="appendix/appendix.html#xpath-functions" class="page">[xpath-functions]</a>.</p>
@@ -1038,6 +1264,13 @@ and Operators <a href="appendix/appendix.html#xpath-functions" class="page">[xpa
 </div>
 <div class="sect2">
 <h3 id="fixed-point-constraint"><a class="anchor" href="#fixed-point-constraint"></a>Fixed Point Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#FixedPointConstraint</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Defines the scaling factor as well as the amount of integral numbers for a fixed point number. The
 constraint may only be used in conjunction with Characteristics which use the <code>xsd:decimal</code> data
