@@ -31,7 +31,7 @@ public class AspectShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testMissingRequiredPropertiesExpectFailureBamm_1_0_0( final KnownVersion metaModelVersion ) {
+   public void testMissingRequiredPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectMissingRequiredAspectProperties";
 
@@ -47,16 +47,8 @@ public class AspectShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
-   public void testMissingRequiredPropertiesExpectFailureBamm_2_0_0( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectMissingRequiredAspectProperties";
-
-      final SemanticError resultForOperations = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, bammUrns.operationsUrn, VIOLATION_URN, "" );
-      final SemanticError resultForProperties = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, bammUrns.propertiesUrn, VIOLATION_URN, "" );
-      expectSemanticValidationErrors( "aspect-shape", "TestAspectMissingRequiredAspectProperties",
-            metaModelVersion, resultForOperations, resultForProperties );
+   public void testAspectWithoutPropertiesAndOperationsExpectSuccess( final KnownVersion metaModelVersion ) {
+      checkValidity( "aspect-shape", "TestAspectWithoutPropertiesAndOperations", metaModelVersion );
    }
 
    @ParameterizedTest
