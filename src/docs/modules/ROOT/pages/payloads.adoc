@@ -56,6 +56,7 @@ applied. The other way round they can also be used to describe a validation algo
 * Characteristics defined in the Aspect model other than the ones mentioned above are not subject to
   serialization.
 * Operations defined in the Aspect model are not subject to serialization.
+* Events defined in the Aspect model are not subject to serialization.
 
 [[data-type-mappings]]
 == Data type mappings
