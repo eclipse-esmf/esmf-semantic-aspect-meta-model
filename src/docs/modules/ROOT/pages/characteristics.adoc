@@ -28,6 +28,10 @@ image::characteristics-classes.svg[width=100%]
 
 [[characteristic-characteristic]]
 === Characteristic
+[.element-urn]
+--
+{bamm-c}Characteristic
+--
 
 Base class of all characteristics. This Characteristics Class can also be instantiated directly
 (i.e., without creating a subclass).
@@ -45,6 +49,10 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 [[trait-characteristic]]
 === Trait
+[.element-urn]
+--
+{bamm-c}Trait
+--
 
 The Trait is used to add one or more <<constraints>> to another Characteristic, which is referred to
 as the "base Characteristic".
@@ -56,12 +64,16 @@ See xref:modeling-guidelines.adoc#declaring-constraints[declaring constraints] f
 |===
 | Attributes | Description | Required
 | `bamm-c:baseCharacteristic` | The Characterstic that is being constrained | {ok}
-| bamm-c:constraint | A Constraint that is applicable to the base Characteristic. This attribute may
+| `bamm-c:constraint` | A Constraint that is applicable to the base Characteristic. This attribute may
   be used multiple times, to add multiple Constraints to the base Characteristic. | {ok}
 |===
 
 [[quantifiable-characteristic]]
 === Quantifiable
+[.element-urn]
+--
+{bamm-c}Quantifiable
+--
 
 A value which can be quantified and may have a unit, e.g., the number of bolts required for a
 processing step or the expected torque with which these bolts should be tightened.
@@ -76,6 +88,10 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 [[measurement-characteristic]]
 === Measurement
+[.element-urn]
+--
+{bamm-c}Measurement
+--
 
 A measurement is a numeric value with an associated unit and quantity kind.
 
@@ -89,6 +105,10 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 [[enumeration-characteristic]]
 === Enumeration
+[.element-urn]
+--
+{bamm-c}Enumeration
+--
 
 An enumeration represents a list of possible values.
 
@@ -103,6 +123,10 @@ See xref:modeling-guidelines.adoc#declaring-enumerations[declaring enumerations]
 
 [[state-characteristic]]
 === State
+[.element-urn]
+--
+{bamm-c}State
+--
 
 A state is subclass of Enumeration with a default value.
 
@@ -116,6 +140,10 @@ See xref:modeling-guidelines.adoc#declaring-state[declaring state] for usage in 
 
 [[duration-characteristic]]
 === Duration
+[.element-urn]
+--
+{bamm-c}Duration
+--
 
 A time duration.
 
@@ -157,6 +185,10 @@ therefore be used: `xref:appendix:appendix.adoc#unit-centipoisePerBar[unit:centi
 
 [[collection-characteristic]]
 === Collection
+[.element-urn]
+--
+{bamm-c}Collection
+--
 
 A group of values which may be either of a scalar or Entity type. The values may be duplicated and
 are not ordered (i.e., bag semantics).
@@ -174,19 +206,37 @@ See xref:modeling-guidelines.adoc#declaring-collections[declaring collections] f
 
 [[list-characteristic]]
 === List
+[.element-urn]
+--
+{bamm-c}List
+--
 
 A subclass of <<collection-characteristic>> which may contain duplicates and is ordered.
 
 [[set-characteristic]]
 === Set
+[.element-urn]
+--
+{bamm-c}Set
+--
 
 A subclass of <<collection-characteristic>> which may not contain duplicates and is unordered.
 
 [[sorted-set-characteristic]]
 === Sorted Set
+[.element-urn]
+--
+{bamm-c}SortedSet
+--
+
+A subclass of <<collection-characteristic>> which may not contain duplicates and is ordered.
 
 [[time-series-characteristic]]
 === Time Series
+[.element-urn]
+--
+{bamm-c}TimeSeries
+--
 
 A subclass of <<sorted-set-characteristic>> containing values with the exact point in time when the
 values where recorded.
@@ -209,12 +259,20 @@ semantics. | {ok}
 
 [[code-characteristic]]
 === Code
+[.element-urn]
+--
+{bamm-c}Code
+--
 
 Describes a Property which contains any kind of code. Note that this Characteristic does not define
 a `bamm:dataType`, this must therefore be done when instantiating the Characteristic.
 
 [[either-characteristic]]
 === Either
+[.element-urn]
+--
+{bamm-c}Either
+--
 
 Describes a Property whose value can have one of two possible types (a disjoint union).
 This Characteristic does not have one explicit `bamm:dataType`, as it can be the datatype of either the left or the right.
@@ -232,6 +290,10 @@ See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage i
 
 [[single-entity-characteristic]]
 === Single Entity
+[.element-urn]
+--
+{bamm-c}SingleEntity
+--
 
 Describes a Property whose data type is an Entity. The Entity used as data type may be defined in
 the same Aspect Model or the shared Entity namespace of the {meta-model-full-name}.
@@ -240,6 +302,10 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 [[structured-value-characteristic]]
 === Structured Value
+[.element-urn]
+--
+{bamm-c}StructuredValue
+--
 
 Describes a Property which contains a scalar xref:datatypes.adoc#data-types[string-like value space]
 value with a well-defined structure. The Structured Value Characteristic allows the description of
@@ -277,6 +343,10 @@ image::characteristics-instances.svg[width=100%]
 
 [[timestamp-characteristic]]
 === Timestamp
+[.element-urn]
+--
+{bamm-c}Timestamp
+--
 
 Describes a Property which contains the date and time with an optional timezone.
 
@@ -284,6 +354,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:dateTime]`
 
 [[text-characteristic]]
 === Text
+[.element-urn]
+--
+{bamm-c}Text
+--
 
 Describes a Property which contains plain text. This is intended exclusively for human readable
 strings, not for identifiers, measurement values, etc.
@@ -292,6 +366,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
 [[multi-language-text-characteristic]]
 === Multi-Language Text
+[.element-urn]
+--
+{bamm-c}MultiLanguageText
+--
 
 Describes a Property which contains plain text in multiple languages. This is intended exclusively
 for human readable strings, not for identifiers, measurement values, etc.
@@ -300,6 +378,10 @@ dataType: `xref:datatypes.adoc#data-types[rdf:langString]`
 
 [[boolean-characteristic]]
 === Boolean
+[.element-urn]
+--
+{bamm-c}Boolean
+--
 
 Represents a boolean value (i.e., a "flag").
 
@@ -307,6 +389,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:boolean]`
 
 [[locale-characteristic]]
 === Locale
+[.element-urn]
+--
+{bamm-c}Locale
+--
 
 Describes a Property containing a locale according to IETF BCP 47
 xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]], for example "de-DE".
@@ -315,6 +401,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
 [[language-characteristic]]
 === Language
+[.element-urn]
+--
+{bamm-c}Language
+--
 
 Describes a Property containing a language according to ISO 639-1
 xref:bamm-specification:appendix:appendix.adoc#iso639[[iso639\]], for example "de".
@@ -323,6 +413,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
 [[resource-path-characteristic]]
 === Resource Path
+[.element-urn]
+--
+{bamm-c}ResourcePath
+--
 
 Describes a Property that contains the path to a relative or absolute resource.
 
@@ -330,6 +424,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:anyURI]`
 
 [[mime-type-characteristic]]
 === MIME Type
+[.element-urn]
+--
+{bamm-c}MimeType
+--
 
 Describes a Property that contains a MIME type as defined by RFC 2046
 xref:bamm-specification:appendix:appendix.adoc#rfc2046[[rfc2046\]], for example "application/json",
@@ -339,6 +437,10 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
 [[unit-reference-characteristic]]
 === Unit Reference
+[.element-urn]
+--
+{bamm-c}UnitReference
+--
 
 Describes a Property containing a reference to one of the units in the
 xref:appendix:appendix.adoc#unit-catalog[Unit catalog].
@@ -350,6 +452,10 @@ dataType: `xref:datatypes.adoc#data-types[bamm:curie]`
 
 [[constraint]]
 === Constraint
+[.element-urn]
+--
+{bamm-c}Constraint
+--
 
 Base class for other constraints that constrain a Characteristic in some way, e.g., the
 <<range-constraint>> limits the value range for a Property.
@@ -358,6 +464,10 @@ The Constraint class has no attributes.
 
 [[language-constraint]]
 === Language Constraint
+[.element-urn]
+--
+{bamm-c}LanguageConstraint
+--
 
 Restricts a value to a specific language.
 
@@ -371,6 +481,10 @@ Restricts a value to a specific language.
 
 [[locale-constraint]]
 === Locale Constraint
+[.element-urn]
+--
+{bamm-c}LocaleConstraint
+--
 
 Restricts a value to a specific locale, i.e., a language with additional region information.
 
@@ -383,6 +497,10 @@ Restricts a value to a specific locale, i.e., a language with additional region 
 
 [[range-constraint]]
 === Range Constraint
+[.element-urn]
+--
+{bamm-c}RangeConstraint
+--
 
 Whether the `bamm-c:maxValue` and `bamm-c:minValue` are inclusive or exclusive can be defined using
 the `bamm-c:upperBoundDefinition` and `bamm-c:lowerBoundDefinition` attributes.
@@ -428,6 +546,10 @@ inclusive.
 
 [[encoding-constraint]]
 === Encoding Constraint
+[.element-urn]
+--
+{bamm-c}EncodingConstraint
+--
 
 Restricts the encoding of a Property.
 
@@ -445,6 +567,10 @@ other encoding _to_ UTF-8 to indicate that the other encoding is not any longer 
 
 [[length-constraint]]
 === Length Constraint
+[.element-urn]
+--
+{bamm-c}LengthConstraint
+--
 
 This Constraint can be used to restrict two types of Characteristics:
 
@@ -469,6 +595,10 @@ At least one of `bamm-c:maxValue` or `bamm-c:minValue` must be present in a Leng
 
 [[regular-expression-constraint]]
 === Regular Expression Constraint
+[.element-urn]
+--
+{bamm-c}RegularExpressionConstraint
+--
 
 Restricts a string value to a regular expression as defined by XQuery 1.0 and XPath 2.0 Functions
 and Operators xref:bamm-specification:appendix:appendix.adoc#xpath-functions[[xpath-functions\]].
@@ -481,6 +611,10 @@ and Operators xref:bamm-specification:appendix:appendix.adoc#xpath-functions[[xp
 
 [[fixed-point-constraint]]
 === Fixed Point Constraint
+[.element-urn]
+--
+{bamm-c}FixedPointConstraint
+--
 
 Defines the scaling factor as well as the amount of integral numbers for a fixed point number. The
 constraint may only be used in conjunction with Characteristics which use the `xsd:decimal` data
