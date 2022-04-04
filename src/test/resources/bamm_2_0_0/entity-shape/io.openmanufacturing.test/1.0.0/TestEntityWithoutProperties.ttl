@@ -13,4 +13,4 @@
 @prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
-:TestEntityMissingRequiredProperties a bamm:Entity .
+:TestEntityWithoutProperties a bamm:Entity .

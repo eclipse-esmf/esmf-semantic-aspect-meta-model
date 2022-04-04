@@ -10,7 +10,7 @@ content:
       tags: '*'
 ui:
   bundle:
-    url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.0.0/sds-antora-ui-bundle-1.0.0.zip
+    url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.1.0/sds-antora-ui-bundle-1.1.0.zip
     snapshot: true
   supplemental_files:
     - path: ui.yml
@@ -33,9 +33,9 @@ asciidoc:
     meta-model-abbr: BAMM
     omp: Open Manufacturing Platform
     omp-abbr: OMP
-    bamm: urn:bamm:org.open-manufacturing.digitaltwin:meta-model:2.0.0#@
-    bamm-c: urn:bamm:org.open-manufacturing.digitaltwin:characteristic:2.0.0#@
-    bamm-e: urn:bamm:org.open-manufacturing.digitaltwin:entity:2.0.0#@
-    unit: urn:bamm:org.open-manufacturing.digitaltwin:unit:2.0.0#@
+    bamm: urn:bamm:io.openmanufacturing:meta-model:2.0.0#@
+    bamm-c: urn:bamm:io.openmanufacturing:characteristic:2.0.0#@
+    bamm-e: urn:bamm:io.openmanufacturing:entity:2.0.0#@
+    unit: urn:bamm:io.openmanufacturing:unit:2.0.0#@
     example-ns: com.mycompany@
 

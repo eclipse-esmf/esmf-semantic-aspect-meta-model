@@ -51,14 +51,8 @@ public class EntityShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
-   public void testMissingRequiredPropertiesExpectFailureBamm_2_0_0( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityMissingRequiredProperties";
-
-      final SemanticError resultForProperties = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, bammUrns.propertiesUrn, VIOLATION_URN, "" );
-      expectSemanticValidationErrors( "entity-shape", "TestEntityMissingRequiredProperties", metaModelVersion,
-            resultForProperties );
+   public void testEntityWithoutPropertiesExpectSuccess( final KnownVersion metaModelVersion ) {
+      checkValidity( "entity-shape", "TestEntityWithoutProperties", metaModelVersion );
    }
 
    @ParameterizedTest

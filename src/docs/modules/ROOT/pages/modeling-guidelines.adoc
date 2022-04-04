@@ -1,7 +1,7 @@
 ////
 Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -104,11 +104,11 @@ addition to the general attributes, every Aspect Model element has the following
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:properties` | The list of Properties of this Aspect. The attribute must be present, but the
-  list may be empty. | {ok}
-| `bamm:operations` | The list of Operations of this Aspect. The attribute must be present, but the
-  list may be empty. | {ok}
-| `bamm:events` | The list of Events of this Aspect. | {nok}  
+| `bamm:properties` | The list of Properties of this Aspect. Leaving out this
+  attribute completely is equivalent to having it present with an empty list as value. | {nok}
+| `bamm:operations` | The list of Operations of this Aspect. Leaving out this
+  attribute completely is equivalent to having it present with an empty list as value. | {nok}
+| `bamm:events` | The list of Events of this Aspect. | {nok}
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
@@ -465,7 +465,8 @@ Entities have the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:properties` | The list of Properties which make up the Entity | {ok}
+| `bamm:properties` | The list of Properties which make up the Entity. Leaving out this
+  attribute completely is equivalent to having it present with an empty list as value.| {nok}
 | `bamm:extends` | The Entity which is extended by this Entity | {nok}
 |===
 
