@@ -44,10 +44,10 @@ public class UnitsWriter extends DefaultTask {
    }
 
    public void setMetaModelModelVersion( final String metaModelModelVersion ) {
-      this.metaModelVersion = metaModelModelVersion;
+      metaModelVersion = metaModelModelVersion;
    }
 
-   public void setCustomRdfInputDirectory( String customRdfInputDirectory ) {
+   public void setCustomRdfInputDirectory( final String customRdfInputDirectory ) {
       this.customRdfInputDirectory = customRdfInputDirectory;
    }
 }

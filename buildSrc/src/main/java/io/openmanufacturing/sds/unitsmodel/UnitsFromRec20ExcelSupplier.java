@@ -101,6 +101,7 @@ public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> 
    private String getNameForUnitPreferredName( final String preferredName ) {
       return getNameForPreferredName(
             preferredName.replace( "length", "length unit" ) // To prevent name clash with length quantity kind
+                  .replace( "activity", "activity unit" )  // To prevent name clash with activity quantity kind
       );
    }
 

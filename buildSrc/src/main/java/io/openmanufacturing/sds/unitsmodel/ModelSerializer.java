@@ -161,8 +161,7 @@ public class ModelSerializer {
       return getStatements( resource, unitsResources.getQuantityKindProperty(), null, objectComparator )
             .map( Statement::getObject )
             .map( RDFNode::asResource )
-            .map( Resource::getLocalName )
-            .map( name -> ":" + name )
+            .map( this::serialize )
             .collect( Collectors.joining( ", " ) );
    }
 

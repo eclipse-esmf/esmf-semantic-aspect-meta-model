@@ -13,6 +13,9 @@
 
 package io.openmanufacturing.sds.unitsmodel;
 
+import static org.apache.jena.rdf.model.ResourceFactory.createStatement;
+import static org.apache.jena.rdf.model.ResourceFactory.createTypedLiteral;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.UnaryOperator;
@@ -22,7 +25,6 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.ResIterator;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 
@@ -35,7 +37,7 @@ public class UnitsReferencesAdder implements UnaryOperator<Model> {
    private final UnitsResources unitResources;
 
    public UnitsReferencesAdder( final UnitsResources unitsResources ) {
-      this.unitResources = unitsResources;
+      unitResources = unitsResources;
    }
 
    /**
@@ -84,9 +86,8 @@ public class UnitsReferencesAdder implements UnaryOperator<Model> {
    @Override
    public Model apply( final Model model ) {
       final Set<Statement> additionalStatements = new HashSet<>();
-      for ( final StmtIterator statementIterator = model
-            .listStatements( null, this.unitResources.getConversionFactorProperty(), (RDFNode) null ); statementIterator
-                  .hasNext(); ) {
+      for ( final StmtIterator statementIterator = model.listStatements( null, unitResources.getConversionFactorProperty(),
+            (RDFNode) null ); statementIterator.hasNext(); ) {
          final Statement statement = statementIterator.next();
          final Resource unit = statement.getSubject();
 
@@ -99,23 +100,20 @@ public class UnitsReferencesAdder implements UnaryOperator<Model> {
          }
 
          // Check if conversion factor and symbol are the same, which makes no sense
-         final Statement unitSymbolStatement = unit.getProperty( this.unitResources.getSymbolProperty() );
+         final Statement unitSymbolStatement = unit.getProperty( unitResources.getSymbolProperty() );
          if ( unitSymbolStatement != null && unitSymbolStatement.getObject().asLiteral().toString()
                .equals( conversionFactorSymbol ) ) {
             continue;
          }
          final Double numericConversionFactor = getNumericPart( conversionFactor );
-         final Literal numericConversionFactorLiteral = ResourceFactory.createTypedLiteral( numericConversionFactor );
+         final Literal numericConversionFactorLiteral = createTypedLiteral( numericConversionFactor );
 
-         final ResIterator iterator = model
-               .listSubjectsWithProperty( this.unitResources.getSymbolProperty(), conversionFactorSymbol );
+         final ResIterator iterator = model.listSubjectsWithProperty( unitResources.getSymbolProperty(), conversionFactorSymbol );
          if ( iterator.hasNext() ) {
             final Resource referenceUnit = iterator.next();
-            additionalStatements.add( ResourceFactory
-                  .createStatement( unit, this.unitResources.getReferenceUnitProperty(), referenceUnit ) );
-            additionalStatements.add( ResourceFactory
-                  .createStatement( statement.getSubject(), this.unitResources.getNumericConversionFactorProperty(),
-                        numericConversionFactorLiteral ) );
+            additionalStatements.add( createStatement( unit, unitResources.getReferenceUnitProperty(), referenceUnit ) );
+            additionalStatements.add(
+                  createStatement( statement.getSubject(), unitResources.getNumericConversionFactorProperty(), numericConversionFactorLiteral ) );
          }
       }
       additionalStatements.forEach( model::add );
