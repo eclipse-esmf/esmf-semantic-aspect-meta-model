@@ -108,6 +108,7 @@ addition to the general attributes, every Aspect Model element has the following
   list may be empty. | {ok}
 | `bamm:operations` | The list of Operations of this Aspect. The attribute must be present, but the
   list may be empty. | {ok}
+| `bamm:events` | The list of Events of this Aspect. | {nok}  
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
