@@ -417,6 +417,31 @@ deconstruction rule corresponds with the named fields; secondly, it is used for 
 check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
 i.e., that the deconstruction rule actually does what the model author intended.
 
+[[using-unit-reference]]
+==== Using UnitReference
+
+As explained in the section xref:modeling-guidelines.adoc#declaring-quantifiable-values-and-measurements[Declaring Quantifiables and Measurements], some values only make sense when they also have a unit assigned to them.
+This unit definition is in many cases fixed at design time, does not change thereafter and therefore at runtime (in the JSON payload for example), only the actual value is transported. +
+ There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
+at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, xref:characteristics.adoc#unit-reference-characteristic[UnitReference] characteristic instance can be used to include a dynamic reference to the desired unit from the xref:appendix:appendix.adoc#unit-catalog[Unit catalog] and this information is then always included in the payload.
+
+For example an Aspect with the following model:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$unit-reference.ttl[tags=content]
+----
+
+can produce a JSON payload that could look something like this:
+
+[source,json,subs="attributes+"]
+----
+{
+  "value" : 2.25,
+  "unit" : "unit:hectopascal" 
+}
+----
+
 [[declaring-constraints]]
 === Declaring Constraints and Traits
 
