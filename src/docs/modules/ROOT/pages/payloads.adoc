@@ -112,17 +112,28 @@ the data. The mappings are described in the following table.
 | A JSON object with a structure as described in the rules above.
 |===
 
-For example, a Property `errorMessage` with effective data type `rdf:langString` and the values
-`"Could not load data"@en` and `"Konnte Daten nicht laden"@de` would be serialized in the JSON
-payload as follows: [source,json]
+For example, a Property `errorMessage` with effective data type `rdf:langString` and the value
+`"Could not load data"@en` would be serialized in the JSONpayload as follows:
+[source,json]
 ----
 {
   "errorMessage": {
-    "en": "Could not load data",
-    "de": "Konnte Daten nicht laden"
+    "en": "Could not load data"    
   }
 }
 ----
+
+A Property `errorMessages` with a Collection Characteristics and effective data type `rdf:langString` could yield the payload:
+[source,json]
+----
+{
+  "errorMessages": [
+    { "en": "Could not load data" },
+    { "de": "Konnte Daten nicht laden" }
+  ]
+}
+----
+
 
 CAUTION: Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
 represention of numbers] in JSON, the maximum integer number that can be used without losing
