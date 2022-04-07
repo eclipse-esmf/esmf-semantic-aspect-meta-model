@@ -501,9 +501,12 @@ Restricts a value to a specific locale, i.e., a language with additional region 
 --
 {bamm-c}RangeConstraint
 --
+Restricts the value range of a Property. At least one of `bamm-c:maxValue` or `bamm-c:minValue` must
+be present in a Range Constraint. 
 
 Whether the `bamm-c:maxValue` and `bamm-c:minValue` are inclusive or exclusive can be defined using
-the `bamm-c:upperBoundDefinition` and `bamm-c:lowerBoundDefinition` attributes.
+the `bamm-c:upperBoundDefinition` and `bamm-c:lowerBoundDefinition` attributes. 
+When one or both of them are not specified, the corresponding value defaults to inclusive.
 
 NOTE: The values for `maxValue` and `minValue` must be given in the same effective dataType that the
 constrained Characteristic uses.
@@ -539,10 +542,6 @@ Constraint restricts the range of the value. The scalar data types that can be r
 the Constraint restricts the scalar data types: `xsd:date`,`xsd:time`, `xsd:dateTime`,
 `xsd:dateTimeStamp`, `xsd:gYear`, `xsd:gMonth`, `xsd:gMonthDay`, `xsd:duration`,
 `xsd:yearMonthDuration`, `xsd:dayTimeDuration`.
-
-Restricts the value range of a Property. At least one of `bamm-c:maxValue` or `bamm-c:minValue` must
-be present in a Range Constraint. By default both `bamm-c:maxValue` and `bamm-c:minValue` are
-inclusive.
 
 [[encoding-constraint]]
 === Encoding Constraint
