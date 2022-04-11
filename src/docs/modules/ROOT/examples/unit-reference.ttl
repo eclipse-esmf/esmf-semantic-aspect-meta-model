@@ -1,0 +1,34 @@
+# Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+# If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix bamm-e: <{bamm-e}> .
+@prefix unit: <{unit}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# tag::content[]
+:ValueWithDynamicUnit a bamm:Aspect ;
+  bamm:name "ValueWithDynamicUnit";
+  bamm:properties ( :value :unit ) ;
+  bamm:operations ( ) .
+
+:value a bamm:Property ;
+   bamm:name "value" ;
+   bamm:exampleValue "2.25"^^xsd:float ;
+   bamm:characteristic :Float .
+
+:Float a bamm:Characteristic ;
+   bamm:name "Float" ;
+   bamm:dataType xsd:float .
+
+:unit a bamm:Property ;
+   bamm:name "unit";
+   bamm:characteristic bamm-c:UnitReference .
+# end::content[]

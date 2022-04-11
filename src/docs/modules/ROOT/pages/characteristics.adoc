@@ -443,7 +443,8 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 --
 
 Describes a Property containing a reference to one of the units in the
-xref:appendix:appendix.adoc#unit-catalog[Unit catalog].
+xref:appendix:appendix.adoc#unit-catalog[Unit catalog]. +
+See xref:modeling-guidelines.adoc#using-unit-reference[Using Unit Reference] for usage in an Aspect model.
 
 dataType: `xref:datatypes.adoc#data-types[bamm:curie]`
 
