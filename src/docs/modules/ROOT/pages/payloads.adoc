@@ -113,7 +113,7 @@ the data. The mappings are described in the following table.
 |===
 
 For example, a Property `errorMessage` with effective data type `rdf:langString` and the value
-`"Could not load data"@en` would be serialized in the JSONpayload as follows:
+`"Could not load data"@en` would be serialized in the JSON payload as follows:
 [source,json]
 ----
 {
@@ -123,7 +123,7 @@ For example, a Property `errorMessage` with effective data type `rdf:langString`
 }
 ----
 
-A Property `errorMessages` with a Collection Characteristics and effective data type `rdf:langString` could yield the payload:
+A Property `errorMessages` with a Collection Characteristic and effective data type `rdf:langString` could yield the payload:
 [source,json]
 ----
 {
