@@ -1115,8 +1115,10 @@ must be unique across the entire Entity inheritance chain. Otherwise the corresp
 <div class="sect3">
 <h4 id="declaring-abstract-entities"><a class="anchor" href="#declaring-abstract-entities"></a>Declaring Abstract Entities</h4>
 <div class="paragraph">
-<p>It is also possible to declare Abstract Entities to share Properties across multiple Entities. An Abstract Entity must
-be extended by one or more Entities.</p>
+<p>In contrast to Entities, Abstract Entities cannot directly be used as data types.
+The main use case for Abstract Entities is to share Properties across multiple Entities.
+This can be achieved through inheritance: Abstract Entities can extend other Entities and Abstract Entities and can
+themselves be extended in a manner not dissimilar to how abstract classes are used in many programming languages.</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
