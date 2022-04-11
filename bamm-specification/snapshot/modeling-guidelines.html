@@ -938,6 +938,50 @@ i.e., that the deconstruction rule actually does what the model author intended.
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="using-unit-reference"><a class="anchor" href="#using-unit-reference"></a>Using Unit Reference</h4>
+<div class="paragraph">
+<p>As explained in the section <a href="#declaring-quantifiable-values-and-measurements">Declaring Quantifiables and Measurements</a>, some values only make sense when they also have a unit assigned to them.
+This unit definition is in many cases fixed at design time, does not change thereafter and therefore at runtime (in the JSON payload for example), only the actual value is transported.<br>
+ There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
+at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a <a href="characteristics.html#unit-reference-characteristic" class="page">UnitReference</a> characteristic instance can be used to include a dynamic reference to the desired unit from the <a href="appendix/appendix.html#unit-catalog" class="page">Unit catalog</a> and this information is then always included in the payload. The runtime payload refers to the unit using its <code>bamm:curie</code>, i.e., the unit&#8217;s URN&#8217;s element name prefixed with <code>unit:</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example an Aspect with the following model:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:ValueWithDynamicUnit a bamm:Aspect ;
+  bamm:name "ValueWithDynamicUnit";
+  bamm:properties ( :value :unit ) ;
+  bamm:operations ( ) .
+
+:value a bamm:Property ;
+   bamm:name "value" ;
+   bamm:exampleValue "2.25"^^xsd:float ;
+   bamm:characteristic :Float .
+
+:Float a bamm:Characteristic ;
+   bamm:name "Float" ;
+   bamm:dataType xsd:float .
+
+:unit a bamm:Property ;
+   bamm:name "unit";
+   bamm:characteristic bamm-c:UnitReference .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>can produce a JSON payload that could look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "value" : 2.25,
+  "unit" : "unit:hectopascal"
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="declaring-constraints"><a class="anchor" href="#declaring-constraints"></a>Declaring Constraints and Traits</h3>
