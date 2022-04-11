@@ -1009,8 +1009,13 @@ for human readable strings, not for identifiers, measurement values, etc.</p>
 </div>
 </div>
 <div class="paragraph">
+<p>Restricts the value range of a Property. At least one of <code>bamm-c:maxValue</code> or <code>bamm-c:minValue</code> must
+be present in a Range Constraint.</p>
+</div>
+<div class="paragraph">
 <p>Whether the <code>bamm-c:maxValue</code> and <code>bamm-c:minValue</code> are inclusive or exclusive can be defined using
-the <code>bamm-c:upperBoundDefinition</code> and <code>bamm-c:lowerBoundDefinition</code> attributes.</p>
+the <code>bamm-c:upperBoundDefinition</code> and <code>bamm-c:lowerBoundDefinition</code> attributes.
+When one or both of them are not specified, the corresponding value defaults to inclusive.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1111,11 +1116,6 @@ the Constraint restricts the scalar data types: <code>xsd:date</code>,<code>xsd:
 <code>xsd:yearMonthDuration</code>, <code>xsd:dayTimeDuration</code>.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Restricts the value range of a Property. At least one of <code>bamm-c:maxValue</code> or <code>bamm-c:minValue</code> must
-be present in a Range Constraint. By default both <code>bamm-c:maxValue</code> and <code>bamm-c:minValue</code> are
-inclusive.</p>
 </div>
 </div>
 <div class="sect2">
