@@ -32,7 +32,8 @@ import groovy.json.JsonSlurper;
 /**
  * Downloads the BCP 47 Language Tag Registry as defined by IANA,
  *
- * @see <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry</a>,
+ * @see
+ * <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry</a>,
  *       in JSON format.
  *       The types which are required for the validation of the Locale Constraint, are extracted and written to a
  *       javascript file.
@@ -41,17 +42,14 @@ public class DownloadBcp47LanguageSubtagRegistry extends DefaultTask {
    @TaskAction
    @SuppressWarnings( "unchecked" )
    public void run() throws IOException {
-      final File languageTagRegistryScriptFile = Path.of( "src/main/resources/bamm/scripts/language-registry.js" )
-                                                     .toFile();
+      final File languageTagRegistryScriptFile = Path.of( "src/main/resources/bamm/scripts/language-registry.js" ).toFile();
       final File targetDirectory = languageTagRegistryScriptFile.getParentFile();
       if ( !targetDirectory.exists() && !targetDirectory.mkdirs() ) {
          throw new IOException( "Could not create directory: " + languageTagRegistryScriptFile.getParent() );
       }
-      final URL languageTagRegistryUrl = URI.create(
-                                                  "https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json" )
-                                            .toURL();
-      final ArrayList<Map<String, String>> languageTagRegistry = (ArrayList<Map<String, String>>) new JsonSlurper().parse(
-            languageTagRegistryUrl );
+      final URL languageTagRegistryUrl = URI.create( "https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json" )
+            .toURL();
+      final ArrayList<Map<String, String>> languageTagRegistry = (ArrayList<Map<String, String>>) new JsonSlurper().parse( languageTagRegistryUrl );
       final Map<String, ArrayList<String>> cleanedLanguageTagRegistry = new HashMap<>();
       final ArrayList<String> grandfathered = new ArrayList<>();
       final ArrayList<String> languages = new ArrayList<>();
@@ -99,8 +97,7 @@ public class DownloadBcp47LanguageSubtagRegistry extends DefaultTask {
       cleanedLanguageTagRegistry.put( "variants", variants );
 
       final String cleanedLanguageTagRegistryJson = JsonOutput.toJson( cleanedLanguageTagRegistry );
-      final String languageRegistryScript = String.format( "var languageRegistryAsJson = '%s'",
-            cleanedLanguageTagRegistryJson );
+      final String languageRegistryScript = String.format( "var languageRegistryAsJson = '%s'", cleanedLanguageTagRegistryJson );
       new FileOutputStream( languageTagRegistryScriptFile ).write( languageRegistryScript.getBytes() );
    }
 }

@@ -154,7 +154,8 @@ node_modules
 yarn.lock
 .gradle
 build
-
+buildSrc/.gradle
+buildSrc/build
 # Generated html
 *.html
 
@@ -173,3 +174,7 @@ build
 
 # Local playbook
 site-local.yml
+
+# Rec20 unit catalog artifacts
+buildSrc/*.xls
+buildSrc/*.pdf

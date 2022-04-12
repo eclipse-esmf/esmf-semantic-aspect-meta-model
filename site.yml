@@ -13,10 +13,10 @@ ui:
     url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.1.0/sds-antora-ui-bundle-1.1.0.zip
     snapshot: true
   supplemental_files:
-  - path: ui.yml
-    contents: |
-      static_files: [ .nojekyll ]
-  - path: .nojekyll
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll ]
+    - path: .nojekyll
 runtime:
   cache_dir: ./.cache/antora
 asciidoc:
@@ -28,7 +28,7 @@ asciidoc:
     stem: 'asciimath'
     ok: 'icon:check-circle[role="green",size="2x"]'
     nok: 'icon:times-circle[role="red",size="2x"]'
-    meta-model-version: 2.0.0@
+    meta-model-version: 2.0.0
     meta-model-full-name: BAMM Aspect Meta Model
     meta-model-abbr: BAMM
     omp: Open Manufacturing Platform
