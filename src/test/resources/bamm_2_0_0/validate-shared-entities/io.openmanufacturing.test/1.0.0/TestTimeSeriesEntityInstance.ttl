@@ -1,0 +1,45 @@
+#
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+
+@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:TestTimeSeries a bamm-c:TimeSeries ;
+   bamm:name "TestTimeSeries" ;
+   bamm:dataType :MachineStateTimeSeriesEntity .
+
+:MachineStateTimeSeriesEntity bamm:refines bamm-e:TimeSeriesEntity ;
+   bamm:name "MachineStateTimeSeriesEntity" ;
+   bamm:properties ( :machineState ) .
+
+:machineState bamm:refines bamm-e:value ;
+   bamm:name "machineState" ;
+   bamm:characteristic :MachineState .
+
+:MachineState a bamm-c:State ;
+   bamm:name "MachineState" ;
+   bamm:dataType xsd:string ;
+   bamm-c:defaultValue "STANDBY" ;
+   bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .
+
+:TestAspect a bamm:Aspect ;
+   bamm:name "TestAspect" ;
+   bamm:properties ( :TimeSeriesProperty ) ;
+   bamm:operations ( ) .
+
+:TimeSeriesProperty a bamm:Property ;
+    bamm:name "TimeSeriesProperty" ;
+    bamm:characteristic :TestTimeSeries .
