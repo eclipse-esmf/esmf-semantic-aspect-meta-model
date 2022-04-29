@@ -14,7 +14,7 @@
 @prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
 
 bamm-e:FileResource a bamm:Entity ;
-   bamm:preferredName "File Resource" ;
+   bamm:preferredName "File Resource"@en ;
    bamm:description "A file in a specific format"@en ;
    bamm:properties ( bamm-e:resource bamm-e:mimeType ) .
 

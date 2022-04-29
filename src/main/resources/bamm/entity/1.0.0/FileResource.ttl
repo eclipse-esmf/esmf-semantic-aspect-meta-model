@@ -15,7 +15,7 @@
 
 bamm-e:FileResource a bamm:Entity ;
    bamm:name "FileResource" ;
-   bamm:preferredName "File Resource" ;
+   bamm:preferredName "File Resource"@en ;
    bamm:description "A file in a specific format"@en ;
    bamm:properties ( bamm-e:resource bamm-e:mimeType ) .
 
