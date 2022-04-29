@@ -13,9 +13,11 @@
 
 package io.openmanufacturing.sds.aspectmetamodel;
 
+import org.apache.jena.rdf.model.Model;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import io.openmanufacturing.sds.validation.ModelLoader;
 import io.openmanufacturing.sds.validation.SemanticError;
 
 public class EntityInstanceValidationTest extends AbstractShapeTest {
@@ -23,14 +25,24 @@ public class EntityInstanceValidationTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testPoint3dEntityInstanceValidity( final KnownVersion metaModelVersion ) {
+      if ( metaModelVersion.equals( KnownVersion.BAMM_1_0_0 ) ) {
+         checkValidity( "validate-shared-entities", "TestFileResourceEntityInstance", metaModelVersion );
+         return;
+      }
+
       // Point3d shared entity definition is erroneous and in consequence produces a validation error.
       // Until this error is fixed, the validity test had to be inverted and now passes for validation error instead of successful validation.
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "EntityCharacteristic";
+      final Model model = loadModel( "validate-shared-entities", "TestPoint3dEntityInstance", metaModelVersion );
 
-      final SemanticError resultForLeft = new SemanticError( MESSAGE_INVALID_DATA_TYPE, focusNode, bammUrns.leftUrn, VIOLATION_URN,
-            TEST_NAMESPACE_PREFIX + "LeftType" );
-      expectSemanticValidationErrors( "validate-shared-entities", "TestPoint3dEntityInstance", metaModelVersion, resultForLeft );
+      // Additionally load Point3d.ttl, which is currently flawed
+      final Model point3d = ModelLoader.createModel( "bamm/entity/" + metaModelVersion.toVersionString() + "/Point3d.ttl" );
+      model.add( point3d );
+
+      final SemanticError resultForX = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY, bammUrns.xUrn, bammUrns.characteristicUrn, VIOLATION_URN, "" );
+      final SemanticError resultForY = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY, bammUrns.yUrn, bammUrns.characteristicUrn, VIOLATION_URN, "" );
+      final SemanticError resultForZ = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY, bammUrns.zUrn, bammUrns.characteristicUrn, VIOLATION_URN, "" );
+      expectSemanticValidationErrors( model, metaModelVersion, resultForX, resultForY, resultForZ );
    }
 
    @ParameterizedTest
