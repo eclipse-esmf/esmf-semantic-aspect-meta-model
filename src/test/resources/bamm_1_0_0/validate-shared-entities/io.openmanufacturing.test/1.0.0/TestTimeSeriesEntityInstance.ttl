@@ -15,7 +15,6 @@
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
 @prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:1.0.0#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspect a bamm:Aspect ;
    bamm:name "TestAspect" ;

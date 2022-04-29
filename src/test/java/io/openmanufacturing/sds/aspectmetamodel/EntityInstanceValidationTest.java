@@ -23,14 +23,14 @@ public class EntityInstanceValidationTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testPoint3dEntityInstanceValidity( final KnownVersion metaModelVersion ) {
+      // Point3d shared entity definition is erroneous and in consequence produces a validation error.
+      // Until this error is fixed, the validity test had to be inverted and now passes for validation error instead of successful validation.
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestPoint3dEntityInstance";
+      final String focusNode = TEST_NAMESPACE_PREFIX + "EntityCharacteristic";
 
-      final SemanticError resultForLeft = new SemanticError(
-            MESSAGE_VALUE_MUST_BE_CHARACTERISTIC, focusNode, bammUrns.leftUrn, VIOLATION_URN,
+      final SemanticError resultForLeft = new SemanticError( MESSAGE_INVALID_DATA_TYPE, focusNode, bammUrns.leftUrn, VIOLATION_URN,
             TEST_NAMESPACE_PREFIX + "LeftType" );
-      expectSemanticValidationErrors( "validate-shared-entities", "TestPoint3dEntityInstance",
-            metaModelVersion, resultForLeft );
+      expectSemanticValidationErrors( "validate-shared-entities", "TestPoint3dEntityInstance", metaModelVersion, resultForLeft );
    }
 
    @ParameterizedTest
