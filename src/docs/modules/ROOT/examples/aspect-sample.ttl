@@ -40,13 +40,6 @@
    bamm:characteristic bamm-c:Text .
 # end::property-declaration[]
 
-# tag::refining-declaration[]
-:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
-   bamm:characteristic :MachineState .
-
-:propertyWithoutCharacteristic a bamm:Property ;
-# end::refining-declaration[]
-
 # tag::state-declaration[]
 :MachineState a bamm-c:State ;
    bamm:dataType xsd:string ;
