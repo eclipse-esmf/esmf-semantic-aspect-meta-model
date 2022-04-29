@@ -45,6 +45,10 @@ bamm:Property rdfs:subClassOf mmm:NamedConcept ;
    rdfs:label "Property" ;
    rdfs:comment "A Property represents a named value." .
 
+bamm:AbstractProperty rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "AbstractProperty" ;
+   rdfs:comment "A Property that has no Characteristic set." .
+
 bamm:Characteristic rdfs:subClassOf mmm:Concept ;
    rdfs:label "Characteristic" ;
    rdfs:comment "A Characteristic describes a Property's meaning in the context of the Aspect." .
