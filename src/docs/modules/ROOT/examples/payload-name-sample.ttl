@@ -1,8 +1,8 @@
-# tag::payload-name-declaration[]
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+# tag::payload-name-declaration[]
 
 :MyAspect a bamm:Aspect ;
    bamm:name "MyAspect" ;

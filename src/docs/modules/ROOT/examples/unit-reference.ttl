@@ -6,11 +6,11 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
-@prefix bamm-e: <{bamm-e}> .
-@prefix unit: <{unit}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::content[]
