@@ -22,7 +22,7 @@
    bamm:characteristic :CodeWithLengthAndAscii .
 
 :CodeWithLengthAndAscii a bamm-c:Trait ;
-   bamm:description "A string code limited to 80 ASCII characters" ;
+   bamm:description "A string code limited to 80 ASCII characters"@en ;
    bamm-c:baseCharacteristic [
       a bamm-c:Code ;
       bamm:description "Denotes some kind of code with a string datatype"@en ;
@@ -49,7 +49,7 @@
       bamm-c:baseCharacteristic bamm-c:Timestamp ;
       bamm-c:constraint [
          a bamm-c:RegularExpressionConstraint ;
-         bamm:value "\\d\{4\}-01-\\d\\dT.*" ;
+         bamm:value "\\d{4}-01-\\d\\dT.*" ;
       ] ;
    ] .
 # end::regular-expression-sample[]

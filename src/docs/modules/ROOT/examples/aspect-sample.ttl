@@ -172,6 +172,18 @@
     bamm:properties ( :name :surname ) .
 # end::extending-entity-declaration[]
 
+:studentNumber a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:employeeNumber a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:name a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:surname a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
 # tag::abstract-entity-declaration[]
 :VehicleComponent a bamm:AbstractEntity ;
     bamm:properties ( :typeNumber :manufacturer ) .
@@ -182,8 +194,14 @@
 
 :Seat a bamm:Entity ;
    bamm:extends :VehicleComponent ;
-   bamm:properties ( :material )
+   bamm:properties ( :material ) .
 # end::abstract-entity-declaration[]
+
+:isMultifunction a bamm:Property ;
+   bamm:characteristic bamm-c:Boolean .
+
+:material a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
 
 # tag::operation-declaration[]
 :toggle a bamm:Operation ;

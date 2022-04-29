@@ -22,7 +22,7 @@
 
 :StructuredDate a bamm-c:StructuredValue ;
    bamm:dataType xsd:date ;
-   bamm-c:deconstructionRule "(\\d\{4\})-(\\d\{2\})-(\\d\{2\})" ;
+   bamm-c:deconstructionRule "(\\d{4})-(\\d{2})-(\\d{2})" ;
    bamm-c:elements ( :year "-" :month "-" :day ) .
 
 :year a bamm:Property ;
