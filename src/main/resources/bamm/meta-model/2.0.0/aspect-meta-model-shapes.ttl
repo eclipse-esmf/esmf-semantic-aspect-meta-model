@@ -231,6 +231,8 @@ bamm:PropertyShape
    sh:property [
       sh:order 3 ;
       sh:path bamm:characteristic ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
       sh:class bamm:Characteristic ;
       sh:sparql [
          a sh:SPARQLConstraint ;
