@@ -13,13 +13,11 @@
 # tag::payload-name-declaration[]
 
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:properties (
      [ bamm:property :errorMessage; bamm:payloadName "error" ]
    ) ;
    bamm:operations ( ) .
 
 :errorMessage a bamm:Property ;
-   bamm:name "errorMessage" ;
    bamm:characteristic bamm-c:Text .
 # end::payload-name-declaration[]
