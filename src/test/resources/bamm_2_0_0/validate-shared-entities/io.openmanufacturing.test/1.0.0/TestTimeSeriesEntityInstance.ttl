@@ -18,20 +18,15 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :MachineStateTimeSeries a bamm-c:TimeSeries ;
-   bamm:name "MachineStateTimeSeries" ;
    bamm:dataType :MachineStateTimeSeriesEntity .
 
 :MachineStateTimeSeriesEntity a bamm:Entity ;
-   bamm:name "MachineStateTimeSeriesEntity" ;
    bamm:extends bamm-e:TimeSeriesEntity ;
-   bamm:properties ( :machineState ) .
-
-:machineState a bamm:Property ;
-   bamm:name "machineState" ;
-   bamm:characteristic :MachineState .
+   bamm:properties (
+      [ bamm:extends bamm-e:value ; bamm:characteristic :MachineState ]
+   ) .
 
 :MachineState a bamm-c:State ;
-   bamm:name "MachineState" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "STANDBY" ;
    bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .
