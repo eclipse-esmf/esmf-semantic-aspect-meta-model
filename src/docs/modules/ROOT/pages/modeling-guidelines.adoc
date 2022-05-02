@@ -529,12 +529,45 @@ for Abstract Entities is to share Properties across multiple Entities. This can 
 inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be
 extended in a manner not dissimilar to how abstract classes are used in many programming languages.
 
-Example:
+In the following example, both `SteeringWheel` and `Seat` _extend_ the Abstract Entity
+`VehicleComponent`. Both inherit the `typeNumber` and the `manufacturer` Properties:
 
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=abstract-entity-declaration]
 ----
+
+[[abstract-entities-with-abstract-properties]]
+==== Abstract Entities with Abstract Properties
+
+When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
+Abstract Entity (i.e., extending it) should be able to decide the Property's Characteristic, the
+Property can be declared a `bamm:AbstractProperty`. An Abstract Property is similar to a Property,
+with two differences: Firstly, it has no `bamm:Characteristic` attribute and secondly, it must only
+be used in Abstract Entities. Consider the following example of two-dimensional vector which is
+declared as an Abstract Entity using two Abstract Properties for its `x` and `y` values, leaving for
+the user to decide which Characteristic and hence which data type should be used:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-declaration]
+----
+
+The usage of the Abstract Properties allows to specify the contract (a two-dimensional vector must
+have x and y Properties), but allows flexible reuse: Only when it is used, one must decide on the
+Characteristic and with it its effective datatype such as `xsd:int`, `xsd:float` or `xsd:decimal`.
+
+To use the `Vec2` Abstract Entity, the Characteristic to bind to the Abstract Properties is declared
+and then used as follows:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
+----
+
+Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s. The
+properties list of an Entity that extends the Abstract Entity must specify the Characteristic to use
+for each of the Abstract Properties (and only those).
 
 [[declaring-operations]]
 === Declaring Operations
