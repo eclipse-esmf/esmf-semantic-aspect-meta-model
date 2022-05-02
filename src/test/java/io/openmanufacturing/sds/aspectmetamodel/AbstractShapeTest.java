@@ -147,6 +147,7 @@ public abstract class AbstractShapeTest {
             "bamm/characteristic/" + version.toVersionString() + "/characteristic-instances.ttl",
             "bamm/entity/" + version.toVersionString() + "/FileResource.ttl",
             "bamm/entity/" + version.toVersionString() + "/TimeSeriesEntity.ttl",
+            "bamm/entity/" + version.toVersionString() + "/Point3d.ttl",
             "bamm/unit/" + version.toVersionString() + "/units.ttl"
       ) );
    }
