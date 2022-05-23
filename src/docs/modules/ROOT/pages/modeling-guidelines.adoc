@@ -327,8 +327,9 @@ Characteristic is used. This is a subclass of the `SortedSet` Characteristic and
 The `xref:entities.adoc#time-series-entity[TimeSeriesEntity]` is declared as an Abstract Entity. It
 defines the `timestamp` Property with the `Timestamp` Characteristic, which describes values
 containing timestamps conforming to `xref:datatypes.adoc#data-types[xsd:dateTime]`, a date and time
-with or without time zone. No `value` Property is defined, hence the semantics of the value can be
-defined in the specific Aspect Model.
+with or without time zone. It also defines `value` as an
+xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property], i.e., a
+Property without a Characteristic.
 
 To create a Time Series for a specific domain, the user should instantiate the `TimeSeries`
 Collection Characteristic and set the `dataType` to an Entity which extends the Abstract
@@ -565,9 +566,9 @@ and then used as follows:
 include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
 ----
 
-Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s. The
-properties list of an Entity that extends the Abstract Entity must specify the Characteristic to use
-for each of the Abstract Properties (and only those).
+Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s (both are
+listed in `bamm:properties`). The properties list of an Entity that extends the Abstract Entity must
+specify the Characteristic to use for each of the Abstract Properties (and only those).
 
 [[declaring-operations]]
 === Declaring Operations
