@@ -98,5 +98,8 @@ xref:bamm-specification:appendix:appendix.adoc#sparql[[sparql\]]):
 
 [source,turtle,subs="attributes+"]
 ----
+@prefix bamm: <{bamm}> .
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+
 include::example$prefixes-sample.ttl[tags=content]
 ----

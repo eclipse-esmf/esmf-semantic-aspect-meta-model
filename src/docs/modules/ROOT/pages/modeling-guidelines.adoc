@@ -324,16 +324,18 @@ value is the recorded value. In order to describe these semantics the shared `Ti
 Characteristic is used. This is a subclass of the `SortedSet` Characteristic and defines that the
 `dataType` must be a subclass of the `TimeSeriesEntity`.
 
-The `xref:entities.adoc#time-series-entity[TimeSeriesEntity]` is declared as an Abstract Entity. It defines the
-`timestamp` Property with the `Timestamp` Characteristic, which describes values containing timestamps conforming
-to `xref:datatypes.adoc#data-types[xsd:dateTime]`, a date and time with or without time zone. No `value` Property is
-defined, hence the semantics of the value can be defined in the specific Aspect Model.
+The `xref:entities.adoc#time-series-entity[TimeSeriesEntity]` is declared as an Abstract Entity. It
+defines the `timestamp` Property with the `Timestamp` Characteristic, which describes values
+containing timestamps conforming to `xref:datatypes.adoc#data-types[xsd:dateTime]`, a date and time
+with or without time zone. It also defines `value` as an
+xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property], i.e., a
+Property without a Characteristic.
 
 To create a Time Series for a specific domain, the user should instantiate the `TimeSeries`
-Collection Characteristic and set the `dataType` to an Entity which extends the Abstract `TimeSeries` Entity
-in order to define the semantics for the `value` Property in the context of the specific domain.
-Please see the xref:modeling-guidelines.adoc#declaring-abstract-entities[Declaring Abstract Entities] section for
-information on how to extend an Abstract Entity.
+Collection Characteristic and set the `dataType` to an Entity which extends the Abstract
+`TimeSeries` Entity in order to define the semantics for the `value` Property in the context of the
+specific domain. Please see the xref:modeling-guidelines.adoc#declaring-abstract-entities[Declaring
+Abstract Entities] section for information on how to extend an Abstract Entity.
 
 Example:
 
@@ -523,17 +525,50 @@ must be unique across the entire Entity inheritance chain. Otherwise the corresp
 [[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 
-In contrast to Entities, Abstract Entities cannot directly be used as data types. 
-The main use case for Abstract Entities is to share Properties across multiple Entities. 
-This can be achieved through inheritance: Abstract Entities can extend other Entities and Abstract Entities and can
-themselves be extended in a manner not dissimilar to how abstract classes are used in many programming languages.
+In contrast to Entities, Abstract Entities cannot directly be used as data types. The main use case
+for Abstract Entities is to share Properties across multiple Entities. This can be achieved through
+inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be
+extended in a manner not dissimilar to how abstract classes are used in many programming languages.
 
-Example:
+In the following example, both `SteeringWheel` and `Seat` _extend_ the Abstract Entity
+`VehicleComponent`. Both inherit the `typeNumber` and the `manufacturer` Properties:
 
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=abstract-entity-declaration]
 ----
+
+[[abstract-entities-with-abstract-properties]]
+==== Abstract Entities with Abstract Properties
+
+When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
+Abstract Entity (i.e., extending it) should be able to decide the Property's Characteristic, the
+Property can be declared a `bamm:AbstractProperty`. An Abstract Property is similar to a Property,
+with two differences: Firstly, it has no `bamm:Characteristic` attribute and secondly, it must only
+be used in Abstract Entities. Consider the following example of two-dimensional vector which is
+declared as an Abstract Entity using two Abstract Properties for its `x` and `y` values, leaving for
+the user to decide which Characteristic and hence which data type should be used:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-declaration]
+----
+
+The usage of the Abstract Properties allows to specify the contract (a two-dimensional vector must
+have x and y Properties), but allows flexible reuse: Only when it is used, one must decide on the
+Characteristic and with it its effective datatype such as `xsd:int`, `xsd:float` or `xsd:decimal`.
+
+To use the `Vec2` Abstract Entity, the Characteristic to bind to the Abstract Properties is declared
+and then used as follows:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
+----
+
+Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s (both are
+listed in `bamm:properties`). The properties list of an Entity that extends the Abstract Entity must
+specify the Characteristic to use for each of the Abstract Properties (and only those).
 
 [[declaring-operations]]
 === Declaring Operations
@@ -612,6 +647,11 @@ defined, and how the definition for the `toggleStatus` Property itself does not 
 
 [source,turtle,subs="attributes+"]
 ----
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 include::example$optional-properties-sample.ttl[tags=optional-properties-declaration]
 ----
 
@@ -632,6 +672,11 @@ NOTE: The value for the `bamm:payloadName` attribute must be of type `xsd:string
 
 [source,turtle,subs="attributes+"]
 ----
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 include::example$payload-name-sample.ttl[tags=payload-name-declaration]
 ----
 
