@@ -1,16 +1,16 @@
 # Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-# See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 # This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
-@prefix bamm-e: <{bamm-e}> .
-@prefix unit: <{unit}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::aspect-declaration[]
@@ -39,13 +39,6 @@
    bamm:exampleValue "ABC123456-000" ;
    bamm:characteristic bamm-c:Text .
 # end::property-declaration[]
-
-# tag::refining-declaration[]
-:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
-   bamm:characteristic :MachineState .
-
-:propertyWithoutCharacteristic a bamm:Property ;
-# end::refining-declaration[]
 
 # tag::state-declaration[]
 :MachineState a bamm-c:State ;
@@ -179,6 +172,18 @@
     bamm:properties ( :name :surname ) .
 # end::extending-entity-declaration[]
 
+:studentNumber a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:employeeNumber a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:name a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:surname a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
 # tag::abstract-entity-declaration[]
 :VehicleComponent a bamm:AbstractEntity ;
     bamm:properties ( :typeNumber :manufacturer ) .
@@ -189,8 +194,14 @@
 
 :Seat a bamm:Entity ;
    bamm:extends :VehicleComponent ;
-   bamm:properties ( :material )
+   bamm:properties ( :material ) .
 # end::abstract-entity-declaration[]
+
+:isMultifunction a bamm:Property ;
+   bamm:characteristic bamm-c:Boolean .
+
+:material a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
 
 # tag::operation-declaration[]
 :toggle a bamm:Operation ;

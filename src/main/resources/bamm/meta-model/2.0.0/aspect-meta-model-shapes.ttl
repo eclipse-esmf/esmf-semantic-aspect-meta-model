@@ -150,6 +150,13 @@ bamm:EntityShape
                    || ( isBlank( ?value ) && not exists { ?value bamm:notInPayload true } ) )
                filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
                    || ( isBlank( ?value ) && not exists { ?value bamm:payloadName ?any } ) )
+               filter ( not exists {
+                 $this bamm:extends+ ?abstractEntity .
+                 ?abstractEntity a bamm:AbstractEntity .
+                 ?value bamm:extends ?abstractProperty .
+                 ?abstractEntity bamm:properties/rdf:rest*/rdf:first ?abstractProperty .
+                 ?value bamm:characteristic/rdf:type/rdfs:subClassOf* bamm:Characteristic .
+              } )
             }
          """
       ] ;
@@ -301,6 +308,18 @@ bamm:PropertyShape
       sh:maxCount 1 ;
       sh:name "exampleValue" ;
       sh:description "A real world example value." ;
+   ] .
+
+bamm:AbstractPropertyShape
+   a sh:NodeShape ;
+   sh:targetClass bamm:AbstractProperty ;
+   sh:property [
+      sh:path bamm:characteristic ;
+      sh:maxCount 0;
+   ] ;
+   sh:property [
+      sh:path bamm:exampleValue ;
+      sh:maxCount 0;
    ] .
 
 bamm:CharacteristicShape

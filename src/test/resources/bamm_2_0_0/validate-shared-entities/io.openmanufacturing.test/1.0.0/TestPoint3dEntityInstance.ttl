@@ -12,20 +12,28 @@
 #
 
 @prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspect a bamm:Aspect ;
-   bamm:name "TestAspect" ;
-   bamm:properties ( :Point3dProperty ) ;
+   bamm:properties ( :coordinate ) ;
    bamm:operations ( ) .
 
-:Point3dProperty a bamm:Property ;
-    bamm:name "EntityInstanceProperty" ;
-    bamm:characteristic :EntityCharacteristic .
+:coordinate a bamm:Property ;
+  bamm:characteristic :Float3dCoordinate .
 
-:EntityCharacteristic a bamm-c:SingleEntity ;
-   bamm:name "EntityCharacteristic" ;
-   bamm:dataType bamm-e:Point3d .
+:Float3dCoordinate a bamm-c:SingleEntity ;
+   bamm:description "A coordinate in 3d space"@en ;
+   bamm:dataType :FloatPoint3d .
 
+:FloatPoint3d a bamm:Entity ;
+   bamm:extends bamm-e:Point3d ;
+   bamm:properties (
+      [ bamm:extends bamm-e:x ; bamm:characteristic :FloatValue ]
+      [ bamm:extends bamm-e:y ; bamm:characteristic :FloatValue ]
+   ) .
+
+:FloatValue a bamm:Characteristic ;
+   bamm:dataType xsd:float .
