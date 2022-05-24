@@ -166,4 +166,13 @@ public class PropertyShapeTest extends AbstractShapeTest {
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithoutCharacteristicUnrefined",
             metaModelVersion, result );
    }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
+   public void testNonScalarExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+
+      final SemanticError resultForName = new SemanticError( MESSAGE_NO_LITERAL, FOCUS_NODE, bammUrns.exampleValueUrn, VIOLATION_URN, SemanticError.ANY_VALUE );
+      expectSemanticValidationErrors( "property-shape", "TestPropertyWithEntityExampleValue", metaModelVersion, resultForName );
+   }
 }
