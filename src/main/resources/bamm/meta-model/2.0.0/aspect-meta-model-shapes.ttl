@@ -255,18 +255,7 @@ bamm:PropertyShape
    sh:property [
       sh:order 4 ;
       sh:path bamm:exampleValue ;
-      sh:sparql [
-         a sh:SPARQLConstraint ;
-         sh:message "The provided exampleValue is no literal on the Property given in the focusNode." ;
-         sh:prefixes bamm:prefixDeclarations ;
-         sh:select """
-            select $this ?value
-            where {
-               $this bamm:exampleValue ?value .
-               filter( !isLiteral( ?value ) )
-            }
-         """
-      ] ;
+      sh:nodeKind sh:Literal ;
       sh:sparql [
          a sh:SPARQLConstraint ;
          sh:message "The datatype (see value) of the exampleValue neither matches nor can be cast to the Property's (see focusNode) Characteristic's dataType." ;

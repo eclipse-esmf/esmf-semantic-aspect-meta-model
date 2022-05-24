@@ -14,6 +14,7 @@
 package io.openmanufacturing.sds.validation;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Represents a validation result as described by the
@@ -25,6 +26,8 @@ public class SemanticError {
    String resultPath;
    String resultSeverity;
    String value;
+
+   public final static String ANY_VALUE = UUID.randomUUID().toString();
 
    public SemanticError( final String resultMessage, final String focusNode, final String resultPath, final String resultSeverity, final String value ) {
       this.resultMessage = resultMessage;
@@ -55,8 +58,8 @@ public class SemanticError {
       final SemanticError that = (SemanticError) o;
       return Objects.equals( resultMessage, that.resultMessage ) && Objects
             .equals( focusNode, that.focusNode ) && Objects.equals( resultPath, that.resultPath )
-            && Objects.equals( resultSeverity, that.resultSeverity ) && Objects
-            .equals( value, that.value );
+            && Objects.equals( resultSeverity, that.resultSeverity )
+            && (value.equals( ANY_VALUE ) || that.value.equals( ANY_VALUE ) || Objects.equals( value, that.value ));
    }
 
    @Override
