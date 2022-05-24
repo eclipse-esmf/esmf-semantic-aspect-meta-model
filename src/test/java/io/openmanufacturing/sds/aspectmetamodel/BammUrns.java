@@ -47,11 +47,15 @@ public class BammUrns {
    final String scale;
    final String integer;
    final String extendsUrn;
+   final String xUrn;
+   final String yUrn;
+   final String zUrn;
 
    BammUrns( final KnownVersion testedBammVersion ) {
       final String META_META_MODEL_URN = "urn:bamm:io.openmanufacturing:meta-meta-model:%s#";
       final String META_MODEL_URN = "urn:bamm:io.openmanufacturing:meta-model:%s#";
       final String CHARACTERISTICS_URN = "urn:bamm:io.openmanufacturing:characteristic:%s#";
+      final String ENTITIES_URN = "urn:bamm:io.openmanufacturing:entity:%s#";
 
       listTypeUrn = String.format( META_META_MODEL_URN + "listType", testedBammVersion.toVersionString() );
       allowDuplicatesUrn = String
@@ -93,5 +97,9 @@ public class BammUrns {
       baseCharacteristicUrn = String
             .format( CHARACTERISTICS_URN + "baseCharacteristic", testedBammVersion.toVersionString() );
       extendsUrn = String.format( META_MODEL_URN + "extends", testedBammVersion.toVersionString() );
+
+      xUrn = String.format( ENTITIES_URN + "x", testedBammVersion.toVersionString() );
+      yUrn = String.format( ENTITIES_URN + "y", testedBammVersion.toVersionString() );
+      zUrn = String.format( ENTITIES_URN + "z", testedBammVersion.toVersionString() );
    }
 }

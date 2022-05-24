@@ -16,7 +16,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :TestCharacteristicSubClassWithInvalidLangStrings rdfs:subClassOf bamm:Characteristic ;
-   bamm:name "TestCharacteristicSubClassWithInvalidLangStrings" ;
    bamm:preferredName "Test Characteristic SubClass" ;
    bamm:description "Test Characteristic SubClass" ;
    bamm:dataType xsd:float .

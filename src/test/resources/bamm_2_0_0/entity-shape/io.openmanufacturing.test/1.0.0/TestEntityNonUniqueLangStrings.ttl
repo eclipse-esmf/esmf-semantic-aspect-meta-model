@@ -14,7 +14,6 @@
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 
 :TestEntityNonUniqueLangStrings a bamm:Entity ;
-   bamm:name "TestEntityNonUniqueLangStrings" ;
    bamm:preferredName "Test Entity"@en ;
    bamm:preferredName "Test Entität"@en ;
    bamm:description "A test Entity"@en ;

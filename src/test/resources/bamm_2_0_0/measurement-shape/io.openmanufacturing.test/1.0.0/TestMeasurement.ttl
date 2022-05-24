@@ -17,7 +17,6 @@
 @prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 
 :TestMeasurement a bamm-c:Measurement ;
-   bamm:name "TestMeasurement" ;
    bamm:preferredName "Test Measurement"@en ;
    bamm:description "Test Measurement"@en ;
    bamm:dataType xsd:float ;

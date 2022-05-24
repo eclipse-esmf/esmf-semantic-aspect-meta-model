@@ -17,17 +17,14 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestStructuredValueWithNonMatchingGroups a bamm-c:StructuredValue ;
-   bamm:name "TestStructuredValueWithNonMatchingGroups" ;
    bamm:dataType xsd:string ;
    bamm-c:deconstructionRule "(prop1x)xx(prop.)" ;
    bamm-c:elements ( :prop1 "xxx" :prop2 ) .
 
 :prop1 a bamm:Property ;
-   bamm:name "prop1" ;
    bamm:exampleValue "prop1" ;
    bamm:characteristic bamm-c:Text .
 
 :prop2 a bamm:Property ;
-   bamm:name "prop2" ;
    bamm:exampleValue "prop2" ;
    bamm:characteristic bamm-c:Text .

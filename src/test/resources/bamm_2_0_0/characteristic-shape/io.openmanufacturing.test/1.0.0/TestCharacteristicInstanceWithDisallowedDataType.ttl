@@ -15,5 +15,4 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestCharacteristicInstanceWithDisallowedDataType a bamm:Characteristic ;
-   bamm:name "TestCharacteristicInstanceWithDisallowedDataType" ;
    bamm:dataType xsd:maxExclusive .

@@ -15,5 +15,4 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 
-:TestCollectionWithoutDataTypeAndElementCharacteristic a bamm-c:Collection ;
-   bamm:name "TestCollectionWithoutDataTypeAndElementCharacteristic" .
+:TestCollectionWithoutDataTypeAndElementCharacteristic a bamm-c:Collection .

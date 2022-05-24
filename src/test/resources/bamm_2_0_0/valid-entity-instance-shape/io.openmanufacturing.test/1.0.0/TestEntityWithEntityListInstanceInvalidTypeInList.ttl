@@ -16,28 +16,22 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEntityWithEntityListInstanceInvalidTypeInList a bamm:Aspect ;
-   bamm:name "TestEntityWithEntityListInstanceInvalidTypeInList" ;
    bamm:properties ( ) ;
    bamm:operations ( ) .
 
 :Entity a bamm:Entity ;
-   bamm:name "Entity" ;
    bamm:properties ( :intProperty :entityListProperty ) .
 
 :entityListProperty a bamm:Property ;
-   bamm:name "entityListProperty" ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "EntityList" ;
       bamm:dataType :ListEntity
    ] .
 
 :CustomCharacteristic a bamm:Characteristic ;
-   bamm:name "CustomCharacteristic" ;
    bamm:dataType xsd:integer .
 
 :intProperty a bamm:Property ;
-   bamm:name "intProperty" ;
    bamm:characteristic :CustomCharacteristic .
 
 :Instance a :Entity ;
@@ -45,7 +39,6 @@
    :intProperty 42 .
 
 :ListEntity a bamm:Entity ;
-   bamm:name "ListEntity" ;
    bamm:properties ( :intProperty ) .
 
 :ListEntityInstanceOne a :ListEntity ;
@@ -55,7 +48,6 @@
    :intProperty 56 .
 
 :AnotherListEntity a bamm:Entity ;
-   bamm:name "AnotherListEntity" ;
    bamm:properties ( :intProperty ) .
 
 :AnotherListEntityInstance a :AnotherListEntity ;

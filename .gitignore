@@ -154,7 +154,8 @@ node_modules
 yarn.lock
 .gradle
 build
-
+buildSrc/.gradle
+buildSrc/build
 # Generated html
 *.html
 
@@ -167,3 +168,13 @@ build
 
 # Locally committed Antora UI
 !src/docs/ui-bundle.zip
+
+# Generated javascript
+/src/main/resources/bamm/scripts/*.js
+
+# Local playbook
+site-local.yml
+
+# Rec20 unit catalog artifacts
+buildSrc/*.xls
+buildSrc/*.pdf

@@ -16,6 +16,5 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestConstraint a bamm:Constraint ;
-   bamm:name "TestConstraint" ;
    bamm:preferredName "Test Constraint"@en ;
    bamm:description "TestConstraint"@en .

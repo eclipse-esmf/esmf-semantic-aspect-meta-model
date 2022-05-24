@@ -1,7 +1,7 @@
 ////
 Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -58,8 +58,6 @@ attributes:
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm:name` | The name of the property. This name must be defined in Camel
-  Case and be valid a Java Property name (i.e. can not contain spaces, dashes etc.). | {ok}
 | `bamm:preferredName` | Human readable name in a specific language. This attribute may be defined
   multiple times for different languages but only once for a specific language. There should be at
   least one preferredName defined with an "en" language tag. | {nok}
@@ -106,16 +104,16 @@ addition to the general attributes, every Aspect Model element has the following
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:properties` | The list of Properties of this Aspect. The attribute must be present, but the
-  list may be empty. | {ok}
-| `bamm:operations` | The list of Operations of this Aspect. The attribute must be present, but the
-  list may be empty. | {ok}
+| `bamm:properties` | The list of Properties of this Aspect. Leaving out this
+  attribute completely is equivalent to having it present with an empty list as value. | {nok}
+| `bamm:operations` | The list of Operations of this Aspect. Leaving out this
+  attribute completely is equivalent to having it present with an empty list as value. | {nok}
+| `bamm:events` | The list of Events of this Aspect. | {nok}
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
 * Each Aspect model must be defined in its own file. The file name must be the same as the Aspect's
   name.
-* The name part in the Aspect's identifying URN must be the same as the Aspect's `bamm:name`.
 * The hierarchical namespace part in the Aspect's URN can be freely chosen.
 
 The definition of an Aspect should therefore have the following structure in TTL syntax; note though
@@ -174,9 +172,6 @@ Characteristic superclasses. This allows the definition of generic Characteristi
 Collections, where all the semantics are fixed, except for the data type. For a Collection for
 example it is possible to define whether the collection is sorted or not and this definition can be
 then reused with different data types to define different collections.
-
-NOTE: A guide for how to decide on which Characteristic to use can be found in
-xref:modeling-guildlines.adoc#choosing-a-characteristic[Choosing a Characteristic].
 
 Example:
 
@@ -329,16 +324,18 @@ value is the recorded value. In order to describe these semantics the shared `Ti
 Characteristic is used. This is a subclass of the `SortedSet` Characteristic and defines that the
 `dataType` must be a subclass of the `TimeSeriesEntity`.
 
-The `xref:entities.adoc#time-series-entity[TimeSeriesEntity]` is declared as an Abstract Entity. It defines the
-`timestamp` Property with the `Timestamp` Characteristic, which describes values containing timestamps conforming
-to `xref:datatypes.adoc#data-types[xsd:dateTime]`, a date and time with or without time zone. No `value` Property is
-defined, hence the semantics of the value can be defined in the specific Aspect Model.
+The `xref:entities.adoc#time-series-entity[TimeSeriesEntity]` is declared as an Abstract Entity. It
+defines the `timestamp` Property with the `Timestamp` Characteristic, which describes values
+containing timestamps conforming to `xref:datatypes.adoc#data-types[xsd:dateTime]`, a date and time
+with or without time zone. It also defines `value` as an
+xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property], i.e., a
+Property without a Characteristic.
 
 To create a Time Series for a specific domain, the user should instantiate the `TimeSeries`
-Collection Characteristic and set the `dataType` to an Entity which extends the Abstract `TimeSeries` Entity
-in order to define the semantics for the `value` Property in the context of the specific domain.
-Please see the xref:modeling-guidelines.adoc#declaring-abstract-entities[Declaring Abstract Entities] section for
-information on how to extend an Abstract Entity.
+Collection Characteristic and set the `dataType` to an Entity which extends the Abstract
+`TimeSeries` Entity in order to define the semantics for the `value` Property in the context of the
+specific domain. Please see the xref:modeling-guidelines.adoc#declaring-abstract-entities[Declaring
+Abstract Entities] section for information on how to extend an Abstract Entity.
 
 Example:
 
@@ -392,7 +389,7 @@ comprises can be difficult, especially in a machine-readable way.
 Therefore, the Structured Value Characteristic can be used to describe the deconstruction of a value
 into its parts and linking each part to a separate Property definition.
 
-The following table gives some simple examples to demonstate the basic applicability of the
+The following table gives some simple examples to demonstrate the basic applicability of the
 Characteristic, and after that a complete concrete example is given.
 
 [width="100%", options="header"]
@@ -422,8 +419,33 @@ deconstruction rule corresponds with the named fields; secondly, it is used for 
 check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
 i.e., that the deconstruction rule actually does what the model author intended.
 
+[[using-unit-reference]]
+==== Using Unit Reference
+
+As explained in the section xref:modeling-guidelines.adoc#declaring-quantifiable-values-and-measurements[Declaring Quantifiables and Measurements], some values only make sense when they also have a unit assigned to them.
+This unit definition is in many cases fixed at design time, does not change thereafter and therefore at runtime (in the JSON payload for example), only the actual value is transported. +
+ There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
+at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a xref:characteristics.adoc#unit-reference-characteristic[UnitReference] characteristic instance can be used to include a dynamic reference to the desired unit from the xref:appendix:appendix.adoc#unit-catalog[Unit catalog] and this information is then always included in the payload. The runtime payload refers to the unit using its `bamm:curie`, i.e., the unit's URN's element name prefixed with `unit:`.
+
+For example an Aspect with the following model:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$unit-reference.ttl[tags=content]
+----
+
+can produce a JSON payload that could look something like this:
+
+[source,json,subs="attributes+"]
+----
+{
+  "value" : 2.25,
+  "unit" : "unit:hectopascal" 
+}
+----
+
 [[declaring-constraints]]
-=== Declaring Constraints
+=== Declaring Constraints and Traits
 
 Consider the `numbers` Property that uses an instance of the `List` Characteristic:
 
@@ -460,6 +482,8 @@ An example showing the xref:characteristics.adoc#regular-expression-constraint[R
 include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
 ----
 
+NOTE: When writing the `bamm:value`, backslashes (`\`) need to be escaped in order to produce valid RDF/Turtle syntax, i.e. write `\\` instead of `\`.
+
 [[declaring-entities]]
 === Declaring Entities
 
@@ -468,7 +492,8 @@ Entities have the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:properties` | The list of Properties which make up the Entity | {ok}
+| `bamm:properties` | The list of Properties which make up the Entity. Leaving out this
+  attribute completely is equivalent to having it present with an empty list as value.| {nok}
 | `bamm:extends` | The Entity which is extended by this Entity | {nok}
 |===
 
@@ -494,21 +519,56 @@ include::example$aspect-sample.ttl[tags=extending-entity-declaration]
 The extending Entities `:Student` and `:Teacher` contain the Properties declared in the extended Entity `:Person` as well as
 the Properties in their own declarations.
 
-The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the `bamm:name` of the Property,
+The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
 
 [[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 
-It is also possible to declare Abstract Entities to share Properties across multiple Entities. An Abstract Entity must
-be extended by one or more Entities.
+In contrast to Entities, Abstract Entities cannot directly be used as data types. The main use case
+for Abstract Entities is to share Properties across multiple Entities. This can be achieved through
+inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be
+extended in a manner not dissimilar to how abstract classes are used in many programming languages.
 
-Example:
+In the following example, both `SteeringWheel` and `Seat` _extend_ the Abstract Entity
+`VehicleComponent`. Both inherit the `typeNumber` and the `manufacturer` Properties:
 
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=abstract-entity-declaration]
 ----
+
+[[abstract-entities-with-abstract-properties]]
+==== Abstract Entities with Abstract Properties
+
+When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
+Abstract Entity (i.e., extending it) should be able to decide the Property's Characteristic, the
+Property can be declared a `bamm:AbstractProperty`. An Abstract Property is similar to a Property,
+with two differences: Firstly, it has no `bamm:Characteristic` attribute and secondly, it must only
+be used in Abstract Entities. Consider the following example of two-dimensional vector which is
+declared as an Abstract Entity using two Abstract Properties for its `x` and `y` values, leaving for
+the user to decide which Characteristic and hence which data type should be used:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-declaration]
+----
+
+The usage of the Abstract Properties allows to specify the contract (a two-dimensional vector must
+have x and y Properties), but allows flexible reuse: Only when it is used, one must decide on the
+Characteristic and with it its effective datatype such as `xsd:int`, `xsd:float` or `xsd:decimal`.
+
+To use the `Vec2` Abstract Entity, the Characteristic to bind to the Abstract Properties is declared
+and then used as follows:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
+----
+
+Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s (both are
+listed in `bamm:properties`). The properties list of an Entity that extends the Abstract Entity must
+specify the Characteristic to use for each of the Abstract Properties (and only those).
 
 [[declaring-operations]]
 === Declaring Operations
@@ -521,7 +581,7 @@ Operations have the following attributes:
 | `bamm:input` | A list of references to Properties that describe the input to the operation. The
   attribute must be present, but the list may be empty. | {ok}
 | `bamm:output` | A single reference to a Property that describes the output of the operation. |
-  {ok}
+  {nok}
 |===
 
 Example:
@@ -587,12 +647,41 @@ defined, and how the definition for the `toggleStatus` Property itself does not 
 
 [source,turtle,subs="attributes+"]
 ----
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 include::example$optional-properties-sample.ttl[tags=optional-properties-declaration]
 ----
 
 CAUTION: If the Property's use is optional, it is marked with `bamm:optional true` (like
 `errorMessage` in the example). However, if its use is mandatory (like `toggleStatus` in the
 example), the Property is directly referenced. Writing `bamm:optional false` is _not_ allowed.
+
+=== Declaring Payload Names for Properties
+
+When Properties are used in Aspects and Entities, a runtime payload name can be defined for the
+Property. This means that in the context of the Aspect or Entity where the Property is used, the key
+of that Property in the runtime payload diverges from the Property's `bamm:name`. This allows for
+the separation of the semantic name of the Property and the corresponding key in the runtime
+payload. In the following example we define a Property `errorMessage`. In the Aspect it is defined
+that the corresponding key in the payload is `error`.
+
+NOTE: The value for the `bamm:payloadName` attribute must be of type `xsd:string`.
+
+[source,turtle,subs="attributes+"]
+----
+@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
+@prefix bamm: <{bamm}> .
+@prefix bamm-c: <{bamm-c}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+include::example$payload-name-sample.ttl[tags=payload-name-declaration]
+----
+
+CAUTION: A Property may not be marked as not being included in the payload using `bamm:notInPayload
+true` and have a payload name declared using `bamm:payloadName`.
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts

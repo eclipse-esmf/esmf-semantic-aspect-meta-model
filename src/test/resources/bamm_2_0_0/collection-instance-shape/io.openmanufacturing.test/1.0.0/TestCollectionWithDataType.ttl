@@ -17,5 +17,4 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestCollectionWithDataType a bamm-c:List ;
-   bamm:name "TestCollectionWithDataType" ;
    bamm:dataType xsd:string .

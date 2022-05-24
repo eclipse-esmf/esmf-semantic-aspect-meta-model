@@ -16,14 +16,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestEnumerationValueIsNotALiteralType a bamm-c:Enumeration ;
-   bamm:name "TestEnumerationValueIsNotALiteralType" ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "OK" :testProperty ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:characteristic [
       a bamm-c:List ;
-      bamm:name "NumericList" ;
       bamm:dataType xsd:integer
    ] .

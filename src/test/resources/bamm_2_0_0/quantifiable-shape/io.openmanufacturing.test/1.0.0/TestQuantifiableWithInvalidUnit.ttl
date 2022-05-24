@@ -17,12 +17,10 @@
 @prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 
 :TestQuantifiableWithInvalidUnit a bamm-c:Quantifiable ;
-   bamm:name "TestQuantifiableWithInvalidUnit" ;
    bamm:preferredName "Test Quantifiable"@en ;
    bamm:description "Test Quantifiable"@en ;
    bamm:dataType xsd:float ;
    bamm-c:unit :Entity .
 
 :Entity a bamm:Entity ;
-   bamm:name "Entity" ;
    bamm:properties ( ) .

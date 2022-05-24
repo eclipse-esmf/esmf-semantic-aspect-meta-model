@@ -1,19 +1,18 @@
 # Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-# See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 # This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-# tag::optional-properties-declaration[]
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+# tag::optional-properties-declaration[]
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:properties (
      :toggleStatus
      [ bamm:property :errorMessage; bamm:optional true ]
@@ -21,10 +20,8 @@
    bamm:operations ( ) .
 
 :toggleStatus a bamm:Property ;
-   bamm:name "statusNumber" ;
    bamm:characteristic bamm-c:Boolean .
 
 :errorMessage a bamm:Property ;
-   bamm:name "errorMessage" ;
    bamm:characteristic bamm-c:Text .
 # end::optional-properties-declaration[]

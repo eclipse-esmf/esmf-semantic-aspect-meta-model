@@ -16,12 +16,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspectWithInvalidOperations a bamm:Aspect ;
-   bamm:name "TestAspectWithInvalidOperations" ;
    bamm:preferredName "Test Aspect"@en ;
    bamm:preferredName "Test Aspekt"@de ;
    bamm:properties ( ) ;
    bamm:operations ( :Entity ) .
 
 :Entity a bamm:Entity ;
-   bamm:name "Entity" ;
    bamm:properties ( ) .

@@ -16,27 +16,22 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestSeeProperty a bamm:Aspect ;
-   bamm:name "TestSeeProperty" ;
    bamm:see <http://open-manufacturing.org/> ;
    bamm:properties ( ) ;
    bamm:operations ( ) .
 
 :TestCharacteristicInstance a bamm:Characteristic ;
-   bamm:name "TestCharacteristicInstance" ;
    bamm:see <http://open-manufacturing.org/> ;
    bamm:dataType xsd:float .
 
 :TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
    bamm:see <http://open-manufacturing.org/> ;
    bamm:properties ( ).
 
 :TestOperation a bamm:Operation ;
-   bamm:name "TestOperation" ;
    bamm:see <http://open-manufacturing.org/> ;
    bamm:input ( ) .
 
 :testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
    bamm:see <http://open-manufacturing.org/> ;
    bamm:characteristic :TestCharacteristicInstance .

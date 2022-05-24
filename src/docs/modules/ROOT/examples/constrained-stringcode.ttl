@@ -6,29 +6,25 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
 
 :Test a bamm:Aspect ;
-  bamm:name "Test" ;
   bamm:properties ( :timeStampsInJanuary :someIdentifier ) ;
   bamm:operations ( ) .
 
 # tag::content[]
 :someIdentifier a bamm:Property ;
-   bamm:name "someIdentifier" ;
    bamm:preferredName "Some identifier"@en ;
    bamm:description "An ASCII-encoded identifier with a maximum length of 80 characters"@en ;
    bamm:characteristic :CodeWithLengthAndAscii .
 
 :CodeWithLengthAndAscii a bamm-c:Trait ;
-   bamm:name "CodeWithLengthAndAscii" ;
-   bamm:description "A string code limited to 80 ASCII characters" ;
+   bamm:description "A string code limited to 80 ASCII characters"@en ;
    bamm-c:baseCharacteristic [
       a bamm-c:Code ;
-      bamm:name "StringCode" ;
       bamm:description "Denotes some kind of code with a string datatype"@en ;
       bamm:dataType xsd:string ;
    ] ;
@@ -39,7 +35,6 @@
    ] ;
    bamm-c:constraint [
       a bamm-c:LengthConstraint ;
-      bamm:name "CodeWithLength" ;
       bamm:description "Limits the length to 80 characters"@en ;
       bamm-c:maxValue "80"^^xsd:nonNegativeInteger ;
    ] .
@@ -47,16 +42,14 @@
 
 # tag::regular-expression-sample[]
 :timeStampsInJanuary a bamm:Property ;
-   bamm:name "timeStampsInJanuary" ;
    bamm:preferredName "Timestamps in January"@en ;
    bamm:description "Contains only timestamps in January of any year"@en ;
    bamm:characteristic [
       a bamm-c:Trait ;
-      bamm:name "TimestampInJanuary" ;
       bamm-c:baseCharacteristic bamm-c:Timestamp ;
       bamm-c:constraint [
          a bamm-c:RegularExpressionConstraint ;
-         bamm:value "\\d\{4\}-01-\\d\\dT.*" ;
+         bamm:value "\\d{4}-01-\\d\\dT.*" ;
       ] ;
    ] .
 # end::regular-expression-sample[]

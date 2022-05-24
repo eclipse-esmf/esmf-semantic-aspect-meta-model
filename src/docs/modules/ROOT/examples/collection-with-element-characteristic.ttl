@@ -6,26 +6,22 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
 
 :Test a bamm:Aspect ;
-  bamm:name "Test" ;
   bamm:properties ( :numbers ) ;
   bamm:operations ( ) .
 
 # tag::content[]
 :numbers a bamm:Property ;
-   bamm:name "numbers" ;
    bamm:characteristic :NumberList .
 
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm-c:elementCharacteristic [
       a bamm-c:Trait ;
-      bamm:name "ElementRange" ;
       bamm-c:baseCharacteristic :Number ;
       bamm-c:constraint [
          a bamm-c:RangeConstraint ;
@@ -36,6 +32,5 @@
    ] .
 
 :Number a bamm:Characteristic ;
-   bamm:name "Number" ;
    bamm:dataType xsd:nonNegativeInteger .
 # end::content[]

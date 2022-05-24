@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestAspectWithEmptyProperties a bamm:Aspect ;
-   bamm:name "" ;
    bamm:preferredName ""@en ;
    bamm:description ""@en ;
    bamm:properties ( ) ;

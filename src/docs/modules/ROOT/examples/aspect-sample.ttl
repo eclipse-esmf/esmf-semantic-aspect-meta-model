@@ -1,21 +1,20 @@
 # Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-# See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 # This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
-@prefix bamm-e: <{bamm-e}> .
-@prefix unit: <{unit}> .
+@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::aspect-declaration[]
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:preferredName "My Aspect"@en ;
    bamm:preferredName "Mein Aspekt"@de ;
    bamm:description "This Aspect is an example."@en ;
@@ -27,35 +26,22 @@
 
 # To make MyAspect valid
 :myProperty a bamm:Property ;
-   bamm:name "myProperty" ;
    bamm:characteristic bamm-c:Text .
 
 # To make MyAspect valid
 :anotherProperty a bamm:Property ;
-   bamm:name "anotherProperty" ;
    bamm:characteristic bamm-c:Text .
 
 # tag::property-declaration[]
 :materialNumber a bamm:Property ;
-   bamm:name "materialNumber" ;
    bamm:preferredName "Material number"@en ;
    bamm:description "A material number"@en ;
    bamm:exampleValue "ABC123456-000" ;
    bamm:characteristic bamm-c:Text .
 # end::property-declaration[]
 
-# tag::refining-declaration[]
-:propertyRefiningPropertyWithoutCharacteristic bamm:refines :propertyWithoutCharacteristic ;
-   bamm:name "propertyRefiningPropertyWithoutCharacteristic" ;
-   bamm:characteristic :MachineState .
-
-:propertyWithoutCharacteristic a bamm:Property ;
-   bamm:name "propertyWithoutCharacteristic" .
-# end::refining-declaration[]
-
 # tag::state-declaration[]
 :MachineState a bamm-c:State ;
-   bamm:name "MachineState" ;
    bamm:dataType xsd:string ;
    bamm-c:defaultValue "STANDBY" ;
    bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .
@@ -63,74 +49,62 @@
 
 # tag::scalar-collection[]
 :NumberList a bamm-c:List ;
-   bamm:name "NumberList" ;
    bamm:dataType xsd:float .
 # end::scalar-collection[]
 
 
 # tag::entity-collection[]
 :MyEntity a bamm:Entity ;
-   bamm:name "MyEntity" ;
    bamm:properties ( ) ;
    # ...
    .
 
 :MyEntityList a bamm-c:List ;
-   bamm:name "MyEntityList" ;
    bamm:dataType :MyEntity .
 # end::entity-collection[]
 
 # tag::timeseries-declaration[]
 :MachineStateTimeSeries a bamm-c:TimeSeries ;
-   bamm:name "MachineStateTimeSeries" ;
    bamm:dataType :MachineStateTimeSeriesEntity .
 
 :MachineStateTimeSeriesEntity a bamm:Entity ;
-   bamm:name "MachineStateTimeSeriesEntity" ;
    bamm:extends bamm-e:TimeSeriesEntity ;
    bamm:properties ( :machineState ) .
 
 :machineState a bamm:Property ;
-   bamm:name "machineState" ;
    bamm:characteristic :MachineState .
 # end::timeseries-declaration[]
 
 # tag::enumeration-simple-declaration-string[]
 :Status a bamm-c:Enumeration ;
-   bamm:name "Status" ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "Complete" "In Progress" "Created" ) .
 # end::enumeration-simple-declaration-string[]
 
 # tag::enumeration-simple-declaration-integer[]
 :PrimesBelowTwenty a bamm-c:Enumeration ;
-   bamm:name "PrimesBelowTwenty" ;
    bamm:dataType xsd:integer ;
    bamm-c:values ( 2 3 5 7 11 13 17 19 ) .
 # end::enumeration-simple-declaration-integer[]
 
 # tag::enumeration-simple-declaration-int[]
 :ValidOffsets a bamm-c:Enumeration ;
-   bamm:name "ValidOffsets" ;
    bamm:dataType xsd:int ;
    bamm-c:values ( "-1"^^xsd:int "1"^^xsd:int ) .
 # end::enumeration-simple-declaration-int[]
 
 # tag::enumeration-simple-declaration-date[]
 :MaintenanceDates a bamm-c:Enumeration ;
-   bamm:name "MaintenanceDates" ;
    bamm:dataType xsd:date ;
    bamm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .
 # end::enumeration-simple-declaration-date[]
 
 # tag::enumeration-complex-declaration[]
 :Results a bamm-c:Enumeration ;
-   bamm:name "Results" ;
    bamm:dataType :Result ;
    bamm-c:values ( :Success :Failed ) .
 
 :Result a bamm:Entity ;
-   bamm:name "Result" ;
    bamm:properties ( :status [ bamm:property :description; bamm:notInPayload "true"^^xsd:boolean ] ) .
 
 :Success a :Result ;
@@ -144,119 +118,115 @@
 
 # To make :Result valid
 :status a bamm:Property ;
-   bamm:name "status" ;
    bamm:characteristic bamm-c:Text .
 
 # To make :Result valid
 :description a bamm:Property ;
-   bamm:name "description" ;
    bamm:characteristic bamm-c:Text .
 
 # tag::either-declaration[]
-:Result a bamm:Either ;
-   bamm:name "Result" ;
-   bamm:left :ErrorCode ;
-   bamm:right :SuccessCode .
+:Result a bamm-c:Either ;
+   bamm-c:left :ErrorCode ;
+   bamm-c:right :SuccessCode .
 
 :ErrorCode a bamm-c:SingleEntity ;
-   bamm:name "ErrorCode" ;
    bamm:dataType :ErrorEntity .
 
 :SuccessCode a bamm-c:SingleEntity ;
-   bamm:name "SuccessCode" ;
    bamm:dataType :SuccessEntity .
 
 :ErrorEntity a bamm:Entity ;
-   bamm:name "ErrorEntity" ;
    bamm:properties ( :errorCode :errorDescription ) .
 
 :SuccessEntity a bamm:Entity ;
-   bamm:name "SuccessEntity" ;
    bamm:properties ( :status ) .
 # end::either-declaration[]
 
 # To make :ErrorEntity valid
 :errorCode a bamm:Property ;
-   bamm:name "errorCode" ;
    bamm:characteristic bamm-c:Text .
 
 # To make :ErrorEntity valid
 :errorDescription a bamm:Property ;
-   bamm:name "errorDescription" ;
    bamm:characteristic bamm-c:Text .
 
 # tag::entity-declaration[]
 :Error a bamm:Entity ;
-   bamm:name "Error" ;
    bamm:properties ( :errorCode :severity ) .
 # end::entity-declaration[]
 
 # To make :Error valid
 :severity a bamm:Property ;
-   bamm:name "severity" ;
    bamm:characteristic bamm-c:Text .
 
 # tag::extending-entity-declaration[]
 :Student a bamm:Entity ;
-    bamm:name "Student" ;
     bamm:extends :Person ;
     bamm:properties ( :studentNumber ) .
 
 :Teacher a bamm:Entity ;
-    bamm:name "Teacher" ;
     bamm:extends :Person ;
     bamm:properties ( :employeeNumber ) .
 
 :Person a bamm:Entity ;
-    bamm:name "Person" ;
     bamm:properties ( :name :surname ) .
 # end::extending-entity-declaration[]
 
+:studentNumber a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:employeeNumber a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:name a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
+:surname a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
+
 # tag::abstract-entity-declaration[]
 :VehicleComponent a bamm:AbstractEntity ;
-    bamm:name "VehicleComponent" ;
     bamm:properties ( :typeNumber :manufacturer ) .
 
 :Steeringwheel a bamm:Entity ;
-   bamm:name "Steeringwheel " ;
    bamm:extends :VehicleComponent ;
    bamm:properties ( :isMultifunction  ) .
 
 :Seat a bamm:Entity ;
-   bamm:name "Seat" ;
    bamm:extends :VehicleComponent ;
-   bamm:properties ( :material )
+   bamm:properties ( :material ) .
 # end::abstract-entity-declaration[]
+
+:isMultifunction a bamm:Property ;
+   bamm:characteristic bamm-c:Boolean .
+
+:material a bamm:Property ;
+    bamm:characteristic bamm-c:Text .
 
 # tag::operation-declaration[]
 :toggle a bamm:Operation ;
-   bamm:name "toggle" ;
    bamm:preferredName "Toggle"@en ;
    bamm:description "Switches the device on or off"@en ;
    bamm:input ( :toggleArgument ) ;
    bamm:output :toggleResult .
 
 :toggleArgument a bamm:Property ;
-   bamm:name "toggleArgument" ;
    bamm:preferredName "Toggle argument"@en ;
    bamm:description "The argument for the toggling operation"@en ;
    bamm:characteristic :ToggleValues .
 
 :ToggleValues a bamm-c:Enumeration ;
-   bamm:name "ToggleValues" ;
    bamm:preferredName "Toggle values"@en ;
    bamm:description "The possible input values for the toggle operation"@en ;
    bamm:dataType xsd:string ;
    bamm-c:values ( "on" "off" ) .
 
 :toggleResult a bamm:Property ;
-   bamm:name "toggleResult" ;
    bamm:preferredName "Toggle result"@en ;
    bamm:description "The result of the toggle operation"@en ;
    bamm:characteristic :ToggleResult .
 
 :ToggleResult a bamm-c:Enumeration ;
-   bamm:name "ToggleResult" ;
    bamm:preferredName "Toggle result"@en ;
    bamm:description "The possible results of the toggle operation"@en ;
    bamm:dataType xsd:string ;
@@ -265,7 +235,6 @@
 
 # tag::see-url-declaration[]
 :lastName a bamm:Property ;
-    bamm:name "lastName" ;
     bamm:see <https://schema.org/familyName> ;
     bamm:see <http://xmlns.com/foaf/0.1/lastName> ;
     bamm:characteristic bamm-c:Text .
@@ -273,62 +242,51 @@
 
 # tag::see-oid-declaration[]
 :filterName a bamm:Property ;
-    bamm:name "filterName" ;
     bamm:see <urn:oid:1.3.6.1.4.1.1919.1.1.2> ;
     bamm:characteristic bamm-c:Text .
 # end::see-oid-declaration[]
 
 # tag::see-dontuse[]
 :organizationPerson a bamm:Property ;
-    bamm:name "organizationPerson" ;
     bamm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
     bamm:characteristic bamm-c:Text .
 # end::see-dontuse[]
 
 # tag::measurement-declaration[]
 :ToolTemperature a bamm-c:Measurement ;
-   bamm:name "ToolTemperature" ;
    bamm:dataType xsd:float ;
    bamm-c:unit unit:degreeCelsius .
 
 :drillHeadTemperature a bamm:Property ;
-   bamm:name "drillHeadTemperature" ;
    bamm:characteristic :ToolTemperature .
 # end::measurement-declaration[]
 
 # tag::single-entity-declaration[]
 :AccelerationVector a bamm:Entity ;
-   bamm:name "AccelerationVector" ;
    bamm:properties ( :x :y :z ) .
 
 # Definition of Properties x, y and z for the Entity here
 # ...
 
 :acceleration a bamm:Property ;
-   bamm:name "acceleration" ;
    bamm:characteristic [
       a bamm-c:SingleEntity ;
-      bamm:name "Acceleration" ;
       bamm:dataType :AccelerationVector
    ] .
 # end::single-entity-declaration[]
 
 # To make AccelerationVector valid
 :x a bamm:Property ;
-   bamm:name "x" ;
    bamm:characteristic :AccelerationMeasurement .
 
 # To make AccelerationVector valid
 :y a bamm:Property ;
-   bamm:name "y" ;
    bamm:characteristic :AccelerationMeasurement .
 
 # To make AccelerationVector valid
 :z a bamm:Property ;
-   bamm:name "z" ;
    bamm:characteristic :AccelerationMeasurement .
 
 :AccelerationMeasurement a bamm-c:Measurement ;
-   bamm:name "AccelerationMeasurement" ;
    bamm:dataType xsd:float ;
    bamm-c:unit unit:metrePerSecondSquared .

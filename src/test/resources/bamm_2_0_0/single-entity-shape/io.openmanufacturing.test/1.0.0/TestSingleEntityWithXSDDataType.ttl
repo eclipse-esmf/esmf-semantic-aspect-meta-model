@@ -16,7 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestSingleEntityWithXSDDataType a bamm-c:SingleEntity ;
-   bamm:name "TestSingleEntityWithXSDDataType" ;
    bamm:preferredName "Test Single Entity"@en ;
    bamm:description "Test Single Entity"@en ;
    bamm:dataType xsd:integer .

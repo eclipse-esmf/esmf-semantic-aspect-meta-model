@@ -1,6 +1,7 @@
 import com.moowork.gradle.node.NodeExtension
 import com.moowork.gradle.node.npm.NpmTask
 import com.moowork.gradle.node.task.NodeTask
+import io.openmanufacturing.sds.aspectmetamodel.DownloadBcp47LanguageSubtagRegistry
 
 plugins {
     id("com.github.node-gradle.node") version "2.2.4"
@@ -79,7 +80,7 @@ publishing {
                 password = System.getenv("OSSRH_TOKEN")
             }
             val repositoryUrl: String =
-                System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    System.getenv("REPOSITORY_URL") ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             url = uri(repositoryUrl)
         }
     }
@@ -117,6 +118,10 @@ val downloadPlantUml = tasks.register<NpmTask>("downloadPlantUml") {
     onlyIf { !file("${project.buildDir}/node_modules/asciidoctor-plantuml/package.json").exists() }
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 tasks.register<NodeTask>("antora") {
     setDependsOn(listOf(downloadAntoraCli, downloadAntoraSiteGeneratorLunr, downloadPlantUml))
     script = file("${project.buildDir}/node_modules/@antora/cli/bin/antora")
@@ -140,3 +145,37 @@ val disableSigning by tasks.registering {
 }
 
 tasks.getByName("publishToMavenLocal").dependsOn(disableSigning)
+
+val downloadBcp47LanguageSubtagRegistry = tasks.register<DownloadBcp47LanguageSubtagRegistry>("downloadBcp47LanguageSubtagRegistry")
+tasks.compileJava.get().dependsOn(downloadBcp47LanguageSubtagRegistry)
+
+val downloadUnits = tasks.register("downloadUnits") {
+    val target = uri("http://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev7e_2010.zip")
+    val downloadedFile = file("buildSrc/rec20_Rev7e_2010.zip")
+    val destination = "./buildSrc"
+    doFirst {
+        ant.invokeMethod(
+                "get", mapOf(
+                "src" to target,
+                "dest" to downloadedFile,
+                "verbose" to true)
+        )
+        logger.lifecycle("Downloaded rec20_Rev7e_2010.zip")
+    }
+    doLast {
+        ant.invokeMethod(
+                "unzip", mapOf(
+                "src" to downloadedFile,
+                "dest" to destination)
+        )
+    }
+}
+
+val unitsWriter = tasks.register<io.openmanufacturing.sds.unitsmodel.UnitsWriter>("unitsWriter")
+{
+    setMetaModelModelVersion(version.toString())
+    setCustomRdfInputDirectory("${project.projectDir}/buildSrc/src/main/resources/")
+    setOutputPath("${project.projectDir}/src/main/resources/bamm/unit/$version/units.ttl")
+}
+unitsWriter.get().dependsOn(downloadUnits)
+tasks.compileJava.get().dependsOn(unitsWriter)

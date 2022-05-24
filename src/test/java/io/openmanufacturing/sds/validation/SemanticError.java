@@ -26,9 +26,7 @@ public class SemanticError {
    String resultSeverity;
    String value;
 
-   public SemanticError( final String resultMessage, final String focusNode, final String resultPath,
-         final String resultSeverity,
-         final String value ) {
+   public SemanticError( final String resultMessage, final String focusNode, final String resultPath, final String resultSeverity, final String value ) {
       this.resultMessage = resultMessage;
       this.focusNode = focusNode;
       this.resultPath = resultPath;

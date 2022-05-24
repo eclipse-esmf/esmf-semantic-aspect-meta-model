@@ -1,7 +1,7 @@
 ////
 Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -19,6 +19,10 @@ Entities that are pre-defined in the `bamm-e` namespace.
 
 [[time-series-entity]]
 == Time Series Entity
+[.element-urn]
+--
+{bamm-e}TimeSeriesEntity
+--
 
 The Time Series Entity is used with the xref:characteristics.adoc#time-series-characteristic[Time
 Series] Characteristic. It wraps the two Properties `timestamp` and `value` to represent a value at
@@ -36,6 +40,10 @@ See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] f
 
 [[point-3d]]
 == Point 3D
+[.element-urn]
+--
+{bamm-e}Point3d
+--
 
 Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³].
 
@@ -52,6 +60,10 @@ Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³
 
 [[file-resource-entity]]
 == File Resource
+[.element-urn]
+--
+{bamm-e}FileResource
+--
 
 Describes a resource with a relative or absolute location and a MIME type.
 

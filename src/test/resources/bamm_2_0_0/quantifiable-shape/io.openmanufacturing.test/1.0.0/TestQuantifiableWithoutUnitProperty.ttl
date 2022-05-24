@@ -17,7 +17,6 @@
 @prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
 
 :TestQuantifiableWithoutUnitProperty a bamm-c:Quantifiable ;
-   bamm:name "TestQuantifiableWithoutUnitProperty" ;
    bamm:preferredName "Test Quantifiable"@en ;
    bamm:description "Test Quantifiable"@en ;
    bamm:dataType xsd:float .
