@@ -34,8 +34,8 @@ See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] f
 |===
 | Property | Description | Characteristic
 | `bamm-e:timestamp` | The point in time | xref:characteristics.adoc#timestamp-characteristic[Timestamp]
-| `bamm-e:value` | Any value | This Property has no Characteristic set and thus needs to be
-  xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
+| `bamm-e:value` | The value recorded at the given point in time | This is an
+  xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
 |===
 
 [[point-3d]]
@@ -50,12 +50,12 @@ Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³
 [width="100%", options="header", cols="30,40,30"]
 |===
 | Property | Description | Characteristic
-| `bamm-e:x` | The position along the X axis | This Property has no Characteristic set and thus
-  needs to be xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
-| `bamm-e:y` | The position along the Y axis | This Property has no Characteristic set and thus
-  needs to be xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
-| `bamm-e:z` | The position along the Z axis | This Property has no Characteristic set and thus
-  needs to be xref:modeling-guidelines.adoc#declaring-properties[refined] to be used
+| `bamm-e:x` | The position along the X axis | This is an
+  xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
+| `bamm-e:y` | The position along the Y axis | This is an
+  xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
+| `bamm-e:z` | The position along the Z axis | This is an
+  xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
 |===
 
 [[file-resource-entity]]
