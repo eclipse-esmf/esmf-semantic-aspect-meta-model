@@ -722,17 +722,19 @@ Characteristic is used. This is a subclass of the <code>SortedSet</code> Charact
 <code>dataType</code> must be a subclass of the <code>TimeSeriesEntity</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code><a href="entities.html#time-series-entity" class="page">TimeSeriesEntity</a></code> is declared as an Abstract Entity. It defines the
-<code>timestamp</code> Property with the <code>Timestamp</code> Characteristic, which describes values containing timestamps conforming
-to <code><a href="datatypes.html#data-types" class="page">xsd:dateTime</a></code>, a date and time with or without time zone. No <code>value</code> Property is
-defined, hence the semantics of the value can be defined in the specific Aspect Model.</p>
+<p>The <code><a href="entities.html#time-series-entity" class="page">TimeSeriesEntity</a></code> is declared as an Abstract Entity. It
+defines the <code>timestamp</code> Property with the <code>Timestamp</code> Characteristic, which describes values
+containing timestamps conforming to <code><a href="datatypes.html#data-types" class="page">xsd:dateTime</a></code>, a date and time
+with or without time zone. It also defines <code>value</code> as an
+<a href="#abstract-entities-with-abstract-properties">Abstract Property</a>, i.e., a
+Property without a Characteristic.</p>
 </div>
 <div class="paragraph">
 <p>To create a Time Series for a specific domain, the user should instantiate the <code>TimeSeries</code>
-Collection Characteristic and set the <code>dataType</code> to an Entity which extends the Abstract <code>TimeSeries</code> Entity
-in order to define the semantics for the <code>value</code> Property in the context of the specific domain.
-Please see the <a href="#declaring-abstract-entities">Declaring Abstract Entities</a> section for
-information on how to extend an Abstract Entity.</p>
+Collection Characteristic and set the <code>dataType</code> to an Entity which extends the Abstract
+<code>TimeSeries</code> Entity in order to define the semantics for the <code>value</code> Property in the context of the
+specific domain. Please see the <a href="#declaring-abstract-entities">Declaring
+Abstract Entities</a> section for information on how to extend an Abstract Entity.</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -952,21 +954,17 @@ at runtime, or is a kind of configuration parameter which must be set when the s
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:ValueWithDynamicUnit a bamm:Aspect ;
-  bamm:name "ValueWithDynamicUnit";
   bamm:properties ( :value :unit ) ;
   bamm:operations ( ) .
 
 :value a bamm:Property ;
-   bamm:name "value" ;
    bamm:exampleValue "2.25"^^xsd:float ;
-   bamm:characteristic :Float .
+   bamm:characteristic :FloatValue .
 
-:Float a bamm:Characteristic ;
-   bamm:name "Float" ;
+:FloatValue a bamm:Characteristic ;
    bamm:dataType xsd:float .
 
 :unit a bamm:Property ;
-   bamm:name "unit";
    bamm:characteristic bamm-c:UnitReference .</code></pre>
 </div>
 </div>
@@ -1035,7 +1033,7 @@ Constraint</a> that limits the string to 80 characters.</p>
    bamm:characteristic :CodeWithLengthAndAscii .
 
 :CodeWithLengthAndAscii a bamm-c:Trait ;
-   bamm:description "A string code limited to 80 ASCII characters" ;
+   bamm:description "A string code limited to 80 ASCII characters"@en ;
    bamm-c:baseCharacteristic [
       a bamm-c:Code ;
       bamm:description "Denotes some kind of code with a string datatype"@en ;
@@ -1159,13 +1157,14 @@ must be unique across the entire Entity inheritance chain. Otherwise the corresp
 <div class="sect3">
 <h4 id="declaring-abstract-entities"><a class="anchor" href="#declaring-abstract-entities"></a>Declaring Abstract Entities</h4>
 <div class="paragraph">
-<p>In contrast to Entities, Abstract Entities cannot directly be used as data types.
-The main use case for Abstract Entities is to share Properties across multiple Entities.
-This can be achieved through inheritance: Abstract Entities can extend other Entities and Abstract Entities and can
-themselves be extended in a manner not dissimilar to how abstract classes are used in many programming languages.</p>
+<p>In contrast to Entities, Abstract Entities cannot directly be used as data types. The main use case
+for Abstract Entities is to share Properties across multiple Entities. This can be achieved through
+inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be
+extended in a manner not dissimilar to how abstract classes are used in many programming languages.</p>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>In the following example, both <code>SteeringWheel</code> and <code>Seat</code> <em>extend</em> the Abstract Entity
+<code>VehicleComponent</code>. Both inherit the <code>typeNumber</code> and the <code>manufacturer</code> Properties:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1178,8 +1177,60 @@ themselves be extended in a manner not dissimilar to how abstract classes are us
 
 :Seat a bamm:Entity ;
    bamm:extends :VehicleComponent ;
-   bamm:properties ( :material )</code></pre>
+   bamm:properties ( :material ) .</code></pre>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="abstract-entities-with-abstract-properties"><a class="anchor" href="#abstract-entities-with-abstract-properties"></a>Abstract Entities with Abstract Properties</h4>
+<div class="paragraph">
+<p>When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
+Abstract Entity (i.e., extending it) should be able to decide the Property&#8217;s Characteristic, the
+Property can be declared a <code>bamm:AbstractProperty</code>. An Abstract Property is similar to a Property,
+with two differences: Firstly, it has no <code>bamm:Characteristic</code> attribute and secondly, it must only
+be used in Abstract Entities. Consider the following example of two-dimensional vector which is
+declared as an Abstract Entity using two Abstract Properties for its <code>x</code> and <code>y</code> values, leaving for
+the user to decide which Characteristic and hence which data type should be used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Vec2 a bamm:AbstractEntity ;
+   bamm:description "A two-dimensional vector"@en ;
+   bamm:properties ( :x :y ) .
+
+:x a bamm:AbstractProperty ;
+   bamm:description "The x part of the vector"@en .
+
+:y a bamm:AbstractProperty ;
+   bamm:description "The y part of the vector"@en .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The usage of the Abstract Properties allows to specify the contract (a two-dimensional vector must
+have x and y Properties), but allows flexible reuse: Only when it is used, one must decide on the
+Characteristic and with it its effective datatype such as <code>xsd:int</code>, <code>xsd:float</code> or <code>xsd:decimal</code>.</p>
+</div>
+<div class="paragraph">
+<p>To use the <code>Vec2</code> Abstract Entity, the Characteristic to bind to the Abstract Properties is declared
+and then used as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:IntegerNumber a bamm:Characteristic ;
+   bamm:dataType xsd:integer .
+
+:IntVec2 a bamm:Entity ;
+   bamm:extends :Vec2 ;
+   bamm:properties (
+     [ bamm:extends :x ; bamm:characteristic :IntegerNumber ]
+     [ bamm:extends :y ; bamm:characteristic :IntegerNumber ]
+   ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that an Abstract Entity can have both <code>bamm:Property`s and `bamm:AbstractProperty`s (both are
+listed in `bamm:properties</code>). The properties list of an Entity that extends the Abstract Entity must
+specify the Characteristic to use for each of the Abstract Properties (and only those).</p>
 </div>
 </div>
 </div>
@@ -1381,15 +1432,14 @@ The value for the <code>bamm:payloadName</code> attribute must be of type <code>
 @prefix bamm-c: &lt;urn:bamm:io.openmanufacturing:characteristic:2.0.0#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
+
 :MyAspect a bamm:Aspect ;
-   bamm:name "MyAspect" ;
    bamm:properties (
      [ bamm:property :errorMessage; bamm:payloadName "error" ]
    ) ;
    bamm:operations ( ) .
 
 :errorMessage a bamm:Property ;
-   bamm:name "errorMessage" ;
    bamm:characteristic bamm-c:Text .</code></pre>
 </div>
 </div>
