@@ -284,6 +284,7 @@ Example with literal `xsd:date` values:
 include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-date]
 ----
 
+[[enumeration-with-complex-value]]
 Example with complex values:
 
 Declaring an Enumeration with a complex value is usally done in order to add a description to the
