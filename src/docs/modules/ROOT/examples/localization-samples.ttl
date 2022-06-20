@@ -27,22 +27,34 @@
    bamm-c:values ( :Success :Failed ) .
 
 :Result a bamm:Entity ;
-   bamm:properties ( :status :description ) .
+   bamm:properties ( :status [ bamm:property :description ; bamm:notInPayload true ] ) .
 
 :status a bamm:Property ;
 	bamm:characteristic bamm-c:Text .
 
 :description a bamm:Property ;
-	bamm:characteristic bamm-c:MultiLanguageText ;
-	bamm:notInPayload "true"^^xsd:boolean .
+	bamm:characteristic bamm-c:MultiLanguageText .
 
 :Success a :Result ;
    :status "SUCCESS" ;
-   :description "Der Prozess war erfolgreich."@de ;
-   :description "The process completed successfully."@en .
+   :description "Der Prozess war erfolgreich."@de .
 
 :Failed a :Result ;
    :status "FAILURE" ;
-   :description "Der Prozess ist fehlgeschlagen."@de ;
-   :description "The process did not complete successfully."@en .
+   :description "Der Prozess ist fehlgeschlagen."@de .
 # end::enum-example[]
+
+# tag::multi-lang-example[]
+:description a bamm:Property ;
+  bamm:characteristic [
+    a bamm-c:Set ;
+    bamm-c:elementCharacteristic bamm-c:MultiLanguageText ;
+  ] .
+
+:Success a :Result ;
+  :status "SUCCESS" ;
+  :description (
+    "Der Prozess war erfolgreich."@de
+    "The process completed successfully."@en
+  ) .
+# end::multi-lang-example[]

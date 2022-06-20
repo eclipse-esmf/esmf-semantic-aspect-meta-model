@@ -30,7 +30,7 @@ The JSON payload for this model would then look like this:
 [source,json]
 ----
 {
-  "text" : "eOMtThyhVNLWUZNRcBaQKxI"
+  "text" : "My value"
 }
 ----
 
