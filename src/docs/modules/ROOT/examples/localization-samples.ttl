@@ -30,10 +30,10 @@
    bamm:properties ( :status [ bamm:property :description ; bamm:notInPayload true ] ) .
 
 :status a bamm:Property ;
-	bamm:characteristic bamm-c:Text .
+   bamm:characteristic bamm-c:Text .
 
 :description a bamm:Property ;
-	bamm:characteristic bamm-c:MultiLanguageText .
+   bamm:characteristic bamm-c:MultiLanguageText .
 
 :Success a :Result ;
    :status "SUCCESS" ;
