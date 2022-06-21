@@ -284,6 +284,7 @@ Example with literal `xsd:date` values:
 include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-date]
 ----
 
+[[enumeration-with-complex-value]]
 Example with complex values:
 
 Declaring an Enumeration with a complex value is usally done in order to add a description to the
@@ -705,3 +706,66 @@ include::example$regular-numberlist.ttl[tags=content]
 include::example$inline-numberlist.ttl[tags=content]
 ----
 |====
+
+== Localization of Aspect Models
+
+To understand the possibilities for localization of the models and their implications it is important to understand the differences
+between the data types `xsd:string` and `rdf:langString` and/or their respective characteristic
+counterparts `bamm-c:Text` and `bamm-c:MultiLanguageText`.
+
+To illustrate the differences between them and to give a typical example for localizable string
+that also needs to be included in the runtime payload, consider this model with a scalar `text` property:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$localization-samples.ttl[tags=simple-text]
+----
+
+The JSON payload for this model would then look like this:
+
+[source,json]
+----
+{
+  "text" : "My value"
+}
+----
+
+Notice how the text is just a raw string, without any information about the language it is written in.
+When instead the `text` property is modeled as `bamm-c:MultiLanguageText` (instead of `bamm-c:Text`),
+the payload would change to include the information about the language and would look like this:
+
+[source,json]
+----
+{
+  "text" : {
+    "en" : "Example multi language string"
+  }
+}
+----
+
+Another common use case is the use of localized texts strictly for documentation purposes. This means that the multilanguage strings
+can only be seen when modeling, they are not contained in the runtime payloads.
+
+To illustrate how this is done, consider xref:modeling-guidelines.adoc#enumeration-with-complex-value[this example]
+and imagine we would like the descriptions of the possible enumeration values to have localized version of the texts.
+This goal could be achieved by extending the model to look something like the following example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$localization-samples.ttl[tags=enum-example]
+----
+
+Note the use of the attribute `notInPayload` in usage of the property, ensuring that the `description`
+property will never be included in the runtime payloads.
+
+It is even possible to provide the description in multiple languages.
+To achieve this, we need to change the type of the `description` property to the Set Characteristic:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$localization-samples.ttl[tags=multi-lang-example]
+----
+
+Notice how it is now possible to use the `description` property with multiple texts with different language tags (`@de`) to achieve the proper localization of the texts
+for linguistically diverse audiences.
+
