@@ -1,0 +1,60 @@
+# Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
+
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+# If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix : <urn:bamm:io.openmanufacturing.test:2.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# tag::simple-text[]
+:Test a bamm:Aspect;
+    bamm:properties ( :text );
+    bamm:operations ( ).
+
+:text a bamm:Property ;
+   bamm:characteristic bamm-c:Text .
+# end::simple-text[]
+
+# tag::enum-example[]
+:Results a bamm-c:Enumeration ;
+   bamm:dataType :Result ;
+   bamm-c:values ( :Success :Failed ) .
+
+:Result a bamm:Entity ;
+   bamm:properties ( :status [ bamm:property :description ; bamm:notInPayload true ] ) .
+
+:status a bamm:Property ;
+   bamm:characteristic bamm-c:Text .
+
+:description a bamm:Property ;
+   bamm:characteristic bamm-c:MultiLanguageText .
+
+:Success a :Result ;
+   :status "SUCCESS" ;
+   :description "Der Prozess war erfolgreich."@de .
+
+:Failed a :Result ;
+   :status "FAILURE" ;
+   :description "Der Prozess ist fehlgeschlagen."@de .
+# end::enum-example[]
+
+# tag::multi-lang-example[]
+:description a bamm:Property ;
+  bamm:characteristic [
+    a bamm-c:Set ;
+    bamm-c:elementCharacteristic bamm-c:MultiLanguageText ;
+  ] .
+
+:Success a :Result ;
+  :status "SUCCESS" ;
+  :description (
+    "Der Prozess war erfolgreich."@de
+    "The process completed successfully."@en
+  ) .
+# end::multi-lang-example[]
