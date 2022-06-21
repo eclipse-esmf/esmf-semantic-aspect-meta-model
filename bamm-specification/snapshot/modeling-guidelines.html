@@ -650,7 +650,7 @@ syntax can be used:</p>
    bamm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .</code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div id="enumeration-with-complex-value" class="paragraph">
 <p>Example with complex values:</p>
 </div>
 <div class="paragraph">
@@ -1499,6 +1499,115 @@ longer has an identifier.</p>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="localization-of-aspect-models"><a class="anchor" href="#localization-of-aspect-models"></a>Localization of Aspect Models</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To understand the possibilities for localization of the models and their implications it is important to understand the differences
+between the data types <code>xsd:string</code> and <code>rdf:langString</code> and/or their respective characteristic
+counterparts <code>bamm-c:Text</code> and <code>bamm-c:MultiLanguageText</code>.</p>
+</div>
+<div class="paragraph">
+<p>To illustrate the differences between them and to give a typical example for localizable string
+that also needs to be included in the runtime payload, consider this model with a scalar <code>text</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Test a bamm:Aspect;
+    bamm:properties ( :text );
+    bamm:operations ( ).
+
+:text a bamm:Property ;
+   bamm:characteristic bamm-c:Text .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The JSON payload for this model would then look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "text" : "My value"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how the text is just a raw string, without any information about the language it is written in.
+When instead the <code>text</code> property is modeled as <code>bamm-c:MultiLanguageText</code> (instead of <code>bamm-c:Text</code>),
+the payload would change to include the information about the language and would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "text" : {
+    "en" : "Example multi language string"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another common use case is the use of localized texts strictly for documentation purposes. This means that the multilanguage strings
+can only be seen when modeling, they are not contained in the runtime payloads.</p>
+</div>
+<div class="paragraph">
+<p>To illustrate how this is done, consider <a href="#enumeration-with-complex-value">this example</a>
+and imagine we would like the descriptions of the possible enumeration values to have localized version of the texts.
+This goal could be achieved by extending the model to look something like the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Results a bamm-c:Enumeration ;
+   bamm:dataType :Result ;
+   bamm-c:values ( :Success :Failed ) .
+
+:Result a bamm:Entity ;
+   bamm:properties ( :status [ bamm:property :description ; bamm:notInPayload true ] ) .
+
+:status a bamm:Property ;
+   bamm:characteristic bamm-c:Text .
+
+:description a bamm:Property ;
+   bamm:characteristic bamm-c:MultiLanguageText .
+
+:Success a :Result ;
+   :status "SUCCESS" ;
+   :description "Der Prozess war erfolgreich."@de .
+
+:Failed a :Result ;
+   :status "FAILURE" ;
+   :description "Der Prozess ist fehlgeschlagen."@de .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the use of the attribute <code>notInPayload</code> in usage of the property, ensuring that the <code>description</code>
+property will never be included in the runtime payloads.</p>
+</div>
+<div class="paragraph">
+<p>It is even possible to provide the description in multiple languages.
+To achieve this, we need to change the type of the <code>description</code> property to the Set Characteristic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:description a bamm:Property ;
+  bamm:characteristic [
+    a bamm-c:Set ;
+    bamm-c:elementCharacteristic bamm-c:MultiLanguageText ;
+  ] .
+
+:Success a :Result ;
+  :status "SUCCESS" ;
+  :description (
+    "Der Prozess war erfolgreich."@de
+    "The process completed successfully."@en
+  ) .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how it is now possible to use the <code>description</code> property with multiple texts with different language tags (<code>@de</code>) to achieve the proper localization of the texts
+for linguistically diverse audiences.</p>
 </div>
 </div>
 </div>
