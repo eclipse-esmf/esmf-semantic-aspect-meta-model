@@ -731,7 +731,7 @@ The JSON payload for this model would then look like this:
 
 Notice how the text is just a raw string, without any information about the language it is written in.
 When instead the `text` property is modeled as `bamm-c:MultiLanguageText` (instead of `bamm-c:Text`),
-the payload would change to include the information about the language and would look something like this:
+the payload would change to include the information about the language and would look like this:
 
 [source,json]
 ----
@@ -758,7 +758,7 @@ Note the use of the attribute `notInPayload` in usage of the property, ensuring 
 property will never be included in the runtime payloads.
 
 It is even possible to provide the description in multiple languages.
-To achive this, we need to change the type of the `description` property to the Set Characteristic:
+To achieve this, we need to change the type of the `description` property to the Set Characteristic:
 
 [source,turtle,subs="attributes+"]
 ----
