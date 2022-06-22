@@ -105,7 +105,7 @@ include::diagram-style.dot[]
   characteristic_north2 [shape="point", pos="6.0,-0.93!", label="", height=0.0, width=0.0]
   trait_south2 -> characteristic_north2 [dir="both", arrowhead="none", arrowtail="ediamond", headlabel="1"]
 
-  // Trait --[constraint]--> Constraint
+  // Trait --[constraints]--> Constraint
   trait_west1 [shape="point", pos="3.4,-0.05!", label="", height=0.0, width=0.0]
   help19 [shape="point", pos="3.1,-0.05!", label="", height=0.0, width=0.0]
   constraint_west1 [shape="point", pos="3.4,0.7!", label="", height=0.0, width=0.0]
@@ -195,7 +195,7 @@ include::diagram-style.dot[]
   properties_label2 [label="properties", pos="1.8,-2.15!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
   quantityKind_label2 [label="quantityKind", pos="3.2,-5.4!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
   referenceUnit_label2 [label="referenceUnit", pos="4.6,-5.4!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.7, height=0.2, fixedsize=true]
-  constraint_label [label="constraint", pos="3.0,0.35!", color="white", fillcolor="white", fontsize=9, shape="box", width="0.7", height="0.2", fixedsize=true]
+  constraints_label [label="constraints", pos="3.0,0.35!", color="white", fillcolor="white", fontsize=9, shape="box", width="0.7", height="0.2", fixedsize=true]
  properties_label3 [label="properties", pos="2.2,-4.15!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
  extends_label1 [label="extends", pos="-0.8,-3.8!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
  extends_label2 [label="extends", pos="0.65,-3.7!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
