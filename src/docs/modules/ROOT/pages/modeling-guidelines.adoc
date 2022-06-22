@@ -567,9 +567,10 @@ and then used as follows:
 include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
 ----
 
-Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s (both are
-listed in `bamm:properties`). The properties list of an Entity that extends the Abstract Entity must
-specify the Characteristic to use for each of the Abstract Properties (and only those).
+Note that an Abstract Entity can have both `bamm:Property`&#8203;s and
+`bamm:AbstractProperty`&#8203;s (both are listed in `bamm:properties`). The properties list of an
+Entity that extends the Abstract Entity must specify the Characteristic to use for each of the
+Abstract Properties (and only those).
 
 [[declaring-operations]]
 === Declaring Operations
