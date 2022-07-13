@@ -293,6 +293,9 @@ meaning of the value. This description only exists in the aspect model and is no
 payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
 part of the runtime data, the `bamm:notInPayload` attribute is used.
 
+NOTE: `bamm:notInPayload` cannot be used in Abstract Entities, but the setting for a specific property
+is inherited when Entities are extended.
+
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=enumeration-complex-declaration]
@@ -523,6 +526,17 @@ the Properties in their own declarations.
 The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
 
+When one of the attributes xref:modeling-guidelines.adoc#payload-names[bamm:payloadName],
+xref:modeling-guidelines.adoc#optional-properties[bamm:optional] or `bamm:notInPayload` is used on a specific property usage,
+it's value is also inherited by the extending Entities. Using the example of `bamm:payloadName`,
+we could modify the above example to enforce the alternative naming for the `surname` property in the generated payloads
+and this change would apply to the `Person` Entity (directly) and both `Student` and `Teacher` Entities (via inheritance):
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=extending-entity-declaration-inheritance]
+----
+
 [[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 
@@ -640,7 +654,7 @@ include::example$aspect-sample.ttl[tags=see-dontuse]
 [[optional-properties]]
 === Optional Properties
 
-When Properties are used in Aspects and Entities, they can be marked as optional. This means that a
+When Properties are used in Aspects and Entities, they can be marked as optional (not possible for properties of Abstract Entities). This means that a
 Property's _usage_ is optional, not the Property itself, which would make reusing a Property more
 difficult. In the following example, the Property `toggleStatus` is mandatory and the Property
 `errorMessage` is marked as optional in the Aspect. Note how the `bamm:properties` of the Aspect are
@@ -661,10 +675,14 @@ CAUTION: If the Property's use is optional, it is marked with `bamm:optional tru
 `errorMessage` in the example). However, if its use is mandatory (like `toggleStatus` in the
 example), the Property is directly referenced. Writing `bamm:optional false` is _not_ allowed.
 
+NOTE: The setting of the `bamm:optional` attribute for a specific property is inherited from parent Entity
+by the Entities extending it using the Entity extension mechanism (`bamm::extends`).
+
+[[payload-names]]
 === Declaring Payload Names for Properties
 
 When Properties are used in Aspects and Entities, a runtime payload name can be defined for the
-Property. This means that in the context of the Aspect or Entity where the Property is used, the key
+Property. This means that in the context of the Aspect or Entity (payload names cannot be defined for Abstract Entities) where the Property is used, the key
 of that Property in the runtime payload diverges from the Property's local name. This allows for
 the separation of the semantic name of the Property and the corresponding key in the runtime
 payload. In the following example we define a Property `errorMessage`. In the Aspect it is defined
@@ -684,6 +702,9 @@ include::example$payload-name-sample.ttl[tags=payload-name-declaration]
 
 CAUTION: A Property may not be marked as not being included in the payload using `bamm:notInPayload
 true` and have a payload name declared using `bamm:payloadName`.
+
+NOTE: It is also useful to know that the payload name definition is inherited from parent Entity
+by it's children when using the Entity extension mechanism (`bamm::extends`).
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts
