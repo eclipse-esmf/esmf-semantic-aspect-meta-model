@@ -528,7 +528,7 @@ must be unique across the entire Entity inheritance chain. Otherwise the corresp
 
 When one of the attributes xref:modeling-guidelines.adoc#payload-names[bamm:payloadName],
 xref:modeling-guidelines.adoc#optional-properties[bamm:optional] or `bamm:notInPayload` is used on a specific property usage,
-it's value is also inherited by the extending Entities. Using the example of `bamm:payloadName`,
+its value is also inherited by the extending Entities. Using the example of `bamm:payloadName`,
 we could modify the above example to enforce the alternative naming for the `surname` property in the generated payloads
 and this change would apply to the `Person` Entity (directly) and both `Student` and `Teacher` Entities (via inheritance):
 
@@ -704,7 +704,7 @@ CAUTION: A Property may not be marked as not being included in the payload using
 true` and have a payload name declared using `bamm:payloadName`.
 
 NOTE: It is also useful to know that the payload name definition is inherited from parent Entity
-by it's children when using the Entity extension mechanism (`bamm::extends`).
+by its children when using the Entity extension mechanism (`bamm::extends`).
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts
