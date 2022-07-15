@@ -160,19 +160,49 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Introduces Entity inheritance. The new <strong>Abstract Entity</strong> Meta Model Element and <strong>extends</strong> attribute may be used to
-define a hierarchy of Entities in an Aspect Model. The concept of extending an Entity replaces the existing concept of
-refining an Entity.</p>
-<div class="ulist">
-<ul>
+<p>Introduces Entity inheritance. The new <strong>Abstract Entity</strong> Meta Model Element and <strong>extends</strong>
+attribute may be used to define a hierarchy of Entities in an Aspect Model. The concept of extending
+an Entity replaces the existing concept of refining an Entity. The <code>bamm:refines</code> keyword was
+therefore removed as its semantics are superseded by Entity inheritance.</p>
+</li>
+<li>
+<p>The <code>bamm:name</code> attribute has been removed, as it encoded redundant information. The "short" name
+of an element is the local name part of its URI, i.e., the part following the <code>#</code> symbol.</p>
+</li>
 <li>
 <p>The meta model elements <code>Unit</code>, <code>QuantityKinds</code> and their corresponding attributes were moved from
 the <code>unit</code> namespace to the <code>bamm</code> namespace. This fixes an inconsistency because the <code>unit</code>
 namespace is only intended for the units of the
 <a href="unitcatalog.html#unit-catalog-units" class="page">unit catalog</a>.</p>
 </li>
+<li>
+<p>The
+<a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/main/src/main/resources/bamm/unit/2.0.0/units.ttl">formal
+description (units.ttl)</a> of the units catalog is now automatically generated from its original
+source (see <a href="../units.html" class="page">Units</a>) and the
+<a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/main/buildSrc/src/main/resources/custom-units.ttl">local adjustments</a>.</p>
+</li>
+<li>
+<p>The <code>localeCode</code> and <code>languageCode</code> attributes were moved from the <code>bamm</code> namespace to the
+<code>bamm-c</code> namespace.</p>
+</li>
+<li>
+<p>Shared model elements have been adjusted:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="../entities.html#point-3d" class="page">Point3d Entity</a> has been changed to use
+Abstract Properties for its components;</p>
+</li>
+<li>
+<p>The <a href="../entities.html#time-series-entity" class="page">Time Series Entity</a> has been
+changed to use an Abstract Property for its <code>value</code> component</p>
+</li>
 </ul>
 </div>
+</li>
+<li>
+<p>Various issues in the specification (including examples) have been fixed and phrasing has been improved.</p>
 </li>
 </ul>
 </div>
