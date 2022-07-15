@@ -660,6 +660,19 @@ meaning of the value. This description only exists in the aspect model and is no
 payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
 part of the runtime data, the <code>bamm:notInPayload</code> attribute is used.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>bamm:notInPayload</code> cannot be used in Abstract Entities, but the setting for a specific property
+is inherited when Entities are extended.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Results a bamm-c:Enumeration ;
@@ -1153,6 +1166,19 @@ the Properties in their own declarations.</p>
 <p>The effective Property names, i.e. the payload name when <code>bamm:payloadName</code> is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.</p>
 </div>
+<div class="paragraph">
+<p>When one of the attributes <a href="#payload-names">bamm:payloadName</a>,
+<a href="#optional-properties">bamm:optional</a> or <code>bamm:notInPayload</code> is used on a specific property usage,
+its value is also inherited by the extending Entities. Using the example of <code>bamm:payloadName</code>,
+we could modify the above example to enforce the alternative naming for the <code>surname</code> property in the generated payloads
+and this change would apply to the <code>Person</code> Entity (directly) and both <code>Student</code> and <code>Teacher</code> Entities (via inheritance):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-turtle hljs" data-lang="turtle">:Person a bamm:Entity ;
+    bamm:properties ( :name [ bamm:property :surname ; bamm:payloadName "familyName" ] ) .</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="declaring-abstract-entities"><a class="anchor" href="#declaring-abstract-entities"></a>Declaring Abstract Entities</h4>
@@ -1361,7 +1387,7 @@ for example:</p>
 <div class="sect2">
 <h3 id="optional-properties"><a class="anchor" href="#optional-properties"></a>Optional Properties</h3>
 <div class="paragraph">
-<p>When Properties are used in Aspects and Entities, they can be marked as optional. This means that a
+<p>When Properties are used in Aspects and Entities, they can be marked as optional (not possible for properties of Abstract Entities). This means that a
 Property&#8217;s <em>usage</em> is optional, not the Property itself, which would make reusing a Property more
 difficult. In the following example, the Property <code>toggleStatus</code> is mandatory and the Property
 <code>errorMessage</code> is marked as optional in the Aspect. Note how the <code>bamm:properties</code> of the Aspect are
@@ -1403,12 +1429,25 @@ example), the Property is directly referenced. Writing <code>bamm:optional false
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The setting of the <code>bamm:optional</code> attribute for a specific property is inherited from parent Entity
+by the Entities extending it using the Entity extension mechanism (<code>bamm::extends</code>).
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="declaring-payload-names-for-properties"><a class="anchor" href="#declaring-payload-names-for-properties"></a>Declaring Payload Names for Properties</h3>
+<h3 id="payload-names"><a class="anchor" href="#payload-names"></a>Declaring Payload Names for Properties</h3>
 <div class="paragraph">
 <p>When Properties are used in Aspects and Entities, a runtime payload name can be defined for the
-Property. This means that in the context of the Aspect or Entity where the Property is used, the key
+Property. This means that in the context of the Aspect or Entity (payload names cannot be defined for Abstract Entities) where the Property is used, the key
 of that Property in the runtime payload diverges from the Property&#8217;s local name. This allows for
 the separation of the semantic name of the Property and the corresponding key in the runtime
 payload. In the following example we define a Property <code>errorMessage</code>. In the Aspect it is defined
@@ -1453,6 +1492,19 @@ The value for the <code>bamm:payloadName</code> attribute must be of type <code>
 <td class="content">
 A Property may not be marked as not being included in the payload using <code>bamm:notInPayload
 true</code> and have a payload name declared using <code>bamm:payloadName</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is also useful to know that the payload name definition is inherited from parent Entity
+by its children when using the Entity extension mechanism (<code>bamm::extends</code>).
 </td>
 </tr>
 </table>
