@@ -172,6 +172,11 @@
     bamm:properties ( :name :surname ) .
 # end::extending-entity-declaration[]
 
+# tag::extending-entity-declaration-inheritance[]
+:Person a bamm:Entity ;
+    bamm:properties ( :name [ bamm:property :surname ; bamm:payloadName "familyName" ] ) .
+# end::extending-entity-declaration-inheritance[]
+
 :studentNumber a bamm:Property ;
     bamm:characteristic bamm-c:Text .
 
