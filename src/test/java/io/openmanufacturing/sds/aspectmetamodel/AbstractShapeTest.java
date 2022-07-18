@@ -138,6 +138,7 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_INSTANTIATED_ABSTRACT_ENTITY = "Abstract Entities may not be directly instantiated.";
    final String MESSAGE_INVALID_DATA_TYPE = "The dataType (see value) that is used as dataType on the Characteristic (see focusNode) is neither an allowed "
          + "xsd or rdf type, nor a type that is defined as rdfs:Class.";
+   final String MESSAGE_NO_LITERAL = "Value does not have node kind Literal";
 
    Model loadMetaModelDefinitions( final KnownVersion version ) {
       return ModelLoader.createModel( List.of(

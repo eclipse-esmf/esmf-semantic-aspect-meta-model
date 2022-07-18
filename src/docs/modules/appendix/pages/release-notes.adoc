@@ -17,13 +17,31 @@ SPDX-License-Identifier: MPL-2.0
 [[bamm-2.0.0]]
 === Release 2.0.0
 
-- Introduces Entity inheritance. The new *Abstract Entity* Meta Model Element and *extends* attribute may be used to
-define a hierarchy of Entities in an Aspect Model. The concept of extending an Entity replaces the existing concept of
-refining an Entity.
-* The meta model elements `Unit`, `QuantityKinds` and their corresponding attributes were moved from
-  the `unit` namespace to the `bamm` namespace. This fixes an inconsistency because the `unit`
-  namespace is only intended for the units of the
-  xref:bamm-specification:appendix:unitcatalog.adoc#unit-catalog-units[unit catalog].
+* Introduce Entity inheritance, the according Meta Model Element `bamm:AbstractEntity` and
+  `bamm:AbstractProperty` as well as the `bamm:extends` attribute to define a hierarchy of Entities.
+  This replaces the concept of refining an entity and the `bamm:refines` attribute in order to
+  reduce complexity and modeling efforts.
+* Remove the `bamm:name` attribute to remove redundancy. The "short" name
+  of an element is the local name part of its URI, i.e., the part following the `#` symbol.
+* The meta model elements `Unit`, `QuantityKinds` and their corresponding attributes have been moved
+  from the `unit` namespace to the `bamm` namespace. The unit namespace is now solely reserved for
+  the units of the xref:bamm-specification:appendix:unitcatalog.adoc#unit-catalog-units[unit
+  catalog] itself.
+* The
+   https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/main/src/main/resources/bamm/unit/2.0.0/units.ttl[formal
+   description (units.ttl)] of the units catalog is now automatically generated from its original
+   source (see xref:bamm-specification:ROOT:units.adoc[Units]) and the
+   https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/main/buildSrc/src/main/resources/custom-units.ttl[local adjustments].
+* The `localeCode` and `languageCode` attributes have been moved from the `bamm` namespace to the
+  `bamm-c` namespace.
+* Shared model elements have been adjusted:
+** The xref:bamm-specification:ROOT:entities.adoc#point-3d[Point3d Entity] has been changed to use
+   Abstract Properties for its components;
+** The xref:bamm-specification:ROOT:entities.adoc#time-series-entity[Time Series Entity] has been
+   changed to use an Abstract Property for its `value` component
+* The attributes `bamm:properties`, `bamm:operations` and `bamm:events` on `bamm:Aspect` are now
+  optional, i.e., they do not have to be added any more even when they are empty lists.
+* Various issues in the specification (including examples) have been fixed and phrasing has been improved.
 
 [[bamm-1.0.0]]
 === Release 1.0.0

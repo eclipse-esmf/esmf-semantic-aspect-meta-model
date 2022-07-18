@@ -284,6 +284,7 @@ Example with literal `xsd:date` values:
 include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-date]
 ----
 
+[[enumeration-with-complex-value]]
 Example with complex values:
 
 Declaring an Enumeration with a complex value is usally done in order to add a description to the
@@ -291,6 +292,9 @@ actual value, e.g., the `state` in the example below, which provides information
 meaning of the value. This description only exists in the aspect model and is not part of the
 payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
 part of the runtime data, the `bamm:notInPayload` attribute is used.
+
+NOTE: `bamm:notInPayload` cannot be used in Abstract Entities, but the setting for a specific property
+is inherited when Entities are extended.
 
 [source,turtle,subs="attributes+"]
 ----
@@ -522,6 +526,17 @@ the Properties in their own declarations.
 The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
 
+When one of the attributes xref:modeling-guidelines.adoc#payload-names[bamm:payloadName],
+xref:modeling-guidelines.adoc#optional-properties[bamm:optional] or `bamm:notInPayload` is used on a specific property usage,
+its value is also inherited by the extending Entities. Using the example of `bamm:payloadName`,
+we could modify the above example to enforce the alternative naming for the `surname` property in the generated payloads
+and this change would apply to the `Person` Entity (directly) and both `Student` and `Teacher` Entities (via inheritance):
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=extending-entity-declaration-inheritance]
+----
+
 [[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 
@@ -566,9 +581,10 @@ and then used as follows:
 include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
 ----
 
-Note that an Abstract Entity can have both `bamm:Property`s and `bamm:AbstractProperty`s (both are
-listed in `bamm:properties`). The properties list of an Entity that extends the Abstract Entity must
-specify the Characteristic to use for each of the Abstract Properties (and only those).
+Note that an Abstract Entity can have both `bamm:Property`&#8203;s and
+`bamm:AbstractProperty`&#8203;s (both are listed in `bamm:properties`). The properties list of an
+Entity that extends the Abstract Entity must specify the Characteristic to use for each of the
+Abstract Properties (and only those).
 
 [[declaring-operations]]
 === Declaring Operations
@@ -638,7 +654,7 @@ include::example$aspect-sample.ttl[tags=see-dontuse]
 [[optional-properties]]
 === Optional Properties
 
-When Properties are used in Aspects and Entities, they can be marked as optional. This means that a
+When Properties are used in Aspects and Entities, they can be marked as optional (not possible for properties of Abstract Entities). This means that a
 Property's _usage_ is optional, not the Property itself, which would make reusing a Property more
 difficult. In the following example, the Property `toggleStatus` is mandatory and the Property
 `errorMessage` is marked as optional in the Aspect. Note how the `bamm:properties` of the Aspect are
@@ -659,11 +675,15 @@ CAUTION: If the Property's use is optional, it is marked with `bamm:optional tru
 `errorMessage` in the example). However, if its use is mandatory (like `toggleStatus` in the
 example), the Property is directly referenced. Writing `bamm:optional false` is _not_ allowed.
 
+NOTE: The setting of the `bamm:optional` attribute for a specific property is inherited from parent Entity
+by the Entities extending it using the Entity extension mechanism (`bamm::extends`).
+
+[[payload-names]]
 === Declaring Payload Names for Properties
 
 When Properties are used in Aspects and Entities, a runtime payload name can be defined for the
-Property. This means that in the context of the Aspect or Entity where the Property is used, the key
-of that Property in the runtime payload diverges from the Property's `bamm:name`. This allows for
+Property. This means that in the context of the Aspect or Entity (payload names cannot be defined for Abstract Entities) where the Property is used, the key
+of that Property in the runtime payload diverges from the Property's local name. This allows for
 the separation of the semantic name of the Property and the corresponding key in the runtime
 payload. In the following example we define a Property `errorMessage`. In the Aspect it is defined
 that the corresponding key in the payload is `error`.
@@ -682,6 +702,9 @@ include::example$payload-name-sample.ttl[tags=payload-name-declaration]
 
 CAUTION: A Property may not be marked as not being included in the payload using `bamm:notInPayload
 true` and have a payload name declared using `bamm:payloadName`.
+
+NOTE: It is also useful to know that the payload name definition is inherited from parent Entity
+by its children when using the Entity extension mechanism (`bamm::extends`).
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts
@@ -704,3 +727,66 @@ include::example$regular-numberlist.ttl[tags=content]
 include::example$inline-numberlist.ttl[tags=content]
 ----
 |====
+
+== Localization of Aspect Models
+
+To understand the possibilities for localization of the models and their implications it is important to understand the differences
+between the data types `xsd:string` and `rdf:langString` and/or their respective characteristic
+counterparts `bamm-c:Text` and `bamm-c:MultiLanguageText`.
+
+To illustrate the differences between them and to give a typical example for localizable string
+that also needs to be included in the runtime payload, consider this model with a scalar `text` property:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$localization-samples.ttl[tags=simple-text]
+----
+
+The JSON payload for this model would then look like this:
+
+[source,json]
+----
+{
+  "text" : "My value"
+}
+----
+
+Notice how the text is just a raw string, without any information about the language it is written in.
+When instead the `text` property is modeled as `bamm-c:MultiLanguageText` (instead of `bamm-c:Text`),
+the payload would change to include the information about the language and would look like this:
+
+[source,json]
+----
+{
+  "text" : {
+    "en" : "Example multi language string"
+  }
+}
+----
+
+Another common use case is the use of localized texts strictly for documentation purposes. This means that the multilanguage strings
+can only be seen when modeling, they are not contained in the runtime payloads.
+
+To illustrate how this is done, consider xref:modeling-guidelines.adoc#enumeration-with-complex-value[this example]
+and imagine we would like the descriptions of the possible enumeration values to have localized version of the texts.
+This goal could be achieved by extending the model to look something like the following example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$localization-samples.ttl[tags=enum-example]
+----
+
+Note the use of the attribute `notInPayload` in usage of the property, ensuring that the `description`
+property will never be included in the runtime payloads.
+
+It is even possible to provide the description in multiple languages.
+To achieve this, we need to change the type of the `description` property to the Set Characteristic:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$localization-samples.ttl[tags=multi-lang-example]
+----
+
+Notice how it is now possible to use the `description` property with multiple texts with different language tags (`@de`) to achieve the proper localization of the texts
+for linguistically diverse audiences.
+

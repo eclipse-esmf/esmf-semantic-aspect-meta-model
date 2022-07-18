@@ -30,7 +30,7 @@ xsd:unsignedInt bamm:canBeCastTo xsd:unsignedLong .
 xsd:unsignedLong bamm:canBeCastTo xsd:nonNegativeInteger .
 xsd:positiveInteger bamm:canBeCastTo xsd:nonNegativeInteger .
 xsd:nonNegativeInteger bamm:canBeCastTo xsd:integer .
-xsd:negativeInger bamm:canBeCastTo xsd:nonPositiveInteger .
+xsd:negativeInteger bamm:canBeCastTo xsd:nonPositiveInteger .
 xsd:nonPositiveInteger bamm:canBeCastTo xsd:integer .
 xsd:dateTimeStamp bamm:canBeCastTo xsd:dateTime .
 xsd:yearMonthDuration bamm:canBeCastTo xsd:duration .
