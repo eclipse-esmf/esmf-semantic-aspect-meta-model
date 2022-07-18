@@ -39,6 +39,8 @@ SPDX-License-Identifier: MPL-2.0
    Abstract Properties for its components;
 ** The xref:bamm-specification:ROOT:entities.adoc#time-series-entity[Time Series Entity] has been
    changed to use an Abstract Property for its `value` component
+* The attributes `bamm:properties`, `bamm:operations` and `bamm:events` on `bamm:Aspect` are now
+  optional, i.e., they do not have to be added any more even when they are empty lists.
 * Various issues in the specification (including examples) have been fixed and phrasing has been improved.
 
 [[bamm-1.0.0]]
