@@ -534,7 +534,7 @@ and this change would apply to the `Person` Entity (directly) and both `Student`
 
 [source,turtle,subs="attributes+"]
 ----
-include::example$aspect-sample.ttl[tags=extending-entity-declaration-inheritance]
+include::example$extending-entity-declaration-inheritance.ttl[tags=extending-entity-declaration-inheritance]
 ----
 
 [[declaring-abstract-entities]]
@@ -784,7 +784,7 @@ To achieve this, we need to change the type of the `description` property to the
 
 [source,turtle,subs="attributes+"]
 ----
-include::example$localization-samples.ttl[tags=multi-lang-example]
+include::example$multi-lang-example.ttl[tags=multi-lang-example]
 ----
 
 Notice how it is now possible to use the `description` property with multiple texts with different language tags (`@de`) to achieve the proper localization of the texts
