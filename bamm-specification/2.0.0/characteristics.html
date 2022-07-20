@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Characteristics and Constraints :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/characteristics.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">
+        <div class="logo-headline-wrapper">
+          <img class="logo" src="../../_/img/omp-logo.png" />
+          <span class="docu-title">
+            BAMM Aspect Meta Model
+          </span>
+        </div>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header><div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="2.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling-guidelines.html">Aspects</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="payloads.html">Payloads</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">2.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../snapshot/index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../snapshot/index.html">snapshot</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">2.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../2.0.0-M1/index.html">2.0.0-M1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.0.0/index.html">v1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../snapshot/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">BAMM Aspect Meta Model</a></li>
+    <li>Specification</li>
+    <li><a href="characteristics.html">Characteristics</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">2.0.0</button>
+  <div class="version-menu">
+    <a class="version" href="../snapshot/characteristics.html">snapshot</a>
+    <a class="version is-current" href="characteristics.html">2.0.0</a>
+    <a class="version" href="../2.0.0-M1/characteristics.html">2.0.0-M1</a>
+    <a class="version" href="../v1.0.0/characteristics.html">v1.0.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/v2.0.0/src/docs/modules/ROOT/pages/characteristics.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Characteristics and Constraints</h1>
+<div class="sect1">
+<h2 id="characteristics-classes"><a class="anchor" href="#characteristics-classes"></a>Characteristics Classes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Characteristics Classes describe abstract concepts that need to be made specific when they are used.
+So for example, the Enumeration Characteristic represents the concept "one of multiple predefined
+values". In order to use the Characteristic, an instance of it needs to be specified in the
+corresponding Aspect Model, that determines which values are valid for the respective Property.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the Characteristics Classes defined in the scope of the
+BAMM Aspect Meta Model.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/characteristics-classes.svg" alt="characteristics classes" width="100%">
+</div>
+</div>
+<div class="sect2">
+<h3 id="characteristic-characteristic"><a class="anchor" href="#characteristic-characteristic"></a>Characteristic</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Characteristic</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Base class of all characteristics. This Characteristics Class can also be instantiated directly
+(i.e., without creating a subclass).</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-characteristics" class="page">declaring characteristics</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:preferredName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human readable name in a specific language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Human readable description in a specific language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:dataType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a scalar or complex (Entity) data type. See Section "Type System"
+  in the Aspect Meta Model</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="trait-characteristic"><a class="anchor" href="#trait-characteristic"></a>Trait</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Trait</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The Trait is used to add one or more <a href="#constraints">Constraints</a> to another Characteristic, which is referred to
+as the "base Characteristic".
+A Trait itself has no <code>bamm:dataType</code>, because it inherits the type of its <code>bamm-c:baseCharacteristic</code>.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-constraints" class="page">declaring constraints</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:baseCharacteristic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Characterstic that is being constrained</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:constraint</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Constraint that is applicable to the base Characteristic. This attribute may
+  be used multiple times, to add multiple Constraints to the base Characteristic.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="quantifiable-characteristic"><a class="anchor" href="#quantifiable-characteristic"></a>Quantifiable</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Quantifiable</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A value which can be quantified and may have a unit, e.g., the number of bolts required for a
+processing step or the expected torque with which these bolts should be tightened.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-characteristics" class="page">declaring characteristics</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:unit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a Unit as defined in the  <a href="units.html#units" class="page">Unit catalog</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="measurement-characteristic"><a class="anchor" href="#measurement-characteristic"></a>Measurement</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Measurement</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A measurement is a numeric value with an associated unit and quantity kind.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-characteristics" class="page">declaring characteristics</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:unit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a Unit as defined in the <a href="units.html#units" class="page">Unit catalog</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="enumeration-characteristic"><a class="anchor" href="#enumeration-characteristic"></a>Enumeration</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Enumeration</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An enumeration represents a list of possible values.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-enumerations" class="page">declaring enumerations</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:values</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of possible values. The <code>dataType</code> of each of the values must match the
+  <code>dataType</code> of the Enumeration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="state-characteristic"><a class="anchor" href="#state-characteristic"></a>State</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#State</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A state is subclass of Enumeration with a default value.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-state" class="page">declaring state</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:defaultValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default value for the state</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="duration-characteristic"><a class="anchor" href="#duration-characteristic"></a>Duration</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Duration</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A time duration.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:unit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a Unit as defined in the <a href="units.html#units" class="page">Unit catalog</a>. The
+referenced unit or its referenceUnit must have the quantityKind
+<code><a href="appendix/appendix.html#quantitykind-time" class="page">unit:time</a></code>. Currently, the following units can
+therefore be used: <code><a href="appendix/appendix.html#unit-centipoisePerBar" class="page">unit:centipoisePerBar</a></code>
+<code><a href="appendix/appendix.html#unit-commonYear" class="page">unit:commonYear</a></code>
+<code><a href="appendix/appendix.html#unit-day" class="page">unit:day</a></code>
+<code><a href="appendix/appendix.html#unit-henryPerKiloohm" class="page">unit:henryPerKiloohm</a></code>
+<code><a href="appendix/appendix.html#unit-henryPerOhm" class="page">unit:henryPerOhm</a></code>
+<code><a href="appendix/appendix.html#unit-hour" class="page">unit:hour</a></code>
+<code><a href="appendix/appendix.html#unit-kilosecond" class="page">unit:kilosecond</a></code>
+<code><a href="appendix/appendix.html#unit-microhenryPerKiloohm" class="page">unit:microhenryPerKiloohm</a></code>
+<code><a href="appendix/appendix.html#unit-microhenryPerOhm" class="page">unit:microhenryPerOhm</a></code>
+<code><a href="appendix/appendix.html#unit-microsecond" class="page">unit:microsecond</a></code>
+<code><a href="appendix/appendix.html#unit-millihenryPerKiloohm" class="page">unit:millihenryPerKiloohm</a></code>
+<code><a href="appendix/appendix.html#unit-millihenryPerOhm" class="page">unit:millihenryPerOhm</a></code>
+<code><a href="appendix/appendix.html#unit-millipascalSecondPerBar" class="page">unit:millipascalSecondPerBar</a></code>
+<code><a href="appendix/appendix.html#unit-millisecond" class="page">unit:millisecond</a></code>
+<code><a href="appendix/appendix.html#unit-minuteUnitOfTime" class="page">unit:minuteUnitOfTime</a></code>
+<code><a href="appendix/appendix.html#unit-month" class="page">unit:month</a></code>
+<code><a href="appendix/appendix.html#unit-nanosecond" class="page">unit:nanosecond</a></code>
+<code><a href="appendix/appendix.html#unit-pascalSecondPerBar" class="page">unit:pascalSecondPerBar</a></code>
+<code><a href="appendix/appendix.html#unit-picosecond" class="page">unit:picosecond</a></code>
+<code><a href="appendix/appendix.html#unit-poisePerBar" class="page">unit:poisePerBar</a></code>
+<code><a href="appendix/appendix.html#unit-poisePerPascal" class="page">unit:poisePerPascal</a></code>
+<code><a href="appendix/appendix.html#unit-reciprocalMinute" class="page">unit:reciprocalMinute</a></code>
+<code><a href="appendix/appendix.html#unit-secondUnitOfTime" class="page">unit:secondUnitOfTime</a></code>
+<code><a href="appendix/appendix.html#unit-shake" class="page">unit:shake</a></code>
+<code><a href="appendix/appendix.html#unit-siderealYear" class="page">unit:siderealYear</a></code>
+<code><a href="appendix/appendix.html#unit-tropicalYear" class="page">unit:tropicalYear</a></code>
+<code><a href="appendix/appendix.html#unit-week" class="page">unit:week</a></code>
+<code><a href="appendix/appendix.html#unit-year" class="page">unit:year</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="collection-characteristic"><a class="anchor" href="#collection-characteristic"></a>Collection</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Collection</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A group of values which may be either of a scalar or Entity type. The values may be duplicated and
+are not ordered (i.e., bag semantics).</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-collections" class="page">declaring collections</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:dataType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a scalar or complex (Entity) data type. See Section "Type System"
+  in the Aspect Meta Model.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:elementCharacteristic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to a Characteristic which describes the individual
+  elements contained in the Collection.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="list-characteristic"><a class="anchor" href="#list-characteristic"></a>List</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#List</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A subclass of <a href="#collection-characteristic">Collection</a> which may contain duplicates and is ordered.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="set-characteristic"><a class="anchor" href="#set-characteristic"></a>Set</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Set</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A subclass of <a href="#collection-characteristic">Collection</a> which may not contain duplicates and is unordered.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorted-set-characteristic"><a class="anchor" href="#sorted-set-characteristic"></a>Sorted Set</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#SortedSet</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A subclass of <a href="#collection-characteristic">Collection</a> which may not contain duplicates and is ordered.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="time-series-characteristic"><a class="anchor" href="#time-series-characteristic"></a>Time Series</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#TimeSeries</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A subclass of <a href="#sorted-set-characteristic">Sorted Set</a> containing values with the exact point in time when the
+values where recorded.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-time-series" class="page">declaring time series</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:dataType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set to <code>bamm-e:TimeSeriesEntity</code>. This Entity consists of two Properties, namely
+  <code>bamm-e:timestamp</code> and <code>bamm-e:value</code>.</p>
+<p class="tableblock">As such the structure for time series data is fixed to a collection of key/value pairs with the
+timestamp being the key and the value being the value.</p>
+<p class="tableblock">The <code>bamm-e:timestamp</code> property has a fixed Characteristic of <code>bamm-c:Timestamp</code>. The Characteristic
+of the <code>bamm-e:value</code> Property is set in the specific Aspect Model giving the value domain specific
+semantics.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="code-characteristic"><a class="anchor" href="#code-characteristic"></a>Code</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Code</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property which contains any kind of code. Note that this Characteristic does not define
+a <code>bamm:dataType</code>, this must therefore be done when instantiating the Characteristic.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="either-characteristic"><a class="anchor" href="#either-characteristic"></a>Either</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Either</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property whose value can have one of two possible types (a disjoint union).
+This Characteristic does not have one explicit <code>bamm:dataType</code>, as it can be the datatype of either the left or the right.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-either" class="page">declaring either</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:left</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The left side of the Either. The attribute references another Characteristic which
+  describes the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:right</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The right side of the Either. The attribute references another Characteristic
+  which describes the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="single-entity-characteristic"><a class="anchor" href="#single-entity-characteristic"></a>Single Entity</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#SingleEntity</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property whose data type is an Entity. The Entity used as data type may be defined in
+the same Aspect Model or the shared Entity namespace of the BAMM Aspect Meta Model.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-characteristics" class="page">declaring characteristics</a> for usage in an Aspect model.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="structured-value-characteristic"><a class="anchor" href="#structured-value-characteristic"></a>Structured Value</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#StructuredValue</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property which contains a scalar <a href="datatypes.html#data-types" class="page">string-like value space</a>
+value with a well-defined structure. The Structured Value Characteristic allows the description of
+the parts of the Property&#8217;s value by linking to a separate Property definition for each part. To
+define the parts, the value is deconstructed using a regular expression.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="modeling-guidelines.html#declaring-structured-value" class="page">declaring structured value</a> for usage in an Aspect model.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:deconstructionRule</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The regular expression used to deconstruct the value into parts that
+  are mapped to separate Properties. This regular expression must contain the same number of capture
+  groups as there are Properties given in the <code>elements</code> list. The <em>n</em>&#8203;th capture group maps
+  to the <em>n</em>&#8203;th Property in the <code>elements</code> list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:elements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of entries each of which can either be a Property reference or a string
+  literal. The list must contain at least one Property reference.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Concatenating the values of the Properties in the <code>elements</code> list with the string literals in the
+given order should yield a value that corresponds to the original value that has this Structured
+Value Characteristic. While the <code>deconstructionRule</code> is used for deconstruction, the string literals
+in the <code>elements</code> list are used for construction. When the Property using the Structured Value
+Characteristic also defines an <code>exampleValue</code>, construction and deconstruction of the value are
+tested when validating the model.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="characteristics-instances"><a class="anchor" href="#characteristics-instances"></a>Characteristics Instances</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A number of concrete Characteristics are defined in conjunction with the Aspect Meta Model. They can
+be used as-is as Characteristics for Properties in Aspect Models. The following diagram shows the
+Characteristics Instances defined in the scope of the BAMM Aspect Meta Model.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/characteristics-instances.svg" alt="characteristics instances" width="100%">
+</div>
+</div>
+<div class="sect2">
+<h3 id="timestamp-characteristic"><a class="anchor" href="#timestamp-characteristic"></a>Timestamp</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Timestamp</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property which contains the date and time with an optional timezone.</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:dateTime</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="text-characteristic"><a class="anchor" href="#text-characteristic"></a>Text</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Text</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property which contains plain text. This is intended exclusively for human readable
+strings, not for identifiers, measurement values, etc.</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:string</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multi-language-text-characteristic"><a class="anchor" href="#multi-language-text-characteristic"></a>Multi-Language Text</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#MultiLanguageText</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property which contains plain text in multiple languages. This is intended exclusively
+for human readable strings, not for identifiers, measurement values, etc.</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">rdf:langString</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="boolean-characteristic"><a class="anchor" href="#boolean-characteristic"></a>Boolean</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Boolean</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Represents a boolean value (i.e., a "flag").</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:boolean</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locale-characteristic"><a class="anchor" href="#locale-characteristic"></a>Locale</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Locale</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property containing a locale according to IETF BCP 47
+<a href="../snapshot/appendix/appendix.html#bcp47" class="page">[bcp47]</a>, for example "de-DE".</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:string</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="language-characteristic"><a class="anchor" href="#language-characteristic"></a>Language</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Language</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property containing a language according to ISO 639-1
+<a href="../snapshot/appendix/appendix.html#iso639" class="page">[iso639]</a>, for example "de".</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:string</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resource-path-characteristic"><a class="anchor" href="#resource-path-characteristic"></a>Resource Path</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#ResourcePath</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property that contains the path to a relative or absolute resource.</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:anyURI</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mime-type-characteristic"><a class="anchor" href="#mime-type-characteristic"></a>MIME Type</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#MimeType</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property that contains a MIME type as defined by RFC 2046
+<a href="../snapshot/appendix/appendix.html#rfc2046" class="page">[rfc2046]</a>, for example "application/json",
+"application/xls" or "image/png".</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">xsd:string</a></code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unit-reference-characteristic"><a class="anchor" href="#unit-reference-characteristic"></a>Unit Reference</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#UnitReference</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describes a Property containing a reference to one of the units in the
+<a href="appendix/appendix.html#unit-catalog" class="page">Unit catalog</a>.<br>
+See <a href="modeling-guidelines.html#using-unit-reference" class="page">Using Unit Reference</a> for usage in an Aspect model.</p>
+</div>
+<div class="paragraph">
+<p>dataType: <code><a href="datatypes.html#data-types" class="page">bamm:curie</a></code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="constraints"><a class="anchor" href="#constraints"></a>Constraints</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="constraint"><a class="anchor" href="#constraint"></a>Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#Constraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Base class for other constraints that constrain a Characteristic in some way, e.g., the
+<a href="#range-constraint">Range Constraint</a> limits the value range for a Property.</p>
+</div>
+<div class="paragraph">
+<p>The Constraint class has no attributes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="language-constraint"><a class="anchor" href="#language-constraint"></a>Language Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#LanguageConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Restricts a value to a specific language.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:languageCode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An ISO 639-1
+  <a href="../snapshot/appendix/appendix.html#iso639" class="page">[iso639]</a> language code for the language of
+  the value of the constrained Property, e.g., "de".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="locale-constraint"><a class="anchor" href="#locale-constraint"></a>Locale Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#LocaleConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Restricts a value to a specific locale, i.e., a language with additional region information.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:localeCode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An IETF BCP 47 <a href="../snapshot/appendix/appendix.html#bcp47" class="page">[bcp47]</a>
+  language code for the locale of the value of the constrained Property, e.g., "de-DE".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="range-constraint"><a class="anchor" href="#range-constraint"></a>Range Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#RangeConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Restricts the value range of a Property. At least one of <code>bamm-c:maxValue</code> or <code>bamm-c:minValue</code> must
+be present in a Range Constraint.</p>
+</div>
+<div class="paragraph">
+<p>Whether the <code>bamm-c:maxValue</code> and <code>bamm-c:minValue</code> are inclusive or exclusive can be defined using
+the <code>bamm-c:upperBoundDefinition</code> and <code>bamm-c:lowerBoundDefinition</code> attributes.
+When one or both of them are not specified, the corresponding value defaults to inclusive.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The values for <code>maxValue</code> and <code>minValue</code> must be given in the same effective dataType that the
+constrained Characteristic uses.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:maxValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The upper bound of a range</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:minValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The lower bound of a range</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:upperBoundDefinition</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether the upper bound of a range is inclusive or
+  exclusive. Possible values are <code>bamm-c:AT_MOST</code> and <code>bamm-c:LESS_THAN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:lowerBoundDefinition</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether the lower bound of a range is inclusive or
+  exclusive. Possible values are <code>bamm-c:AT_LEAST</code> and <code>bamm-c:GREATER_THAN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When either the <code>bamm-c:minValue</code> or the <code>bamm-c:maxValue</code> is not given, the Range is defined
+as having an open lower or upper boundary.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>AT_LEAST</code> and <code>AT_MOST</code> values for <code>lowerBoundDefinition</code> and <code>upperBoundDefinition</code>
+define that the values for <code>minValue</code> and <code>maxValue</code> are inclusive. The <code>LESS_THAN</code> and
+<code>GREATER_THAN</code> values for the <code>lowerBoundDefinition</code> and <code>upperBoundDefinition</code> define that the
+values for <code>minValue</code> and <code>maxValue</code> are exclusive.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This Constraint can be used to restrict Characteristics with one of two kinds of data types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Characteristics that have a <a href="datatypes.html#data-types" class="page">numeric data type</a>; in this case the
+Constraint restricts the range of the value. The scalar data types that can be restricted are:
+<code>xsd:double</code>, <code>xsd:float</code>, <code>xsd:decimal</code>, <code>xsd:integer</code>, <code>xsd:byte</code>, <code>xsd:short</code>, <code>xsd:int</code>,
+<code>xsd:long</code>, <code>xsd:unsignedByte</code>, <code>xsd:unsignedShort</code>, <code>xsd:unsignedInt</code>, <code>xsd:unsignedLong</code>,
+<code>xsd:positiveInteger</code> , <code>xsd:nonPositiveInteger</code>, <code>xsd:negativeInteger</code> and
+<code>xsd:nonNegativeInteger</code>.</p>
+</li>
+<li>
+<p>Characteristics that have a <a href="datatypes.html#data-types" class="page">time and date data type</a>;. In this case
+the Constraint restricts the scalar data types: <code>xsd:date</code>,<code>xsd:time</code>, <code>xsd:dateTime</code>,
+<code>xsd:dateTimeStamp</code>, <code>xsd:gYear</code>, <code>xsd:gMonth</code>, <code>xsd:gMonthDay</code>, <code>xsd:duration</code>,
+<code>xsd:yearMonthDuration</code>, <code>xsd:dayTimeDuration</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="encoding-constraint"><a class="anchor" href="#encoding-constraint"></a>Encoding Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#EncodingConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Restricts the encoding of a Property.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configures the encoding. This may be one of the following: <code>bamm:US-ASCII</code>,
+  <code>bamm:ISO-8859-1</code>, <code>bamm:UTF-8</code>, <code>bamm:UTF-16</code>, <code>bamm:UTF-16BE</code> or <code>bamm:UTF-16LE</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The default encoding for values with a <a href="datatypes.html#data-types" class="page">string-like value space</a>
+is UTF-8, therefore using an Encoding Constraint with a <code>bamm:value</code> of <code>bamm:UTF-8</code> is only
+necessary when a Property&#8217;s encoding is changed during an Aspect model version increase <em>from</em> some
+other encoding <em>to</em> UTF-8 to indicate that the other encoding is not any longer used.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="length-constraint"><a class="anchor" href="#length-constraint"></a>Length Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#LengthConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This Constraint can be used to restrict two types of Characteristics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Characteristics that have a <a href="datatypes.html#data-types" class="page">string-like value space</a>; in this case
+the Constraint restricts the length of the (string-) value. The scalar data types that can be
+restricted are: <code>xsd:string</code>, <code>xsd:date</code>, <code>xsd:time</code>, <code>xsd:dateTime</code>, <code>xsd:dateTimeStamp</code>,
+<code>xsd:gYear</code>, <code>xsd:gMonth</code>, <code>xsd:gMonthDay</code>, <code>xsd:duration</code>, <code>xsd:yearMonthDuration</code>,
+<code>xsd:dayTimeDuration</code>, <code>xsd:hexBinary</code>, <code>xsd:base64Binary</code>, <code>xsd:anyURI</code>, <code>bamm:curie</code> and
+<code>rdf:langString</code>.</p>
+</li>
+<li>
+<p>Collection Characteristics (<a href="#collection-characteristic">Collection</a>, <a href="#set-characteristic">Set</a>,
+<a href="#sorted-set-characteristic">Sorted Set</a>, <a href="#list-characteristic">List</a>). In this case the Constraint restricts the
+number of elements in the collection.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>At least one of <code>bamm-c:maxValue</code> or <code>bamm-c:minValue</code> must be present in a Length Constraint.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:maxValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum length. Must be given as <code>xsd:nonNegativeInteger</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:minValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum length. Must be given as <code>xsd:nonNegativeInteger</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-times-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="regular-expression-constraint"><a class="anchor" href="#regular-expression-constraint"></a>Regular Expression Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#RegularExpressionConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Restricts a string value to a regular expression as defined by XQuery 1.0 and XPath 2.0 Functions
+and Operators <a href="../snapshot/appendix/appendix.html#xpath-functions" class="page">[xpath-functions]</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm:value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The regular expression</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="fixed-point-constraint"><a class="anchor" href="#fixed-point-constraint"></a>Fixed Point Constraint</h3>
+<div class="openblock element-urn">
+<div class="content">
+<div class="paragraph">
+<p>urn:bamm:io.openmanufacturing:characteristic:2.0.0#FixedPointConstraint</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Defines the scaling factor as well as the amount of integral numbers for a fixed point number. The
+constraint may only be used in conjunction with Characteristics which use the <code>xsd:decimal</code> data
+type.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 60%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attributes</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:scale</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The scaling factor for a fixed point number. Must be given as
+  <code>xsd:positiveInteger</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bamm-c:integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of integral digits for a fixed point number. Must be given as
+  <code>xsd:positiveInteger</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle fa-2x"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.min.js"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/2.0.0/characteristics.html"></script>
+<script async src="../../_/../search-index.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
