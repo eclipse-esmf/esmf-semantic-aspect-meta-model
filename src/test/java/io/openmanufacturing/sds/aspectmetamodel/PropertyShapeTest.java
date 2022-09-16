@@ -131,7 +131,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError resultForExampleValue = new SemanticError(
-            "An example value may not be set on a Property which does not have a Characteristic",
+            "An example value may not be set on Property '{$this}' which does not have a Characteristic.",
             PROPERTY_TO_BE_REFINED_URN, bammUrns.exampleValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithExampleValueWithoutCharacteristic",
             metaModelVersion, resultForExampleValue );
@@ -149,7 +149,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError result = new SemanticError(
-            "A Property with a Characteristic may not be refined.",
+            "Property '{$this}' with a Characteristic may not be refined.",
             PROPERTY_TO_BE_REFINED_URN, bammUrns.characteristicUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyRefiningPropertyWithCharacteristic",
             metaModelVersion, result );
@@ -161,7 +161,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError result = new SemanticError(
-            "A Property without a Characteristic has not been refined.",
+            "Property '{$this}' without a Characteristic has not been refined.",
             FOCUS_NODE, bammUrns.characteristicUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithoutCharacteristicUnrefined",
             metaModelVersion, result );

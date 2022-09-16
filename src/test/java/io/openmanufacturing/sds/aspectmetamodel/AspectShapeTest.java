@@ -121,8 +121,8 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testPropertyListContainsInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidProperties", metaModelVersion );
-      assertThat( result.getResultMessage() )
-            .satisfies( s -> assertThat( s ).isEqualTo( MESSAGE_INVALID_ENTRY_ASPECT_PROPERTY_LIST ) );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isEqualTo( ENTITY_NODE );
    }
@@ -148,8 +148,8 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidOptionalPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidOptionalProperty", metaModelVersion );
-      assertThat( result.getResultMessage() )
-            .satisfies( s -> assertThat( s ).isEqualTo( MESSAGE_INVALID_ENTRY_ASPECT_PROPERTY_LIST ) );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
    }
@@ -159,8 +159,8 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithMissingOptionalPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithMissingOptionalProperty", metaModelVersion );
-      assertThat( result.getResultMessage() )
-            .satisfies( s -> assertThat( s ).isEqualTo( MESSAGE_INVALID_ENTRY_ASPECT_PROPERTY_LIST ) );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
    }
@@ -170,8 +170,8 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidNotInPayloadPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidNotInPayloadProperty", metaModelVersion );
-      assertThat( result.getResultMessage() )
-            .satisfies( s -> assertThat( s ).isEqualTo( MESSAGE_INVALID_ENTRY_ASPECT_PROPERTY_LIST ) );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
    }

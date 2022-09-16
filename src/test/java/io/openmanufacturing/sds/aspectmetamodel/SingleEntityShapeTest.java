@@ -20,8 +20,6 @@ import io.openmanufacturing.sds.validation.SemanticError;
 
 public class SingleEntityShapeTest extends AbstractShapeTest {
 
-   private final String MESSAGE_INCORRECT_DATATYPE = "The dataType (see value) that is used as dataType on the Characteristic (see focusNode) is not a bamm:Entity.";
-
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testCharacteristicInstanceWithEntityDataTypeValidationExpectSuccess(
@@ -34,8 +32,8 @@ public class SingleEntityShapeTest extends AbstractShapeTest {
    public void testSingleEntityWithXsdDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestSingleEntityWithXSDDataType";
-
-      final SemanticError resultForDataType = new SemanticError( MESSAGE_INCORRECT_DATATYPE,
+      final String expectedMessage = validator.getMessageText( "bamm-c:SingleEntityShape", "bamm:dataType", metaModelVersion );
+      final SemanticError resultForDataType = new SemanticError( expectedMessage,
             focusNode, bammUrns.datatypeUrn, VIOLATION_URN,
             "http://www.w3.org/2001/XMLSchema#integer" );
       expectSemanticValidationErrors( "single-entity-shape", "TestSingleEntityWithXSDDataType",

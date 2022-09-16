@@ -43,7 +43,7 @@ public class CollectionInstanceShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithoutDataTypeAndElementCharacteristic";
       final SemanticError result = getSingleSemanticValidationError(
             "collection-instance-shape", "TestCollectionWithoutDataTypeAndElementCharacteristic", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }
@@ -54,7 +54,7 @@ public class CollectionInstanceShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithInvalidElementCharacteristic";
       final SemanticError result = getSingleSemanticValidationError(
             "collection-instance-shape", "TestCollectionWithInvalidElementCharacteristic", metaModelversion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }
@@ -76,7 +76,7 @@ public class CollectionInstanceShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithInvalidCharacteristic";
       final SemanticError result = getSingleSemanticValidationError( "collection-instance-shape",
             "TestCollectionWithInvalidCharacteristic", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }

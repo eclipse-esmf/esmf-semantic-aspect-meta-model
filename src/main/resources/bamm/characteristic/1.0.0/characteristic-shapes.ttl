@@ -44,7 +44,7 @@ bamm-c:QuantifiableShape
       sh:path bamm-c:unit ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Value is not an instance or subclass of unit:Unit" ;
+         sh:message "'{$this}': value '{?value}' of the property 'bamm-c:unit' is not an instance or subclass of unit:Unit." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -88,7 +88,7 @@ bamm-c:CollectionShape
       sh:datatype xsd:boolean ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The property allowDuplicates must be set for Collections (see focusNode)." ;
+         sh:message "The property 'allowDuplicates' must be set for Collection '{$this}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this
@@ -107,7 +107,7 @@ bamm-c:CollectionShape
       sh:datatype xsd:boolean ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The property ordered must be set for Collections (see focusNode)." ;
+         sh:message "The property 'ordered' must be set for Collection '{$this}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this
@@ -138,7 +138,7 @@ bamm-c:CollectionInstanceShape
       sh:path [ sh:alternativePath ( bamm:dataType bamm-c:elementCharacteristic ) ] ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "A Collection must be defined with either a bamm:dataType or a bamm-c:elementCharacteristic (see focusNode)." ;
+         sh:message "Collection '{$this}' must be defined with either a 'bamm:dataType' or a 'bamm-c:elementCharacteristic'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this
@@ -182,7 +182,7 @@ bamm-c:LanguageConstraintShape
       sh:path bamm-c:languageCode ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The language code must be a valid according to ISO 639-1." ;
+         sh:message "'{$this}': the language code '{?value}' defined for property 'bamm-c:languageCode' is not a valid value as defined by ISO 639-1." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -253,7 +253,7 @@ bamm-c:LengthConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "The LengthConstraint must have at least one minValue or maxValue." ;
+      sh:message "LengthConstraint '{$this}' must have at least one minValue or maxValue." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this
@@ -265,7 +265,7 @@ bamm-c:LengthConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "The LengthConstraint is not applicable to the base Characteristic's data type." ;
+      sh:message "LengthConstraint '{$this}' is not applicable to the base Characteristic's data type '{?value}'." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this ?value
@@ -281,7 +281,7 @@ bamm-c:LengthConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "The maxValue must be greater or equal than the minValue." ;
+      sh:message "'{$this}': the maxValue must be greater or equal than the minValue ('{?value}')." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this ?value
@@ -314,7 +314,7 @@ bamm-c:RegularExpressionConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "The RegularExpressionConstraint is not applicable to the base Characteristic's data type." ;
+      sh:message "'{$this}': the RegularExpressionConstraint is not applicable to the base Characteristic's data type '{?value}'." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this ?value
@@ -334,7 +334,7 @@ bamm-c:RangeShape
       sh:path bamm-c:minValue ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The data type of the min value for the Range Constraint (see focus node) is not the data type defined in the base Characteristic." ;
+         sh:message "The data type of the min value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?baseCharacteristic ?baseCharacteristicDataType
@@ -356,7 +356,7 @@ bamm-c:RangeShape
       sh:path bamm-c:maxValue ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The data type of the max value for the Range Constraint (see focus node) is not the data type defined in the base Characteristic." ;
+         sh:message "The data type of the max value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?baseCharacteristic ?baseCharacteristicDataType
@@ -376,7 +376,7 @@ bamm-c:RangeShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "The RangeConstraint must have at least one minValue or maxValue." ;
+      sh:message "RangeConstraint '{$this}' must have at least one minValue or maxValue." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this
@@ -416,7 +416,7 @@ bamm-c:StateShape
       sh:description "The default value for this state" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Values does not contain the default value." ;
+         sh:message "'{$this}': Values does not contain the default value." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?defaultValue ?values
@@ -442,7 +442,7 @@ bamm-c:DurationShape
       sh:description "The Unit in which the Duration is measured." ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Unit of Duration must have quantity kind time" ;
+         sh:message "'{$this}': Unit of Duration '{?value}' is not of quantity kind time" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?unit ?value
@@ -450,7 +450,7 @@ bamm-c:DurationShape
                $this rdf:type/rdfs:subClassOf* bamm-c:Duration .
                $this bamm-c:unit ?unit .
                filter( not exists { ?unit unit:referenceUnit?/unit:quantityKind unit:time } )
-               bind( str( ?unit ) as ?value )
+               bind( ?unit as ?value )
             }
          """
       ]
@@ -468,10 +468,10 @@ bamm-c:EnumerationShape
      sh:description "A list of valid states." ;
      sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "One of the values is not of the specified data type." ;
+        sh:message "'{$this}': one of the values ('{?item}') is not of the specified data type '{?definedDataType}'." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?dataType ?item
+           select $this ?values ?dataType ?item ?definedDataType
            where {
              $this rdf:type/rdfs:subClassOf* bamm-c:Enumeration .
              $this bamm-c:values ?values .
@@ -485,7 +485,7 @@ bamm-c:EnumerationShape
      ] ;
      sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "DataType is a literal type but one of the values is defined as bamm:Property." ;
+        sh:message "'{$this}': DataType is a literal type but one of the values ('{?item}') is defined as bamm:Property." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
            select $this ?values ?item
@@ -511,7 +511,7 @@ bamm-c:SingleEntityShape
       sh:description "Defines the data type of all Properties which use this Characteristic." ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The dataType (see value) that is used as dataType on the Characteristic (see focusNode) is not a bamm:Entity." ;
+         sh:message "DataType '{?value}' that is used as dataType on the Characteristic '{$this}' is not a bamm:Entity." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this $value
@@ -535,7 +535,7 @@ bamm-c:EitherShape
       sh:class bamm:Characteristic ;
       sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "The Characteristic referenced by the bamm-c:left and bamm-c:right attributes of the Either Characteristic (see focus node) may not be equivalent." ;
+        sh:message "'{$this}': the Characteristic referenced by the bamm-c:left and bamm-c:right attributes may not be equivalent." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
            select $this
@@ -596,7 +596,7 @@ bamm-c:StructuredValueShape
       sh:description """List of elements of possibly different types, e.g. ( "literal value" :reference )""" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "StructuredValue's elements may only be Properties or string literals" ;
+         sh:message "StructuredValue's '{$this}' elements ('{?value}') may only be Properties or string literals" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -612,7 +612,7 @@ bamm-c:StructuredValueShape
       ] ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "StructuredValue's elements may not be empty" ;
+         sh:message "StructuredValue's '{$this}' elements may not be empty" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -633,7 +633,7 @@ bamm-c:StructuredValueShape
       sh:name "elements" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "StructuredValue's elements must contain at least one Property" ;
+         sh:message "StructuredValue's '{$this}' elements must contain at least one Property" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -662,7 +662,7 @@ bamm-c:StructuredValueShape
       sh:name "elements" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Properties referred to in StructuredValue's elements must have a Characteristic with a scalar dataType" ;
+         sh:message "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -683,7 +683,7 @@ bamm-c:StructuredValueShape
       sh:name "elements" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "This Characteristic may not be used with Properties that appear as elements in a StructuredValue" ;
+         sh:message "Characteristic '{?value}' may not be used with Properties that appear as elements in a StructuredValue '{$this}'" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select distinct $this ?value
@@ -702,7 +702,7 @@ bamm-c:StructuredValueShape
       sh:name "dataType" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "StructuredValue's dataType must have a string-like value space" ;
+         sh:message "StructuredValue's '{$this}' dataType '{?value}' must have a string-like value space" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value
@@ -727,14 +727,14 @@ bamm-c:FixedPointConstraintShape
       sh:description "The scaling factor for a fixed point number." ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The Fixed Point Constraint may only be used with Characteristics whose data type is xsd:decimal." ;
+         sh:message "Fixed Point Constraint '{$this}' may only be used with Characteristics whose data type is xsd:decimal, but the actual value is '{?value}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this
+            select $this ?value
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:FixedPointConstraint .
-               $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?dataType .
-               filter( str( ?dataType ) != str( xsd:decimal ) )
+               $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?value .
+               filter( str( ?value ) != str( xsd:decimal ) )
             }
          """
       ] ;

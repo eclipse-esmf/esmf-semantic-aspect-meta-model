@@ -16,6 +16,8 @@ package io.openmanufacturing.sds.validation;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.apache.jena.rdf.model.Model;
+
 /**
  * Represents a validation result as described by the
  * <a href="https://www.w3.org/TR/shacl/#results-validation-result">SHACL specification</a>.
@@ -27,6 +29,8 @@ public class SemanticError {
    String resultSeverity;
    String value;
 
+   Model context;
+
    public final static String ANY_VALUE = UUID.randomUUID().toString();
 
    public SemanticError( final String resultMessage, final String focusNode, final String resultPath, final String resultSeverity, final String value ) {
@@ -35,6 +39,20 @@ public class SemanticError {
       this.resultPath = resultPath;
       this.resultSeverity = resultSeverity;
       this.value = value;
+   }
+
+   public void resolveGenericMessage( final Model model ) {
+      resultMessage = resultMessage.replace( "{$this}", remapNamespace( model, focusNode ) )
+            .replace( "{?value}", remapNamespace( model, value ) );
+   }
+
+   private String remapNamespace( final Model model, final String elementName ) {
+      final int hashPosition = elementName.indexOf( '#' );
+      if ( -1 == hashPosition ) {
+         return elementName;
+      }
+      final String name = elementName.substring( hashPosition + 1 );
+      return model.getNsURIPrefix( elementName.substring( 0, hashPosition + 1 ) ) + ":" + name;
    }
 
    @Override
@@ -85,5 +103,13 @@ public class SemanticError {
 
    public String getValue() {
       return value;
+   }
+
+   public Model getContext() {
+      return context;
+   }
+
+   public void setContext( final Model context ) {
+      this.context = context;
    }
 }

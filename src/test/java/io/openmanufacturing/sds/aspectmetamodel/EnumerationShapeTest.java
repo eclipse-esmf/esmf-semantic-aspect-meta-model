@@ -58,8 +58,7 @@ public class EnumerationShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEnumerationValueIsNotALiteralType";
 
-      final SemanticError resultForName = new SemanticError(
-            "DataType is a literal type but one of the values is defined as bamm:Property.", focusNode,
+      final SemanticError resultForName = new SemanticError( MESSAGE_VALUE_IS_PROPERTY, focusNode,
             bammUrns.valuesUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "enumeration-shape", "TestEnumerationValueIsNotALiteralType",
             metaModelVersion, resultForName );

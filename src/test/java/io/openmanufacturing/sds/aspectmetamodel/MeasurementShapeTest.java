@@ -45,11 +45,9 @@ public class MeasurementShapeTest extends AbstractShapeTest {
    public void testInvalidUnitExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestMeasurementWithInvalidUnit";
-
-      final String expectedErrorMessage = metaModelVersion == KnownVersion.BAMM_1_0_0
-            ? MESSAGE_IS_NO_UNIT_LEGACY
-            : MESSAGE_IS_NO_UNIT;
-      final SemanticError error = new SemanticError( expectedErrorMessage, focusNode,
+      
+      final String expectedMessage = validator.getMessageText( "bamm-c:QuantifiableShape", "bamm-c:unit", metaModelVersion );
+      final SemanticError error = new SemanticError( expectedMessage, focusNode,
             bammUrns.unitUrn, VIOLATION_URN, TEST_NAMESPACE_PREFIX + "Entity" );
       expectSemanticValidationErrors( "measurement-shape", "TestMeasurementWithInvalidUnit",
             metaModelVersion, error );

@@ -56,7 +56,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testInvalidValueTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultInvalidValueType = new SemanticError(
-            MESSAGE_INSTANCE_INVALID_VALUE_TYPE,
+            "The type of the value of the Property ':intProperty' of the Entity instance ':Instance' does not match the Property definition.",
             FOCUS_NODE, TEST_NAMESPACE_PREFIX + "intProperty", VIOLATION_URN, "bar" );
       expectSemanticValidationErrors( "valid-entity-instance-shape",
             "TestEntityInstanceInvalidValueType",
@@ -71,7 +71,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "TestEntityInstanceMissingNotInPayloadProperties",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY );
+      assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY, validationError ) );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -90,7 +90,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "TestEntityWithListInstanceWithoutList",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( MESSAGE_INSTANCE_INVALID_TYPE_FOR_LIST_PROPERTY );
+      assertThat( validationError.getResultMessage() ).isEqualTo(
+            "The value for a list Property ':stringListProperty' of the Entity instance ':Instance' is not defined as a list." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -103,7 +104,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "TestEntityWithListInstanceInvalidTypeInList",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( MESSAGE_INSTANCE_INVALID_TYPE_CONTAINED_IN_LIST );
+      assertThat( validationError.getResultMessage() ).isEqualTo(
+            "The value for a list Property ':intListProperty' of the Entity instance ':Instance' contains an entry with an invalid data type." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -122,7 +124,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "TestEntityWithEntityListInstanceInvalidTypeInList",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( MESSAGE_INSTANCE_INVALID_TYPE_CONTAINED_IN_LIST );
+      assertThat( validationError.getResultMessage() ).isEqualTo(
+            "The value for a list Property ':entityListProperty' of the Entity instance ':Instance' contains an entry with an invalid data type." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -146,7 +149,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceInvalidValueType( final KnownVersion metaModelVersion ) {
-      final SemanticError resultForMissingProperty = new SemanticError( MESSAGE_INSTANCE_INVALID_VALUE_TYPE,
+      final SemanticError resultForMissingProperty = new SemanticError(
+            "The type of the value of the Property ':abstractTestProperty' of the Entity instance ':ExtendingEntityInstance' does not match the Property definition.",
             TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", TEST_NAMESPACE_PREFIX + "abstractTestProperty",
             VIOLATION_URN, "345" );
       expectSemanticValidationErrors( "valid-entity-instance-shape", "ExtendingEntityInstanceInvalidValueType",
@@ -161,7 +165,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "ExtendingEntityInstanceMissingNotInPayloadProperty",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY );
+      assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY, validationError ) );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }

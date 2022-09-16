@@ -44,10 +44,10 @@ public class RangeShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeWithInvalidMinAndMaxValueDataType";
 
       final SemanticError resultForMinValue = new SemanticError(
-            "The data type of the min value for the Range Constraint (see focus node) is not the data type defined in the base Characteristic.",
+            "The data type of the min value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic.",
             focusNode, bammUrns.minValueUrn, VIOLATION_URN, "" );
       final SemanticError resultForMaxValue = new SemanticError(
-            "The data type of the max value for the Range Constraint (see focus node) is not the data type defined in the base Characteristic.",
+            "The data type of the max value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic.",
             focusNode, bammUrns.maxValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "range-shape", "TestRangeWithInvalidMinAndMaxValueDataType",
             metaModelVersion, resultForMinValue, resultForMaxValue );
