@@ -64,7 +64,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    public void testElementsContainInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "structured-value-shape", "TestStructuredValueWithInvalidElements", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_INVALID_STRUCTURED_VALUE_ELEMENTS );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_STRUCTURED_VALUE_ELEMENTS, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isEqualTo( "42" );
    }

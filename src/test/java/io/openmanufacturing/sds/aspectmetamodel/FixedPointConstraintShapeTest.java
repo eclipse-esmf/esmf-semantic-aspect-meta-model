@@ -47,7 +47,7 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointWithInvalidDataType";
       final String expectedMessage = validator.getMessageText( "bamm-c:FixedPointConstraintShape", "bamm-c:scale", metaModelVersion );
       final SemanticError resultForScale = new SemanticError(
-            expectedMessage, focusNode, bammUrns.scale, VIOLATION_URN, "" );
+            expectedMessage, focusNode, bammUrns.scale, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#float" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointWithInvalidDataType",
             metaModelVersion, resultForScale );
    }
@@ -60,7 +60,7 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointChainedWithInvalidDataType";
       final String expectedMessage = validator.getMessageText( "bamm-c:FixedPointConstraintShape", "bamm-c:scale", metaModelVersion );
       final SemanticError resultForScale = new SemanticError(
-            expectedMessage, focusNode, bammUrns.scale, VIOLATION_URN, "" );
+            expectedMessage, focusNode, bammUrns.scale, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#float" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointChainedWithInvalidDataType",
             metaModelVersion, resultForScale );
    }
