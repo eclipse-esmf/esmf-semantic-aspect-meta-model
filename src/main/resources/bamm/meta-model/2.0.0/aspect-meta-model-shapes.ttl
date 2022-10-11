@@ -571,7 +571,11 @@ bamm:ValidEntityInstances
                    ?property bamm:property ?actualProperty .
                    $this ?actualProperty [] .
                  } ) )
-           bind( ?property as ?value )
+
+           optional {
+             ?property bamm:property ?actualProperty .
+           }
+           bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
            bind( 'ERR_MISSING_PROPERTY' as ?code )
          }
       """
