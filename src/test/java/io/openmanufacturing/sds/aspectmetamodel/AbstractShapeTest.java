@@ -73,7 +73,7 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_LANG_NOT_UNIQUE = "Language \\\"en\\\" used more than once";
    final String MESSAGE_INVALID_LANG_STRING = "Value must be a valid literal of type langString";
    final String MESSAGE_DUPLICATE_PROPERTY = "Property may only have 1 value, but found 2";
-   final String MESSAGE_MISSING_DATATYPE = "The datatype is not defined on the Characteristic instance '{$this}'.";
+   final String MESSAGE_MISSING_DATATYPE = "No datatype is defined on the Characteristic instance '{$this}'.";
    final String MESSAGE_INVALID_ENTRY_ENTITY_PROPERTY_LIST = "Each element in the Entity's '{$this}' properties list must be either a Property or a blank node "
          + "referring to a Property and defining either bamm:optional \"true\"^^xsd:boolean and/or bamm:payloadName or bamm:notInPayload "
          + "\"true\"^^xsd:boolean.";
@@ -86,15 +86,13 @@ public abstract class AbstractShapeTest {
 
    final String MESSAGE_INVALID_ENTITY_WITH_SINGLE_PROPERTY = "Entity '{$this}' defining a Property with bamm:notInPayload \"true\"^^xsd:boolean must define "
          + "at least one more Property.";
-   final String MESSAGE_VALUE_NOT_OF_DATATYPE = "':TestEnumerationValueIsNotOfDefinedDataType': one of the values ('1.0') is not of the specified data type 'xsd:string'.";
-   final String MESSAGE_VALUE_IS_PROPERTY = "':TestEnumerationValueIsNotALiteralType': DataType is a literal type but one of the values (':testProperty') is defined as bamm:Property.";
+   final String MESSAGE_VALUE_NOT_OF_DATATYPE = "EnumerationShape ':TestEnumerationValueIsNotOfDefinedDataType': one of the values ('1.0') is not of the specified data type 'xsd:string'.";
+   final String MESSAGE_VALUE_IS_PROPERTY = "EnumerationShape ':TestEnumerationValueIsNotALiteralType': DataType is a literal type but one of the values (':testProperty') is defined as bamm:Property.";
    final String MESSAGE_NO_OPERATION = "Value must be an instance of bamm:Operation";
    final String MESSAGE_VALUE_IS_NO_PROPERTY = "Value must be an instance of bamm:Property";
    final String MESSAGE_NO_ADDITIONAL_PROPERTIES = "Entity '{$this}' refining another Entity may not declare additional Properties.";
    final String MESSAGE_INVALID_ENCODING = "Value must be one of [bamm:US-ASCII bamm:ISO-8859-1 bamm:UTF-8 bamm:UTF-16 bamm:UTF-16BE bamm:UTF-16LE]";
    final String MESSAGE_RANGE_NEEDS_MIN_MAX = "RangeConstraint '{$this}' must have at least one minValue or maxValue.";
-   final String MESSAGE_LENGTH_CONSTRAINT_DATA_TYPE = "LengthConstraint '{$this}' is not applicable to the base Characteristic's data type '{?value}'.";
-   final String MESSAGE_LENGTH_CONSTRAINT_MIN_MAX = "'{$this}': the maxValue must be greater or equal than the minValue ('{?value}').";
    final String MESSAGE_INVALID_REGULAR_EXPRESSION = "The RegularExpressionConstraint's value is no valid regular expression.";
    final String MESSAGE_INVALID_DECONSTRUCTION_RULE = "The StructuredValue's deconstructionRule is no valid regular expression.";
    final String MESSAGE_VALUE_DOES_NOT_HAVE_NODE_KIND_IRI = "Value does not have node kind IRI";
@@ -102,18 +100,12 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_MORE_THAN_ZERO_VALUES = "Property may only have 0 values, but found 1";
    final String MESSAGE_INVALID_LOWER_BOUND_DEFINITION_VALUE = "Value must be exactly one of [bamm-c:AT_LEAST, bamm-c:GREATER_THAN]";
    final String MESSAGE_INVALID_UPPER_BOUND_DEFINITION_VALUE = "Value must be exactly one of [bamm-c:LESS_THAN, bamm-c:AT_MOST]";
-   final String MESSAGE_INVALID_STRUCTURED_VALUE_ELEMENTS = "StructuredValue's '{$this}' elements ('{?value}') may only be Properties or string literals";
-   final String MESSAGE_EMPTY_STRUCTURED_VALUE_ELEMENTS = "StructuredValue's '{$this}' elements may not be empty";
-   final String MESSAGE_STRUCTURED_VALUE_DATA_TYPE = "StructuredValue's '{$this}' dataType '{?value}' must have a string-like value space";
    final String MESSAGE_INVALID_DECONSTRUCTION = "Deconstruction rule did not match Properties in elements";
    final String MESSAGE_INVALID_MATCHING_GROUPS = "Number of matching capture groups (2) in deconstructionRule does not match number of Properties in "
          + "elements (1)";
    final String MESSAGE_INVALID_MATCHING_GROUPS2 = "Number of matching capture groups (1) in deconstructionRule does not match number of Properties in "
          + "elements (0)";
    final String MESSAGE_NON_MATCHING_GROUPS = "Given Property exampleValue (prop1) does not match group 1 from deconstructionRule (prop1x)";
-   final String MESSAGE_ELEMENTS_MUST_CONTAIN_PROPERTIES = "StructuredValue's '{$this}' elements must contain at least one Property";
-   final String MESSAGE_ELEMENTS_MUST_HAVE_SCALAR_TYPE = "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType";
-   final String MESSAGE_ELEMENTS_HAVE_INVALID_CHARACTERISTIC = "Characteristic '{?value}' may not be used with Properties that appear as elements in a StructuredValue '{$this}'";
    final String MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY = "Entity instance '{$this}' is missing required Property.";
    final String MESSAGE_DATA_TYPE_NOT_POSITIVE_INTEGER = "Value must be a valid literal of type positiveInteger";
    final String MESSAGE_COLLECTION_WITHOUT_DATA_TYPE = "Collection '{$this}' must be defined with either a 'bamm:dataType' or a 'bamm-c:elementCharacteristic'.";

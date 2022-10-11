@@ -32,7 +32,7 @@ public class SingleEntityShapeTest extends AbstractShapeTest {
    public void testSingleEntityWithXsdDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestSingleEntityWithXSDDataType";
-      final String expectedMessage = validator.getMessageText( "bamm-c:SingleEntityShape", "bamm:dataType", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "bamm-c:SingleEntityShape", "bamm:dataType", "ERR_WRONG_DATATYPE", metaModelVersion );
       final SemanticError resultForDataType = new SemanticError( expectedMessage,
             focusNode, bammUrns.datatypeUrn, VIOLATION_URN,
             "http://www.w3.org/2001/XMLSchema#integer" );

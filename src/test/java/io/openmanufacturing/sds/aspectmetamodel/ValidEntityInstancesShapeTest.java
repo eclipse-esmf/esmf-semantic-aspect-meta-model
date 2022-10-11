@@ -39,8 +39,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultForMissingProperty = new SemanticError(
-            MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY, FOCUS_NODE, "", VIOLATION_URN,
-            TEST_NAMESPACE_PREFIX + "intProperty" );
+            validator.getMessageText( "bamm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ),
+            FOCUS_NODE, "", VIOLATION_URN, TEST_NAMESPACE_PREFIX + "intProperty" );
       expectSemanticValidationErrors( "valid-entity-instance-shape",
             "TestEntityInstanceMissingRequiredProperties",
             metaModelVersion, resultForMissingProperty );
@@ -133,7 +133,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingEntityInstanceMissingRequiredPropertyExpectFailure( final KnownVersion metaModelVersion ) {
-      final SemanticError resultForMissingProperty = new SemanticError( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY,
+      final SemanticError resultForMissingProperty = new SemanticError(
+            validator.getMessageText( "bamm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ),
             TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "", VIOLATION_URN,
             TEST_NAMESPACE_PREFIX + "abstractTestProperty" );
       expectSemanticValidationErrors( "valid-entity-instance-shape", "ExtendingEntityMissingRequiredProperty",

@@ -131,7 +131,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError resultForExampleValue = new SemanticError(
-            "An example value may not be set on Property '{$this}' which does not have a Characteristic.",
+            validator.getMessageText( "bamm:PropertyShape", "bamm:exampleValue", "ERR_EXAMPLE_VALUE_NOT_ALLOWED", metaModelVersion ),
             PROPERTY_TO_BE_REFINED_URN, bammUrns.exampleValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithExampleValueWithoutCharacteristic",
             metaModelVersion, resultForExampleValue );
@@ -149,7 +149,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError result = new SemanticError(
-            "Property '{$this}' with a Characteristic may not be refined.",
+            validator.getMessageText( "bamm:PropertyShape", "bamm:characteristic", "ERR_PROPERTY_REFINED", metaModelVersion ),
             PROPERTY_TO_BE_REFINED_URN, bammUrns.characteristicUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyRefiningPropertyWithCharacteristic",
             metaModelVersion, result );
@@ -161,7 +161,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
       final SemanticError result = new SemanticError(
-            "Property '{$this}' without a Characteristic has not been refined.",
+            validator.getMessageText( "bamm:PropertyShape", "bamm:characteristic", "ERR_PROPERTY_NOT_REFINED", metaModelVersion ),
             FOCUS_NODE, bammUrns.characteristicUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithoutCharacteristicUnrefined",
             metaModelVersion, result );

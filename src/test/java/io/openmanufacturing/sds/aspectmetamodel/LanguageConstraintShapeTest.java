@@ -57,7 +57,8 @@ public class LanguageConstraintShapeTest extends AbstractShapeTest {
    public void testInvalidLanguageCodeExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLanguageConstraintInvalidLanguageCode";
-      final String expectedMessage = validator.getMessageText( "bamm-c:LanguageConstraintShape", "bamm-c:languageCode", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "bamm-c:LanguageConstraintShape", "bamm-c:languageCode", "ERR_WRONG_LANGCODE",
+            metaModelVersion );
       final SemanticError result = new SemanticError( expectedMessage, focusNode,
             bammUrns.languageCodeUrn, VIOLATION_URN, "DE_de" );
       expectSemanticValidationErrors( "language-constraint-shape", "TestLanguageConstraintInvalidLanguageCode", metaModelVersion, result );

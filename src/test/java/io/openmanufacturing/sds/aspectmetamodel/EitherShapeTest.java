@@ -71,7 +71,7 @@ public class EitherShapeTest extends AbstractShapeTest {
    public void testSameCharacteristicForLeftAndRightExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEitherSameCharacteristicForLeftAndRight";
-      final String expectedMessage = validator.getMessageText( "bamm-c:EitherShape", "bamm-c:left", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "bamm-c:EitherShape", "bamm-c:left", "ERR_WRONG_DATATYPE", metaModelVersion );
       final SemanticError result = new SemanticError( expectedMessage,
             focusNode, bammUrns.leftUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "either-shape", "TestEitherSameCharacteristicForLeftAndRight",

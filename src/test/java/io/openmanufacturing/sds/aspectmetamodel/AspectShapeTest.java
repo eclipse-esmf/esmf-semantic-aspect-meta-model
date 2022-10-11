@@ -121,7 +121,7 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testPropertyListContainsInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidProperties", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isEqualTo( ENTITY_NODE );

@@ -44,13 +44,14 @@ bamm-c:QuantifiableShape
       sh:path bamm-c:unit ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "'{$this}': value '{?value}' of the property 'bamm-c:unit' is not an instance or subclass of bamm:Unit." ;
+         sh:message "Quantifiable '{$this}': value '{?value}' of the property 'bamm-c:unit' is not an instance or subclass of bamm:Unit." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
                $this bamm-c:unit ?value .
                filter( not exists { ?value rdf:type/rdfs:subClassOf* bamm:Unit } ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -91,10 +92,11 @@ bamm-c:CollectionShape
          sh:message "The property 'allowDuplicates' must be set for Collection '{$this}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this
+            select $this ?code
             where {
               $this rdfs:subClassOf* bamm-c:Collection .
               filter ( not exists { $this rdfs:subClassOf*/mmm:allowDuplicates [] } ) .
+              bind( 'ERR_MISSING_PROPERTY' as ?code )
             }
          """
       ] ;
@@ -110,10 +112,11 @@ bamm-c:CollectionShape
          sh:message "The property 'ordered' must be set for Collection '{$this}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this
+            select $this ?code
             where {
               $this rdfs:subClassOf* bamm-c:Collection .
               filter ( not exists { $this rdfs:subClassOf*/mmm:ordered [] } ) .
+              bind( 'ERR_MISSING_PROPERTY' as ?code )
             }
          """
       ] ;
@@ -141,12 +144,13 @@ bamm-c:CollectionInstanceShape
          sh:message "Collection '{$this}' must be defined with either a 'bamm:dataType' or a 'bamm-c:elementCharacteristic'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this
+            select $this ?code
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:Collection .
                optional { $this bamm-c:elementCharacteristic ?elementCharacteristic . }
                filter ( ( not exists { $this bamm:dataType [] } && not exists { $this bamm-c:elementCharacteristic [] } ) ||
                not exists { ?elementCharacteristic rdf:type/rdfs:subClassOf* bamm:Characteristic }) .
+               bind( 'ERR_MISSING_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -185,7 +189,7 @@ bamm-c:LanguageConstraintShape
          sh:message "'{$this}': the language code '{?value}' defined for property 'bamm-c:languageCode' is not a valid value as defined by ISO 639-1." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
                $this bamm-c:languageCode ?value .
                filter( ?value not in ( "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi", "bm", "bn", "bo", "br",
@@ -196,6 +200,7 @@ bamm-c:LanguageConstraintShape
                 "no", "nr", "nv", "ny", "oc", "oj", "om", "or", "os", "pa", "pi", "pl", "ps", "pt", "qu", "rm", "rn", "ro", "ru", "rw", "sa", "sc", "sd", "se",
                 "sg", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti", "tk", "tl", "tn", "to", "tr",
                 "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo", "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu" ) )
+                bind( 'ERR_WRONG_LANGCODE' as ?code )
             }
             """
       ] ;
@@ -256,10 +261,11 @@ bamm-c:LengthConstraintShape
       sh:message "LengthConstraint '{$this}' must have at least one minValue or maxValue." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
-         select $this
+         select $this ?code
          where {
            $this rdf:type bamm-c:LengthConstraint .
            filter( not exists { $this bamm-c:maxValue [] } && not exists { $this bamm-c:minValue [] } )
+           bind( 'ERR_MISSING_PROPERTY' as ?code )
          }
       """
    ] ;
@@ -268,7 +274,7 @@ bamm-c:LengthConstraintShape
       sh:message "LengthConstraint '{$this}' is not applicable to the base Characteristic's data type '{?value}'." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
-         select $this ?value
+         select $this ?value ?code
          where {
            $this rdf:type bamm-c:LengthConstraint .
            $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?value .
@@ -276,21 +282,23 @@ bamm-c:LengthConstraintShape
            filter( not exists { ?value bamm:hasCharacterValueSpace true }
            # and collections
                 && not exists { $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/rdf:type/rdfs:subClassOf* bamm-c:Collection } )
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
          }
       """
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "'{$this}': the maxValue must be greater or equal than the minValue ('{?value}')." ;
+      sh:message "LengthConstraint '{$this}': the maxValue must be greater or equal than the minValue ('{?value}')." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
-         select $this ?value
+         select $this ?value ?code
          where {
            $this rdf:type bamm-c:LengthConstraint .
            $this bamm-c:minValue ?minValue .
            $this bamm-c:maxValue ?maxValue .
            filter( ?minValue > ?maxValue )
            bind( concat( "minValue: ", str( ?minValue ), " maxValue: ", str( ?maxValue ) ) as ?value )
+           bind( 'ERR_INVALID_VALUE' as ?code )
          }
       """
    ] .
@@ -314,15 +322,16 @@ bamm-c:RegularExpressionConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "'{$this}': the RegularExpressionConstraint is not applicable to the base Characteristic's data type '{?value}'." ;
+      sh:message "RegularExpressionConstraint '{$this}' is not applicable to the base Characteristic's data type '{?value}'." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
-         select $this ?value
+         select $this ?value ?code
          where {
            $this rdf:type bamm-c:RegularExpressionConstraint .
            $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?value .
            # Regular expression constraints apply to string-alike dataTypes
            filter( not exists { ?value bamm:hasCharacterValueSpace true } )
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
          }
       """
    ] .
@@ -337,13 +346,14 @@ bamm-c:RangeShape
          sh:message "The data type of the min value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?baseCharacteristic ?baseCharacteristicDataType
+            select $this ?baseCharacteristic ?baseCharacteristicDataType ?code
             where {
                $this rdf:type bamm-c:RangeConstraint .
                $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?baseCharacteristicDataType .
                $this bamm-c:minValue ?minValue .
                bind( datatype( ?minValue ) as ?minValueDataType ) .
                filter( ?minValueDataType != ?baseCharacteristicDataType ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -359,13 +369,14 @@ bamm-c:RangeShape
          sh:message "The data type of the max value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?baseCharacteristic ?baseCharacteristicDataType
+            select $this ?baseCharacteristic ?baseCharacteristicDataType ?code
             where {
                $this rdf:type bamm-c:RangeConstraint .
                $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?baseCharacteristicDataType .
                $this bamm-c:maxValue ?maxValue .
                bind( datatype( ?maxValue ) as ?maxValueDataType ) .
                filter( ?maxValueDataType != ?baseCharacteristicDataType ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -379,10 +390,11 @@ bamm-c:RangeShape
       sh:message "RangeConstraint '{$this}' must have at least one minValue or maxValue." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
-         select $this
+         select $this ?code
          where {
            $this rdf:type bamm-c:RangeConstraint .
            filter( not exists { $this bamm-c:maxValue [] } && not exists { $this bamm-c:minValue [] } )
+           bind( 'ERR_MISSING_PROPERTY' as ?code )
          }
       """
    ] ;
@@ -416,16 +428,17 @@ bamm-c:StateShape
       sh:description "The default value for this state" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "'{$this}': Values does not contain the default value." ;
+         sh:message "StateShape '{$this}': Values does not contain the default value." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?defaultValue ?values
+            select $this ?defaultValue ?values ?code
             where {
                $this bamm-c:values ?values .
                $this bamm-c:defaultValue ?defaultValue .
                filter ( not exists {
                   $this bamm-c:values/rdf:rest*/rdf:first ?defaultValue .
                } )
+               bind( 'ERR_MISSING_DEFAULT_VALUE' as ?code )
             }
          """
       ] ;
@@ -442,15 +455,16 @@ bamm-c:DurationShape
       sh:description "The Unit in which the Duration is measured." ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "'{$this}': Unit of Duration '{?value}' is not of quantity kind time" ;
+         sh:message "DurationShape '{$this}': Unit of Duration '{?value}' is not of quantity kind time" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?unit ?value
+            select $this ?unit ?value ?code
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:Duration .
                $this bamm-c:unit ?unit .
                filter( not exists { ?unit bamm:referenceUnit?/bamm:quantityKind unit:time } )
                bind( ?unit as ?value )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ]
@@ -468,10 +482,10 @@ bamm-c:EnumerationShape
      sh:description "A list of valid states." ;
      sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "'{$this}': one of the values ('{?item}') is not of the specified data type '{?definedDataType}'." ;
+        sh:message "EnumerationShape '{$this}': one of the values ('{?item}') is not of the specified data type '{?definedDataType}'." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?dataType ?item ?definedDataType
+           select $this ?values ?dataType ?item ?definedDataType ?code
            where {
              $this rdf:type/rdfs:subClassOf* bamm-c:Enumeration .
              $this bamm-c:values ?values .
@@ -480,21 +494,23 @@ bamm-c:EnumerationShape
              bind( datatype( ?item ) as ?literalDataType ) .
              bind( strlen( str( ?literalDataType ) ) as ?literalDataTypeLength ) .
              filter( ( ?literalDataType != ?definedDataType ) && ( ?literalDataTypeLength > 0 ) ) .
+             bind( 'ERR_WRONG_DATATYPE' as ?code )
            }
         """
      ] ;
      sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "'{$this}': DataType is a literal type but one of the values ('{?item}') is defined as bamm:Property." ;
+        sh:message "EnumerationShape '{$this}': DataType is a literal type but one of the values ('{?item}') is defined as bamm:Property." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?item
+           select $this ?values ?item ?code
            where {
               $this rdf:type/rdfs:subClassOf* bamm-c:Enumeration .
               filter ( not exists { $this bamm:dataType bamm:Property } ) .
               $this bamm-c:values ?values .
               ?values rdf:rest/rdf:first ?item .
               filter ( exists { ?item rdf:type bamm:Property } )
+              bind( 'ERR_LITERAL_EXPECTED' as ?code )
            }
         """
      ] ;
@@ -514,10 +530,11 @@ bamm-c:SingleEntityShape
          sh:message "Element '{$this}': the dataType '{?value}' that is used as dataType on the Characteristic is not a bamm:Entity." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this $value
+            select $this $value ?code
             where {
                $this bamm:dataType ?value .
                filter( not exists { ?value rdf:type* bamm:Entity } && not exists { ?value rdf:type* bamm:AbstractEntity } )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -535,16 +552,17 @@ bamm-c:EitherShape
       sh:class bamm:Characteristic ;
       sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "'{$this}': the Characteristic referenced by the bamm-c:left and bamm-c:right attributes may not be equivalent." ;
+        sh:message "EitherShape '{$this}': the Characteristic referenced by the bamm-c:left and bamm-c:right attributes may not be equivalent." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
-           select $this
+           select $this ?code
            where {
               # select all Either Characteristics
               $this rdf:type/rdfs:subClassOf* bamm-c:Either .
               $this bamm-c:left ?left .
               $this bamm-c:right ?right .
               filter ( ?left = ?right ) .
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
            }
         """
       ] ;
@@ -599,7 +617,7 @@ bamm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' elements ('{?value}') may only be Properties or string literals" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements ?elements .
@@ -607,6 +625,7 @@ bamm-c:StructuredValueShape
               filter( ( isURI( ?element ) && not exists { ?element a bamm:Property } )
                  || ( datatype( ?element ) != xsd:string  ) )
               bind( str( ?element ) as ?value )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -615,7 +634,7 @@ bamm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' elements may not be empty" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements ?elements .
@@ -624,6 +643,7 @@ bamm-c:StructuredValueShape
                 filter( ?element != rdf:NIL )
               } )
               bind( str( $this ) as ?value )
+              bind( 'ERR_MISSING_VALUE' as ?code )
             }
          """
       ] ;
@@ -636,7 +656,7 @@ bamm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' elements must contain at least one Property" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements ?elements .
@@ -653,6 +673,7 @@ bamm-c:StructuredValueShape
                 }
                 group by $this
               }
+              bind( 'ERR_MISSING_PROPERTY' as ?code )
             }
          """
       ] ;
@@ -665,7 +686,7 @@ bamm-c:StructuredValueShape
          sh:message "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements/rdf:rest*/rdf:first ?value .
@@ -674,6 +695,7 @@ bamm-c:StructuredValueShape
               filter( !strstarts( str( ?dataType ), str( xsd: ) )
                      && !strstarts( str( ?dataType ), str( rdf: ) )
                      && str( ?dataType) != str( bamm:curie ) )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -686,13 +708,14 @@ bamm-c:StructuredValueShape
          sh:message "Characteristic '{?value}' may not be used with Properties that appear as elements in a StructuredValue '{$this}'" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select distinct $this ?value
+            select distinct $this ?value ?code
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements/rdf:rest*/rdf:first ?property .
               ?property a bamm:Property .
               ?property bamm:characteristic/( bamm-c:baseCharacteristic* | rdfs:subClassOf* )/rdf:type ?value .
               filter( ?value in( bamm-c:Collection, bamm-c:Set, bamm-c:SortedSet, bamm-c:List, bamm-c:TimeSeries, bamm-c:Either, bamm-c:StructuredValue ) )
+              bind( 'ERR_WRONG_USAGE' as ?code )
             }
          """
       ] ;
@@ -705,11 +728,12 @@ bamm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' dataType '{?value}' must have a string-like value space" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm:dataType ?value .
               filter( not exists { ?value bamm:hasCharacterValueSpace true } )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;
@@ -730,11 +754,12 @@ bamm-c:FixedPointConstraintShape
          sh:message "Fixed Point Constraint '{$this}' may only be used with Characteristics whose data type is xsd:decimal, but the actual value is '{?value}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value
+            select $this ?value ?code
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:FixedPointConstraint .
                $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?value .
                filter( str( ?value ) != str( xsd:decimal ) )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
             }
          """
       ] ;

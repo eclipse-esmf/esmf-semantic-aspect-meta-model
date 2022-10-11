@@ -167,38 +167,33 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
          "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> \r\n" +
          "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \r\n";
 
-   public String getMessageText( final String shapeName, final String propertyName, final KnownVersion version ) {
-      return getMessageText( shapeName, propertyName, 0, version );
-   }
-
-   // unfortunately does not work, message index is not defined on a graph
-   public String getMessageText( final String shapeName, final String propertyName, final int messageIndex, final KnownVersion version ) {
+   public String getMessageText( final String shapeName, final String propertyName, final String errId, final KnownVersion version ) {
       final String currentVersionPrefixes = String.format( prefixes, version.toVersionString(), version.toVersionString(), version.toVersionString(),
             version.toVersionString() );
       final String queryString = String.format(
-            "%s select ?errorMessage where { %s sh:property/sh:path ?propertyName. %s sh:property/sh:sparql/sh:message ?errorMessage. filter ( ?propertyName = %s ). }",
-            currentVersionPrefixes, shapeName, shapeName, propertyName );
-      return executeQuery( queryString, version, messageIndex );
-   }
-   
-   public String getMessageText( final String shapeName, final KnownVersion version ) {
-      final String currentVersionPrefixes = String.format( prefixes, version.toVersionString(), version.toVersionString(), version.toVersionString(),
-            version.toVersionString() );
-      final String queryString = String.format( "%s select ?errorMessage where { %s sh:sparql/sh:message ?errorMessage. }",
-            currentVersionPrefixes, shapeName );
-      return executeQuery( queryString, version, 0 );
+            "%s select ?errorMessage where { %s sh:property ?propertyNode."
+                  + "    ?propertyNode sh:path ?propertyName."
+                  + "    ?propertyNode sh:sparql ?sparqlNode."
+                  + "    ?sparqlNode sh:message ?errorMessage."
+                  + "    ?sparqlNode sh:select ?query. "
+                  + "filter ( ?propertyName = %s ) filter ( contains( ?query, '%s' ) ) }",
+            currentVersionPrefixes, shapeName, propertyName, errId );
+      return executeQuery( queryString, version );
    }
 
-   private String executeQuery( final String queryString, final KnownVersion version, int messageIndex ) {
+   public String getMessageText( final String shapeName, final String errId, final KnownVersion version ) {
+      final String currentVersionPrefixes = String.format( prefixes, version.toVersionString(), version.toVersionString(), version.toVersionString(),
+            version.toVersionString() );
+      final String queryString = String.format(
+            "%s select ?errorMessage where { %s sh:sparql ?sparqlNode. ?sparqlNode sh:message ?errorMessage. ?sparqlNode sh:select ?query. filter ( contains( ?query, '%s' ) ) }",
+            currentVersionPrefixes, shapeName, errId );
+      return executeQuery( queryString, version );
+   }
+
+   private String executeQuery( final String queryString, final KnownVersion version ) {
       final Query query = QueryFactory.create( queryString );
       try ( final QueryExecution qexec = QueryExecutionFactory.create( query, getShapesModel( version ) ) ) {
          final ResultSet results = qexec.execSelect();
-         while ( messageIndex-- > 0 ) {
-            if ( !results.hasNext() ) {
-               return "";
-            }
-            results.nextSolution();
-         }
          if ( results.hasNext() ) {
             final QuerySolution solution = results.nextSolution();
             final Literal l = solution.getLiteral( "errorMessage" );

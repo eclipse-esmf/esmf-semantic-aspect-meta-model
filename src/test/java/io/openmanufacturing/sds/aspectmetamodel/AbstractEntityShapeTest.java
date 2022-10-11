@@ -37,7 +37,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    public void testInstantiatingAbstractEntityExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "AbstractEntityInstance";
       final String value = TEST_NAMESPACE_PREFIX + "InstantiatedAbstractTestEntity";
-      final String expectedMessage = validator.getMessageText( "bamm:AbstractEntityDirectlyInstantiated", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "bamm:AbstractEntityDirectlyInstantiated", "ERR_ABSTRACT_USAGE", metaModelVersion );
       final SemanticError resultForInstantiatedAbstractEntity = new SemanticError( expectedMessage,
             focusNode, "", VIOLATION_URN, value );
       expectSemanticValidationErrors( "abstract-entity-shape", "InstantiatedAbstractTestEntity", metaModelVersion,

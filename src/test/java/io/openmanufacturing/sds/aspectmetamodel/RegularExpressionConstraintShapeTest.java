@@ -46,7 +46,7 @@ public class RegularExpressionConstraintShapeTest extends AbstractShapeTest {
    public void testRegularExpressionConstraintValidationWithInvalidTypeExpectFailure(
          final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRegularExpressionConstraintWithInvalidType";
-      final String expectedMessage = validator.getMessageText( "bamm-c:RegularExpressionConstraintShape", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "bamm-c:RegularExpressionConstraintShape", "ERR_WRONG_DATATYPE", metaModelVersion );
       final SemanticError resultForDataType = new SemanticError( expectedMessage,
             focusNode, "", VIOLATION_URN, XSD.xboolean.getURI() );
       expectSemanticValidationErrors(

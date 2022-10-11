@@ -39,7 +39,8 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
 
       final String instanceName = "TestCharacteristicInstanceMissingRequiredProperties";
       final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
-      final SemanticError resultForDataType = new SemanticError( MESSAGE_MISSING_DATATYPE,
+      final SemanticError resultForDataType = new SemanticError(
+            validator.getMessageText( "bamm:CharacteristicShape", "bamm:dataType", "ERR_NO_DATATYPE", metaModelVersion ),
             instanceId, bammUrns.datatypeUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
    }
