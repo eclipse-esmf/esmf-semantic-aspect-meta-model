@@ -153,7 +153,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithNonScalarDatatype";
 
       final SemanticError resultForElements = new SemanticError(
-            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm-c:elements", "ERR_WRONG_DATATYPE", metaModelVersion ),
+            "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType",
             focusNode, bammUrns.elements, VIOLATION_URN,
             TEST_NAMESPACE_PREFIX + "prop" );
       expectSemanticValidationErrors( "structured-value-shape",
