@@ -76,11 +76,15 @@ bamm:AspectShape
             select $this ?properties ?value ?code
             where {
                $this bamm:properties ?properties .
-               ?properties rdf:rest*/rdf:first ?value .
-               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
-                   || ( isBlank( ?value ) && not exists { ?value bamm:optional true } ) )
-               filter (not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
-                   || ( isBlank( ?value ) && not exists { ?value bamm:payloadName ?any } ))
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( not exists { ?property bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property bamm:optional true } ) )
+               filter (not exists { ?property bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property bamm:payloadName ?any } ))
+               optional {
+                 ?property bamm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
             }
          """
@@ -144,20 +148,24 @@ bamm:EntityShape
             select $this ?properties ?value ?code
             where {
                $this bamm:properties ?properties .
-               ?properties rdf:rest*/rdf:first ?value .
-               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
-                   || ( isBlank( ?value ) && not exists { ?value bamm:optional true } ) )
-               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
-                   || ( isBlank( ?value ) && not exists { ?value bamm:notInPayload true } ) )
-               filter ( not exists { ?value bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
-                   || ( isBlank( ?value ) && not exists { ?value bamm:payloadName ?any } ) )
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( not exists { ?property bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property bamm:optional true } ) )
+               filter ( not exists { ?property bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property bamm:notInPayload true } ) )
+               filter ( not exists { ?property bamm:property?/rdf:type/rdfs:subClassOf* bamm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property bamm:payloadName ?any } ) )
                filter ( not exists {
                  $this bamm:extends+ ?abstractEntity .
                  ?abstractEntity a bamm:AbstractEntity .
-                 ?value bamm:extends ?abstractProperty .
+                 ?property bamm:extends ?abstractProperty .
                  ?abstractEntity bamm:properties/rdf:rest*/rdf:first ?abstractProperty .
-                 ?value bamm:characteristic/rdf:type/rdfs:subClassOf* bamm:Characteristic .
+                 ?property bamm:characteristic/rdf:type/rdfs:subClassOf* bamm:Characteristic .
               } )
+              optional {
+                ?property bamm:property ?actualProperty .
+              }
+              bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
               bind( 'ERR_INVALID_PROPERTY' as ?code )
             }
          """
@@ -170,12 +178,16 @@ bamm:EntityShape
             select $this ?properties ?value ?code
             where {
                $this bamm:properties ?properties .
-               ?properties rdf:rest*/rdf:first ?value .
-               filter ( isBlank( ?value ) && exists { ?value bamm:notInPayload true } ) .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( isBlank( ?property ) && exists { ?property bamm:notInPayload true } ) .
                filter ( not exists {
                   ?enumeration rdf:type/rdfs:subClassOf* bamm-c:Enumeration .
                   ?enumeration (<>|!<>)* $this
                } )
+               optional {
+                 ?property bamm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
             }
          """
@@ -216,8 +228,12 @@ bamm:EntityShape
             select $this ?properties ?value ?code
             where {
                $this bamm:properties ?properties .
-               ?properties rdf:rest*/rdf:first ?value .
-               filter ( isBlank( ?value ) && exists { ?value bamm:notInPayload true } && exists { ?value bamm:optional true } ) .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( isBlank( ?property ) && exists { ?property bamm:notInPayload true } && exists { ?property bamm:optional true } ) .
+               optional {
+                 ?property bamm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
             }
          """
@@ -230,8 +246,12 @@ bamm:EntityShape
             select $this ?properties ?value ?code
             where {
                $this bamm:properties ?properties .
-               ?properties rdf:rest*/rdf:first ?value .
-               filter ( isBlank( ?value ) && exists { ?value bamm:notInPayload true } && exists { ?value bamm:payloadName ?any } ) .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( isBlank( ?property ) && exists { ?property bamm:notInPayload true } && exists { ?property bamm:payloadName ?any } ) .
+               optional {
+                 ?property bamm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
             }
          """
@@ -638,7 +658,7 @@ bamm:ValidEntityInstances
 			  filter( ( ?providedType != ?characteristicDataType ) &&
 					 not exists { ?providedType bamm:canBeCastTo* ?characteristicDataType } )
 			  bind( ?property as ?path )
-			  bind( str( ?instanceValue ) as ?value )
+			  bind( ?instanceValue as ?value )
 			  bind( 'ERR_WRONG_DATATYPE' as ?code )
 			}
 		"""

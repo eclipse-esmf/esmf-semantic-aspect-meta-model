@@ -71,7 +71,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "TestEntityInstanceMissingNotInPayloadProperties",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY, validationError ) );
+      assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage(
+            validator.getMessageText( "bamm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ), validationError ) );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -105,7 +106,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             metaModelVersion );
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
-            "The value for a list Property ':intListProperty' of the Entity instance ':Instance' contains an entry with an invalid data type." );
+            "Value '2' for list Property ':intListProperty' of the Entity instance ':Instance' has invalid data type." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -125,7 +126,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             metaModelVersion );
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
-            "The value for a list Property ':entityListProperty' of the Entity instance ':Instance' contains an entry with an invalid data type." );
+            "Value ':AnotherListEntityInstance' for list Property ':entityListProperty' of the Entity instance ':Instance' has invalid data type." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -166,7 +167,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             "ExtendingEntityInstanceMissingNotInPayloadProperty",
             metaModelVersion );
 
-      assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY, validationError ) );
+      assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage(
+            validator.getMessageText( "bamm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ), validationError ) );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }

@@ -157,7 +157,6 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithMissingOptionalProperty", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTRY_ENTITY_PROPERTY_LIST, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isNotEmpty();
    }
 
    @ParameterizedTest
@@ -173,7 +172,7 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithNotInPayloadAndOptionalProperty", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTITY_PROPERTY_DEFINITION, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( "" );
+      assertThat( result.getValue() ).isEqualTo( "urn:bamm:io.openmanufacturing.test:1.0.0#testPropertyTwo" );
    }
 
    @ParameterizedTest
@@ -232,6 +231,6 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithNotInPayloadPropertyAndPayloadName", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTITY_PROPERTY_PAYLOAD_NAME, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( "" );
+      assertThat( result.getValue() ).isEqualTo( "urn:bamm:io.openmanufacturing.test:1.0.0#testPropertyTwo" );
    }
 }

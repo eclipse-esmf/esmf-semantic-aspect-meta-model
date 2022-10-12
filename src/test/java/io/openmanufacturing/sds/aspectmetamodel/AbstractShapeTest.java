@@ -74,15 +74,17 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_INVALID_LANG_STRING = "Value must be a valid literal of type langString";
    final String MESSAGE_DUPLICATE_PROPERTY = "Property may only have 1 value, but found 2";
    final String MESSAGE_MISSING_DATATYPE = "No datatype is defined on the Characteristic instance '{$this}'.";
-   final String MESSAGE_INVALID_ENTRY_ENTITY_PROPERTY_LIST = "Each element in the Entity's '{$this}' properties list must be either a Property or a blank node "
-         + "referring to a Property and defining either bamm:optional \"true\"^^xsd:boolean and/or bamm:payloadName or bamm:notInPayload "
-         + "\"true\"^^xsd:boolean.";
+   final String MESSAGE_INVALID_ENTRY_ENTITY_PROPERTY_LIST =
+         "Element '{?value}' in the Entity's '{$this}' properties list must be either a Property or a blank node "
+               + "referring to a Property and defining either bamm:optional \"true\"^^xsd:boolean and/or bamm:payloadName or bamm:notInPayload "
+               + "\"true\"^^xsd:boolean.";
    final String MESSAGE_INVALID_ENTITY_PROPERTY_DEFINITION =
-         "A Property of the Entity '{$this}' may not be defined with both bamm:optional \"true\"^^xsd:boolean and bamm:notInPayload \"true\"^^xsd:boolean.";
-   final String MESSAGE_INVALID_ENTITY_PROPERTY_PAYLOAD_NAME = "A Property of the Entity '{$this}' may not be defined with both bamm:payloadName "
+         "Property '{?value}' of the Entity '{$this}' may not be defined with both bamm:optional \"true\"^^xsd:boolean and bamm:notInPayload \"true\"^^xsd:boolean.";
+   final String MESSAGE_INVALID_ENTITY_PROPERTY_PAYLOAD_NAME = "Property '{?value}' of the Entity '{$this}' may not be defined with both bamm:payloadName "
          + "and bamm:notInPayload \"true\"^^xsd:boolean.";
-   final String MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION = "A Property of the Entity '{$this}' may only be defined with bamm:notInPayload \"true\"^^xsd:boolean "
-         + "when the Entity, or one of its parent Entities, is used as the data type of an Enumeration.";
+   final String MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION =
+         "Property '{?value}' of the Entity '{$this}' may only be defined with bamm:notInPayload \"true\"^^xsd:boolean "
+               + "when the Entity, or one of its parent Entities, is used as the data type of an Enumeration.";
 
    final String MESSAGE_INVALID_ENTITY_WITH_SINGLE_PROPERTY = "Entity '{$this}' defining a Property with bamm:notInPayload \"true\"^^xsd:boolean must define "
          + "at least one more Property.";
@@ -106,7 +108,6 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_INVALID_MATCHING_GROUPS2 = "Number of matching capture groups (1) in deconstructionRule does not match number of Properties in "
          + "elements (0)";
    final String MESSAGE_NON_MATCHING_GROUPS = "Given Property exampleValue (prop1) does not match group 1 from deconstructionRule (prop1x)";
-   final String MESSAGE_INSTANCE_MISSING_REQUIRED_PROPERTY = "Entity instance '{$this}' is missing required Property.";
    final String MESSAGE_DATA_TYPE_NOT_POSITIVE_INTEGER = "Value must be a valid literal of type positiveInteger";
    final String MESSAGE_COLLECTION_WITHOUT_DATA_TYPE = "Collection '{$this}' must be defined with either a 'bamm:dataType' or a 'bamm-c:elementCharacteristic'.";
    final String MESSAGE_DATA_TYPE_NOT_STRING = "Value must be a valid literal of type string";

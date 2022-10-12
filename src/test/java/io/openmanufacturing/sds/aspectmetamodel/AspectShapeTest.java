@@ -148,7 +148,7 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidOptionalPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidOptionalProperty", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
@@ -159,10 +159,10 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithMissingOptionalPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithMissingOptionalProperty", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isNotEmpty();
+      assertThat( result.getValue() ).isEmpty();
    }
 
    @ParameterizedTest
@@ -170,7 +170,7 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidNotInPayloadPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidNotInPayloadProperty", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "bamm:AspectShape", "bamm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
