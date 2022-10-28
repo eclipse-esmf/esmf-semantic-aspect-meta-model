@@ -47,9 +47,8 @@ public class StateShapeTest extends AbstractShapeTest {
    public void testDefaultValueNotContainedInValuesExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStateDefaultValueNotInValues";
-
-      final SemanticError resultForDefaultValue = new SemanticError(
-            "Values does not contain the default value.",
+      final String expectedMessage = validator.getMessageText( "bamm-c:StateShape", "bamm-c:defaultValue", "ERR_MISSING_DEFAULT_VALUE", metaModelVersion );
+      final SemanticError resultForDefaultValue = new SemanticError( expectedMessage,
             focusNode, bammUrns.defaultValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "state-shape", "TestStateDefaultValueNotInValues",
             metaModelVersion, resultForDefaultValue );

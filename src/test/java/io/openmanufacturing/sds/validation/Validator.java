@@ -27,6 +27,13 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.jena.datatypes.xsd.XSDDatatype;
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.NodeIterator;
 import org.apache.jena.rdf.model.Property;
@@ -65,9 +72,9 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
 
    private String getValidationResultField( final Resource validationResultResource, final Property property ) {
       return Optional.ofNullable( validationResultResource.getProperty( property ) )
-                     .map( Statement::getObject )
-                     .map( RDFNode::toString )
-                     .orElse( "" );
+            .map( Statement::getObject )
+            .map( RDFNode::toString )
+            .orElse( "" );
    }
 
    private Collection<SemanticError> buildSemanticValidationErrors( final Resource report ) {
@@ -110,15 +117,15 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
     */
    private Set<Tuple2<Statement, Statement>> determineBammUrlsToReplace( final Model model ) {
       return model.listStatements( null, SH.jsLibraryURL, (RDFNode) null ).toList().stream()
-                  .filter( statement -> statement.getObject().isLiteral() )
-                  .filter( statement -> statement.getObject().asLiteral().getString().startsWith( "bamm://" ) )
-                  .flatMap( statement -> rewriteBammUrl( statement.getObject().asLiteral().getString() )
-                        .stream()
-                        .map( newUrl ->
-                              ResourceFactory.createStatement( statement.getSubject(), statement.getPredicate(),
-                                    ResourceFactory.createTypedLiteral( newUrl, XSDDatatype.XSDanyURI ) ) )
-                        .map( newStatement -> new Tuple2<>( statement, newStatement ) ) )
-                  .collect( Collectors.toSet() );
+            .filter( statement -> statement.getObject().isLiteral() )
+            .filter( statement -> statement.getObject().asLiteral().getString().startsWith( "bamm://" ) )
+            .flatMap( statement -> rewriteBammUrl( statement.getObject().asLiteral().getString() )
+                  .stream()
+                  .map( newUrl ->
+                        ResourceFactory.createStatement( statement.getSubject(), statement.getPredicate(),
+                              ResourceFactory.createTypedLiteral( newUrl, XSDDatatype.XSDanyURI ) ) )
+                  .map( newStatement -> new Tuple2<>( statement, newStatement ) ) )
+            .collect( Collectors.toSet() );
    }
 
    /**
@@ -132,7 +139,7 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
     */
    private Optional<String> rewriteBammUrl( final String bammUrl ) {
       final Matcher matcher = Pattern.compile( "^bamm://([\\p{Alpha}-]*)/(\\d+\\.\\d+\\.\\d+)/(.*)$" )
-                                     .matcher( bammUrl );
+            .matcher( bammUrl );
       if ( matcher.find() ) {
          return KnownVersion.fromVersionString( matcher.group( 2 ) ).flatMap( metaModelVersion -> {
             final String spec = String
@@ -148,5 +155,51 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
          return Optional.ofNullable( resource ).map( URL::toString );
       }
       return Optional.empty();
+   }
+
+   private final static String prefixes = "prefix mmm: <urn:bamm:io.openmanufacturing:meta-meta-model:%s#> \r\n" +
+         "prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:%s#> \r\n" +
+         "prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:%s#> \r\n" +
+         "prefix unit: <urn:bamm:io.openmanufacturing:unit:%s#> \r\n" +
+         "prefix sh: <http://www.w3.org/ns/shacl#> \r\n" +
+         "prefix xsd: <http://www.w3.org/2001/XMLSchema#> \r\n" +
+         "prefix dash: <http://datashapes.org/dash#> \r\n" +
+         "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> \r\n" +
+         "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \r\n";
+
+   public String getMessageText( final String shapeName, final String propertyName, final String errId, final KnownVersion version ) {
+      final String currentVersionPrefixes = String.format( prefixes, version.toVersionString(), version.toVersionString(), version.toVersionString(),
+            version.toVersionString() );
+      final String queryString = String.format(
+            "%s select ?errorMessage where { %s sh:property ?propertyNode."
+                  + "    ?propertyNode sh:path ?propertyName."
+                  + "    ?propertyNode sh:sparql ?sparqlNode."
+                  + "    ?sparqlNode sh:message ?errorMessage."
+                  + "    ?sparqlNode sh:select ?query. "
+                  + "filter ( ?propertyName = %s ) filter ( contains( ?query, '%s' ) ) }",
+            currentVersionPrefixes, shapeName, propertyName, errId );
+      return executeQuery( queryString, version );
+   }
+
+   public String getMessageText( final String shapeName, final String errId, final KnownVersion version ) {
+      final String currentVersionPrefixes = String.format( prefixes, version.toVersionString(), version.toVersionString(), version.toVersionString(),
+            version.toVersionString() );
+      final String queryString = String.format(
+            "%s select ?errorMessage where { %s sh:sparql ?sparqlNode. ?sparqlNode sh:message ?errorMessage. ?sparqlNode sh:select ?query. filter ( contains( ?query, '%s' ) ) }",
+            currentVersionPrefixes, shapeName, errId );
+      return executeQuery( queryString, version );
+   }
+
+   private String executeQuery( final String queryString, final KnownVersion version ) {
+      final Query query = QueryFactory.create( queryString );
+      try ( final QueryExecution qexec = QueryExecutionFactory.create( query, getShapesModel( version ) ) ) {
+         final ResultSet results = qexec.execSelect();
+         if ( results.hasNext() ) {
+            final QuerySolution solution = results.nextSolution();
+            final Literal l = solution.getLiteral( "errorMessage" );
+            return l.getString();
+         }
+      }
+      return "";
    }
 }

@@ -31,7 +31,8 @@ public class RangeShapeTest extends AbstractShapeTest {
    public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeMissingRequiredProperties";
 
-      final SemanticError resultForMinAndMax = new SemanticError( MESSAGE_RANGE_NEEDS_MIN_MAX,
+      final SemanticError resultForMinAndMax = new SemanticError(
+            validator.getMessageText( "bamm-c:RangeShape", "ERR_MISSING_PROPERTY", metaModelVersion ),
             focusNode, "", VIOLATION_URN, focusNode );
       expectSemanticValidationErrors( "range-shape", "TestRangeMissingRequiredProperties",
             metaModelVersion, resultForMinAndMax );
@@ -44,10 +45,10 @@ public class RangeShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeWithInvalidMinAndMaxValueDataType";
 
       final SemanticError resultForMinValue = new SemanticError(
-            "The data type of the min value for the Range Constraint (see focus node) is not the data type defined in the base Characteristic.",
+            validator.getMessageText( "bamm-c:RangeShape", "bamm-c:minValue", "ERR_WRONG_DATATYPE", metaModelVersion ),
             focusNode, bammUrns.minValueUrn, VIOLATION_URN, "" );
       final SemanticError resultForMaxValue = new SemanticError(
-            "The data type of the max value for the Range Constraint (see focus node) is not the data type defined in the base Characteristic.",
+            validator.getMessageText( "bamm-c:RangeShape", "bamm-c:maxValue", "ERR_WRONG_DATATYPE", metaModelVersion ),
             focusNode, bammUrns.maxValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "range-shape", "TestRangeWithInvalidMinAndMaxValueDataType",
             metaModelVersion, resultForMinValue, resultForMaxValue );

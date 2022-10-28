@@ -45,9 +45,9 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
    public void testFixedPointValidationWithInvalidDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointWithInvalidDataType";
-
+      final String expectedMessage = validator.getMessageText( "bamm-c:FixedPointConstraintShape", "bamm-c:scale", "ERR_WRONG_DATATYPE", metaModelVersion );
       final SemanticError resultForScale = new SemanticError(
-            MESSAGE_FIXED_POINT_INVALID_DATA_TYPE, focusNode, bammUrns.scale, VIOLATION_URN, "" );
+            expectedMessage, focusNode, bammUrns.scale, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#float" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointWithInvalidDataType",
             metaModelVersion, resultForScale );
    }
@@ -58,9 +58,9 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
          final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointChainedWithInvalidDataType";
-
+      final String expectedMessage = validator.getMessageText( "bamm-c:FixedPointConstraintShape", "bamm-c:scale", "ERR_WRONG_DATATYPE", metaModelVersion );
       final SemanticError resultForScale = new SemanticError(
-            MESSAGE_FIXED_POINT_INVALID_DATA_TYPE, focusNode, bammUrns.scale, VIOLATION_URN, "" );
+            expectedMessage, focusNode, bammUrns.scale, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#float" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointChainedWithInvalidDataType",
             metaModelVersion, resultForScale );
    }

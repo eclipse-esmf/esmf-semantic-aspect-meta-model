@@ -24,8 +24,9 @@ public class EntityInstancesHaveOnlyKnownPropertiesShapeTest extends AbstractSha
    @MethodSource( value = "allVersions" )
    public void testAdditionalUnknownPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "Instance";
+      final String expectedMessage = validator.getMessageText( "bamm:EntityInstancesHaveOnlyKnownProperties", "ERR_INVALID_PROPERTY", metaModelVersion );
       final SemanticError resultForName = new SemanticError(
-            MESSAGE_INSTANCE_UNKNOWN_PROPERTY, focusNode, "", WARNING_URN, TEST_NAMESPACE_PREFIX + "intProperty" );
+            expectedMessage, focusNode, "", WARNING_URN, TEST_NAMESPACE_PREFIX + "intProperty" );
       expectSemanticValidationErrors( "entities-have-only-known-properties-shape",
             "TestEntityInstanceWithUnknownProperties", metaModelVersion, resultForName );
    }
@@ -33,8 +34,9 @@ public class EntityInstancesHaveOnlyKnownPropertiesShapeTest extends AbstractSha
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAdditionalUnknownPropertyInExtendingEntityInstanceExpectFailure( final KnownVersion metaModelVersion ) {
+      final String expectedMessage = validator.getMessageText( "bamm:EntityInstancesHaveOnlyKnownProperties", "ERR_INVALID_PROPERTY", metaModelVersion );
       final SemanticError resultForName = new SemanticError(
-            MESSAGE_INSTANCE_UNKNOWN_PROPERTY, TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "",
+            expectedMessage, TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "",
             WARNING_URN, TEST_NAMESPACE_PREFIX + "unkown" );
       expectSemanticValidationErrors( "entities-have-only-known-properties-shape",
             "ExtendingEntityInstanceWithUnknownProperties", metaModelVersion, resultForName );

@@ -39,7 +39,8 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
 
       final String instanceName = "TestCharacteristicInstanceMissingRequiredProperties";
       final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
-      final SemanticError resultForDataType = new SemanticError( MESSAGE_MISSING_DATATYPE,
+      final SemanticError resultForDataType = new SemanticError(
+            validator.getMessageText( "bamm:CharacteristicShape", "bamm:dataType", "ERR_NO_DATATYPE", metaModelVersion ),
             instanceId, bammUrns.datatypeUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
    }
@@ -149,8 +150,8 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
 
       final String instanceName = "TestCharacteristicInstanceWithDisallowedDataType";
       final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
-      final SemanticError resultForDataType = new SemanticError(
-            MESSAGE_INVALID_DATA_TYPE, instanceId, bammUrns.datatypeUrn, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#maxExclusive" );
+      final SemanticError resultForDataType = new SemanticError( MESSAGE_INVALID_DATA_TYPE,
+            instanceId, bammUrns.datatypeUrn, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#maxExclusive" );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
    }
 
@@ -162,8 +163,8 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
       final String instanceName = "TestCharacteristicInstanceWithCharacteristicAsDataType";
       final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
       final String value = String.format( "urn:bamm:io.openmanufacturing:characteristic:%s#Text", metaModelVersion.toVersionString() );
-      final SemanticError resultForDataType = new SemanticError(
-            MESSAGE_INVALID_DATA_TYPE, instanceId, bammUrns.datatypeUrn, VIOLATION_URN, value );
+      final SemanticError resultForDataType = new SemanticError( MESSAGE_INVALID_DATA_TYPE,
+            instanceId, bammUrns.datatypeUrn, VIOLATION_URN, value );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
    }
 }

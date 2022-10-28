@@ -64,7 +64,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    public void testElementsContainInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "structured-value-shape", "TestStructuredValueWithInvalidElements", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_INVALID_STRUCTURED_VALUE_ELEMENTS );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage(
+            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm-c:elements", "ERR_WRONG_DATATYPE", metaModelVersion ), result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isEqualTo( "42" );
    }
@@ -76,7 +77,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithEmptyElements";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_EMPTY_STRUCTURED_VALUE_ELEMENTS, focusNode, bammUrns.elements, VIOLATION_URN, focusNode );
+            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm-c:elements", "ERR_MISSING_VALUE", metaModelVersion ),
+            focusNode, bammUrns.elements, VIOLATION_URN, focusNode );
       final SemanticError resultForGroups = new SemanticError(
             MESSAGE_INVALID_MATCHING_GROUPS2, focusNode, "", VIOLATION_URN, "" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueWithEmptyElements",
@@ -90,7 +92,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithInvalidDatatype";
 
       final SemanticError resultForDataType = new SemanticError(
-            MESSAGE_STRUCTURED_VALUE_DATA_TYPE, focusNode, bammUrns.datatypeUrn, VIOLATION_URN,
+            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm:dataType", "ERR_WRONG_DATATYPE", metaModelVersion ),
+            focusNode, bammUrns.datatypeUrn, VIOLATION_URN,
             XSD.xboolean.getURI() );
       expectSemanticValidationErrors(
             "structured-value-shape", "TestStructuredValueWithInvalidDatatype",
@@ -137,7 +140,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithoutProperties";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_ELEMENTS_MUST_CONTAIN_PROPERTIES, focusNode, bammUrns.elements, VIOLATION_URN, "foo" );
+            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm-c:elements", "ERR_MISSING_PROPERTY", metaModelVersion ),
+            focusNode, bammUrns.elements, VIOLATION_URN, "foo" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueElementsWithoutProperties",
             metaModelVersion, resultForElements );
    }
@@ -149,7 +153,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithNonScalarDatatype";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_ELEMENTS_MUST_HAVE_SCALAR_TYPE, focusNode, bammUrns.elements, VIOLATION_URN,
+            "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType",
+            focusNode, bammUrns.elements, VIOLATION_URN,
             TEST_NAMESPACE_PREFIX + "prop" );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueElementsWithNonScalarDatatype",
@@ -163,7 +168,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithListCharacteristic";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_ELEMENTS_HAVE_INVALID_CHARACTERISTIC, focusNode, bammUrns.elements, VIOLATION_URN,
+            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm-c:elements", "ERR_WRONG_USAGE", metaModelVersion ),
+            focusNode, bammUrns.elements, VIOLATION_URN,
             bammUrns.list );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueElementsWithListCharacteristic",
@@ -178,7 +184,8 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
             TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithStructuredValueCharacteristic";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_ELEMENTS_HAVE_INVALID_CHARACTERISTIC, focusNode, bammUrns.elements, VIOLATION_URN,
+            validator.getMessageText( "bamm-c:StructuredValueShape", "bamm-c:elements", "ERR_WRONG_USAGE", metaModelVersion ),
+            focusNode, bammUrns.elements, VIOLATION_URN,
             bammUrns.structuredValue );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueElementsWithStructuredValueCharacteristic",
