@@ -44,7 +44,8 @@ public class PropertyShapeTest extends AbstractShapeTest {
    public void testRecursivePropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_RECURSIVE_PROPERTY,
+      final SemanticError resultForName = new SemanticError(
+            validator.getMessageText( "bamm:PropertyShape", "bamm:characteristic", "ERR_CYCLE_DETECTED", metaModelVersion ),
             FOCUS_NODE, bammUrns.characteristicUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyRecursiveProperty",
             metaModelVersion, resultForName );

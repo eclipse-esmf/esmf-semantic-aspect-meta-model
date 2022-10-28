@@ -46,7 +46,8 @@ public class EnumerationShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEnumerationValueIsNotOfDefinedDataType";
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_VALUE_NOT_OF_DATATYPE,
+      final SemanticError resultForName = new SemanticError(
+            "EnumerationShape ':TestEnumerationValueIsNotOfDefinedDataType': one of the values ('1.0') does not have the specified data type 'xsd:string'.",
             focusNode, bammUrns.valuesUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "enumeration-shape", "TestEnumerationValueIsNotOfDefinedDataType",
             metaModelVersion, resultForName );
@@ -58,8 +59,9 @@ public class EnumerationShapeTest extends AbstractShapeTest {
       final BammUrns bammUrns = new BammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEnumerationValueIsNotALiteralType";
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_VALUE_IS_PROPERTY, focusNode,
-            bammUrns.valuesUrn, VIOLATION_URN, "" );
+      final SemanticError resultForName = new SemanticError(
+            "EnumerationShape ':TestEnumerationValueIsNotALiteralType': DataType is a literal type but one of the values (':testProperty') is defined as bamm:Property.",
+            focusNode, bammUrns.valuesUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "enumeration-shape", "TestEnumerationValueIsNotALiteralType",
             metaModelVersion, resultForName );
    }

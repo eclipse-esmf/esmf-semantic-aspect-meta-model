@@ -44,7 +44,7 @@ bamm-c:QuantifiableShape
       sh:path bamm-c:unit ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Quantifiable '{$this}': value '{?value}' of the property 'bamm-c:unit' is not an instance or subclass of bamm:Unit." ;
+         sh:message "The unit definition '{?value}' of the Quantifiable (Characteristic) '{$this}' is not valid." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value ?code
@@ -186,7 +186,7 @@ bamm-c:LanguageConstraintShape
       sh:path bamm-c:languageCode ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "'{$this}': the language code '{?value}' defined for property 'bamm-c:languageCode' is not a valid value as defined by ISO 639-1." ;
+         sh:message "The language code '{?value}' of LanguageConstraint '{$this}' is not a valid ISO 639-1 language code." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value ?code
@@ -258,7 +258,7 @@ bamm-c:LengthConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "LengthConstraint '{$this}' must have at least one minValue or maxValue." ;
+      sh:message "LengthConstraint '{$this}' must have a minValue or a maxValue." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this ?code
@@ -387,7 +387,7 @@ bamm-c:RangeShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "RangeConstraint '{$this}' must have at least one minValue or maxValue." ;
+      sh:message "RangeConstraint '{$this}' must have a minValue or a maxValue." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
          select $this ?code
@@ -428,7 +428,7 @@ bamm-c:StateShape
       sh:description "The default value for this state" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "StateShape '{$this}': Values does not contain the default value." ;
+         sh:message "StateShape '{$this}': The default value is not one of the defined values." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?defaultValue ?values ?code
@@ -455,7 +455,7 @@ bamm-c:DurationShape
       sh:description "The Unit in which the Duration is measured." ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "DurationShape '{$this}': Unit of Duration '{?value}' is not of quantity kind time" ;
+         sh:message "DurationShape '{$this}': Unit of Duration '{?value}' does not have the quantity kind time." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?unit ?value ?code
@@ -482,7 +482,7 @@ bamm-c:EnumerationShape
      sh:description "A list of valid states." ;
      sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "EnumerationShape '{$this}': one of the values ('{?item}') is not of the specified data type '{?definedDataType}'." ;
+        sh:message "EnumerationShape '{$this}': one of the values ('{?item}') does not have the specified data type '{?definedDataType}'." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
            select $this ?values ?dataType ?item ?definedDataType ?code

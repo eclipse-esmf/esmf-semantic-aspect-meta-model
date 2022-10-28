@@ -201,7 +201,9 @@ public class EntityShapeTest extends AbstractShapeTest {
          final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "entity-shape", "TestEntityWithNotInPayloadPropertyWithoutEnumeration", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION, result ) );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage(
+            metaModelVersion.isNewerThan( KnownVersion.BAMM_1_0_0 ) ? MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION : MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION_1,
+            result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
    }

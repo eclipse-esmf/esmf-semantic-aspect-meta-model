@@ -106,7 +106,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             metaModelVersion );
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
-            "Value '2' for list Property ':intListProperty' of the Entity instance ':Instance' has invalid data type." );
+            "Value '2' for list Property ':intListProperty' of the Entity instance ':Instance' has an invalid data type." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
@@ -126,7 +126,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
             metaModelVersion );
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
-            "Value ':AnotherListEntityInstance' for list Property ':entityListProperty' of the Entity instance ':Instance' has invalid data type." );
+            "Value ':AnotherListEntityInstance' for list Property ':entityListProperty' of the Entity instance ':Instance' has an invalid data type." );
       assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
