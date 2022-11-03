@@ -176,4 +176,14 @@ public class PropertyShapeTest extends AbstractShapeTest {
       final SemanticError resultForName = new SemanticError( MESSAGE_NO_LITERAL, FOCUS_NODE, bammUrns.exampleValueUrn, VIOLATION_URN, SemanticError.ANY_VALUE );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithEntityExampleValue", metaModelVersion, resultForName );
    }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testInvalidScalarExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
+      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+
+      final SemanticError resultForName = new SemanticError( MESSAGE_WRONG_EXAMPLE_VALUE_TYPE, FOCUS_NODE, bammUrns.exampleValueUrn, VIOLATION_URN,
+            TEST_NAMESPACE_PREFIX + "TestEntity" );
+      expectSemanticValidationErrors( "property-shape", "TestPropertyWithInvalidScalarExampleValue", metaModelVersion, resultForName );
+   }
 }
