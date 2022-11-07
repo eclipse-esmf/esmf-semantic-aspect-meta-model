@@ -292,7 +292,7 @@ bamm:PropertyShape
       sh:nodeKind sh:Literal ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The datatype {?value} of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
+         sh:message "The datatype '{?value}' of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value ?code
@@ -1015,7 +1015,7 @@ bamm:DoubleInstantiationShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "{$this} can not be an instance of {?value}, because {?value} is an instance itself." ;
+      sh:message "'{$this}' can not be an instance of '{?value}', because '{?value}' is an instance itself." ;
       sh:prefixes bamm:prefixDeclarations ;
       sh:select """
         select $this ?value ?code
