@@ -310,21 +310,6 @@ bamm:PropertyShape
             }
          """
       ] ;
-      sh:sparql [
-         a sh:SPARQLConstraint ;
-         sh:message "The Aspect Model contains a cycle which includes '{$this}'. Please remove any cycles that do not allow a finite json payload." ;
-         sh:prefixes bamm:prefixDeclarations ;
-         sh:select """
-            select $this ?characteristic ?code
-            where {
-              $this bamm:characteristic ?characteristic
-              filter( exists {
-                $this bamm:characteristic/bamm-c:baseCharacteristic*/bamm-c:left*/bamm-c:right*/bamm:dataType/bamm:refines*/bamm:properties/rdf:rest*/rdf:first $this .
-              } && not exists { ?characteristic rdf:type/rdfs:subClassOf* bamm-c:Collection } )
-              bind( 'ERR_CYCLE_DETECTED' as ?code )
-            }
-         """
-      ] ;
       sh:maxCount 1 ;
       sh:name "characteristic" ;
       sh:description "The Characteristic describing the semantics of the Property." ;
