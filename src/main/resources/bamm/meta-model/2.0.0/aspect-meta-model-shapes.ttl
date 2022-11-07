@@ -1001,6 +1001,33 @@ bamm:AmbiguousEntityShape
       """
    ] .
 
+bamm:DoubleInstantiationShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+           $this rdf:type/rdf:type ?bammElement .
+           filter( exists { ?bammElement rdfs:subClassOf* mmm:Concept } )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "{$this} can not be an instance of {?value}, because {?value} is an instance itself." ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+        select $this ?value ?code
+        where {
+         $this a ?value .
+         ?value a ?bammElement .
+         bind( 'ERR_DOUBLE_INSTANTIATION' as ?code )
+       }
+      """
+  ] .
+
 bamm:ConstrainListTypeUsageShape
    a sh:NodeShape ;
    sh:targetSubjectsOf mmm:listType ;
@@ -1009,7 +1036,7 @@ bamm:ConstrainListTypeUsageShape
       sh:path mmm:listType ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Metamodel violation: '{this}': mmm:listType may only be used for List Shapes" ;
+         sh:message "Metamodel violation: '{this}': mmm:listType may only be used for List Shapes." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this
