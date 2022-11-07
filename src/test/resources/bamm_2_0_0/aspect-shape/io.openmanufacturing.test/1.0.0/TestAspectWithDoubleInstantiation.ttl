@@ -18,10 +18,7 @@
 :TestAspectWithDoubleInstantiation a bamm:Aspect ;
    bamm:preferredName "Test Aspect"@en ;
    bamm:description "Test Aspect"@en ;
-   bamm:properties ( :testProperty ) ;
+   bamm:properties ( ) ;
    bamm:operations ( ) .
-
-:testProperty a bamm:Property ;
-   bamm:characteristic :MyText .
 
 :MyText a bamm-c:Text .

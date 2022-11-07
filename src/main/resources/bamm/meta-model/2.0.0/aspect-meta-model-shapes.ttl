@@ -1010,7 +1010,6 @@ bamm:DoubleInstantiationShape
          select $this
          where {
            $this rdf:type/rdf:type ?bammElement .
-           filter( exists { ?bammElement rdfs:subClassOf* mmm:Concept } )
          }
       """
    ] ;
@@ -1023,6 +1022,8 @@ bamm:DoubleInstantiationShape
         where {
          $this a ?value .
          ?value a ?bammElement .
+         filter( exists { ?bammElement rdfs:subClassOf* mmm:Concept } )
+         filter( ?bammElement != bamm:Entity && ?bammElement != bamm:AbstractEntity )
          bind( 'ERR_DOUBLE_INSTANTIATION' as ?code )
        }
       """
