@@ -368,7 +368,7 @@ Example:
 
 [source,turtle,subs="attributes+"]
 ----
-include::example$aspect-sample.ttl[tags=either-declaration]
+include::example$either-declaration.ttl[tags=either-declaration]
 ----
 
 [[declaring-structured-value]]

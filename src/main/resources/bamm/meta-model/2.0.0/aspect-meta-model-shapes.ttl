@@ -277,20 +277,55 @@ bamm:PropertyShape
       sh:nodeKind sh:Literal ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "The datatype {?value} of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
+         sh:message "The datatype '{?value}' of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this ?value ?code
             where {
                $this bamm:exampleValue ?exampleValue .
-               bind( str( datatype( ?exampleValue ) ) as ?value )
                $this bamm:characteristic/bamm-c:baseCharacteristic*/bamm:dataType ?characteristicDataType .
                bind( datatype( ?exampleValue ) as ?providedType )
-               filter(
-                  ( ?providedType != ?characteristicDataType ) &&
-                  not exists { ?providedType bamm:canBeCastTo* ?characteristicDataType }
+               filter( ?providedType not in (
+                  xsd:string,
+                  xsd:boolean,
+                  xsd:decimal,
+                  xsd:integer,
+                  xsd:double,
+                  xsd:float,
+                  xsd:date,
+                  xsd:time,
+                  xsd:dateTime,
+                  xsd:dateTimeStamp,
+                  xsd:gYear,
+                  xsd:gMonth,
+                  xsd:gDay,
+                  xsd:gYearMonth,
+                  xsd:gMonthDay,
+                  xsd:duration,
+                  xsd:yearMonthDuration,
+                  xsd:dayTimeDuration,
+                  xsd:byte,
+                  xsd:short,
+                  xsd:int,
+                  xsd:long,
+                  xsd:unsignedByte,
+                  xsd:unsignedShort,
+                  xsd:unsignedInt,
+                  xsd:unsignedLong,
+                  xsd:positiveInteger,
+                  xsd:negativeInteger,
+                  xsd:nonPositiveInteger,
+                  xsd:nonNegativeInteger,
+                  xsd:hexBinary,
+                  xsd:base64Binary,
+                  xsd:anyURI,
+                  rdf:langString,
+                  bamm:curie
+                 ) || ( ( ?providedType != ?characteristicDataType ) &&
+                    not exists { ?providedType bamm:canBeCastTo* ?characteristicDataType } )
                )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?providedType as ?value )
             }
          """
       ] ;
@@ -951,6 +986,34 @@ bamm:AmbiguousEntityShape
       """
    ] .
 
+bamm:DoubleInstantiationShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+           $this rdf:type/rdf:type ?bammElement .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "'{$this}' can not be an instance of '{?value}', because '{?value}' is an instance itself." ;
+      sh:prefixes bamm:prefixDeclarations ;
+      sh:select """
+        select $this ?value ?code
+        where {
+         $this a ?value .
+         ?value a ?bammElement .
+         filter( exists { ?bammElement rdfs:subClassOf* mmm:Concept } )
+         filter( ?bammElement != bamm:Entity && ?bammElement != bamm:AbstractEntity )
+         bind( 'ERR_DOUBLE_INSTANTIATION' as ?code )
+       }
+      """
+  ] .
+
 bamm:ConstrainListTypeUsageShape
    a sh:NodeShape ;
    sh:targetSubjectsOf mmm:listType ;
@@ -959,7 +1022,7 @@ bamm:ConstrainListTypeUsageShape
       sh:path mmm:listType ;
       sh:sparql [
          a sh:SPARQLConstraint ;
-         sh:message "Metamodel violation: '{this}': mmm:listType may only be used for List Shapes" ;
+         sh:message "Metamodel violation: '{this}': mmm:listType may only be used for List Shapes." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
             select $this

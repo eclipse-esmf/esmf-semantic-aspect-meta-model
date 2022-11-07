@@ -115,6 +115,7 @@ public abstract class AbstractShapeTest {
    final String MESSAGE_INVALID_DATA_TYPE = "The dataType '{?value}' used on Characteristic '{$this}' is neither an allowed xsd or rdf type, "
          + "nor a type that is defined as rdfs:Class.";
    final String MESSAGE_NO_LITERAL = "Value does not have node kind Literal";
+   final String MESSAGE_WRONG_EXAMPLE_VALUE_TYPE = "The datatype '{?value}' of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType.";
 
    Model loadMetaModelDefinitions( final KnownVersion version ) {
       return ModelLoader.createModel( List.of(

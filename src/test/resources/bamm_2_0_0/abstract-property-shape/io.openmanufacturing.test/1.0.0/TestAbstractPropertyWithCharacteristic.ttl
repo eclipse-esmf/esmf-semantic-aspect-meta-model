@@ -1,0 +1,37 @@
+#
+# Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
+@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Vec2 a bamm:AbstractEntity ;
+   bamm:description "A two-dimensional vector"@en ;
+   bamm:properties ( :x :y ) .
+
+:x a bamm:AbstractProperty ;
+   bamm:description "The x part of the vector"@en ;
+   bamm:characteristic :IntegerNumber .
+
+:y a bamm:AbstractProperty ;
+   bamm:description "The y part of the vector"@en .
+
+:IntegerNumber a bamm:Characteristic ;
+   bamm:dataType xsd:integer .
+
+:IntVec2 a bamm:Entity ;
+   bamm:extends :Vec2 ;
+   bamm:properties (
+     [ bamm:extends :x ; bamm:characteristic :IntegerNumber ]
+     [ bamm:extends :y ; bamm:characteristic :IntegerNumber ]
+   ) .

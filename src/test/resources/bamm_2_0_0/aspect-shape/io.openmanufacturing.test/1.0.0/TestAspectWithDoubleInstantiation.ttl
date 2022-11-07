@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
 #
 # See the AUTHORS file(s) distributed with this work for additional
 # information regarding authorship.
@@ -13,20 +13,12 @@
 @prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
 @prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
 @prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestProperty a bamm:Aspect ;
-   bamm:properties ( :entityList ) ;
+:TestAspectWithDoubleInstantiation a bamm:Aspect ;
+   bamm:preferredName "Test Aspect"@en ;
+   bamm:description "Test Aspect"@en ;
+   bamm:properties ( ) ;
    bamm:operations ( ) .
 
-:entityList a bamm:Property ;
-   bamm:preferredName "Test Property"@en ;
-   bamm:preferredName "Test Property"@de ;
-   bamm:description "A test property."@en ;
-   bamm:description "Eine test Property."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:dataType :TestEntity
-   ] .
-
-:TestEntity a bamm:Entity ;
-   bamm:properties ( ).
+:MyText a bamm-c:Text .

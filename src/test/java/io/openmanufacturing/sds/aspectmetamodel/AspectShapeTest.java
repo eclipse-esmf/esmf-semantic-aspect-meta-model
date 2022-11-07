@@ -187,4 +187,14 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithOptionalPropertyWithPayloadNameExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "aspect-shape", "TestAspectWithOptionalPropertyWithPayloadName", metaModelVersion );
    }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testAspectWithInvalidPropertyReferenceExpectFailure( final KnownVersion metaModelVersion ) {
+      final SemanticError result = getSingleSemanticValidationError(
+            "aspect-shape", "TestAspectWithDoubleInstantiation", metaModelVersion );
+      assertThat( result.getResultMessage() ).isEqualTo( "':MyText' can not be an instance of 'bamm-c:Text', because 'bamm-c:Text' is an instance itself." );
+      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getValue() ).isNotEmpty();
+   }
 }

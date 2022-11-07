@@ -124,24 +124,6 @@
 :description a bamm:Property ;
    bamm:characteristic bamm-c:Text .
 
-# tag::either-declaration[]
-:Result a bamm-c:Either ;
-   bamm-c:left :ErrorCode ;
-   bamm-c:right :SuccessCode .
-
-:ErrorCode a bamm-c:SingleEntity ;
-   bamm:dataType :ErrorEntity .
-
-:SuccessCode a bamm-c:SingleEntity ;
-   bamm:dataType :SuccessEntity .
-
-:ErrorEntity a bamm:Entity ;
-   bamm:properties ( :errorCode :errorDescription ) .
-
-:SuccessEntity a bamm:Entity ;
-   bamm:properties ( :status ) .
-# end::either-declaration[]
-
 # To make :ErrorEntity valid
 :errorCode a bamm:Property ;
    bamm:characteristic bamm-c:Text .
