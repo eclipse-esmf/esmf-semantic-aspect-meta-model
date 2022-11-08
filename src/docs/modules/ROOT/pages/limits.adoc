@@ -1,0 +1,34 @@
+////
+Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+
+= Limits & Restrictions on models
+
+Please keep in mind that while there are no hard limits on the size of the models or the number of elements contained therein,
+at some point in time the models will probably be used to generate some kind of artifacts in an automated manner by the appropriate tools.
+
+To name a few examples, these generated artifacts may include generated source files in a well known programming language (like Java,
+JavaScript or Python), various visual representations of the model (SVG diagram of the model),
+nicely formatted documentation for the model (for example in an HTML format) or OpenAPI specification for accessing the data represented by the model programmatically.
+
+Some of this tooling may be limited in its own ways or impose its own restrictions on the size of the artifacts it can handle.
+Moreover, each of the target domains may impose different recommendations and best practices applicable to it.
+
+You will probably also want to include the generated artifacts in your CD/CI pipeline, where additional restrictions may apply.
+For example while in Java there is no restriction on the depth of an inheritance hierarchy, SonarQube scanner in the build pipeline may impose one depending on
+the current ruleset in use.
+
+The general recommendation we can give you is to start integrating with all the required tooling as early in the lifecycle of your modeling project as possible.
+This is the only sure way to avoid unexpected and unpleasant surprises further down your development journey.
+
+
+
+
