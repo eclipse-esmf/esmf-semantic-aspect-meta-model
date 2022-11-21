@@ -10,7 +10,7 @@ SPDX-License-Identifier: MPL-2.0
 
 :page-partial:
 
-= Limits & Restrictions on models
+= Limits & Restrictions on Models
 
 Please keep in mind that while there are no hard limits on the size of the models or the number of elements contained therein,
 at some point in time the models will probably be used to generate some kind of artifacts in an automated manner by the appropriate tools.
@@ -26,8 +26,12 @@ You will probably also want to include the generated artifacts in your CD/CI pip
 For example while in Java there is no restriction on the depth of an inheritance hierarchy, static code analysis tools in the build pipeline may impose one depending on
 the current ruleset in use.
 
-The general recommendation we can give you is to start integrating with all the required tooling as early in the lifecycle of your modeling project as possible.
-This is the only sure way to avoid unexpected and unpleasant surprises further down your development journey.
+The general recommendations for sizing and using aspect models are:
+
+* Start integrating all the required tooling as early in the lifecycle of your project as possible. This will for example help you to find out early rather than late if the corresponding payloads are too complex for aspect providers or consumers to efficiently handle.
+
+* If in doubt, cut your aspect models small rather than large to ensure usability, reusability and efficient handling (multiple Aspect APIs can be provide as multiple endpoints within the same infrastructure)
+
 
 
 
