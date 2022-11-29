@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Introduction :: BAMM Aspect Meta Model</title>
-    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/index.html">
+    <title>Limits &amp; Restrictions on Models :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/limits.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -47,7 +47,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Specification</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -74,7 +74,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="payloads.html">Payloads</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="limits.html">Limits &amp; Restrictions</a>
   </li>
 </ul>
@@ -135,75 +135,63 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">BAMM Aspect Meta Model</a></li>
     <li>Specification</li>
-    <li><a href="index.html">Introduction</a></li>
+    <li><a href="limits.html">Limits &amp; Restrictions</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">snapshot</button>
   <div class="version-menu">
-    <a class="version is-current" href="index.html">snapshot</a>
-    <a class="version" href="../2.0.0/index.html">2.0.0</a>
-    <a class="version" href="../2.0.0-M1/index.html">2.0.0-M1</a>
-    <a class="version" href="../v1.0.0/index.html">v1.0.0</a>
+    <a class="version is-current" href="limits.html">snapshot</a>
+    <a class="version is-missing" href="../2.0.0/index.html">2.0.0</a>
+    <a class="version is-missing" href="../2.0.0-M1/index.html">2.0.0-M1</a>
+    <a class="version is-missing" href="../v1.0.0/index.html">v1.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/edit/main/src/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/edit/main/src/docs/modules/ROOT/pages/limits.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Introduction</h1>
+<h1 class="page">Limits &amp; Restrictions on Models</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>A Digital Twin System forms the basis for comprehensive digitization of production and logistics by
-gradually creating consistent data homogeneity and interoperability.</p>
+<p>Please keep in mind that while there are no hard limits on the size of the models or the number of elements contained therein,
+at some point in time the models will probably be used to generate some kind of artifacts in an automated manner by the appropriate tools.</p>
 </div>
 <div class="paragraph">
-<p>Any asset&#8201;&#8212;&#8201;it can be an actual physical asset like a drilling machine but also something virtual
-like a web service&#8201;&#8212;&#8201;has a digital representation with consistent semantics, called a <em>Digital
-Twin</em>. Digital Twins represent those assets and services and provide a shell for their <em>Aspects</em>
-which define the functionality the Digital Twin supports. Aspects provide the actual data of the
-Digital Twin that clients can use. Think of an Aspect as a live thing, i.e., a service that can be
-queried to retrieve current or aggregated data. The data can be anything from a single numeric value&#8201;&#8212;&#8201;e.g., a temperature sensor&#8201;&#8212;&#8201;to a complex block of data.</p>
+<p>To name a few examples, these generated artifacts may include generated source files in a well known programming language (like Java,
+JavaScript or Python), various visual representations of the model (SVG diagram of the model),
+nicely formatted documentation for the model (for example in an HTML format) or OpenAPI specification for accessing the data represented by the model programmatically.</p>
 </div>
 <div class="paragraph">
-<p>Each Aspect references a concrete <em>Aspect Model</em>. This model describes in a formal, i.e., machine
-readable, format, how an Aspect is structured. The model describes for example the used physical
-unit and possible value range of the temperature sensor. Note that even in this simple example, a
-conventional approach could not satisfyingly answer the question of where this kind of information
-would otherwise live&#8201;&#8212;&#8201;in the sensor&#8217;s data sheet that is only a human-readable document? In the
-Aspect&#8217;s API documentation that is also only human-readable? Should the information about the
-sensor&#8217;s physical range be hard-coded in the Aspect and included in each service reply, even though
-it never changes? By expressing it in the Aspect model, the Aspect&#8217;s semantics can be made available
-to consumers of the data in a way that opens up new possibilities.</p>
+<p>Some of this tooling may be limited in its own ways or impose its own restrictions on the size of the artifacts it can handle.
+Moreover, each of the target domains may impose different recommendations and best practices applicable to it.</p>
 </div>
 <div class="paragraph">
-<p>Therefore, an Aspect model contains both information about runtime data structure (e.g., that there
-is a property in the data called "temperature", and that it has a numeric value) and information
-that is not part of the runtime data (e.g., the unit or range). It does not, however, contain actual
-runtime data (e.g., a numeric value representing the current temperature), as this will be delivered
-by an Aspect conforming to this Aspect model. The combination of raw runtime data and its
-corresponding Aspect model yields <em>information</em>.</p>
+<p>You will probably also want to include the generated artifacts in your CD/CI pipeline, where additional restrictions may apply.
+For example while in Java there is no restriction on the depth of an inheritance hierarchy, static code analysis tools in the build pipeline may impose one depending on
+the current ruleset in use.</p>
 </div>
 <div class="paragraph">
-<p>To specify an Aspect Model, the <em>BAMM Aspect Meta Model</em> (BAMM) is used. This document
-specifies the BAMM Aspect Meta Model.</p>
+<p>The general recommendations for sizing and using aspect models are:</p>
 </div>
-<div class="paragraph">
-<p>The Meta Model is specified using the Resource Description Format (RDF,
-<a href="appendix/appendix.html#rdf11" class="page">[rdf11]</a>) and the Terse RDF Triple Language
-syntax (TTL, <a href="appendix/appendix.html#turtle" class="page">[turtle]</a>), together with
-validation rules in the Shapes Constraint Language (SHACL,
-<a href="appendix/appendix.html#shacl" class="page">[shacl]</a>). Aspect models are likewise
-specified in RDF/Turtle, following BAMM semantics.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Start integrating all the required tooling as early in the lifecycle of your project as possible. This will for example help you to find out early rather than late if the corresponding payloads are too complex for aspect providers or consumers to efficiently handle.</p>
+</li>
+<li>
+<p>If in doubt, cut your aspect models small rather than large to ensure usability, reusability and efficient handling (multiple Aspect APIs can be provide as multiple endpoints within the same infrastructure)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -217,7 +205,7 @@ specified in RDF/Turtle, following BAMM semantics.</p>
 </footer>
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/lunr.min.js"></script>
-<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/snapshot/index.html"></script>
+<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/bamm-specification/snapshot/limits.html"></script>
 <script async src="../../_/../search-index.js"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>
   </body>
