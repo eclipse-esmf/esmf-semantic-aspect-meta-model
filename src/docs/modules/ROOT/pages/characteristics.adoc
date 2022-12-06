@@ -152,35 +152,35 @@ A time duration.
 | Attributes | Description | Required
 | `bamm-c:unit` | Reference to a Unit as defined in the xref:units.adoc#units[Unit catalog]. The
 referenced unit or its referenceUnit must have the quantityKind
-`xref:appendix:appendix.adoc#quantitykind-time[unit:time]`. Currently, the following units can
-therefore be used: `xref:appendix:appendix.adoc#unit-centipoisePerBar[unit:centipoisePerBar]`
-`xref:appendix:appendix.adoc#unit-commonYear[unit:commonYear]`
-`xref:appendix:appendix.adoc#unit-day[unit:day]`
-`xref:appendix:appendix.adoc#unit-henryPerKiloohm[unit:henryPerKiloohm]`
-`xref:appendix:appendix.adoc#unit-henryPerOhm[unit:henryPerOhm]`
-`xref:appendix:appendix.adoc#unit-hour[unit:hour]`
-`xref:appendix:appendix.adoc#unit-kilosecond[unit:kilosecond]`
-`xref:appendix:appendix.adoc#unit-microhenryPerKiloohm[unit:microhenryPerKiloohm]`
-`xref:appendix:appendix.adoc#unit-microhenryPerOhm[unit:microhenryPerOhm]`
-`xref:appendix:appendix.adoc#unit-microsecond[unit:microsecond]`
-`xref:appendix:appendix.adoc#unit-millihenryPerKiloohm[unit:millihenryPerKiloohm]`
-`xref:appendix:appendix.adoc#unit-millihenryPerOhm[unit:millihenryPerOhm]`
-`xref:appendix:appendix.adoc#unit-millipascalSecondPerBar[unit:millipascalSecondPerBar]`
-`xref:appendix:appendix.adoc#unit-millisecond[unit:millisecond]`
-`xref:appendix:appendix.adoc#unit-minuteUnitOfTime[unit:minuteUnitOfTime]`
-`xref:appendix:appendix.adoc#unit-month[unit:month]`
-`xref:appendix:appendix.adoc#unit-nanosecond[unit:nanosecond]`
-`xref:appendix:appendix.adoc#unit-pascalSecondPerBar[unit:pascalSecondPerBar]`
-`xref:appendix:appendix.adoc#unit-picosecond[unit:picosecond]`
-`xref:appendix:appendix.adoc#unit-poisePerBar[unit:poisePerBar]`
-`xref:appendix:appendix.adoc#unit-poisePerPascal[unit:poisePerPascal]`
-`xref:appendix:appendix.adoc#unit-reciprocalMinute[unit:reciprocalMinute]`
-`xref:appendix:appendix.adoc#unit-secondUnitOfTime[unit:secondUnitOfTime]`
-`xref:appendix:appendix.adoc#unit-shake[unit:shake]`
-`xref:appendix:appendix.adoc#unit-siderealYear[unit:siderealYear]`
-`xref:appendix:appendix.adoc#unit-tropicalYear[unit:tropicalYear]`
-`xref:appendix:appendix.adoc#unit-week[unit:week]`
-`xref:appendix:appendix.adoc#unit-year[unit:year]` | {ok}
+`xref:appendix:unitcatalog.adoc#quantitykind-time[unit:time]`. Currently, the following units can
+therefore be used: `xref:appendix:unitcatalog.adoc#unit-centipoisePerBar[unit:centipoisePerBar]`
+`xref:appendix:unitcatalog.adoc#unit-commonYear[unit:commonYear]`
+`xref:appendix:unitcatalog.adoc#unit-day[unit:day]`
+`xref:appendix:unitcatalog.adoc#unit-henryPerKiloohm[unit:henryPerKiloohm]`
+`xref:appendix:unitcatalog.adoc#unit-henryPerOhm[unit:henryPerOhm]`
+`xref:appendix:unitcatalog.adoc#unit-hour[unit:hour]`
+`xref:appendix:unitcatalog.adoc#unit-kilosecond[unit:kilosecond]`
+`xref:appendix:unitcatalog.adoc#unit-microhenryPerKiloohm[unit:microhenryPerKiloohm]`
+`xref:appendix:unitcatalog.adoc#unit-microhenryPerOhm[unit:microhenryPerOhm]`
+`xref:appendix:unitcatalog.adoc#unit-microsecond[unit:microsecond]`
+`xref:appendix:unitcatalog.adoc#unit-millihenryPerKiloohm[unit:millihenryPerKiloohm]`
+`xref:appendix:unitcatalog.adoc#unit-millihenryPerOhm[unit:millihenryPerOhm]`
+`xref:appendix:unitcatalog.adoc#unit-millipascalSecondPerBar[unit:millipascalSecondPerBar]`
+`xref:appendix:unitcatalog.adoc#unit-millisecond[unit:millisecond]`
+`xref:appendix:unitcatalog.adoc#unit-minuteUnitOfTime[unit:minuteUnitOfTime]`
+`xref:appendix:unitcatalog.adoc#unit-month[unit:month]`
+`xref:appendix:unitcatalog.adoc#unit-nanosecond[unit:nanosecond]`
+`xref:appendix:unitcatalog.adoc#unit-pascalSecondPerBar[unit:pascalSecondPerBar]`
+`xref:appendix:unitcatalog.adoc#unit-picosecond[unit:picosecond]`
+`xref:appendix:unitcatalog.adoc#unit-poisePerBar[unit:poisePerBar]`
+`xref:appendix:unitcatalog.adoc#unit-poisePerPascal[unit:poisePerPascal]`
+`xref:appendix:unitcatalog.adoc#unit-reciprocalMinute[unit:reciprocalMinute]`
+`xref:appendix:unitcatalog.adoc#unit-secondUnitOfTime[unit:secondUnitOfTime]`
+`xref:appendix:unitcatalog.adoc#unit-shake[unit:shake]`
+`xref:appendix:unitcatalog.adoc#unit-siderealYear[unit:siderealYear]`
+`xref:appendix:unitcatalog.adoc#unit-tropicalYear[unit:tropicalYear]`
+`xref:appendix:unitcatalog.adoc#unit-week[unit:week]`
+`xref:appendix:unitcatalog.adoc#unit-year[unit:year]` | {ok}
 |===
 
 [[collection-characteristic]]
@@ -395,7 +395,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:boolean]`
 --
 
 Describes a Property containing a locale according to IETF BCP 47
-xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]], for example "de-DE".
+xref:bamm-specification:appendix:bibliography.adoc#bcp47[[bcp47\]], for example "de-DE".
 
 dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
@@ -407,7 +407,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 --
 
 Describes a Property containing a language according to ISO 639-1
-xref:bamm-specification:appendix:appendix.adoc#iso639[[iso639\]], for example "de".
+xref:bamm-specification:appendix:bibliography.adoc#iso639[[iso639\]], for example "de".
 
 dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
@@ -430,7 +430,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:anyURI]`
 --
 
 Describes a Property that contains a MIME type as defined by RFC 2046
-xref:bamm-specification:appendix:appendix.adoc#rfc2046[[rfc2046\]], for example "application/json",
+xref:bamm-specification:appendix:bibliography.adoc#rfc2046[[rfc2046\]], for example "application/json",
 "application/xls" or "image/png".
 
 dataType: `xref:datatypes.adoc#data-types[xsd:string]`
@@ -443,7 +443,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 --
 
 Describes a Property containing a reference to one of the units in the
-xref:appendix:appendix.adoc#unit-catalog[Unit catalog]. +
+xref:appendix:unitcatalog.adoc#unit-catalog[Unit catalog]. +
 See xref:modeling-guidelines.adoc#using-unit-reference[Using Unit Reference] for usage in an Aspect model.
 
 dataType: `xref:datatypes.adoc#data-types[bamm:curie]`
@@ -476,7 +476,7 @@ Restricts a value to a specific language.
 |===
 | Attributes | Description | Required
 | `bamm-c:languageCode` | An ISO 639-1
-  xref:bamm-specification:appendix:appendix.adoc#iso639[[iso639\]] language code for the language of
+  xref:bamm-specification:appendix:bibliography.adoc#iso639[[iso639\]] language code for the language of
   the value of the constrained Property, e.g., "de". | {ok}
 |===
 
@@ -492,7 +492,7 @@ Restricts a value to a specific locale, i.e., a language with additional region 
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm-c:localeCode` | An IETF BCP 47 xref:bamm-specification:appendix:appendix.adoc#bcp47[[bcp47\]]
+| `bamm-c:localeCode` | An IETF BCP 47 xref:bamm-specification:appendix:bibliography.adoc#bcp47[[bcp47\]]
   language code for the locale of the value of the constrained Property, e.g., "de-DE". | {ok}
 |===
 
@@ -601,7 +601,7 @@ At least one of `bamm-c:maxValue` or `bamm-c:minValue` must be present in a Leng
 --
 
 Restricts a string value to a regular expression as defined by XQuery 1.0 and XPath 2.0 Functions
-and Operators xref:bamm-specification:appendix:appendix.adoc#xpath-functions[[xpath-functions\]].
+and Operators xref:bamm-specification:appendix:bibliography.adoc#xpath-functions[[xpath-functions\]].
 
 [width="100%", options="header", cols="30,60,10"]
 |===

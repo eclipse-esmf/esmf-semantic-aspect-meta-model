@@ -45,8 +45,8 @@ To specify an Aspect Model, the _{meta-model-full-name}_ ({meta-model-abbr}) is 
 specifies the {meta-model-full-name}.
 
 The Meta Model is specified using the Resource Description Format (RDF,
-xref:bamm-specification:appendix:appendix.adoc#rdf11[[rdf11\]]) and the Terse RDF Triple Language
-syntax (TTL, xref:bamm-specification:appendix:appendix.adoc#turtle[[turtle\]]), together with
+xref:bamm-specification:appendix:bibliography.adoc#rdf11[[rdf11\]]) and the Terse RDF Triple Language
+syntax (TTL, xref:bamm-specification:appendix:bibliography.adoc#turtle[[turtle\]]), together with
 validation rules in the Shapes Constraint Language (SHACL,
-xref:bamm-specification:appendix:appendix.adoc#shacl[[shacl\]]). Aspect models are likewise
+xref:bamm-specification:appendix:bibliography.adoc#shacl[[shacl\]]). Aspect models are likewise
 specified in RDF/Turtle, following {meta-model-abbr} semantics.

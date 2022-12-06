@@ -12,10 +12,10 @@ SPDX-License-Identifier: MPL-2.0
 :sectnums:
 
 [[unit-catalog]]
-== Unit Catalog
+= Unit Catalog
 
 [[unit-catalog-quantity-kinds]]
-=== Quantity Kinds
+== Quantity Kinds
 
 For the description of a quantity kind's structure, please see section xref:bamm-specification:ROOT:units.adoc[units].
 
@@ -653,7 +653,7 @@ For the description of a quantity kind's structure, please see section xref:bamm
 |===
 
 [[unit-catalog-units]]
-=== Units
+== Units
 
 For the description of a unit's structure, please see section xref:bamm-specification:ROOT:units.adoc[units].
 
