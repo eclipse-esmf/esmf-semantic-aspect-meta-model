@@ -21,6 +21,12 @@ runtime:
   cache_dir: ./.cache/antora
 asciidoc:
   attributes:
+    # attribute-missing configures the asciidoc processor to warn on unresolved
+    # references, see https://docs.asciidoctor.org/asciidoc/latest/attributes/unresolved-references/#missing
+    # 'warn' is the default value, but by setting it to 'warn@' we allow pages
+    # to override this setting. This is necessary to silence false positive
+    # warnings that appear on inclusion of certain RDF source codes.
+    attribute-missing: warn@
     doctype: book
     sectanchors: true
     idprefix: ''
