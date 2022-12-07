@@ -38,7 +38,8 @@ should be considered when naming elements such as Aspects, Properties or Entitie
   `urn:bamm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
   `count`&#8203;'s identifier.
 
-* The attributes `preferredName` and `description` are meant to provide a human-readable and
+* The attributes `preferredName` and `description` are meant to provide a
+  human-readable name and
   description, respectively, for example for the generation of documentation from the Aspect model.
   If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
 ** Make the name upper case
