@@ -84,6 +84,9 @@
     <span class="nav-text">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="appendix/best-practices.html">Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="appendix/release-notes.html">Release Notes</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -152,7 +155,7 @@
     <a class="version" href="../v1.0.0/modeling-guidelines.html">v1.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/edit/main/src/docs/modules/ROOT/pages/modeling-guidelines.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/edit/main/src/docs/modules/ROOT/pages/modeling-guidelines.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -169,7 +172,7 @@
 <ul>
 <li>
 <p>As mentioned in the <a href="index.html" class="page">Introduction</a>, Aspect models are described in RDF Turtle
-<a href="appendix/appendix.html#turtle" class="page">[turtle]</a>. The aspect specification will
+<a href="appendix/bibliography.html#turtle" class="page">[turtle]</a>. The aspect specification will
 therefore assume basic familiarity with Turtle.</p>
 </li>
 <li>
@@ -966,7 +969,7 @@ i.e., that the deconstruction rule actually does what the model author intended.
 <p>As explained in the section <a href="#declaring-quantifiable-values-and-measurements">Declaring Quantifiables and Measurements</a>, some values only make sense when they also have a unit assigned to them.
 This unit definition is in many cases fixed at design time, does not change thereafter and therefore at runtime (in the JSON payload for example), only the actual value is transported.<br>
  There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
-at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a <a href="characteristics.html#unit-reference-characteristic" class="page">UnitReference</a> characteristic instance can be used to include a dynamic reference to the desired unit from the <a href="appendix/appendix.html#unit-catalog" class="page">Unit catalog</a> and this information is then always included in the payload. The runtime payload refers to the unit using its <code>bamm:curie</code>, i.e., the unit&#8217;s URN&#8217;s element name prefixed with <code>unit:</code>.</p>
+at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a <a href="characteristics.html#unit-reference-characteristic" class="page">UnitReference</a> characteristic instance can be used to include a dynamic reference to the desired unit from the <a href="appendix/unitcatalog.html" class="page">Unit catalog</a> and this information is then always included in the payload. The runtime payload refers to the unit using its <code>bamm:curie</code>, i.e., the unit&#8217;s URN&#8217;s element name prefixed with <code>unit:</code>.</p>
 </div>
 <div class="paragraph">
 <p>For example an Aspect with the following model:</p>
@@ -1359,7 +1362,7 @@ have identifiers which are also valid URLs:</p>
 <p>If an external model element should be referenced that has a unique identifier which is not a URI,
 but a well-known resolver exists, you can either use the resolver&#8217;s URL or a synthetic URN. For
 example, for the Digital Object Identifier (DOI,
-<a href="appendix/appendix.html#doi" class="page">[DOI]</a>) <code>10.1109/NetSys.2017.7903949</code>, you can
+<a href="appendix/bibliography.html#doi" class="page">[DOI]</a>) <code>10.1109/NetSys.2017.7903949</code>, you can
 use as the value for <code>bamm:see</code> either the URL <code>https://doi.org/10.1109/NetSys.2017.7903949</code> or the
 URN <code>urn:doi:10.1109/NetSys.2017.7903949</code>.</p>
 </div>
@@ -1367,7 +1370,7 @@ URN <code>urn:doi:10.1109/NetSys.2017.7903949</code>.</p>
 <p>If an external model element should be referenced that has a unique identifier which is not a URI
 and there is no well-known resolver, use a synthetic URN structure. One example are Object
 Identifiers as specified by ITU and ISO/IEC (OID) and the mapping to URNs in RFC 3061
-<a href="appendix/appendix.html#rfc3061" class="page">[rfc3061]</a>, so for example, for the OID
+<a href="appendix/bibliography.html#rfc3061" class="page">[rfc3061]</a>, so for example, for the OID
 <code>1.3.6.1.4.1.1919.1.1.2</code>, the corresponding <code>bamm:see</code> value would be
 <code>urn:oid:1.3.6.1.4.1.1919.1.1.2</code>:</p>
 </div>

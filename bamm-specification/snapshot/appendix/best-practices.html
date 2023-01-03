@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Best Practices :: BAMM Aspect Meta Model</title>
+    <link rel="canonical" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/bamm-specification/snapshot/appendix/best-practices.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model">
+        <div class="logo-headline-wrapper">
+          <img class="logo" src="../../../_/img/omp-logo.png" />
+          <span class="docu-title">
+            BAMM Aspect Meta Model
+          </span>
+        </div>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      </div>
+    </div>
+  </nav>
+</header><div class="body">
+<div class="nav-container" data-component="bamm-specification" data-version="snapshot">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">BAMM Aspect Meta Model</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Specification</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../meta-model-elements.html">Meta Model Elements</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../namespaces.html">Namespaces and Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../datatypes.html">Data Types</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../characteristics.html">Characteristics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../entities.html">Entities</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../units.html">Units</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../modeling-guidelines.html">Aspects</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../payloads.html">Payloads</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../limits.html">Limits &amp; Restrictions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="best-practices.html">Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="release-notes.html">Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="unitcatalog.html">Unit Catalog</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="bibliography.html">Bibliography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../legal/site-notice.html">Site Notice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">BAMM Aspect Meta Model</span>
+    <span class="version">snapshot</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">BAMM Aspect Meta Model</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">snapshot</a>
+        </li>
+        <li class="version">
+          <a href="../../2.0.0/index.html">2.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../../2.0.0-M1/index.html">2.0.0-M1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0.0/index.html">v1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">BAMM Aspect Meta Model</a></li>
+    <li>Appendix</li>
+    <li><a href="best-practices.html">Best Practices</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">snapshot</button>
+  <div class="version-menu">
+    <a class="version is-current" href="best-practices.html">snapshot</a>
+    <a class="version is-missing" href="../../2.0.0/index.html">2.0.0</a>
+    <a class="version is-missing" href="../../2.0.0-M1/index.html">2.0.0-M1</a>
+    <a class="version is-missing" href="../../v1.0.0/index.html">v1.0.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/edit/main/src/docs/modules/appendix/pages/best-practices.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Best Practices</h1>
+<div class="sect1">
+<h2 id="naming-elements"><a class="anchor" href="#naming-elements"></a>1. Naming Elements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to the <a href="../modeling-guidelines.html#naming-rules" class="page">naming rules</a>, the following points
+should be considered when naming elements such as Aspects, Properties or Entities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be
+misunderstood in different contexts. For example, "temp" could mean "temperature" or "temporary".
+On the other hand, abbreviating "minimum" and "maximum" with "min" and "max", respectively, is
+fine. The Aspect model should be reasonably expressive. Do not add alleged premature optimizations
+that belong in the Aspect implementation: if you think a Property is name expressive but too long
+for the runtime payload, consider adding <a href="../modeling-guidelines.html#payload-names" class="page">a payload
+name</a> to the Property&#8217;s usage instead of renaming the Property.</p>
+</li>
+<li>
+<p>Do not use redundant naming parts. In particular, the name of an Aspect should not end with
+"Aspect". It is however fine to distinguish between e.g. an Entity and a related Characteristic
+by a suffix when necessary.</p>
+</li>
+<li>
+<p>Do not use redundant prefixes, e.g. when authoring an Aspect model for the domain <em>Foo</em>, do not
+name your Properties <em>fooCount</em>, <em>fooId</em> etc. Remember that the full identifier of a Property is
+the versioned namespace concatenated with the element name, e.g.
+<code>urn:bamm:com.mycompany.myapplication:1.0.0#count</code>, so the context is already part of
+<code>count</code>&#8203;'s identifier.</p>
+</li>
+<li>
+<p>The attributes <code>preferredName</code> and <code>description</code> are meant to provide a
+human-readable name and
+description, respectively, for example for the generation of documentation from the Aspect model.
+If you copy and paste the element&#8217;s name to the <code>preferredName</code>, make sure to adjust it:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Make the name upper case</p>
+</li>
+<li>
+<p>If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g. the name
+<code>machineTemperature</code> should become the preferredName <code>Machine Temperature</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If there is exactly one Property in an Aspect that has a
+<a href="../characteristics.html#collection-characteristic" class="page">Collection</a>,
+<a href="../characteristics.html#list-characteristic" class="page">List</a>,
+<a href="../characteristics.html#set-characteristic" class="page">Set</a>,
+<a href="../characteristics.html#sorted-set-characteristic" class="page">Sorted Set</a> or
+<a href="../characteristics.html#time-series-characteristic" class="page">Time Series</a> Characteristic (and no other
+Properties), the Property should be named <code>items</code>.</p>
+</li>
+<li>
+<p>If there is exactly one Property in an Aspect that has a
+<a href="../characteristics.html#collection-characteristic" class="page">Collection</a>,
+<a href="../characteristics.html#list-characteristic" class="page">List</a>,
+<a href="../characteristics.html#set-characteristic" class="page">Set</a> or
+<a href="../characteristics.html#sorted-set-characteristic" class="page">Sorted Set</a> Characteristic (and no other
+Properties), the Aspect&#8217;s name should be in plural. Otherwise, if there is exactly one Property in
+the Aspect that has a <a href="../characteristics.html#time-series-characteristic" class="page">Time Series</a>
+Characteristic, the Aspect&#8217;s name should end with "History". Otherwise, the Aspect&#8217;s name should
+be in singular.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="choosing-a-numeric-type"><a class="anchor" href="#choosing-a-numeric-type"></a>2. Choosing a Numeric Type</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While JSON only distinguishes between <em>number</em> (floating point) and <em>integer</em>, the
+<a href="../datatypes.html#data-types" class="page">type hierarchy</a> for Aspect models provides many more options. There
+is a distinction between the numeric core types (<code>xsd:integer</code> and the fixed-point type
+<code>xsd:decimal</code>) and the limited range numbers that correspond to the numeric types as defined in most
+programming languages (<code>xsd:float</code> and <code>xsd:double</code> as well as the integer types <code>xsd:int</code>,
+<code>xsd:short</code> etc.).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+As an Aspect model ideally captures as much of the domain semantics as possible, it
+should not limit itself according to implementation-specific restrictions. In particular, limited
+range numbers should only be used when the semantics of the numeric range are relevant beyond the
+implementation of the Aspect. For example, a Property <code>temperature</code> of a sensor could use a limited
+range type such as <code>xsd:int</code>, when the physical sensor can never provide a value outside of this
+range, while a Property such as <code>numberOfProducedItems</code> is not logically limited, so it should use
+<code>xsd:integer</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="choosing-a-unit"><a class="anchor" href="#choosing-a-unit"></a>3. Choosing a Unit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When trying to refer to a physical unit, please see the
+<a href="unitcatalog.html" class="page">Unit Catalog</a>. When searching for the unit,
+remember that the unit catalog uses British English.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="choosing-a-characteristic"><a class="anchor" href="#choosing-a-characteristic"></a>4. Choosing a Characteristic</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following decision tree helps finding the right Characteristic for a Property.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+A common error is using the <code>Text</code> Characteristic for anything resembling a string.
+<code>Text</code> is intended for values that are meant <em>only</em> for humans, for example a description of a
+device that is entered by a user as free text. Values such as identifiers, hostnames, table names,
+license plate numbers etc. should not use the <code>Text</code> Characteristic.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you create Characteristics that are not limited to your modeled domain but are generally useful,
+please consider contributing them, so that they can be included in the BAMM Aspect Meta Model&#8217;s
+Characteristic catalog.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/characteristics-decision-tree.svg" alt="characteristics decision tree" width="100%">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="choosing-constraints"><a class="anchor" href="#choosing-constraints"></a>5. Choosing Constraints</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Constraints are used to precisely specify limiting conditions of Characteristics. It is recommended
+to use Constraints thoroughly:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It makes the intent of the respective Property clear for humans reading the model or documentation
+generated from the model</p>
+</li>
+<li>
+<p>It allows tooling to generate code for the Aspect that can take the Constraints into account. Validation code
+corresponding to the Constraints can be directly inserted, thus reducing manual implementation effort.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following decision tree helps finding matching Constraints for a Characteristic. Note that
+multiple Constraints can be combined.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If and only if the value has a <a href="../datatypes.html#data-types" class="page">string-like value space</a> and
+does <em>not</em> use UTF-8 as an encoding, use an <a href="../characteristics.html#encoding-constraint" class="page">Encoding
+Constraint</a> for the Property. This will ensure that consumers of the Aspect will not end up with
+broken special characters.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/constraints-decision-tree.svg" alt="constraints decision tree" width="100%">
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.min.js"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/bamm-specification/snapshot/appendix/best-practices.html"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
