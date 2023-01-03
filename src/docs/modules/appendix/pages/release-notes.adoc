@@ -12,10 +12,10 @@ SPDX-License-Identifier: MPL-2.0
 :sectnums:
 
 [[release-notes]]
-== Release Notes - {meta-model-full-name}
+= Release Notes - {meta-model-full-name}
 
 [[bamm-2.0.0]]
-=== Release 2.0.0
+== Release 2.0.0
 
 * Introduce Entity inheritance, the according Meta Model Element `bamm:AbstractEntity` and
   `bamm:AbstractProperty` as well as the `bamm:extends` attribute to define a hierarchy of Entities.
@@ -44,6 +44,6 @@ SPDX-License-Identifier: MPL-2.0
 * Various issues in the specification (including examples) have been fixed and phrasing has been improved.
 
 [[bamm-1.0.0]]
-=== Release 1.0.0
+== Release 1.0.0
 
 This is the initial release for OMP.

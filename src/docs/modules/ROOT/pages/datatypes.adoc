@@ -17,9 +17,9 @@ SPDX-License-Identifier: MPL-2.0
 
 The system of types used in the {meta-model-full-name} (and subsequently in the models conforming to
 the {meta-model-full-name}) is largely based on a subset of the XML Schema Definition 1.1 (XSD,
-xref:bamm-specification:appendix:appendix.adoc#xmlschema11-2[[xmlschema11-2\]]), including the types
+xref:bamm-specification:appendix:bibliography.adoc#xmlschema11-2[[xmlschema11-2\]]), including the types
 such as data ranges. In addition to types from XSD, the type `langString` is included as described
-in the RDF xref:bamm-specification:appendix:appendix.adoc#rdf11[[rdf11\]] specification; it is used
+in the RDF xref:bamm-specification:appendix:bibliography.adoc#rdf11[[rdf11\]] specification; it is used
 to represent strings with an explicit language tag. Using these types allows for example the
 distinction between a plain string and a dateTime string, unlike in JSON. The JSON data of a
 Property with a certain type uses the most convenient corresponding JSON type, i.e. booleans for XSD
