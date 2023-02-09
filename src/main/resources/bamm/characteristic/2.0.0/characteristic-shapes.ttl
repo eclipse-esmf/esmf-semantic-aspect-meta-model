@@ -47,11 +47,12 @@ bamm-c:QuantifiableShape
          sh:message "The unit definition '{?value}' of the Quantifiable (Characteristic) '{$this}' is not valid." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this bamm-c:unit ?value .
                filter( not exists { ?value rdf:type/rdfs:subClassOf* bamm:Unit } ) .
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -189,7 +190,7 @@ bamm-c:LanguageConstraintShape
          sh:message "The language code '{?value}' of LanguageConstraint '{$this}' is not a valid ISO 639-1 language code." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this bamm-c:languageCode ?value .
                filter( ?value not in ( "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi", "bm", "bn", "bo", "br",
@@ -201,6 +202,7 @@ bamm-c:LanguageConstraintShape
                 "sg", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti", "tk", "tl", "tn", "to", "tr",
                 "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo", "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu" ) )
                 bind( 'ERR_WRONG_LANGCODE' as ?code )
+                bind( ?value as ?highlight )
             }
             """
       ] ;
@@ -458,13 +460,14 @@ bamm-c:DurationShape
          sh:message "DurationShape '{$this}': Unit of Duration '{?value}' does not have the quantity kind time." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?unit ?value ?code
+            select $this ?unit ?value ?code ?highlight
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:Duration .
                $this bamm-c:unit ?unit .
                filter( not exists { ?unit bamm:referenceUnit?/bamm:quantityKind unit:time } )
                bind( ?unit as ?value )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ]
@@ -485,7 +488,7 @@ bamm-c:EnumerationShape
         sh:message "EnumerationShape '{$this}': one of the values ('{?item}') does not have the specified data type '{?definedDataType}'." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?dataType ?item ?definedDataType ?code
+           select $this ?values ?dataType ?item ?definedDataType ?code ?highlight
            where {
              $this rdf:type/rdfs:subClassOf* bamm-c:Enumeration .
              $this bamm-c:values ?values .
@@ -495,6 +498,7 @@ bamm-c:EnumerationShape
              bind( strlen( str( ?literalDataType ) ) as ?literalDataTypeLength ) .
              filter( ( ?literalDataType != ?definedDataType ) && ( ?literalDataTypeLength > 0 ) ) .
              bind( 'ERR_WRONG_DATATYPE' as ?code )
+             bind( ?item as ?highlight )
            }
         """
      ] ;
@@ -503,7 +507,7 @@ bamm-c:EnumerationShape
         sh:message "EnumerationShape '{$this}': DataType is a literal type but one of the values ('{?item}') is defined as bamm:Property." ;
         sh:prefixes bamm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?item ?code
+           select $this ?values ?item ?code ?highlight
            where {
               $this rdf:type/rdfs:subClassOf* bamm-c:Enumeration .
               filter ( not exists { $this bamm:dataType bamm:Property } ) .
@@ -511,6 +515,7 @@ bamm-c:EnumerationShape
               ?values rdf:rest/rdf:first ?item .
               filter ( exists { ?item rdf:type bamm:Property } )
               bind( 'ERR_LITERAL_EXPECTED' as ?code )
+              bind( ?item as ?highlight )
            }
         """
      ] ;
@@ -530,11 +535,12 @@ bamm-c:SingleEntityShape
          sh:message "Element '{$this}': the dataType '{?value}' that is used as dataType on the Characteristic is not a bamm:Entity." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this $value ?code
+            select $this $value ?code ?highlight
             where {
                $this bamm:dataType ?value .
                filter( not exists { ?value rdf:type* bamm:Entity } && not exists { ?value rdf:type* bamm:AbstractEntity } )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -617,7 +623,7 @@ bamm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' elements ('{?value}') may only be Properties or string literals" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements ?elements .
@@ -626,6 +632,7 @@ bamm-c:StructuredValueShape
                  || ( datatype( ?element ) != xsd:string  ) )
               bind( str( ?element ) as ?value )
               bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -708,7 +715,7 @@ bamm-c:StructuredValueShape
          sh:message "Characteristic '{?value}' may not be used with Properties that appear as elements in a StructuredValue '{$this}'" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select distinct $this ?value ?code
+            select distinct $this ?value ?code ?highlight
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm-c:elements/rdf:rest*/rdf:first ?property .
@@ -716,6 +723,7 @@ bamm-c:StructuredValueShape
               ?property bamm:characteristic/( bamm-c:baseCharacteristic* | rdfs:subClassOf* )/rdf:type ?value .
               filter( ?value in( bamm-c:Collection, bamm-c:Set, bamm-c:SortedSet, bamm-c:List, bamm-c:TimeSeries, bamm-c:Either, bamm-c:StructuredValue ) )
               bind( 'ERR_WRONG_USAGE' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -728,12 +736,13 @@ bamm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' dataType '{?value}' must have a string-like value space" ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
               $this rdf:type/rdfs:subClassOf* bamm-c:StructuredValue .
               $this bamm:dataType ?value .
               filter( not exists { ?value bamm:hasCharacterValueSpace true } )
               bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -754,12 +763,13 @@ bamm-c:FixedPointConstraintShape
          sh:message "Fixed Point Constraint '{$this}' may only be used with Characteristics whose data type is xsd:decimal, but the actual value is '{?value}'." ;
          sh:prefixes bamm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this rdf:type/rdfs:subClassOf* bamm-c:FixedPointConstraint .
                $this ^bamm-c:constraint/bamm-c:baseCharacteristic*/bamm:dataType ?value .
                filter( str( ?value ) != str( xsd:decimal ) )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
