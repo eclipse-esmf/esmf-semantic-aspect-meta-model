@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
+ * Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
  *
  * See the AUTHORS file(s) distributed with this work for additional
  * information regarding authorship.
@@ -13,43 +13,69 @@
 
 package io.openmanufacturing.sds.aspectmetamodel;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.gradle.api.DefaultTask;
-import org.gradle.api.tasks.TaskAction;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import groovy.json.JsonOutput;
-import groovy.json.JsonSlurper;
+import io.openmanufacturing.sds.FileDownloader;
 
 /**
- * Downloads the BCP 47 Language Tag Registry as defined by IANA,
- *
- * @see
+ * Downloads the BCP 47 Language Tag Registry as defined by IANA, see
  * <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry</a>,
- *       in JSON format.
- *       The types which are required for the validation of the Locale Constraint, are extracted and written to a
- *       javascript file.
+ * in JSON format. The types which are required for the validation of the Locale Constraint, are extracted and written to a
+ * JavaScript file.
  */
-public class DownloadBcp47LanguageSubtagRegistry extends DefaultTask {
-   @TaskAction
+public class DownloadBcp47LanguageSubtagRegistry {
+   /*
+    * args[0]: the URL of the JSON representation of the language subtag registry
+    * args[1]: the path of the file to write
+    */
    @SuppressWarnings( "unchecked" )
-   public void run() throws IOException {
-      final File languageTagRegistryScriptFile = Path.of( "src/main/resources/bamm/scripts/language-registry.js" ).toFile();
-      final File targetDirectory = languageTagRegistryScriptFile.getParentFile();
-      if ( !targetDirectory.exists() && !targetDirectory.mkdirs() ) {
-         throw new IOException( "Could not create directory: " + languageTagRegistryScriptFile.getParent() );
+   public static void main( final String[] args ) throws IOException {
+      if ( args.length < 1 ) {
+         System.err.printf( "%s: Missing file path%n", DownloadBcp47LanguageSubtagRegistry.class.getSimpleName() );
+         return;
       }
-      final URL languageTagRegistryUrl = URI.create( "https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json" )
-            .toURL();
-      final ArrayList<Map<String, String>> languageTagRegistry = (ArrayList<Map<String, String>>) new JsonSlurper().parse( languageTagRegistryUrl );
+      final File outputFile = Path.of( args[1] ).toFile();
+      if ( outputFile.exists() ) {
+         System.out.printf( "%s: Language subtag registry script file %s already exists. Skipping writing.%n",
+               DownloadBcp47LanguageSubtagRegistry.class.getSimpleName(), outputFile );
+         return;
+      }
+
+      final File targetDirectory = outputFile.getParentFile();
+      if ( !targetDirectory.exists() && !targetDirectory.mkdirs() ) {
+         throw new IOException( "Could not create directory: " + outputFile.getParent() );
+      }
+      final String content;
+      try ( final InputStream input = FileDownloader.download( args[0] ) ) {
+         content = new String( input.readAllBytes(), StandardCharsets.UTF_8 );
+      }
+      final ObjectMapper objectMapper = new ObjectMapper();
+      final List<Map<String, String>> languageTagRegistry = objectMapper.readValue( content.getBytes(), List.class );
+      final Map<String, ArrayList<String>> cleanedLanguageTagRegistry = buildCleanedLanguageTagRegistry( languageTagRegistry );
+
+      try ( final ByteArrayOutputStream out = new ByteArrayOutputStream() ) {
+         out.write( "var languageRegistryAsJson = '".getBytes() );
+         objectMapper.writeValue( out, cleanedLanguageTagRegistry );
+         out.write( "'".getBytes() );
+         try ( final FileOutputStream file = new FileOutputStream( outputFile ) ) {
+            file.write( out.toByteArray() );
+         }
+      }
+   }
+
+   private static Map<String, ArrayList<String>> buildCleanedLanguageTagRegistry( final List<Map<String, String>> languageTagRegistry ) {
       final Map<String, ArrayList<String>> cleanedLanguageTagRegistry = new HashMap<>();
       final ArrayList<String> grandfathered = new ArrayList<>();
       final ArrayList<String> languages = new ArrayList<>();
@@ -95,9 +121,6 @@ public class DownloadBcp47LanguageSubtagRegistry extends DefaultTask {
       cleanedLanguageTagRegistry.put( "scripts", scripts );
       cleanedLanguageTagRegistry.put( "regions", regions );
       cleanedLanguageTagRegistry.put( "variants", variants );
-
-      final String cleanedLanguageTagRegistryJson = JsonOutput.toJson( cleanedLanguageTagRegistry );
-      final String languageRegistryScript = String.format( "var languageRegistryAsJson = '%s'", cleanedLanguageTagRegistryJson );
-      new FileOutputStream( languageTagRegistryScriptFile ).write( languageRegistryScript.getBytes() );
+      return cleanedLanguageTagRegistry;
    }
 }

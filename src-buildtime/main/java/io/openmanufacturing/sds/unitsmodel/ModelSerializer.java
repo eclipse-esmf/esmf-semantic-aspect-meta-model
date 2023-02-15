@@ -92,16 +92,16 @@ public class ModelSerializer {
 
    private void writeCopyrightHeader() {
       final int currentYear = Calendar.getInstance().get( Calendar.YEAR );
-      writer.format( "# Copyright (c) " + currentYear + " Robert Bosch Manufacturing Solutions GmbH %n"
+      writer.format( "# Copyright (c) " + currentYear + " Robert Bosch Manufacturing Solutions GmbH%n"
             + "#%n"
-            + "# See the AUTHORS file(s) distributed with this work for additional %n"
-            + "# information regarding authorship. %n"
+            + "# See the AUTHORS file(s) distributed with this work for additional%n"
+            + "# information regarding authorship.%n"
             + "#%n"
-            + "# This Source Code Form is subject to the terms of the Mozilla Public %n"
-            + "# License, v. 2.0. If a copy of the MPL was not distributed with this %n"
-            + "# file, You can obtain one at https://mozilla.org/MPL/2.0/. %n"
+            + "# This Source Code Form is subject to the terms of the Mozilla Public%n"
+            + "# License, v. 2.0. If a copy of the MPL was not distributed with this%n"
+            + "# file, You can obtain one at https://mozilla.org/MPL/2.0/.%n"
             + "#%n"
-            + "# SPDX-License-Identifier: MPL-2.0 %n"
+            + "# SPDX-License-Identifier: MPL-2.0%n"
             + "#%n"
             + "# This file was generated automatically, do not modify.%n" );
    }

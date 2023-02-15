@@ -29,10 +29,12 @@ import org.apache.jena.vocabulary.XSD;
 public class Units {
    private final UnitsResources unitsResources;
    private final String customRdfInputDirectory;
+   private final byte[] rec20Excel;
 
-   public Units( final UnitsResources unitsResources, final String customRdfInputDirectory ) {
+   public Units( final UnitsResources unitsResources, final String customRdfInputDirectory, final byte[] rec20Excel ) {
       this.unitsResources = unitsResources;
       this.customRdfInputDirectory = customRdfInputDirectory;
+      this.rec20Excel = rec20Excel;
    }
 
    private Model create() {
@@ -48,7 +50,7 @@ public class Units {
    }
 
    private Model addRec20( final Model model ) {
-      new UnitsFromRec20ExcelSupplier( unitsResources ).get().forEach( model::add );
+      new UnitsFromRec20ExcelSupplier( unitsResources, rec20Excel ).get().forEach( model::add );
       return new UnitsReferencesAdder( unitsResources ).apply( model );
    }
 

@@ -45,15 +45,42 @@
    </scm>
 
    <properties>
-      <junit-jupiter-version>5.8.2</junit-jupiter-version>
+      <!-- This is the meta model version (as included in the URNs).
+           Note that this can differ from the project.version: The project.version could for example be the
+           version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
+      <meta-model-version>2.0.0</meta-model-version>
+      <!-- The directory where custom units are defined that will be incorporated into units.ttl in addition to Rec20 -->
+      <custom-units-directory>${project.basedir}/src-buildtime/main/resources/</custom-units-directory>
+      <!-- The path to the units.ttl file to write during build -->
+      <units-ttl>${project.basedir}/src/main/resources/bamm/unit/${meta-model-version}/units.ttl</units-ttl>
+      <!-- The URL of the zip file provided by UNECE for Recommendation 20 -->
+      <rec20-zip-url>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev7e_2010.zip</rec20-zip-url>
+      <!-- The URL of the JSON representation of the BCP 47 language subtag registry -->
+      <bcp47-language-subtag-registry-url>https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json
+      </bcp47-language-subtag-registry-url>
+      <!-- The BCP 47 language subtag registry JavaScript file to write during build -->
+      <bcp47-language-subtag-script-file>${project.basedir}/src/main/resources/bamm/scripts/language-registry.js</bcp47-language-subtag-script-file>
+
+      <!-- Dependency versions -->
       <assertj-core-version>3.23.1</assertj-core-version>
+      <commons-codec-version>1.15</commons-codec-version>
+      <commons-text-version>1.9</commons-text-version>
+      <jackson-version>2.14.1</jackson-version>
+      <jena-version>4.2.0</jena-version>
+      <junit-jupiter-version>5.8.2</junit-jupiter-version>
+      <logback-version>1.2.11</logback-version>
+      <poi-version>4.0.1</poi-version>
       <shacl-version>1.3.1</shacl-version>
       <vavr-version>0.10.3</vavr-version>
 
-      <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
-      <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
+      <!-- Plugin versions -->
+      <build-helper-maven-plugin-version>3.2.0</build-helper-maven-plugin-version>
+      <exec-maven-plugin-version>3.1.0</exec-maven-plugin-version>
       <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+      <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
       <maven-javadoc-plugin-version>3.3.0</maven-javadoc-plugin-version>
+      <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
+      <maven-resources-plugin-version>3.2.0</maven-resources-plugin-version>
       <maven-scm-plugin-version>1.11.2</maven-scm-plugin-version>
       <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
       <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
@@ -64,6 +91,7 @@
    </properties>
 
    <dependencies>
+      <!-- Test dependencies -->
       <dependency>
          <groupId>org.junit.jupiter</groupId>
          <artifactId>junit-jupiter</artifactId>
@@ -88,6 +116,56 @@
          <version>${vavr-version}</version>
          <scope>test</scope>
       </dependency>
+      <dependency>
+         <groupId>commons-codec</groupId>
+         <artifactId>commons-codec</artifactId>
+         <version>${commons-codec-version}</version>
+         <scope>test</scope>
+      </dependency>
+
+      <!-- Dependencies for code that is executed at build-time -->
+      <dependency>
+         <groupId>org.apache.poi</groupId>
+         <artifactId>poi</artifactId>
+         <version>${poi-version}</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.jena</groupId>
+         <artifactId>jena-core</artifactId>
+         <version>${jena-version}</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.jena</groupId>
+         <artifactId>jena-arq</artifactId>
+         <version>${jena-version}</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-text</artifactId>
+         <version>${commons-text-version}</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>${jackson-version}</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-core</artifactId>
+         <version>${jackson-version}</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>${logback-version}</version>
+         <scope>compile</scope>
+      </dependency>
    </dependencies>
 
    <build>
@@ -98,6 +176,51 @@
                <artifactId>flatten-maven-plugin</artifactId>
                <version>${maven-plugin-flatten-version}</version>
             </plugin>
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>exec-maven-plugin</artifactId>
+               <version>${exec-maven-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>build-helper-maven-plugin</artifactId>
+               <version>${build-helper-maven-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-resources-plugin</artifactId>
+               <version>${maven-resources-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-scm-plugin</artifactId>
+               <version>${maven-scm-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-surefire-plugin</artifactId>
+               <version>${maven-surefire-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>${maven-compiler-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-source-plugin</artifactId>
+               <version>${maven-source-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-javadoc-plugin</artifactId>
+               <version>${maven-javadoc-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-gpg-plugin</artifactId>
+               <version>${maven-gpg-plugin-version}</version>
+            </plugin>
          </plugins>
       </pluginManagement>
 
@@ -105,15 +228,14 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-scm-plugin</artifactId>
-            <version>${maven-scm-plugin-version}</version>
             <configuration>
                <tag>${project.version}</tag>
             </configuration>
          </plugin>
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire-plugin-version}</version>
             <configuration>
                <skip>false</skip>
                <reportsDirectory>${project.build.directory}/${testreports.surefire}</reportsDirectory>
@@ -127,7 +249,6 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven-compiler-plugin-version}</version>
             <configuration>
                <source>${java-source-version}</source>
                <target>${java-target-version}</target>
@@ -138,6 +259,7 @@
                </compilerArgs>
             </configuration>
          </plugin>
+
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>flatten-maven-plugin</artifactId>
@@ -162,10 +284,10 @@
                </execution>
             </executions>
          </plugin>
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
-            <version>${maven-source-plugin-version}</version>
             <executions>
                <execution>
                   <id>attach-sources</id>
@@ -175,10 +297,43 @@
                </execution>
             </executions>
          </plugin>
+
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>add-source</id>
+                  <phase>initialize</phase>
+                  <goals>
+                     <goal>add-source</goal>
+                  </goals>
+                  <configuration>
+                     <sources>
+                        <source>${project.basedir}/src-buildtime/main/java</source>
+                     </sources>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>add-resource</id>
+                  <phase>initialize</phase>
+                  <goals>
+                     <goal>add-resource</goal>
+                  </goals>
+                  <configuration>
+                     <resources>
+                        <resource>
+                           <directory>${project.basedir}/src-buildtime/main/resources</directory>
+                        </resource>
+                     </resources>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${maven-javadoc-plugin-version}</version>
             <executions>
                <execution>
                   <id>attach-javadocs</id>
@@ -191,10 +346,62 @@
                </execution>
             </executions>
          </plugin>
+
+         <!-- Executes build-time-only code -->
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+               <!-- Download BCP 47 language subtag registry and write coresponding JavaScript file -->
+               <execution>
+                  <id>download-bcp47-language-subtag-registry</id>
+                  <phase>process-classes</phase>
+                  <goals>
+                     <goal>java</goal>
+                  </goals>
+                  <configuration>
+                     <mainClass>io.openmanufacturing.sds.aspectmetamodel.DownloadBcp47LanguageSubtagRegistry</mainClass>
+                     <commandlineArgs>${bcp47-language-subtag-registry-url} ${bcp47-language-subtag-script-file}</commandlineArgs>
+                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                  </configuration>
+               </execution>
+               <execution>
+                  <!-- Download UNECE Recommendation 20 and create units.ttl from it -->
+                  <id>generate-recommendation-20-units-ttl</id>
+                  <phase>process-classes</phase>
+                  <goals>
+                     <goal>java</goal>
+                  </goals>
+                  <configuration>
+                     <mainClass>io.openmanufacturing.sds.unitsmodel.UnitsWriter</mainClass>
+                     <commandlineArgs>${rec20-zip-url} ${meta-model-version} ${custom-units-directory} ${units-ttl}</commandlineArgs>
+                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+               <!-- Copy resources again after the exec-maven-plugin have generated resource files -->
+               <!-- Attached to the generate-test-resources lifecycle phase so it takes place after the execution -->
+               <execution>
+                  <id>copy-resources</id>
+                  <phase>generate-test-resources</phase>
+                  <goals>
+                     <goal>resources</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+
+         <!-- TODO exclude build time from jar -->
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>${maven-gpg-plugin-version}</version>
             <executions>
                <execution>
                   <id>sign-artifacts</id>

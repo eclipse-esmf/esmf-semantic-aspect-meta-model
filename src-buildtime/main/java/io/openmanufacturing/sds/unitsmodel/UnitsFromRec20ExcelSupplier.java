@@ -18,7 +18,8 @@ import static org.apache.jena.rdf.model.ResourceFactory.createPlainLiteral;
 import static org.apache.jena.rdf.model.ResourceFactory.createResource;
 import static org.apache.jena.rdf.model.ResourceFactory.createStatement;
 
-import java.io.FileInputStream;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -41,14 +42,14 @@ import org.slf4j.LoggerFactory;
  * Creates model elements from the source Excel file
  */
 public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> {
-   public UnitsFromRec20ExcelSupplier( final UnitsResources unitsResources ) {
-      unitsResource = unitsResources;
-   }
-
-   private final UnitsResources unitsResource;
    private static final Logger LOG = LoggerFactory.getLogger( UnitsFromRec20ExcelSupplier.class );
+   private final UnitsResources unitsResource;
+   private final byte[] rec20Excel;
 
-   private static final String REC20_EXCEL = "/rec20_Rev7e_2010.xls";
+   public UnitsFromRec20ExcelSupplier( final UnitsResources unitsResources, final byte[] rec20Excel ) {
+      unitsResource = unitsResources;
+      this.rec20Excel = rec20Excel;
+   }
 
    private static class WorksheetConfiguration {
       final int worksheetNumber;
@@ -221,8 +222,9 @@ public class UnitsFromRec20ExcelSupplier implements Supplier<Stream<Statement>> 
 
    @Override
    public Stream<Statement> get() {
-      try ( final InputStream inputStream = new FileInputStream( "buildSrc/" + REC20_EXCEL );
-            final Workbook workbook = WorkbookFactory.create( inputStream ) ) {
+      try ( final InputStream inputStream = new ByteArrayInputStream( rec20Excel );
+            final BufferedInputStream bis = new BufferedInputStream( inputStream );
+            final Workbook workbook = WorkbookFactory.create( bis ) ) {
          return Stream.concat(
                getExcelTableEntriesForAnnex( workbook, annex1 ),
                getExcelTableEntriesForAnnex( workbook, annex2 ) ).flatMap( this::convertTableEntryToRdf );
