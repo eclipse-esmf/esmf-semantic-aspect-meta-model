@@ -11,7 +11,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package io.openmanufacturing.buildtime;
+package org.eclipse.esmf.samm.buildtime;
 
 import java.io.IOException;
 import java.io.InputStream;

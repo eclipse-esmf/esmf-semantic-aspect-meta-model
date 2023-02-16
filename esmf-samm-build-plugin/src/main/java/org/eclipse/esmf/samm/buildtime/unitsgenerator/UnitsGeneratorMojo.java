@@ -11,7 +11,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package io.openmanufacturing.buildtime.unitsmodel;
+package org.eclipse.esmf.samm.buildtime.unitsgenerator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,18 +27,17 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.eclipse.esmf.samm.buildtime.FileDownloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.openmanufacturing.buildtime.FileDownloader;
 
 /**
  * Downloads the Recommendation 20 zip file, extracts the Excel from it, transforms the Excel to RDF/TTL and writes the
  * corresponding units.ttl file
  */
 @Mojo( name = "generateUnits", defaultPhase = LifecyclePhase.GENERATE_RESOURCES )
-public class UnitsWriterMojo extends AbstractMojo {
-   private final Logger LOG = LoggerFactory.getLogger( UnitsWriterMojo.class );
+public class UnitsGeneratorMojo extends AbstractMojo {
+   private final Logger LOG = LoggerFactory.getLogger( UnitsGeneratorMojo.class );
 
    @Parameter( required = true )
    String rec20Url;
@@ -56,7 +55,7 @@ public class UnitsWriterMojo extends AbstractMojo {
    public void execute() throws MojoExecutionException {
       final File outputFile = new File( outputPath );
       if ( outputFile.exists() ) {
-         LOG.info( "{}: Units file {} already exists. Skipping writing.", UnitsWriterMojo.class.getSimpleName(), outputPath );
+         LOG.info( "{}: Units file {} already exists. Skipping writing.", UnitsGeneratorMojo.class.getSimpleName(), outputPath );
          return;
       }
 

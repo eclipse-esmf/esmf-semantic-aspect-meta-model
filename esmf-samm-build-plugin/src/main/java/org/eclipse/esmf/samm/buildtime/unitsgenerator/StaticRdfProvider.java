@@ -11,7 +11,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package io.openmanufacturing.buildtime.unitsmodel;
+package org.eclipse.esmf.samm.buildtime.unitsgenerator;
 
 import java.io.File;
 import java.io.FileInputStream;

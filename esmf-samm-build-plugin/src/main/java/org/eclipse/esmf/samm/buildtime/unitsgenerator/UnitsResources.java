@@ -10,7 +10,7 @@
  *
  * SPDX-License-Identifier: MPL-2.0
  */
-package io.openmanufacturing.buildtime.unitsmodel;
+package org.eclipse.esmf.samm.buildtime.unitsgenerator;
 
 import static org.apache.jena.rdf.model.ResourceFactory.createProperty;
 import static org.apache.jena.rdf.model.ResourceFactory.createResource;

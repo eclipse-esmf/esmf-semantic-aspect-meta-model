@@ -33,16 +33,16 @@
            version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
       <meta-model-version>2.0.0</meta-model-version>
       <!-- The directory where custom units are defined that will be incorporated into units.ttl in addition to Rec20 -->
-      <custom-units-directory>${project.basedir}/src-buildtime/main/resources/</custom-units-directory>
+      <custom-units-directory>${project.parent.basedir}/esmf-samm-build-plugin/src/main/resources/</custom-units-directory>
       <!-- The path to the units.ttl file to write during build -->
-      <units-ttl>${project.basedir}/src/main/resources/bamm/unit/${meta-model-version}/units.ttl</units-ttl>
+      <units-ttl>${project.basedir}/src/main/resources/samm/unit/${meta-model-version}/units.ttl</units-ttl>
       <!-- The URL of the zip file provided by UNECE for Recommendation 20 -->
       <rec20-zip-url>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev7e_2010.zip</rec20-zip-url>
       <!-- The URL of the JSON representation of the BCP 47 language subtag registry -->
       <bcp47-language-subtag-registry-url>https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json
       </bcp47-language-subtag-registry-url>
       <!-- The BCP 47 language subtag registry JavaScript file to write during build -->
-      <bcp47-language-subtag-script-file>${project.basedir}/src/main/resources/bamm/scripts/language-registry.js</bcp47-language-subtag-script-file>
+      <bcp47-language-subtag-script-file>${project.basedir}/src/main/resources/samm/scripts/language-registry.js</bcp47-language-subtag-script-file>
 
    </properties>
 
