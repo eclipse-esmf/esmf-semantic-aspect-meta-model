@@ -9,31 +9,31 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Central definition of namespaces used in SPARQL queries in shapes
-bamm:prefixDeclarations
+samm:prefixDeclarations
    sh:declare [
       sh:prefix "mmm" ;
-      sh:namespace "urn:bamm:io.openmanufacturing:meta-meta-model:1.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.samm:meta-meta-model:1.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
-      sh:prefix "bamm" ;
-      sh:namespace "urn:bamm:io.openmanufacturing:meta-model:1.0.0#"^^xsd:anyURI ;
+      sh:prefix "samm" ;
+      sh:namespace "urn:samm:org.eclipse.samm:meta-model:1.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
-      sh:prefix "bamm-c" ;
-      sh:namespace "urn:bamm:io.openmanufacturing:characteristic:1.0.0#"^^xsd:anyURI ;
+      sh:prefix "samm-c" ;
+      sh:namespace "urn:samm:org.eclipse.samm:characteristic:1.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
-      sh:prefix "bamm-e" ;
-      sh:namespace "urn:bamm:io.openmanufacturing:entity:1.0.0#"^^xsd:anyURI ;
+      sh:prefix "samm-e" ;
+      sh:namespace "urn:samm:org.eclipse.samm:entity:1.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "unit" ;
-      sh:namespace "urn:bamm:io.openmanufacturing:unit:1.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.samm:unit:1.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "rdf" ;
@@ -57,11 +57,11 @@ bamm:prefixDeclarations
    ] ;
 .
 
-bamm:jsValidations
+samm:jsValidations
    a sh:JSLibrary ;
-   sh:jsLibraryURL "bamm://characteristic/1.0.0/characteristic-validations.js"^^xsd:anyURI ;
-   sh:jsLibrary bamm:languageRegistry .
+   sh:jsLibraryURL "samm://characteristic/1.0.0/characteristic-validations.js"^^xsd:anyURI ;
+   sh:jsLibrary samm:languageRegistry .
 
-bamm:languageRegistry
+samm:languageRegistry
    a sh:JSLibrary ;
-   sh:jsLibraryURL "bamm://scripts/language-registry.js"^^xsd:anyURI .
+   sh:jsLibraryURL "samm://scripts/language-registry.js"^^xsd:anyURI .

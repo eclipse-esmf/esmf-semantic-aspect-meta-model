@@ -29,11 +29,11 @@ public class SeeShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testSeePropertyDoesNotHaveNodeKindIriExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String aspectName = "TestSeePropertyDoesNotHaveNodeKindIri";
       final String focusNode = TEST_NAMESPACE_PREFIX + aspectName;
       final SemanticError resultForSee = new SemanticError(
-            MESSAGE_VALUE_DOES_NOT_HAVE_NODE_KIND_IRI, focusNode, bammUrns.seeUrn, VIOLATION_URN,
+            MESSAGE_VALUE_DOES_NOT_HAVE_NODE_KIND_IRI, focusNode, sammUrns.seeUrn, VIOLATION_URN,
             "http://open-manufacturing.org/" );
       expectSemanticValidationErrors( "see-shape", aspectName, metaModelVersion, resultForSee );
    }

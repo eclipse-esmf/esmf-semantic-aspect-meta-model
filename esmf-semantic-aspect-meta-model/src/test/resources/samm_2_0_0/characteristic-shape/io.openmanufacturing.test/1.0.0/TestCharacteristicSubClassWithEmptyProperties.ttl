@@ -10,12 +10,12 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-:TestCharacteristicSubClassWithEmptyProperties rdfs:subClassOf bamm:Characteristic ;
-   bamm:preferredName ""@en ;
-   bamm:description ""@en ;
-   bamm:dataType xsd:float .
+:TestCharacteristicSubClassWithEmptyProperties rdfs:subClassOf samm:Characteristic ;
+   samm:preferredName ""@en ;
+   samm:description ""@en ;
+   samm:dataType xsd:float .

@@ -6,39 +6,39 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::either-declaration[]
-:Result a bamm-c:Either ;
-   bamm-c:left :ErrorCode ;
-   bamm-c:right :SuccessCode .
+:Result a samm-c:Either ;
+   samm-c:left :ErrorCode ;
+   samm-c:right :SuccessCode .
 
-:ErrorCode a bamm-c:SingleEntity ;
-   bamm:dataType :ErrorEntity .
+:ErrorCode a samm-c:SingleEntity ;
+   samm:dataType :ErrorEntity .
 
-:SuccessCode a bamm-c:SingleEntity ;
-   bamm:dataType :SuccessEntity .
+:SuccessCode a samm-c:SingleEntity ;
+   samm:dataType :SuccessEntity .
 
-:ErrorEntity a bamm:Entity ;
-   bamm:properties ( :errorCode :errorDescription ) .
+:ErrorEntity a samm:Entity ;
+   samm:properties ( :errorCode :errorDescription ) .
 
-:SuccessEntity a bamm:Entity ;
-   bamm:properties ( :status ) .
+:SuccessEntity a samm:Entity ;
+   samm:properties ( :status ) .
 # end::either-declaration[]
 
 # To make :Result valid
-:status a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:status a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # To make :ErrorEntity valid
-:errorCode a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:errorCode a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # To make :ErrorEntity valid
-:errorDescription a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:errorDescription a samm:Property ;
+   samm:characteristic samm-c:Text .

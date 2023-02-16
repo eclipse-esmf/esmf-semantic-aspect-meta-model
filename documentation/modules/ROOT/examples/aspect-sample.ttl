@@ -6,106 +6,106 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::aspect-declaration[]
-:MyAspect a bamm:Aspect ;
-   bamm:preferredName "My Aspect"@en ;
-   bamm:preferredName "Mein Aspekt"@de ;
-   bamm:description "This Aspect is an example."@en ;
-   bamm:description "Dieser Aspekt ist ein Beispiel."@de ;
-   bamm:properties ( :myProperty :anotherProperty ) ;
+:MyAspect a samm:Aspect ;
+   samm:preferredName "My Aspect"@en ;
+   samm:preferredName "Mein Aspekt"@de ;
+   samm:description "This Aspect is an example."@en ;
+   samm:description "Dieser Aspekt ist ein Beispiel."@de ;
+   samm:properties ( :myProperty :anotherProperty ) ;
    # In this example, there are no operations.
-   bamm:operations ( ) .
+   samm:operations ( ) .
 # end::aspect-declaration[]
 
 # To make MyAspect valid
-:myProperty a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:myProperty a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # To make MyAspect valid
-:anotherProperty a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:anotherProperty a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # tag::property-declaration[]
-:materialNumber a bamm:Property ;
-   bamm:preferredName "Material number"@en ;
-   bamm:description "A material number"@en ;
-   bamm:exampleValue "ABC123456-000" ;
-   bamm:characteristic bamm-c:Text .
+:materialNumber a samm:Property ;
+   samm:preferredName "Material number"@en ;
+   samm:description "A material number"@en ;
+   samm:exampleValue "ABC123456-000" ;
+   samm:characteristic samm-c:Text .
 # end::property-declaration[]
 
 # tag::state-declaration[]
-:MachineState a bamm-c:State ;
-   bamm:dataType xsd:string ;
-   bamm-c:defaultValue "STANDBY" ;
-   bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .
+:MachineState a samm-c:State ;
+   samm:dataType xsd:string ;
+   samm-c:defaultValue "STANDBY" ;
+   samm-c:values ( "RUNNING" "STANDBY" "OFF" ) .
 # end::state-declaration[]
 
 # tag::scalar-collection[]
-:NumberList a bamm-c:List ;
-   bamm:dataType xsd:float .
+:NumberList a samm-c:List ;
+   samm:dataType xsd:float .
 # end::scalar-collection[]
 
 
 # tag::entity-collection[]
-:MyEntity a bamm:Entity ;
-   bamm:properties ( ) ;
+:MyEntity a samm:Entity ;
+   samm:properties ( ) ;
    # ...
    .
 
-:MyEntityList a bamm-c:List ;
-   bamm:dataType :MyEntity .
+:MyEntityList a samm-c:List ;
+   samm:dataType :MyEntity .
 # end::entity-collection[]
 
 # tag::timeseries-declaration[]
-:MachineStateTimeSeries a bamm-c:TimeSeries ;
-   bamm:dataType :MachineStateTimeSeriesEntity .
+:MachineStateTimeSeries a samm-c:TimeSeries ;
+   samm:dataType :MachineStateTimeSeriesEntity .
 
-:MachineStateTimeSeriesEntity a bamm:Entity ;
-   bamm:extends bamm-e:TimeSeriesEntity ;
-   bamm:properties ( :machineState ) .
+:MachineStateTimeSeriesEntity a samm:Entity ;
+   samm:extends samm-e:TimeSeriesEntity ;
+   samm:properties ( :machineState ) .
 
-:machineState a bamm:Property ;
-   bamm:characteristic :MachineState .
+:machineState a samm:Property ;
+   samm:characteristic :MachineState .
 # end::timeseries-declaration[]
 
 # tag::enumeration-simple-declaration-string[]
-:Status a bamm-c:Enumeration ;
-   bamm:dataType xsd:string ;
-   bamm-c:values ( "Complete" "In Progress" "Created" ) .
+:Status a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "Complete" "In Progress" "Created" ) .
 # end::enumeration-simple-declaration-string[]
 
 # tag::enumeration-simple-declaration-integer[]
-:PrimesBelowTwenty a bamm-c:Enumeration ;
-   bamm:dataType xsd:integer ;
-   bamm-c:values ( 2 3 5 7 11 13 17 19 ) .
+:PrimesBelowTwenty a samm-c:Enumeration ;
+   samm:dataType xsd:integer ;
+   samm-c:values ( 2 3 5 7 11 13 17 19 ) .
 # end::enumeration-simple-declaration-integer[]
 
 # tag::enumeration-simple-declaration-int[]
-:ValidOffsets a bamm-c:Enumeration ;
-   bamm:dataType xsd:int ;
-   bamm-c:values ( "-1"^^xsd:int "1"^^xsd:int ) .
+:ValidOffsets a samm-c:Enumeration ;
+   samm:dataType xsd:int ;
+   samm-c:values ( "-1"^^xsd:int "1"^^xsd:int ) .
 # end::enumeration-simple-declaration-int[]
 
 # tag::enumeration-simple-declaration-date[]
-:MaintenanceDates a bamm-c:Enumeration ;
-   bamm:dataType xsd:date ;
-   bamm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .
+:MaintenanceDates a samm-c:Enumeration ;
+   samm:dataType xsd:date ;
+   samm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .
 # end::enumeration-simple-declaration-date[]
 
 # tag::enumeration-complex-declaration[]
-:Results a bamm-c:Enumeration ;
-   bamm:dataType :Result ;
-   bamm-c:values ( :Success :Failed ) .
+:Results a samm-c:Enumeration ;
+   samm:dataType :Result ;
+   samm-c:values ( :Success :Failed ) .
 
-:Result a bamm:Entity ;
-   bamm:properties ( :status [ bamm:property :description; bamm:notInPayload "true"^^xsd:boolean ] ) .
+:Result a samm:Entity ;
+   samm:properties ( :status [ samm:property :description; samm:notInPayload "true"^^xsd:boolean ] ) .
 
 :Success a :Result ;
    :status "SUCCESS" ;
@@ -117,158 +117,158 @@
 # end::enumeration-complex-declaration[]
 
 # To make :Result valid
-:status a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:status a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # To make :Result valid
-:description a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:description a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # To make :ErrorEntity valid
-:errorCode a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:errorCode a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # To make :ErrorEntity valid
-:errorDescription a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:errorDescription a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # tag::entity-declaration[]
-:Error a bamm:Entity ;
-   bamm:properties ( :errorCode :severity ) .
+:Error a samm:Entity ;
+   samm:properties ( :errorCode :severity ) .
 # end::entity-declaration[]
 
 # To make :Error valid
-:severity a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:severity a samm:Property ;
+   samm:characteristic samm-c:Text .
 
 # tag::extending-entity-declaration[]
-:Student a bamm:Entity ;
-    bamm:extends :Person ;
-    bamm:properties ( :studentNumber ) .
+:Student a samm:Entity ;
+    samm:extends :Person ;
+    samm:properties ( :studentNumber ) .
 
-:Teacher a bamm:Entity ;
-    bamm:extends :Person ;
-    bamm:properties ( :employeeNumber ) .
+:Teacher a samm:Entity ;
+    samm:extends :Person ;
+    samm:properties ( :employeeNumber ) .
 
-:Person a bamm:Entity ;
-    bamm:properties ( :name :surname ) .
+:Person a samm:Entity ;
+    samm:properties ( :name :surname ) .
 # end::extending-entity-declaration[]
 
-:studentNumber a bamm:Property ;
-    bamm:characteristic bamm-c:Text .
+:studentNumber a samm:Property ;
+    samm:characteristic samm-c:Text .
 
-:employeeNumber a bamm:Property ;
-    bamm:characteristic bamm-c:Text .
+:employeeNumber a samm:Property ;
+    samm:characteristic samm-c:Text .
 
-:name a bamm:Property ;
-    bamm:characteristic bamm-c:Text .
+:name a samm:Property ;
+    samm:characteristic samm-c:Text .
 
-:surname a bamm:Property ;
-    bamm:characteristic bamm-c:Text .
+:surname a samm:Property ;
+    samm:characteristic samm-c:Text .
 
 # tag::abstract-entity-declaration[]
-:VehicleComponent a bamm:AbstractEntity ;
-    bamm:properties ( :typeNumber :manufacturer ) .
+:VehicleComponent a samm:AbstractEntity ;
+    samm:properties ( :typeNumber :manufacturer ) .
 
-:Steeringwheel a bamm:Entity ;
-   bamm:extends :VehicleComponent ;
-   bamm:properties ( :isMultifunction  ) .
+:Steeringwheel a samm:Entity ;
+   samm:extends :VehicleComponent ;
+   samm:properties ( :isMultifunction  ) .
 
-:Seat a bamm:Entity ;
-   bamm:extends :VehicleComponent ;
-   bamm:properties ( :material ) .
+:Seat a samm:Entity ;
+   samm:extends :VehicleComponent ;
+   samm:properties ( :material ) .
 # end::abstract-entity-declaration[]
 
-:isMultifunction a bamm:Property ;
-   bamm:characteristic bamm-c:Boolean .
+:isMultifunction a samm:Property ;
+   samm:characteristic samm-c:Boolean .
 
-:material a bamm:Property ;
-    bamm:characteristic bamm-c:Text .
+:material a samm:Property ;
+    samm:characteristic samm-c:Text .
 
 # tag::operation-declaration[]
-:toggle a bamm:Operation ;
-   bamm:preferredName "Toggle"@en ;
-   bamm:description "Switches the device on or off"@en ;
-   bamm:input ( :toggleArgument ) ;
-   bamm:output :toggleResult .
+:toggle a samm:Operation ;
+   samm:preferredName "Toggle"@en ;
+   samm:description "Switches the device on or off"@en ;
+   samm:input ( :toggleArgument ) ;
+   samm:output :toggleResult .
 
-:toggleArgument a bamm:Property ;
-   bamm:preferredName "Toggle argument"@en ;
-   bamm:description "The argument for the toggling operation"@en ;
-   bamm:characteristic :ToggleValues .
+:toggleArgument a samm:Property ;
+   samm:preferredName "Toggle argument"@en ;
+   samm:description "The argument for the toggling operation"@en ;
+   samm:characteristic :ToggleValues .
 
-:ToggleValues a bamm-c:Enumeration ;
-   bamm:preferredName "Toggle values"@en ;
-   bamm:description "The possible input values for the toggle operation"@en ;
-   bamm:dataType xsd:string ;
-   bamm-c:values ( "on" "off" ) .
+:ToggleValues a samm-c:Enumeration ;
+   samm:preferredName "Toggle values"@en ;
+   samm:description "The possible input values for the toggle operation"@en ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "on" "off" ) .
 
-:toggleResult a bamm:Property ;
-   bamm:preferredName "Toggle result"@en ;
-   bamm:description "The result of the toggle operation"@en ;
-   bamm:characteristic :ToggleResult .
+:toggleResult a samm:Property ;
+   samm:preferredName "Toggle result"@en ;
+   samm:description "The result of the toggle operation"@en ;
+   samm:characteristic :ToggleResult .
 
-:ToggleResult a bamm-c:Enumeration ;
-   bamm:preferredName "Toggle result"@en ;
-   bamm:description "The possible results of the toggle operation"@en ;
-   bamm:dataType xsd:string ;
-   bamm-c:values ( "ok" "denied" "unknown" ) .
+:ToggleResult a samm-c:Enumeration ;
+   samm:preferredName "Toggle result"@en ;
+   samm:description "The possible results of the toggle operation"@en ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "ok" "denied" "unknown" ) .
 # end::operation-declaration[]
 
 # tag::see-url-declaration[]
-:lastName a bamm:Property ;
-    bamm:see <https://schema.org/familyName> ;
-    bamm:see <http://xmlns.com/foaf/0.1/lastName> ;
-    bamm:characteristic bamm-c:Text .
+:lastName a samm:Property ;
+    samm:see <https://schema.org/familyName> ;
+    samm:see <http://xmlns.com/foaf/0.1/lastName> ;
+    samm:characteristic samm-c:Text .
 # end::see-url-declaration[]
 
 # tag::see-oid-declaration[]
-:filterName a bamm:Property ;
-    bamm:see <urn:oid:1.3.6.1.4.1.1919.1.1.2> ;
-    bamm:characteristic bamm-c:Text .
+:filterName a samm:Property ;
+    samm:see <urn:oid:1.3.6.1.4.1.1919.1.1.2> ;
+    samm:characteristic samm-c:Text .
 # end::see-oid-declaration[]
 
 # tag::see-dontuse[]
-:organizationPerson a bamm:Property ;
-    bamm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
-    bamm:characteristic bamm-c:Text .
+:organizationPerson a samm:Property ;
+    samm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
+    samm:characteristic samm-c:Text .
 # end::see-dontuse[]
 
 # tag::measurement-declaration[]
-:ToolTemperature a bamm-c:Measurement ;
-   bamm:dataType xsd:float ;
-   bamm-c:unit unit:degreeCelsius .
+:ToolTemperature a samm-c:Measurement ;
+   samm:dataType xsd:float ;
+   samm-c:unit unit:degreeCelsius .
 
-:drillHeadTemperature a bamm:Property ;
-   bamm:characteristic :ToolTemperature .
+:drillHeadTemperature a samm:Property ;
+   samm:characteristic :ToolTemperature .
 # end::measurement-declaration[]
 
 # tag::single-entity-declaration[]
-:AccelerationVector a bamm:Entity ;
-   bamm:properties ( :x :y :z ) .
+:AccelerationVector a samm:Entity ;
+   samm:properties ( :x :y :z ) .
 
 # Definition of Properties x, y and z for the Entity here
 # ...
 
-:acceleration a bamm:Property ;
-   bamm:characteristic [
-      a bamm-c:SingleEntity ;
-      bamm:dataType :AccelerationVector
+:acceleration a samm:Property ;
+   samm:characteristic [
+      a samm-c:SingleEntity ;
+      samm:dataType :AccelerationVector
    ] .
 # end::single-entity-declaration[]
 
 # To make AccelerationVector valid
-:x a bamm:Property ;
-   bamm:characteristic :AccelerationMeasurement .
+:x a samm:Property ;
+   samm:characteristic :AccelerationMeasurement .
 
 # To make AccelerationVector valid
-:y a bamm:Property ;
-   bamm:characteristic :AccelerationMeasurement .
+:y a samm:Property ;
+   samm:characteristic :AccelerationMeasurement .
 
 # To make AccelerationVector valid
-:z a bamm:Property ;
-   bamm:characteristic :AccelerationMeasurement .
+:z a samm:Property ;
+   samm:characteristic :AccelerationMeasurement .
 
-:AccelerationMeasurement a bamm-c:Measurement ;
-   bamm:dataType xsd:float ;
-   bamm-c:unit unit:metrePerSecondSquared .
+:AccelerationMeasurement a samm-c:Measurement ;
+   samm:dataType xsd:float ;
+   samm-c:unit unit:metrePerSecondSquared .

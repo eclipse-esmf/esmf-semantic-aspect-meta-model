@@ -10,13 +10,13 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
 
-:TestPropertyWithoutCharacteristicUnrefined a bamm:Aspect ;
-   bamm:name "TestPropertyWithoutCharacteristicUnrefined" ;
-   bamm:properties ( :testProperty ) ;
-   bamm:operations ( ) .
+:TestPropertyWithoutCharacteristicUnrefined a samm:Aspect ;
+   samm:name "TestPropertyWithoutCharacteristicUnrefined" ;
+   samm:properties ( :testProperty ) ;
+   samm:operations ( ) .
 
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" .
+:testProperty a samm:Property ;
+   samm:name "testProperty" .

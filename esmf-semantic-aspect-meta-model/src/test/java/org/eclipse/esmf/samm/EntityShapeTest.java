@@ -37,14 +37,14 @@ public class EntityShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testMissingRequiredPropertiesExpectFailureBamm_1_0_0( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+   public void testMissingRequiredPropertiesExpectFailureSamm_1_0_0( final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityMissingRequiredProperties";
 
       final SemanticError resultForName = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY,
-            focusNode, bammUrns.nameUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.nameUrn, VIOLATION_URN, "" );
       final SemanticError resultForProperties = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, bammUrns.propertiesUrn, VIOLATION_URN, "" );
+            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.propertiesUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "entity-shape", "TestEntityMissingRequiredProperties", metaModelVersion,
             resultForName, resultForProperties );
    }
@@ -57,30 +57,30 @@ public class EntityShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testEmptyPropertiesExpectFailureBamm_1_0_0( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+   public void testEmptyPropertiesExpectFailureSamm_1_0_0( final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityWithEmptyProperties";
 
       final SemanticError resultForName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, bammUrns.nameUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.nameUrn, VIOLATION_URN, "" );
       final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, bammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
+            focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
       final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, bammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+            focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
       expectSemanticValidationErrors( "entity-shape", "TestEntityWithEmptyProperties",
             metaModelVersion, resultForName, resultForPreferredName, resultForDescription );
    }
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
-   public void testEmptyPropertiesExpectFailureBamm_2_0_0( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+   public void testEmptyPropertiesExpectFailureSamm_2_0_0( final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityWithEmptyProperties";
 
       final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, bammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
+            focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
       final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, bammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+            focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
       expectSemanticValidationErrors( "entity-shape", "TestEntityWithEmptyProperties",
             metaModelVersion, resultForPreferredName, resultForDescription );
    }
@@ -88,13 +88,13 @@ public class EntityShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testLanguageStringNotUniqueExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityNonUniqueLangStrings";
 
       final SemanticError resultForPreferredName = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            focusNode, bammUrns.preferredNameUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "" );
       final SemanticError resultForDescription = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            focusNode, bammUrns.descriptionUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "entity-shape", "TestEntityNonUniqueLangStrings", metaModelVersion,
             resultForPreferredName, resultForDescription );
    }
@@ -102,13 +102,13 @@ public class EntityShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidLanguageStringsExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityWithInvalidLangStrings";
 
       final SemanticError resultForPreferredName = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, focusNode, bammUrns.preferredNameUrn, VIOLATION_URN, "Test Entity" );
+            MESSAGE_INVALID_LANG_STRING, focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "Test Entity" );
       final SemanticError resultForDescription = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, focusNode, bammUrns.descriptionUrn, VIOLATION_URN, "A test Entity" );
+            MESSAGE_INVALID_LANG_STRING, focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "A test Entity" );
       expectSemanticValidationErrors( "entity-shape", "TestEntityWithInvalidLangStrings", metaModelVersion,
             resultForPreferredName, resultForDescription );
    }
@@ -172,7 +172,7 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithNotInPayloadAndOptionalProperty", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTITY_PROPERTY_DEFINITION, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( "urn:bamm:io.openmanufacturing.test:1.0.0#testPropertyTwo" );
+      assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.samm.test:1.0.0#testPropertyTwo" );
    }
 
    @ParameterizedTest
@@ -202,7 +202,7 @@ public class EntityShapeTest extends AbstractShapeTest {
       final SemanticError result = getSingleSemanticValidationError(
             "entity-shape", "TestEntityWithNotInPayloadPropertyWithoutEnumeration", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage(
-            metaModelVersion.isNewerThan( KnownVersion.BAMM_1_0_0 ) ? MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION : MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION_1,
+            metaModelVersion.isNewerThan( KnownVersion.SAMM_1_0_0 ) ? MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION : MESSAGE_ENTITY_NOT_USED_IN_ENUMERATION_1,
             result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
       assertThat( result.getValue() ).isNotEmpty();
@@ -233,6 +233,6 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithNotInPayloadPropertyAndPayloadName", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTITY_PROPERTY_PAYLOAD_NAME, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( "urn:bamm:io.openmanufacturing.test:1.0.0#testPropertyTwo" );
+      assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.samm.test:1.0.0#testPropertyTwo" );
    }
 }

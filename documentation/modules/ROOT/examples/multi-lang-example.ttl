@@ -6,17 +6,17 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:io.openmanufacturing.test:2.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 # tag::multi-lang-example[]
-:description a bamm:Property ;
-  bamm:characteristic [
-    a bamm-c:Set ;
-    bamm-c:elementCharacteristic bamm-c:MultiLanguageText ;
+:description a samm:Property ;
+  samm:characteristic [
+    a samm-c:Set ;
+    samm-c:elementCharacteristic samm-c:MultiLanguageText ;
   ] .
 
 :Success a :Result ;

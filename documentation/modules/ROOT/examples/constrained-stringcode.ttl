@@ -6,50 +6,50 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:Test a bamm:Aspect ;
-  bamm:properties ( :timeStampsInJanuary :someIdentifier ) ;
-  bamm:operations ( ) .
+:Test a samm:Aspect ;
+  samm:properties ( :timeStampsInJanuary :someIdentifier ) ;
+  samm:operations ( ) .
 
 # tag::content[]
-:someIdentifier a bamm:Property ;
-   bamm:preferredName "Some identifier"@en ;
-   bamm:description "An ASCII-encoded identifier with a maximum length of 80 characters"@en ;
-   bamm:characteristic :CodeWithLengthAndAscii .
+:someIdentifier a samm:Property ;
+   samm:preferredName "Some identifier"@en ;
+   samm:description "An ASCII-encoded identifier with a maximum length of 80 characters"@en ;
+   samm:characteristic :CodeWithLengthAndAscii .
 
-:CodeWithLengthAndAscii a bamm-c:Trait ;
-   bamm:description "A string code limited to 80 ASCII characters"@en ;
-   bamm-c:baseCharacteristic [
-      a bamm-c:Code ;
-      bamm:description "Denotes some kind of code with a string datatype"@en ;
-      bamm:dataType xsd:string ;
+:CodeWithLengthAndAscii a samm-c:Trait ;
+   samm:description "A string code limited to 80 ASCII characters"@en ;
+   samm-c:baseCharacteristic [
+      a samm-c:Code ;
+      samm:description "Denotes some kind of code with a string datatype"@en ;
+      samm:dataType xsd:string ;
    ] ;
-   bamm-c:constraint [
-      a bamm-c:EncodingConstraint ;
-      bamm:value bamm:US-ASCII ;
-      bamm:description "Limits the character encoding to US-ASCII"@en ;
+   samm-c:constraint [
+      a samm-c:EncodingConstraint ;
+      samm:value samm:US-ASCII ;
+      samm:description "Limits the character encoding to US-ASCII"@en ;
    ] ;
-   bamm-c:constraint [
-      a bamm-c:LengthConstraint ;
-      bamm:description "Limits the length to 80 characters"@en ;
-      bamm-c:maxValue "80"^^xsd:nonNegativeInteger ;
+   samm-c:constraint [
+      a samm-c:LengthConstraint ;
+      samm:description "Limits the length to 80 characters"@en ;
+      samm-c:maxValue "80"^^xsd:nonNegativeInteger ;
    ] .
 # end::content[]
 
 # tag::regular-expression-sample[]
-:timeStampsInJanuary a bamm:Property ;
-   bamm:preferredName "Timestamps in January"@en ;
-   bamm:description "Contains only timestamps in January of any year"@en ;
-   bamm:characteristic [
-      a bamm-c:Trait ;
-      bamm-c:baseCharacteristic bamm-c:Timestamp ;
-      bamm-c:constraint [
-         a bamm-c:RegularExpressionConstraint ;
-         bamm:value "\\d{4}-01-\\d\\dT.*" ;
+:timeStampsInJanuary a samm:Property ;
+   samm:preferredName "Timestamps in January"@en ;
+   samm:description "Contains only timestamps in January of any year"@en ;
+   samm:characteristic [
+      a samm-c:Trait ;
+      samm-c:baseCharacteristic samm-c:Timestamp ;
+      samm-c:constraint [
+         a samm-c:RegularExpressionConstraint ;
+         samm:value "\\d{4}-01-\\d\\dT.*" ;
       ] ;
    ] .
 # end::regular-expression-sample[]

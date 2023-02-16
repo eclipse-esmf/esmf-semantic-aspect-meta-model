@@ -10,22 +10,22 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 
-:TestAspect a bamm:Aspect ;
-   bamm:properties ( ) ;
-   bamm:operations ( :TestOperation ) .
+:TestAspect a samm:Aspect ;
+   samm:properties ( ) ;
+   samm:operations ( :TestOperation ) .
 
-:TestOperation a bamm:Operation ;
-   bamm:preferredName "Test Operation"@en ;
-   bamm:description "Test Operation."@en ;
-   bamm:input ( :input ) ;
-   bamm:output :output .
+:TestOperation a samm:Operation ;
+   samm:preferredName "Test Operation"@en ;
+   samm:description "Test Operation."@en ;
+   samm:input ( :input ) ;
+   samm:output :output .
 
-:input a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:input a samm:Property ;
+   samm:characteristic samm-c:Text .
 
-:output a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:output a samm:Property ;
+   samm:characteristic samm-c:Text .

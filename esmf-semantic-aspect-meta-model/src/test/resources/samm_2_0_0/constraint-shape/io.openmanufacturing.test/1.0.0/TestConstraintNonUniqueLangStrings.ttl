@@ -10,13 +10,13 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestConstraintNonUniqueLangStrings a bamm:Constraint ;
-   bamm:preferredName "Test Constraint"@en ;
-   bamm:preferredName "Test Einschränkung"@en ;
-   bamm:description "TestConstraint"@en ;
-   bamm:description "Test Einschränkung"@en .
+:TestConstraintNonUniqueLangStrings a samm:Constraint ;
+   samm:preferredName "Test Constraint"@en ;
+   samm:preferredName "Test Einschränkung"@en ;
+   samm:description "TestConstraint"@en ;
+   samm:description "Test Einschränkung"@en .

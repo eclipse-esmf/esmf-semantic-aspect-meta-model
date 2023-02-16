@@ -10,17 +10,17 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntityWithOptionalPropertyAndPayloadName a bamm:Entity ;
-   bamm:preferredName "Test Entity"@en ;
-   bamm:description "A test Entity"@en ;
-   bamm:properties ( [ bamm:property :testProperty; bamm:optional ""^^xsd:boolean ; bamm:payloadName "temp" ] ).
+:TestEntityWithOptionalPropertyAndPayloadName a samm:Entity ;
+   samm:preferredName "Test Entity"@en ;
+   samm:description "A test Entity"@en ;
+   samm:properties ( [ samm:property :testProperty; samm:optional ""^^xsd:boolean ; samm:payloadName "temp" ] ).
 
-:testProperty a bamm:Property ;
-   bamm:preferredName "Test Property"@en ;
-   bamm:description "A property with a text value."@en ;
-   bamm:characteristic bamm-c:Text .
+:testProperty a samm:Property ;
+   samm:preferredName "Test Property"@en ;
+   samm:description "A property with a text value."@en ;
+   samm:characteristic samm-c:Text .

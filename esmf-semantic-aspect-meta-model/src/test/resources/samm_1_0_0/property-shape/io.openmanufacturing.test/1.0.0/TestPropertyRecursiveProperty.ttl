@@ -10,23 +10,23 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 
-:TestPropertyRecursiveProperty a bamm:Aspect ;
-    bamm:name "TestPropertyRecursiveProperty" ;
-    bamm:properties ( :testProperty ) ;
-    bamm:operations ( ) .
+:TestPropertyRecursiveProperty a samm:Aspect ;
+    samm:name "TestPropertyRecursiveProperty" ;
+    samm:properties ( :testProperty ) ;
+    samm:operations ( ) .
 
-:testProperty a bamm:Property ;
-    bamm:name "testProperty" ;
-    bamm:characteristic :testItemCharacteristic .
+:testProperty a samm:Property ;
+    samm:name "testProperty" ;
+    samm:characteristic :testItemCharacteristic .
 
-:testItemCharacteristic a bamm-c:SingleEntity ;
-    bamm:name "testItemCharacteristic" ;
-    bamm:dataType :testEntity .
+:testItemCharacteristic a samm-c:SingleEntity ;
+    samm:name "testItemCharacteristic" ;
+    samm:dataType :testEntity .
 
-:testEntity a bamm:Entity ;
-    bamm:name "testEntity" ;
-    bamm:properties ( :testProperty ) .
+:testEntity a samm:Entity ;
+    samm:name "testEntity" ;
+    samm:properties ( :testProperty ) .

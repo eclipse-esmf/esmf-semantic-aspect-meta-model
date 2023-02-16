@@ -10,36 +10,36 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntityInstanceMissingNotInPayloadProperties a bamm:Aspect ;
-   bamm:name "TestEntityInstanceMissingNotInPayloadProperties" ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) .
+:TestEntityInstanceMissingNotInPayloadProperties a samm:Aspect ;
+   samm:name "TestEntityInstanceMissingNotInPayloadProperties" ;
+   samm:properties ( ) ;
+   samm:operations ( ) .
 
-:TestEnumeration a bamm-c:Enumeration ;
-   bamm:name "TestEnumeration" ;
-   bamm:dataType :Entity ;
-   bamm-c:values ( :Instance ) .
+:TestEnumeration a samm-c:Enumeration ;
+   samm:name "TestEnumeration" ;
+   samm:dataType :Entity ;
+   samm-c:values ( :Instance ) .
 
-:Entity a bamm:Entity ;
-   bamm:name "Entity" ;
-   bamm:properties ( [ bamm:property :intProperty; bamm:notInPayload true ] :stringProperty ) .
+:Entity a samm:Entity ;
+   samm:name "Entity" ;
+   samm:properties ( [ samm:property :intProperty; samm:notInPayload true ] :stringProperty ) .
 
-:stringProperty a bamm:Property ;
-   bamm:name "stringProperty" ;
-   bamm:characteristic bamm-c:Text .
+:stringProperty a samm:Property ;
+   samm:name "stringProperty" ;
+   samm:characteristic samm-c:Text .
 
-:CustomCharacteristic a bamm:Characteristic ;
-   bamm:name "CustomCharacteristic" ;
-   bamm:dataType xsd:integer .
+:CustomCharacteristic a samm:Characteristic ;
+   samm:name "CustomCharacteristic" ;
+   samm:dataType xsd:integer .
 
-:intProperty a bamm:Property ;
-   bamm:name "intProperty" ;
-   bamm:characteristic :CustomCharacteristic .
+:intProperty a samm:Property ;
+   samm:name "intProperty" ;
+   samm:characteristic :CustomCharacteristic .
 
 :Instance a :Entity ;
    :stringProperty "foo" .

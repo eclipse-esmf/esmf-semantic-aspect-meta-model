@@ -10,30 +10,30 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntityInstanceMissingNotInPayloadProperties a bamm:Aspect ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) .
+:TestEntityInstanceMissingNotInPayloadProperties a samm:Aspect ;
+   samm:properties ( ) ;
+   samm:operations ( ) .
 
-:TestEnumeration a bamm-c:Enumeration ;
-   bamm:dataType :Entity ;
-   bamm-c:values ( :Instance ) .
+:TestEnumeration a samm-c:Enumeration ;
+   samm:dataType :Entity ;
+   samm-c:values ( :Instance ) .
 
-:Entity a bamm:Entity ;
-   bamm:properties ( [ bamm:property :intProperty; bamm:notInPayload true ] :stringProperty ) .
+:Entity a samm:Entity ;
+   samm:properties ( [ samm:property :intProperty; samm:notInPayload true ] :stringProperty ) .
 
-:stringProperty a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:stringProperty a samm:Property ;
+   samm:characteristic samm-c:Text .
 
-:CustomCharacteristic a bamm:Characteristic ;
-   bamm:dataType xsd:integer .
+:CustomCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:integer .
 
-:intProperty a bamm:Property ;
-   bamm:characteristic :CustomCharacteristic .
+:intProperty a samm:Property ;
+   samm:characteristic :CustomCharacteristic .
 
 :Instance a :Entity ;
    :stringProperty "foo" .

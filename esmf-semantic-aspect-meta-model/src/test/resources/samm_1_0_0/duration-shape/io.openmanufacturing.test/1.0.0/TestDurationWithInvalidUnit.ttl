@@ -10,15 +10,15 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:1.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:1.0.0#> .
 
-:TestDurationWithInvalidUnit a bamm-c:Duration ;
-   bamm:name "TestDurationWithInvalidUnit" ;
-   bamm:preferredName "Test Duration"@en ;
-   bamm:description "Test Duration"@en ;
-   bamm:dataType xsd:int ;
-   bamm-c:unit unit:volt .
+:TestDurationWithInvalidUnit a samm-c:Duration ;
+   samm:name "TestDurationWithInvalidUnit" ;
+   samm:preferredName "Test Duration"@en ;
+   samm:description "Test Duration"@en ;
+   samm:dataType xsd:int ;
+   samm-c:unit unit:volt .

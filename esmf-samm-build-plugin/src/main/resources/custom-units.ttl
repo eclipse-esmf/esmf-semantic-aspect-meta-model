@@ -9,169 +9,169 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-:percent a bamm:Unit ;
-   bamm:preferredName "percent"@en ;
-   bamm:quantityKind :dimensionless ;
-   bamm:symbol "%" .
+:percent a samm:Unit ;
+   samm:preferredName "percent"@en ;
+   samm:quantityKind :dimensionless ;
+   samm:symbol "%" .
 
-:partPerTrillionUs a bamm:Unit ;
-   bamm:preferredName "part per trillion (US)"@en ;
-   bamm:conversionFactor "1 × 10¯¹²" ;
-   bamm:symbol "ppt" .
+:partPerTrillionUs a samm:Unit ;
+   samm:preferredName "part per trillion (US)"@en ;
+   samm:conversionFactor "1 × 10¯¹²" ;
+   samm:symbol "ppt" .
 
-:partPerQuadrillionUs a bamm:Unit ;
-   bamm:preferredName "Part per quadrillion (US)"@en ;
-   bamm:conversionFactor "1 × 10¯¹⁵" ;
-   bamm:symbol "ppq" .
+:partPerQuadrillionUs a samm:Unit ;
+   samm:preferredName "Part per quadrillion (US)"@en ;
+   samm:conversionFactor "1 × 10¯¹⁵" ;
+   samm:symbol "ppq" .
 
-:bit a bamm:Unit ;
-   bamm:preferredName "Bit"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:symbol "b" .
+:bit a samm:Unit ;
+   samm:preferredName "Bit"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:symbol "b" .
 
-:byte a bamm:Unit ;
-   bamm:preferredName "Byte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:symbol "B" .
+:byte a samm:Unit ;
+   samm:preferredName "Byte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:symbol "B" .
 
-:kilobyte a bamm:Unit ;
-   bamm:preferredName "Kilobyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10³ B" ;
-   bamm:numericConversionFactor "1.0E3"^^xsd:double ;
-   bamm:symbol "kB" .
+:kilobyte a samm:Unit ;
+   samm:preferredName "Kilobyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10³ B" ;
+   samm:numericConversionFactor "1.0E3"^^xsd:double ;
+   samm:symbol "kB" .
 
-:megabyte a bamm:Unit ;
-   bamm:preferredName "Megabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10⁶ B" ;
-   bamm:numericConversionFactor "1.0E6"^^xsd:double ;
-   bamm:symbol "MB" .
+:megabyte a samm:Unit ;
+   samm:preferredName "Megabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10⁶ B" ;
+   samm:numericConversionFactor "1.0E6"^^xsd:double ;
+   samm:symbol "MB" .
 
-:gigabyte a bamm:Unit ;
-   bamm:preferredName "Gigabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10⁹ B" ;
-   bamm:numericConversionFactor "1.0E9"^^xsd:double ;
-   bamm:symbol "GB" .
+:gigabyte a samm:Unit ;
+   samm:preferredName "Gigabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10⁹ B" ;
+   samm:numericConversionFactor "1.0E9"^^xsd:double ;
+   samm:symbol "GB" .
 
-:terabyte a bamm:Unit ;
-   bamm:preferredName "Terabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10¹² B" ;
-   bamm:numericConversionFactor "1.0E12"^^xsd:double ;
-   bamm:symbol "TB" .
+:terabyte a samm:Unit ;
+   samm:preferredName "Terabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10¹² B" ;
+   samm:numericConversionFactor "1.0E12"^^xsd:double ;
+   samm:symbol "TB" .
 
-:petabyte a bamm:Unit ;
-   bamm:preferredName "Petabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10¹⁵ B" ;
-   bamm:numericConversionFactor "1.0E15"^^xsd:double ;
-   bamm:symbol "PB" .
+:petabyte a samm:Unit ;
+   samm:preferredName "Petabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10¹⁵ B" ;
+   samm:numericConversionFactor "1.0E15"^^xsd:double ;
+   samm:symbol "PB" .
 
-:exabyte a bamm:Unit ;
-   bamm:preferredName "Exabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10¹⁸ B" ;
-   bamm:numericConversionFactor "1.0E18"^^xsd:double ;
-   bamm:symbol "EB" .
+:exabyte a samm:Unit ;
+   samm:preferredName "Exabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10¹⁸ B" ;
+   samm:numericConversionFactor "1.0E18"^^xsd:double ;
+   samm:symbol "EB" .
 
-:zettabyte a bamm:Unit ;
-   bamm:preferredName "Zettabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10²¹ B" ;
-   bamm:numericConversionFactor "1.0E21"^^xsd:double ;
-   bamm:symbol "ZB" .
+:zettabyte a samm:Unit ;
+   samm:preferredName "Zettabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10²¹ B" ;
+   samm:numericConversionFactor "1.0E21"^^xsd:double ;
+   samm:symbol "ZB" .
 
-:yottabyte a bamm:Unit ;
-   bamm:preferredName "Yottabyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "10²⁴ B" ;
-   bamm:numericConversionFactor "1.0E24"^^xsd:double ;
-   bamm:symbol "YB" .
+:yottabyte a samm:Unit ;
+   samm:preferredName "Yottabyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "10²⁴ B" ;
+   samm:numericConversionFactor "1.0E24"^^xsd:double ;
+   samm:symbol "YB" .
 
-:kibibyte a bamm:Unit ;
-   bamm:preferredName "Kibibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2¹⁰ B" ;
-   bamm:numericConversionFactor "1024.0"^^xsd:double ;
-   bamm:symbol "KiB" .
+:kibibyte a samm:Unit ;
+   samm:preferredName "Kibibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2¹⁰ B" ;
+   samm:numericConversionFactor "1024.0"^^xsd:double ;
+   samm:symbol "KiB" .
 
-:mebibyte a bamm:Unit ;
-   bamm:preferredName "Mebibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2²⁰ B" ;
-   bamm:numericConversionFactor "1048576.0"^^xsd:double ;
-   bamm:symbol "MiB" .
+:mebibyte a samm:Unit ;
+   samm:preferredName "Mebibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2²⁰ B" ;
+   samm:numericConversionFactor "1048576.0"^^xsd:double ;
+   samm:symbol "MiB" .
 
-:gibibyte a bamm:Unit ;
-   bamm:preferredName "Gibibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2³⁰ B" ;
-   bamm:numericConversionFactor "1073741824.0"^^xsd:double ;
-   bamm:symbol "GiB" .
+:gibibyte a samm:Unit ;
+   samm:preferredName "Gibibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2³⁰ B" ;
+   samm:numericConversionFactor "1073741824.0"^^xsd:double ;
+   samm:symbol "GiB" .
 
-:tebibyte a bamm:Unit ;
-   bamm:preferredName "Tebibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2⁴⁰ B" ;
-   bamm:numericConversionFactor "1099511627776.0"^^xsd:double ;
-   bamm:symbol "TiB" .
+:tebibyte a samm:Unit ;
+   samm:preferredName "Tebibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2⁴⁰ B" ;
+   samm:numericConversionFactor "1099511627776.0"^^xsd:double ;
+   samm:symbol "TiB" .
 
-:pebibyte a bamm:Unit ;
-   bamm:preferredName "Pebibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2⁵⁰ B" ;
-   bamm:numericConversionFactor "1125899906842624.0"^^xsd:double ;
-   bamm:symbol "PiB" .
+:pebibyte a samm:Unit ;
+   samm:preferredName "Pebibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2⁵⁰ B" ;
+   samm:numericConversionFactor "1125899906842624.0"^^xsd:double ;
+   samm:symbol "PiB" .
 
-:exbibyte a bamm:Unit ;
-   bamm:preferredName "Exbibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2⁶⁰ B" ;
-   bamm:numericConversionFactor "1152921504606846976.0"^^xsd:double ;
-   bamm:symbol "EiB" .
+:exbibyte a samm:Unit ;
+   samm:preferredName "Exbibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2⁶⁰ B" ;
+   samm:numericConversionFactor "1152921504606846976.0"^^xsd:double ;
+   samm:symbol "EiB" .
 
-:zebibyte a bamm:Unit ;
-   bamm:preferredName "Zebibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2⁷⁰ B" ;
-   bamm:numericConversionFactor "1180591620717411303424.0"^^xsd:double ;
-   bamm:symbol "ZiB" .
+:zebibyte a samm:Unit ;
+   samm:preferredName "Zebibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2⁷⁰ B" ;
+   samm:numericConversionFactor "1180591620717411303424.0"^^xsd:double ;
+   samm:symbol "ZiB" .
 
-:yobibyte a bamm:Unit ;
-   bamm:preferredName "Yobibyte"@en ;
-   bamm:quantityKind :informationEntropy ;
-   bamm:referenceUnit :byte ;
-   bamm:conversionFactor "2⁸⁰ B" ;
-   bamm:numericConversionFactor "1208925819614629174706176.0"^^xsd:double ;
-   bamm:symbol "YiB" .
+:yobibyte a samm:Unit ;
+   samm:preferredName "Yobibyte"@en ;
+   samm:quantityKind :informationEntropy ;
+   samm:referenceUnit :byte ;
+   samm:conversionFactor "2⁸⁰ B" ;
+   samm:numericConversionFactor "1208925819614629174706176.0"^^xsd:double ;
+   samm:symbol "YiB" .
 
-:cubicMicrometre a bamm:Unit ;
-   bamm:preferredName "cubic micrometre"@en ;
-   bamm:conversionFactor "10⁻¹⁸ m³" ;
-   bamm:numericConversionFactor "1.0E-18"^^xsd:double ;
-   bamm:quantityKind :volume ;
-   bamm:referenceUnit :cubicMetre ;
-   bamm:symbol "µm³" .
+:cubicMicrometre a samm:Unit ;
+   samm:preferredName "cubic micrometre"@en ;
+   samm:conversionFactor "10⁻¹⁸ m³" ;
+   samm:numericConversionFactor "1.0E-18"^^xsd:double ;
+   samm:quantityKind :volume ;
+   samm:referenceUnit :cubicMetre ;
+   samm:symbol "µm³" .

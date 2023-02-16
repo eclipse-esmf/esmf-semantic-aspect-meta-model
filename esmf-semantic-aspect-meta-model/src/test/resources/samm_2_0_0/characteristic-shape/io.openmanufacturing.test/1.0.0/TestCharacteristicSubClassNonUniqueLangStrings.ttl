@@ -10,13 +10,13 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestCharacteristicSubClassNonUniqueLangStrings a bamm:Characteristic ;
-   bamm:preferredName "Test Characteristic SubClass"@en ;
-   bamm:preferredName "Test Charakteristik Unterklasse"@en ;
-   bamm:description "Test Characteristic SubClass"@en ;
-   bamm:description "Test Charakteristik Unterklasse"@en ;
-   bamm:dataType xsd:float .
+:TestCharacteristicSubClassNonUniqueLangStrings a samm:Characteristic ;
+   samm:preferredName "Test Characteristic SubClass"@en ;
+   samm:preferredName "Test Charakteristik Unterklasse"@en ;
+   samm:description "Test Characteristic SubClass"@en ;
+   samm:description "Test Charakteristik Unterklasse"@en ;
+   samm:dataType xsd:float .

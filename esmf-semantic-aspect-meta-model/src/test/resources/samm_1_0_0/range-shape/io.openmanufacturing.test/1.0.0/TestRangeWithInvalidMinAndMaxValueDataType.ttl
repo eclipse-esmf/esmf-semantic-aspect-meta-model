@@ -10,25 +10,25 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:1.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:1.0.0#> .
 
-:TestTrait a bamm-c:Trait ;
-   bamm:name "TestTrait" ;
-   bamm-c:constraint :TestRangeWithInvalidMinAndMaxValueDataType ;
-   bamm-c:baseCharacteristic :Measurement .
+:TestTrait a samm-c:Trait ;
+   samm:name "TestTrait" ;
+   samm-c:constraint :TestRangeWithInvalidMinAndMaxValueDataType ;
+   samm-c:baseCharacteristic :Measurement .
 
-:TestRangeWithInvalidMinAndMaxValueDataType a bamm-c:RangeConstraint ;
-   bamm:name "TestRangeWithInvalidMinAndMaxValueDataType" ;
-   bamm:preferredName "Test Range"@en ;
-   bamm:description "Test Range"@en ;
-   bamm-c:minValue "-2000"^^xsd:long ;
-   bamm-c:maxValue "2000"^^xsd:long .
+:TestRangeWithInvalidMinAndMaxValueDataType a samm-c:RangeConstraint ;
+   samm:name "TestRangeWithInvalidMinAndMaxValueDataType" ;
+   samm:preferredName "Test Range"@en ;
+   samm:description "Test Range"@en ;
+   samm-c:minValue "-2000"^^xsd:long ;
+   samm-c:maxValue "2000"^^xsd:long .
 
-:Measurement a bamm-c:Measurement ;
-   bamm:name "Measurement" ;
-   bamm:dataType xsd:float ;
-   bamm-c:unit unit:metrePerSecond .
+:Measurement a samm-c:Measurement ;
+   samm:name "Measurement" ;
+   samm:dataType xsd:float ;
+   samm-c:unit unit:metrePerSecond .

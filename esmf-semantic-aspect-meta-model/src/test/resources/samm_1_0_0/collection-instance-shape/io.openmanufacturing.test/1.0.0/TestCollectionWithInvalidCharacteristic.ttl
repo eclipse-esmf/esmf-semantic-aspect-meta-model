@@ -10,19 +10,19 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
 
-:TestCollectionWithInvalidCharacteristic a bamm-c:Collection ;
-   bamm:name "TestCollectionWithInvalidCharacteristic" ;
-   bamm-c:elementCharacteristic :TestEntity .
+:TestCollectionWithInvalidCharacteristic a samm-c:Collection ;
+   samm:name "TestCollectionWithInvalidCharacteristic" ;
+   samm-c:elementCharacteristic :TestEntity .
 
-:TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
-   bamm:properties ( :entityProperty ) .
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:properties ( :entityProperty ) .
 
-:entityProperty a bamm:Property ;
-   bamm:name "entityProperty" ;
-   bamm:characteristic bamm-c:Text .
+:entityProperty a samm:Property ;
+   samm:name "entityProperty" ;
+   samm:characteristic samm-c:Text .

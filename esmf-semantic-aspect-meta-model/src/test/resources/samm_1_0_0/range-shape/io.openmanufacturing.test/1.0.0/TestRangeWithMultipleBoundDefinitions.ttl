@@ -10,19 +10,19 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:1.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:1.0.0#> .
 
-:TestRangeWithMultipleBoundDefinitions a bamm-c:RangeConstraint ;
-   bamm:name "TestRangeWithMultipleBoundDefinitions" ;
-   bamm:preferredName "Test Range"@en ;
-   bamm:description "Test Range"@en ;
-   bamm-c:minValue "2.3"^^xsd:float ;
-   bamm-c:lowerBoundDefinition bamm-c:AT_LEAST ;
-   bamm-c:lowerBoundDefinition bamm-c:GREATER_THAN ;
-   bamm-c:maxValue "10.5"^^xsd:float ;
-   bamm-c:upperBoundDefinition bamm-c:AT_MOST ;
-   bamm-c:upperBoundDefinition bamm-c:LESS_THAN .
+:TestRangeWithMultipleBoundDefinitions a samm-c:RangeConstraint ;
+   samm:name "TestRangeWithMultipleBoundDefinitions" ;
+   samm:preferredName "Test Range"@en ;
+   samm:description "Test Range"@en ;
+   samm-c:minValue "2.3"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:lowerBoundDefinition samm-c:GREATER_THAN ;
+   samm-c:maxValue "10.5"^^xsd:float ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST ;
+   samm-c:upperBoundDefinition samm-c:LESS_THAN .

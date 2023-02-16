@@ -6,21 +6,21 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.1.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.1.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix previousVersion: <urn:bamm:com.mycompany.myapplication:1.0.2#> .
+@prefix previousVersion: <urn:samm:com.mycompany.myapplication:1.0.2#> .
 
-:MachineOnlineStatus a bamm:Aspect ;
-   bamm:properties ( :onlineStatus ) ;
-   bamm:operations ( ) .
+:MachineOnlineStatus a samm:Aspect ;
+   samm:properties ( :onlineStatus ) ;
+   samm:operations ( ) .
 
-:onlineStatus a bamm:Property ; # <4>
-   bamm:description "The current machine online status."@en ;
-   bamm:see previousVersion:machineOnlineStatus ; # <5>
-   bamm:characteristic [
-      a bamm-c:Enumeration ;
-      bamm:dataType xsd:string ;
-      bamm-c:values ( "ON" "OFF" "BOOTING" )
+:onlineStatus a samm:Property ; # <4>
+   samm:description "The current machine online status."@en ;
+   samm:see previousVersion:machineOnlineStatus ; # <5>
+   samm:characteristic [
+      a samm-c:Enumeration ;
+      samm:dataType xsd:string ;
+      samm-c:values ( "ON" "OFF" "BOOTING" )
    ] .

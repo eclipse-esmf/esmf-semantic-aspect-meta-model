@@ -30,10 +30,10 @@ public class AbstractPropertyShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAbstractPropertyWithCharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( MESSAGE_MORE_THAN_ZERO_VALUES,
-            TEST_NAMESPACE_PREFIX + "x", bammUrns.characteristicUrn, VIOLATION_URN, "" );
+            TEST_NAMESPACE_PREFIX + "x", sammUrns.characteristicUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "abstract-property-shape", "TestAbstractPropertyWithCharacteristic",
             metaModelVersion, resultForName );
    }
@@ -41,10 +41,10 @@ public class AbstractPropertyShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAbstractPropertyWithExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( MESSAGE_MORE_THAN_ZERO_VALUES,
-            TEST_NAMESPACE_PREFIX + "x", bammUrns.exampleValueUrn, VIOLATION_URN, "" );
+            TEST_NAMESPACE_PREFIX + "x", sammUrns.exampleValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "abstract-property-shape", "TestAbstractPropertyWithExampleValue",
             metaModelVersion, resultForName );
    }

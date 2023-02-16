@@ -24,7 +24,7 @@ import org.apache.jena.vocabulary.RDFS;
 import org.apache.jena.vocabulary.XSD;
 
 /**
- * Main API class that creates the BAMM Units model
+ * Main API class that creates the SAMM Units model
  */
 public class Units {
    private final UnitsResources unitsResources;
@@ -44,7 +44,7 @@ public class Units {
       model.setNsPrefix( "rdf", RDF.getURI() );
       model.setNsPrefix( "rdfs", RDFS.getURI() );
       model.setNsPrefix( "xsd", XSD.getURI() );
-      model.setNsPrefix( "bamm", unitsResources.getNamespaceBamm() );
+      model.setNsPrefix( "samm", unitsResources.getNamespaceSamm() );
 
       return model;
    }

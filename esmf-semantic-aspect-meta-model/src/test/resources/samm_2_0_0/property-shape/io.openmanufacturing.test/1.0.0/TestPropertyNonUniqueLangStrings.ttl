@@ -10,21 +10,21 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestPropertyNonUniqueLangStrings a bamm:Aspect ;
-   bamm:properties ( :testProperty ) ;
-   bamm:operations ( ) .
+:TestPropertyNonUniqueLangStrings a samm:Aspect ;
+   samm:properties ( :testProperty ) ;
+   samm:operations ( ) .
 
-:testProperty a bamm:Property ;
-   bamm:preferredName "Test Property"@en ;
-   bamm:preferredName "Test Eigenschaft"@en ;
-   bamm:description "A property with a list of numeric values."@en ;
-   bamm:description "Eine Liste mit numerischen Werten."@en ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:dataType xsd:double
+:testProperty a samm:Property ;
+   samm:preferredName "Test Property"@en ;
+   samm:preferredName "Test Eigenschaft"@en ;
+   samm:description "A property with a list of numeric values."@en ;
+   samm:description "Eine Liste mit numerischen Werten."@en ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:dataType xsd:double
    ] .

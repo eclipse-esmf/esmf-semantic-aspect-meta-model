@@ -10,33 +10,33 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestSeeProperty a bamm:Aspect ;
-   bamm:name "TestSeeProperty" ;
-   bamm:see <http://open-manufacturing.org/> ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) .
+:TestSeeProperty a samm:Aspect ;
+   samm:name "TestSeeProperty" ;
+   samm:see <http://open-manufacturing.org/> ;
+   samm:properties ( ) ;
+   samm:operations ( ) .
 
-:TestCharacteristicInstance a bamm:Characteristic ;
-   bamm:name "TestCharacteristicInstance" ;
-   bamm:see <http://open-manufacturing.org/> ;
-   bamm:dataType xsd:float .
+:TestCharacteristicInstance a samm:Characteristic ;
+   samm:name "TestCharacteristicInstance" ;
+   samm:see <http://open-manufacturing.org/> ;
+   samm:dataType xsd:float .
 
-:TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
-   bamm:see <http://open-manufacturing.org/> ;
-   bamm:properties ( ).
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:see <http://open-manufacturing.org/> ;
+   samm:properties ( ).
 
-:TestOperation a bamm:Operation ;
-   bamm:name "TestOperation" ;
-   bamm:see <http://open-manufacturing.org/> ;
-   bamm:input ( ) .
+:TestOperation a samm:Operation ;
+   samm:name "TestOperation" ;
+   samm:see <http://open-manufacturing.org/> ;
+   samm:input ( ) .
 
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
-   bamm:see <http://open-manufacturing.org/> ;
-   bamm:characteristic :TestCharacteristicInstance .
+:testProperty a samm:Property ;
+   samm:name "testProperty" ;
+   samm:see <http://open-manufacturing.org/> ;
+   samm:characteristic :TestCharacteristicInstance .

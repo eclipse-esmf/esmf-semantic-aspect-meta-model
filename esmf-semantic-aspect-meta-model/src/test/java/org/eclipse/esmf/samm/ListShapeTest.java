@@ -34,7 +34,7 @@ public class ListShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testListTypeIsAPropertyOrOperationExpectSuccess( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final Model shapesModel = validator.loadShapes( metaModelVersion );
       final Model definitionsModel = loadMetaModelDefinitions( metaModelVersion );
@@ -45,7 +45,7 @@ public class ListShapeTest extends AbstractShapeTest {
             .flatMap( Collection::stream )
             .map( propertyStatement -> propertyStatement.getObject().asResource() )
             .map( propertyResource -> propertyResource
-                  .getProperty( ResourceFactory.createProperty( bammUrns.listTypeUrn ) ) )
+                  .getProperty( ResourceFactory.createProperty( sammUrns.listTypeUrn ) ) )
             .filter( Objects::nonNull )
             .map( Statement::getObject )
             .forEach( rdfNode -> assertThat( definitionsModel.containsResource( rdfNode ) ).isTrue() );
@@ -54,7 +54,7 @@ public class ListShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testListShapeWithMultipleListTypesExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final Model shapesModel = validator.loadShapes( metaModelVersion );
       final List<Statement> shapes = ImmutableList
@@ -64,7 +64,7 @@ public class ListShapeTest extends AbstractShapeTest {
             .flatMap( Collection::stream )
             .map( propertyStatement -> propertyStatement.getObject().asResource() )
             .map( propertyResource -> propertyResource
-                  .listProperties( ResourceFactory.createProperty( bammUrns.listTypeUrn ) ) )
+                  .listProperties( ResourceFactory.createProperty( sammUrns.listTypeUrn ) ) )
             .map( ExtendedIterator::toList )
             .map( List::size )
             .forEach( integer -> assertThat( integer ).isBetween( 0, 1 ) );

@@ -17,11 +17,11 @@ import org.eclipse.esmf.samm.KnownVersion;
 
 public class UnitUrns {
 
-   private final String UNITS_URN = "urn:bamm:io.openmanufacturing:%s:%s#";
+   private final String UNITS_URN = "urn:samm:org.eclipse.samm:%s:%s#";
 
    String voltUrn;
 
-   UnitUrns( final String elementType, final KnownVersion testedBammVersion ) {
-      voltUrn = String.format( UNITS_URN + "volt", elementType, testedBammVersion.toVersionString() );
+   UnitUrns( final String elementType, final KnownVersion testedMetaModelVersion ) {
+      voltUrn = String.format( UNITS_URN + "volt", elementType, testedMetaModelVersion.toVersionString() );
    }
 }

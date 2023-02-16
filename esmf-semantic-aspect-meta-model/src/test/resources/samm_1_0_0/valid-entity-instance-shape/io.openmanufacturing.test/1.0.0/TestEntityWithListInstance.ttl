@@ -10,35 +10,35 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntityWithListInstance a bamm:Aspect ;
-   bamm:name "TestEntityWithListInstance" ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) .
+:TestEntityWithListInstance a samm:Aspect ;
+   samm:name "TestEntityWithListInstance" ;
+   samm:properties ( ) ;
+   samm:operations ( ) .
 
-:Entity a bamm:Entity ;
-   bamm:name "Entity" ;
-   bamm:properties ( :intProperty :stringListProperty ) .
+:Entity a samm:Entity ;
+   samm:name "Entity" ;
+   samm:properties ( :intProperty :stringListProperty ) .
 
-:stringListProperty a bamm:Property ;
-   bamm:name "stringListProperty" ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "StringList" ;
-      bamm:dataType xsd:string
+:stringListProperty a samm:Property ;
+   samm:name "stringListProperty" ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "StringList" ;
+      samm:dataType xsd:string
    ] .
 
-:CustomCharacteristic a bamm:Characteristic ;
-   bamm:name "CustomCharacteristic" ;
-   bamm:dataType xsd:integer .
+:CustomCharacteristic a samm:Characteristic ;
+   samm:name "CustomCharacteristic" ;
+   samm:dataType xsd:integer .
 
-:intProperty a bamm:Property ;
-   bamm:name "intProperty" ;
-   bamm:characteristic :CustomCharacteristic .
+:intProperty a samm:Property ;
+   samm:name "intProperty" ;
+   samm:characteristic :CustomCharacteristic .
 
 :Instance a :Entity ;
    :stringListProperty ( "foo" "bar" "baz" ) ;

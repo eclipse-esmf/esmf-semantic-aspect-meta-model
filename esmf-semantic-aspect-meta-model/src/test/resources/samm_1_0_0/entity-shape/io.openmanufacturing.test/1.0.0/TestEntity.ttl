@@ -10,43 +10,43 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
-   bamm:preferredName "Test Entity"@en ;
-   bamm:preferredName "Test Entität"@de ;
-   bamm:description "A test Entity"@en ;
-   bamm:description "Eine test Entität"@de ;
-   bamm:properties ( :entityList :integerList ).
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:preferredName "Test Entity"@en ;
+   samm:preferredName "Test Entität"@de ;
+   samm:description "A test Entity"@en ;
+   samm:description "Eine test Entität"@de ;
+   samm:properties ( :entityList :integerList ).
 
-:entityList a bamm:Property ;
-   bamm:name "entityList" ;
-   bamm:preferredName "Entity List"@en ;
-   bamm:preferredName "Entitätliste"@de ;
-   bamm:description "A property with a list of complex value."@en ;
-   bamm:description "Eine Property mit einer Liste mit komplexen Werten."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "EntityList" ;
-      bamm:dataType :SecondTestEntity
+:entityList a samm:Property ;
+   samm:name "entityList" ;
+   samm:preferredName "Entity List"@en ;
+   samm:preferredName "Entitätliste"@de ;
+   samm:description "A property with a list of complex value."@en ;
+   samm:description "Eine Property mit einer Liste mit komplexen Werten."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "EntityList" ;
+      samm:dataType :SecondTestEntity
    ] .
 
-:integerList a bamm:Property ;
-   bamm:name "integerList" ;
-   bamm:preferredName "Integer List"@en ;
-   bamm:preferredName "Numerische Liste"@de ;
-   bamm:description "A property with a list of numeric value."@en ;
-   bamm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "NumericList" ;
-      bamm:dataType xsd:integer
+:integerList a samm:Property ;
+   samm:name "integerList" ;
+   samm:preferredName "Integer List"@en ;
+   samm:preferredName "Numerische Liste"@de ;
+   samm:description "A property with a list of numeric value."@en ;
+   samm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "NumericList" ;
+      samm:dataType xsd:integer
    ] .
 
-:SecondTestEntity a bamm:Entity ;
-   bamm:name "SecondTestEntity" ;
-   bamm:properties ( ) .
+:SecondTestEntity a samm:Entity ;
+   samm:name "SecondTestEntity" ;
+   samm:properties ( ) .

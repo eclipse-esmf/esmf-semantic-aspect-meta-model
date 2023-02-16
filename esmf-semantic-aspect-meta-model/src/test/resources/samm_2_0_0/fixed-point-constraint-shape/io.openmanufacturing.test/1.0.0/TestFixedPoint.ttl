@@ -10,22 +10,22 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
 
-:TestTrait a bamm-c:Trait ;
-   bamm-c:constraint :TestFixedPoint ;
-   bamm-c:baseCharacteristic :Measurement .
+:TestTrait a samm-c:Trait ;
+   samm-c:constraint :TestFixedPoint ;
+   samm-c:baseCharacteristic :Measurement .
 
-:TestFixedPoint a bamm-c:FixedPointConstraint ;
-   bamm:preferredName "Test Fixed Point"@en ;
-   bamm:description "TestFixedPoint"@en ;
-   bamm-c:scale "5"^^xsd:positiveInteger ;
-   bamm-c:integer "10"^^xsd:positiveInteger .
+:TestFixedPoint a samm-c:FixedPointConstraint ;
+   samm:preferredName "Test Fixed Point"@en ;
+   samm:description "TestFixedPoint"@en ;
+   samm-c:scale "5"^^xsd:positiveInteger ;
+   samm-c:integer "10"^^xsd:positiveInteger .
 
-:Measurement a bamm-c:Measurement ;
-   bamm:dataType xsd:decimal ;
-   bamm-c:unit unit:metrePerSecond .
+:Measurement a samm-c:Measurement ;
+   samm:dataType xsd:decimal ;
+   samm-c:unit unit:metrePerSecond .

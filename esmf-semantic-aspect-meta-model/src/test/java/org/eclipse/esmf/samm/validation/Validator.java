@@ -94,12 +94,12 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
 
    public Model loadShapes( final KnownVersion version ) {
       final Model shapesModel = ModelLoader.createModel( List.of(
-            "bamm/meta-model/" + version.toVersionString() + "/prefix-declarations.ttl",
-            "bamm/meta-model/" + version.toVersionString() + "/aspect-meta-model-shapes.ttl",
-            "bamm/meta-model/" + version.toVersionString() + "/type-conversions.ttl",
-            "bamm/characteristic/" + version.toVersionString() + "/characteristic-shapes.ttl"
+            "samm/meta-model/" + version.toVersionString() + "/prefix-declarations.ttl",
+            "samm/meta-model/" + version.toVersionString() + "/aspect-meta-model-shapes.ttl",
+            "samm/meta-model/" + version.toVersionString() + "/type-conversions.ttl",
+            "samm/characteristic/" + version.toVersionString() + "/characteristic-shapes.ttl"
       ) );
-      final Set<Tuple2<Statement, Statement>> changeSet = determineBammUrlsToReplace( shapesModel );
+      final Set<Tuple2<Statement, Statement>> changeSet = determineSammUrlsToReplace( shapesModel );
       changeSet.forEach( urlReplacement -> {
          shapesModel.remove( urlReplacement._1() );
          shapesModel.add( urlReplacement._2() );
@@ -109,17 +109,17 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
    }
 
    /**
-    * Determines all statements that refer to a bamm:// URL and their replacements where the bamm:// URL has
+    * Determines all statements that refer to a samm:// URL and their replacements where the samm:// URL has
     * been replaced with a URL that is resolvable in the current context (e.g. to the class path or via HTTP).
     *
     * @param model the input model
     * @return the tuples of the original statement to replace and the replacement statement
     */
-   private Set<Tuple2<Statement, Statement>> determineBammUrlsToReplace( final Model model ) {
+   private Set<Tuple2<Statement, Statement>> determineSammUrlsToReplace( final Model model ) {
       return model.listStatements( null, SH.jsLibraryURL, (RDFNode) null ).toList().stream()
             .filter( statement -> statement.getObject().isLiteral() )
-            .filter( statement -> statement.getObject().asLiteral().getString().startsWith( "bamm://" ) )
-            .flatMap( statement -> rewriteBammUrl( statement.getObject().asLiteral().getString() )
+            .filter( statement -> statement.getObject().asLiteral().getString().startsWith( "samm://" ) )
+            .flatMap( statement -> rewriteSammUrl( statement.getObject().asLiteral().getString() )
                   .stream()
                   .map( newUrl ->
                         ResourceFactory.createStatement( statement.getSubject(), statement.getPredicate(),
@@ -129,38 +129,38 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
    }
 
    /**
-    * URLs inside meta model shapes, in particular those used with sh:jsLibraryURL, are given as bamm:// URLs
+    * URLs inside meta model shapes, in particular those used with sh:jsLibraryURL, are given as samm:// URLs
     * in order to decouple them from the way they are resolved (i.e. currently to a file in the class path, but
-    * in the future this could be resolved using the URL of a suitable service). This method takes a bamm:// URL
+    * in the future this could be resolved using the URL of a suitable service). This method takes a samm:// URL
     * and rewrites it to the respective URL of the object on the class path.
     *
-    * @param bammUrl the bamm URL in the format bamm://PART/VERSION/FILENAME
+    * @param sammUrl the samm URL in the format samm://PART/VERSION/FILENAME
     * @return The corresponding class path URL to resolve the meta model resource
     */
-   private Optional<String> rewriteBammUrl( final String bammUrl ) {
-      final Matcher matcher = Pattern.compile( "^bamm://([\\p{Alpha}-]*)/(\\d+\\.\\d+\\.\\d+)/(.*)$" )
-            .matcher( bammUrl );
+   private Optional<String> rewriteSammUrl( final String sammUrl ) {
+      final Matcher matcher = Pattern.compile( "^samm://([\\p{Alpha}-]*)/(\\d+\\.\\d+\\.\\d+)/(.*)$" )
+            .matcher( sammUrl );
       if ( matcher.find() ) {
          return KnownVersion.fromVersionString( matcher.group( 2 ) ).flatMap( metaModelVersion -> {
             final String spec = String
-                  .format( "bamm/%s/%s/%s", matcher.group( 1 ), metaModelVersion.toVersionString(),
+                  .format( "samm/%s/%s/%s", matcher.group( 1 ), metaModelVersion.toVersionString(),
                         matcher.group( 3 ) );
             final URL resource = Validator.class.getClassLoader().getResource( spec );
             return Optional.ofNullable( resource ).map( URL::toString );
          } );
       }
-      if ( bammUrl.startsWith( "bamm://scripts/" ) ) {
-         final String resourcePath = bammUrl.replace( "bamm://", "bamm/" );
+      if ( sammUrl.startsWith( "samm://scripts/" ) ) {
+         final String resourcePath = sammUrl.replace( "samm://", "samm/" );
          final URL resource = Validator.class.getClassLoader().getResource( resourcePath );
          return Optional.ofNullable( resource ).map( URL::toString );
       }
       return Optional.empty();
    }
 
-   private final static String prefixes = "prefix mmm: <urn:bamm:io.openmanufacturing:meta-meta-model:%s#> \r\n" +
-         "prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:%s#> \r\n" +
-         "prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:%s#> \r\n" +
-         "prefix unit: <urn:bamm:io.openmanufacturing:unit:%s#> \r\n" +
+   private final static String prefixes = "prefix mmm: <urn:samm:org.eclipse.samm:meta-meta-model:%s#> \r\n" +
+         "prefix samm: <urn:samm:org.eclipse.samm:meta-model:%s#> \r\n" +
+         "prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:%s#> \r\n" +
+         "prefix unit: <urn:samm:org.eclipse.samm:unit:%s#> \r\n" +
          "prefix sh: <http://www.w3.org/ns/shacl#> \r\n" +
          "prefix xsd: <http://www.w3.org/2001/XMLSchema#> \r\n" +
          "prefix dash: <http://datashapes.org/dash#> \r\n" +

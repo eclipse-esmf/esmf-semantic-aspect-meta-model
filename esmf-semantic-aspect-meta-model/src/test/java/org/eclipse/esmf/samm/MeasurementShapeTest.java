@@ -29,13 +29,13 @@ public class MeasurementShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestMeasurementMissingRequiredProperties";
 
       final SemanticError resultForDataType = new SemanticError( MESSAGE_MISSING_DATATYPE,
-            focusNode, bammUrns.datatypeUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.datatypeUrn, VIOLATION_URN, "" );
       final SemanticError resultForUnit = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY,
-            focusNode, bammUrns.unitUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.unitUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "measurement-shape", "TestMeasurementMissingRequiredProperties",
             metaModelVersion, resultForDataType, resultForUnit );
    }
@@ -43,12 +43,12 @@ public class MeasurementShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidUnitExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestMeasurementWithInvalidUnit";
 
-      final String expectedMessage = validator.getMessageText( "bamm-c:QuantifiableShape", "bamm-c:unit", "ERR_WRONG_DATATYPE", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "samm-c:QuantifiableShape", "samm-c:unit", "ERR_WRONG_DATATYPE", metaModelVersion );
       final SemanticError error = new SemanticError( expectedMessage, focusNode,
-            bammUrns.unitUrn, VIOLATION_URN, TEST_NAMESPACE_PREFIX + "Entity" );
+            sammUrns.unitUrn, VIOLATION_URN, TEST_NAMESPACE_PREFIX + "Entity" );
       expectSemanticValidationErrors( "measurement-shape", "TestMeasurementWithInvalidUnit",
             metaModelVersion, error );
    }

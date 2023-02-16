@@ -10,15 +10,15 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:1.0.0#> .
 
-:RefinedTestEntity bamm:refines bamm-e:TimeSeriesEntity ;
-   bamm:name "RefinedTestEntity" ;
-   bamm:properties ( :value ).
+:RefinedTestEntity samm:refines samm-e:TimeSeriesEntity ;
+   samm:name "RefinedTestEntity" ;
+   samm:properties ( :value ).
 
-:value bamm:refines bamm-e:value;
-   bamm:name "value" ;
-   bamm:characteristic bamm-c:Duration .
+:value samm:refines samm-e:value;
+   samm:name "value" ;
+   samm:characteristic samm-c:Duration .

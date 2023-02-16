@@ -10,30 +10,30 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:AbstractTestEntityWithExtendingEntitiesWithSameProperty a bamm:Entity ;
-   bamm:properties ( :integer ).
+:AbstractTestEntityWithExtendingEntitiesWithSameProperty a samm:Entity ;
+   samm:properties ( :integer ).
 
-:integer a bamm:Property ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:dataType xsd:integer
+:integer a samm:Property ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:integer
    ] .
 
-:A a bamm:Entity ;
-   bamm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
-   bamm:properties ( :a ) .
+:A a samm:Entity ;
+   samm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
+   samm:properties ( :a ) .
 
-:a a bamm:Property ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:dataType xsd:positiveInteger
+:a a samm:Property ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:positiveInteger
    ] .
 
-:B a bamm:Entity ;
-   bamm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
-   bamm:properties ( :a ) .
+:B a samm:Entity ;
+   samm:extends :AbstractTestEntityWithExtendingEntitiesWithSameProperty ;
+   samm:properties ( :a ) .

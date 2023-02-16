@@ -21,8 +21,8 @@ import java.util.Optional;
  * The known versions of the Aspect Meta Model
  */
 public enum KnownVersion {
-   BAMM_1_0_0,
-   BAMM_2_0_0;
+   SAMM_1_0_0,
+   SAMM_2_0_0;
 
    /**
     * Returns this version as a standard version string, e.g. 1.2.3
@@ -30,7 +30,7 @@ public enum KnownVersion {
     * @return version string representation
     */
    public String toVersionString() {
-      return toString().replaceFirst( "BAMM_(\\d+)_(\\d+)_(\\d+)", "$1.$2.$3" );
+      return toString().replaceFirst( "SAMM_(\\d+)_(\\d+)_(\\d+)", "$1.$2.$3" );
    }
 
    public static Optional<KnownVersion> fromVersionString( final String version ) {

@@ -10,28 +10,28 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:Vec2 a bamm:AbstractEntity ;
-   bamm:description "A two-dimensional vector"@en ;
-   bamm:properties ( :x :y ) .
+:Vec2 a samm:AbstractEntity ;
+   samm:description "A two-dimensional vector"@en ;
+   samm:properties ( :x :y ) .
 
-:x a bamm:AbstractProperty ;
-   bamm:description "The x part of the vector"@en ;
-   bamm:characteristic :IntegerNumber .
+:x a samm:AbstractProperty ;
+   samm:description "The x part of the vector"@en ;
+   samm:characteristic :IntegerNumber .
 
-:y a bamm:AbstractProperty ;
-   bamm:description "The y part of the vector"@en .
+:y a samm:AbstractProperty ;
+   samm:description "The y part of the vector"@en .
 
-:IntegerNumber a bamm:Characteristic ;
-   bamm:dataType xsd:integer .
+:IntegerNumber a samm:Characteristic ;
+   samm:dataType xsd:integer .
 
-:IntVec2 a bamm:Entity ;
-   bamm:extends :Vec2 ;
-   bamm:properties (
-     [ bamm:extends :x ; bamm:characteristic :IntegerNumber ]
-     [ bamm:extends :y ; bamm:characteristic :IntegerNumber ]
+:IntVec2 a samm:Entity ;
+   samm:extends :Vec2 ;
+   samm:properties (
+     [ samm:extends :x ; samm:characteristic :IntegerNumber ]
+     [ samm:extends :y ; samm:characteristic :IntegerNumber ]
    ) .

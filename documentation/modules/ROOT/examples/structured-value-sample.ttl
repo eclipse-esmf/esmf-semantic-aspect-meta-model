@@ -6,40 +6,40 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::content[]
-:StructuredValueTest a bamm:Aspect ;
-   bamm:properties ( :date ) ;
-   bamm:operations () .
+:StructuredValueTest a samm:Aspect ;
+   samm:properties ( :date ) ;
+   samm:operations () .
 
-:date a bamm:Property ;
-   bamm:exampleValue "2019-09-27"^^xsd:date ;
-   bamm:characteristic :StructuredDate .
+:date a samm:Property ;
+   samm:exampleValue "2019-09-27"^^xsd:date ;
+   samm:characteristic :StructuredDate .
 
-:StructuredDate a bamm-c:StructuredValue ;
-   bamm:dataType xsd:date ;
-   bamm-c:deconstructionRule "(\\d{4})-(\\d{2})-(\\d{2})" ;
-   bamm-c:elements ( :year "-" :month "-" :day ) .
+:StructuredDate a samm-c:StructuredValue ;
+   samm:dataType xsd:date ;
+   samm-c:deconstructionRule "(\\d{4})-(\\d{2})-(\\d{2})" ;
+   samm-c:elements ( :year "-" :month "-" :day ) .
 
-:year a bamm:Property ;
-   bamm:characteristic :Year .
+:year a samm:Property ;
+   samm:characteristic :Year .
 
-:month a bamm:Property ;
-   bamm:characteristic :Month .
+:month a samm:Property ;
+   samm:characteristic :Month .
 
-:day a bamm:Property ;
-   bamm:characteristic :Day .
+:day a samm:Property ;
+   samm:characteristic :Day .
 
-:Year a bamm:Characteristic ;
-   bamm:dataType xsd:int .
+:Year a samm:Characteristic ;
+   samm:dataType xsd:int .
 
-:Month a bamm:Characteristic ;
-   bamm:dataType xsd:int .
+:Month a samm:Characteristic ;
+   samm:dataType xsd:int .
 
-:Day a bamm:Characteristic ;
-   bamm:dataType xsd:int .
+:Day a samm:Characteristic ;
+   samm:dataType xsd:int .
 # end::content[]

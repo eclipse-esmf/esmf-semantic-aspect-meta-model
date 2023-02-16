@@ -10,36 +10,36 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntityWithEntityListInstanceInvalidTypeInList a bamm:Aspect ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) .
+:TestEntityWithEntityListInstanceInvalidTypeInList a samm:Aspect ;
+   samm:properties ( ) ;
+   samm:operations ( ) .
 
-:Entity a bamm:Entity ;
-   bamm:properties ( :intProperty :entityListProperty ) .
+:Entity a samm:Entity ;
+   samm:properties ( :intProperty :entityListProperty ) .
 
-:entityListProperty a bamm:Property ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:dataType :ListEntity
+:entityListProperty a samm:Property ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:dataType :ListEntity
    ] .
 
-:CustomCharacteristic a bamm:Characteristic ;
-   bamm:dataType xsd:integer .
+:CustomCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:integer .
 
-:intProperty a bamm:Property ;
-   bamm:characteristic :CustomCharacteristic .
+:intProperty a samm:Property ;
+   samm:characteristic :CustomCharacteristic .
 
 :Instance a :Entity ;
    :entityListProperty ( :ListEntityInstanceOne :AnotherListEntityInstance :ListEntityInstanceTwo ) ;
    :intProperty 42 .
 
-:ListEntity a bamm:Entity ;
-   bamm:properties ( :intProperty ) .
+:ListEntity a samm:Entity ;
+   samm:properties ( :intProperty ) .
 
 :ListEntityInstanceOne a :ListEntity ;
    :intProperty 34 .
@@ -47,8 +47,8 @@
 :ListEntityInstanceTwo a :ListEntity ;
    :intProperty 56 .
 
-:AnotherListEntity a bamm:Entity ;
-   bamm:properties ( :intProperty ) .
+:AnotherListEntity a samm:Entity ;
+   samm:properties ( :intProperty ) .
 
 :AnotherListEntityInstance a :AnotherListEntity ;
    :intProperty 89 .

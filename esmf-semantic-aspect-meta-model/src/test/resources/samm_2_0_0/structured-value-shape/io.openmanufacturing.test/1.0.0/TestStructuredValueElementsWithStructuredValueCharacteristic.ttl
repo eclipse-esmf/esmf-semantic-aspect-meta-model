@@ -10,24 +10,24 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestStructuredValueElementsWithStructuredValueCharacteristic a bamm-c:StructuredValue ;
-   bamm:dataType xsd:string ;
-   bamm-c:deconstructionRule "(.*)" ;
-   bamm-c:elements ( :prop ) .
+:TestStructuredValueElementsWithStructuredValueCharacteristic a samm-c:StructuredValue ;
+   samm:dataType xsd:string ;
+   samm-c:deconstructionRule "(.*)" ;
+   samm-c:elements ( :prop ) .
 
-:prop a bamm:Property ;
-   bamm:characteristic :AnotherStructuredValue .
+:prop a samm:Property ;
+   samm:characteristic :AnotherStructuredValue .
 
-:AnotherStructuredValue a bamm-c:StructuredValue ;
-   bamm:dataType xsd:string ;
-   bamm-c:deconstructionRule "(.*)" ;
-   bamm-c:elements ( :anotherProp ) .
+:AnotherStructuredValue a samm-c:StructuredValue ;
+   samm:dataType xsd:string ;
+   samm-c:deconstructionRule "(.*)" ;
+   samm-c:elements ( :anotherProp ) .
 
-:anotherProp a bamm:Property ;
-  bamm:characteristic bamm-c:Text .
+:anotherProp a samm:Property ;
+  samm:characteristic samm-c:Text .

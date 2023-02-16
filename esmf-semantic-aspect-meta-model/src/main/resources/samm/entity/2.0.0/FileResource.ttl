@@ -9,23 +9,23 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
 
-bamm-e:FileResource a bamm:Entity ;
-   bamm:preferredName "File Resource"@en ;
-   bamm:description "A file in a specific format"@en ;
-   bamm:properties ( bamm-e:resource bamm-e:mimeType ) .
+samm-e:FileResource a samm:Entity ;
+   samm:preferredName "File Resource"@en ;
+   samm:description "A file in a specific format"@en ;
+   samm:properties ( samm-e:resource samm-e:mimeType ) .
 
-bamm-e:resource a bamm:Property ;
-   bamm:preferredName "Resource"@en ;
-   bamm:description "Location of a resource"@en ;
-   bamm:characteristic bamm-c:ResourcePath .
+samm-e:resource a samm:Property ;
+   samm:preferredName "Resource"@en ;
+   samm:description "Location of a resource"@en ;
+   samm:characteristic samm-c:ResourcePath .
 
-bamm-e:mimeType a bamm:Property ;
-   bamm:preferredName "MIME Type"@en ;
-   bamm:description "A MIME type as defined in RFC 2046."@en ;
-   bamm:exampleValue "application/json" ;
-   bamm:characteristic bamm-c:MimeType .
+samm-e:mimeType a samm:Property ;
+   samm:preferredName "MIME Type"@en ;
+   samm:description "A MIME type as defined in RFC 2046."@en ;
+   samm:exampleValue "application/json" ;
+   samm:characteristic samm-c:MimeType .
 

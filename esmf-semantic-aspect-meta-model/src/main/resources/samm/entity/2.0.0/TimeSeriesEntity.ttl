@@ -9,20 +9,20 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
 
-bamm-e:TimeSeriesEntity a bamm:AbstractEntity ;
-   bamm:preferredName "Time Series Entity"@en ;
-   bamm:description "An Entity which represents a key/value pair. The key is the timestamp when the value was recorded and the value is the value which was recorded."@en ;
-   bamm:properties ( bamm-e:timestamp bamm-e:value ) .
+samm-e:TimeSeriesEntity a samm:AbstractEntity ;
+   samm:preferredName "Time Series Entity"@en ;
+   samm:description "An Entity which represents a key/value pair. The key is the timestamp when the value was recorded and the value is the value which was recorded."@en ;
+   samm:properties ( samm-e:timestamp samm-e:value ) .
 
-bamm-e:timestamp a bamm:Property ;
-   bamm:preferredName "Timestamp"@en ;
-   bamm:description "The specific point in time when the corresponding value was recorded."@en ;
-   bamm:characteristic bamm-c:Timestamp .
+samm-e:timestamp a samm:Property ;
+   samm:preferredName "Timestamp"@en ;
+   samm:description "The specific point in time when the corresponding value was recorded."@en ;
+   samm:characteristic samm-c:Timestamp .
 
-bamm-e:value a bamm:AbstractProperty ;
-   bamm:preferredName "Value"@en ;
-   bamm:description "The value that was recorded and is part of a time series."@en .
+samm-e:value a samm:AbstractProperty ;
+   samm:preferredName "Value"@en ;
+   samm:description "The value that was recorded and is part of a time series."@en .

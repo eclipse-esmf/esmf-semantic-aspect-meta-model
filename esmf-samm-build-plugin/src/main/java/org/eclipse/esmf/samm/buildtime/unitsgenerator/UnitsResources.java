@@ -23,18 +23,18 @@ import org.apache.jena.rdf.model.Resource;
  */
 public class UnitsResources {
    public UnitsResources( final String metaModelVersion ) {
-      final String namespacePrefix = "urn:bamm:io.openmanufacturing:";
+      final String namespacePrefix = "urn:samm:org.eclipse.samm:";
       namespaceUnits = String.format( namespacePrefix + "unit:%s#", metaModelVersion );
-      namespaceBamm = String.format( namespacePrefix + "meta-model:%s#", metaModelVersion );
-      preferredNameProperty = createProperty( namespaceBamm + "preferredName" );
-      quantityKindClass = createResource( namespaceBamm + QUANTITY_KIND_CLASS_NAME );
-      unitClass = createResource( namespaceBamm + UNIT_CLASS_NAME );
-      quantityKindProperty = createProperty( namespaceBamm + QUANTITY_KIND_PROPERTY_NAME );
-      commonCodeProperty = createProperty( namespaceBamm + COMMON_CODE_PROPERTY_NAME );
-      conversionFactorProperty = createProperty( namespaceBamm + CONVERSION_FACTOR_PROPERTY_NAME );
-      symbolProperty = createProperty( namespaceBamm + SYMBOL_PROPERTY_NAME );
-      referenceUnitProperty = createProperty( namespaceBamm + REFERENCE_UNIT_NAME );
-      numericConversionFactorProperty = createProperty( namespaceBamm + NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME );
+      namespaceSamm = String.format( namespacePrefix + "meta-model:%s#", metaModelVersion );
+      preferredNameProperty = createProperty( namespaceSamm + "preferredName" );
+      quantityKindClass = createResource( namespaceSamm + QUANTITY_KIND_CLASS_NAME );
+      unitClass = createResource( namespaceSamm + UNIT_CLASS_NAME );
+      quantityKindProperty = createProperty( namespaceSamm + QUANTITY_KIND_PROPERTY_NAME );
+      commonCodeProperty = createProperty( namespaceSamm + COMMON_CODE_PROPERTY_NAME );
+      conversionFactorProperty = createProperty( namespaceSamm + CONVERSION_FACTOR_PROPERTY_NAME );
+      symbolProperty = createProperty( namespaceSamm + SYMBOL_PROPERTY_NAME );
+      referenceUnitProperty = createProperty( namespaceSamm + REFERENCE_UNIT_NAME );
+      numericConversionFactorProperty = createProperty( namespaceSamm + NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME );
    }
 
    static final String QUANTITY_KIND_CLASS_NAME = "QuantityKind";
@@ -47,7 +47,7 @@ public class UnitsResources {
    static final String NUMERIC_CONVERSION_FACTOR_PROPERTY_NAME = "numericConversionFactor";
 
    private final String namespaceUnits;
-   private final String namespaceBamm;
+   private final String namespaceSamm;
    private final Property preferredNameProperty;
    private final Resource quantityKindClass;
    private final Resource unitClass;
@@ -94,8 +94,8 @@ public class UnitsResources {
       return numericConversionFactorProperty;
    }
 
-   public String getNamespaceBamm() {
-      return namespaceBamm;
+   public String getNamespaceSamm() {
+      return namespaceSamm;
    }
 
    public String getNamespaceUnits() {

@@ -6,31 +6,31 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:Test a bamm:Aspect ;
-  bamm:properties ( :numbers ) ;
-  bamm:operations ( ) .
+:Test a samm:Aspect ;
+  samm:properties ( :numbers ) ;
+  samm:operations ( ) .
 
 # tag::content[]
-:numbers a bamm:Property ;
-   bamm:characteristic :NumberList .
+:numbers a samm:Property ;
+   samm:characteristic :NumberList .
 
-:NumberList a bamm-c:List ;
-   bamm-c:elementCharacteristic [
-      a bamm-c:Trait ;
-      bamm-c:baseCharacteristic :Number ;
-      bamm-c:constraint [
-         a bamm-c:RangeConstraint ;
-         bamm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
-         bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
-         bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+:NumberList a samm-c:List ;
+   samm-c:elementCharacteristic [
+      a samm-c:Trait ;
+      samm-c:baseCharacteristic :Number ;
+      samm-c:constraint [
+         a samm-c:RangeConstraint ;
+         samm:description "Limits the range of the individual numbers in the list from 5 to 10."@en ;
+         samm-c:minValue "5"^^xsd:nonNegativeInteger ;
+         samm-c:maxValue "10"^^xsd:nonNegativeInteger ;
       ] ;
    ] .
 
-:Number a bamm:Characteristic ;
-   bamm:dataType xsd:nonNegativeInteger .
+:Number a samm:Characteristic ;
+   samm:dataType xsd:nonNegativeInteger .
 # end::content[]

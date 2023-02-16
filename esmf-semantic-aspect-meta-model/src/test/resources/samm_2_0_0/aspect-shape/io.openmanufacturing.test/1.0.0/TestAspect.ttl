@@ -10,85 +10,85 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestAspect a bamm:Aspect ;
-   bamm:preferredName "Test Aspect"@en ;
-   bamm:preferredName "Test Aspekt"@de ;
-   bamm:properties ( :stringProperty :integerProperty :entityProperty ) ;
-   bamm:operations ( ) .
+:TestAspect a samm:Aspect ;
+   samm:preferredName "Test Aspect"@en ;
+   samm:preferredName "Test Aspekt"@de ;
+   samm:properties ( :stringProperty :integerProperty :entityProperty ) ;
+   samm:operations ( ) .
 
-:stringProperty a bamm:Property ;
-   bamm:preferredName "String Property"@en ;
-   bamm:preferredName "String Wert"@de ;
-   bamm:description "A property with a text value."@en ;
-   bamm:description "Eine Property mit einem textuellen Wert."@de ;
-   bamm:characteristic bamm-c:Text .
+:stringProperty a samm:Property ;
+   samm:preferredName "String Property"@en ;
+   samm:preferredName "String Wert"@de ;
+   samm:description "A property with a text value."@en ;
+   samm:description "Eine Property mit einem textuellen Wert."@de ;
+   samm:characteristic samm-c:Text .
 
-:integerProperty a bamm:Property ;
-   bamm:preferredName "Integer Property"@en ;
-   bamm:preferredName "Numerischer Wert"@de ;
-   bamm:description "A property with a numeric value."@en ;
-   bamm:description "Eine Property mit einem numerischen Wert."@de ;
-   bamm:characteristic :TestTrait .
+:integerProperty a samm:Property ;
+   samm:preferredName "Integer Property"@en ;
+   samm:preferredName "Numerischer Wert"@de ;
+   samm:description "A property with a numeric value."@en ;
+   samm:description "Eine Property mit einem numerischen Wert."@de ;
+   samm:characteristic :TestTrait .
 
-:TestTrait a bamm-c:Trait ;
-   bamm-c:baseCharacteristic :IntegerCharacteristic ;
-   bamm-c:constraint :TestRangeConstraint .
+:TestTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :IntegerCharacteristic ;
+   samm-c:constraint :TestRangeConstraint .
 
-:entityProperty a bamm:Property ;
-   bamm:preferredName "Entity Property"@en ;
-   bamm:preferredName "Komplexer Wert"@de ;
-   bamm:description "A property with a complex value."@en ;
-   bamm:description "Eine Property mit einem komplexem Wert."@de ;
-   bamm:characteristic :EntityCharacteristic .
+:entityProperty a samm:Property ;
+   samm:preferredName "Entity Property"@en ;
+   samm:preferredName "Komplexer Wert"@de ;
+   samm:description "A property with a complex value."@en ;
+   samm:description "Eine Property mit einem komplexem Wert."@de ;
+   samm:characteristic :EntityCharacteristic .
 
-:TestRangeConstraint a bamm-c:RangeConstraint ;
-   bamm:preferredName "Test Range Constraint"@en ;
-   bamm:preferredName "Test Range Constraint"@de ;
-   bamm:description "Restricts a numeric value to values between 0 and 100."@en ;
-   bamm:description "Beschränkt einen numerischen Wert auf Werte zwischen 0 und 100."@de ;
-   bamm-c:minValue "0"^^xsd:integer ;
-   bamm-c:maxValue "100"^^xsd:integer .
+:TestRangeConstraint a samm-c:RangeConstraint ;
+   samm:preferredName "Test Range Constraint"@en ;
+   samm:preferredName "Test Range Constraint"@de ;
+   samm:description "Restricts a numeric value to values between 0 and 100."@en ;
+   samm:description "Beschränkt einen numerischen Wert auf Werte zwischen 0 und 100."@de ;
+   samm-c:minValue "0"^^xsd:integer ;
+   samm-c:maxValue "100"^^xsd:integer .
 
-:IntegerCharacteristic a bamm:Characteristic ;
-   bamm:preferredName "Integer Characteristic"@en ;
-   bamm:preferredName "Numerische Charakteristik"@de ;
-   bamm:description "Positive Numbers"@en ;
-   bamm:description "Positive Zahlen"@de ;
-   bamm:dataType xsd:integer .
+:IntegerCharacteristic a samm:Characteristic ;
+   samm:preferredName "Integer Characteristic"@en ;
+   samm:preferredName "Numerische Charakteristik"@de ;
+   samm:description "Positive Numbers"@en ;
+   samm:description "Positive Zahlen"@de ;
+   samm:dataType xsd:integer .
 
-:EntityCharacteristic a bamm:Characteristic ;
-   bamm:preferredName "Entity Characteristic"@en ;
-   bamm:preferredName "Entität Charakteristik"@de ;
-   bamm:description "Complex Values"@en ;
-   bamm:description "Komplexe Werte"@de ;
-   bamm:dataType :TestEntity .
+:EntityCharacteristic a samm:Characteristic ;
+   samm:preferredName "Entity Characteristic"@en ;
+   samm:preferredName "Entität Charakteristik"@de ;
+   samm:description "Complex Values"@en ;
+   samm:description "Komplexe Werte"@de ;
+   samm:dataType :TestEntity .
 
-:TestEntity a bamm:Entity ;
-   bamm:preferredName "Test Entity"@en ;
-   bamm:preferredName "Test Entität"@de ;
-   bamm:properties ( :entityList :integerList ).
+:TestEntity a samm:Entity ;
+   samm:preferredName "Test Entity"@en ;
+   samm:preferredName "Test Entität"@de ;
+   samm:properties ( :entityList :integerList ).
 
-:entityList a bamm:Property ;
-   bamm:preferredName "Entity List"@en ;
-   bamm:preferredName "Entitätliste"@de ;
-   bamm:description "A property with a list of complex value."@en ;
-   bamm:description "Eine Property mit einer Liste mit komplexen Werten."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:dataType :TestEntity
+:entityList a samm:Property ;
+   samm:preferredName "Entity List"@en ;
+   samm:preferredName "Entitätliste"@de ;
+   samm:description "A property with a list of complex value."@en ;
+   samm:description "Eine Property mit einer Liste mit komplexen Werten."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:dataType :TestEntity
    ] .
 
-:integerList a bamm:Property ;
-   bamm:preferredName "Integer List"@en ;
-   bamm:preferredName "Numerische Liste"@de ;
-   bamm:description "A property with a list of numeric value."@en ;
-   bamm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:dataType xsd:integer
+:integerList a samm:Property ;
+   samm:preferredName "Integer List"@en ;
+   samm:preferredName "Numerische Liste"@de ;
+   samm:description "A property with a list of numeric value."@en ;
+   samm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:dataType xsd:integer
    ] .

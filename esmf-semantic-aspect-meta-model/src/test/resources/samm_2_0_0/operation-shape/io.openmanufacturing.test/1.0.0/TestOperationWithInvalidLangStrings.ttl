@@ -10,15 +10,15 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 
-:TestOperationWithInvalidLangStrings a bamm:Aspect ;
-   bamm:properties ( ) ;
-   bamm:operations ( :TestOperation ) .
+:TestOperationWithInvalidLangStrings a samm:Aspect ;
+   samm:properties ( ) ;
+   samm:operations ( :TestOperation ) .
 
-:TestOperation a bamm:Operation ;
-   bamm:preferredName "Test Operation" ;
-   bamm:description "Test Operation." ;
-   bamm:input ( ) .
+:TestOperation a samm:Operation ;
+   samm:preferredName "Test Operation" ;
+   samm:description "Test Operation." ;
+   samm:input ( ) .

@@ -10,26 +10,26 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:ExtendedTestEntity a bamm:Entity ;
-   bamm:properties ( :integer ).
+:ExtendedTestEntity a samm:Entity ;
+   samm:properties ( :integer ).
 
-:integer a bamm:Property ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:dataType xsd:integer
+:integer a samm:Property ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:integer
    ] .
 
-:ExtendingEntity a bamm:Entity ;
-   bamm:extends :ExtendedTestEntity ;
-   bamm:properties ( :string ) .
+:ExtendingEntity a samm:Entity ;
+   samm:extends :ExtendedTestEntity ;
+   samm:properties ( :string ) .
 
-:string a bamm:Property ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:dataType xsd:string
+:string a samm:Property ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:string
    ] .

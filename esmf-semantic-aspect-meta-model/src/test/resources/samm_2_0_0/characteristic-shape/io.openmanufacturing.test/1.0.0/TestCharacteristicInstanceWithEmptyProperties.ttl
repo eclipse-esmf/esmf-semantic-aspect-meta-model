@@ -10,11 +10,11 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestCharacteristicInstanceWithEmptyProperties a bamm:Characteristic ;
-   bamm:preferredName ""@en ;
-   bamm:description ""@en ;
-   bamm:dataType xsd:float .
+:TestCharacteristicInstanceWithEmptyProperties a samm:Characteristic ;
+   samm:preferredName ""@en ;
+   samm:description ""@en ;
+   samm:dataType xsd:float .

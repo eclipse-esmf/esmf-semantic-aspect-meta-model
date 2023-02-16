@@ -10,28 +10,28 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:1.0.0#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:1.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:AspectWithEvent a bamm:Aspect ;
-   bamm:name "AspectWithEvent" ;
-   bamm:preferredName "Aspect With Event"@en ;
-   bamm:description "An Aspect with an Event"@en ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) ;
-   bamm:events ( :TextEvent ) .
+:AspectWithEvent a samm:Aspect ;
+   samm:name "AspectWithEvent" ;
+   samm:preferredName "Aspect With Event"@en ;
+   samm:description "An Aspect with an Event"@en ;
+   samm:properties ( ) ;
+   samm:operations ( ) ;
+   samm:events ( :TextEvent ) .
 
-:TextEvent a bamm:Event ;
-   bamm:name "TextEvent" ;
-   bamm:preferredName "Text Event"@en ;
-   bamm:description "An event that contains a text string"@en ;
-   bamm:parameters ( :textParameter ) .
+:TextEvent a samm:Event ;
+   samm:name "TextEvent" ;
+   samm:preferredName "Text Event"@en ;
+   samm:description "An event that contains a text string"@en ;
+   samm:parameters ( :textParameter ) .
 
-:textParameter a bamm:Property ;
-   bamm:name "textParameter" ;
-   bamm:preferredName "Text Parameter"@en ;
-   bamm:characteristic bamm-c:Text .
+:textParameter a samm:Property ;
+   samm:name "textParameter" ;
+   samm:preferredName "Text Parameter"@en ;
+   samm:characteristic samm-c:Text .

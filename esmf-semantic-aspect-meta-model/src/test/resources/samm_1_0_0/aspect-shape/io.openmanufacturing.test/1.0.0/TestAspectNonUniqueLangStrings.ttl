@@ -10,16 +10,16 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestAspectNonUniqueLangStrings a bamm:Aspect ;
-   bamm:name "TestAspectNonUniqueLangStrings" ;
-   bamm:preferredName "Test Aspect"@en ;
-   bamm:preferredName "Test Aspekt"@en ;
-   bamm:description "Test Aspect Description"@en ;
-   bamm:description "Test Aspekt Beschreibung"@en ;
-   bamm:properties ( ) ;
-   bamm:operations ( ) .
+:TestAspectNonUniqueLangStrings a samm:Aspect ;
+   samm:name "TestAspectNonUniqueLangStrings" ;
+   samm:preferredName "Test Aspect"@en ;
+   samm:preferredName "Test Aspekt"@en ;
+   samm:description "Test Aspect Description"@en ;
+   samm:description "Test Aspekt Beschreibung"@en ;
+   samm:properties ( ) ;
+   samm:operations ( ) .

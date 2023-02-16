@@ -10,17 +10,17 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEnumerationValueIsNotALiteralType a bamm-c:Enumeration ;
-   bamm:dataType xsd:string ;
-   bamm-c:values ( "OK" :testProperty ) .
+:TestEnumerationValueIsNotALiteralType a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "OK" :testProperty ) .
 
-:testProperty a bamm:Property ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:dataType xsd:integer
+:testProperty a samm:Property ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:dataType xsd:integer
    ] .

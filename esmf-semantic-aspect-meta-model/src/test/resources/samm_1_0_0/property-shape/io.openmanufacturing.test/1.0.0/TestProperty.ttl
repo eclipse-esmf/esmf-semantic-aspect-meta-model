@@ -10,27 +10,27 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:TestAspect:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:TestAspect:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 
-:TestProperty a bamm:Aspect ;
-   bamm:name "TestProperty" ;
-   bamm:properties ( :entityList ) ;
-   bamm:operations ( ) .
+:TestProperty a samm:Aspect ;
+   samm:name "TestProperty" ;
+   samm:properties ( :entityList ) ;
+   samm:operations ( ) .
 
-:entityList a bamm:Property ;
-   bamm:name "testProperty" ;
-   bamm:preferredName "Test Property"@en ;
-   bamm:preferredName "Test Property"@de ;
-   bamm:description "A test property."@en ;
-   bamm:description "Eine test Property."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "EntityList" ;
-      bamm:dataType :TestEntity
+:entityList a samm:Property ;
+   samm:name "testProperty" ;
+   samm:preferredName "Test Property"@en ;
+   samm:preferredName "Test Property"@de ;
+   samm:description "A test property."@en ;
+   samm:description "Eine test Property."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "EntityList" ;
+      samm:dataType :TestEntity
    ] .
 
-:TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
-   bamm:properties ( ).
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:properties ( ).

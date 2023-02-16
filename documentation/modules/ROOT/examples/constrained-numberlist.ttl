@@ -6,27 +6,27 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:Test a bamm:Aspect ;
-  bamm:properties ( :numbers ) ;
-  bamm:operations ( ) .
+:Test a samm:Aspect ;
+  samm:properties ( :numbers ) ;
+  samm:operations ( ) .
 
 # tag::content[]
-:numbers a bamm:Property ;
-   bamm:characteristic [
-     a bamm-c:Trait ;
-     bamm-c:baseCharacteristic :NumberList ;
-     bamm-c:constraint [
-       a bamm-c:LengthConstraint ;
-       bamm:description "Limits the number list to 10 elements"@en ;
-       bamm-c:maxValue "10"^^xsd:nonNegativeInteger ;
+:numbers a samm:Property ;
+   samm:characteristic [
+     a samm-c:Trait ;
+     samm-c:baseCharacteristic :NumberList ;
+     samm-c:constraint [
+       a samm-c:LengthConstraint ;
+       samm:description "Limits the number list to 10 elements"@en ;
+       samm-c:maxValue "10"^^xsd:nonNegativeInteger ;
      ]
    ]  .
 
-:NumberList a bamm-c:List ;
-   bamm:dataType xsd:integer .
+:NumberList a samm-c:List ;
+   samm:dataType xsd:integer .
 # end::content[]

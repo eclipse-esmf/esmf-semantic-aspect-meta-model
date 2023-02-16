@@ -10,38 +10,38 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEntityRefiningEntityDeclaresAdditionalProperties bamm:refines :EntityToBeRefined ;
-   bamm:name "TestEntityRefiningEntityDeclaresAdditionalProperties" ;
-   bamm:properties ( :refinedValue :integerList ).
+:TestEntityRefiningEntityDeclaresAdditionalProperties samm:refines :EntityToBeRefined ;
+   samm:name "TestEntityRefiningEntityDeclaresAdditionalProperties" ;
+   samm:properties ( :refinedValue :integerList ).
 
-:refinedValue bamm:refines :value;
-   bamm:name "refinedValue" ;
-   bamm:characteristic bamm-c:Duration .
+:refinedValue samm:refines :value;
+   samm:name "refinedValue" ;
+   samm:characteristic samm-c:Duration .
 
-:integerList a bamm:Property ;
-   bamm:name "integerList" ;
-   bamm:preferredName "Integer List"@en ;
-   bamm:preferredName "Numerische Liste"@de ;
-   bamm:description "A property with a list of numeric value."@en ;
-   bamm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "NumericList" ;
-      bamm:dataType xsd:integer
+:integerList a samm:Property ;
+   samm:name "integerList" ;
+   samm:preferredName "Integer List"@en ;
+   samm:preferredName "Numerische Liste"@de ;
+   samm:description "A property with a list of numeric value."@en ;
+   samm:description "Eine Property mit einer Liste mit numerischen Werten."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "NumericList" ;
+      samm:dataType xsd:integer
    ] .
 
-:EntityToBeRefined a bamm:Entity ;
-   bamm:name "EntityToBeRefined" ;
-   bamm:properties ( :timestamp :value ).
+:EntityToBeRefined a samm:Entity ;
+   samm:name "EntityToBeRefined" ;
+   samm:properties ( :timestamp :value ).
 
-:timestamp a bamm:Property ;
-   bamm:name "timestamp" ;
-   bamm:characteristic bamm-c:Timestamp .
+:timestamp a samm:Property ;
+   samm:name "timestamp" ;
+   samm:characteristic samm-c:Timestamp .
 
-:value a bamm:Property ;
-   bamm:name "value" .
+:value a samm:Property ;
+   samm:name "value" .

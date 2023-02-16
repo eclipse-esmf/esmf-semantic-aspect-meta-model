@@ -10,25 +10,25 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestStructuredValueElementsWithNonScalarDatatype a bamm-c:StructuredValue ;
-   bamm:dataType xsd:string ;
-   bamm-c:deconstructionRule "(.*)" ;
-   bamm-c:elements ( :prop ) .
+:TestStructuredValueElementsWithNonScalarDatatype a samm-c:StructuredValue ;
+   samm:dataType xsd:string ;
+   samm-c:deconstructionRule "(.*)" ;
+   samm-c:elements ( :prop ) .
 
-:prop a bamm:Property ;
-   bamm:name "prop" ;
-   bamm:characteristic :EntityCharacteristic .
+:prop a samm:Property ;
+   samm:name "prop" ;
+   samm:characteristic :EntityCharacteristic .
 
-:EntityCharacteristic a bamm-c:SingleEntity ;
-   bamm:name "EntityCharacteristic" ;
-   bamm:dataType :TestEntity .
+:EntityCharacteristic a samm-c:SingleEntity ;
+   samm:name "EntityCharacteristic" ;
+   samm:dataType :TestEntity .
 
-:TestEntity a bamm:Entity ;
-   bamm:name "TestEntity" ;
-   bamm:properties ( ) .
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:properties ( ) .

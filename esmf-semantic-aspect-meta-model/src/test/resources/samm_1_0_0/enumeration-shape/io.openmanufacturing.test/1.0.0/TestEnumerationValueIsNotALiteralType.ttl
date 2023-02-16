@@ -10,20 +10,20 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestEnumerationValueIsNotALiteralType a bamm-c:Enumeration ;
-   bamm:name "TestEnumerationValueIsNotALiteralType" ;
-   bamm:dataType xsd:string ;
-   bamm-c:values ( "OK" :testProperty ) .
+:TestEnumerationValueIsNotALiteralType a samm-c:Enumeration ;
+   samm:name "TestEnumerationValueIsNotALiteralType" ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "OK" :testProperty ) .
 
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "NumericList" ;
-      bamm:dataType xsd:integer
+:testProperty a samm:Property ;
+   samm:name "testProperty" ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "NumericList" ;
+      samm:dataType xsd:integer
    ] .

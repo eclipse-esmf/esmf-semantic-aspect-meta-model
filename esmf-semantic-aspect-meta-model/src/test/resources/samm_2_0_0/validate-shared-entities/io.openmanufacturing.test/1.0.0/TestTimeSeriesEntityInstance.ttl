@@ -11,22 +11,22 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-e: <urn:bamm:io.openmanufacturing:entity:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:MachineStateTimeSeries a bamm-c:TimeSeries ;
-   bamm:dataType :MachineStateTimeSeriesEntity .
+:MachineStateTimeSeries a samm-c:TimeSeries ;
+   samm:dataType :MachineStateTimeSeriesEntity .
 
-:MachineStateTimeSeriesEntity a bamm:Entity ;
-   bamm:extends bamm-e:TimeSeriesEntity ;
-   bamm:properties (
-      [ bamm:extends bamm-e:value ; bamm:characteristic :MachineState ]
+:MachineStateTimeSeriesEntity a samm:Entity ;
+   samm:extends samm-e:TimeSeriesEntity ;
+   samm:properties (
+      [ samm:extends samm-e:value ; samm:characteristic :MachineState ]
    ) .
 
-:MachineState a bamm-c:State ;
-   bamm:dataType xsd:string ;
-   bamm-c:defaultValue "STANDBY" ;
-   bamm-c:values ( "RUNNING" "STANDBY" "OFF" ) .
+:MachineState a samm-c:State ;
+   samm:dataType xsd:string ;
+   samm-c:defaultValue "STANDBY" ;
+   samm-c:values ( "RUNNING" "STANDBY" "OFF" ) .

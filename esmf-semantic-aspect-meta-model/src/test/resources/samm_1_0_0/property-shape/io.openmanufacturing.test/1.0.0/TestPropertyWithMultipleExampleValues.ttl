@@ -10,22 +10,22 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestPropertyWithMultipleExampleValues a bamm:Aspect ;
-   bamm:name "TestPropertyWithMultipleExampleValues" ;
-   bamm:properties ( :numericList ) ;
-   bamm:operations ( ) .
+:TestPropertyWithMultipleExampleValues a samm:Aspect ;
+   samm:name "TestPropertyWithMultipleExampleValues" ;
+   samm:properties ( :numericList ) ;
+   samm:operations ( ) .
 
-:numericList a bamm:Property ;
-   bamm:name "numericList" ;
-   bamm:exampleValue "25.12"^^xsd:double ;
-   bamm:exampleValue "234.2"^^xsd:double ;
-   bamm:characteristic [
-      a bamm-c:List ;
-      bamm:name "NumericList" ;
-      bamm:dataType xsd:double
+:numericList a samm:Property ;
+   samm:name "numericList" ;
+   samm:exampleValue "25.12"^^xsd:double ;
+   samm:exampleValue "234.2"^^xsd:double ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "NumericList" ;
+      samm:dataType xsd:double
    ] .

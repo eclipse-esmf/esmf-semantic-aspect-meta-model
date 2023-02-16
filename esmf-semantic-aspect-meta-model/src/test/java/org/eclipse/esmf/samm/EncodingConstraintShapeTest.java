@@ -29,11 +29,11 @@ public class EncodingConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidEncodingExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestInvalidEncodingConstraint";
 
       final SemanticError resultForName = new SemanticError( MESSAGE_INVALID_ENCODING,
-            focusNode, bammUrns.valueUrn, VIOLATION_URN, "UTF-8" );
+            focusNode, sammUrns.valueUrn, VIOLATION_URN, "UTF-8" );
       expectSemanticValidationErrors( "encoding-constraint-shape", "TestInvalidEncodingConstraint",
             metaModelVersion, resultForName );
    }

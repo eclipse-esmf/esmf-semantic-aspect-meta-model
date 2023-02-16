@@ -10,23 +10,23 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestTrait a bamm-c:Trait ;
-   bamm:name "TestTrait" ;
-   bamm-c:constraint :TestLengthConstraintWithCollection ;
-   bamm-c:baseCharacteristic [
-      a bamm-c:List ;
-      bamm:name "IntList" ;
-      bamm:dataType xsd:int
+:TestTrait a samm-c:Trait ;
+   samm:name "TestTrait" ;
+   samm-c:constraint :TestLengthConstraintWithCollection ;
+   samm-c:baseCharacteristic [
+      a samm-c:List ;
+      samm:name "IntList" ;
+      samm:dataType xsd:int
    ] .
 
-:TestLengthConstraintWithCollection a bamm-c:LengthConstraint ;
-   bamm:name "TestLengthConstraintWithCollection" ;
-   bamm:preferredName "Test Length Constraint"@en ;
-   bamm:description "Test Length Constraint"@en ;
-   bamm-c:minValue "5"^^xsd:nonNegativeInteger ;
-   bamm-c:maxValue "10"^^xsd:nonNegativeInteger .
+:TestLengthConstraintWithCollection a samm-c:LengthConstraint ;
+   samm:name "TestLengthConstraintWithCollection" ;
+   samm:preferredName "Test Length Constraint"@en ;
+   samm:description "Test Length Constraint"@en ;
+   samm-c:minValue "5"^^xsd:nonNegativeInteger ;
+   samm-c:maxValue "10"^^xsd:nonNegativeInteger .

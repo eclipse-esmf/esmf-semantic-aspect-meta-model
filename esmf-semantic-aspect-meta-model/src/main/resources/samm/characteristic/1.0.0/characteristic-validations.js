@@ -95,12 +95,12 @@ function isValidBCP47LanguageTag($this, $value) {
 }
 
 function testStructuredValueConstruction($this) {
-    var bamm = "urn:bamm:io.openmanufacturing:meta-model:1.0.0#";
-    var bammc = "urn:bamm:io.openmanufacturing:characteristic:1.0.0#";
+    var samm = "urn:samm:org.eclipse.samm:meta-model:1.0.0#";
+    var sammc = "urn:samm:org.eclipse.samm:characteristic:1.0.0#";
     var rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-    var exampleValueUrn = TermFactory.namedNode(bamm + "exampleValue");
-    var deconstructionRuleUrn = TermFactory.namedNode(bammc + "deconstructionRule");
-    var elementsUrn = TermFactory.namedNode(bammc + "elements");
+    var exampleValueUrn = TermFactory.namedNode(samm + "exampleValue");
+    var deconstructionRuleUrn = TermFactory.namedNode(sammc + "deconstructionRule");
+    var elementsUrn = TermFactory.namedNode(sammc + "elements");
     var rdfRest = TermFactory.namedNode(rdf + "rest");
     var rdfFirst = TermFactory.namedNode(rdf + "first");
     var rdfNil = TermFactory.namedNode(rdf + "nil");

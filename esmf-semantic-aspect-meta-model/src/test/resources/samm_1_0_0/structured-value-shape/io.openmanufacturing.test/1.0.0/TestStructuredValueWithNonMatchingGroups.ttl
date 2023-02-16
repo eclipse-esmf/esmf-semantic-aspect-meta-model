@@ -10,24 +10,24 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestStructuredValueWithNonMatchingGroups a bamm-c:StructuredValue ;
-   bamm:name "TestStructuredValueWithNonMatchingGroups" ;
-   bamm:dataType xsd:string ;
-   bamm-c:deconstructionRule "(prop1x)xx(prop.)" ;
-   bamm-c:elements ( :prop1 "xxx" :prop2 ) .
+:TestStructuredValueWithNonMatchingGroups a samm-c:StructuredValue ;
+   samm:name "TestStructuredValueWithNonMatchingGroups" ;
+   samm:dataType xsd:string ;
+   samm-c:deconstructionRule "(prop1x)xx(prop.)" ;
+   samm-c:elements ( :prop1 "xxx" :prop2 ) .
 
-:prop1 a bamm:Property ;
-   bamm:name "prop1" ;
-   bamm:exampleValue "prop1" ;
-   bamm:characteristic bamm-c:Text .
+:prop1 a samm:Property ;
+   samm:name "prop1" ;
+   samm:exampleValue "prop1" ;
+   samm:characteristic samm-c:Text .
 
-:prop2 a bamm:Property ;
-   bamm:name "prop2" ;
-   bamm:exampleValue "prop2" ;
-   bamm:characteristic bamm-c:Text .
+:prop2 a samm:Property ;
+   samm:name "prop2" ;
+   samm:exampleValue "prop2" ;
+   samm:characteristic samm-c:Text .

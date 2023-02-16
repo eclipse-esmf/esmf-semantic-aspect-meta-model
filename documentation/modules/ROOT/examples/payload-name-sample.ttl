@@ -6,18 +6,18 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 # tag::payload-name-declaration[]
 
-:MyAspect a bamm:Aspect ;
-   bamm:properties (
-     [ bamm:property :errorMessage; bamm:payloadName "error" ]
+:MyAspect a samm:Aspect ;
+   samm:properties (
+     [ samm:property :errorMessage; samm:payloadName "error" ]
    ) ;
-   bamm:operations ( ) .
+   samm:operations ( ) .
 
-:errorMessage a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:errorMessage a samm:Property ;
+   samm:characteristic samm-c:Text .
 # end::payload-name-declaration[]

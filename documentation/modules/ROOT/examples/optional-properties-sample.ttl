@@ -6,22 +6,22 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::optional-properties-declaration[]
-:MyAspect a bamm:Aspect ;
-   bamm:properties (
+:MyAspect a samm:Aspect ;
+   samm:properties (
      :toggleStatus
-     [ bamm:property :errorMessage; bamm:optional true ]
+     [ samm:property :errorMessage; samm:optional true ]
    ) ;
-   bamm:operations ( ) .
+   samm:operations ( ) .
 
-:toggleStatus a bamm:Property ;
-   bamm:characteristic bamm-c:Boolean .
+:toggleStatus a samm:Property ;
+   samm:characteristic samm-c:Boolean .
 
-:errorMessage a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:errorMessage a samm:Property ;
+   samm:characteristic samm-c:Text .
 # end::optional-properties-declaration[]

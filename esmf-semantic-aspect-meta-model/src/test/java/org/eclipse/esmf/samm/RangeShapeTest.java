@@ -32,7 +32,7 @@ public class RangeShapeTest extends AbstractShapeTest {
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeMissingRequiredProperties";
 
       final SemanticError resultForMinAndMax = new SemanticError(
-            validator.getMessageText( "bamm-c:RangeShape", "ERR_MISSING_PROPERTY", metaModelVersion ),
+            validator.getMessageText( "samm-c:RangeShape", "ERR_MISSING_PROPERTY", metaModelVersion ),
             focusNode, "", VIOLATION_URN, focusNode );
       expectSemanticValidationErrors( "range-shape", "TestRangeMissingRequiredProperties",
             metaModelVersion, resultForMinAndMax );
@@ -41,15 +41,15 @@ public class RangeShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidDataTypeForMinAndMaxValue( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeWithInvalidMinAndMaxValueDataType";
 
       final SemanticError resultForMinValue = new SemanticError(
-            validator.getMessageText( "bamm-c:RangeShape", "bamm-c:minValue", "ERR_WRONG_DATATYPE", metaModelVersion ),
-            focusNode, bammUrns.minValueUrn, VIOLATION_URN, "" );
+            validator.getMessageText( "samm-c:RangeShape", "samm-c:minValue", "ERR_WRONG_DATATYPE", metaModelVersion ),
+            focusNode, sammUrns.minValueUrn, VIOLATION_URN, "" );
       final SemanticError resultForMaxValue = new SemanticError(
-            validator.getMessageText( "bamm-c:RangeShape", "bamm-c:maxValue", "ERR_WRONG_DATATYPE", metaModelVersion ),
-            focusNode, bammUrns.maxValueUrn, VIOLATION_URN, "" );
+            validator.getMessageText( "samm-c:RangeShape", "samm-c:maxValue", "ERR_WRONG_DATATYPE", metaModelVersion ),
+            focusNode, sammUrns.maxValueUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "range-shape", "TestRangeWithInvalidMinAndMaxValueDataType",
             metaModelVersion, resultForMinValue, resultForMaxValue );
    }
@@ -57,13 +57,13 @@ public class RangeShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidValueForLowerBoundDefinition( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String minimum = String
-            .format( bammUrns.minValueUrn.replace( "minValue", "MINIMUM" ), metaModelVersion.toVersionString() );
+            .format( sammUrns.minValueUrn.replace( "minValue", "MINIMUM" ), metaModelVersion.toVersionString() );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeWithInvalidLowerBoundDefinition";
 
       final SemanticError invalidLowerBoundDefinitionValue = new SemanticError(
-            MESSAGE_INVALID_LOWER_BOUND_DEFINITION_VALUE, focusNode, bammUrns.lowerBoundDefinition, VIOLATION_URN,
+            MESSAGE_INVALID_LOWER_BOUND_DEFINITION_VALUE, focusNode, sammUrns.lowerBoundDefinition, VIOLATION_URN,
             minimum );
       expectSemanticValidationErrors( "range-shape", "TestRangeWithInvalidLowerBoundDefinition",
             metaModelVersion, invalidLowerBoundDefinitionValue );
@@ -72,13 +72,13 @@ public class RangeShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidValueForUpperBoundDefinition( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String maximum = String
-            .format( bammUrns.maxValueUrn.replace( "maxValue", "MAXIMUM" ), metaModelVersion.toVersionString() );
+            .format( sammUrns.maxValueUrn.replace( "maxValue", "MAXIMUM" ), metaModelVersion.toVersionString() );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeWithInvalidUpperBoundDefinition";
 
       final SemanticError invalidUpperBoundDefinitionValue = new SemanticError(
-            MESSAGE_INVALID_UPPER_BOUND_DEFINITION_VALUE, focusNode, bammUrns.upperBoundDefinition, VIOLATION_URN,
+            MESSAGE_INVALID_UPPER_BOUND_DEFINITION_VALUE, focusNode, sammUrns.upperBoundDefinition, VIOLATION_URN,
             maximum );
       expectSemanticValidationErrors( "range-shape", "TestRangeWithInvalidUpperBoundDefinition",
             metaModelVersion, invalidUpperBoundDefinitionValue );
@@ -87,14 +87,14 @@ public class RangeShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMultipleBoundDefinitions( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestRangeWithMultipleBoundDefinitions";
 
       final SemanticError resultForUpperBoundDefinition = new SemanticError(
-            MESSAGE_INVALID_UPPER_BOUND_DEFINITION_VALUE, focusNode, bammUrns.upperBoundDefinition, VIOLATION_URN,
+            MESSAGE_INVALID_UPPER_BOUND_DEFINITION_VALUE, focusNode, sammUrns.upperBoundDefinition, VIOLATION_URN,
             "" );
       final SemanticError resultForLowerBoundDefinition = new SemanticError(
-            MESSAGE_INVALID_LOWER_BOUND_DEFINITION_VALUE, focusNode, bammUrns.lowerBoundDefinition, VIOLATION_URN,
+            MESSAGE_INVALID_LOWER_BOUND_DEFINITION_VALUE, focusNode, sammUrns.lowerBoundDefinition, VIOLATION_URN,
             "" );
       expectSemanticValidationErrors( "range-shape", "TestRangeWithMultipleBoundDefinitions",
             metaModelVersion, resultForUpperBoundDefinition, resultForLowerBoundDefinition );

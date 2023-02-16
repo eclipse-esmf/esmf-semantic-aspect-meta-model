@@ -5,20 +5,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
-@prefix : <urn:bamm:com.mycompany.myapplication:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 
 # tag::content[]
-:Error a bamm:Aspect ;
-  bamm:preferredName "Error Aspect"@en ;
-  bamm:properties ( :errors ) ;
-  bamm:operations ( ) .
+:Error a samm:Aspect ;
+  samm:preferredName "Error Aspect"@en ;
+  samm:properties ( :errors ) ;
+  samm:operations ( ) .
 
-:errors a bamm:Property ;
-  bamm:preferredName "Errors"@en ;
+:errors a samm:Property ;
+  samm:preferredName "Errors"@en ;
 # ...
 # end::content[]
 
 # To make :errors valid
-  bamm:characteristic bamm-c:Text .
+  samm:characteristic samm-c:Text .

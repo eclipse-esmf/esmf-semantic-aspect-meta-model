@@ -35,11 +35,11 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredProperties2( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintMissingRequiredProperties";
 
       final SemanticError resultForLocaleCode = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, bammUrns.localeCodeUrn, VIOLATION_URN, "" );
+            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.localeCodeUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "locale-constraint-shape",
             "TestLocaleConstraintMissingRequiredProperties", metaModelVersion, resultForLocaleCode );
    }
@@ -47,11 +47,11 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMultipleLocaleCodeProperties( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintMultipleLocaleCodeProperties";
 
       final SemanticError result = new SemanticError( MESSAGE_DUPLICATE_PROPERTY, focusNode,
-            bammUrns.localeCodeUrn, VIOLATION_URN, "" );
+            sammUrns.localeCodeUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintMultipleLocaleCodeProperties",
             metaModelVersion, result );
@@ -60,11 +60,11 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidLanguageTagExpectError( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintInvalidLanguageTag";
 
       final SemanticError result = new SemanticError( "Invalid language in locale code.", focusNode,
-            bammUrns.localeCodeUrn, VIOLATION_URN, "ac" );
+            sammUrns.localeCodeUrn, VIOLATION_URN, "ac" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintInvalidLanguageTag",
             metaModelVersion, result );
@@ -73,11 +73,11 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testValidLanguageInvalidRegionExpectError( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintValidLanguageInvalidRegion";
 
       final SemanticError result = new SemanticError( "Invalid region in locale code.", focusNode,
-            bammUrns.localeCodeUrn, VIOLATION_URN, "de-AB" );
+            sammUrns.localeCodeUrn, VIOLATION_URN, "de-AB" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintValidLanguageInvalidRegion",
             metaModelVersion, result );

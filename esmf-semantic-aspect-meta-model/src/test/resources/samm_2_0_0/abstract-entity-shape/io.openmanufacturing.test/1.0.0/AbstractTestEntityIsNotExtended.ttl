@@ -10,26 +10,26 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:AbstractTestEntityIsNotExtended a bamm:Aspect ;
-   bamm:properties ( :aspectProperty ) ;
-   bamm:operations () .
+:AbstractTestEntityIsNotExtended a samm:Aspect ;
+   samm:properties ( :aspectProperty ) ;
+   samm:operations () .
 
-:aspectProperty a bamm:Property ;
-   bamm:characteristic :AbstractEntity .
+:aspectProperty a samm:Property ;
+   samm:characteristic :AbstractEntity .
 
-:AbstractEntity a bamm-c:SingleEntity ;
-   bamm:dataType :AbstractTestEntity .
+:AbstractEntity a samm-c:SingleEntity ;
+   samm:dataType :AbstractTestEntity .
 
-:AbstractTestEntity a bamm:AbstractEntity ;
-   bamm:properties ( :abstractTestProperty ).
+:AbstractTestEntity a samm:AbstractEntity ;
+   samm:properties ( :abstractTestProperty ).
 
-:abstractTestProperty a bamm:Property ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:dataType xsd:integer
+:abstractTestProperty a samm:Property ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:integer
    ] .

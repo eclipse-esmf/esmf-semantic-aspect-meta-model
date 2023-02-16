@@ -10,20 +10,20 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:PayloadNameNotOfTypeString a bamm:Aspect ;
-   bamm:name "PayloadNameNotOfTypeString" ;
-   bamm:preferredName "Test Aspect"@en ;
-   bamm:description "Test Aspect"@en ;
-   bamm:properties ( [ bamm:property :testProperty; bamm:payloadName "0"^^xsd:int ] ) ;
-   bamm:operations ( ) .
+:PayloadNameNotOfTypeString a samm:Aspect ;
+   samm:name "PayloadNameNotOfTypeString" ;
+   samm:preferredName "Test Aspect"@en ;
+   samm:description "Test Aspect"@en ;
+   samm:properties ( [ samm:property :testProperty; samm:payloadName "0"^^xsd:int ] ) ;
+   samm:operations ( ) .
 
-:testProperty a bamm:Property ;
-   bamm:name "testProperty" ;
-   bamm:preferredName "Test Property"@en ;
-   bamm:description "A property with a text value."@en ;
-   bamm:characteristic bamm-c:Text .
+:testProperty a samm:Property ;
+   samm:name "testProperty" ;
+   samm:preferredName "Test Property"@en ;
+   samm:description "A property with a text value."@en ;
+   samm:characteristic samm-c:Text .

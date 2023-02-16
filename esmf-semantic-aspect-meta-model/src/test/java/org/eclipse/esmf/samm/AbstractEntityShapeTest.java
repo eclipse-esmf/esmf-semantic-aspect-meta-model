@@ -37,7 +37,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    public void testInstantiatingAbstractEntityExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = TEST_NAMESPACE_PREFIX + "AbstractEntityInstance";
       final String value = TEST_NAMESPACE_PREFIX + "InstantiatedAbstractTestEntity";
-      final String expectedMessage = validator.getMessageText( "bamm:AbstractEntityDirectlyInstantiated", "ERR_ABSTRACT_USAGE", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "samm:AbstractEntityDirectlyInstantiated", "ERR_ABSTRACT_USAGE", metaModelVersion );
       final SemanticError resultForInstantiatedAbstractEntity = new SemanticError( expectedMessage,
             focusNode, "", VIOLATION_URN, value );
       expectSemanticValidationErrors( "abstract-entity-shape", "InstantiatedAbstractTestEntity", metaModelVersion,
@@ -47,11 +47,11 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingMultipleEntitiesExpectFailure( final KnownVersion metaModelVersion ) {
-      final BammUrns bammUrns = new BammUrns( metaModelVersion );
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityExtendingMultipleEntities";
 
       final SemanticError resultForInstantiatedAbstractEntity = new SemanticError( MESSAGE_DUPLICATE_PROPERTY,
-            focusNode, bammUrns.extendsUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.extendsUrn, VIOLATION_URN, "" );
       expectSemanticValidationErrors( "abstract-entity-shape", "TestEntityExtendingMultipleEntities", metaModelVersion,
             resultForInstantiatedAbstractEntity );
    }
@@ -148,7 +148,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAbstractEntityIsNotExtendedExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = new SemanticError(
-            validator.getMessageText( "bamm:AbstractEntityDataTypeShape", "ERR_ABSTRACT_USAGE", metaModelVersion ),
+            validator.getMessageText( "samm:AbstractEntityDataTypeShape", "ERR_ABSTRACT_USAGE", metaModelVersion ),
             TEST_NAMESPACE_PREFIX + "AbstractTestEntity", "", VIOLATION_URN, TEST_NAMESPACE_PREFIX + "AbstractEntity" );
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityIsNotExtended",
             metaModelVersion, result );

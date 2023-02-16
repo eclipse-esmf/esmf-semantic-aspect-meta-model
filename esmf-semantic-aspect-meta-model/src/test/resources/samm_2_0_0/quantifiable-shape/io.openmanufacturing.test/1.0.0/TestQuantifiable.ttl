@@ -10,14 +10,14 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix unit: <urn:bamm:io.openmanufacturing:unit:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
 
-:TestQuantifiable a bamm-c:Quantifiable ;
-   bamm:preferredName "Test Quantifiable"@en ;
-   bamm:description "Test Quantifiable"@en ;
-   bamm:dataType xsd:float ;
-   bamm-c:unit unit:hertz .
+:TestQuantifiable a samm-c:Quantifiable ;
+   samm:preferredName "Test Quantifiable"@en ;
+   samm:description "Test Quantifiable"@en ;
+   samm:dataType xsd:float ;
+   samm-c:unit unit:hertz .

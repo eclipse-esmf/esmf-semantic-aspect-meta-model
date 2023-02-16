@@ -6,34 +6,34 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix : <urn:bamm:io.openmanufacturing.test:2.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:2.0.0#> .
-@prefix bamm-c: <urn:bamm:io.openmanufacturing:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 # tag::simple-text[]
-:Test a bamm:Aspect;
-    bamm:properties ( :text );
-    bamm:operations ( ).
+:Test a samm:Aspect;
+    samm:properties ( :text );
+    samm:operations ( ).
 
-:text a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:text a samm:Property ;
+   samm:characteristic samm-c:Text .
 # end::simple-text[]
 
 # tag::enum-example[]
-:Results a bamm-c:Enumeration ;
-   bamm:dataType :Result ;
-   bamm-c:values ( :Success :Failed ) .
+:Results a samm-c:Enumeration ;
+   samm:dataType :Result ;
+   samm-c:values ( :Success :Failed ) .
 
-:Result a bamm:Entity ;
-   bamm:properties ( :status [ bamm:property :description ; bamm:notInPayload true ] ) .
+:Result a samm:Entity ;
+   samm:properties ( :status [ samm:property :description ; samm:notInPayload true ] ) .
 
-:status a bamm:Property ;
-   bamm:characteristic bamm-c:Text .
+:status a samm:Property ;
+   samm:characteristic samm-c:Text .
 
-:description a bamm:Property ;
-   bamm:characteristic bamm-c:MultiLanguageText .
+:description a samm:Property ;
+   samm:characteristic samm-c:MultiLanguageText .
 
 :Success a :Result ;
    :status "SUCCESS" ;

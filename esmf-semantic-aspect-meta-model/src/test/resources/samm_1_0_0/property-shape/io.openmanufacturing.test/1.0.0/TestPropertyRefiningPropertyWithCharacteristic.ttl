@@ -10,27 +10,27 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:bamm:io.openmanufacturing.test:1.0.0#> .
-@prefix bamm: <urn:bamm:io.openmanufacturing:meta-model:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.samm:meta-model:1.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestPropertyRefiningPropertyWithCharacteristic a bamm:Aspect ;
-   bamm:name "TestPropertyRefiningPropertyWithCharacteristic" ;
-   bamm:properties ( :testProperty ) ;
-   bamm:operations ( ) .
+:TestPropertyRefiningPropertyWithCharacteristic a samm:Aspect ;
+   samm:name "TestPropertyRefiningPropertyWithCharacteristic" ;
+   samm:properties ( :testProperty ) ;
+   samm:operations ( ) .
 
-:testProperty bamm:refines :propertyToBeRefined ;
-   bamm:name "testProperty" ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:name "TestCharacteristic" ;
-      bamm:dataType xsd:float
+:testProperty samm:refines :propertyToBeRefined ;
+   samm:name "testProperty" ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:name "TestCharacteristic" ;
+      samm:dataType xsd:float
    ] .
 
-:propertyToBeRefined a bamm:Property ;
-   bamm:name "propertyToBeRefined" ;
-   bamm:characteristic [
-      a bamm:Characteristic ;
-      bamm:name "TestCharacteristic2" ;
-      bamm:dataType xsd:double
+:propertyToBeRefined a samm:Property ;
+   samm:name "propertyToBeRefined" ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:name "TestCharacteristic2" ;
+      samm:dataType xsd:double
    ] .
