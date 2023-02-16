@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+  ~
+  ~ See the AUTHORS file(s) distributed with this work for additional
+  ~ information regarding authorship.
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <parent>
+      <artifactId>sds-aspect-meta-model</artifactId>
+      <groupId>io.openmanufacturing</groupId>
+      <version>DEV-SNAPSHOT</version>
+   </parent>
+   <modelVersion>4.0.0</modelVersion>
+
+   <artifactId>esmf-semantic-aspect-meta-model</artifactId>
+
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+      <!-- This is the meta model version (as included in the URNs).
+           Note that this can differ from the project.version: The project.version could for example be the
+           version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
+      <meta-model-version>2.0.0</meta-model-version>
+      <!-- The directory where custom units are defined that will be incorporated into units.ttl in addition to Rec20 -->
+      <custom-units-directory>${project.basedir}/src-buildtime/main/resources/</custom-units-directory>
+      <!-- The path to the units.ttl file to write during build -->
+      <units-ttl>${project.basedir}/src/main/resources/bamm/unit/${meta-model-version}/units.ttl</units-ttl>
+      <!-- The URL of the zip file provided by UNECE for Recommendation 20 -->
+      <rec20-zip-url>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev7e_2010.zip</rec20-zip-url>
+      <!-- The URL of the JSON representation of the BCP 47 language subtag registry -->
+      <bcp47-language-subtag-registry-url>https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json
+      </bcp47-language-subtag-registry-url>
+      <!-- The BCP 47 language subtag registry JavaScript file to write during build -->
+      <bcp47-language-subtag-script-file>${project.basedir}/src/main/resources/bamm/scripts/language-registry.js</bcp47-language-subtag-script-file>
+
+   </properties>
+
+   <dependencies>
+      <!-- Test dependencies -->
+      <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter</artifactId>
+         <version>${junit-jupiter-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.assertj</groupId>
+         <artifactId>assertj-core</artifactId>
+         <version>${assertj-core-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.topbraid</groupId>
+         <artifactId>shacl</artifactId>
+         <version>${shacl-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>io.vavr</groupId>
+         <artifactId>vavr</artifactId>
+         <version>${vavr-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>commons-codec</groupId>
+         <artifactId>commons-codec</artifactId>
+         <version>${commons-codec-version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>build-plugin</artifactId>
+            <version>${project.parent.version}</version>
+            <executions>
+               <execution>
+                  <id>generate-units-ttl</id>
+                  <goals>
+                     <goal>generateUnits</goal>
+                  </goals>
+                  <configuration>
+                     <rec20Url>${rec20-zip-url}</rec20Url>
+                     <metaModelVersion>${meta-model-version}</metaModelVersion>
+                     <customRDFInputDirectory>${custom-units-directory}</customRDFInputDirectory>
+                     <outputPath>${units-ttl}</outputPath>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>generate-bcp47-language-subtag-registry-script</id>
+                  <goals>
+                     <goal>downloadBcp47LanguageSubtagRegistry</goal>
+                  </goals>
+                  <configuration>
+                     <inputUrl>${bcp47-language-subtag-registry-url}</inputUrl>
+                     <output>${bcp47-language-subtag-script-file}</output>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>
