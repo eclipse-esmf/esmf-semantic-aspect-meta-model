@@ -360,7 +360,7 @@
                      <goal>java</goal>
                   </goals>
                   <configuration>
-                     <mainClass>io.openmanufacturing.sds.aspectmetamodel.DownloadBcp47LanguageSubtagRegistry</mainClass>
+                     <mainClass>io.openmanufacturing.buildtime.aspectmetamodel.DownloadBcp47LanguageSubtagRegistry</mainClass>
                      <commandlineArgs>${bcp47-language-subtag-registry-url} ${bcp47-language-subtag-script-file}</commandlineArgs>
                      <cleanupDaemonThreads>false</cleanupDaemonThreads>
                   </configuration>
@@ -373,7 +373,7 @@
                      <goal>java</goal>
                   </goals>
                   <configuration>
-                     <mainClass>io.openmanufacturing.sds.unitsmodel.UnitsWriter</mainClass>
+                     <mainClass>io.openmanufacturing.buildtime.unitsmodel.UnitsWriter</mainClass>
                      <commandlineArgs>${rec20-zip-url} ${meta-model-version} ${custom-units-directory} ${units-ttl}</commandlineArgs>
                      <cleanupDaemonThreads>false</cleanupDaemonThreads>
                   </configuration>

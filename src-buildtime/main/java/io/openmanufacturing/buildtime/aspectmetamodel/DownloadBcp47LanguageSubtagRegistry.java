@@ -11,7 +11,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package io.openmanufacturing.sds.aspectmetamodel;
+package io.openmanufacturing.buildtime.aspectmetamodel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,7 +27,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.openmanufacturing.sds.FileDownloader;
+import io.openmanufacturing.buildtime.FileDownloader;
 
 /**
  * Downloads the BCP 47 Language Tag Registry as defined by IANA, see

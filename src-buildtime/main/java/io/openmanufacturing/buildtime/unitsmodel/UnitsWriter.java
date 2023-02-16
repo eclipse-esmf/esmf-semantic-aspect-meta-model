@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
+ * Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
  *
  * See the AUTHORS file(s) distributed with this work for additional
  * information regarding authorship.
@@ -11,7 +11,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package io.openmanufacturing.sds.unitsmodel;
+package io.openmanufacturing.buildtime.unitsmodel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import io.openmanufacturing.sds.FileDownloader;
+import io.openmanufacturing.buildtime.FileDownloader;
 
 /**
  * Downloads the Recommendation 20 zip file, extracts the Excel from it, transforms the Excel to RDF/TTL and writes the
