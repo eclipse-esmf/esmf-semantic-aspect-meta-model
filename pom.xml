@@ -21,7 +21,7 @@
    <name>SDS Aspect Meta Model</name>
    <version>DEV-SNAPSHOT</version>
    <modules>
-      <module>build-plugin</module>
+      <module>esmf-samm-build-plugin</module>
       <module>esmf-semantic-aspect-meta-model</module>
    </modules>
    <packaging>pom</packaging>

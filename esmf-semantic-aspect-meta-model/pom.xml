@@ -23,6 +23,7 @@
    <modelVersion>4.0.0</modelVersion>
 
    <artifactId>esmf-semantic-aspect-meta-model</artifactId>
+   <name>Semantic Aspect Meta Model</name>
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,7 +84,7 @@
       <plugins>
          <plugin>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>build-plugin</artifactId>
+            <artifactId>esmf-samm-build-plugin</artifactId>
             <version>${project.parent.version}</version>
             <executions>
                <execution>
