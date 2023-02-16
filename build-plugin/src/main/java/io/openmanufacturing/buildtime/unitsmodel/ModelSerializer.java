@@ -78,7 +78,7 @@ public class ModelSerializer {
       PrintUtil.registerPrefixMap( model.getNsPrefixMap() );
    }
 
-   void write() {
+   public void write() {
       writeCopyrightHeader();
       writer.format( "%n" );
       writePrefixes();

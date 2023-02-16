@@ -22,47 +22,52 @@ import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import io.openmanufacturing.buildtime.FileDownloader;
 
 /**
  * Downloads the Recommendation 20 zip file, extracts the Excel from it, transforms the Excel to RDF/TTL and writes the
  * corresponding units.ttl file
  */
-public class UnitsWriter {
-   /*
-    * args[0]: URL of Rec20 zip file
-    * args[1]: Meta model version
-    * args[2]: Custom RDF input directory (path of folder with .ttl files to include)
-    * args[3]: Output path (path of units.ttl to write)
-    */
-   public static void main( final String[] args ) throws IOException {
-      final Logger root = (Logger) LoggerFactory.getLogger( org.slf4j.Logger.ROOT_LOGGER_NAME );
-      root.setLevel( Level.OFF );
-      if ( args.length < 3 ) {
-         System.err.printf( "%s: Missing arguments%n", UnitsWriter.class.getSimpleName() );
-         return;
-      }
+@Mojo( name = "generateUnits", defaultPhase = LifecyclePhase.GENERATE_RESOURCES )
+public class UnitsWriterMojo extends AbstractMojo {
+   private final Logger LOG = LoggerFactory.getLogger( UnitsWriterMojo.class );
 
-      final String rec20ZipUrl = args[0];
-      final String metaModelVersion = args[1];
-      final String customRdfInputDirectory = args[2];
-      final String outputPath = args[3];
+   @Parameter( required = true )
+   String rec20Url;
 
+   @Parameter( required = true )
+   String metaModelVersion;
+
+   @Parameter( required = true )
+   String customRDFInputDirectory;
+
+   @Parameter( required = true )
+   String outputPath;
+
+   @Override
+   public void execute() throws MojoExecutionException {
       final File outputFile = new File( outputPath );
       if ( outputFile.exists() ) {
-         System.out.printf( "%s: Units file %s already exists. Skipping writing.%n", UnitsWriter.class.getSimpleName(), outputPath );
+         LOG.info( "{}: Units file {} already exists. Skipping writing.", UnitsWriterMojo.class.getSimpleName(), outputPath );
          return;
       }
 
-      final byte[] rec20Excel = getRec20Excel( rec20ZipUrl );
+      LOG.info( "Generating {}", outputPath );
       try ( final OutputStream outputStream = new FileOutputStream( outputPath ) ) {
+         final byte[] rec20Excel = getRec20Excel( rec20Url );
          final UnitsResources unitsResources = new UnitsResources( metaModelVersion );
-         new ModelSerializer( new Units( unitsResources, customRdfInputDirectory, rec20Excel ).createModel(), outputStream, unitsResources ).write();
+         new ModelSerializer( new Units( unitsResources, customRDFInputDirectory, rec20Excel ).createModel(), outputStream, unitsResources ).write();
          outputStream.flush();
+      } catch ( final Exception exception ) {
+         throw new MojoExecutionException( "Could not write file", exception );
       }
    }
 

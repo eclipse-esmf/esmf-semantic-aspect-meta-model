@@ -25,6 +25,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.openmanufacturing.buildtime.FileDownloader;
@@ -35,44 +43,49 @@ import io.openmanufacturing.buildtime.FileDownloader;
  * in JSON format. The types which are required for the validation of the Locale Constraint, are extracted and written to a
  * JavaScript file.
  */
-public class DownloadBcp47LanguageSubtagRegistry {
-   /*
-    * args[0]: the URL of the JSON representation of the language subtag registry
-    * args[1]: the path of the file to write
-    */
+@Mojo( name = "downloadBcp47LanguageSubtagRegistry", defaultPhase = LifecyclePhase.GENERATE_RESOURCES )
+public class DownloadBcp47LanguageSubtagRegistryMojo extends AbstractMojo {
+   private final Logger LOG = LoggerFactory.getLogger( DownloadBcp47LanguageSubtagRegistryMojo.class );
+
+   @Parameter( required = true )
+   private String inputUrl;
+
+   @Parameter( required = true )
+   private String output;
+
+   @Override
    @SuppressWarnings( "unchecked" )
-   public static void main( final String[] args ) throws IOException {
-      if ( args.length < 1 ) {
-         System.err.printf( "%s: Missing file path%n", DownloadBcp47LanguageSubtagRegistry.class.getSimpleName() );
-         return;
-      }
-      final File outputFile = Path.of( args[1] ).toFile();
+   public void execute() throws MojoExecutionException {
+      final File outputFile = Path.of( output ).toFile();
       if ( outputFile.exists() ) {
-         System.out.printf( "%s: Language subtag registry script file %s already exists. Skipping writing.%n",
-               DownloadBcp47LanguageSubtagRegistry.class.getSimpleName(), outputFile );
+         LOG.info( "{}: Language subtag registry script file {} already exists. Skipping writing.",
+               DownloadBcp47LanguageSubtagRegistryMojo.class.getSimpleName(), output );
          return;
       }
 
       final File targetDirectory = outputFile.getParentFile();
       if ( !targetDirectory.exists() && !targetDirectory.mkdirs() ) {
-         throw new IOException( "Could not create directory: " + outputFile.getParent() );
+         throw new MojoExecutionException( "Could not create directory: " + outputFile.getParent() );
       }
-      final String content;
-      try ( final InputStream input = FileDownloader.download( args[0] ) ) {
-         content = new String( input.readAllBytes(), StandardCharsets.UTF_8 );
-      }
-      final ObjectMapper objectMapper = new ObjectMapper();
-      final List<Map<String, String>> languageTagRegistry = objectMapper.readValue( content.getBytes(), List.class );
-      final Map<String, ArrayList<String>> cleanedLanguageTagRegistry = buildCleanedLanguageTagRegistry( languageTagRegistry );
 
-      try ( final ByteArrayOutputStream out = new ByteArrayOutputStream() ) {
+      try ( final ByteArrayOutputStream out = new ByteArrayOutputStream();
+            final InputStream input = FileDownloader.download( inputUrl )
+      ) {
+         final String content = new String( input.readAllBytes(), StandardCharsets.UTF_8 );
+
+         final ObjectMapper objectMapper = new ObjectMapper();
+         final List<Map<String, String>> languageTagRegistry = objectMapper.readValue( content.getBytes(), List.class );
+         final Map<String, ArrayList<String>> cleanedLanguageTagRegistry = buildCleanedLanguageTagRegistry( languageTagRegistry );
          out.write( "var languageRegistryAsJson = '".getBytes() );
          objectMapper.writeValue( out, cleanedLanguageTagRegistry );
          out.write( "'".getBytes() );
          try ( final FileOutputStream file = new FileOutputStream( outputFile ) ) {
             file.write( out.toByteArray() );
          }
+      } catch ( final IOException exception ) {
+         throw new MojoExecutionException( "Could not write file", exception );
       }
+
    }
 
    private static Map<String, ArrayList<String>> buildCleanedLanguageTagRegistry( final List<Map<String, String>> languageTagRegistry ) {

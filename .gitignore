@@ -178,3 +178,5 @@ site-local.yml
 # Rec20 unit catalog artifacts
 buildSrc/*.xls
 buildSrc/*.pdf
+
+.flattened-pom.xml
