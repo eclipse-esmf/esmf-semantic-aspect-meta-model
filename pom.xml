@@ -16,37 +16,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
-   <groupId>io.openmanufacturing</groupId>
-   <artifactId>sds-aspect-meta-model</artifactId>
-   <name>SDS Aspect Meta Model</name>
+   <groupId>org.eclipse.esmf</groupId>
+   <artifactId>esmf-semantic-aspect-meta-model-parent</artifactId>
+   <name>Semantic Aspect Meta Model Parent</name>
    <version>DEV-SNAPSHOT</version>
    <modules>
       <module>esmf-samm-build-plugin</module>
       <module>esmf-semantic-aspect-meta-model</module>
    </modules>
    <packaging>pom</packaging>
-
-   <description>OMP SDS SDK</description>
-   <url>https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/index.html</url>
-   <licenses>
-      <license>
-         <name>MPL-2.0</name>
-         <url>https://www.mozilla.org/en-US/MPL/2.0/</url>
-      </license>
-   </licenses>
-   <developers>
-      <developer>
-         <name>Semantic Data Structuring Working Group</name>
-         <email>artifacts@open-manufacturing.org</email>
-         <organization>Open Manufacturing Platform</organization>
-         <organizationUrl>https://open-manufacturing.org</organizationUrl>
-      </developer>
-   </developers>
-   <scm>
-      <url>https://github.com/OpenManufacturingPlatform/sds-sdk</url>
-      <connection>scm:git:git://github.com:OpenManufacturingPlatform/sds-bamm-aspect-meta-model.git</connection>
-      <developerConnection>scm:git:ssh://git@github.com:OpenManufacturingPlatform/sds-bamm-aspect-meta-model.git</developerConnection>
-   </scm>
 
    <properties>
       <!-- Dependency versions -->
@@ -74,11 +52,111 @@
       <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
       <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
       <nexus-staging-maven-plugin>1.6.9</nexus-staging-maven-plugin>
+      <maven-plugin-depdendencies-version>3.3.9</maven-plugin-depdendencies-version>
+      <maven-plugin-annotations-version>3.5</maven-plugin-annotations-version>
 
       <java-target-version>11</java-target-version>
       <java-source-version>11</java-source-version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
+
+   <dependencyManagement>
+      <dependencies>
+         <!-- Test dependencies -->
+         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter-version}</version>
+            <scope>test</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core-version}</version>
+            <scope>test</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.topbraid</groupId>
+            <artifactId>shacl</artifactId>
+            <version>${shacl-version}</version>
+            <scope>test</scope>
+         </dependency>
+         <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>${vavr-version}</version>
+            <scope>test</scope>
+         </dependency>
+         <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec-version}</version>
+            <scope>test</scope>
+         </dependency>
+
+         <!-- Build plugin dependencies -->
+         <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${maven-plugin-depdendencies-version}</version>
+            <scope>provided</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${maven-plugin-depdendencies-version}</version>
+            <scope>provided</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven-plugin-annotations-version}</version>
+            <scope>provided</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi-version}</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-core</artifactId>
+            <version>${jena-version}</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-arq</artifactId>
+            <version>${jena-version}</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text-version}</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-version}</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson-version}</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-version}</version>
+            <scope>compile</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
    <build>
       <pluginManagement>
