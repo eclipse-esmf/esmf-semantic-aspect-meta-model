@@ -29,7 +29,7 @@ import org.eclipse.esmf.samm.validation.ValidationReport;
 import org.eclipse.esmf.samm.validation.Validator;
 
 public abstract class AbstractShapeTest {
-   final static String TEST_NAMESPACE = "io.openmanufacturing.test";
+   final static String TEST_NAMESPACE = "org.eclipse.esmf.test";
    final static String TEST_NAMESPACE_VERSION = "1.0.0";
    final static Validator validator = new Validator();
    private final Map<KnownVersion, Model> metaModel = new HashMap<>();
