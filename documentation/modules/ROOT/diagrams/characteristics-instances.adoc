@@ -107,7 +107,7 @@ include::diagram-style.dot[]
                <td><u>UnitReference</u></td>
            </tr>
            <tr>
-               <td>dataType : bamm:curie</td>
+               <td>dataType : samm:curie</td>
            </tr>
            </table>>
     ]

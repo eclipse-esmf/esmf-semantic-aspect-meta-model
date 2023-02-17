@@ -1,5 +1,5 @@
-name: bamm-specification
-title: BAMM Aspect Meta Model
+name: samm-specification
+title: Semantic Aspect Meta Model
 version: 'snapshot'
 start_page: ROOT:index.adoc
 nav:

@@ -15,13 +15,13 @@ SPDX-License-Identifier: MPL-2.0
 
 As defined in the xref:meta-model-elements.adoc#meta-model-elements[Meta Model Elements], an
 _Entity_ has a number of _Properties_. This section describes a number of generally applicable
-Entities that are pre-defined in the `bamm-e` namespace.
+Entities that are pre-defined in the `samm-e` namespace.
 
 [[time-series-entity]]
 == Time Series Entity
 [.element-urn]
 --
-{bamm-e}TimeSeriesEntity
+{samm-e}TimeSeriesEntity
 --
 
 The Time Series Entity is used with the xref:characteristics.adoc#time-series-characteristic[Time
@@ -33,8 +33,8 @@ See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] f
 [width="100%", options="header", cols="30,40,30"]
 |===
 | Property | Description | Characteristic
-| `bamm-e:timestamp` | The point in time | xref:characteristics.adoc#timestamp-characteristic[Timestamp]
-| `bamm-e:value` | The value recorded at the given point in time | This is an
+| `samm-e:timestamp` | The point in time | xref:characteristics.adoc#timestamp-characteristic[Timestamp]
+| `samm-e:value` | The value recorded at the given point in time | This is an
   xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
 |===
 
@@ -42,7 +42,7 @@ See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] f
 == Point 3D
 [.element-urn]
 --
-{bamm-e}Point3d
+{samm-e}Point3d
 --
 
 Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³].
@@ -50,11 +50,11 @@ Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³
 [width="100%", options="header", cols="30,40,30"]
 |===
 | Property | Description | Characteristic
-| `bamm-e:x` | The position along the X axis | This is an
+| `samm-e:x` | The position along the X axis | This is an
   xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
-| `bamm-e:y` | The position along the Y axis | This is an
+| `samm-e:y` | The position along the Y axis | This is an
   xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
-| `bamm-e:z` | The position along the Z axis | This is an
+| `samm-e:z` | The position along the Z axis | This is an
   xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
 |===
 
@@ -62,7 +62,7 @@ Describes a point in https://en.wikipedia.org/wiki/Three-dimensional_space[ℝ³
 == File Resource
 [.element-urn]
 --
-{bamm-e}FileResource
+{samm-e}FileResource
 --
 
 Describes a resource with a relative or absolute location and a MIME type.
@@ -70,6 +70,6 @@ Describes a resource with a relative or absolute location and a MIME type.
 [width="100%", options="header", cols="30,40,30"]
 |===
 | Property | Description | Characteristic
-| `bamm-e:resource` | The location of the resource |  xref:characteristics.adoc#resource-path-characteristic[Resource Path]
-| `bamm-e:mimeType` | The MIME type of the resource | xref:characteristics.adoc#mime-typecharacteristic[MIME Type]
+| `samm-e:resource` | The location of the resource |  xref:characteristics.adoc#resource-path-characteristic[Resource Path]
+| `samm-e:mimeType` | The MIME type of the resource | xref:characteristics.adoc#mime-typecharacteristic[MIME Type]
 |===

@@ -17,7 +17,7 @@ SPDX-License-Identifier: MPL-2.0
 [[unit-catalog-quantity-kinds]]
 == Quantity Kinds
 
-For the description of a quantity kind's structure, please see section xref:bamm-specification:ROOT:units.adoc[units].
+For the description of a quantity kind's structure, please see section xref:samm-specification:ROOT:units.adoc[units].
 
 [width="100%", options="header"]
 |===
@@ -655,7 +655,7 @@ For the description of a quantity kind's structure, please see section xref:bamm
 [[unit-catalog-units]]
 == Units
 
-For the description of a unit's structure, please see section xref:bamm-specification:ROOT:units.adoc[units].
+For the description of a unit's structure, please see section xref:samm-specification:ROOT:units.adoc[units].
 
 [%autowidth, width="50%", options="header"]
 |===

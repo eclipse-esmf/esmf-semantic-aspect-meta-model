@@ -33,12 +33,12 @@ IN NO EVENT WILL THE PARTIES BE LIABLE TO ANY OTHER PARTY FOR LOST PROFITS OR AN
 [[github]]
 == GitHub
 
-https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model
 
 [[participate]]
 == Participate
 
-https://github.com/OpenManufacturingPlatform/sds-bamm-aspect-meta-model/blob/main/CONTRIBUTING.md
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/CONTRIBUTING.md
 
 
 This work is provided by the copyright holders under the license MPL-2.0 as defined in https://www.mozilla.org/en-US/MPL/2.0/.

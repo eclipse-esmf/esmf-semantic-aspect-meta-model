@@ -17,9 +17,9 @@ SPDX-License-Identifier: MPL-2.0
 
 The system of types used in the {meta-model-full-name} (and subsequently in the models conforming to
 the {meta-model-full-name}) is largely based on a subset of the XML Schema Definition 1.1 (XSD,
-xref:bamm-specification:appendix:bibliography.adoc#xmlschema11-2[[xmlschema11-2\]]), including the types
+xref:samm-specification:appendix:bibliography.adoc#xmlschema11-2[[xmlschema11-2\]]), including the types
 such as data ranges. In addition to types from XSD, the type `langString` is included as described
-in the RDF xref:bamm-specification:appendix:bibliography.adoc#rdf11[[rdf11\]] specification; it is used
+in the RDF xref:samm-specification:appendix:bibliography.adoc#rdf11[[rdf11\]] specification; it is used
 to represent strings with an explicit language tag. Using these types allows for example the
 distinction between a plain string and a dateTime string, unlike in JSON. The JSON data of a
 Property with a certain type uses the most convenient corresponding JSON type, i.e. booleans for XSD
@@ -30,7 +30,7 @@ and can therefore be cast to". The types `anyType` and `anySimpleType` are "spec
 XSD type hierarchy and should not be directly used.
 
 NOTE: All data types inheriting from `anySimpleType` are called _scalar_, i.e. every allowed data
-type except `bamm:Entity` is scalar.
+type except `samm:Entity` is scalar.
 
 The `Entity` type corresponds to the Entity Meta Model element as described in section
 xref:meta-model-elements.adoc#meta-model-elements[Meta Model Elements].
@@ -83,8 +83,8 @@ definition in the respective standards and an informative description of their v
 | `https://www.w3.org/TR/xmlschema11-2/#hexBinary[xsd:hexBinary]` | Hex-encoded binary data | '6b756d6f77617368657265' | {ok}
 | `https://www.w3.org/TR/xmlschema11-2/#base64Binary[xsd:base64Binary]` | Base64-encoded binary data | 'a3Vtb3dhc2hlcmU=' | {ok}
 .3+| Miscellaneous types
-| `https://www.w3.org/TR/xmlschema11-2/#anyURI[xsd:anyURI]` | Absolute or relative https://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI]s and https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier[IRI]s | 'http://example.org/', 'urn:bamm:{example-ns}.myapplication:1.0.0#errorState' | {ok}
-| `https://www.w3.org/TR/curie/[bamm:curie]` | Compact URI/IRI (well-known prefix + element name) | 'xsd:string', 'unit:hectopascal' | {ok}
+| `https://www.w3.org/TR/xmlschema11-2/#anyURI[xsd:anyURI]` | Absolute or relative https://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI]s and https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier[IRI]s | 'http://example.org/', 'urn:samm:{example-ns}.myapplication:1.0.0#errorState' | {ok}
+| `https://www.w3.org/TR/curie/[samm:curie]` | Compact URI/IRI (well-known prefix + element name) | 'xsd:string', 'unit:hectopascal' | {ok}
 | `https://www.w3.org/TR/rdf11-concepts/#section-Graph-Literal[rdf:langString]` | Strings with language tags | "Hello"@en, "Hallo"@de. Note that this is written in RDF/Turtle syntax, and that only "Hello" and "Hallo" are the actual values. | {ok}
 |===
 

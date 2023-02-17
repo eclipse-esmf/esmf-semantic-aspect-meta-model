@@ -171,7 +171,7 @@
 <polygon fill="none" stroke="#000000" points="651,-25 651,-50 786,-50 786,-25 651,-25"/>
 <text text-anchor="start" x="681.5" y="-35.4" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">UnitReference</text>
 <polygon fill="none" stroke="#000000" points="651,0 651,-25 786,-25 786,0 651,0"/>
-<text text-anchor="start" x="657" y="-9.4" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : bamm:curie</text>
+<text text-anchor="start" x="657" y="-9.4" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : samm:curie</text>
 </a>
 </g>
 </g>

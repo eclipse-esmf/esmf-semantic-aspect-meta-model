@@ -18,7 +18,7 @@ SPDX-License-Identifier: MPL-2.0
 === Notes
 
 * As mentioned in the xref:index.adoc[Introduction], Aspect models are described in RDF Turtle
-  xref:bamm-specification:appendix:bibliography.adoc#turtle[[turtle\]]. The aspect specification will
+  xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]]. The aspect specification will
   therefore assume basic familiarity with Turtle.
 * For the definition of the different Model elements please refer to the
   xref:meta-model-elements.adoc[Meta Model Elements].
@@ -58,17 +58,17 @@ attributes:
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `bamm:preferredName` | Human readable name in a specific language. This attribute may be defined
+| `samm:preferredName` | Human readable name in a specific language. This attribute may be defined
   multiple times for different languages but only once for a specific language. There should be at
   least one preferredName defined with an "en" language tag. | {nok}
-| `bamm:description` | Human readable description in a specific language. This attribute may be
+| `samm:description` | Human readable description in a specific language. This attribute may be
   defined multiple times for different languages but only once for a specific language. There should
   be at least one description defined with an "en" language tag. | {nok}
-| `bamm:see` | A reference to a related element in an external taxonomy, ontology or other standards
+| `samm:see` | A reference to a related element in an external taxonomy, ontology or other standards
   document. The datatype is `xsd:anyURI`. This attribute may be defined multiple times. | {nok}
 |===
 
-NOTE: Although both `bamm:preferredName` and `bamm:description` should be set at least once in every
+NOTE: Although both `samm:preferredName` and `samm:description` should be set at least once in every
 model element, in the following examples we will mostly leave them out to improve readability.
 
 [[declaring-model-elements]]
@@ -80,16 +80,16 @@ model element, in the following examples we will mostly leave them out to improv
 An Aspect model file should start with the {meta-model-abbr} prefix definitions. The empty namespace
 ":" should be used as local namespace, i.e. the versioned namespace in which the Aspect and its
 elements are defined. Other customer or domain specific namespaces can be defined additionally.
-However, the bamm-* namespaces are reserved for the meta model. Third party locations can be
+However, the samm-* namespaces are reserved for the meta model. Third party locations can be
 referred via other namespaces (e.g., "xsd:"). See
 xref:namespaces.adoc#namespaces-and-versions[Namespaces and Versions] for more details on the topic.
 
 [source,turtle,subs="attributes+,+quotes"]
 ----
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
-@prefix bamm-e: <{bamm-e}> .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+@prefix samm: <{samm}> .
+@prefix samm-c: <{samm-c}> .
+@prefix samm-e: <{samm-e}> .
 @prefix unit: <{unit}> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 ----
@@ -97,18 +97,18 @@ xref:namespaces.adoc#namespaces-and-versions[Namespaces and Versions] for more d
 [[declaring-aspects]]
 === Declaring Aspects
 
-An Aspect is defined by marking its identifier with `a bamm:Aspect` and additional attributes. Note
+An Aspect is defined by marking its identifier with `a samm:Aspect` and additional attributes. Note
 that the `a` is just a https://www.w3.org/TR/turtle/#sec-iri[syntactic shortcut] for `rdf:type`. In
 addition to the general attributes, every Aspect Model element has the following attributes:
 
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:properties` | The list of Properties of this Aspect. Leaving out this
+| `samm:properties` | The list of Properties of this Aspect. Leaving out this
   attribute completely is equivalent to having it present with an empty list as value. | {nok}
-| `bamm:operations` | The list of Operations of this Aspect. Leaving out this
+| `samm:operations` | The list of Operations of this Aspect. Leaving out this
   attribute completely is equivalent to having it present with an empty list as value. | {nok}
-| `bamm:events` | The list of Events of this Aspect. | {nok}
+| `samm:events` | The list of Events of this Aspect. | {nok}
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
@@ -121,10 +121,10 @@ that unused namespaces can be left out:
 
 [source,turtle,subs="attributes+,+quotes"]
 ----
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
-@prefix bamm-e: <{bamm-e}> .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+@prefix samm: <{samm}> .
+@prefix samm-c: <{samm-c}> .
+@prefix samm-e: <{samm-e}> .
 @prefix unit: <{unit}> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -140,14 +140,14 @@ that all model elements have], Properties have the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:characteristic` | The xref:characteristics.adoc#characteristics[Characteristic] describing
+| `samm:characteristic` | The xref:characteristics.adoc#characteristics[Characteristic] describing
   this Property. | {ok}
-| `bamm:exampleValue` | An exemplary value the Property can take on that helps to understand the
+| `samm:exampleValue` | An exemplary value the Property can take on that helps to understand the
 intended meaning of the property better. This can only be set for Properties with scalar data types
-(e.g., `xsd:string` or `xsd:float`, but not Entities). The data type of the `bamm:exampleValue` must
+(e.g., `xsd:string` or `xsd:float`, but not Entities). The data type of the `samm:exampleValue` must
 be convertible to the effective data type of the Property's Characteristic. For example, if the
-Characteristic's `bamm:dataType` is `xsd:int`, `xsd:short` is also a valid type for the
-`bamm:exampleValue`. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
+Characteristic's `samm:dataType` is `xsd:int`, `xsd:short` is also a valid type for the
+`samm:exampleValue`. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
 for more details. | {nok}
 |===
 
@@ -195,7 +195,7 @@ See the following example that uses _Measurement_ -- usage of _Quantifiable_ is 
 ----
 include::example$aspect-sample.ttl[tags=measurement-declaration]
 ----
-See section xref:units.adoc#units[Units] for information about the valid values for the `bamm-c:unit` attribute.
+See section xref:units.adoc#units[Units] for information about the valid values for the `samm-c:unit` attribute.
 
 [[declaring-single-entity]]
 ==== Declaring Single Entity
@@ -242,12 +242,12 @@ include::example$aspect-sample.ttl[tags=entity-collection]
 |====
 
 TIP: The data type for the elements of a Collection can either be defined in the usual manner using
-the `bamm:dataType` attribute (see the examples above) or by defining a Characteristic for the
-Collection elements using the `bamm-c:elementCharacteristic` attribute, see the example below. It is
+the `samm:dataType` attribute (see the examples above) or by defining a Characteristic for the
+Collection elements using the `samm-c:elementCharacteristic` attribute, see the example below. It is
 recommended to explicitly create a Characteristic for the Collection elements instead of only
 defining the data type, since it allows to completely express the semantics of the elements.
 
-Example with the `bamm-c:elementCharacteristic` attribute:
+Example with the `samm-c:elementCharacteristic` attribute:
 [source,turtle,subs="attributes+"]
 ----
 include::example$collection-with-element-characteristic.ttl[tags=content]
@@ -291,9 +291,9 @@ Declaring an Enumeration with a complex value is usally done in order to add a d
 actual value, e.g., the `state` in the example below, which provides information regarding the
 meaning of the value. This description only exists in the aspect model and is not part of the
 payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
-part of the runtime data, the `bamm:notInPayload` attribute is used.
+part of the runtime data, the `samm:notInPayload` attribute is used.
 
-NOTE: `bamm:notInPayload` cannot be used in Abstract Entities, but the setting for a specific property
+NOTE: `samm:notInPayload` cannot be used in Abstract Entities, but the setting for a specific property
 is inherited when Entities are extended.
 
 [source,turtle,subs="attributes+"]
@@ -302,7 +302,7 @@ include::example$aspect-sample.ttl[tags=enumeration-complex-declaration]
 ----
 
 CAUTION: If the Property is part of the runtime data (like `status` in the example), it is directly
-referenced. Writing `bamm:notInPayload false` is _not_ allowed.
+referenced. Writing `samm:notInPayload false` is _not_ allowed.
 
 [[declaring-state]]
 ==== Declaring State
@@ -417,11 +417,11 @@ include::example$structured-value-sample.ttl[tags=content]
 ----
 :attribute-missing: warn
 
-NOTE: Technically, `bamm-c:elements` would not be required just to parse corresponding payload; the
-regular expression given in the `bamm-c:deconstructionRule` would be sufficient. However, the
+NOTE: Technically, `samm-c:elements` would not be required just to parse corresponding payload; the
+regular expression given in the `samm-c:deconstructionRule` would be sufficient. However, the
 `elements` fields serves two purposes: Firstly, it concisely describes how the meaning of the
 deconstruction rule corresponds with the named fields; secondly, it is used for validation: When a
-`bamm:exampleValue` is given (like in the example), the Aspect Model validator can automatically
+`samm:exampleValue` is given (like in the example), the Aspect Model validator can automatically
 check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
 i.e., that the deconstruction rule actually does what the model author intended.
 
@@ -431,7 +431,7 @@ i.e., that the deconstruction rule actually does what the model author intended.
 As explained in the section xref:modeling-guidelines.adoc#declaring-quantifiable-values-and-measurements[Declaring Quantifiables and Measurements], some values only make sense when they also have a unit assigned to them.
 This unit definition is in many cases fixed at design time, does not change thereafter and therefore at runtime (in the JSON payload for example), only the actual value is transported. +
  There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
-at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a xref:characteristics.adoc#unit-reference-characteristic[UnitReference] characteristic instance can be used to include a dynamic reference to the desired unit from the xref:appendix:unitcatalog.adoc[Unit catalog] and this information is then always included in the payload. The runtime payload refers to the unit using its `bamm:curie`, i.e., the unit's URN's element name prefixed with `unit:`.
+at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a xref:characteristics.adoc#unit-reference-characteristic[UnitReference] characteristic instance can be used to include a dynamic reference to the desired unit from the xref:appendix:unitcatalog.adoc[Unit catalog] and this information is then always included in the payload. The runtime payload refers to the unit using its `samm:curie`, i.e., the unit's URN's element name prefixed with `unit:`.
 
 For example an Aspect with the following model:
 
@@ -462,8 +462,8 @@ include::example$regular-numberlist.ttl[tags=content]
 
 To add a xref:characteristics.adoc#length-constraint[Length Constraint] to the list, replace the use
 of the Characteristic with a new xref:characteristics.adoc#trait-characteristic[Trait] instance. Set
-the original Characteristic as the Trait's `bamm-c:baseCharacteristic` and add the required
-Constraint as a `bamm-c:constraint` to the Trait:
+the original Characteristic as the Trait's `samm-c:baseCharacteristic` and add the required
+Constraint as a `samm-c:constraint` to the Trait:
 
 [source,turtle,subs="attributes+"]
 ----
@@ -492,7 +492,7 @@ include::example$constrained-stringcode.ttl[tags=regular-expression-sample]
 ----
 :attribute-missing: warn
 
-NOTE: When writing the `bamm:value`, backslashes (`\`) need to be escaped in order to produce valid RDF/Turtle syntax, i.e. write `\\` instead of `\`.
+NOTE: When writing the `samm:value`, backslashes (`\`) need to be escaped in order to produce valid RDF/Turtle syntax, i.e. write `\\` instead of `\`.
 
 [[declaring-entities]]
 === Declaring Entities
@@ -502,9 +502,9 @@ Entities have the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:properties` | The list of Properties which make up the Entity. Leaving out this
+| `samm:properties` | The list of Properties which make up the Entity. Leaving out this
   attribute completely is equivalent to having it present with an empty list as value.| {nok}
-| `bamm:extends` | The Entity which is extended by this Entity | {nok}
+| `samm:extends` | The Entity which is extended by this Entity | {nok}
 |===
 
 Example:
@@ -517,7 +517,7 @@ include::example$aspect-sample.ttl[tags=entity-declaration]
 [[extending-entities]]
 ==== Extending Entities
 
-Declaring that an Entity extends another Entity is done using the `bamm:extends` attribute in the Entity declaration.
+Declaring that an Entity extends another Entity is done using the `samm:extends` attribute in the Entity declaration.
 
 Example:
 
@@ -529,12 +529,12 @@ include::example$aspect-sample.ttl[tags=extending-entity-declaration]
 The extending Entities `:Student` and `:Teacher` contain the Properties declared in the extended Entity `:Person` as well as
 the Properties in their own declarations.
 
-The effective Property names, i.e. the payload name when `bamm:payloadName` is used, or the name of the Property,
+The effective Property names, i.e. the payload name when `samm:payloadName` is used, or the name of the Property,
 must be unique across the entire Entity inheritance chain. Otherwise the corresponding runtime payload is ambiguous.
 
-When one of the attributes xref:modeling-guidelines.adoc#payload-names[bamm:payloadName],
-xref:modeling-guidelines.adoc#optional-properties[bamm:optional] or `bamm:notInPayload` is used on a specific property usage,
-its value is also inherited by the extending Entities. Using the example of `bamm:payloadName`,
+When one of the attributes xref:modeling-guidelines.adoc#payload-names[samm:payloadName],
+xref:modeling-guidelines.adoc#optional-properties[samm:optional] or `samm:notInPayload` is used on a specific property usage,
+its value is also inherited by the extending Entities. Using the example of `samm:payloadName`,
 we could modify the above example to enforce the alternative naming for the `surname` property in the generated payloads
 and this change would apply to the `Person` Entity (directly) and both `Student` and `Teacher` Entities (via inheritance):
 
@@ -564,8 +564,8 @@ include::example$aspect-sample.ttl[tags=abstract-entity-declaration]
 
 When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
 Abstract Entity (i.e., extending it) should be able to decide the Property's Characteristic, the
-Property can be declared a `bamm:AbstractProperty`. An Abstract Property is similar to a Property,
-with two differences: Firstly, it has no `bamm:Characteristic` attribute and secondly, it must only
+Property can be declared a `samm:AbstractProperty`. An Abstract Property is similar to a Property,
+with two differences: Firstly, it has no `samm:Characteristic` attribute and secondly, it must only
 be used in Abstract Entities. Consider the following example of two-dimensional vector which is
 declared as an Abstract Entity using two Abstract Properties for its `x` and `y` values, leaving for
 the user to decide which Characteristic and hence which data type should be used:
@@ -587,8 +587,8 @@ and then used as follows:
 include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract-property-usage]
 ----
 
-Note that an Abstract Entity can have both `bamm:Property`&#8203;s and
-`bamm:AbstractProperty`&#8203;s (both are listed in `bamm:properties`). The properties list of an
+Note that an Abstract Entity can have both `samm:Property`&#8203;s and
+`samm:AbstractProperty`&#8203;s (both are listed in `samm:properties`). The properties list of an
 Entity that extends the Abstract Entity must specify the Characteristic to use for each of the
 Abstract Properties (and only those).
 
@@ -600,9 +600,9 @@ Operations have the following attributes:
 [width="100%", options="header"]
 |===
 | Attributes | Description | Required
-| `bamm:input` | A list of references to Properties that describe the input to the operation. The
+| `samm:input` | A list of references to Properties that describe the input to the operation. The
   attribute must be present, but the list may be empty. | {ok}
-| `bamm:output` | A single reference to a Property that describes the output of the operation. |
+| `samm:output` | A single reference to a Property that describes the output of the operation. |
   {nok}
 |===
 
@@ -616,12 +616,12 @@ include::example$aspect-sample.ttl[tags=operation-declaration]
 [[adding-external-references]]
 === Adding external references
 
-The `bamm:see` attribute can be used to add references to related elements in an external taxonomy,
-ontology or standards document to Aspect model elements. Values for `bamm:see` must be URIs. The
+The `samm:see` attribute can be used to add references to related elements in an external taxonomy,
+ontology or standards document to Aspect model elements. Values for `samm:see` must be URIs. The
 meaning of the reference is informative and implies no semantics such as equality or subsumption in
 either direction.
 
-In the following example, `bamm:see` adds two references to external well-known vocabularies that
+In the following example, `samm:see` adds two references to external well-known vocabularies that
 have identifiers which are also valid URLs:
 
 [source,turtle,subs="attributes+"]
@@ -632,15 +632,15 @@ include::example$aspect-sample.ttl[tags=see-url-declaration]
 If an external model element should be referenced that has a unique identifier which is not a URI,
 but a well-known resolver exists, you can either use the resolver's URL or a synthetic URN. For
 example, for the Digital Object Identifier (DOI,
-xref:bamm-specification:appendix:bibliography.adoc#doi[[DOI\]]) `10.1109/NetSys.2017.7903949`, you can
-use as the value for `bamm:see` either the URL `\https://doi.org/10.1109/NetSys.2017.7903949` or the
+xref:samm-specification:appendix:bibliography.adoc#doi[[DOI\]]) `10.1109/NetSys.2017.7903949`, you can
+use as the value for `samm:see` either the URL `\https://doi.org/10.1109/NetSys.2017.7903949` or the
 URN `urn:doi:10.1109/NetSys.2017.7903949`.
 
 If an external model element should be referenced that has a unique identifier which is not a URI
 and there is no well-known resolver, use a synthetic URN structure. One example are Object
 Identifiers as specified by ITU and ISO/IEC (OID) and the mapping to URNs in RFC 3061
-xref:bamm-specification:appendix:bibliography.adoc#rfc3061[[rfc3061\]], so for example, for the OID
-`1.3.6.1.4.1.1919.1.1.2`, the corresponding `bamm:see` value would be
+xref:samm-specification:appendix:bibliography.adoc#rfc3061[[rfc3061\]], so for example, for the OID
+`1.3.6.1.4.1.1919.1.1.2`, the corresponding `samm:see` value would be
 `urn:oid:1.3.6.1.4.1.1919.1.1.2`:
 
 [source,turtle,subs="attributes+"]
@@ -648,8 +648,8 @@ xref:bamm-specification:appendix:bibliography.adoc#rfc3061[[rfc3061\]], so for e
 include::example$aspect-sample.ttl[tags=see-oid-declaration]
 ----
 
-If an external element should be referenced that has no unique identifier, `bamm:see` should not be
-used. In this case, refer to the external element in the current model element's `bamm:description`,
+If an external element should be referenced that has no unique identifier, `samm:see` should not be
+used. In this case, refer to the external element in the current model element's `samm:description`,
 for example:
 
 [source,turtle,subs="attributes+"]
@@ -663,26 +663,26 @@ include::example$aspect-sample.ttl[tags=see-dontuse]
 When Properties are used in Aspects and Entities, they can be marked as optional (not possible for properties of Abstract Entities). This means that a
 Property's _usage_ is optional, not the Property itself, which would make reusing a Property more
 difficult. In the following example, the Property `toggleStatus` is mandatory and the Property
-`errorMessage` is marked as optional in the Aspect. Note how the `bamm:properties` of the Aspect are
+`errorMessage` is marked as optional in the Aspect. Note how the `samm:properties` of the Aspect are
 defined, and how the definition for the `toggleStatus` Property itself does not differ from that of
 `errorMessage`.
 
 [source,turtle,subs="attributes+"]
 ----
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+@prefix samm: <{samm}> .
+@prefix samm-c: <{samm-c}> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 include::example$optional-properties-sample.ttl[tags=optional-properties-declaration]
 ----
 
-CAUTION: If the Property's use is optional, it is marked with `bamm:optional true` (like
+CAUTION: If the Property's use is optional, it is marked with `samm:optional true` (like
 `errorMessage` in the example). However, if its use is mandatory (like `toggleStatus` in the
-example), the Property is directly referenced. Writing `bamm:optional false` is _not_ allowed.
+example), the Property is directly referenced. Writing `samm:optional false` is _not_ allowed.
 
-NOTE: The setting of the `bamm:optional` attribute for a specific property is inherited from parent Entity
-by the Entities extending it using the Entity extension mechanism (`bamm::extends`).
+NOTE: The setting of the `samm:optional` attribute for a specific property is inherited from parent Entity
+by the Entities extending it using the Entity extension mechanism (`samm::extends`).
 
 [[payload-names]]
 === Declaring Payload Names for Properties
@@ -694,23 +694,23 @@ the separation of the semantic name of the Property and the corresponding key in
 payload. In the following example we define a Property `errorMessage`. In the Aspect it is defined
 that the corresponding key in the payload is `error`.
 
-NOTE: The value for the `bamm:payloadName` attribute must be of type `xsd:string`.
+NOTE: The value for the `samm:payloadName` attribute must be of type `xsd:string`.
 
 [source,turtle,subs="attributes+"]
 ----
-@prefix : <urn:bamm:{example-ns}.myapplication:1.0.0#> .
-@prefix bamm: <{bamm}> .
-@prefix bamm-c: <{bamm-c}> .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+@prefix samm: <{samm}> .
+@prefix samm-c: <{samm-c}> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 include::example$payload-name-sample.ttl[tags=payload-name-declaration]
 ----
 
-CAUTION: A Property may not be marked as not being included in the payload using `bamm:notInPayload
-true` and have a payload name declared using `bamm:payloadName`.
+CAUTION: A Property may not be marked as not being included in the payload using `samm:notInPayload
+true` and have a payload name declared using `samm:payloadName`.
 
 NOTE: It is also useful to know that the payload name definition is inherited from parent Entity
-by its children when using the Entity extension mechanism (`bamm::extends`).
+by its children when using the Entity extension mechanism (`samm::extends`).
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts
@@ -738,7 +738,7 @@ include::example$inline-numberlist.ttl[tags=content]
 
 To understand the possibilities for localization of the models and their implications it is important to understand the differences
 between the data types `xsd:string` and `rdf:langString` and/or their respective characteristic
-counterparts `bamm-c:Text` and `bamm-c:MultiLanguageText`.
+counterparts `samm-c:Text` and `samm-c:MultiLanguageText`.
 
 To illustrate the differences between them and to give a typical example for localizable string
 that also needs to be included in the runtime payload, consider this model with a scalar `text` property:
@@ -758,7 +758,7 @@ The JSON payload for this model would then look like this:
 ----
 
 Notice how the text is just a raw string, without any information about the language it is written in.
-When instead the `text` property is modeled as `bamm-c:MultiLanguageText` (instead of `bamm-c:Text`),
+When instead the `text` property is modeled as `samm-c:MultiLanguageText` (instead of `samm-c:Text`),
 the payload would change to include the information about the language and would look like this:
 
 [source,json]
