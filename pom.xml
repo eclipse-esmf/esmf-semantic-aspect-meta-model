@@ -21,7 +21,11 @@
    <name>Semantic Aspect Meta Model Parent</name>
    <version>DEV-SNAPSHOT</version>
    <modules>
+      <!-- The Antora documentation -->
+      <module>documentation</module>
+      <!-- The plugin that generates units.ttl and other resources at build time -->
       <module>esmf-samm-build-plugin</module>
+      <!-- The module containing the formal specification (SHACL) and the test suite -->
       <module>esmf-semantic-aspect-meta-model</module>
    </modules>
    <packaging>pom</packaging>
@@ -54,6 +58,7 @@
       <nexus-staging-maven-plugin>1.6.9</nexus-staging-maven-plugin>
       <maven-plugin-depdendencies-version>3.3.9</maven-plugin-depdendencies-version>
       <maven-plugin-annotations-version>3.5</maven-plugin-annotations-version>
+      <maven-clean-plugin-version>3.1.0</maven-clean-plugin-version>
 
       <java-target-version>11</java-target-version>
       <java-source-version>11</java-source-version>
@@ -215,6 +220,11 @@
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-jar-plugin</artifactId>
                <version>${maven-jar-plugin-version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-clean-plugin</artifactId>
+               <version>${maven-clean-plugin-version}</version>
             </plugin>
          </plugins>
       </pluginManagement>

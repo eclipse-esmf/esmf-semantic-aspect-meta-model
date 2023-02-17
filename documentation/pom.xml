@@ -1,0 +1,213 @@
+<!--
+  ~ Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+  ~
+  ~ See the AUTHORS file(s) distributed with this work for additional
+  ~ information regarding authorship.
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.eclipse.esmf</groupId>
+      <artifactId>esmf-semantic-aspect-meta-model-parent</artifactId>
+      <version>DEV-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>documentation</artifactId>
+   <name>Semantic Aspect Meta Model Specification</name>
+   <packaging>jar</packaging>
+
+   <properties>
+      <frontend-maven-plugin-version>1.12.1</frontend-maven-plugin-version>
+      <nodejs-version>16.18.0</nodejs-version>
+      <node-directory>${project.basedir}/node</node-directory>
+      <node-modules-directory>${project.basedir}/node_modules</node-modules-directory>
+      <antora-cli>${node-modules-directory}/@antora/cli/bin/antora</antora-cli>
+   </properties>
+
+   <build>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <groupId>com.github.eirslett</groupId>
+               <artifactId>frontend-maven-plugin</artifactId>
+               <version>${frontend-maven-plugin-version}</version>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <configuration>
+               <filesets>
+                  <fileset>
+                     <directory>${node-directory}</directory>
+                  </fileset>
+                  <fileset>
+                     <directory>${node-modules-directory}</directory>
+                  </fileset>
+                  <fileset>
+                     <!-- Where Antora writes its output -->
+                     <directory>${project.basedir}/../build</directory>
+                  </fileset>
+                  <fileset>
+                     <!-- Antora's internal cache -->
+                     <directory>${project.basedir}/../.cache</directory>
+                  </fileset>
+               </filesets>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <!-- If nodejs is not present, download it -->
+   <profiles>
+      <profile>
+         <id>download-nodejs</id>
+         <activation>
+            <file>
+               <missing>${basedir}/node/node</missing>
+            </file>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>com.github.eirslett</groupId>
+                  <artifactId>frontend-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>install-node</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                           <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                           <environmentVariables>
+                              <strict-ssl>false</strict-ssl>
+                           </environmentVariables>
+                           <nodeDownloadRoot>${node-directory}</nodeDownloadRoot>
+                           <nodeVersion>v${nodejs-version}</nodeVersion>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+
+      <!-- Download Antora and its requirements if necessary -->
+      <profile>
+         <id>download-antora</id>
+         <activation>
+            <file>
+               <!-- Note we can't use ${antora-cli} here because profile activation happens before variable interpolation :( -->
+               <missing>${basedir}/node_modules/@antora/cli/bin/antora</missing>
+            </file>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>com.github.eirslett</groupId>
+                  <artifactId>frontend-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>install-antora</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                           <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                           <arguments>install @antora/cli</arguments>
+                        </configuration>
+                     </execution>
+                     <execution>
+                        <id>install-antora-site-generator-lunr</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                           <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                           <arguments>install antora-site-generator-lunr</arguments>
+                        </configuration>
+                     </execution>
+                     <execution>
+                        <id>install-asciidoctor-plantuml</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                           <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                           <arguments>install asciidoctor-plantuml</arguments>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+
+      <!-- Execute Antora to build documentation -->
+      <profile>
+         <id>antora</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>run-antora</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                           <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                           <executable>${antora-cli}</executable>
+                           <commandlineArgs>--generator antora-site-generator-lunr ../site.yml --stacktrace</commandlineArgs>
+                           <useMavenLogger>true</useMavenLogger>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+
+      <!-- Execute Antora to build documentation, but use site-local.yml -->
+      <profile>
+         <id>antora-local</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>run-antora</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                           <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                           <executable>${antora-cli}</executable>
+                           <commandlineArgs>--generator antora-site-generator-lunr ../site-local.yml --stacktrace</commandlineArgs>
+                           <useMavenLogger>true</useMavenLogger>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
+
+</project>
