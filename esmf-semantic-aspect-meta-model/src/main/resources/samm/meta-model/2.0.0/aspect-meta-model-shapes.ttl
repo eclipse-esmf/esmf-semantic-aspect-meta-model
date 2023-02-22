@@ -73,7 +73,7 @@ samm:AspectShape
          sh:message "Element '{?value}' in the property list of Aspect '{$this}' must be either a Property or a blank node referring to a Property and defining samm:optional \"true\"^^xsd:boolean and/or samm:payloadName." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?properties ?value ?code
+            select $this ?properties ?value ?code ?highlight
             where {
                $this samm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?property .
@@ -86,6 +86,7 @@ samm:AspectShape
                }
                bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -145,7 +146,7 @@ samm:EntityShape
          sh:message "Element '{?value}' in the Entity's '{$this}' properties list must be a property - either directly or via a reference to a property with an attribute samm:optional \"true\"^^xsd:boolean and/or samm:payloadName or samm:notInPayload \"true\"^^xsd:boolean." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?properties ?value ?code
+            select $this ?properties ?value ?code ?highlight
             where {
                $this samm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?property .
@@ -167,6 +168,7 @@ samm:EntityShape
               }
               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
               bind( 'ERR_INVALID_PROPERTY' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -175,7 +177,7 @@ samm:EntityShape
          sh:message "Property '{?value}' of the Entity '{$this}' may only be defined with samm:notInPayload \"true\"^^xsd:boolean when the Entity, or one of its parent Entities/Abstract Entities, is used as the data type of an Enumeration." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?properties ?value ?code
+            select $this ?properties ?value ?code ?highlight
             where {
                $this samm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?property .
@@ -189,6 +191,7 @@ samm:EntityShape
                }
                bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -225,7 +228,7 @@ samm:EntityShape
          sh:message "Property '{?value}' of the Entity '{$this}' must not be defined as both samm:optional \"true\"^^xsd:boolean and samm:notInPayload \"true\"^^xsd:boolean." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?properties ?value ?code
+            select $this ?properties ?value ?code ?highlight
             where {
                $this samm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?property .
@@ -235,6 +238,7 @@ samm:EntityShape
                }
                bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -243,7 +247,7 @@ samm:EntityShape
          sh:message "Property '{?value}' of the Entity '{$this}' must not be defined as both samm:payloadName and samm:notInPayload \"true\"^^xsd:boolean." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?properties ?value ?code
+            select $this ?properties ?value ?code ?highlight
             where {
                $this samm:properties ?properties .
                ?properties rdf:rest*/rdf:first ?property .
@@ -253,6 +257,7 @@ samm:EntityShape
                }
                bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
                bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -280,7 +285,7 @@ samm:PropertyShape
          sh:message "The datatype '{?value}' of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this samm:exampleValue ?exampleValue .
                $this samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?characteristicDataType .
@@ -326,6 +331,7 @@ samm:PropertyShape
                )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
                bind( ?providedType as ?value )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -381,7 +387,7 @@ samm:CharacteristicShape
          sh:message "The dataType '{?value}' used on Characteristic '{$this}' is neither an allowed xsd or rdf type, nor a type that is defined as rdfs:Class." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select distinct $this ?value ?code
+            select distinct $this ?value ?code ?highlight
             where {
                $this (samm-c:left*|samm-c:right*|samm-c:baseCharacteristic*)/samm:dataType ?value .
                filter( not exists { ?value rdf:type*/rdfs:subClassOf* samm:Entity }
@@ -425,6 +431,7 @@ samm:CharacteristicShape
                      )
                )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
              }
          """
       ] ;
@@ -625,7 +632,7 @@ samm:ValidEntityInstances
       sh:message "The type of the value of the Property '{?path}' of the Entity instance '{$this}' does not match the Property definition." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-         select $this ?value ?path ?code
+         select $this ?value ?path ?code ?highlight
          where {
            $this a ?entityType .
            ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
@@ -637,6 +644,7 @@ samm:ValidEntityInstances
            bind( ?property as ?path )
            bind( str( ?instanceValue ) as ?value )
            bind( 'ERR_WRONG_DATATYPE' as ?code )
+           bind( ?path as ?highlight )
          }
       """
    ] ;
@@ -645,7 +653,7 @@ samm:ValidEntityInstances
 		sh:message "The value for a list Property '{?path}' of the Entity instance '{$this}' is not defined as a list." ;
 		sh:prefixes samm:prefixDeclarations ;
 		sh:select """
-		   select $this ?path ?code
+		   select $this ?path ?code ?highlight
 		   where {
 		     $this a ?entityType .
 			 ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
@@ -656,6 +664,7 @@ samm:ValidEntityInstances
 			 filter ( not exists { ?listInstance rdf:rest*/rdf:first ?instanceValue } ) .
 			 bind( ?property as ?path )
 			 bind( 'ERR_LIST_REQUIRED' as ?code )
+			 bind( ?path as ?highlight )
 		   }
 		"""
    ] ;
@@ -664,7 +673,7 @@ samm:ValidEntityInstances
         sh:message "Value '{?value}' for list Property '{?path}' of the Entity instance '{$this}' has an invalid data type." ;
 		sh:prefixes samm:prefixDeclarations ;
 		sh:select """
-		   select $this ?value ?path ?code
+		   select $this ?value ?path ?code ?highlight
 			where {
 			  $this a ?entityType .
 			  ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
@@ -680,6 +689,7 @@ samm:ValidEntityInstances
 			  bind( ?property as ?path )
 			  bind( ?instanceValue as ?value )
 			  bind( 'ERR_WRONG_DATATYPE' as ?code )
+			  bind( ?value as ?highlight )
 			}
 		"""
    ] .
@@ -702,7 +712,7 @@ samm:UniqueEntityInstances
       sh:message "Values for Properties of Entity instance '{$this}' should be unique, but there is a conflict with '{?value}'." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-        select distinct $this ?value ?code
+        select distinct $this ?value ?code ?highlight
         where {
           ?entityType rdf:type samm:Entity .
           $this a ?entityType .
@@ -747,6 +757,7 @@ samm:UniqueEntityInstances
           filter( ( ?instance1 != ?instance2 ) && ( ?serialized1 = ?serialized2 ) )
           bind( ?anotherInstance as ?value )
           bind( 'ERR_DUPLICATE_ENTRY' as ?code )
+          bind( ?value as ?highlight )
         }
       """
    ] .
@@ -769,7 +780,7 @@ samm:EntityInstancesHaveOnlyKnownProperties
       sh:message "Entity instance '{$this}' has an attribute '{?value}' that is not a Property defined in the Entity." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-        select $this ?value ?code
+        select $this ?value ?code ?highlight
         where {
           $this a ?entityType .
           $this ?property [] .
@@ -781,6 +792,7 @@ samm:EntityInstancesHaveOnlyKnownProperties
           } )
           bind( ?property as ?value )
           bind( 'ERR_INVALID_PROPERTY' as ?code )
+          bind( ?value as ?highlight )
         }
       """
    ] .
@@ -793,7 +805,7 @@ samm:AbstractEntityDataTypeShape
       sh:message "The datatype '{$this}' of Characteristic '{?value}' is an AbstractEntity. Only regular Entities (and simple data types) are permitted." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-         select $this ?value ?code
+         select $this ?value ?code ?highlight
          where {
            $this rdf:type samm:AbstractEntity .
            filter ( exists { ?property samm:characteristic/samm-c:baseCharacteristic*/samm:dataType $this } ) .
@@ -801,6 +813,7 @@ samm:AbstractEntityDataTypeShape
            ?property samm:characteristic ?characteristic .
            bind( ?characteristic as ?value )
            bind( 'ERR_ABSTRACT_USAGE' as ?code )
+           bind( ?value as ?highlight )
          }
       """
    ] .
@@ -854,10 +867,10 @@ samm:AmbiguousEntityShape
    sh:sparql [
       a sh:SPARQLConstraint ;
       rdfs:comment "Ensures that all Entities in a chain of extending Entities do not use ambiguous Property naming." ;
-      sh:message "The Entity '{$this}' contains Property '{??thisName}' which causes ambiguity in combination with the '{?other}' Entity." ;
+      sh:message "The Entity '{$this}' contains Property '{?thisName}' which causes ambiguity in combination with the '{?other}' Entity." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-         select $this ?value ?thisName ?other ?code
+         select $this ?value ?thisName ?other ?code ?highlight
          where {
            optional { $this samm:extends ?other }
            optional { ?other samm:extends $this }
@@ -914,6 +927,7 @@ samm:AmbiguousEntityShape
            filter( ?thisName = ?otherName )
            bind( ?thisName as ?value )
            bind( 'ERR_AMBIGUOUS_PROPERTY' as ?code )
+           bind( ?thisName as ?highlight )
          }
       """
    ] ;
@@ -923,7 +937,7 @@ samm:AmbiguousEntityShape
       sh:message "The Entity '{$this}' contains Property '{?thisName}' which causes ambiguity in combination with the '{?other}' Entity." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-         select $this ?value ?thisName ?other ?code
+         select $this ?value ?thisName ?other ?code ?highlight
          where {
            optional { $this samm:extends ?extendedEntityA }
            optional { ?other samm:extends ?extendedEntityB }
@@ -982,6 +996,7 @@ samm:AmbiguousEntityShape
            filter( ?thisName = ?otherName )
            bind( ?thisName as ?value )
            bind( 'ERR_AMBIGUOUS_PROPERTY' as ?code )
+           bind( ?thisName as ?highlight )
          }
       """
    ] .
@@ -1003,13 +1018,14 @@ samm:DoubleInstantiationShape
       sh:message "'{$this}' can not be an instance of '{?value}', because '{?value}' is an instance itself." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
-        select $this ?value ?code
+        select $this ?value ?code ?highlight
         where {
          $this a ?value .
          ?value a ?sammElement .
          filter( exists { ?sammElement rdfs:subClassOf* mmm:Concept } )
          filter( ?sammElement != samm:Entity && ?sammElement != samm:AbstractEntity )
          bind( 'ERR_DOUBLE_INSTANTIATION' as ?code )
+         bind( ?value as ?highlight )
        }
       """
   ] .

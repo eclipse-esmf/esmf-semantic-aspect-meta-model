@@ -47,11 +47,12 @@ samm-c:QuantifiableShape
          sh:message "The unit definition '{?value}' of the Quantifiable (Characteristic) '{$this}' is not valid." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this samm-c:unit ?value .
                filter( not exists { ?value rdf:type/rdfs:subClassOf* samm:Unit } ) .
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -189,7 +190,7 @@ samm-c:LanguageConstraintShape
          sh:message "The language code '{?value}' of LanguageConstraint '{$this}' is not a valid ISO 639-1 language code." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this samm-c:languageCode ?value .
                filter( ?value not in ( "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi", "bm", "bn", "bo", "br",
@@ -201,6 +202,7 @@ samm-c:LanguageConstraintShape
                 "sg", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti", "tk", "tl", "tn", "to", "tr",
                 "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo", "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu" ) )
                 bind( 'ERR_WRONG_LANGCODE' as ?code )
+                bind( ?value as ?highlight )
             }
             """
       ] ;
@@ -459,13 +461,14 @@ samm-c:DurationShape
          sh:message "DurationShape '{$this}': Unit of Duration '{?value}' does not have the quantity kind time." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?unit ?value ?code
+            select $this ?unit ?value ?code ?highlight
             where {
                $this rdf:type/rdfs:subClassOf* samm-c:Duration .
                $this samm-c:unit ?unit .
                filter( not exists { ?unit samm:referenceUnit?/samm:quantityKind unit:time } )
                bind( ?unit as ?value )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ]
@@ -486,7 +489,7 @@ samm-c:EnumerationShape
         sh:message "EnumerationShape '{$this}': one of the values ('{?item}') does not have the specified data type '{?definedDataType}'." ;
         sh:prefixes samm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?dataType ?item ?definedDataType ?code
+           select $this ?values ?dataType ?item ?definedDataType ?code ?highlight
            where {
              $this rdf:type/rdfs:subClassOf* samm-c:Enumeration .
              $this samm-c:values ?values .
@@ -496,6 +499,7 @@ samm-c:EnumerationShape
              bind( strlen( str( ?literalDataType ) ) as ?literalDataTypeLength ) .
              filter( ( ?literalDataType != ?definedDataType ) && ( ?literalDataTypeLength > 0 ) ) .
              bind( 'ERR_WRONG_DATATYPE' as ?code )
+             bind( ?item as ?highlight )
            }
         """
      ] ;
@@ -504,7 +508,7 @@ samm-c:EnumerationShape
         sh:message "EnumerationShape '{$this}': DataType is a literal type but one of the values ('{?item}') is defined as samm:Property." ;
         sh:prefixes samm:prefixDeclarations ;
         sh:select """
-           select $this ?values ?item ?code
+           select $this ?values ?item ?code ?highlight
            where {
               $this rdf:type/rdfs:subClassOf* samm-c:Enumeration .
               filter ( not exists { $this samm:dataType samm:Property } ) .
@@ -512,6 +516,7 @@ samm-c:EnumerationShape
               ?values rdf:rest/rdf:first ?item .
               filter ( exists { ?item rdf:type samm:Property } )
               bind( 'ERR_LITERAL_EXPECTED' as ?code )
+              bind( ?item as ?highlight )
            }
         """
      ] ;
@@ -531,11 +536,12 @@ samm-c:SingleEntityShape
          sh:message "Element '{$this}': the dataType '{?value}' that is used as dataType on the Characteristic is not a samm:Entity." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this $value ?code
+            select $this $value ?code ?highlight
             where {
                $this samm:dataType ?value .
                filter( not exists { ?value rdf:type* samm:Entity } && not exists { ?value rdf:type* samm:AbstractEntity } )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -618,7 +624,7 @@ samm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' elements ('{?value}') may only be Properties or string literals" ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
               $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
               $this samm-c:elements ?elements .
@@ -627,6 +633,7 @@ samm-c:StructuredValueShape
                  || ( datatype( ?element ) != xsd:string  ) )
               bind( str( ?element ) as ?value )
               bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -709,7 +716,7 @@ samm-c:StructuredValueShape
          sh:message "Characteristic '{?value}' may not be used with Properties that appear as elements in a StructuredValue '{$this}'" ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select distinct $this ?value ?code
+            select distinct $this ?value ?code ?highlight
             where {
               $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
               $this samm-c:elements/rdf:rest*/rdf:first ?property .
@@ -717,6 +724,7 @@ samm-c:StructuredValueShape
               ?property samm:characteristic/( samm-c:baseCharacteristic* | rdfs:subClassOf* )/rdf:type ?value .
               filter( ?value in( samm-c:Collection, samm-c:Set, samm-c:SortedSet, samm-c:List, samm-c:TimeSeries, samm-c:Either, samm-c:StructuredValue ) )
               bind( 'ERR_WRONG_USAGE' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -729,12 +737,13 @@ samm-c:StructuredValueShape
          sh:message "StructuredValue's '{$this}' dataType '{?value}' must have a string-like value space" ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
               $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
               $this samm:dataType ?value .
               filter( not exists { ?value samm:hasCharacterValueSpace true } )
               bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
             }
          """
       ] ;
@@ -755,12 +764,13 @@ samm-c:FixedPointConstraintShape
          sh:message "Fixed Point Constraint '{$this}' may only be used with Characteristics whose data type is xsd:decimal, but the actual value is '{?value}'." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code
+            select $this ?value ?code ?highlight
             where {
                $this rdf:type/rdfs:subClassOf* samm-c:FixedPointConstraint .
                $this ^samm-c:constraint/samm-c:baseCharacteristic*/samm:dataType ?value .
                filter( str( ?value ) != str( xsd:decimal ) )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
             }
          """
       ] ;
