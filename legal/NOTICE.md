@@ -1,11 +1,11 @@
 # Third-party Content
-## Gradle wrapper
-This repository contains software developed by the [Gradle Project](https://gradle.org/).
-The software of the Gradle wrapper includes the files [gradlew](/gradlew), [gradlew.bat](/gradlew.bat) and the contents of the directory [/gradle](/gradle).
+## Maven wrapper
+This repository contains software developed by the [Maven Project](https://maven.apache.org/).
+The software of the Maven wrapper includes the files [mvnw](/mvnw), [mvnw.cmd](/mvn.cmd) and the contents of the directory [/.mvn](/.mvn).
 
-Your use of Gradle is subject to the terms and conditions of the Apache Software License 2.0. A copy of the license is contained in the file [LICENSE-Apache-2.0.txt](/legal/LICENSE-Apache-2.0.txt) and is also available at http://www.apache.org/licenses/LICENSE-2.0.html.
+Your use of Maven is subject to the terms and conditions of the Apache Software License 2.0. A copy of the license is contained in the file [LICENSE-Apache-2.0.txt](/legal/LICENSE-Apache-2.0.txt) and is also available at http://www.apache.org/licenses/LICENSE-2.0.html.
 
-The source code is available from [GitHub](https://github.com/gradle/gradle).
+The source code is available from [GitHub](https://github.com/apache/maven-wrapper).
 
 ## Antora
 This repository contains software developed by the [Antora Project](https://antora.org/).
