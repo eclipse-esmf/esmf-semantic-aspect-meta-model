@@ -15,10 +15,10 @@ aspect models and complement a digital twin with a semantic foundation.
 SAMM was previously known as BAMM (BAMM Aspect Meta Model).
 
 This repository contains the detailed documentation of the SAMM specification as an
-[Antora](https://antora.org/) module , as well the formal specification parts as
+[Antora](https://antora.org/) module, as well the formal specification parts as
 [SHACL](https://www.w3.org/TR/shacl/) shapes.
 
-The source files (AsciiDoc) are built using [Gradle](https://gradle.org/) and
+The source files (AsciiDoc) are built using Maven and
 [Antora](https://antora.org/), which generates the documentation as HTML files.
 
 ![Semantic Aspect Meta Model (SAMM) Elements](src/docs/modules/ROOT/images/aspect-meta-model.svg)
