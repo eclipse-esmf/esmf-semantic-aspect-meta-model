@@ -22,14 +22,12 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11'
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build BAMM artifact and release to OSSRH
+    - name: Build SAMM artifact and release to OSSRH
       run: |
-        ./gradlew clean build
-        ./gradlew publishMavenReleasePublicationToMavenRepository
-    - name: Upload BAMM JAR
+        ./mvnw clean install -pl esmf-samm-build-plugin
+        ./mvnw clean deploy -pl esmf-semantic-aspect-meta-model
+    - name: Upload SAMM JAR
       uses: actions/upload-artifact@v2
       with:
-        name: bamm-artifacts
-        path: build/libs/
+        name: samm-artifacts
+        path: esmf-semantic-aspect-meta-model/target/

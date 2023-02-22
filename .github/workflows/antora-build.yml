@@ -20,11 +20,9 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11'
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
     - name: Build
       run: |
-        ./gradlew antora
+        ./mvnw generate-resources -Pantora
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
