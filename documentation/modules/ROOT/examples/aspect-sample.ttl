@@ -7,10 +7,10 @@
 # SPDX-License-Identifier: MPL-2.0
 
 @prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
-@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
-@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
-@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
-@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # tag::aspect-declaration[]

@@ -157,10 +157,10 @@ public class Validator implements BiFunction<Model, KnownVersion, ValidationRepo
       return Optional.empty();
    }
 
-   private final static String prefixes = "prefix mmm: <urn:samm:org.eclipse.samm:meta-meta-model:%s#> \r\n" +
-         "prefix samm: <urn:samm:org.eclipse.samm:meta-model:%s#> \r\n" +
-         "prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:%s#> \r\n" +
-         "prefix unit: <urn:samm:org.eclipse.samm:unit:%s#> \r\n" +
+   private final static String prefixes = "prefix mmm: <urn:samm:org.eclipse.esmf.samm:meta-meta-model:%s#> \r\n" +
+         "prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:%s#> \r\n" +
+         "prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:%s#> \r\n" +
+         "prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:%s#> \r\n" +
          "prefix sh: <http://www.w3.org/ns/shacl#> \r\n" +
          "prefix xsd: <http://www.w3.org/2001/XMLSchema#> \r\n" +
          "prefix dash: <http://datashapes.org/dash#> \r\n" +

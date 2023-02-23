@@ -172,7 +172,7 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithNotInPayloadAndOptionalProperty", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTITY_PROPERTY_DEFINITION, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.samm.test:1.0.0#testPropertyTwo" );
+      assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.esmf.samm.test:1.0.0#testPropertyTwo" );
    }
 
    @ParameterizedTest
@@ -233,6 +233,6 @@ public class EntityShapeTest extends AbstractShapeTest {
             "entity-shape", "TestEntityWithNotInPayloadPropertyAndPayloadName", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_INVALID_ENTITY_PROPERTY_PAYLOAD_NAME, result ) );
       assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.samm.test:1.0.0#testPropertyTwo" );
+      assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.esmf.samm.test:1.0.0#testPropertyTwo" );
    }
 }

@@ -66,7 +66,7 @@ public abstract class AbstractShapeTest {
    final String VIOLATION_URN = "http://www.w3.org/ns/shacl#Violation";
    final String WARNING_URN = "http://www.w3.org/ns/shacl#Warning";
 
-   final String TEST_NAMESPACE_PREFIX = "urn:samm:org.eclipse.samm.test:1.0.0#";
+   final String TEST_NAMESPACE_PREFIX = "urn:samm:org.eclipse.esmf.samm.test:1.0.0#";
 
    final String MESSAGE_MISSING_REQUIRED_PROPERTY = "Property needs to have at least 1 values, but found 0";
    final String MESSAGE_EMPTY_PROPERTY = "Value has less than 1 characters";

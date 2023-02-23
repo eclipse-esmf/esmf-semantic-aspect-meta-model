@@ -36,10 +36,10 @@ asciidoc:
     meta-model-version: 2.0.0
     meta-model-full-name: Semantic Aspect Meta Model
     meta-model-abbr: SAMM
-    samm: urn:samm:org.eclipse.samm:meta-model:2.0.0#@
-    samm-c: urn:samm:org.eclipse.samm:characteristic:2.0.0#@
-    samm-e: urn:samm:org.eclipse.samm:entity:2.0.0#@
-    unit: urn:samm:org.eclipse.samm:unit:2.0.0#@
+    samm: urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#@
+    samm-c: urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#@
+    samm-e: urn:samm:org.eclipse.esmf.samm:entity:2.0.0#@
+    unit: urn:samm:org.eclipse.esmf.samm:unit:2.0.0#@
     example-ns: com.mycompany@
     plantuml-server-url: http://www.plantuml.com/plantuml
   extensions:

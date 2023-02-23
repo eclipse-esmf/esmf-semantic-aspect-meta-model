@@ -17,7 +17,7 @@ import org.eclipse.esmf.samm.KnownVersion;
 
 public class UnitUrns {
 
-   private final String UNITS_URN = "urn:samm:org.eclipse.samm:%s:%s#";
+   private final String UNITS_URN = "urn:samm:org.eclipse.esmf.samm:%s:%s#";
 
    String voltUrn;
 

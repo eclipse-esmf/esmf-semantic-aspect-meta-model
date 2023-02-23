@@ -9,10 +9,10 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix mmm: <urn:samm:org.eclipse.samm:meta-meta-model:2.0.0#> .
-@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
-@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
-@prefix samm-e: <urn:samm:org.eclipse.samm:entity:2.0.0#> .
+@prefix mmm: <urn:samm:org.eclipse.esmf.samm:meta-meta-model:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.0.0#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .

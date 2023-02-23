@@ -52,10 +52,10 @@ public class SammUrns {
    final String zUrn;
 
    SammUrns( final KnownVersion testedMetaModelVersion ) {
-      final String META_META_MODEL_URN = "urn:samm:org.eclipse.samm:meta-meta-model:%s#";
-      final String META_MODEL_URN = "urn:samm:org.eclipse.samm:meta-model:%s#";
-      final String CHARACTERISTICS_URN = "urn:samm:org.eclipse.samm:characteristic:%s#";
-      final String ENTITIES_URN = "urn:samm:org.eclipse.samm:entity:%s#";
+      final String META_META_MODEL_URN = "urn:samm:org.eclipse.esmf.samm:meta-meta-model:%s#";
+      final String META_MODEL_URN = "urn:samm:org.eclipse.esmf.samm:meta-model:%s#";
+      final String CHARACTERISTICS_URN = "urn:samm:org.eclipse.esmf.samm:characteristic:%s#";
+      final String ENTITIES_URN = "urn:samm:org.eclipse.esmf.samm:entity:%s#";
 
       listTypeUrn = String.format( META_META_MODEL_URN + "listType", testedMetaModelVersion.toVersionString() );
       allowDuplicatesUrn = String

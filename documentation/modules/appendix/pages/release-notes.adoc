@@ -27,7 +27,7 @@ This release changes RDF namespaces and prefix names according to the move from 
 Manufacturing Platform (OMP) Semantic Data Structuring (SDS) working group BAMM Aspect Meta Model
 (BAMM) to the Eclipse Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM).
 
-* Meta model URNs are changed from `urn:bamm:io.openmanufacturing:<element-type>:<version>#<element-name>` to `urn:samm:org.eclipse.samm:<element-type>:<version>#<element-name>`.
+* Meta model URNs are changed from `urn:bamm:io.openmanufacturing:<element-type>:<version>#<element-name>` to `urn:samm:org.eclipse.esmf.samm:<element-type>:<version>#<element-name>`.
 * The namespace rules for model elements changed accordingly from `bamm` to `samm` in the URN schema.
 * RDF prefixes are renamed from `bamm`, `bamm-c` and `bamm-e` to `samm`, `samm-c` and `samm-e`, respectively.
 

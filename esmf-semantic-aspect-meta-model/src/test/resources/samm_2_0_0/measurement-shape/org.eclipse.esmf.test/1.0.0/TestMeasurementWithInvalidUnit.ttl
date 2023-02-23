@@ -10,11 +10,11 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-@prefix : <urn:samm:org.eclipse.samm.test:1.0.0#> .
-@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
-@prefix samm-c: <urn:samm:org.eclipse.samm:characteristic:2.0.0#> .
+@prefix : <urn:samm:org.eclipse.esmf.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix unit: <urn:samm:org.eclipse.samm:unit:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.0.0#> .
 
 :TestMeasurementWithInvalidUnit a samm-c:Measurement ;
    samm:preferredName "Test Measurement"@en ;

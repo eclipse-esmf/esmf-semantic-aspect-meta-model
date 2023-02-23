@@ -9,7 +9,7 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 
-@prefix samm: <urn:samm:org.eclipse.samm:meta-model:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -17,23 +17,23 @@
 samm:prefixDeclarations
    sh:declare [
       sh:prefix "mmm" ;
-      sh:namespace "urn:samm:org.eclipse.samm:meta-meta-model:2.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.esmf.samm:meta-meta-model:2.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "samm" ;
-      sh:namespace "urn:samm:org.eclipse.samm:meta-model:2.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "samm-c" ;
-      sh:namespace "urn:samm:org.eclipse.samm:characteristic:2.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "samm-e" ;
-      sh:namespace "urn:samm:org.eclipse.samm:entity:2.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.esmf.samm:entity:2.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "unit" ;
-      sh:namespace "urn:samm:org.eclipse.samm:unit:2.0.0#"^^xsd:anyURI ;
+      sh:namespace "urn:samm:org.eclipse.esmf.samm:unit:2.0.0#"^^xsd:anyURI ;
    ] ;
    sh:declare [
       sh:prefix "rdf" ;

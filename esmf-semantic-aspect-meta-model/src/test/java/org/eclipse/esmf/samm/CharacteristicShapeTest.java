@@ -162,7 +162,7 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
 
       final String instanceName = "TestCharacteristicInstanceWithCharacteristicAsDataType";
       final String instanceId = TEST_NAMESPACE_PREFIX + instanceName;
-      final String value = String.format( "urn:samm:org.eclipse.samm:characteristic:%s#Text", metaModelVersion.toVersionString() );
+      final String value = String.format( "urn:samm:org.eclipse.esmf.samm:characteristic:%s#Text", metaModelVersion.toVersionString() );
       final SemanticError resultForDataType = new SemanticError( MESSAGE_INVALID_DATA_TYPE,
             instanceId, sammUrns.datatypeUrn, VIOLATION_URN, value );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );

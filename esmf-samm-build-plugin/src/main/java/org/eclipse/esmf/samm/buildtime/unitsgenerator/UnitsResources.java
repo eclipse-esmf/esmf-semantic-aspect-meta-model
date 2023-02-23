@@ -23,7 +23,7 @@ import org.apache.jena.rdf.model.Resource;
  */
 public class UnitsResources {
    public UnitsResources( final String metaModelVersion ) {
-      final String namespacePrefix = "urn:samm:org.eclipse.samm:";
+      final String namespacePrefix = "urn:samm:org.eclipse.esmf.samm:";
       namespaceUnits = String.format( namespacePrefix + "unit:%s#", metaModelVersion );
       namespaceSamm = String.format( namespacePrefix + "meta-model:%s#", metaModelVersion );
       preferredNameProperty = createProperty( namespaceSamm + "preferredName" );
