@@ -47,7 +47,6 @@
       <build-helper-maven-plugin-version>3.2.0</build-helper-maven-plugin-version>
       <exec-maven-plugin-version>3.1.0</exec-maven-plugin-version>
       <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
-      <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
       <maven-jar-plugin-version>3.3.0</maven-jar-plugin-version>
       <maven-javadoc-plugin-version>3.3.0</maven-javadoc-plugin-version>
       <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
@@ -55,7 +54,6 @@
       <maven-scm-plugin-version>1.11.2</maven-scm-plugin-version>
       <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
       <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
-      <nexus-staging-maven-plugin>1.6.9</nexus-staging-maven-plugin>
       <maven-plugin-depdendencies-version>3.3.9</maven-plugin-depdendencies-version>
       <maven-plugin-annotations-version>3.5</maven-plugin-annotations-version>
       <maven-clean-plugin-version>3.1.0</maven-clean-plugin-version>
@@ -213,11 +211,6 @@
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-gpg-plugin</artifactId>
-               <version>${maven-gpg-plugin-version}</version>
-            </plugin>
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-jar-plugin</artifactId>
                <version>${maven-jar-plugin-version}</version>
             </plugin>
@@ -326,71 +319,4 @@
       </plugins>
    </build>
 
-   <profiles>
-      <profile>
-         <id>release-build</id>
-         <distributionManagement>
-            <repository>
-               <id>ossrh</id>
-               <name>OSSRH</name>
-               <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-            </repository>
-         </distributionManagement>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.sonatype.plugins</groupId>
-                  <artifactId>nexus-staging-maven-plugin</artifactId>
-                  <version>${nexus-staging-maven-plugin}</version>
-                  <extensions>true</extensions>
-                  <configuration>
-                     <serverId>ossrh</serverId>
-                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                     <autoReleaseAfterClose>false</autoReleaseAfterClose>
-                  </configuration>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
-
-      <profile>
-         <id>milestone-build</id>
-         <distributionManagement>
-            <repository>
-               <id>github</id>
-               <name>Github</name>
-               <url>https://maven.pkg.github.com/OpenManufacturingPlatform/sds-sdk</url>
-            </repository>
-         </distributionManagement>
-      </profile>
-
-      <profile>
-         <id>sign</id>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-gpg-plugin</artifactId>
-                  <version>${maven-gpg-plugin-version}</version>
-                  <executions>
-                     <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                           <goal>sign</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-                  <configuration>
-                     <gpgArguments>
-                        <arg>--pinentry-mode</arg>
-                        <arg>loopback</arg>
-                     </gpgArguments>
-                  </configuration>
-               </plugin>
-            </plugins>
-         </build>
-
-      </profile>
-   </profiles>
 </project>

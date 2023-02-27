@@ -45,7 +45,7 @@ Are you having trouble with Semantic Aspect Meta Model? We want to help!
 To build the Antora documentation locally, clone the repository and run
 
 ```sh
-./mvnw generate-resources -Pantora
+./mvnw generate-resources -pl documentation -Pantora
 ```
 
 inside the repository folder.
