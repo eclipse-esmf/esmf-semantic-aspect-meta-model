@@ -35,3 +35,14 @@ jobs:
         ./mvnw generate-resources -pl documentation -Pantora
         ./mvnw clean install -pl esmf-samm-build-plugin
         ./mvnw clean package -pl esmf-semantic-aspect-meta-model
+        cd build/
+        mv site SAMM-snapshot
+        zip -r ../SAMM-snapshot-specification.zip SAMM-snapshot
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: samm-artifacts
+        path: |
+          esmf-semantic-aspect-meta-model/target/*.jar
+          SAMM-*-specification.zip
