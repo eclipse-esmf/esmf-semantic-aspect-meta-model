@@ -27,6 +27,7 @@
    <properties>
       <frontend-maven-plugin-version>1.12.1</frontend-maven-plugin-version>
       <nodejs-version>16.18.0</nodejs-version>
+      <npm-version>8.5.0</npm-version>
       <node-directory>${project.basedir}/node</node-directory>
       <node-modules-directory>${project.basedir}/node_modules</node-modules-directory>
       <antora-cli>${node-modules-directory}/@antora/cli/bin/antora</antora-cli>
@@ -94,9 +95,9 @@
                            <environmentVariables>
                               <strict-ssl>false</strict-ssl>
                            </environmentVariables>
-                           <nodeDownloadRoot>${node-directory}</nodeDownloadRoot>
+                           <installDirectory>${node-directory}</installDirectory>
                            <nodeVersion>v${nodejs-version}</nodeVersion>
-                           <downloadRoot>https://nodejs.org/dist/</downloadRoot>
+                           <npmVersion>${npm-version}</npmVersion>
                         </configuration>
                      </execution>
                   </executions>
