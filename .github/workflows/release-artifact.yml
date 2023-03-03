@@ -59,11 +59,11 @@ jobs:
 
     - name: Build SAMM artifact and release to OSSRH
       run: |
-        ./mvnw versions:set -DnewVersion=${{ github.event.inputs.release_version }}
-        ./mvnw versions:commit
-        ./mvnw generate-resources -pl documentation -Pantora
-        ./mvnw clean install -pl esmf-samm-build-plugin
-        ./mvnw clean deploy -pl esmf-semantic-aspect-meta-model -Psign
+        ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }}
+        ./mvnw -B versions:commit
+        ./mvnw -B generate-resources -pl documentation -Pantora
+        ./mvnw -B clean install -pl esmf-samm-build-plugin
+        ./mvnw -B clean deploy -pl esmf-semantic-aspect-meta-model -Psign
         cd build/
         mv site SAMM-${{ github.events.inputs.release_version }}
         zip -r ../SAMM-${{ github.events.inputs.release_version }}-specification.zip SAMM-${{ github.events.inputs.release_version }}

@@ -32,9 +32,9 @@ jobs:
 
     - name: Build
       run: |
-        ./mvnw generate-resources -pl documentation -Pantora
-        ./mvnw clean install -pl esmf-samm-build-plugin
-        ./mvnw clean package -pl esmf-semantic-aspect-meta-model
+        ./mvnw -B generate-resources -pl documentation -Pantora
+        ./mvnw -B clean install -pl esmf-samm-build-plugin
+        ./mvnw -B clean package -pl esmf-semantic-aspect-meta-model
         cd build/
         mv site SAMM-snapshot
         zip -r ../SAMM-snapshot-specification.zip SAMM-snapshot
