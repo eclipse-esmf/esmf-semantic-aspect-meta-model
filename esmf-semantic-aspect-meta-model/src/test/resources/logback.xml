@@ -1,0 +1,29 @@
+<!--
+  ~ Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+  ~
+  ~ See the AUTHORS file(s) distributed with this work for additional
+  ~ information regarding authorship.
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<configuration>
+   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+      <target>System.out</target>
+      <encoder>
+         <pattern>%m%n</pattern>
+      </encoder>
+   </appender>
+
+   <logger name="org.apache.jena" level="OFF"/>
+   <logger name="org.apache.jena.util" level="OFF"/>
+   <logger name="org.apache.jena.shared" level="OFF"/>
+
+   <root level="warn">
+      <appender-ref ref="console"/>
+   </root>
+</configuration>

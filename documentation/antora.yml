@@ -1,0 +1,8 @@
+name: samm-specification
+title: Semantic Aspect Meta Model
+version: 'snapshot'
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/nav.adoc
+  - modules/appendix/nav.adoc
+  - modules/legal/nav.adoc

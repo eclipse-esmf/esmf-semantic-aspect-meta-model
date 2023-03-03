@@ -1,0 +1,59 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Describes valid implicit type conversions (casts) and meta-information about types.
+
+# canBeCastTo should be evaluated as a reflexive, transitive, asymmetric property.
+# This represents valid conversions that correspond to XSD's type hierarchy.
+samm:canBeCastTo a rdf:Property .
+
+xsd:byte samm:canBeCastTo xsd:short .
+xsd:short samm:canBeCastTo xsd:int .
+xsd:int samm:canBeCastTo xsd:long .
+xsd:long samm:canBeCastTo xsd:integer .
+xsd:integer samm:canBeCastTo xsd:decimal .
+xsd:unsignedByte samm:canBeCastTo xsd:unsignedShort .
+xsd:unsignedShort samm:canBeCastTo xsd:unsignedInt .
+xsd:unsignedInt samm:canBeCastTo xsd:unsignedLong .
+xsd:unsignedLong samm:canBeCastTo xsd:nonNegativeInteger .
+xsd:positiveInteger samm:canBeCastTo xsd:nonNegativeInteger .
+xsd:nonNegativeInteger samm:canBeCastTo xsd:integer .
+xsd:negativeInger samm:canBeCastTo xsd:nonPositiveInteger .
+xsd:nonPositiveInteger samm:canBeCastTo xsd:integer .
+xsd:dateTimeStamp samm:canBeCastTo xsd:dateTime .
+xsd:yearMonthDuration samm:canBeCastTo xsd:duration .
+xsd:dayTimeDuration samm:canBeCastTo xsd:duration .
+
+# Signifies data types that have an inherently character-based value space.
+samm:hasCharacterValueSpace a rdf:Property .
+
+xsd:string samm:hasCharacterValueSpace true .
+xsd:date samm:hasCharacterValueSpace true .
+xsd:time samm:hasCharacterValueSpace true .
+xsd:dateTime samm:hasCharacterValueSpace true .
+xsd:dateTimeStamp samm:hasCharacterValueSpace true .
+xsd:gYear samm:hasCharacterValueSpace true .
+xsd:gMonth samm:hasCharacterValueSpace true .
+xsd:gDay samm:hasCharacterValueSpace true .
+xsd:gYearMonth samm:hasCharacterValueSpace true .
+xsd:gMonthDay samm:hasCharacterValueSpace true .
+xsd:duration samm:hasCharacterValueSpace true .
+xsd:yearMonthDuration samm:hasCharacterValueSpace true .
+xsd:dayTimeDuration samm:hasCharacterValueSpace true .
+xsd:hexBinary samm:hasCharacterValueSpace true .
+xsd:base64Binary samm:hasCharacterValueSpace true .
+xsd:anyURI samm:hasCharacterValueSpace true .
+samm:curie samm:hasCharacterValueSpace true .
+rdf:langString samm:hasCharacterValueSpace true .

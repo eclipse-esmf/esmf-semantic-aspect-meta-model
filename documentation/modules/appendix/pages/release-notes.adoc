@@ -1,0 +1,66 @@
+////
+Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+:sectnums:
+
+[[release-notes]]
+= Release Notes - {meta-model-full-name}
+
+NOTE: Version 1.0.0 of the meta model was released in the scope of the Open Manufacturing Platform (OMP)
+and was called _BAMM Aspect Meta Model (BAMM)_. Version 2.0.0 was also released as _BAMM_, then
+re-released as Eclise Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM) 2.0.0.
+
+[[samm-2.0.0]]
+== Release 2.0.0
+
+This is the first release in the ESMF. Its structure and content is similar to that of the
+<<bamm-2.0.0,Legacy BAMM Aspect Meta Model 2.0.0>>, which is why the version number 2.0.0 is kept.
+This release changes RDF namespaces and prefix names according to the move from the Open
+Manufacturing Platform (OMP) Semantic Data Structuring (SDS) working group BAMM Aspect Meta Model
+(BAMM) to the Eclipse Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM).
+
+* Meta model URNs are changed from `urn:bamm:io.openmanufacturing:<element-type>:<version>#<element-name>` to `urn:samm:org.eclipse.esmf.samm:<element-type>:<version>#<element-name>`.
+* The namespace rules for model elements changed accordingly from `bamm` to `samm` in the URN schema.
+* RDF prefixes are renamed from `bamm`, `bamm-c` and `bamm-e` to `samm`, `samm-c` and `samm-e`, respectively.
+
+[[bamm-2.0.0]]
+== Release 2.0.0 (Legacy: BAMM)
+
+* Introduce Entity inheritance, the according Meta Model Element `bamm:AbstractEntity` and
+  `bamm:AbstractProperty` as well as the `bamm:extends` attribute to define a hierarchy of Entities.
+  This replaces the concept of refining an entity and the `bamm:refines` attribute in order to
+  reduce complexity and modeling efforts.
+* Remove the `bamm:name` attribute to remove redundancy. The "short" name
+  of an element is the local name part of its URI, i.e., the part following the `#` symbol.
+* The meta model elements `Unit`, `QuantityKinds` and their corresponding attributes have been moved
+  from the `unit` namespace to the `bamm` namespace. The unit namespace is now solely reserved for
+  the units of the xref:samm-specification:appendix:unitcatalog.adoc#unit-catalog-units[unit
+  catalog] itself.
+* The
+   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/src/main/resources/samm/unit/2.0.0/units.ttl[formal
+   description (units.ttl)] of the units catalog is now automatically generated from its original
+   source (see xref:samm-specification:ROOT:units.adoc[Units]) and the
+   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/esmf-samm-build-plugin/src/main/resources/custom-units.ttl[local adjustments].
+* The `localeCode` and `languageCode` attributes have been moved from the `bamm` namespace to the
+  `bamm-c` namespace.
+* Shared model elements have been adjusted:
+** The xref:samm-specification:ROOT:entities.adoc#point-3d[Point3d Entity] has been changed to use
+   Abstract Properties for its components;
+** The xref:samm-specification:ROOT:entities.adoc#time-series-entity[Time Series Entity] has been
+   changed to use an Abstract Property for its `value` component
+* The attributes `bamm:properties`, `bamm:operations` and `bamm:events` on `bamm:Aspect` are now
+  optional, i.e., they do not have to be added any more even when they are empty lists.
+* Various issues in the specification (including examples) have been fixed and phrasing has been improved.
+
+[[bamm-1.0.0]]
+== Release 1.0.0
+
+This is the initial release for the Open Manufacturing Platform.

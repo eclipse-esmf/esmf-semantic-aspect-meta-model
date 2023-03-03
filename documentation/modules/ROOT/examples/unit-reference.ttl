@@ -1,0 +1,30 @@
+# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+
+# See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+# If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# tag::content[]
+:ValueWithDynamicUnit a samm:Aspect ;
+  samm:properties ( :value :unit ) ;
+  samm:operations ( ) .
+
+:value a samm:Property ;
+   samm:exampleValue "2.25"^^xsd:float ;
+   samm:characteristic :FloatValue .
+
+:FloatValue a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:unit a samm:Property ;
+   samm:characteristic samm-c:UnitReference .
+# end::content[]

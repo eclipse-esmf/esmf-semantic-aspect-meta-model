@@ -1,0 +1,26 @@
+#
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+@prefix : <urn:samm:org.eclipse.esmf.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:TestEntityWithOptionalPropertyAndPayloadName a samm:Entity ;
+   samm:preferredName "Test Entity"@en ;
+   samm:description "A test Entity"@en ;
+   samm:properties ( [ samm:property :testProperty; samm:optional ""^^xsd:boolean ; samm:payloadName "temp" ] ).
+
+:testProperty a samm:Property ;
+   samm:preferredName "Test Property"@en ;
+   samm:description "A property with a text value."@en ;
+   samm:characteristic samm-c:Text .

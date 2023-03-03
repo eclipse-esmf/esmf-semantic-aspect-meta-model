@@ -1,0 +1,35 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:1.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:1.0.0#> .
+
+samm-e:Point3d a samm:Entity ;
+   samm:name "Point3d" ;
+   samm:preferredName "Point 3D"@en ;
+   samm:description "Defines a position in a three dimensional space."@en ;
+   samm:properties ( samm-e:x samm-e:y samm-e:z ) .
+
+samm-e:x a samm:Property ;
+   samm:name "x" ;
+   samm:preferredName "X"@en ;
+   samm:description "The position along the X axis."@en .
+
+samm-e:y a samm:Property ;
+   samm:name "y" ;
+   samm:preferredName "Y"@en ;
+   samm:description "The position along the Y axis."@en .
+
+samm-e:z a samm:Property ;
+   samm:name "z" ;
+   samm:preferredName "Z"@en ;
+   samm:description "The position along the Z axis."@en .

@@ -1,0 +1,132 @@
+////
+Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+:sectnums:
+
+[[best-practices]]
+= Best Practices
+
+[[naming-elements]]
+== Naming Elements
+
+In addition to the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules], the following points
+should be considered when naming elements such as Aspects, Properties or Entities:
+
+* Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be
+  misunderstood in different contexts. For example, "temp" could mean "temperature" or "temporary".
+  On the other hand, abbreviating "minimum" and "maximum" with "min" and "max", respectively, is
+  fine. The Aspect model should be reasonably expressive. Do not add alleged premature optimizations
+  that belong in the Aspect implementation: if you think a Property is name expressive but too long
+  for the runtime payload, consider adding xref:ROOT:modeling-guidelines.adoc#payload-names[a payload
+  name] to the Property's usage instead of renaming the Property.
+
+* Do not use redundant naming parts. In particular, the name of an Aspect should not end with
+  "Aspect". It is however fine to distinguish between e.g. an Entity and a related Characteristic
+  by a suffix when necessary.
+
+* Do not use redundant prefixes, e.g. when authoring an Aspect model for the domain _Foo_, do not
+  name your Properties _fooCount_, _fooId_ etc. Remember that the full identifier of a Property is
+  the versioned namespace concatenated with the element name, e.g.
+  `urn:samm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
+  `count`&#8203;'s identifier.
+
+* The attributes `preferredName` and `description` are meant to provide a
+  human-readable name and
+  description, respectively, for example for the generation of documentation from the Aspect model.
+  If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
+** Make the name upper case
+** If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g. the name
+   `machineTemperature` should become the preferredName `Machine Temperature`.
+
+* If there is exactly one Property in an Aspect that has a
+xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
+xref:ROOT:characteristics.adoc#list-characteristic[List],
+xref:ROOT:characteristics.adoc#set-characteristic[Set],
+xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] or
+xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic (and no other
+Properties), the Property should be named `items`.
+
+* If there is exactly one Property in an Aspect that has a
+  xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
+  xref:ROOT:characteristics.adoc#list-characteristic[List],
+  xref:ROOT:characteristics.adoc#set-characteristic[Set] or
+  xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic (and no other
+  Properties), the Aspect's name should be in plural. Otherwise, if there is exactly one Property in
+  the Aspect that has a xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series]
+  Characteristic, the Aspect's name should end with "History". Otherwise, the Aspect's name should
+  be in singular.
+
+[[choosing-a-numeric-type]]
+== Choosing a Numeric Type
+
+While JSON only distinguishes between _number_ (floating point) and _integer_, the
+xref:ROOT:datatypes.adoc#data-types[type hierarchy] for Aspect models provides many more options. There
+is a distinction between the numeric core types (`xsd:integer` and the fixed-point type
+`xsd:decimal`) and the limited range numbers that correspond to the numeric types as defined in most
+programming languages (`xsd:float` and `xsd:double` as well as the integer types `xsd:int`,
+`xsd:short` etc.).
+
+IMPORTANT: As an Aspect model ideally captures as much of the domain semantics as possible, it
+should not limit itself according to implementation-specific restrictions. In particular, limited
+range numbers should only be used when the semantics of the numeric range are relevant beyond the
+implementation of the Aspect. For example, a Property `temperature` of a sensor could use a limited
+range type such as `xsd:int`, when the physical sensor can never provide a value outside of this
+range, while a Property such as `numberOfProducedItems` is not logically limited, so it should use
+`xsd:integer`.
+
+[[choosing-a-unit]]
+== Choosing a Unit
+
+When trying to refer to a physical unit, please see the
+xref:appendix:unitcatalog.adoc[Unit Catalog]. When searching for the unit,
+remember that the unit catalog uses British English.
+
+[[choosing-a-characteristic]]
+== Choosing a Characteristic
+
+The following decision tree helps finding the right Characteristic for a Property.
+
+IMPORTANT: A common error is using the `Text` Characteristic for anything resembling a string.
+`Text` is intended for values that are meant _only_ for humans, for example a description of a
+device that is entered by a user as free text. Values such as identifiers, hostnames, table names,
+license plate numbers etc. should not use the `Text` Characteristic.
+
+If you create Characteristics that are not limited to your modeled domain but are generally useful,
+please consider contributing them, so that they can be included in the {meta-model-full-name}'s
+Characteristic catalog.
+
+image::characteristics-decision-tree.svg[width=100%]
+// Uncomment the following to have the image generated on the fly instead:
+// include::ROOT:partial$characteristics-decision-tree.adoc[]
+
+[[choosing-constraints]]
+== Choosing Constraints
+
+Constraints are used to precisely specify limiting conditions of Characteristics. It is recommended
+to use Constraints thoroughly:
+
+. It makes the intent of the respective Property clear for humans reading the model or documentation
+generated from the model
+. It allows tooling to generate code for the Aspect that can take the Constraints into account. Validation code
+corresponding to the Constraints can be directly inserted, thus reducing manual implementation effort.
+
+The following decision tree helps finding matching Constraints for a Characteristic. Note that
+multiple Constraints can be combined.
+
+CAUTION: If and only if the value has a xref:ROOT:datatypes.adoc#data-types[string-like value space] and
+does _not_ use UTF-8 as an encoding, use an xref:ROOT:characteristics.adoc#encoding-constraint[Encoding
+Constraint] for the Property. This will ensure that consumers of the Aspect will not end up with
+broken special characters.
+
+image::constraints-decision-tree.svg[width=100%]
+// Uncomment the following to have the image generated on the fly instead:
+// include::ROOT:partial$constraints-decision-tree.adoc[]
+
