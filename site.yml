@@ -9,7 +9,7 @@ content:
       start_path: documentation
 ui:
   bundle:
-    url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.1.0/sds-antora-ui-bundle-1.1.0.zip
+    url: https://github.com/eclipse-esmf/esmf-antora-ui/releases/download/v1.2.0/esmf-antora-ui-bundle-1.2.0.zip
     snapshot: true
   supplemental_files:
     - path: ui.yml
