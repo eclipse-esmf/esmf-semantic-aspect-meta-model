@@ -1,0 +1,41 @@
+#
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:1.0.0#> .
+@prefix : <urn:samm:org.eclipse.esmf.samm.test:1.0.0#> .
+
+:TestCollectionWithAnonymousElement a samm:Aspect ;
+   samm:name "TestCollectionWithAnonymousElement" ;
+   samm:properties ( :testCollectionProperty ) ;
+   samm:operations ( ) .
+
+:testCollectionProperty a samm:Property ;
+   samm:name "testCollectionProperty" ;
+   samm:characteristic :TestCollection .
+
+:TestCollection a samm-c:Collection ;
+   samm:name "TestCollection" ;
+   samm-c:elementCharacteristic [
+      a samm-c:SingleEntity ;
+      samm:name "TestEntityElementCharacteristic" ;
+      samm:dataType :TestEntity
+   ] .
+
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:properties ( :entityProperty ) .
+
+:entityProperty a samm:Property ;
+   samm:name "entityProperty" ;
+   samm:characteristic samm-c:Text .

@@ -8,14 +8,41 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.1
+      uses: actions/checkout@v3
+
     - name: Set up JDK 11
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
         java-version: '11'
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: maven-${{ hashFiles('**/pom.xml') }}
+
+    - name: Cache node and node_modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          documentation/node
+          documentation/node_modules
+        key: node-${{ hashFiles('documentation/package-lock.json') }}
+
     - name: Build
       run: |
-        ./gradlew clean antora build
+        ./mvnw -B generate-resources -pl documentation -Pantora
+        ./mvnw -B clean install -pl esmf-samm-build-plugin
+        ./mvnw -B clean package -pl esmf-semantic-aspect-meta-model
+        cd build/
+        mv site SAMM-snapshot
+        zip -r ../SAMM-snapshot-specification.zip SAMM-snapshot
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: samm-artifacts
+        path: |
+          esmf-semantic-aspect-meta-model/target/*.jar
+          SAMM-*-specification.zip

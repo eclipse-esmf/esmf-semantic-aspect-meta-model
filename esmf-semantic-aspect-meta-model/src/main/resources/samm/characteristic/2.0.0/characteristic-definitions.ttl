@@ -1,0 +1,256 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix mmm: <urn:samm:org.eclipse.esmf.samm:meta-meta-model:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.0.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Meta meta model attributes
+mmm:allowDuplicates a rdf:Property ;
+   rdfs:label "allowDuplicates" ;
+   rdfs:comment "Indicates whether a Collection may contain duplicate values."@en .
+
+mmm:ordered a rdf:Property ;
+   rdfs:label "ordered" ;
+   rdfs:comment "Indicates whether the values in a Collection are ordered."@en .
+
+# Meta model attributes
+samm-c:baseCharacteristic a mmm:Attribute ;
+   rdfs:label "baseCharacteristic" ;
+   rdfs:comment "Reference to the Characteristic on which a Constraint is being applied." ;
+   rdfs:domain samm-c:Trait ;
+   rdfs:range rdfs:Resource .
+
+samm-c:constraint a mmm:Attribute ;
+   rdfs:label "constraint" ;
+   rdfs:comment "A constraint on a Characteristic" ;
+   rdfs:domain samm-c:Trait ;
+   rdfs:range samm:Constraint .
+
+samm-c:languageCode a mmm:Attribute ;
+   rdfs:label "languageCode" ;
+   rdfs:comment """An ISO 639-1 language code for the language of the value of the constrained Property, e.g. "de".""" ;
+   rdfs:domain samm-c:LanguageConstraint ;
+   rdfs:range xsd:string .
+
+samm-c:localeCode a mmm:Attribute ;
+   rdfs:label "localeCode" ;
+   rdfs:comment """An IETF BCP 47 locale code for the language of the value of the constrained Property, e.g. "de-DE".""" ;
+   rdfs:domain samm-c:LocaleConstraint ;
+   rdfs:range xsd:string .
+
+samm-c:unit a mmm:Attribute ;
+   rdfs:label "unit" ;
+   rdfs:comment "Reference to a Unit as defined in the Unit catalog."@en ;
+   rdfs:domain samm-c:Quantifiable ;
+   rdfs:range samm:Unit .
+
+samm-c:minValue a rdf:Property ;
+   rdfs:label "minValue" ;
+   rdfs:comment "The lower bound of a range."@en .
+   # Note: rdfs:domain is the union of samm-c:RangeConstraint, samm-c:LengthConstraint
+   # Note: rdfs:range can't be given since for usage in samm-c:LengthConstraint it's
+   #  xsd:nonNegativeInteger while for usage in a samm-c:RangeConstraint, it depends on the
+   #  samm:dataType of the samm-c:baseCharacteristic the constraint is used in
+
+samm-c:maxValue a rdf:Property ;
+   rdfs:label "maxValue" ;
+   rdfs:comment "The upper bound of a range."@en .
+   # Note: rdfs:domain is the union of samm-c:RangeConstraint, samm-c:LengthConstraint
+   # Note: rdfs:range can't be given since for usage in samm-c:LengthConstraint it's
+   #  xsd:nonNegativeInteger while for usage in a samm-c:RangeConstraint, it depends on the
+   #  samm:dataType of the samm-c:baseCharacteristic the constraint is used in
+
+samm-c:values a rdf:Property ;
+   rdfs:label "values" ;
+   rdfs:comment """List of possible values of the same type, e.g. ( "up" "down" "degraded" )."""@en ;
+   rdfs:domain samm-c:Enumeration ;
+   rdfs:range rdf:List .
+
+samm-c:defaultValue a rdf:Property ;
+   rdfs:label "defaultValue" ;
+   rdfs:comment "The default value for the state."@en ;
+   rdfs:domain samm-c:State .
+   # Note: rdfs:range depends on the samm:dataType of the samm-c:State the defaultValue is used in
+
+samm-c:left a rdf:Property ;
+   rdfs:label "left" ;
+   rdfs:comment "The left side of the Either. The attribute references another Characteristic which describes the value."@en ;
+   rdfs:domain samm-c:Either ;
+   rdfs:range samm:Characteristic .
+
+samm-c:right a rdf:Property ;
+   rdfs:label "right" ;
+   rdfs:comment "The right side of the Either. The attribute references another Characteristic which describes the value."@en ;
+   rdfs:domain samm-c:Either ;
+   rdfs:range samm:Characteristic .
+
+samm-c:lowerBoundDefinition a rdf:Property ;
+   rdfs:label "lowerBoundDefinition" ;
+   rdfs:comment """Defines how the "minValue" property of the Range Constraint is to be interpreted. Possible values are "AT_LEAST" and "GREATER_THAN". This is an optional property. By default the "minValue" is interpreted with "AT_LEAST" semantics."""@en ;
+   rdfs:domain samm-c:RangeConstraint ;
+   rdfs:range mmm:Constant .
+
+samm-c:upperBoundDefinition a rdf:Property ;
+   rdfs:label "upperBoundDefinition" ;
+   rdfs:comment """Defines how the "maxValue" property of the Range Constraint is to be interpreted; Possible values are "LESS_THAN" and "AT_MOST". This is an optional property. By default the "maxValue" is interpreted with "AT_MOST" semantics"""@en ;
+   rdfs:domain samm-c:RangeConstraint ;
+   rdfs:range mmm:Constant .
+
+samm-c:elements a rdf:Property ;
+   rdfs:label "elements" ;
+   rdfs:comment """List of elements of possibly different types, e.g. ( "literal value" :reference )"""@en ;
+   rdfs:domain samm-c:StructuredValue ;
+   rdfs:range rdf:List .
+
+samm-c:deconstructionRule a rdf:Property ;
+   rdfs:label "deconstructionRule" ;
+   rdfs:comment "A regular expression that defines the groups contained in a string."@en ;
+   rdfs:domain samm-c:StructuredValue ;
+   rdfs:range xsd:string .
+
+samm-c:scale a rdf:Property ;
+   rdfs:label "scale" ;
+   rdfs:comment "The scaling factor for a fixed point number."@en ;
+   rdfs:domain samm-c:FixedPointConstraint ;
+   rdfs:range xsd:positiveInteger .
+
+samm-c:integer a rdf:Property ;
+   rdfs:label "integer" ;
+   rdfs:comment "The number of integral digits for a fixed point number."@en ;
+   rdfs:domain samm-c:FixedPointConstraint ;
+   rdfs:range xsd:positiveInteger .
+
+samm-c:elementCharacteristic a rdf:Property ;
+   rdfs:label "elementCharacteristic" ;
+   rdfs:comment "The Characteristic which defines the elements in a Collection."@en ;
+   rdfs:domain samm-c:Collection ;
+   rdfs:range samm:Characteristic .
+
+# Characteristics
+samm-c:Trait rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "Trait" ;
+   rdfs:comment "A trait wraps another characteristic and adds a number of additional Constraints."@en .
+
+samm-c:Quantifiable rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "Quantifiable" ;
+   rdfs:comment "A value which can be quantified and may have a unit, e.g. the number of bolts required for a processing step or the expected torque with which these bolts should be tightened."@en .
+
+samm-c:Measurement rdfs:subClassOf samm-c:Quantifiable ;
+   rdfs:label "Measurement" ;
+   rdfs:comment "A measurement is a numeric value with an associated unit and quantity kind."@en .
+
+samm-c:Duration rdfs:subClassOf samm-c:Quantifiable ;
+   rdfs:label "Duration" ;
+   rdfs:comment "A time duration."@en .
+
+samm-c:SingleEntity rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "SingleEntity" ;
+   rdfs:comment "Describes a Property whose data type is an Entity. The Entity used as data type may be defined in the same Aspect Model or the shared Entity namespace of the BAMM."@en .
+
+samm-c:Collection rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "Collection" ;
+   rdfs:comment "A group of values which may be either of a simple or complex type. The values may be duplicated and are not ordered (i.e. bag semantics)."@en ;
+   mmm:allowDuplicates true ;
+   mmm:ordered false .
+
+samm-c:Set rdfs:subClassOf samm-c:Collection ;
+   rdfs:label "Set" ;
+   rdfs:comment "A subclass of Collection which may not contain duplicates and is unordered."@en ;
+   mmm:allowDuplicates false ;
+   mmm:ordered false .
+
+samm-c:SortedSet rdfs:subClassOf samm-c:Collection ;
+   rdfs:label "SortedSet" ;
+   rdfs:comment "A subclass of Collection which may not contain duplicates and is ordered."@en ;
+   mmm:allowDuplicates false ;
+   mmm:ordered true .
+
+samm-c:List rdfs:subClassOf samm-c:Collection ;
+   rdfs:label "List" ;
+   rdfs:comment "A subclass of Collection which may contain duplicates and is ordered."@en ;
+   mmm:allowDuplicates true ;
+   mmm:ordered true .
+
+samm-c:TimeSeries rdfs:subClassOf samm-c:SortedSet ;
+   rdfs:label "TimeSeries" ;
+   rdfs:comment "A subclass of Sorted Set containing values with the exact point in time when the values where recorded. The values for the allowDuplicates and ordered attributes are inherited from the Sorted Set."@en ;
+   samm:dataType samm-e:TimeSeriesEntity .
+
+samm-c:Enumeration rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "Enumeration" ;
+   rdfs:comment "An enumeration represents a list of possible values."@en .
+
+samm-c:State rdfs:subClassOf samm-c:Enumeration ;
+   rdfs:label "State" ;
+   rdfs:comment "A state is subclass of Enumeration with a default value."@en .
+
+samm-c:Code rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "Code" ;
+   rdfs:comment "Describes a Property which contains any kind of code. Note that this Characteristic does not define a samm:dataType, this must therefore be done when instantiating the Characteristic."@en .
+
+samm-c:Either rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "Either" ;
+   rdfs:comment "Describes a Property whose value can have one of two possible types (a disjoint union)."@en .
+
+samm-c:StructuredValue rdfs:subClassOf samm:Characteristic ;
+   rdfs:label "StructuredValue" ;
+   rdfs:comment "Describes how the value of a Property is structured from parts."@en .
+
+# Constraints
+samm-c:RangeConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "RangeConstraint" ;
+   rdfs:comment "Restricts the value range of a Property. At least one of samm-c:maxValue or samm-c:minValue must be present in a Range Constraint. Both samm-c:maxValue and samm-c:minValue are inclusive."@en .
+
+samm-c:LanguageConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "LanguageConstraint" ;
+   rdfs:comment "Restricts a value to a specific language."@en .
+
+samm-c:LocaleConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "LocaleConstraint" ;
+   rdfs:comment "Restricts a value to a specific locale."@en .
+
+samm-c:EncodingConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "EncodingConstraint" ;
+   rdfs:comment "Restricts the encoding of a Property."@en .
+
+samm-c:LengthConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "LengthConstraint" ;
+   rdfs:comment """
+      This Constraint can be used to restrict two types of Characteristics:
+
+      - Characteristics that have a character value space, i.e. whose value are string-like. In this case the Constraint restricts the length of the (string-) value. The scalar data types that can be restricted are: xsd:string, xsd:date, xsd:time, xsd:dateTime, xsd:dateTimeStamp, xsd:gYear, xsd:gMonth, xsd:gMonthDay, xsd:duration, xsd:yearMonthDuration, xsd:dayTimeDuration, xsd:hexBinary, xsd:base64Binary, xsd:anyURI, samm:curie and rdf:langString.
+      - Collection Characteristics (Collection, Set, Sorted Set, List). In this case the Constraint restricts the number of elements in the collection.
+
+      At least one of samm-c:maxValue or samm-c:minValue must be present in a Length Constraint.
+   """@en .
+
+samm-c:RegularExpressionConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "RegularExpressionConstraint" ;
+   rdfs:comment "Restricts a string value to a regular expression as defined by XQuery 1.0 and XPath 2.0 Functions and Operators."@en ;
+   samm:see <http://www.w3.org/TR/xpath-functions/#regex-syntax> .
+
+samm-c:FixedPointConstraint rdfs:subClassOf samm:Constraint ;
+   rdfs:label "FixedPointConstraint" ;
+   rdfs:comment "Defines the scaling factor for a fixed point number."@en .
+
+# Constants
+samm-c:AT_MOST a mmm:Constant .
+
+samm-c:LESS_THAN a mmm:Constant .
+
+samm-c:AT_LEAST a mmm:Constant .
+
+samm-c:GREATER_THAN a mmm:Constant .

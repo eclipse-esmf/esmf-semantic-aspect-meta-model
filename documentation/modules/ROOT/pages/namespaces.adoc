@@ -1,0 +1,106 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+
+[[namespaces-and-versions]]
+= Namespaces and Versions
+
+[[meta-model-identifiers-definition]]
+== Meta Model Identifiers Definition
+
+Identifiers for elements of the meta model _must_ use the URN syntax
+xref:samm-specification:appendix:bibliography.adoc#rfc2141[[rfc2141\]] and the following schema:
+
+....
+urn:samm:org.eclipse.esmf.samm:<element-type>:<version>#<element-name>
+....
+
+where the variable parts are interpreted as follows:
+
+* *element-type* -- a selector describing the kind of thing the URN describes, must be one of:
+** `meta-model` - For meta model elements
+** `characteristic` - For Characteristics and Constraints that are defined in the scope of the meta model
+** `entity` - For Entities that are defined inside the scope of the meta model
+** `unit` - For the xref:units.adoc#units[catalog of units and quantity kinds]
+* *version* -- The version of the respective namespace, _must_ be given in the form "X.Y.Z", with X,
+   Y and Z being integers.
+* *element-name* -- The name of the model element
+
+*Examples for valid meta model URNs:*
+
+* `{samm}Aspect` -- URN of the `Aspect` concept in Meta Model version {meta-model-version}
+* `{samm-c}Measurement` -- URN of the
+  xref:characteristics.adoc#measurement-characteristic[Measurement] Characteristic in Meta Model version {meta-model-version}
+* `{samm-e}Point3D` -- URN of the
+  xref:entities.adoc#point-3d[Point 3D] entity
+* `{unit}kilogram` -- URN of the xref:appendix:unitcatalog.adoc#unit-kilogram[Kilogram] unit
+
+[[aspect-model-element-identifiers-definition]]
+== Aspect Model Element Identifiers Definition
+
+Identifiers of elements that are defined on the model level -- i.e., Aspects, Properties, Entities,
+Operations, Characteristics, Events, Units -- _must_ use the following schema:
+
+....
+urn:samm:<namespace>:<version>#<element-name>
+....
+
+where the variable parts are interpreted as follows:
+
+* *namespace* -- Defines the hierarchical namespace in which the element resides. This is given in
+   https://en.wikipedia.org/wiki/Reverse_domain_name_notation[Reverse Domain Name Notation]. To
+   avoid confusion with the {meta-model-full-name}, this _should not_ start with
+   `org.eclipse.esmf` (unless for the model elements defined by the ESMF
+   project, such as those that are part of SAMM). A namespace shall always be in lowercase.
+   It should also contain at least two ASCII letters and should have at least two parts. So a minimal example of a namespace would be 'io.om'.
+* *version* -- The version of the respective namespace, must be given in the form "X.Y.Z", with X, Y
+   and Z being integers.
+* *element-name* -- The name of the element:
+** For Aspects, Entities and Characteristics, the name must be given in
+   https://en.wikipedia.org/wiki/Camel_case[UpperCamelCase]
+** For Properties, Operations and Units, the name must be given in
+   https://en.wikipedia.org/wiki/Camel_case[lowerCamelCase]
+
+*Examples for valid URNs:*
+
+* `urn:samm:{example-ns}:1.0.0#MyAspect` -- URN of an Aspect in the given namespace
+* `urn:samm:{example-ns}:1.0.0#MyEntity` -- URN of an Entity in the given namespace
+* `urn:samm:{example-ns}:1.0.0#someProperty` -- URN of a Property in the given namespace
+
+[[prefixes]]
+== Prefixes
+
+The following rules apply to contexts that allow the use of CURIEs (Compact URI,
+xref:samm-specification:appendix:bibliography.adoc#curie[[curie\]]), i.e., the shortening of URIs by
+pre-defining a short name for common parts of URIs in a local context (in particular, XML namespaces
+xref:samm-specification:appendix:bibliography.adoc#xmlns[[xmlns\]],
+https://www.w3.org/TR/turtle/#sec-iri[@prefix] in RDF/Turtle
+xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]] and
+https://www.w3.org/TR/sparql11-query/#QSynIRI[PREFIX] in SPARQL
+xref:samm-specification:appendix:bibliography.adoc#sparql[[sparql\]]):
+
+* The prefix "samm" shall be used for the URN `{samm}`
+* The prefix "samm-c" shall be used for the URN `{samm-c}`
+* The prefix "samm-e" shall be used for the URN `{samm-e}`
+* The prefix "unit" shall be used for the URN `{unit}`
+* The empty prefix (":" in RDF/Turtle) shall be used for the URN prefix of the current model scope, i.e.
+  everything up to and including the `#` of the model elements that are being defined
+* For other elements, use prefixes that do not contain the string `samm`.
+
+*Example of Aspect Model description in RDF/Turtle, with prefix declarations and usage:*
+
+[source,turtle,subs="attributes+"]
+----
+@prefix samm: <{samm}> .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+
+include::example$prefixes-sample.ttl[tags=content]
+----

@@ -1,0 +1,46 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+[bibliography]
+[[references]]
+= Bibliography
+
+- [#rec20]#[rec20]# UN Economic Commission for Europe (UNECE) Recommendation 20 -- Codes for Units of Measure Used in International Trade. URL: http://tfig.unece.org/contents/recommendation-20.htm
+
+- [#rdf11]#[rdf11]# Richard Cyganiak, David Wood, Markus Lanthaler. RDF 1.1 Concepts and Abstract Syntax. W3C Recommendation, 25 February 2014. URL: http://www.w3.org/TR/rdf11-concepts/
+
+- [#turtle]#[turtle]# Eric Prud'hommeaux, Gavin Carothers. RDF 1.1 Turtle: Terse RDF Triple Language. W3C Recommendation, 25 February 2014. URL: http://www.w3.org/TR/turtle/
+
+- [#shacl]#[shacl]# Holger Knublauch, Dimitris Kontokostas. Shapes Constraint Language (SHACL). W3C Recommendation, 20 July 2017. URL: https://www.w3.org/TR/shacl/
+
+- [#owl2]#[owl2]# Pascal Hitzler, Markus Krötzsch, Bijan Parsia, Peter F. Patel-Schneider, Sebastian Rudolph. OWL 2 Web Ontology Language Primer (Second Edition). W3C Recommendation, 11 December 2012. URL: https://www.w3.org/TR/owl2-primer/
+
+- [#sparql]#[sparql]# Steve Harris, Andy Seaborne. SPARQL 1.1 Query Language. W3C Recommendation, 21 March 2013. URL: https://www.w3.org/TR/sparql11-query/
+
+- [#curie]#[curie]# Mark Birbeck, Shane McCarron. CURIE Syntax 1.0. W3C Working Group Note, 16 December 2010. URL: https://www.w3.org/TR/curie/
+
+- [#xmlns]#[xmlns]# Tim Bray, Dave Hollander, Andrew Layman, Richard Tobin, Henry S. Thompson. Namespaces in XML 1.0 (Third Edition). W3C Recommendation, 8 December 2009. URL: https://www.w3.org/TR/xml-names/
+
+- [#xmlschema11-2]#[xmlschema11-2]# David Peterson, Sandy Gao, Ashok Malhotra, Michael Sperberg-McQueen, Henry Thompson, Paul V. Biron et al. W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation, 5 April 2012. URL: http://www.w3.org/TR/xmlschema11-2/
+
+- [#xpath-functions]#[xpath-functions]# Michael Kay. XPath and XQuery Functions and Operators 3.1. W3C Recommendation, 21 March 2017. URL: https://www.w3.org/TR/xpath-functions-3/#regex-syntax
+
+- [#bcp47]#[bcp47]# A. Phillips, M. Davis. Best Common Practice 47 -- Tags for Identifying Languages. September 2009. URL: http://www.rfc-editor.org/rfc/bcp/bcp47.txt
+
+- [#iso639]#[iso639]# International Organization for Standardization. ISO 639 Language codes. URL: https://www.iso.org/iso-639-language-codes.html
+
+- [#rfc2141]#[rfc2141]# R. Moats. RFC 2141 -- Uniform Resource Names (URNs). URL: https://www.ietf.org/rfc/rfc2141.txt
+
+- [#rfc3061]#[rfc3061]# M. Mealling. RFC 3061 -- A URN Namespace of Object Identifiers. URL: https://www.ietf.org/rfc/rfc3061.txt
+
+- [#rfc2046]#[rfc2046]# N. Freed, N. Borenstein. RFC 2046 -- Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types. URL: https://www.ietf.org/rfc/rfc2046.txt
+
+- [#doi]#[doi]# The International DOI Foundation -- The DOI® System. URL: https://www.doi.org/index.html
+

@@ -1,0 +1,243 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix mmm: <urn:samm:org.eclipse.esmf.samm:meta-meta-model:2.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Meta meta model concepts
+mmm:Concept rdfs:subClassOf rdfs:Class .
+
+mmm:NamedConcept rdfs:subClassOf mmm:Concept .
+
+mmm:ConceptWithProperties rdfs:subClassOf mmm:Concept .
+
+mmm:Attribute rdfs:subClassOf rdf:Property .
+
+mmm:Constant rdfs:subClassOf rdfs:Resource .
+
+mmm:PropertyUsage rdfs:subClassOf rdfs:Class .
+
+# Meta model concepts
+samm:Aspect rdfs:subClassOf mmm:NamedConcept, mmm:ConceptWithProperties ;
+   rdfs:label "Aspect" ;
+   rdfs:comment "An Aspect is the root element of each Aspect Model and has a number of Properties and Operations." .
+
+samm:Entity rdfs:subClassOf mmm:NamedConcept, mmm:ConceptWithProperties ;
+   rdfs:label "Entity" ;
+   rdfs:comment "An Entity is a logical encapsulation of multiple values. It has a number of Properties." .
+
+samm:AbstractEntity rdfs:subClassOf mmm:NamedConcept, mmm:ConceptWithProperties ;
+   rdfs:label "AbstractEntity" ;
+   rdfs:comment "An Abstract Entity is a logical encapsulation of a shared concept." .
+
+samm:Property rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "Property" ;
+   rdfs:comment "A Property represents a named value." .
+
+samm:AbstractProperty rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "AbstractProperty" ;
+   rdfs:comment "A Property that has no Characteristic set." .
+
+samm:Characteristic rdfs:subClassOf mmm:Concept ;
+   rdfs:label "Characteristic" ;
+   rdfs:comment "A Characteristic describes a Property's meaning in the context of the Aspect." .
+
+samm:Constraint rdfs:subClassOf mmm:Concept ;
+	rdfs:label "Constraint" ;
+	rdfs:comment "A Constraint can be used to further specify a Characteristic, for example on the value range." .
+
+samm:Operation rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "Operation" ;
+   rdfs:comment "An Operation represents an action that can be triggered on the device that is represented by the Digital Twin, for example switching a part of a machine on or off." .
+
+samm:Event rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "Event" ;
+   rdfs:comment "An Event is a model element that represents a single occurence where the timing is important. Assets can for instance emit events to notify other assets in case of special occurences." .
+
+samm:Unit rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "Unit" ;
+   rdfs:comment "A Unit refers to a physical unit, such as metre or degree celsius." .
+
+samm:QuantityKind rdfs:subClassOf mmm:NamedConcept ;
+   rdfs:label "QuantityKind" ;
+   rdfs:comment "A Quantity Kind describes the kind a Unit refers to, such as length or temperature.".
+
+# Meta meta model attributes used in Shapes
+mmm:listType a rdf:Property ;
+   rdfs:label "listType" ;
+   rdfs:comment "Used to define the type for a list Property." ;
+   rdfs:range rdfs:Resource .
+
+# Meta model attributes
+samm:preferredName a mmm:Attribute ;
+   rdfs:label "preferredName" ;
+   rdfs:comment "Human readable name in a specific language." ;
+   rdfs:domain mmm:Concept ;
+   rdfs:range rdf:langString .
+
+samm:description a mmm:Attribute ;
+   rdfs:label "description" ;
+   rdfs:comment "Human readable description in a specific language" ;
+   rdfs:domain mmm:Concept ;
+   rdfs:range rdf:langString .
+
+samm:dataType a mmm:Attribute ;
+   rdfs:label "dataType" ;
+   rdfs:comment "Reference to a scalar or complex (Entity) data type." ;
+   rdfs:domain samm:Characteristic ;
+   rdfs:range rdfs:Resource .
+
+samm:value a mmm:Attribute ;
+   rdfs:label "value" ;
+   rdfs:comment "A single constant value or link to another resource." ;
+   rdfs:domain mmm:Concept ;
+   rdfs:range rdfs:Resource .
+
+samm:properties a mmm:Attribute ;
+   rdfs:label "properties" ;
+   rdfs:comment "The list of Properties of an Aspect or Entity" ;
+   rdfs:domain mmm:ConceptWithProperties ;
+   rdfs:range rdfs:Resource .
+
+samm:characteristic a mmm:Attribute ;
+   rdfs:label "characteristic" ;
+   rdfs:comment "The Characteristic describing a Property." ;
+   rdfs:domain samm:Property ;
+   rdfs:range rdfs:Resource .
+
+samm:operations a mmm:Attribute ;
+   rdfs:label "operations" ;
+   rdfs:comment "The list of Operations of an Aspect." ;
+   rdfs:domain samm:Aspect ;
+   rdfs:range rdfs:Resource .
+
+samm:input a mmm:Attribute ;
+   rdfs:label "input" ;
+   rdfs:comment "A list of references to Properties that describe the input to an operation." ;
+   rdfs:domain samm:Operation ;
+   rdfs:range rdfs:Resource .
+
+samm:output a mmm:Attribute ;
+   rdfs:label "output" ;
+   rdfs:comment "A single reference to a Property that describes the output of an operation." ;
+   rdfs:domain samm:Operation ;
+   rdfs:range rdfs:Resource .
+
+samm:events a mmm:Attribute ;
+   rdfs:label "events" ;
+   rdfs:comment "The list of Events of an Aspect." ;
+   rdfs:domain samm:Aspect ;
+   rdfs:range rdfs:Resource .
+
+samm:parameters a mmm:Attribute ;
+   rdfs:label "parameters" ;
+   rdfs:comment "The parameters defined by an Event." ;
+   rdfs:domain samm:Event ;
+   rdfs:range rdfs:Resource .
+
+samm:exampleValue a mmm:Attribute ;
+   rdfs:label "exampleValue" ;
+   rdfs:comment "An exemplary value the Property can take on that helps to understand the intended meaning of the property better. This can only be set for Properties with scalar data types (e.g. xsd:string or xsd:float, but not Entities). The data type of the samm:exampleValue must be convertable to the effective data type of the Property’s Characteristic." ;
+   rdfs:domain samm:Property ;
+   rdfs:range rdfs:Resource .
+
+samm:extends a mmm:Attribute ;
+   rdfs:label "extends" ;
+   rdfs:comment "Defines that the target extends the source" ;
+   rdfs:domain mmm:Concept ;
+   rdfs:range rdfs:Resource .
+
+samm:optional a mmm:Attribute ;
+   rdfs:label "optional" ;
+   rdfs:comment "Defines whether a Property is optional or not in the context where the Property is being used. The default is false." ;
+   rdfs:domain mmm:PropertyUsage ;
+   rdfs:range xsd:boolean .
+
+samm:property a mmm:Attribute ;
+   rdfs:label "property" ;
+   rdfs:comment "Links a Property Usage to an actual Property" ;
+   rdfs:domain mmm:PropertyUsage ;
+   rdfs:range samm:Property .
+
+samm:notInPayload a mmm:Attribute ;
+   rdfs:label "notInPayload" ;
+   rdfs:comment "Defines whether a Property is included in the payload of an Aspect. The default is false." ;
+   rdfs:domain mmm:PropertyUsage ;
+   rdfs:range xsd:boolean .
+
+samm:payloadName a mmm:Attribute ;
+   rdfs:label "payloadName" ;
+   rdfs:comment "Provides the name of the Property as it will appear in the runtime payload." ;
+   rdfs:domain mmm:PropertyUsage ;
+   rdfs:range xsd:string .
+
+samm:see a mmm:Attribute ;
+   rdfs:label "see" ;
+   rdfs:comment "Contains a link to an external taxonomy/ontology." ;
+   rdfs:domain mmm:Concept ;
+   rdfs:range rdfs:Resource .
+
+samm:commonCode a mmm:Attribute ;
+   rdfs:label "commonCode" ;
+   rdfs:comment "Normalized short code for a unit." ;
+   rdfs:domain samm:Unit ;
+   rdfs:range xsd:string .
+
+samm:conversionFactor a mmm:Attribute ;
+   rdfs:label "conversionFactor" ;
+   rdfs:comment "If the unit is derived from a reference unit, the human readable multiplication factor, e.g., \"10⁻²⁸ m²\"" ;
+   rdfs:domain samm:Unit ;
+   rdfs:range xsd:string .
+
+samm:numericConversionFactor a mmm:Attribute ;
+   rdfs:label "numericConversionFactor" ;
+   rdfs:comment "If the unit is derived from a reference unit, the numeric multiplication factor, e.g., \"1.0E-28\"" ;
+   rdfs:domain samm:Unit ;
+   rdfs:range xsd:double .
+
+samm:quantityKind a mmm:Attribute ;
+   rdfs:label "quantityKind" ;
+   rdfs:comment "A quantity kind for this unit, for example the unit litre has the quantity kind volume, the unit metre has the quantity kinds length, distance, diameter etc." ;
+   rdfs:domain samm:Unit ;
+   rdfs:range samm:QuantityKind .
+
+samm:referenceUnit a mmm:Attribute ;
+   rdfs:label "referenceUnit" ;
+   rdfs:comment "The unit this unit is derived from, e.g., centimetre is derived from metre" ;
+   rdfs:domain samm:Unit ;
+   rdfs:range samm:Unit .
+
+samm:symbol a mmm:Attribute ;
+   rdfs:label "symbol" ;
+   rdfs:comment "The unit’s symbol, e.g., for centimetre the symbol is cm" ;
+   rdfs:domain samm:Unit ;
+   rdfs:range xsd:string .
+
+# Constants
+samm:US-ASCII a mmm:Constant .
+
+samm:ISO-8859-1 a mmm:Constant .
+
+samm:UTF-8 a mmm:Constant .
+
+samm:UTF-16 a mmm:Constant .
+
+samm:UTF-16BE a mmm:Constant .
+
+samm:UTF-16LE a mmm:Constant .
+
+# Datatypes
+samm:curie a rdfs:Datatype ;
+   rdfs:comment "The ·lexical space· of curie is finite-length character sequences which represent a valid curie as defined here https://www.w3.org/TR/2010/NOTE-curie-20101216/#s_schema.";
+   rdfs:label "curie" .

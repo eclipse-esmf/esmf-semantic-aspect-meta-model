@@ -1,8 +1,0 @@
-name: bamm-specification
-title: BAMM Aspect Meta Model
-version: '2.0.0'
-start_page: ROOT:index.adoc
-nav:
-  - modules/ROOT/nav.adoc
-  - modules/appendix/nav.adoc
-  - modules/legal/nav.adoc

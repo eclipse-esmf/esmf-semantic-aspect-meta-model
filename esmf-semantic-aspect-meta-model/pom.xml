@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+  ~
+  ~ See the AUTHORS file(s) distributed with this work for additional
+  ~ information regarding authorship.
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>org.eclipse.esmf</groupId>
+   <artifactId>esmf-semantic-aspect-meta-model</artifactId>
+   <name>Semantic Aspect Meta Model</name>
+   <version>DEV-SNAPSHOT</version>
+   <packaging>jar</packaging>
+
+   <description>ESMF Semantic Aspect Meta Model</description>
+   <url>https://eclipse-esmf.github.io/</url>
+   <licenses>
+      <license>
+         <name>MPL-2.0</name>
+         <url>https://www.mozilla.org/en-US/MPL/2.0/</url>
+      </license>
+   </licenses>
+   <developers>
+      <developer>
+         <name>Eclipse Semantic Modeling Framework Team</name>
+         <email>esmf-dev@eclipse.org</email>
+         <organization>Eclipse Semantic Modeling Framework</organization>
+         <organizationUrl>https://projects.eclipse.org/projects/dt.esmf</organizationUrl>
+      </developer>
+   </developers>
+   <scm>
+      <url>https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model</url>
+      <connection>scm:git:git://github.com:eclipse-esmf/esmf-semantic-aspect-meta-model.git</connection>
+      <developerConnection>scm:git:ssh://git@github.com:eclipse-esmf/esmf-semantic-aspect-meta-model.git</developerConnection>
+   </scm>
+
+   <properties>
+      <!-- General project settings -->
+      <java-target-version>11</java-target-version>
+      <java-source-version>11</java-source-version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <!-- This is the meta model version (as included in the URNs).
+           Note that this can differ from the project.version: The project.version could for example be the
+           version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
+      <meta-model-version>2.0.0</meta-model-version>
+
+      <!-- Plugin versions -->
+      <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+      <maven-scm-plugin-version>1.11.2</maven-scm-plugin-version>
+      <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
+      <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
+      <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
+      <maven-javadoc-plugin-version>3.3.0</maven-javadoc-plugin-version>
+      <nexus-staging-maven-plugin>1.6.9</nexus-staging-maven-plugin>
+      <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
+
+      <!-- Test dependencies -->
+      <junit-jupiter-version>5.8.2</junit-jupiter-version>
+      <assertj-core-version>3.23.1</assertj-core-version>
+      <shacl-version>1.3.1</shacl-version>
+      <vavr-version>0.10.3</vavr-version>
+      <commons-codec-version>1.15</commons-codec-version>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter</artifactId>
+         <version>${junit-jupiter-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.assertj</groupId>
+         <artifactId>assertj-core</artifactId>
+         <version>${assertj-core-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.topbraid</groupId>
+         <artifactId>shacl</artifactId>
+         <version>${shacl-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>io.vavr</groupId>
+         <artifactId>vavr</artifactId>
+         <version>${vavr-version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>commons-codec</groupId>
+         <artifactId>commons-codec</artifactId>
+         <version>${commons-codec-version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven-compiler-plugin-version}</version>
+            <configuration>
+               <source>${java-source-version}</source>
+               <target>${java-target-version}</target>
+               <showWarnings>true</showWarnings>
+               <showDeprecation>true</showDeprecation>
+               <compilerArgs>
+                  <arg>-Xlint:all</arg>
+               </compilerArgs>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-plugin</artifactId>
+            <version>${maven-scm-plugin-version}</version>
+            <configuration>
+               <tag>${project.version}</tag>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin-version}</version>
+            <configuration>
+               <skip>false</skip>
+               <includes>
+                  <include>**/*Tests.java</include>
+                  <include>**/*Test.java</include>
+               </includes>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin-version}</version>
+            <executions>
+               <execution>
+                  <id>attach-sources</id>
+                  <goals>
+                     <goal>jar-no-fork</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin-version}</version>
+            <executions>
+               <execution>
+                  <id>attach-javadocs</id>
+                  <goals>
+                     <goal>jar</goal>
+                  </goals>
+                  <configuration>
+                     <doclint>none</doclint>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>${maven-plugin-flatten-version}</version>
+            <configuration>
+               <!-- see https://central.sonatype.org/publish/requirements -->
+               <flattenMode>ossrh</flattenMode>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>flatten</id>
+                  <phase>process-resources</phase>
+                  <goals>
+                     <goal>flatten</goal>
+                  </goals>
+               </execution>
+               <execution>
+                  <id>clean-flatten</id>
+                  <phase>clean</phase>
+                  <goals>
+                     <goal>clean</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.eclipse.esmf</groupId>
+            <artifactId>esmf-samm-build-plugin</artifactId>
+            <version>${project.version}</version>
+            <executions>
+               <execution>
+                  <id>generate-units-ttl</id>
+                  <goals>
+                     <goal>generateUnits</goal>
+                  </goals>
+                  <configuration>
+                     <metaModelVersion>${meta-model-version}</metaModelVersion>
+                     <!-- The URL of the zip file provided by UNECE for Recommendation 20 -->
+                     <rec20Url>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev7e_2010.zip</rec20Url>
+                     <!-- The directory where custom units are defined that will be incorporated into units.ttl in addition to Rec20 -->
+                     <customRDFInputDirectory>${project.basedir}/../esmf-samm-build-plugin/src/main/resources/</customRDFInputDirectory>
+                     <!-- The path to the units.ttl file to write during build -->
+                     <outputPath>${project.basedir}/src/main/resources/samm/unit/${meta-model-version}/units.ttl</outputPath>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>generate-bcp47-language-subtag-registry-script</id>
+                  <goals>
+                     <goal>downloadBcp47LanguageSubtagRegistry</goal>
+                  </goals>
+                  <configuration>
+                     <!-- The URL of the JSON representation of the BCP 47 language subtag registry -->
+                     <inputUrl>https://raw.githubusercontent.com/mattcg/language-subtag-registry/master/data/json/registry.json</inputUrl>
+                     <!-- The BCP 47 language subtag registry JavaScript file to write during build -->
+                     <output>${project.basedir}/src/main/resources/samm/scripts/language-registry.js</output>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
+   <profiles>
+      <profile>
+         <id>release-build</id>
+         <distributionManagement>
+            <repository>
+               <id>ossrh</id>
+               <name>OSSRH</name>
+               <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+         </distributionManagement>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.sonatype.plugins</groupId>
+                  <artifactId>nexus-staging-maven-plugin</artifactId>
+                  <version>${nexus-staging-maven-plugin}</version>
+                  <extensions>true</extensions>
+                  <configuration>
+                     <serverId>ossrh</serverId>
+                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                     <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+
+      <profile>
+         <id>milestone-build</id>
+         <distributionManagement>
+            <repository>
+               <id>github</id>
+               <name>Github</name>
+               <url>https://maven.pkg.github.com/eclipse-esmf/esmf-semantic-aspect-meta-model</url>
+            </repository>
+         </distributionManagement>
+      </profile>
+
+      <profile>
+         <id>sign</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <version>${maven-gpg-plugin-version}</version>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                     </gpgArguments>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+
+      </profile>
+   </profiles>
+</project>

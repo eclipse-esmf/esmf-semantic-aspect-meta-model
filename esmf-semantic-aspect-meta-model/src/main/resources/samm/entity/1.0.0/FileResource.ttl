@@ -1,0 +1,34 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:1.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:1.0.0#> .
+
+samm-e:FileResource a samm:Entity ;
+   samm:name "FileResource" ;
+   samm:preferredName "File Resource"@en ;
+   samm:description "A file in a specific format"@en ;
+   samm:properties ( samm-e:resource samm-e:mimeType ) .
+
+samm-e:resource a samm:Property ;
+   samm:name "resource" ;
+   samm:preferredName "Resource"@en ;
+   samm:description "Location of a resource"@en ;
+   samm:characteristic samm-c:ResourcePath .
+
+samm-e:mimeType a samm:Property ;
+   samm:name "mimeType" ;
+   samm:preferredName "MIME Type"@en ;
+   samm:description "A MIME type as defined in RFC 2046."@en ;
+   samm:exampleValue "application/json" ;
+   samm:characteristic samm-c:MimeType .
+

@@ -1,0 +1,58 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+
+[[units]]
+= Units
+
+A catalog of physical units and quantity kinds ("length" would be the quantity kind for the units
+"metre", "inch", "millimetre" and so on) is part of the Aspect Meta Model. As such, the unit catalog
+is provided in a machine readable fashion. The catalog is based on the UNECE Recommendation 20
+xref:samm-specification:appendix:bibliography.adoc#rec20[[rec20\]] and comprises about 1,800 units. The
+units are used in Characteristics such as Measurement and Duration. The full catalog is available in
+tabular form in Appendix xref:appendix:unitcatalog.adoc[Unit Catalog]. Please note that,
+while in principle preferred names in multiple languages can be added to quantity kinds and units,
+the catalog provides preferred names in english only.
+
+CAUTION: The unit names in UNECE Recommendation 20 (and therefore in the units catalog) are given in
+British English, e.g., _metre_, not _meter_.
+
+A quantity kind has the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Present in every quantity kind
+| `samm:preferredName` | Human readable name in a specific language | {ok}
+|===
+
+
+A unit has the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Present in every unit
+| `samm:preferredName` | Human readable name in a specific language | {ok}
+| `samm:commonCode` | Normalized short code for unit; please refer to the
+xref:samm-specification:appendix:bibliography.adoc#rec20[original specification] for more details |
+{nok}footnote:[Every unit originating from UNECE Recommendation 20 has a commonCode defined by the
+standardization process, units added in the scope of the {meta-model-abbr} therefore do not
+have one. For example, no commonCode is added to
+`xref:appendix:unitcatalog.adoc#unit-cubicMicrometre[unit:cubicMicrometre\]`.]
+| `unit:conversionFactor` | If the unit is derived from a reference unit, the _human readable_ multiplication factor,
+  e.g., "10⁻²⁸ m²" | {nok}
+| `samm:numericConversionFactor` | If the unit is derived from a reference unit, the _numeric_ multiplication factor,
+  e.g., "1.0E-28" | {nok}
+| `samm:quantityKind` | The list of quantity kinds, for example unit _litre_ has quantity kind
+  _volume_, unit _metre_ has quantity kinds _length_, _distance_, _diameter_ etc. | {nok}
+| `samm:referenceUnit` | The unit this unit is derived from, e.g., _centimetre_ is derived from
+  _metre_| {nok}
+| `samm:symbol` | The unit's symbol, e.g., for _centimetre_ the symbol is _cm_ | {nok}
+|===

@@ -1,0 +1,186 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+[graphviz,characteristics-instances,svg,layout=dot]
+----
+digraph characteristics_instances {
+  splines=ortho
+  rankdir=BT
+include::diagram-style.dot[]
+
+  node [
+        width = 2
+  ]
+
+  edge [
+        arrowhead = empty
+  ]
+
+    Characteristic [label="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}", href="../characteristics.html#characteristic-characteristic"]
+
+    node [
+        shape = plaintext
+        width = 0
+        height = 0
+        margin = 0
+    ]
+
+    edge [
+        style = solid
+        arrowhead = normal
+    ]
+
+  ratio="compress"
+  ranksep=0.8
+
+     Timestamp [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#timestamp-characteristic">
+           <tr>
+               <td><u>Timestamp</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:dateTime</td>
+           </tr>
+           </table>>
+    ]
+
+    Text [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#text-characteristic">
+           <tr>
+               <td><u>Text</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:string</td>
+           </tr>
+           </table>>
+    ]
+
+    Boolean [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#boolean-characteristic">
+           <tr>
+               <td><u>Boolean</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:boolean</td>
+           </tr>
+           </table>>
+    ]
+
+    Locale [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#locale-characteristic">
+           <tr>
+               <td><u>Locale</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:string</td>
+           </tr>
+           </table>>
+    ]
+
+    Language [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#language-characteristic">
+           <tr>
+               <td><u>Language</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:string</td>
+           </tr>
+           </table>>
+    ]
+
+    UnitReference [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#unit-reference-characteristic">
+           <tr>
+               <td><u>UnitReference</u></td>
+           </tr>
+           <tr>
+               <td>dataType : samm:curie</td>
+           </tr>
+           </table>>
+    ]
+
+    MultiLanguageText [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#multi-language-text-characteristic">
+           <tr>
+               <td><u>MultiLanguageText</u></td>
+           </tr>
+           <tr>
+               <td>dataType : rdf:langString</td>
+           </tr>
+           </table>>
+    ]
+
+    ResourcePath [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#resource-path-characteristic">
+           <tr>
+               <td><u>ResourcePath</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:anyURI</td>
+           </tr>
+           </table>>
+    ]
+
+    MimeType [
+           label =
+           <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#mime-type-characteristic">
+           <tr>
+               <td><u>MimeType</u></td>
+           </tr>
+           <tr>
+               <td>dataType : xsd:string</td>
+           </tr>
+           </table>>
+    ]
+
+    { rank = same;
+      Characteristic
+    }
+
+    { rank = same;
+      Text;
+      MultiLanguageText;
+      Locale;
+      Language;
+    }
+
+     { rank = same;
+      Timestamp;
+      UnitReference;
+      ResourcePath;
+      MimeType;
+      Boolean;
+    }
+
+    Timestamp -> Characteristic
+    Text -> Characteristic
+    Boolean -> Characteristic
+    Locale -> Characteristic
+    Language -> Characteristic
+    UnitReference -> Characteristic
+    MultiLanguageText -> Characteristic
+    ResourcePath -> Characteristic
+    MimeType -> Characteristic
+
+   Timestamp -> Text [style=invis]
+   UnitReference -> MultiLanguageText [style=invis]
+   ResourcePath -> Locale[style=invis]
+   MimeType -> Language [style=invis]
+   Boolean -> Language [style=invis]
+}
+----

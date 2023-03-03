@@ -1,0 +1,36 @@
+#
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+@prefix : <urn:samm:org.eclipse.esmf.samm.test:TestAspect:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:1.0.0#> .
+
+:TestProperty a samm:Aspect ;
+   samm:name "TestProperty" ;
+   samm:properties ( :entityList ) ;
+   samm:operations ( ) .
+
+:entityList a samm:Property ;
+   samm:name "testProperty" ;
+   samm:preferredName "Test Property"@en ;
+   samm:preferredName "Test Property"@de ;
+   samm:description "A test property."@en ;
+   samm:description "Eine test Property."@de ;
+   samm:characteristic [
+      a samm-c:List ;
+      samm:name "EntityList" ;
+      samm:dataType :TestEntity
+   ] .
+
+:TestEntity a samm:Entity ;
+   samm:name "TestEntity" ;
+   samm:properties ( ).

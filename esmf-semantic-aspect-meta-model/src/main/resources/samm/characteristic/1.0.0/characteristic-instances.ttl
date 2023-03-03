@@ -1,0 +1,70 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:1.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+samm-c:Timestamp a samm:Characteristic ;
+   samm:name "Timestamp" ;
+   samm:preferredName "Timestamp"@en ;
+   samm:description "Describes a Property which contains the date and time with an optional timezone."@en ;
+   samm:dataType xsd:dateTime .
+
+samm-c:Text a samm:Characteristic ;
+   samm:name "Text" ;
+   samm:preferredName "Text"@en ;
+   samm:description "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."@en ;
+   samm:dataType xsd:string .
+
+samm-c:MultiLanguageText a samm:Characteristic ;
+   samm:name "MultiLanguageText" ;
+   samm:preferredName "Multi-Language Text"@en ;
+   samm:description "Describes a Property which contains plain text in multiple languages. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."@en ;
+   samm:dataType rdf:langString .
+
+samm-c:Boolean a samm:Characteristic ;
+   samm:name "Boolean" ;
+   samm:preferredName "Boolean"@en ;
+   samm:description """Represents a boolean value (i.e. a "flag")."""@en ;
+   samm:dataType xsd:boolean .
+
+samm-c:Locale a samm:Characteristic ;
+   samm:name "Locale" ;
+   samm:preferredName "Locale"@en ;
+   samm:description """Describes a Property containing a locale according to IETF BCP 47, for example "de-DE"."""@en ;
+   samm:dataType xsd:string .
+
+samm-c:Language a samm:Characteristic ;
+   samm:name "Language" ;
+   samm:preferredName "Language"@en ;
+   samm:description """Describes a Property containing a language according to ISO 639-1, for example "de"."""@en ;
+   samm:dataType xsd:string .
+
+samm-c:UnitReference a samm:Characteristic ;
+   samm:name "UnitReference" ;
+   samm:preferredName "Unit Reference"@en ;
+   samm:description "Describes a Property containing a reference to one of the units in the Unit Catalog."@en ;
+   samm:dataType samm:curie .
+
+samm-c:ResourcePath a samm:Characteristic ;
+   samm:name "ResourcePath" ;
+   samm:preferredName "Resource Path"@en ;
+   samm:description "The path of a resource."@en ;
+   samm:dataType xsd:anyURI .
+
+samm-c:MimeType a samm:Characteristic ;
+   samm:name "MimeType" ;
+   samm:preferredName "MIME Type"@en ;
+   samm:description """A MIME type as defined in RFC 2046, for example "application/pdf"."""@en ;
+   samm:dataType xsd:string .
+

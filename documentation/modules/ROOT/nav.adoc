@@ -1,0 +1,21 @@
+////
+Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+.Specification
+* xref:index.adoc[Introduction]
+* xref:meta-model-elements.adoc[Meta Model Elements]
+* xref:namespaces.adoc[Namespaces and Versions]
+* xref:datatypes.adoc[Data Types]
+* xref:characteristics.adoc[Characteristics]
+* xref:entities.adoc[Entities]
+* xref:units.adoc[Units]
+* xref:modeling-guidelines.adoc[Aspects]
+* xref:payloads.adoc[Payloads]
+* xref:limits.adoc[Limits & Restrictions]

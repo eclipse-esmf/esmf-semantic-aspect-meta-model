@@ -1,16 +1,15 @@
 site:
-  title: BAMM Aspect Meta Model
-  url: https://openmanufacturingplatform.github.io/sds-bamm-aspect-meta-model/
-  start_page: bamm-specification::index.adoc
+  title: Semantic Aspect Meta Model
+  url: https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/
+  start_page: samm-specification::index.adoc
 content:
   sources:
     - url: .
       branches: HEAD
-      start_path: src/docs
-      tags: '*'
+      start_path: documentation
 ui:
   bundle:
-    url: https://github.com/OpenManufacturingPlatform/sds-antora-ui/releases/download/v1.1.0/sds-antora-ui-bundle-1.1.0.zip
+    url: https://github.com/eclipse-esmf/esmf-antora-ui/releases/download/v1.2.0/esmf-antora-ui-bundle-1.2.0.zip
     snapshot: true
   supplemental_files:
     - path: ui.yml
@@ -21,6 +20,12 @@ runtime:
   cache_dir: ./.cache/antora
 asciidoc:
   attributes:
+    # attribute-missing configures the asciidoc processor to warn on unresolved
+    # references, see https://docs.asciidoctor.org/asciidoc/latest/attributes/unresolved-references/#missing
+    # 'warn' is the default value, but by setting it to 'warn@' we allow pages
+    # to override this setting. This is necessary to silence false positive
+    # warnings that appear on inclusion of certain RDF source codes.
+    attribute-missing: warn@
     doctype: book
     sectanchors: true
     idprefix: ''
@@ -29,13 +34,14 @@ asciidoc:
     ok: 'icon:check-circle[role="green",size="2x"]'
     nok: 'icon:times-circle[role="red",size="2x"]'
     meta-model-version: 2.0.0
-    meta-model-full-name: BAMM Aspect Meta Model
-    meta-model-abbr: BAMM
-    omp: Open Manufacturing Platform
-    omp-abbr: OMP
-    bamm: urn:bamm:io.openmanufacturing:meta-model:2.0.0#@
-    bamm-c: urn:bamm:io.openmanufacturing:characteristic:2.0.0#@
-    bamm-e: urn:bamm:io.openmanufacturing:entity:2.0.0#@
-    unit: urn:bamm:io.openmanufacturing:unit:2.0.0#@
+    meta-model-full-name: Semantic Aspect Meta Model
+    meta-model-abbr: SAMM
+    samm: urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#@
+    samm-c: urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#@
+    samm-e: urn:samm:org.eclipse.esmf.samm:entity:2.0.0#@
+    unit: urn:samm:org.eclipse.esmf.samm:unit:2.0.0#@
     example-ns: com.mycompany@
+    plantuml-server-url: http://www.plantuml.com/plantuml
+  extensions:
+  - asciidoctor-plantuml
 

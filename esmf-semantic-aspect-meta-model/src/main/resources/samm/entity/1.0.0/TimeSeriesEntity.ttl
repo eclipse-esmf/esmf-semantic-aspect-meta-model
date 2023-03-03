@@ -1,0 +1,31 @@
+# Copyright (c) 2021 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:1.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:1.0.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:1.0.0#> .
+
+samm-e:TimeSeriesEntity a samm:Entity ;
+   samm:name "TimeSeriesEntity" ;
+   samm:preferredName "Time Series Entity"@en ;
+   samm:description "An Entity which represents a key/value pair. The key is the timestamp when the value was recorded and the value is the value which was recorded."@en ;
+   samm:properties ( samm-e:timestamp samm-e:value ).
+
+samm-e:timestamp a samm:Property ;
+   samm:name "timestamp" ;
+   samm:preferredName "Timestamp"@en ;
+   samm:description "The specific point in time when the corresponding value was recorded."@en ;
+   samm:characteristic samm-c:Timestamp .
+
+samm-e:value a samm:Property ;
+   samm:name "value" ;
+   samm:preferredName "Value"@en ;
+   samm:description "Any value."@en .
