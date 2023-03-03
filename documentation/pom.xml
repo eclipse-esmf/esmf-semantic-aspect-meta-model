@@ -96,6 +96,7 @@
                            </environmentVariables>
                            <nodeDownloadRoot>${node-directory}</nodeDownloadRoot>
                            <nodeVersion>v${nodejs-version}</nodeVersion>
+                           <downloadRoot>https://nodejs.org/dist/</downloadRoot>
                         </configuration>
                      </execution>
                   </executions>
