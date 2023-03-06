@@ -67,6 +67,26 @@
                </filesets>
             </configuration>
          </plugin>
+
+         <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <configuration>
+               <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin-version}</version>
+            <executions>
+               <execution>
+                  <id>sign-artifacts</id>
+                  <phase>none</phase>
+               </execution>
+            </executions>
+         </plugin>
       </plugins>
    </build>
 
