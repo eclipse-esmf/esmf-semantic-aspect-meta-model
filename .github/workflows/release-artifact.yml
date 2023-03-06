@@ -76,7 +76,7 @@ jobs:
         # Since the meta model project itself does not inherit from the parent, we must set its version separately
         ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }} -pl esmf-semantic-aspect-meta-model
         ./mvnw -B versions:commit -pl esmf-semantic-aspect-meta-model
-        ./mvnw -B generate-resources -pl documentation -Pantora
+        ./mvnw -B clean generate-resources -pl documentation -Pantora
         ./mvnw -B -U clean install -pl esmf-samm-build-plugin
         ./mvnw -B -U clean deploy -pl esmf-semantic-aspect-meta-model -Psign
         cd build/
