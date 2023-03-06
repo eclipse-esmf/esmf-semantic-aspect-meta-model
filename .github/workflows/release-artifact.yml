@@ -104,6 +104,7 @@ jobs:
         prerelease: false
         files: |
           esmf-semantic-aspect-meta-model/target/*.jar
+          esmf-semantic-aspect-meta-model/target/*.asc
           SAMM-*-specification.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
