@@ -62,7 +62,7 @@
       <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
       <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
       <maven-javadoc-plugin-version>3.3.0</maven-javadoc-plugin-version>
-      <nexus-staging-maven-plugin>1.6.9</nexus-staging-maven-plugin>
+      <nexus-staging-maven-plugin>1.6.13</nexus-staging-maven-plugin>
       <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
       <maven-deploy-plugin-version>3.0.0</maven-deploy-plugin-version>
 
