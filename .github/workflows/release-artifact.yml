@@ -65,6 +65,7 @@ jobs:
 
     - name: Build SAMM artifact and release to OSSRH
       run: |
+        env
         ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }}
         ./mvnw -B versions:commit
         # Since the meta model project itself does not inherit from the parent, we must set its version separately
