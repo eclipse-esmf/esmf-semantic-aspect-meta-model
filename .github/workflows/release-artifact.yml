@@ -76,6 +76,10 @@ jobs:
         cd build/
         mv site SAMM-${{ github.event.inputs.release_version }}
         zip -r ../SAMM-${{ github.event.inputs.release_version }}-specification.zip SAMM-${{ github.event.inputs.release_version }}
+      env:
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+        PGP_KEY_PASSWORD: ${{ secrets.PGP_KEY_PASSWORD }}
 
     # If the deployment to OSSRH went through, the following steps will
     # - Commit updated version to release branch
