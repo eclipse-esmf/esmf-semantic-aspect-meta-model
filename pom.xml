@@ -57,7 +57,7 @@
       <maven-plugin-depdendencies-version>3.3.9</maven-plugin-depdendencies-version>
       <maven-plugin-annotations-version>3.5</maven-plugin-annotations-version>
       <maven-clean-plugin-version>3.1.0</maven-clean-plugin-version>
-      <nexus-staging-maven-plugin-version>1.6.9</nexus-staging-maven-plugin-version>
+      <nexus-staging-maven-plugin-version>1.6.13</nexus-staging-maven-plugin-version>
       <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
 
       <java-target-version>11</java-target-version>
@@ -327,6 +327,18 @@
                   </configuration>
                </execution>
             </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin-version}</version>
+            <extensions>true</extensions>
+            <configuration>
+               <serverId>ossrh</serverId>
+               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+               <autoReleaseAfterClose>false</autoReleaseAfterClose>
+            </configuration>
          </plugin>
       </plugins>
    </build>

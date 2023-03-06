@@ -62,7 +62,7 @@
       <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
       <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
       <maven-javadoc-plugin-version>3.3.0</maven-javadoc-plugin-version>
-      <nexus-staging-maven-plugin>1.6.13</nexus-staging-maven-plugin>
+      <nexus-staging-maven-plugin-version>1.6.13</nexus-staging-maven-plugin-version>
       <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
       <maven-deploy-plugin-version>3.0.0</maven-deploy-plugin-version>
 
@@ -247,19 +247,25 @@
          </plugin>
 
          <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-deploy-plugin</artifactId>
+             <version>${maven-deploy-plugin-version}</version>
+             <executions>
+                <execution>
+                   <id>default-deploy</id>
+                   <phase>deploy</phase>
+                   <goals>
+                      <goal>deploy</goal>
+                   </goals>
+                </execution>
+             </executions>
+         </plugin>
+
+         <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${nexus-staging-maven-plugin}</version>
+            <version>${nexus-staging-maven-plugin-version}</version>
             <extensions>true</extensions>
-            <executions>
-               <execution>
-                  <id>default-deploy</id>
-                  <phase>deploy</phase>
-                  <goals>
-                     <goal>deploy</goal>
-                  </goals>
-              </execution>
-            </executions>
             <configuration>
                <serverId>ossrh</serverId>
                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
