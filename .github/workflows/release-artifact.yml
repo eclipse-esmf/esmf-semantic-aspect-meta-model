@@ -24,6 +24,12 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11'
+        server-id: ossrh
+        server-username: OSSRH_USERNAME
+        server-password: OSSRH_TOKEN
+        gpg-private-key: ${{ secrets.PGP_KEY }}
+        gpg-passphrase: PGP_KEY_PASSWORD
+        overwrite-settings: false
 
     - name: Cache Maven packages
       id: cache-maven
