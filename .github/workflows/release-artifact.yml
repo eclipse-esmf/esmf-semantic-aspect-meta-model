@@ -31,13 +31,6 @@ jobs:
         gpg-passphrase: PGP_KEY_PASSWORD
         overwrite-settings: false
 
-    - name: Cache Maven packages
-      id: cache-maven
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: maven-${{ hashFiles('**/pom.xml') }}
-
     - name: Cache node and node_modules
       id: cache-node
       uses: actions/cache@v3
@@ -54,10 +47,6 @@ jobs:
         release_branch_name=${release_version%.*}.x
         echo "release_branch_name=$release_branch_name" >> $GITHUB_ENV
 
-        git fetch
-        git checkout -b $release_branch_name --track origin/$release_branch_name || true
-        git checkout -b $release_branch_name
-
     - name: Set release version in antora.yml
       uses: mikefarah/yq@master
       with:
@@ -65,7 +54,7 @@ jobs:
 
     - name: Build SAMM artifact and release to OSSRH
       run: |
-        set +x
+        set -x
         echo ">>> Using parent pom:"
         cat pom.xml
         echo ">>> Using meta model pom:"
@@ -95,6 +84,9 @@ jobs:
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
+        git fetch
+        git checkout -b $release_branch_name --track origin/$release_branch_name || true
+        git checkout -b $release_branch_name
         git add .
         if git commit -m "Add version ${{ github.event.inputs.release_version }}"; then
           git push origin ${{ env.release_branch_name }}
