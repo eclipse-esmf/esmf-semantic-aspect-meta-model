@@ -1,4 +1,6 @@
-# Semantic Aspect Meta Model (SAMM) ![build](https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/actions/workflows/pull-request-check.yml/badge.svg)
+# Semantic Aspect Meta Model (SAMM)
+
+![build](https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/actions/workflows/pull-request-check.yml/badge.svg)
 
 - [Introduction](#introduction)
 - [Example Usage](#example-usage)
