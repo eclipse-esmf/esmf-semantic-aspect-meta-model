@@ -31,15 +31,6 @@ jobs:
         gpg-passphrase: PGP_KEY_PASSWORD
         overwrite-settings: false
 
-    - name: Cache node and node_modules
-      id: cache-node
-      uses: actions/cache@v3
-      with:
-        path: |
-          documentation/node
-          documentation/node_modules
-        key: node-${{ hashFiles('documentation/package-lock.json') }}
-
     - name: Create release branch if not exists
       continue-on-error: true
       run: |
