@@ -29,7 +29,7 @@ jobs:
         server-password: OSSRH_TOKEN
         gpg-private-key: ${{ secrets.PGP_KEY }}
         gpg-passphrase: PGP_KEY_PASSWORD
-        overwrite-settings: false
+        overwrite-settings: true
 
     - name: Create release branch if not exists
       continue-on-error: true
