@@ -46,6 +46,11 @@ jobs:
         cat esmf-semantic-aspect-meta-model/pom.xml
         echo ">>> Using settings.xml:"
         cat ~/.m2/settings.xml
+        echo ">>> Does PGP password contain curly braces?"
+        ( echo $PGP_KEY_PASSWORD | grep -q { ) && \
+          echo ">>> PGP pw contains {" || echo ">>> PGP pw does not contain {"
+        ( echo $PGP_KEY_PASSWORD | grep -q } ) && \
+          echo ">>> PGP pw contains }" || echo ">>> PGP pw does not contain }"
         rm -rf ~/.m2/repository/org/eclipse/esmf
         ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }}
         ./mvnw -B versions:commit
