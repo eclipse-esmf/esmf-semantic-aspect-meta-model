@@ -46,10 +46,6 @@ jobs:
         cat esmf-semantic-aspect-meta-model/pom.xml
         echo ">>> Using settings.xml:"
         cat ~/.m2/settings.xml
-        echo ">>> Escaping curly braces in PGP pw"
-        PGP_KEY_PASSWORD="${PGP_KEY_PASSWORD//{/\\{}"
-        PGP_KEY_PASSWORD="${PGP_KEY_PASSWORD//\}/\\\}}"
-        export PGP_KEY_PASSWORD
         rm -rf ~/.m2/repository/org/eclipse/esmf
         ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }}
         ./mvnw -B versions:commit
