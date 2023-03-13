@@ -25,13 +25,6 @@ jobs:
         gpg-passphrase: PGP_KEY_PASSWORD
         overwrite-settings: true
 
-    - name: Create release branch if not exists
-      continue-on-error: true
-      run: |
-        release_version=${{ github.event.inputs.release_version }}
-        release_branch_name=v${release_version%.*}.x
-        echo "release_branch_name=$release_branch_name" >> $GITHUB_ENV
-
     - name: Set release version in antora.yml
       uses: mikefarah/yq@master
       with:
@@ -68,16 +61,12 @@ jobs:
     # - Create Github release
 
     - name: Commit version changes and push to upstream repository
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git fetch
-        git checkout -b $release_branch_name --track origin/$release_branch_name || true
-        git checkout -b $release_branch_name
-        git add .
-        if git commit -m "Add version ${{ github.event.inputs.release_version }}"; then
-          git push origin ${{ env.release_branch_name }}
-        fi
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+         branch: ${{ env.release_branch_name }}
+         commit_user_name: github-actions
+         commit_user_email: github-actions@github.com
+         commit_author: Author <actions@github.com>
 
     - name: Create GitHub release
       uses: softprops/action-gh-release@v1
