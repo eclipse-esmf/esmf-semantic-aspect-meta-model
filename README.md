@@ -23,7 +23,7 @@ This repository contains the detailed documentation of the SAMM specification as
 The source files (AsciiDoc) are built using Maven and
 [Antora](https://antora.org/), which generates the documentation as HTML files.
 
-![Semantic Aspect Meta Model (SAMM) Elements](src/docs/modules/ROOT/images/aspect-meta-model.svg)
+![Semantic Aspect Meta Model (SAMM) Elements](documentation/modules/ROOT/images/aspect-meta-model.svg)
 
 ## Example Usage
 SAMM standardizes the creation of domain specific aspect models and also makes them reusable.
