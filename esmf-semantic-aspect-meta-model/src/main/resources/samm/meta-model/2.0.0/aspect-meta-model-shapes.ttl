@@ -944,6 +944,9 @@ samm:AmbiguousEntityShape
            filter( ?extendedEntityA = ?extendedEntityB )
            filter( ?this != ?other )
 
+           # only in the same namespace
+           filter( strbefore( str( ?this ), "#" ) = strbefore( str( ?other ), "#" ) )
+
            $this samm:properties/rdf:rest*/rdf:first ?thisPropertyNode .
            ?other samm:properties/rdf:rest*/rdf:first ?otherPropertyNode .
 

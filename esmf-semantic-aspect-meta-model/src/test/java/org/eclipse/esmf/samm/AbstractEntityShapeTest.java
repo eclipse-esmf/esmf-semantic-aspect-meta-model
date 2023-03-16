@@ -154,4 +154,9 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
             metaModelVersion, result );
    }
 
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testSimilarExtendingEntityInDifferentNamespace( final KnownVersion metaModelVersion ) {
+      checkValidity( "abstract-entity-shape", "AbstractTestEntityWithExtendingEntitiesWithSamePropertyInDifferentNamespaces", metaModelVersion);
+   }
 }
