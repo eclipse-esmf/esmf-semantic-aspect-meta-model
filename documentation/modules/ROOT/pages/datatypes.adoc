@@ -45,7 +45,7 @@ definition in the respective standards and an informative description of their v
 |===
 | | Data Type | Value Range | Sample Values | String-like value space
 .4+| Core Types
-| `https://www.w3.org/TR/xmlschema11-2/#string[xsd:string]` | Character strings | 'Hello world', 'Καλημέρα κόσμε', 'コンニチハ'| {ok}
+| `https://www.w3.org/TR/xmlschema11-2/#string[xsd:string]` | Character strings | 'Hello world', 'Καλημέρα κόσμε', 'こんにちは世界'| {ok}
 | `https://www.w3.org/TR/xmlschema11-2/#boolean[xsd:boolean]` | true, false | true, false | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#decimal[xsd:decimal]` | Arbitrary-precision decimal numbers | -1.23, 126789672374892739424.543233, +100000.00, 210 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#integer[xsd:integer]` | Arbitrary-size integer numbers | -1, 0, 126789675432332938792837429837429837429, +100000 | {nok}
