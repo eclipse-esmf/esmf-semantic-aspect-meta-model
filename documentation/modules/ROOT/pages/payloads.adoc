@@ -18,10 +18,10 @@ image::payloads-diagram.svg[opts=interactive, width=100%]
 
 For understanding the construction rules, we define the following terms:
 
-* A Property's _leaf Characteristic_ means the Property's Characteristic if it is not a Constraint,
+* A Property's _trait Characteristic_ means the Property's Characteristic if it is not a Constraint,
   otherwise it means transitively following the Constraint's `samm-c:baseCharacteristic` until the
   value is not a Constraint any more.
-* A Property's _effective data type_ means the Property's leaf Characteristic's `samm:dataType`.
+* A Property's _effective data type_ means the Property's trait Characteristic's `samm:dataType`.
 * A data type is scalar, if it is one of the xref:datatypes.adoc#data-types[allowed data types], but not a `samm:Entity`.
 
 In order to create JSON payloads that correspond to an Aspect model, the following rules are
@@ -47,7 +47,7 @@ applied. The other way round they can also be used to describe a validation algo
    as a named JSON object (with `$\{propertyName\}` being the name of the JSON property). The Properties included for
    the Entity, are the Properties from the Entity itself as well as all Properties from the extended Entities, i.e.
    all Properties from `?thisEntity samm:extends* []`.
-** If the Property's leaf Characteristic is a
+** If the Property's trait Characteristic is a
    xref:characteristics.adoc#collection-characteristic[Collection],
    xref:characteristics.adoc#collection-characteristic[List],
    xref:characteristics.adoc#collection-characteristic[Set] or
