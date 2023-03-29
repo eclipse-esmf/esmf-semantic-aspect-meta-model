@@ -37,7 +37,7 @@ This modularization and reusability simplifies the creation of highly complex us
 ## Getting help
 Are you having trouble with Semantic Aspect Meta Model? We want to help!
 
-* Check the reference [documentation](https://openmanufacturingplatform.github.io/sds-documentation/bamm-specification/snapshot/index.html).
+* Check the reference [documentation](https://eclipse-esmf.github.io/samm-specification/snapshot/index.html).
 * Ask a question the [community forum](https://www.eclipse.org/forums/index.php/f/617/).
 * Having issues with SAMM? Open a [GitHub issue]( https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues).
 
