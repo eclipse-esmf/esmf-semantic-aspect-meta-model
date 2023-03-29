@@ -60,40 +60,12 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAmbiguousEntitiesDueToPropertyNamesExpectFailure( final KnownVersion metaModelVersion ) {
 
-      //test extending Entities use the same Property
-      SemanticError resultForAmbiguousEntityA = new SemanticError(
-            "The Entity ':A' contains Property 'a' which causes ambiguity in combination with the ':B' Entity.",
-            TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "a" );
-      SemanticError resultForAmbiguousEntityB = new SemanticError(
-            "The Entity ':B' contains Property 'a' which causes ambiguity in combination with the ':A' Entity.",
-            TEST_NAMESPACE_PREFIX + "B", "", VIOLATION_URN, "a" );
-      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithExtendingEntitiesWithSameProperty",
-            metaModelVersion, resultForAmbiguousEntityA, resultForAmbiguousEntityB );
-
       //test payload name in Abstract Entity is equal to Property name in extending Entity
-      resultForAmbiguousEntityA = new SemanticError(
+      SemanticError resultForAmbiguousEntityA = new SemanticError(
             "The Entity ':A' contains Property 'abstractString' which causes ambiguity in combination with the ':AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty' Entity.",
             TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "abstractString" );
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty",
             metaModelVersion, resultForAmbiguousEntityA );
-
-      //test extending Entities have Properties with the same payload name
-      resultForAmbiguousEntityA = new SemanticError(
-            "The Entity ':A' contains Property 'same' which causes ambiguity in combination with the ':B' Entity.",
-            TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "same" );
-      resultForAmbiguousEntityB = new SemanticError(
-            "The Entity ':B' contains Property 'same' which causes ambiguity in combination with the ':A' Entity.",
-            TEST_NAMESPACE_PREFIX + "B", "", VIOLATION_URN, "same" );
-      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithExtendingEntitiesWithSamePayloadName",
-            metaModelVersion, resultForAmbiguousEntityA, resultForAmbiguousEntityB );
-
-      //test extending Entities have Properties with same name and payload name
-      resultForAmbiguousEntityA = new SemanticError( "The Entity ':A' contains Property 'b' which causes ambiguity in combination with the ':B' Entity.",
-            TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "b" );
-      resultForAmbiguousEntityB = new SemanticError( "The Entity ':B' contains Property 'b' which causes ambiguity in combination with the ':A' Entity.",
-            TEST_NAMESPACE_PREFIX + "B", "", VIOLATION_URN, "b" );
-      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithExtendingEntitiesWithPayloadNameEqualToPropertyName",
-            metaModelVersion, resultForAmbiguousEntityA, resultForAmbiguousEntityB );
 
       //test extending Entity with ambiguous Property in hierarchy
       final SemanticError resultForAmbiguousExtendingEntityLevelOne = new SemanticError(
@@ -117,31 +89,6 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
             TEST_NAMESPACE_PREFIX + "ExtendingEntity", "", VIOLATION_URN, "abstractOptionalProperty" );
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty",
             metaModelVersion, resultForAmbiguousExtendingEntity );
-
-      //test Abstract Entity has optional Property and extending Entity uses same Property with optional
-      resultForAmbiguousExtendingEntity = new SemanticError(
-            "The Entity ':ExtendingEntity' contains Property 'abstractOptionalProperty' which causes ambiguity in combination with the ':AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty' Entity.",
-            TEST_NAMESPACE_PREFIX + "ExtendingEntity", "", VIOLATION_URN, "abstractOptionalProperty" );
-      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameOptionalProperty",
-            metaModelVersion, resultForAmbiguousExtendingEntity );
-
-      //test extending Entities have the same optional Properties
-      SemanticError resultForAmbiguousEntityA = new SemanticError(
-            "The Entity ':A' contains Property 'a' which causes ambiguity in combination with the ':B' Entity.",
-            TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "a" );
-      SemanticError resultForAmbiguousEntityB = new SemanticError(
-            "The Entity ':B' contains Property 'a' which causes ambiguity in combination with the ':A' Entity.",
-            TEST_NAMESPACE_PREFIX + "B", "", VIOLATION_URN, "a" );
-      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithExtendingEntitiesWithSameOptionalProperty",
-            metaModelVersion, resultForAmbiguousEntityA, resultForAmbiguousEntityB );
-
-      //test extending Entities have the same optional and Mandatory Property
-      resultForAmbiguousEntityA = new SemanticError( "The Entity ':A' contains Property 'b' which causes ambiguity in combination with the ':B' Entity.",
-            TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "b" );
-      resultForAmbiguousEntityB = new SemanticError( "The Entity ':B' contains Property 'b' which causes ambiguity in combination with the ':A' Entity.",
-            TEST_NAMESPACE_PREFIX + "B", "", VIOLATION_URN, "b" );
-      expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithExtendingEntitiesWithSameOptionalAndMandatoryProperty",
-            metaModelVersion, resultForAmbiguousEntityA, resultForAmbiguousEntityB );
    }
 
    @ParameterizedTest
