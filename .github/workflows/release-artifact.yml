@@ -33,12 +33,6 @@ jobs:
     - name: Build SAMM artifact and release to OSSRH
       run: |
         set -x
-        echo ">>> Using parent pom:"
-        cat pom.xml
-        echo ">>> Using meta model pom:"
-        cat esmf-semantic-aspect-meta-model/pom.xml
-        echo ">>> Using settings.xml:"
-        cat ~/.m2/settings.xml
         rm -rf ~/.m2/repository/org/eclipse/esmf
         ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }}
         ./mvnw -B versions:commit
@@ -47,7 +41,7 @@ jobs:
         ./mvnw -B versions:commit -pl esmf-semantic-aspect-meta-model
         ./mvnw -B clean generate-resources -pl documentation -Pantora
         ./mvnw -B -U clean install -pl esmf-samm-build-plugin
-        ./mvnw -B -U clean deploy -pl esmf-semantic-aspect-meta-model -Psign
+        ./mvnw -B -U clean deploy -pl esmf-semantic-aspect-meta-model -Psign,release-build
         cd build/
         mv site SAMM-${{ github.event.inputs.release_version }}
         zip -r ../SAMM-${{ github.event.inputs.release_version }}-specification.zip SAMM-${{ github.event.inputs.release_version }}

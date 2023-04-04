@@ -17,7 +17,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
-   <groupId>org.eclipse.esmf</groupId>
+   <parent>
+      <groupId>org.eclipse.esmf</groupId>
+      <artifactId>esmf-parent</artifactId>
+      <version>2</version>
+      <relativePath></relativePath>
+   </parent>
    <artifactId>esmf-semantic-aspect-meta-model</artifactId>
    <name>Semantic Aspect Meta Model</name>
    <version>DEV-SNAPSHOT</version>
@@ -49,42 +54,23 @@
       <!-- General project settings -->
       <java-target-version>11</java-target-version>
       <java-source-version>11</java-source-version>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <!-- This is the meta model version (as included in the URNs).
            Note that this can differ from the project.version: The project.version could for example be the
            version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
       <meta-model-version>2.0.0</meta-model-version>
-
-      <!-- Plugin versions -->
-      <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
-      <maven-scm-plugin-version>1.11.2</maven-scm-plugin-version>
-      <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
-      <maven-plugin-flatten-version>1.2.7</maven-plugin-flatten-version>
-      <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
-      <maven-javadoc-plugin-version>3.3.0</maven-javadoc-plugin-version>
-      <nexus-staging-maven-plugin-version>1.6.13</nexus-staging-maven-plugin-version>
-      <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
-      <maven-deploy-plugin-version>3.0.0</maven-deploy-plugin-version>
-
-      <!-- Test dependencies -->
-      <junit-jupiter-version>5.8.2</junit-jupiter-version>
-      <assertj-core-version>3.23.1</assertj-core-version>
       <shacl-version>1.3.1</shacl-version>
-      <vavr-version>0.10.3</vavr-version>
-      <commons-codec-version>1.15</commons-codec-version>
+      <jena-version>3.13.0</jena-version>
    </properties>
 
    <dependencies>
       <dependency>
          <groupId>org.junit.jupiter</groupId>
          <artifactId>junit-jupiter</artifactId>
-         <version>${junit-jupiter-version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.assertj</groupId>
          <artifactId>assertj-core</artifactId>
-         <version>${assertj-core-version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -96,13 +82,11 @@
       <dependency>
          <groupId>io.vavr</groupId>
          <artifactId>vavr</artifactId>
-         <version>${vavr-version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>commons-codec</groupId>
          <artifactId>commons-codec</artifactId>
-         <version>${commons-codec-version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
@@ -122,94 +106,23 @@
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven-compiler-plugin-version}</version>
-            <configuration>
-               <source>${java-source-version}</source>
-               <target>${java-target-version}</target>
-               <showWarnings>true</showWarnings>
-               <showDeprecation>true</showDeprecation>
-               <compilerArgs>
-                  <arg>-Xlint:all</arg>
-               </compilerArgs>
-            </configuration>
-         </plugin>
-
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-scm-plugin</artifactId>
-            <version>${maven-scm-plugin-version}</version>
-            <configuration>
-               <tag>${project.version}</tag>
-            </configuration>
-         </plugin>
-
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven-surefire-plugin-version}</version>
-            <configuration>
-               <skip>false</skip>
-               <includes>
-                  <include>**/*Tests.java</include>
-                  <include>**/*Test.java</include>
-               </includes>
-            </configuration>
-         </plugin>
-
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>${maven-source-plugin-version}</version>
+            <artifactId>maven-enforcer-plugin</artifactId>
             <executions>
                <execution>
-                  <id>attach-sources</id>
+                  <id>esmf-enforce-java11</id>
                   <goals>
-                     <goal>jar-no-fork</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
-
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${maven-javadoc-plugin-version}</version>
-            <executions>
-               <execution>
-                  <id>attach-javadocs</id>
-                  <goals>
-                     <goal>jar</goal>
+                     <goal>enforce</goal>
                   </goals>
                   <configuration>
-                     <doclint>none</doclint>
+                     <rules>
+                        <requireProperty>
+                           <property>java.vm.version</property>
+                           <message>Could not determine JDK vendor (java.vm.version property)</message>
+                           <regex>^11\..*</regex>
+                           <regexMessage>Java 11 is required to build this project</regexMessage>
+                        </requireProperty>
+                     </rules>
                   </configuration>
-               </execution>
-            </executions>
-         </plugin>
-
-         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>flatten-maven-plugin</artifactId>
-            <version>${maven-plugin-flatten-version}</version>
-            <configuration>
-               <!-- see https://central.sonatype.org/publish/requirements -->
-               <flattenMode>ossrh</flattenMode>
-            </configuration>
-            <executions>
-               <execution>
-                  <id>flatten</id>
-                  <phase>process-resources</phase>
-                  <goals>
-                     <goal>flatten</goal>
-                  </goals>
-               </execution>
-               <execution>
-                  <id>clean-flatten</id>
-                  <phase>clean</phase>
-                  <goals>
-                     <goal>clean</goal>
-                  </goals>
                </execution>
             </executions>
          </plugin>
@@ -247,18 +160,6 @@
                   </configuration>
                </execution>
             </executions>
-         </plugin>
-
-         <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${nexus-staging-maven-plugin-version}</version>
-            <extensions>true</extensions>
-            <configuration>
-               <serverId>ossrh</serverId>
-               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-               <autoReleaseAfterClose>false</autoReleaseAfterClose>
-            </configuration>
          </plugin>
       </plugins>
    </build>
