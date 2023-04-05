@@ -4,6 +4,7 @@
 
 - [Introduction](#introduction)
 - [Example Usage](#example-usage)
+- [SAMM Versioning](#samm-versioning)
 - [Getting help](#getting-help)
 - [Build and contribute](#build-and-contribute)
 
@@ -33,6 +34,19 @@ Imagine an automated guided vehicle (AGV) and its digital representation.
 The AGV digital twin could encompass aspects, such as its movement position or battery state.
 However, both aspects could also be part of other digital twins.
 This modularization and reusability simplifies the creation of highly complex use cases.
+
+## SAMM Versioning
+
+SAMM and its SDKs evolve over time. While measures are taken to do this in a non-breaking manner,
+some changes cannot be carried out without the need to define a new, breaking version.
+
+SAMM uses semantic versioning (`major.minor.micro`) with the following rules:
+
+* The `major` part designates major changes in the meta model and can imply
+  breaking changes
+* A non-breaking change in the meta model or a change to the model elements that are
+  part of SAMM (`bamm-c` and `bamm-e`) increases the `minor` part
+* Changes to existing features or bugfixes increase the `minor` part
 
 ## Getting help
 Are you having trouble with Semantic Aspect Meta Model? We want to help!
