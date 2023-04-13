@@ -1,5 +1,5 @@
 name: Check Pull Request
-on:
+on:new 
   pull_request:
     branches: [ main ]
 jobs:
