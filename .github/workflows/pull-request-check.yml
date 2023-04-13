@@ -1,5 +1,5 @@
 name: Check Pull Request
-on:new 
+on:new cjgduj
   pull_request:
     branches: [ main ]
 jobs:
