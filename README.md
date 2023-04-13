@@ -1,4 +1,4 @@
-# Semantic Aspect Meta Model (SAMM)
+# Semantic Aspect Meta Model (SAMM)dyjhdgj
 
 ![build](https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/actions/workflows/pull-request-check.yml/badge.svg)
 
