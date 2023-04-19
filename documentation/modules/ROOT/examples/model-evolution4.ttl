@@ -6,6 +6,7 @@
 # If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
 # SPDX-License-Identifier: MPL-2.0
 
+# tag::content[]
 @prefix : <urn:samm:com.mycompany.myapplication:1.1.0#> .
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
@@ -24,3 +25,4 @@
       samm:dataType xsd:string ;
       samm-c:values ( "ON" "OFF" "BOOTING" )
    ] .
+# end::content[]
