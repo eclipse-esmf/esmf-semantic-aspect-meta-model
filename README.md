@@ -45,7 +45,7 @@ SAMM uses semantic versioning (`major.minor.micro`) with the following rules:
 * The `major` part designates major changes in the meta model and can imply
   breaking changes
 * A non-breaking change in the meta model or a change to the model elements that are
-  part of SAMM (`bamm-c` and `bamm-e`) increases the `minor` part
+  part of SAMM (`samm-c` and `samm-e`) increases the `minor` part
 * Changes to existing features or bugfixes increase the `minor` part
 
 ## Getting help
