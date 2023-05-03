@@ -783,3 +783,27 @@ samm-c:FixedPointConstraintShape
       sh:name "integer" ;
       sh:description "The number of integral digits for a fixed point number." ;
    ] .
+
+samm-c:TimeSeriesShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:TimeSeries ;
+   sh:property [
+      sh:path samm:dataType ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "dataType" ;
+      sh:description "The current data tуpe is the child of TimeSeries or its derived types." ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Used data type '{?definedDataType}' on '{$this}' must extend TimeSeriesEntity." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?definedDataType ?code
+            where {
+               $this samm:dataType ?definedDataType .
+               filter ( not exists { ?definedDataType samm:extends+ samm-e:TimeSeriesEntity } ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+            }
+         """
+      ]
+   ].
