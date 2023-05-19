@@ -16,7 +16,7 @@ SPDX-License-Identifier: MPL-2.0
 [[why-is-model-evolution-needed]]
 == Why is Model Evolution needed?
 
-Seldomly, an Aspect model can be created completely in one step from ideation to conceptualization.
+Seldomly, an Aspect Model can be created completely in one step from ideation to conceptualization.
 
 Authoring an Aspect Model is comparable to the creation of a software artifact. At first, a domain
 model draft or concept map is created to capture the understanding of the respective domain experts
@@ -28,7 +28,7 @@ Characteristics and proper descriptions.
 
 This "Version 1.0" of the model can then be used to implement the first version of the corresponding
 Aspect. Imagine that the service is running and delivers data that corresponds to the "Version 1.0"
-of the Aspect model. Clients are developed as well, possibly by different parties, and happily
+of the Aspect Model. Clients are developed as well, possibly by different parties, and happily
 consume the Aspect data. However, sooner or later there will be a need for change in the Aspect
 Model. For example, it could be missing relevant Properties, existing Properties could use wrong
 Characteristics, descriptions or names, or could be missing localizations. This can happen for many
@@ -169,7 +169,7 @@ The modeler decides to reify the possible status values by using an Enumeration 
 characteristic ②. Because the Property still has the `string` datatype, payloads for the previous
 and the current model version do not differ. Taking into account that the description in the
 previous model version states the valid values and they do not differ to the Enumeration's values,
-this makes the change a safe change. Therefore, the Aspect model's version is increased to 1.0.1.
+this makes the change a safe change. Therefore, the Aspect Model's version is increased to 1.0.1.
 |
 [source,turtle]
 ----

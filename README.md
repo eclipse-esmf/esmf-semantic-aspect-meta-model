@@ -13,7 +13,7 @@ The Semantic Aspect Meta Model (SAMM) allows the creation of models to describe 
 digital twins by defining their domain specific aspects. In this context, digital twins are the
 digital representation of a physical or virtual object that bundles and combines several aspects.
 SAMM provides a set of predefined objects (as depicted below) that allow a domain expert to define
-aspect models and complement a digital twin with a semantic foundation.
+Aspect Models and complement a digital twin with a semantic foundation.
 
 SAMM was previously known as BAMM (BAMM Aspect Meta Model).
 
@@ -27,7 +27,7 @@ The source files (AsciiDoc) are built using Maven and
 ![Semantic Aspect Meta Model (SAMM) Elements](documentation/modules/ROOT/images/aspect-meta-model.svg)
 
 ## Example Usage
-SAMM standardizes the creation of domain specific aspect models and also makes them reusable.
+SAMM standardizes the creation of domain specific Aspect Models and also makes them reusable.
 Therefore, the created aspects can be used in several different digital twins.
 
 Imagine an automated guided vehicle (AGV) and its digital representation.
