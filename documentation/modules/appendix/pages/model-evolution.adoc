@@ -29,9 +29,9 @@ Characteristics and proper descriptions.
 This "Version 1.0" of the model can then be used to implement the first version of the corresponding
 Aspect. Imagine that the service is running and delivers data that corresponds to the "Version 1.0"
 of the Aspect model. Clients are developed as well, possibly by different parties, and happily
-consume the Aspect data. Now the following happens: The domain experts find out that the model is
-indeed not correct, it could be missing relevant Properties, existing Properties could use wrong
-Characteristics, descriptions or names, or are missing localizations. This can happen for many
+consume the Aspect data. However, sooner or later there will be a need for change in the Aspect
+Model. For example, it could be missing relevant Properties, existing Properties could use wrong
+Characteristics, descriptions or names, or could be missing localizations. This can happen for many
 reasons:
 
 . The modelled device or asset changes,
@@ -79,8 +79,10 @@ scope of this document.
 [[safe-changes]]
 == Safe Changes for Graceful Model Evolution
 
-Every change to the Aspect Model that does not change the JSON payload corresponding to the model is
-a _safe change_. The following table gives an overview of the safe and unchanges that mainly concern
+Every change to the Aspect Model that is backwards compatible in the sense that it permits all
+previously permitted JSON payloads _and_ keeps semantics (see below) is a _safe change_.
+
+The following table gives an overview of the safe and unchanges that mainly concern
 the structure of the data.
 
 [cols="a,a", options="header"]
