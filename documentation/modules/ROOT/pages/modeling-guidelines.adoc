@@ -613,6 +613,26 @@ Example:
 include::example$aspect-sample.ttl[tags=operation-declaration]
 ----
 
+[[declaring-events]]
+=== Declaring Events
+
+Events have the following attributes:
+
+[width="100%", options="header"]
+|===
+| Attributes | Description | Required
+| `samm:parameters` | The parameters that describe the Event, given as a list of Properties.| {ok}
+|===
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=event-declaration]
+
+include::example$aspect-sample.ttl[tags=measurement-declaration]
+----
+
 [[adding-external-references]]
 === Adding external references
 
@@ -682,7 +702,7 @@ CAUTION: If the Property's use is optional, it is marked with `samm:optional tru
 example), the Property is directly referenced. Writing `samm:optional false` is _not_ allowed.
 
 NOTE: The setting of the `samm:optional` attribute for a specific property is inherited from parent Entity
-by the Entities extending it using the Entity extension mechanism (`samm::extends`).
+by the Entities extending it using the Entity extension mechanism (`samm:extends`).
 
 [[payload-names]]
 === Declaring Payload Names for Properties
@@ -710,7 +730,7 @@ CAUTION: A Property may not be marked as not being included in the payload using
 true` and have a payload name declared using `samm:payloadName`.
 
 NOTE: It is also useful to know that the payload name definition is inherited from parent Entity
-by its children when using the Entity extension mechanism (`samm::extends`).
+by its children when using the Entity extension mechanism (`samm:extends`).
 
 [[syntactic-shortcuts]]
 === Syntactic Shortcuts

@@ -20,8 +20,9 @@
    samm:description "This Aspect is an example."@en ;
    samm:description "Dieser Aspekt ist ein Beispiel."@de ;
    samm:properties ( :myProperty :anotherProperty ) ;
-   # In this example, there are no operations.
-   samm:operations ( ) .
+   # In this example, there are no operations or events.
+   samm:operations ( ) ;
+   samm:events ( ) .
 # end::aspect-declaration[]
 
 # To make MyAspect valid
@@ -272,3 +273,8 @@
 :AccelerationMeasurement a samm-c:Measurement ;
    samm:dataType xsd:float ;
    samm-c:unit unit:metrePerSecondSquared .
+
+# tag::event-declaration[]
+:temperatureUpdated a samm:Event ;
+   samm:parameters ( :drillHeadTemperature ) .
+# end::event-declaration[]
