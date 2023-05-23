@@ -104,8 +104,6 @@ please consider contributing them, so that they can be included in the {meta-mod
 Characteristic catalog.
 
 image::characteristics-decision-tree.svg[width=100%]
-// Uncomment the following to have the image generated on the fly instead:
-// include::ROOT:partial$characteristics-decision-tree.adoc[]
 
 [[choosing-constraints]]
 == Choosing Constraints
@@ -127,6 +125,4 @@ Constraint] for the Property. This will ensure that consumers of the Aspect will
 broken special characters.
 
 image::constraints-decision-tree.svg[width=100%]
-// Uncomment the following to have the image generated on the fly instead:
-// include::ROOT:partial$constraints-decision-tree.adoc[]
 

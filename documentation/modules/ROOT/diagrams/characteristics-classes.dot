@@ -1,25 +1,40 @@
-////
-Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+// Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+// See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
-SPDX-License-Identifier: MPL-2.0
-////
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+// SPDX-License-Identifier: MPL-2.0
 
-[graphviz,characteristics-classes,svg,layout=dot]
-----
+// PRAGMA LAYOUT-ENGINE: dot
 digraph characteristics_classes {
   splines=ortho
   rankdir=BT
-include::diagram-style.dot[]
+
   node [
-     width = 2
+    fontname="Roboto Condensed"
+    fontsize=12
+    style="filled"
+    shape="record"
+    gradientangle=0
+    fillcolor="#e8eef7:#b7c9e3"
+    color="#000000"
+    fontcolor="#000000"
   ]
 
   edge [
-     arrowhead = empty
+    fontname="Roboto Condensed"
+    fontsize=10
+    color="#000000"
+    fontcolor="#000000"
+  ]
+
+  node [
+    width = 2
+  ]
+
+  edge [
+    arrowhead = empty
   ]
 
   // Wide nodes
@@ -90,4 +105,3 @@ include::diagram-style.dot[]
     Trait;
   }
 }
-----

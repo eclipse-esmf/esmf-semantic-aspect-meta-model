@@ -1,0 +1,40 @@
+// Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+
+// See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+// SPDX-License-Identifier: MPL-2.0
+
+// PRAGMA LAYOUT-ENGINE: dot
+digraph payloads {
+  rankdir=LR
+  splines=lines
+
+  node [
+    fontname="Roboto Condensed"
+    fontsize=12
+    style="filled"
+    shape="record"
+    gradientangle=0
+    fillcolor="#e8eef7:#b7c9e3"
+    color="#000000"
+    fontcolor="#000000"
+  ]
+
+  edge [
+    fontname="Roboto Condensed"
+    fontsize=10
+    color="#000000"
+    fontcolor="#000000"
+  ]
+
+  AspectModel [label="Aspect Model"]
+  RestInterface [label="REST Interface"]
+  JsonStructure [label="JSON Structure"]
+
+  Aspect -> RestInterface [label="has a"]
+  RestInterface -> JsonStructure [label="uses"]
+  AspectModel -> Aspect [label="describes"]
+  JsonStructure -> AspectModel [label="corresponds to"]
+}

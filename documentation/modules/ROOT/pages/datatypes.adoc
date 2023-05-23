@@ -35,7 +35,7 @@ type except `samm:Entity` is scalar.
 The `Entity` type corresponds to the Entity Meta Model element as described in section
 xref:meta-model-elements.adoc#meta-model-elements[Meta Model Elements].
 
-image::aspect-model-types.svg[width=100%]
+image::types.svg[width=100%]
 
 The following table lists the types allowed in the Aspect Models, with references to their
 definition in the respective standards and an informative description of their value space.

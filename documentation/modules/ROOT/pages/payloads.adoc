@@ -14,7 +14,7 @@ SPDX-License-Identifier: MPL-2.0
 = Mapping to JSON
 
 == Rules for the construction of JSON payloads matching an Aspect model
-image::payloads-diagram.svg[opts=interactive, width=100%]
+image::payloads.svg[opts=interactive, width=100%]
 
 For understanding the construction rules, we define the following terms:
 
