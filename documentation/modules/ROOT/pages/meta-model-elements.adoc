@@ -59,4 +59,4 @@ NOTE: See the sections
 xref:modeling-guidelines.adoc#attributes-that-all-model-elements-have[Attributes
 that all model elements have] and xref:modeling-guidelines.adoc#declaring-model-elements[Declaring model
 elements] in section xref:modeling-guidelines.adoc#aspects[Aspects] for hints on using the model elements
-in an Aspect model.
+in an Aspect Model.

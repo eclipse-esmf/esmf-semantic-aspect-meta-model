@@ -13,7 +13,7 @@ SPDX-License-Identifier: MPL-2.0
 [[mapping-to-json]]
 = Mapping to JSON
 
-== Rules for the construction of JSON payloads matching an Aspect model
+== Rules for the construction of JSON payloads matching an Aspect Model
 image::payloads-diagram.svg[opts=interactive, width=100%]
 
 For understanding the construction rules, we define the following terms:
@@ -22,10 +22,10 @@ For understanding the construction rules, we define the following terms:
 * A Property's _effective data type_ means the Property's Characteristic's `samm:dataType`.
 * A data type is scalar, if it is one of the xref:datatypes.adoc#data-types[allowed data types], but not a `samm:Entity`.
 
-In order to create JSON payloads that correspond to an Aspect model, the following rules are
+In order to create JSON payloads that correspond to an Aspect Model, the following rules are
 applied. The other way round they can also be used to describe a validation algorithm.
 
-* An Aspect model is always serialized as an unnamed JSON object.
+* An Aspect Model is always serialized as an unnamed JSON object.
 * For each Property:
 ** If it is marked as optional, it may or may not be included in the payload. If, and only if, the
    Property is marked as optional and is included in the payload, then its value may be `null`,
@@ -51,20 +51,20 @@ applied. The other way round they can also be used to describe a validation algo
    xref:characteristics.adoc#collection-characteristic[Set] or
    xref:characteristics.adoc#collection-characteristic[Sorted Set], it is serialized as a named JSON
    array (with `$\{propertyName\}` being the name of the JSON array property).
-* Characteristics defined in the Aspect model other than the ones mentioned above are not subject to
+* Characteristics defined in the Aspect Model other than the ones mentioned above are not subject to
   serialization.
-* Operations defined in the Aspect model are not subject to serialization.
-* Events defined in the Aspect model are not subject to serialization.
+* Operations defined in the Aspect Model are not subject to serialization.
+* Events defined in the Aspect Model are not subject to serialization.
 
 [[data-type-mappings]]
 == Data type mappings
 
-A xref:datatypes.adoc#data-types[rich type tree] is used in an Aspect model. As JSON offers only a
+A xref:datatypes.adoc#data-types[rich type tree] is used in an Aspect Model. As JSON offers only a
 very limited set of data types for primitive type values there are less options on how to represent
 the data. The mappings are described in the following table.
 
 |===
-| | Aspect model data type | Corresponding JSON data type
+| | Aspect Model data type | Corresponding JSON data type
 .4+| Core Types
 | `xsd:string` | String
 | `xsd:boolean` | Boolean
@@ -137,7 +137,7 @@ CAUTION: Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[lim
 represention of numbers] in JSON, the maximum integer number that can be used without losing
 precision is 2⁵³-1 (defined as
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER[Number.MAX_SAFE_INTEGER]).
-This means that even if the Aspect model data type would allow higher or lower values, if they can
+This means that even if the Aspect Model data type would allow higher or lower values, if they can
 not be represented in JSON, they can not be used. Affected data types are the unbounded numeric
 types `xsd:decimal`, `xsd:integer`, `xsd:positiveInteger`, `xsd:nonNegativeInteger`,
 `xsd:negativeInteger`, `xsd:nonPositiveInteger` and the bounded type `xsd:unsignedLong`. The other

@@ -17,7 +17,7 @@ SPDX-License-Identifier: MPL-2.0
 
 === Notes
 
-* As mentioned in the xref:index.adoc[Introduction], Aspect models are described in RDF Turtle
+* As mentioned in the xref:index.adoc[Introduction], Aspect Models are described in RDF Turtle
   xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]]. The aspect specification will
   therefore assume basic familiarity with Turtle.
 * For the definition of the different Model elements please refer to the
@@ -77,7 +77,7 @@ model element, in the following examples we will mostly leave them out to improv
 [[using-namespaces]]
 === Using Namespaces
 
-An Aspect model file should start with the {meta-model-abbr} prefix definitions. The empty namespace
+An Aspect Model file should start with the {meta-model-abbr} prefix definitions. The empty namespace
 ":" should be used as local namespace, i.e. the versioned namespace in which the Aspect and its
 elements are defined. Other customer or domain specific namespaces can be defined additionally.
 However, the samm-* namespaces are reserved for the meta model. Third party locations can be
@@ -112,7 +112,7 @@ addition to the general attributes, every Aspect Model element has the following
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
-* Each Aspect model must be defined in its own file. The file name must be the same as the Aspect's
+* Each Aspect Model must be defined in its own file. The file name must be the same as the Aspect's
   name.
 * The hierarchical namespace part in the Aspect's URN can be freely chosen.
 
@@ -289,7 +289,7 @@ Example with complex values:
 
 Declaring an Enumeration with a complex value is usally done in order to add a description to the
 actual value, e.g., the `state` in the example below, which provides information regarding the
-meaning of the value. This description only exists in the aspect model and is not part of the
+meaning of the value. This description only exists in the Aspect Model and is not part of the
 payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
 part of the runtime data, the `samm:notInPayload` attribute is used.
 
@@ -406,7 +406,7 @@ Characteristic, and after that a complete concrete example is given.
   `:red` `:green` `:blue` )
 |===
 
-The following code shows the Aspect model for the first example from the table. Note that when
+The following code shows the Aspect Model for the first example from the table. Note that when
 writing the `deconstructionRule`, backslashes (`\`) need to be escaped in order to produce valid
 RDF/Turtle syntax, i.e. write `\\` instead of `\`.
 
@@ -617,7 +617,7 @@ include::example$aspect-sample.ttl[tags=operation-declaration]
 === Adding external references
 
 The `samm:see` attribute can be used to add references to related elements in an external taxonomy,
-ontology or standards document to Aspect model elements. Values for `samm:see` must be URIs. The
+ontology or standards document to Aspect Model elements. Values for `samm:see` must be URIs. The
 meaning of the reference is informative and implies no semantics such as equality or subsumption in
 either direction.
 

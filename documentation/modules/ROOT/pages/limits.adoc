@@ -26,11 +26,11 @@ You will probably also want to include the generated artifacts in your CD/CI pip
 For example while in Java there is no restriction on the depth of an inheritance hierarchy, static code analysis tools in the build pipeline may impose one depending on
 the current ruleset in use.
 
-The general recommendations for sizing and using aspect models are:
+The general recommendations for sizing and using Aspect Models are:
 
 * Start integrating all the required tooling as early in the lifecycle of your project as possible. This will for example help you to find out early rather than late if the corresponding payloads are too complex for aspect providers or consumers to efficiently handle.
 
-* If in doubt, cut your aspect models small rather than large to ensure usability, reusability and efficient handling (multiple Aspect APIs can be provide as multiple endpoints within the same infrastructure)
+* If in doubt, cut your Aspect Models small rather than large to ensure usability, reusability and efficient handling (multiple Aspect APIs can be provide as multiple endpoints within the same infrastructure)
 
 
 

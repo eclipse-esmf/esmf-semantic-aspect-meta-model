@@ -10,6 +10,7 @@ SPDX-License-Identifier: MPL-2.0
 
 .Appendix
 * xref:best-practices.adoc[Best Practices]
+* xref:model-evolution.adoc[Model Evolution]
 * xref:release-notes.adoc[Release Notes]
 * xref:unitcatalog.adoc[Unit Catalog]
 * xref:bibliography.adoc[Bibliography]

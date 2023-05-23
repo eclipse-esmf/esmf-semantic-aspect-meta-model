@@ -7,18 +7,21 @@
 # SPDX-License-Identifier: MPL-2.0
 
 # tag::content[]
-@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
+@prefix : <urn:samm:com.mycompany.myapplication:1.0.3#> .
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :MachineOnlineStatus a samm:Aspect ;
-   samm:properties ( :machineOnlineStatus ) ;
+   samm:properties ( [ samm:property :onlineStatus;
+                       samm:payloadName "machineOnlineStatus" ] ) ; # <6>
    samm:operations ( ) .
 
-:machineOnlineStatus a samm:Property ;
-   samm:description "The current machine online status. Can be either ON, OFF, BOOTING or UNDEFINED."@en ;
-   samm:characteristic [ # <1>
-      a samm:Characteristic ;
-      samm:dataType xsd:string
+:onlineStatus a samm:Property ;
+   samm:description "The current machine online status."@en ;
+   samm:characteristic [
+      a samm-c:Enumeration ;
+      samm:dataType xsd:string ;
+      samm-c:values ( "ON" "OFF" "BOOTING" )
    ] .
 # end::content[]
