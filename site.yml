@@ -41,7 +41,4 @@ asciidoc:
     samm-e: urn:samm:org.eclipse.esmf.samm:entity:2.0.0#@
     unit: urn:samm:org.eclipse.esmf.samm:unit:2.0.0#@
     example-ns: com.mycompany@
-    plantuml-server-url: http://www.plantuml.com/plantuml
-  extensions:
-  - asciidoctor-plantuml
 

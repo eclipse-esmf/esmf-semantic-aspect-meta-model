@@ -90,8 +90,33 @@
       </plugins>
    </build>
 
-   <!-- If nodejs is not present, download it -->
    <profiles>
+      <profile>
+         <id>render-diagrams</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.eclipse.esmf</groupId>
+                  <artifactId>esmf-samm-build-plugin</artifactId>
+                  <version>${project.version}</version>
+                  <executions>
+                     <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                           <goal>renderDiagram</goal>
+                        </goals>
+                        <configuration>
+                           <sourcePath>${project.basedir}/modules/ROOT/diagrams</sourcePath>
+                           <targetPath>${project.basedir}/modules/ROOT/images</targetPath>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+
+      <!-- If nodejs is not present, download it -->
       <profile>
          <id>download-nodejs</id>
          <activation>
@@ -161,16 +186,6 @@
                         </goals>
                         <configuration>
                            <arguments>install antora-site-generator-lunr</arguments>
-                        </configuration>
-                     </execution>
-                     <execution>
-                        <id>install-asciidoctor-plantuml</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                           <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                           <arguments>install asciidoctor-plantuml</arguments>
                         </configuration>
                      </execution>
                   </executions>
