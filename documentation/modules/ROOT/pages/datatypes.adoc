@@ -89,7 +89,7 @@ definition in the respective standards and an informative description of their v
 |===
 
 The following types defined by the XSD and RDF specifications, respectively, are considered
-unsuitable in Aspect models and should not be used:
+unsuitable in Aspect Models and should not be used:
 
 `xsd:language`, `xsd:normalizedString`, `xsd:token`, `xsd:NMTOKEN`, `xsd:Name`, `xsd:NCName`,
 `xsd:QName`, `xsd:ENTITY`, `xsd:ID`, `xsd:IDREF`, `xsd:NOTATION`, `xsd:IDREFS`, `xsd:ENTITIES`,

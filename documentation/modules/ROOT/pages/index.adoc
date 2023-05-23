@@ -31,15 +31,15 @@ conventional approach could not satisfyingly answer the question of where this k
 would otherwise live -- in the sensor's data sheet that is only a human-readable document? In the
 Aspect's API documentation that is also only human-readable? Should the information about the
 sensor's physical range be hard-coded in the Aspect and included in each service reply, even though
-it never changes? By expressing it in the Aspect model, the Aspect's semantics can be made available
+it never changes? By expressing it in the Aspect Model, the Aspect's semantics can be made available
 to consumers of the data in a way that opens up new possibilities.
 
-Therefore, an Aspect model contains both information about runtime data structure (e.g., that there
+Therefore, an Aspect Model contains both information about runtime data structure (e.g., that there
 is a property in the data called "temperature", and that it has a numeric value) and information
 that is not part of the runtime data (e.g., the unit or range). It does not, however, contain actual
 runtime data (e.g., a numeric value representing the current temperature), as this will be delivered
-by an Aspect conforming to this Aspect model. The combination of raw runtime data and its
-corresponding Aspect model yields _information_.
+by an Aspect conforming to this Aspect Model. The combination of raw runtime data and its
+corresponding Aspect Model yields _information_.
 
 To specify an Aspect Model, the _{meta-model-full-name}_ ({meta-model-abbr}) is used. This document
 specifies the {meta-model-full-name}.
@@ -48,5 +48,5 @@ The Meta Model is specified using the Resource Description Format (RDF,
 xref:samm-specification:appendix:bibliography.adoc#rdf11[[rdf11\]]) and the Terse RDF Triple Language
 syntax (TTL, xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]]), together with
 validation rules in the Shapes Constraint Language (SHACL,
-xref:samm-specification:appendix:bibliography.adoc#shacl[[shacl\]]). Aspect models are likewise
+xref:samm-specification:appendix:bibliography.adoc#shacl[[shacl\]]). Aspect Models are likewise
 specified in RDF/Turtle, following {meta-model-abbr} semantics.

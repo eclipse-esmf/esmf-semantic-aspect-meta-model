@@ -36,7 +36,7 @@ image::characteristics-classes.svg[width=100%]
 Base class of all characteristics. This Characteristics Class can also be instantiated directly
 (i.e., without creating a subclass).
 
-See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -58,7 +58,7 @@ The Trait is used to add one or more <<constraints>> to another Characteristic, 
 as the "base Characteristic".
 A Trait itself has no `samm:dataType`, because it inherits the type of its `samm-c:baseCharacteristic`.
 
-See xref:modeling-guidelines.adoc#declaring-constraints[declaring constraints] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-constraints[declaring constraints] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -78,7 +78,7 @@ See xref:modeling-guidelines.adoc#declaring-constraints[declaring constraints] f
 A value which can be quantified and may have a unit, e.g., the number of bolts required for a
 processing step or the expected torque with which these bolts should be tightened.
 
-See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -95,7 +95,7 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 A measurement is a numeric value with an associated unit and quantity kind.
 
-See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -112,7 +112,7 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 
 An enumeration represents a list of possible values.
 
-See xref:modeling-guidelines.adoc#declaring-enumerations[declaring enumerations] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-enumerations[declaring enumerations] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -130,7 +130,7 @@ See xref:modeling-guidelines.adoc#declaring-enumerations[declaring enumerations]
 
 A state is subclass of Enumeration with a default value.
 
-See xref:modeling-guidelines.adoc#declaring-state[declaring state] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-state[declaring state] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -193,7 +193,7 @@ therefore be used: `xref:appendix:unitcatalog.adoc#unit-centipoisePerBar[unit:ce
 A group of values which may be either of a scalar or Entity type. The values may be duplicated and
 are not ordered (i.e., bag semantics).
 
-See xref:modeling-guidelines.adoc#declaring-collections[declaring collections] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-collections[declaring collections] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -241,7 +241,7 @@ A subclass of <<collection-characteristic>> which may not contain duplicates and
 A subclass of <<sorted-set-characteristic>> containing values with the exact point in time when the
 values where recorded.
 
-See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -277,7 +277,7 @@ a `samm:dataType`, this must therefore be done when instantiating the Characteri
 Describes a Property whose value can have one of two possible types (a disjoint union).
 This Characteristic does not have one explicit `samm:dataType`, as it can be the datatype of either the left or the right.
 
-See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -298,7 +298,7 @@ See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage i
 Describes a Property whose data type is an Entity. The Entity used as data type may be defined in
 the same Aspect Model or the shared Entity namespace of the {meta-model-full-name}.
 
-See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect Model.
 
 [[structured-value-characteristic]]
 === Structured Value
@@ -312,7 +312,7 @@ value with a well-defined structure. The Structured Value Characteristic allows 
 the parts of the Property's value by linking to a separate Property definition for each part. To
 define the parts, the value is deconstructed using a regular expression.
 
-See xref:modeling-guidelines.adoc#declaring-structured-value[declaring structured value] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-structured-value[declaring structured value] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -444,7 +444,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
 Describes a Property containing a reference to one of the units in the
 xref:appendix:unitcatalog.adoc#unit-catalog[Unit catalog]. +
-See xref:modeling-guidelines.adoc#using-unit-reference[Using Unit Reference] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#using-unit-reference[Using Unit Reference] for usage in an Aspect Model.
 
 dataType: `xref:datatypes.adoc#data-types[samm:curie]`
 
@@ -562,7 +562,7 @@ Restricts the encoding of a Property.
 
 NOTE: The default encoding for values with a xref:datatypes.adoc#data-types[string-like value space]
 is UTF-8, therefore using an Encoding Constraint with a `samm:value` of `samm:UTF-8` is only
-necessary when a Property's encoding is changed during an Aspect model version increase _from_ some
+necessary when a Property's encoding is changed during an Aspect Model version increase _from_ some
 other encoding _to_ UTF-8 to indicate that the other encoding is not any longer used.
 
 [[length-constraint]]

@@ -28,7 +28,7 @@ The Time Series Entity is used with the xref:characteristics.adoc#time-series-ch
 Series] Characteristic. It wraps the two Properties `timestamp` and `value` to represent a value at
 a point in time.
 
-See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect model.
+See xref:modeling-guidelines.adoc#declaring-time-series[declaring time series] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,40,30"]
 |===
