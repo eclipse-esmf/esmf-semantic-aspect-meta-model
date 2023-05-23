@@ -96,8 +96,8 @@ digraph aspect_model {
   event_west -> help_event_aspect_event_out [arrowhead="none", label="", taillabel="*"]
 
   // Event --[parameters]--> Property
-  event_east [shape="point", pos="1.6,-6!", label="", height=0.0, width=0.0]
-  help_event_property_event_out [shape="point", pos="2.6,-6!", label="", height=0.0, width=0.0]
+  event_east [shape="point", pos="1.6,-7.5!", label="", height=0.0, width=0.0]
+  help_event_property_event_out [shape="point", pos="2.6,-7.5!", label="", height=0.0, width=0.0]
   event_east -> help_event_property_event_out [arrowhead="none", label="", dir="both", arrowtail="ediamond"]
   property_east3 [shape="point", pos="1.6,-1.4!", label="", height=0.0, width=0.0]
   help_event_property_property_out [shape="point", pos="2.6,-1.4!", label="", height=0.0, width=0.0]

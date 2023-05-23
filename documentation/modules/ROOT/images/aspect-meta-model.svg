@@ -398,18 +398,18 @@
 <!-- event_east -->
 <g id="node33" class="node">
 <title>event_east</title>
-<ellipse fill="#e8eef7" stroke="#000000" cx="363.6" cy="-149" rx="0" ry="0"/>
+<ellipse fill="#e8eef7" stroke="#000000" cx="363.6" cy="-41" rx="0" ry="0"/>
 </g>
 <!-- help_event_property_event_out -->
 <g id="node34" class="node">
 <title>help_event_property_event_out</title>
-<ellipse fill="#e8eef7" stroke="#000000" cx="435.6" cy="-149" rx="0" ry="0"/>
+<ellipse fill="#e8eef7" stroke="#000000" cx="435.6" cy="-41" rx="0" ry="0"/>
 </g>
 <!-- event_east&#45;&gt;help_event_property_event_out -->
 <g id="edge17" class="edge">
 <title>event_east&#45;&gt;help_event_property_event_out</title>
-<path fill="none" stroke="#000000" d="M375.81,-149C395.92,-149 433.97,-149 435.55,-149"/>
-<polygon fill="none" stroke="#000000" points="375.65,-149 369.65,-153 363.65,-149 369.65,-145 375.65,-149"/>
+<path fill="none" stroke="#000000" d="M375.81,-41C395.92,-41 433.97,-41 435.55,-41"/>
+<polygon fill="none" stroke="#000000" points="375.65,-41 369.65,-45 363.65,-41 369.65,-37 375.65,-41"/>
 </g>
 <!-- property_east3 -->
 <g id="node35" class="node">
@@ -430,7 +430,7 @@
 <!-- help_event_property_property_out&#45;&gt;help_event_property_event_out -->
 <g id="edge19" class="edge">
 <title>help_event_property_property_out&#45;&gt;help_event_property_event_out</title>
-<path fill="none" stroke="#000000" d="M435.6,-480.14C435.6,-475.09 435.6,-154.07 435.6,-149.06"/>
+<path fill="none" stroke="#000000" d="M435.6,-480.12C435.6,-473.42 435.6,-47.73 435.6,-41.08"/>
 </g>
 <!-- property_east1 -->
 <g id="node37" class="node">
