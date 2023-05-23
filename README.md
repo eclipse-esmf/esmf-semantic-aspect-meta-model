@@ -81,7 +81,7 @@ them into .svg, run
 In order to render the diagrams and the Antora documentation in one step, run
 
 ```sh
-./mvnw generate-resources -pl documentation -Prender-diagrams,antora-local
+./mvnw generate-resources -pl documentation -Prender-diagrams,antora
 ```
 
 Note that for GraphViz .dot files, you can include a line like the following to choose the [layout
