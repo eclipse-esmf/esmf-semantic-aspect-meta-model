@@ -132,12 +132,9 @@ public class DiagramRenderer extends AbstractMojo {
    private String augmentSvgDiagram( final String diagram ) throws IOException {
       try ( final InputStream fontStream = getClass().getClassLoader().getResourceAsStream( FONT_FILE ) ) {
          final String fontInBase64 = base64EncodeInputStream( fontStream );
-         final String css = "\n<style>\n"
-               + "@font-face {\n"
-               + "    font-family: \"" + FONT_NAME + "\";\n"
-               + "    src: url(\"data:application/font-truetype;charset=utf-8;base64," + fontInBase64 + "\");\n"
-               + "}\n"
-               + "</style>";
+         final String css = String.format(
+               "%n<style>%n@font-face {%nfont-family: \"%s\";%nsrc: url(\"data:application/font-truetype;charset=utf-8;base64,%s\");%n}%n</style>",
+               FONT_NAME, fontInBase64 );
          return diagram.replaceFirst( "<g", css + "<g" );
       }
    }
