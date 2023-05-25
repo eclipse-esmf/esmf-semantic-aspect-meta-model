@@ -50,7 +50,7 @@ public class DiagramRenderer extends AbstractMojo {
    private static final String FONT_FILE = "RobotoCondensed-Regular.ttf";
    private static final String FONT_NAME = "Roboto Condensed";
    private static final Pattern PRAGMA_LAYOUT_ENGINE = Pattern.compile( "^.*PRAGMA LAYOUT-ENGINE:\\s*(\\w+)$", Pattern.MULTILINE );
-   private final Logger LOG = LoggerFactory.getLogger( DiagramRenderer.class );
+   private static final Logger LOG = LoggerFactory.getLogger( DiagramRenderer.class );
 
    @Parameter( property = "sourcePath", required = true )
    private String sourcePath;
