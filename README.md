@@ -69,6 +69,25 @@ inside the repository folder.
 Navigate to *build* > *site* and open the `index.html` page in your web browser to see the result.
 Repeat the steps everytime you make any changes in the documentation and want to inspect the final outcome.
 
+### Build diagrams
+Diagrams are kept in the [diagrams](documentation/modules/ROOT/diagrams) folder in
+[GraphViz](https://graphviz.org/) .dot or [PlantUML](https://plantuml.com/) .pu format. To render
+them into .svg, run
+
+```sh
+./mvnw generate-sources -pl documentation -Prender-diagrams
+```
+
+In order to render the diagrams and the Antora documentation in one step, run
+
+```sh
+./mvnw generate-resources -pl documentation -Prender-diagrams,antora
+```
+
+Note that for GraphViz .dot files, you can include a line like the following to choose the [layout
+engine](https://graphviz.org/docs/layouts/) to use: `// PRAGMA LAYOUT-ENGINE: neato`. Allowed values
+are circo, dot, neato, osage, twopi, and fdp. If left out, the default is dot.
+
 ### Build the SAMM artifact
 To build the Semantic Aspect Meta Model Java artifact, run
 

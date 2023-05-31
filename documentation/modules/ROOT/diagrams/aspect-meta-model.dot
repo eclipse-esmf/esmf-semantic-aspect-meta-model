@@ -1,22 +1,36 @@
-////
-Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+// Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+// See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
-SPDX-License-Identifier: MPL-2.0
-////
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+// SPDX-License-Identifier: MPL-2.0
 
-[graphviz,aspect-meta-model,svg,layout=neato]
-----
+// PRAGMA LAYOUT-ENGINE: neato
 digraph aspect_model {
   splines=line
 
-include::diagram-style.dot[]
   node [
-      width=3.2
-      outputorder="edgesfirst"
+    fontname="Roboto Condensed"
+    fontsize=12
+    style="filled"
+    shape="record"
+    gradientangle=0
+    fillcolor="#e8eef7:#b7c9e3"
+    color="#000000"
+    fontcolor="#000000"
+  ]
+
+  edge [
+    fontname="Roboto Condensed"
+    fontsize=10
+    color="#000000"
+    fontcolor="#000000"
+  ]
+
+  node [
+    width=3.2
+    outputorder="edgesfirst"
   ]
 
   Aspect [label="{ «Aspect»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="0,0.38!"]
@@ -82,8 +96,8 @@ include::diagram-style.dot[]
   event_west -> help_event_aspect_event_out [arrowhead="none", label="", taillabel="*"]
 
   // Event --[parameters]--> Property
-  event_east [shape="point", pos="1.6,-6!", label="", height=0.0, width=0.0]
-  help_event_property_event_out [shape="point", pos="2.6,-6!", label="", height=0.0, width=0.0]
+  event_east [shape="point", pos="1.6,-7.5!", label="", height=0.0, width=0.0]
+  help_event_property_event_out [shape="point", pos="2.6,-7.5!", label="", height=0.0, width=0.0]
   event_east -> help_event_property_event_out [arrowhead="none", label="", dir="both", arrowtail="ediamond"]
   property_east3 [shape="point", pos="1.6,-1.4!", label="", height=0.0, width=0.0]
   help_event_property_property_out [shape="point", pos="2.6,-1.4!", label="", height=0.0, width=0.0]
@@ -202,4 +216,3 @@ include::diagram-style.dot[]
  extends_label3 [label="extends", pos="0.65,-5.3!", color="white", fillcolor="white", fontsize=9, shape="box", width=0.5, height=0.2, fixedsize=true]
 
 }
-----

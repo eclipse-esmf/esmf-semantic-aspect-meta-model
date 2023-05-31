@@ -26,6 +26,7 @@
 
    <properties>
       <maven-plugin-plugin-version>3.6.4</maven-plugin-plugin-version>
+      <plantuml-version>1.2023.8</plantuml-version>
    </properties>
 
    <dependencies>
@@ -79,6 +80,16 @@
          <groupId>ch.qos.logback</groupId>
          <artifactId>logback-classic</artifactId>
          <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>guru.nidi</groupId>
+         <artifactId>graphviz-java</artifactId>
+         <version>${graphviz-version}</version>
+      </dependency>
+      <dependency>
+         <groupId>net.sourceforge.plantuml</groupId>
+         <artifactId>plantuml-mit</artifactId>
+         <version>${plantuml-version}</version>
       </dependency>
    </dependencies>
 
