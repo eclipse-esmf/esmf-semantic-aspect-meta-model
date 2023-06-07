@@ -212,6 +212,9 @@
                         <configuration>
                            <executable>${antora-cli}</executable>
                            <commandlineArgs>--generator antora-site-generator-lunr ../site.yml --stacktrace</commandlineArgs>
+                           <environmentVariables>
+                              <DOCSEARCH_INDEX_VERSION>latest</DOCSEARCH_INDEX_VERSION>
+                           </environmentVariables>
                            <useMavenLogger>true</useMavenLogger>
                         </configuration>
                      </execution>
@@ -239,6 +242,9 @@
                         <configuration>
                            <executable>${antora-cli}</executable>
                            <commandlineArgs>--generator antora-site-generator-lunr ../site-local.yml --stacktrace</commandlineArgs>
+                           <environmentVariables>
+                              <DOCSEARCH_INDEX_VERSION>latest</DOCSEARCH_INDEX_VERSION>
+                           </environmentVariables>
                            <useMavenLogger>true</useMavenLogger>
                         </configuration>
                      </execution>
