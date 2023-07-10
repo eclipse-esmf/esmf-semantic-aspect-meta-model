@@ -31,7 +31,7 @@ The naming of Model Elements follows the naming
 https://en.wikipedia.org/wiki/Naming_convention_(programming)#Java[Java naming conventions] for
 classes, properties and methods.
 
-* The names of Aspects, Entities, Constraints and Characteristics follow the naming conventions for
+* The names of Aspects, Entities, Events, Constraints and Characteristics follow the naming conventions for
   Java classes, i.e. UpperCamelCase.
 * The names of Properties, Operations and Units follow the naming conventions of Java methods, i.e.
   lowerCamelCase.
