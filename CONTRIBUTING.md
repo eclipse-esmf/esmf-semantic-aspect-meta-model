@@ -22,6 +22,11 @@ Framework](https://projects.eclipse.org/projects/dt.esmf/).
 * For deeper discussions specific to development, there is also the [developer mailing
   list](https://accounts.eclipse.org/mailing-list/esmf-dev).
 
+## Architecture Decision Records
+
+Decisions on code and architecture are documented using [Markdown Any Decision
+Records](https://adr.github.io/madr/) in [documentation/decisions/](https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/tree/main/documentation/decisions).
+
 ## Branching
 We follow the [Git branching guidance](https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops).
 
