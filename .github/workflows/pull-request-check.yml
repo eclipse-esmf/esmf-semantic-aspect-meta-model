@@ -1,7 +1,10 @@
 name: Check Pull Request
 on:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+    paths-ignore:
+      - 'documentation/decisions/**'
 jobs:
   build-test:
     runs-on: ubuntu-20.04
