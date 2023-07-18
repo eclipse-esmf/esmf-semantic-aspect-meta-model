@@ -1,4 +1,4 @@
-# Formalism for the definition of Aspect Models
+# Formalism for the definition of Aspect Models: RDF with Turtle syntax
 
 ## Context and Problem Statement
 

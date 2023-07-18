@@ -1,4 +1,4 @@
-# Aspect Model File File Extension
+# Aspect Model File Extension: Use .ttl
 
 ## Context and Problem Statement
 

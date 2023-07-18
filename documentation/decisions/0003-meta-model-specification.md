@@ -1,4 +1,4 @@
-# Formal and informal Meta Model Specification
+# Formal and informal Meta Model Specification: Specify via SHACL
 
 ## Context and Problem Statement
 
