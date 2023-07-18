@@ -2,7 +2,7 @@
 
 ## Context and Problem Statement
 
-Technical specifications are often writen as prose, albeit as precise as possible. For the Aspect
+Technical specifications are often written as prose, albeit as precise as possible. For the Aspect
 Meta Model, the specification should either be defined in terms of a formal (= machine readable)
 format or at least be augmented by a formal specification. The goal here is to be able to use the
 already-as-precise-as-possible formal specification as a basis to build tooling surrounding the
@@ -43,7 +43,8 @@ be done for the Aspect Models as well.
 
 ### Consequences
 
-* Good, because validation rules can implemented declaratively and programming language agnostically
+* Good, because validation rules can implemented declaratively and programming language
+  agnostically.
 * Bad, because SHACL rules in themselves are no replacement for an additional textual specifciation.
   Development of the overall specifciation must take care to keep the textual specifciation and the
   formal specifciation in sync.
