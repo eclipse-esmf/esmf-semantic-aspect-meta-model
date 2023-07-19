@@ -34,8 +34,8 @@ public class EventShapeTest extends AbstractShapeTest {
       final SemanticError result = getSingleSemanticValidationError(
             "event-shape", "AspectWithEventMissingParameters", metaModelVersion );
       assertThat( result.getResultMessage() )
-            .satisfies( s -> assertThat( s ).isEqualTo( MESSAGE_MISSING_REQUIRED_PROPERTY ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+            .satisfies( s -> assertThat( s ).isEqualTo( messageMissingRequiredProperty ) );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
    }
 
    @ParameterizedTest
@@ -44,8 +44,8 @@ public class EventShapeTest extends AbstractShapeTest {
       final SemanticError result = getSingleSemanticValidationError(
             "event-shape", "AspectWithEventWithInvalidParameters", metaModelVersion );
       assertThat( result.getResultMessage() )
-            .satisfies( s -> assertThat( s ).isEqualTo( MESSAGE_VALUE_IS_NO_PROPERTY ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+            .satisfies( s -> assertThat( s ).isEqualTo( messageValueIsNoProperty ) );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isNotEmpty();
    }
 }

@@ -13,15 +13,12 @@
 
 package org.eclipse.esmf.samm;
 
-import org.eclipse.esmf.samm.KnownVersion;
-
 public class UnitUrns {
-
-   private final String UNITS_URN = "urn:samm:org.eclipse.esmf.samm:%s:%s#";
 
    String voltUrn;
 
    UnitUrns( final String elementType, final KnownVersion testedMetaModelVersion ) {
-      voltUrn = String.format( UNITS_URN + "volt", elementType, testedMetaModelVersion.toVersionString() );
+      final String unitsUrn = "urn:samm:org.eclipse.esmf.samm:%s:%s#";
+      voltUrn = String.format( unitsUrn + "volt", elementType, testedMetaModelVersion.toVersionString() );
    }
 }

@@ -30,10 +30,10 @@ public class EncodingConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testInvalidEncodingExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestInvalidEncodingConstraint";
+      final String focusNode = testNamespacePrefix + "TestInvalidEncodingConstraint";
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_INVALID_ENCODING,
-            focusNode, sammUrns.valueUrn, VIOLATION_URN, "UTF-8" );
+      final SemanticError resultForName = new SemanticError( messageInvalidEncoding,
+            focusNode, sammUrns.valueUrn, violationUrn, "UTF-8" );
       expectSemanticValidationErrors( "encoding-constraint-shape", "TestInvalidEncodingConstraint",
             metaModelVersion, resultForName );
    }

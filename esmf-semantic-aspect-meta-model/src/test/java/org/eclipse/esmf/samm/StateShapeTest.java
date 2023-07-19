@@ -30,14 +30,14 @@ public class StateShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStateMissingRequiredProperties";
+      final String focusNode = testNamespacePrefix + "TestStateMissingRequiredProperties";
 
-      final SemanticError resultForDataType = new SemanticError( MESSAGE_MISSING_DATATYPE,
-            focusNode, sammUrns.datatypeUrn, VIOLATION_URN, "" );
+      final SemanticError resultForDataType = new SemanticError( messageMissingDatatype,
+            focusNode, sammUrns.datatypeUrn, violationUrn, "" );
       final SemanticError resultForValues = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.valuesUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.valuesUrn, violationUrn, "" );
       final SemanticError resultForDefaultValue = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.defaultValueUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.defaultValueUrn, violationUrn, "" );
       expectSemanticValidationErrors( "state-shape", "TestStateMissingRequiredProperties",
             metaModelVersion, resultForDataType, resultForValues, resultForDefaultValue );
    }
@@ -46,10 +46,11 @@ public class StateShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testDefaultValueNotContainedInValuesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStateDefaultValueNotInValues";
-      final String expectedMessage = validator.getMessageText( "samm-c:StateShape", "samm-c:defaultValue", "ERR_MISSING_DEFAULT_VALUE", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestStateDefaultValueNotInValues";
+      final String expectedMessage = validator.getMessageText( "samm-c:StateShape", "samm-c:defaultValue", "ERR_MISSING_DEFAULT_VALUE",
+            metaModelVersion );
       final SemanticError resultForDefaultValue = new SemanticError( expectedMessage,
-            focusNode, sammUrns.defaultValueUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.defaultValueUrn, violationUrn, "" );
       expectSemanticValidationErrors( "state-shape", "TestStateDefaultValueNotInValues",
             metaModelVersion, resultForDefaultValue );
    }

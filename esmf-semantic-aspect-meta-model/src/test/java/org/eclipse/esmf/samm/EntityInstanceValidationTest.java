@@ -21,7 +21,7 @@ public class EntityInstanceValidationTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testPoint3dEntityInstanceValidity( final KnownVersion metaModelVersion ) {
-         checkValidity( "validate-shared-entities", "TestPoint3dEntityInstance", metaModelVersion );
+      checkValidity( "validate-shared-entities", "TestPoint3dEntityInstance", metaModelVersion );
    }
 
    @ParameterizedTest

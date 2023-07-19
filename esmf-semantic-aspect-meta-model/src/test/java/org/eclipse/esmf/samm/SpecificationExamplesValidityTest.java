@@ -32,7 +32,8 @@ import org.eclipse.esmf.samm.validation.ValidationReport;
 public class SpecificationExamplesValidityTest extends AbstractShapeTest {
    @ParameterizedTest( name = "[{index}] {0}" )
    @ArgumentsSource( ExampleFiles.class )
-   public void testExampleFile( @SuppressWarnings( "unused" /* It's used in the @ParameterizedTest name format */ ) final String filename, final File exampleFile ) throws FileNotFoundException {
+   public void testExampleFile( @SuppressWarnings( "unused" /* It's used in the @ParameterizedTest name format */ ) final String filename,
+         final File exampleFile ) throws FileNotFoundException {
       final KnownVersion metaModelVersion = KnownVersion.getLatest();
       final Model exampleModel = ModelLoader.createModel( new FileInputStream( exampleFile ) );
       exampleModel.add( getMetaModel( metaModelVersion ) );

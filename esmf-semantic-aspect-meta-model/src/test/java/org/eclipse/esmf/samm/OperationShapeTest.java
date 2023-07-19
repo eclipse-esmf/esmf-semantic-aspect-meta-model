@@ -33,11 +33,11 @@ public class OperationShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final String operationName = "TestOperationMissingRequiredProperties";
-      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
-      final SemanticError resultForName = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY,
-            operationId, sammUrns.nameUrn, VIOLATION_URN, "" );
+      final String operationId = testNamespacePrefix + operationName;
+      final SemanticError resultForName = new SemanticError( messageMissingRequiredProperty,
+            operationId, sammUrns.nameUrn, violationUrn, "" );
       final SemanticError resultForInput = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, operationId, sammUrns.inputUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, operationId, sammUrns.inputUrn, violationUrn, "" );
       expectSemanticValidationErrors( "operation-shape", operationName,
             metaModelVersion, resultForName, resultForInput );
    }
@@ -48,9 +48,9 @@ public class OperationShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final String operationName = "TestOperationMissingRequiredProperties";
-      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
+      final String operationId = testNamespacePrefix + operationName;
       final SemanticError resultForInput = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, operationId, sammUrns.inputUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, operationId, sammUrns.inputUrn, violationUrn, "" );
       expectSemanticValidationErrors( "operation-shape", operationName,
             metaModelVersion, resultForInput );
    }
@@ -62,13 +62,13 @@ public class OperationShapeTest extends AbstractShapeTest {
 
       final String aspectName = "TestOperationWithEmptyProperties";
       final String operationName = "TestOperation";
-      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
-      final SemanticError resultForName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            operationId, sammUrns.nameUrn, VIOLATION_URN, "" );
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            operationId, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            operationId, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      final String operationId = testNamespacePrefix + operationName;
+      final SemanticError resultForName = new SemanticError( messageEmptyProperty,
+            operationId, sammUrns.nameUrn, violationUrn, "" );
+      final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
+            operationId, sammUrns.preferredNameUrn, violationUrn, "@en" );
+      final SemanticError resultForDescription = new SemanticError( messageEmptyProperty,
+            operationId, sammUrns.descriptionUrn, violationUrn, "@en" );
       expectSemanticValidationErrors( "operation-shape", aspectName,
             metaModelVersion, resultForName, resultForPreferredName, resultForDescription );
    }
@@ -80,11 +80,11 @@ public class OperationShapeTest extends AbstractShapeTest {
 
       final String aspectName = "TestOperationWithEmptyProperties";
       final String operationName = "TestOperation";
-      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            operationId, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            operationId, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      final String operationId = testNamespacePrefix + operationName;
+      final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
+            operationId, sammUrns.preferredNameUrn, violationUrn, "@en" );
+      final SemanticError resultForDescription = new SemanticError( messageEmptyProperty,
+            operationId, sammUrns.descriptionUrn, violationUrn, "@en" );
       expectSemanticValidationErrors( "operation-shape", aspectName,
             metaModelVersion, resultForPreferredName, resultForDescription );
    }
@@ -96,11 +96,11 @@ public class OperationShapeTest extends AbstractShapeTest {
 
       final String aspectName = "TestOperationNonUniqueLangStrings";
       final String operationName = "TestOperation";
-      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            operationId, sammUrns.preferredNameUrn, VIOLATION_URN, "" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            operationId, sammUrns.descriptionUrn, VIOLATION_URN, "" );
+      final String operationId = testNamespacePrefix + operationName;
+      final SemanticError resultForPreferredName = new SemanticError( messageLangNotUnique,
+            operationId, sammUrns.preferredNameUrn, violationUrn, "" );
+      final SemanticError resultForDescription = new SemanticError( messageLangNotUnique,
+            operationId, sammUrns.descriptionUrn, violationUrn, "" );
       expectSemanticValidationErrors( "operation-shape", aspectName,
             metaModelVersion, resultForPreferredName, resultForDescription );
    }
@@ -112,11 +112,11 @@ public class OperationShapeTest extends AbstractShapeTest {
 
       final String aspectName = "TestOperationWithInvalidLangStrings";
       final String operationName = "TestOperation";
-      final String operationId = TEST_NAMESPACE_PREFIX + operationName;
+      final String operationId = testNamespacePrefix + operationName;
       final SemanticError resultForPreferredName = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, operationId, sammUrns.preferredNameUrn, VIOLATION_URN, "Test Operation" );
+            messageInvalidLangString, operationId, sammUrns.preferredNameUrn, violationUrn, "Test Operation" );
       final SemanticError resultForDescription = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, operationId, sammUrns.descriptionUrn, VIOLATION_URN, "Test Operation." );
+            messageInvalidLangString, operationId, sammUrns.descriptionUrn, violationUrn, "Test Operation." );
       expectSemanticValidationErrors( "operation-shape", aspectName,
             metaModelVersion, resultForPreferredName, resultForDescription );
    }
@@ -126,9 +126,9 @@ public class OperationShapeTest extends AbstractShapeTest {
    public void testInputListContainsInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "operation-shape", "TestOperationWithInvalidInput", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_VALUE_IS_NO_PROPERTY );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( TEST_NAMESPACE_PREFIX + "input" );
+      assertThat( result.getResultMessage() ).isEqualTo( messageValueIsNoProperty );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
+      assertThat( result.getValue() ).isEqualTo( testNamespacePrefix + "input" );
    }
 
    @ParameterizedTest
@@ -136,8 +136,8 @@ public class OperationShapeTest extends AbstractShapeTest {
    public void testOutputListContainsInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "operation-shape", "TestOperationWithInvalidOutput", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_VALUE_IS_NO_PROPERTY );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( TEST_NAMESPACE_PREFIX + "output" );
+      assertThat( result.getResultMessage() ).isEqualTo( messageValueIsNoProperty );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
+      assertThat( result.getValue() ).isEqualTo( testNamespacePrefix + "output" );
    }
 }

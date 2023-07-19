@@ -23,10 +23,10 @@ public class UniqueEntityInstancesShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testIdenticalInstancesExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "Instance";
+      final String focusNode = testNamespacePrefix + "Instance";
       final String expectedMessage = validator.getMessageText( "samm:UniqueEntityInstances", "ERR_DUPLICATE_ENTRY", metaModelVersion );
       final SemanticError resultForName = new SemanticError( expectedMessage,
-            focusNode, "", WARNING_URN, focusNode + "2" );
+            focusNode, "", warningUrn, focusNode + "2" );
       expectSemanticValidationErrors( "unique-entity-instance-shape",
             "TestEntityInstanceIdenticalInstances",
             metaModelVersion, resultForName );
@@ -41,10 +41,10 @@ public class UniqueEntityInstancesShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testIdenticalExtendingEntityInstancesExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance";
+      final String focusNode = testNamespacePrefix + "ExtendingEntityInstance";
       final String expectedMessage = validator.getMessageText( "samm:UniqueEntityInstances", "ERR_DUPLICATE_ENTRY", metaModelVersion );
       final SemanticError resultForIdenticalInstance = new SemanticError( expectedMessage, focusNode, "",
-            WARNING_URN, TEST_NAMESPACE_PREFIX + "ExtendingEntityInstanceTwo" );
+            warningUrn, testNamespacePrefix + "ExtendingEntityInstanceTwo" );
       expectSemanticValidationErrors( "unique-entity-instance-shape", "ExtendingEntityIdenticalInstances",
             metaModelVersion, resultForIdenticalInstance );
    }

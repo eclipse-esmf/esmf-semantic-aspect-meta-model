@@ -35,11 +35,11 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testInstantiatingAbstractEntityExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "AbstractEntityInstance";
-      final String value = TEST_NAMESPACE_PREFIX + "InstantiatedAbstractTestEntity";
+      final String focusNode = testNamespacePrefix + "AbstractEntityInstance";
+      final String value = testNamespacePrefix + "InstantiatedAbstractTestEntity";
       final String expectedMessage = validator.getMessageText( "samm:AbstractEntityDirectlyInstantiated", "ERR_ABSTRACT_USAGE", metaModelVersion );
       final SemanticError resultForInstantiatedAbstractEntity = new SemanticError( expectedMessage,
-            focusNode, "", VIOLATION_URN, value );
+            focusNode, "", violationUrn, value );
       expectSemanticValidationErrors( "abstract-entity-shape", "InstantiatedAbstractTestEntity", metaModelVersion,
             resultForInstantiatedAbstractEntity );
    }
@@ -48,10 +48,10 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testExtendingMultipleEntitiesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEntityExtendingMultipleEntities";
+      final String focusNode = testNamespacePrefix + "TestEntityExtendingMultipleEntities";
 
-      final SemanticError resultForInstantiatedAbstractEntity = new SemanticError( MESSAGE_DUPLICATE_PROPERTY,
-            focusNode, sammUrns.extendsUrn, VIOLATION_URN, "" );
+      final SemanticError resultForInstantiatedAbstractEntity = new SemanticError( messageDuplicateProperty,
+            focusNode, sammUrns.extendsUrn, violationUrn, "" );
       expectSemanticValidationErrors( "abstract-entity-shape", "TestEntityExtendingMultipleEntities", metaModelVersion,
             resultForInstantiatedAbstractEntity );
    }
@@ -61,19 +61,19 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    public void testAmbiguousEntitiesDueToPropertyNamesExpectFailure( final KnownVersion metaModelVersion ) {
 
       //test payload name in Abstract Entity is equal to Property name in extending Entity
-      SemanticError resultForAmbiguousEntityA = new SemanticError(
+      final SemanticError resultForAmbiguousEntityA = new SemanticError(
             "The Entity ':A' contains Property 'abstractString' which causes ambiguity in combination with the ':AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty' Entity.",
-            TEST_NAMESPACE_PREFIX + "A", "", VIOLATION_URN, "abstractString" );
+            testNamespacePrefix + "A", "", violationUrn, "abstractString" );
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithPayloadNameEqualToExtendingEntityProperty",
             metaModelVersion, resultForAmbiguousEntityA );
 
       //test extending Entity with ambiguous Property in hierarchy
       final SemanticError resultForAmbiguousExtendingEntityLevelOne = new SemanticError(
             "The Entity ':ExtendingEntityLevelOne' contains Property 'abstractTestProperty' which causes ambiguity in combination with the ':AbstractTestEntity' Entity.",
-            TEST_NAMESPACE_PREFIX + "ExtendingEntityLevelOne", "", VIOLATION_URN, "abstractTestProperty" );
+            testNamespacePrefix + "ExtendingEntityLevelOne", "", violationUrn, "abstractTestProperty" );
       final SemanticError resultForAmbiguousExtendingEntityLevelTwo = new SemanticError(
             "The Entity ':ExtendingEntityLevelTwo' contains Property 'testPropertyLevelOne' which causes ambiguity in combination with the ':ExtendingEntityLevelOne' Entity.",
-            TEST_NAMESPACE_PREFIX + "ExtendingEntityLevelTwo", "", VIOLATION_URN, "testPropertyLevelOne" );
+            testNamespacePrefix + "ExtendingEntityLevelTwo", "", violationUrn, "testPropertyLevelOne" );
 
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithAmbiguousEntityInHierarchy",
             metaModelVersion, resultForAmbiguousExtendingEntityLevelOne, resultForAmbiguousExtendingEntityLevelTwo );
@@ -84,9 +84,9 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    public void testAmbiguousEntitiesDueToOptionalPropertyCombinationsExpectFailure( final KnownVersion metaModelVersion ) {
 
       //test Abstract Entity has optional Property and extending Entity uses same Property without optional
-      SemanticError resultForAmbiguousExtendingEntity = new SemanticError(
+      final SemanticError resultForAmbiguousExtendingEntity = new SemanticError(
             "The Entity ':ExtendingEntity' contains Property 'abstractOptionalProperty' which causes ambiguity in combination with the ':AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty' Entity.",
-            TEST_NAMESPACE_PREFIX + "ExtendingEntity", "", VIOLATION_URN, "abstractOptionalProperty" );
+            testNamespacePrefix + "ExtendingEntity", "", violationUrn, "abstractOptionalProperty" );
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityWithOptionalPropertyAndExtendingEntityWithSameProperty",
             metaModelVersion, resultForAmbiguousExtendingEntity );
    }
@@ -96,7 +96,7 @@ public class AbstractEntityShapeTest extends AbstractShapeTest {
    public void testAbstractEntityIsNotExtendedExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = new SemanticError(
             validator.getMessageText( "samm:AbstractEntityDataTypeShape", "ERR_ABSTRACT_USAGE", metaModelVersion ),
-            TEST_NAMESPACE_PREFIX + "AbstractTestEntity", "", VIOLATION_URN, TEST_NAMESPACE_PREFIX + "AbstractEntity" );
+            testNamespacePrefix + "AbstractTestEntity", "", violationUrn, testNamespacePrefix + "AbstractEntity" );
       expectSemanticValidationErrors( "abstract-entity-shape", "AbstractTestEntityIsNotExtended",
             metaModelVersion, result );
    }

@@ -27,7 +27,7 @@ public class PayloadNameShapeTest extends AbstractShapeTest {
    public void testPayloadNameIsNotOfTypeStringExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "payload-name-shape", "PayloadNameNotOfTypeString", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_DATA_TYPE_NOT_STRING );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultMessage() ).isEqualTo( messageDataTypeNotString );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
    }
 }

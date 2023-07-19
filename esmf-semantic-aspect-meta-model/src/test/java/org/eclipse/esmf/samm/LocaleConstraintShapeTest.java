@@ -13,6 +13,7 @@
 
 package org.eclipse.esmf.samm;
 
+import org.apache.jena.rdf.model.Model;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -34,12 +35,12 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testMissingRequiredProperties2( final KnownVersion metaModelVersion ) {
+   public void testMissingRequiredProperties( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintMissingRequiredProperties";
+      final String focusNode = testNamespacePrefix + "TestLocaleConstraintMissingRequiredProperties";
 
       final SemanticError resultForLocaleCode = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.localeCodeUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.localeCodeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "locale-constraint-shape",
             "TestLocaleConstraintMissingRequiredProperties", metaModelVersion, resultForLocaleCode );
    }
@@ -48,10 +49,10 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMultipleLocaleCodeProperties( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintMultipleLocaleCodeProperties";
+      final String focusNode = testNamespacePrefix + "TestLocaleConstraintMultipleLocaleCodeProperties";
 
-      final SemanticError result = new SemanticError( MESSAGE_DUPLICATE_PROPERTY, focusNode,
-            sammUrns.localeCodeUrn, VIOLATION_URN, "" );
+      final SemanticError result = new SemanticError( messageDuplicateProperty, focusNode,
+            sammUrns.localeCodeUrn, violationUrn, "" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintMultipleLocaleCodeProperties",
             metaModelVersion, result );
@@ -61,10 +62,10 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testInvalidLanguageTagExpectError( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintInvalidLanguageTag";
+      final String focusNode = testNamespacePrefix + "TestLocaleConstraintInvalidLanguageTag";
 
       final SemanticError result = new SemanticError( "Invalid language in locale code.", focusNode,
-            sammUrns.localeCodeUrn, VIOLATION_URN, "ac" );
+            sammUrns.localeCodeUrn, violationUrn, "ac" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintInvalidLanguageTag",
             metaModelVersion, result );
@@ -74,10 +75,10 @@ public class LocaleConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testValidLanguageInvalidRegionExpectError( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLocaleConstraintValidLanguageInvalidRegion";
+      final String focusNode = testNamespacePrefix + "TestLocaleConstraintValidLanguageInvalidRegion";
 
       final SemanticError result = new SemanticError( "Invalid region in locale code.", focusNode,
-            sammUrns.localeCodeUrn, VIOLATION_URN, "de-AB" );
+            sammUrns.localeCodeUrn, violationUrn, "de-AB" );
       expectSemanticValidationErrors(
             "locale-constraint-shape", "TestLocaleConstraintValidLanguageInvalidRegion",
             metaModelVersion, result );

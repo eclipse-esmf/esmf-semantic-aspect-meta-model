@@ -36,8 +36,8 @@ public enum KnownVersion {
 
    public static Optional<KnownVersion> fromVersionString( final String version ) {
       return Arrays.stream( KnownVersion.values() )
-                   .filter( value -> value.toVersionString().equals( version ) )
-                   .findAny();
+            .filter( value -> value.toVersionString().equals( version ) )
+            .findAny();
    }
 
    public static KnownVersion getLatest() {

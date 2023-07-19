@@ -54,10 +54,10 @@ public class LengthConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testLengthConstraintValidationWithInvalidTypeExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLengthConstraintWithInvalidType";
+      final String focusNode = testNamespacePrefix + "TestLengthConstraintWithInvalidType";
       final SemanticError resultForDataType = new SemanticError(
             validator.getMessageText( "samm-c:LengthConstraintShape", "ERR_WRONG_DATATYPE", metaModelVersion ),
-            focusNode, "", VIOLATION_URN, XSD.xboolean.getURI() );
+            focusNode, "", violationUrn, XSD.xboolean.getURI() );
       expectSemanticValidationErrors( "length-constraint-shape", "TestLengthConstraintWithInvalidType",
             metaModelVersion, resultForDataType );
    }
@@ -65,10 +65,10 @@ public class LengthConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testLengthConstraintValidationWithInvalidMinMaxExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLengthConstraintWithInvalidMinMax";
+      final String focusNode = testNamespacePrefix + "TestLengthConstraintWithInvalidMinMax";
       final SemanticError resultForDataType = new SemanticError(
             validator.getMessageText( "samm-c:LengthConstraintShape", "ERR_INVALID_VALUE", metaModelVersion ),
-            focusNode, "", VIOLATION_URN, "minValue: 2 maxValue: 1" );
+            focusNode, "", violationUrn, "minValue: 2 maxValue: 1" );
       expectSemanticValidationErrors( "length-constraint-shape", "TestLengthConstraintWithInvalidMinMax",
             metaModelVersion, resultForDataType );
    }

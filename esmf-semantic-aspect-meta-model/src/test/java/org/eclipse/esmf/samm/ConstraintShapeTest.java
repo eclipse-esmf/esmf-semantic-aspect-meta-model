@@ -31,11 +31,11 @@ public class ConstraintShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final String constraintName = "TestConstraintWithEmptyProperties";
-      final String constraintId = TEST_NAMESPACE_PREFIX + constraintName;
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            constraintId, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            constraintId, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      final String constraintId = testNamespacePrefix + constraintName;
+      final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
+            constraintId, sammUrns.preferredNameUrn, violationUrn, "@en" );
+      final SemanticError resultForDescription = new SemanticError( messageEmptyProperty,
+            constraintId, sammUrns.descriptionUrn, violationUrn, "@en" );
       expectSemanticValidationErrors( "constraint-shape", constraintName,
             metaModelVersion, resultForPreferredName, resultForDescription );
    }
@@ -46,11 +46,11 @@ public class ConstraintShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final String constraintName = "TestConstraintNonUniqueLangStrings";
-      final String constraintId = TEST_NAMESPACE_PREFIX + constraintName;
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            constraintId, sammUrns.preferredNameUrn, VIOLATION_URN, "" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            constraintId, sammUrns.descriptionUrn, VIOLATION_URN, "" );
+      final String constraintId = testNamespacePrefix + constraintName;
+      final SemanticError resultForPreferredName = new SemanticError( messageLangNotUnique,
+            constraintId, sammUrns.preferredNameUrn, violationUrn, "" );
+      final SemanticError resultForDescription = new SemanticError( messageLangNotUnique,
+            constraintId, sammUrns.descriptionUrn, violationUrn, "" );
       expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForPreferredName,
             resultForDescription );
    }
@@ -61,11 +61,11 @@ public class ConstraintShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final String constraintName = "TestConstraintWithInvalidLangStrings";
-      final String constraintId = TEST_NAMESPACE_PREFIX + constraintName;
+      final String constraintId = testNamespacePrefix + constraintName;
       final SemanticError resultForPreferredName = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, constraintId, sammUrns.preferredNameUrn, VIOLATION_URN, "Test Constraint" );
+            messageInvalidLangString, constraintId, sammUrns.preferredNameUrn, violationUrn, "Test Constraint" );
       final SemanticError resultForDescription = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, constraintId, sammUrns.descriptionUrn, VIOLATION_URN, "TestConstraint" );
+            messageInvalidLangString, constraintId, sammUrns.descriptionUrn, violationUrn, "TestConstraint" );
       expectSemanticValidationErrors( "constraint-shape", constraintName,
             metaModelVersion, resultForPreferredName, resultForDescription );
    }
@@ -76,9 +76,9 @@ public class ConstraintShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final String constraintName = "TestConstraintWithDataType";
-      final String constraintId = TEST_NAMESPACE_PREFIX + constraintName;
-      final SemanticError resultForDataType = new SemanticError( MESSAGE_MORE_THAN_ZERO_VALUES, constraintId,
-            sammUrns.datatypeUrn, VIOLATION_URN, "" );
+      final String constraintId = testNamespacePrefix + constraintName;
+      final SemanticError resultForDataType = new SemanticError( messageMoreThanZeroValues, constraintId,
+            sammUrns.datatypeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForDataType );
    }
 }
