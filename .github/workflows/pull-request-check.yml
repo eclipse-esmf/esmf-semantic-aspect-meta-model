@@ -3,8 +3,6 @@ on:
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - 'documentation/decisions/**'
 jobs:
   build-test:
     runs-on: ubuntu-20.04
