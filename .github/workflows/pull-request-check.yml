@@ -17,9 +17,9 @@ jobs:
 
     # Determine whether the PR makes _only_ changes to the markdown files in
     # documentation/decisions: If this is the case, a full build is not
-    # necessary. It will return 'success' if only such .md files where changed
-    # and 'failure' if something else was changed (and a full build should
-    # run).
+    # necessary. It will set the ONLY_MD environment variable to 'true' if
+    # only such .md files where changed and to 'false' if something else was
+    # changed (and a full build should run).
     #
     # Note that it is currently impossible to return early from an actions job
     # with a successful status, which is why the repeated 'if's in the
@@ -29,27 +29,29 @@ jobs:
       run: |
         for changed_file in ${{ steps.changed_files.outputs.all }}; do
           if [[ ! "$changed_file" =~ "documentation/decisions/" ]]; then
-            exit 1
+            echo "ONLY_MD=true" >> "$GITHUB_ENV"
+            exit 0
           fi
         done
+        echo "ONLY_MD=false" >> "$GITHUB_ENV"
 
     - name: Set up JDK 11
       uses: actions/setup-java@v3
-      if: steps.only_md_changes.conclusion == 'failure'
+      if: env.ONLY_MD != 'true'
       with:
         distribution: 'adopt'
         java-version: '11'
 
     - name: Cache Maven packages
       uses: actions/cache@v3
-      if: steps.only_md_changes.conclusion == 'failure'
+      if: env.ONLY_MD != 'true'
       with:
         path: ~/.m2/repository
         key: maven-${{ hashFiles('**/pom.xml') }}
 
     - name: Cache node and node_modules
       uses: actions/cache@v3
-      if: steps.only_md_changes.conclusion == 'failure'
+      if: env.ONLY_MD != 'true'
       with:
         path: |
           documentation/node
@@ -57,7 +59,7 @@ jobs:
         key: node-${{ hashFiles('documentation/package-lock.json') }}
 
     - name: Build
-      if: steps.only_md_changes.conclusion == 'failure'
+      if: env.ONLY_MD != 'true'
       run: |
         ./mvnw -B generate-resources -pl documentation -Pantora
         ./mvnw -B clean install -pl esmf-samm-build-plugin
@@ -68,7 +70,7 @@ jobs:
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
-      if: steps.only_md_changes.conclusion == 'failure'
+      if: env.ONLY_MD != 'true'
       with:
         name: samm-artifacts
         path: |
