@@ -23,7 +23,7 @@
    </parent>
    <artifactId>esmf-semantic-aspect-meta-model-parent</artifactId>
    <name>Semantic Aspect Meta Model Parent</name>
-   <version>DEV-SNAPSHOT</version>
+   <version>2.1.0</version>
    <modules>
       <!-- The Antora documentation -->
       <module>documentation</module>
