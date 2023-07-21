@@ -30,12 +30,12 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointMissingRequiredProperties";
+      final String focusNode = testNamespacePrefix + "TestFixedPointMissingRequiredProperties";
 
       final SemanticError resultForScale = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.scale, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.scale, violationUrn, "" );
       final SemanticError resultForInteger = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.integer, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.integer, violationUrn, "" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointMissingRequiredProperties",
             metaModelVersion, resultForScale, resultForInteger );
    }
@@ -44,10 +44,11 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testFixedPointValidationWithInvalidDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointWithInvalidDataType";
-      final String expectedMessage = validator.getMessageText( "samm-c:FixedPointConstraintShape", "samm-c:scale", "ERR_WRONG_DATATYPE", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestFixedPointWithInvalidDataType";
+      final String expectedMessage = validator.getMessageText( "samm-c:FixedPointConstraintShape", "samm-c:scale", "ERR_WRONG_DATATYPE",
+            metaModelVersion );
       final SemanticError resultForScale = new SemanticError(
-            expectedMessage, focusNode, sammUrns.scale, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#float" );
+            expectedMessage, focusNode, sammUrns.scale, violationUrn, "http://www.w3.org/2001/XMLSchema#float" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointWithInvalidDataType",
             metaModelVersion, resultForScale );
    }
@@ -57,10 +58,11 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
    public void testFixedPointValidationInCharacteristicChainWithInvalidDataTypeExpectFailure(
          final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointChainedWithInvalidDataType";
-      final String expectedMessage = validator.getMessageText( "samm-c:FixedPointConstraintShape", "samm-c:scale", "ERR_WRONG_DATATYPE", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestFixedPointChainedWithInvalidDataType";
+      final String expectedMessage = validator.getMessageText( "samm-c:FixedPointConstraintShape", "samm-c:scale", "ERR_WRONG_DATATYPE",
+            metaModelVersion );
       final SemanticError resultForScale = new SemanticError(
-            expectedMessage, focusNode, sammUrns.scale, VIOLATION_URN, "http://www.w3.org/2001/XMLSchema#float" );
+            expectedMessage, focusNode, sammUrns.scale, violationUrn, "http://www.w3.org/2001/XMLSchema#float" );
       expectSemanticValidationErrors( "fixed-point-constraint-shape", "TestFixedPointChainedWithInvalidDataType",
             metaModelVersion, resultForScale );
    }
@@ -69,14 +71,14 @@ public class FixedPointConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testFixedPointValidationWithInvalidAttributeDataType( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestFixedPointWithInvalidAttributeDataType";
+      final String focusNode = testNamespacePrefix + "TestFixedPointWithInvalidAttributeDataType";
 
       final SemanticError resultForScale = new SemanticError(
-            MESSAGE_DATA_TYPE_NOT_POSITIVE_INTEGER, focusNode, sammUrns.scale, VIOLATION_URN,
+            messageDataTypeNotPositiveInteger, focusNode, sammUrns.scale, violationUrn,
             "5^^http://www.w3.org/2001/XMLSchema#int" );
 
       final SemanticError resultForInteger = new SemanticError(
-            MESSAGE_DATA_TYPE_NOT_POSITIVE_INTEGER, focusNode, sammUrns.integer, VIOLATION_URN,
+            messageDataTypeNotPositiveInteger, focusNode, sammUrns.integer, violationUrn,
             "10^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger" );
 
       expectSemanticValidationErrors( "fixed-point-constraint-shape",

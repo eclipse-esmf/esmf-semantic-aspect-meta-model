@@ -15,13 +15,13 @@ package org.eclipse.esmf.samm;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.eclipse.esmf.samm.validation.SemanticError;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import org.eclipse.esmf.samm.validation.SemanticError;
-
 public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
-   private final String FOCUS_NODE = TEST_NAMESPACE_PREFIX + "Instance";
+   private final String focusNode = testNamespacePrefix + "Instance";
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
@@ -40,7 +40,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    public void testMissingRequiredPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultForMissingProperty = new SemanticError(
             validator.getMessageText( "samm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ),
-            FOCUS_NODE, "", VIOLATION_URN, TEST_NAMESPACE_PREFIX + "intProperty" );
+            focusNode, "", violationUrn, testNamespacePrefix + "intProperty" );
       expectSemanticValidationErrors( "valid-entity-instance-shape",
             "TestEntityInstanceMissingRequiredProperties",
             metaModelVersion, resultForMissingProperty );
@@ -57,7 +57,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    public void testInvalidValueTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultInvalidValueType = new SemanticError(
             "The type of the value of the Property ':intProperty' of the Entity instance ':Instance' does not match the Property definition.",
-            FOCUS_NODE, TEST_NAMESPACE_PREFIX + "intProperty", VIOLATION_URN, "bar" );
+            focusNode, testNamespacePrefix + "intProperty", violationUrn, "bar" );
       expectSemanticValidationErrors( "valid-entity-instance-shape",
             "TestEntityInstanceInvalidValueType",
             metaModelVersion, resultInvalidValueType );
@@ -73,7 +73,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
 
       assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage(
             validator.getMessageText( "samm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ), validationError ) );
-      assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( validationError.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
 
@@ -93,7 +93,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
             "The value for a list Property ':stringListProperty' of the Entity instance ':Instance' is not defined as a list." );
-      assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( validationError.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
 
@@ -107,7 +107,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
             "Value '2' for list Property ':intListProperty' of the Entity instance ':Instance' has an invalid data type." );
-      assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( validationError.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
 
@@ -127,7 +127,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
 
       assertThat( validationError.getResultMessage() ).isEqualTo(
             "Value ':AnotherListEntityInstance' for list Property ':entityListProperty' of the Entity instance ':Instance' has an invalid data type." );
-      assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( validationError.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
 
@@ -136,8 +136,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    public void testExtendingEntityInstanceMissingRequiredPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError resultForMissingProperty = new SemanticError(
             validator.getMessageText( "samm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ),
-            TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "", VIOLATION_URN,
-            TEST_NAMESPACE_PREFIX + "abstractTestProperty" );
+            testNamespacePrefix + "ExtendingEntityInstance", "", violationUrn,
+            testNamespacePrefix + "abstractTestProperty" );
       expectSemanticValidationErrors( "valid-entity-instance-shape", "ExtendingEntityMissingRequiredProperty",
             metaModelVersion, resultForMissingProperty );
    }
@@ -153,8 +153,8 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    public void testExtendingEntityInstanceInvalidValueType( final KnownVersion metaModelVersion ) {
       final SemanticError resultForMissingProperty = new SemanticError(
             "The type of the value of the Property ':abstractTestProperty' of the Entity instance ':ExtendingEntityInstance' does not match the Property definition.",
-            TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", TEST_NAMESPACE_PREFIX + "abstractTestProperty",
-            VIOLATION_URN, "345" );
+            testNamespacePrefix + "ExtendingEntityInstance", testNamespacePrefix + "abstractTestProperty",
+            violationUrn, "345" );
       expectSemanticValidationErrors( "valid-entity-instance-shape", "ExtendingEntityInstanceInvalidValueType",
             metaModelVersion, resultForMissingProperty );
    }
@@ -169,7 +169,7 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
 
       assertThat( validationError.getResultMessage() ).isEqualTo( resolveValidationMessage(
             validator.getMessageText( "samm:ValidEntityInstances", "ERR_MISSING_PROPERTY", metaModelVersion ), validationError ) );
-      assertThat( validationError.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( validationError.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( validationError.getValue() ).isNotEmpty();
    }
 }

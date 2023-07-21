@@ -31,10 +31,11 @@ public class SingleEntityShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testSingleEntityWithXsdDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestSingleEntityWithXSDDataType";
-      final String expectedMessage = validator.getMessageText( "samm-c:SingleEntityShape", "samm:dataType", "ERR_WRONG_DATATYPE", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestSingleEntityWithXSDDataType";
+      final String expectedMessage = validator.getMessageText( "samm-c:SingleEntityShape", "samm:dataType", "ERR_WRONG_DATATYPE",
+            metaModelVersion );
       final SemanticError resultForDataType = new SemanticError( expectedMessage,
-            focusNode, sammUrns.datatypeUrn, VIOLATION_URN,
+            focusNode, sammUrns.datatypeUrn, violationUrn,
             "http://www.w3.org/2001/XMLSchema#integer" );
       expectSemanticValidationErrors( "single-entity-shape", "TestSingleEntityWithXSDDataType",
             metaModelVersion, resultForDataType );

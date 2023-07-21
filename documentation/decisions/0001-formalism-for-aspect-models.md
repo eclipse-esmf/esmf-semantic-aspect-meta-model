@@ -123,6 +123,6 @@ Chosen option: "RDF with Turtle Syntax".
 
 * It best fulfills the goals described above.
 * We are able to build the models according to our requirements.
-* Structure and features of models can be iteratively adjusted
-* Full control of stack and tooling
+* Structure and features of models can be iteratively adjusted.
+* Full control of stack and tooling.
 

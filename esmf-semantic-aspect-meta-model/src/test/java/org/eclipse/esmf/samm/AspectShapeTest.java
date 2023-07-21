@@ -21,7 +21,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.eclipse.esmf.samm.validation.SemanticError;
 
 public class AspectShapeTest extends AbstractShapeTest {
-   private final String ENTITY_NODE = TEST_NAMESPACE_PREFIX + "Entity";
+   private final String entityNode = testNamespacePrefix + "Entity";
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
@@ -33,14 +33,14 @@ public class AspectShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
    public void testMissingRequiredPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectMissingRequiredAspectProperties";
+      final String focusNode = testNamespacePrefix + "TestAspectMissingRequiredAspectProperties";
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_MISSING_REQUIRED_PROPERTY,
-            focusNode, sammUrns.nameUrn, VIOLATION_URN, "" );
+      final SemanticError resultForName = new SemanticError( messageMissingRequiredProperty,
+            focusNode, sammUrns.nameUrn, violationUrn, "" );
       final SemanticError resultForOperations = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.operationsUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.operationsUrn, violationUrn, "" );
       final SemanticError resultForProperties = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.propertiesUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.propertiesUrn, violationUrn, "" );
       expectSemanticValidationErrors( "aspect-shape", "TestAspectMissingRequiredAspectProperties",
             metaModelVersion, resultForName, resultForOperations, resultForProperties );
    }
@@ -55,14 +55,14 @@ public class AspectShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
    public void testEmptyPropertiesExpectFailureSamm1_0_0( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectWithEmptyProperties";
+      final String focusNode = testNamespacePrefix + "TestAspectWithEmptyProperties";
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, sammUrns.nameUrn, VIOLATION_URN, "" );
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      final SemanticError resultForName = new SemanticError( messageEmptyProperty,
+            focusNode, sammUrns.nameUrn, violationUrn, "" );
+      final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
+            focusNode, sammUrns.preferredNameUrn, violationUrn, "@en" );
+      final SemanticError resultForDescription = new SemanticError( messageEmptyProperty,
+            focusNode, sammUrns.descriptionUrn, violationUrn, "@en" );
       expectSemanticValidationErrors( "aspect-shape", "TestAspectWithEmptyProperties",
             metaModelVersion,
             resultForName,
@@ -74,12 +74,12 @@ public class AspectShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testEmptyPropertiesExpectFailureSamm_2_0_0( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectWithEmptyProperties";
+      final String focusNode = testNamespacePrefix + "TestAspectWithEmptyProperties";
 
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "@en" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_EMPTY_PROPERTY,
-            focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "@en" );
+      final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
+            focusNode, sammUrns.preferredNameUrn, violationUrn, "@en" );
+      final SemanticError resultForDescription = new SemanticError( messageEmptyProperty,
+            focusNode, sammUrns.descriptionUrn, violationUrn, "@en" );
       expectSemanticValidationErrors( "aspect-shape", "TestAspectWithEmptyProperties",
             metaModelVersion,
             resultForPreferredName,
@@ -90,12 +90,12 @@ public class AspectShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testLanguageStringNotUniqueExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectNonUniqueLangStrings";
+      final String focusNode = testNamespacePrefix + "TestAspectNonUniqueLangStrings";
 
-      final SemanticError resultForPreferredName = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "" );
-      final SemanticError resultForDescription = new SemanticError( MESSAGE_LANG_NOT_UNIQUE,
-            focusNode, sammUrns.descriptionUrn, VIOLATION_URN, "" );
+      final SemanticError resultForPreferredName = new SemanticError( messageLangNotUnique,
+            focusNode, sammUrns.preferredNameUrn, violationUrn, "" );
+      final SemanticError resultForDescription = new SemanticError( messageLangNotUnique,
+            focusNode, sammUrns.descriptionUrn, violationUrn, "" );
       expectSemanticValidationErrors( "aspect-shape", "TestAspectNonUniqueLangStrings", metaModelVersion,
             resultForPreferredName,
             resultForDescription );
@@ -105,12 +105,12 @@ public class AspectShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testInvalidLanguageStringExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestAspectWithInvalidLangStrings";
+      final String focusNode = testNamespacePrefix + "TestAspectWithInvalidLangStrings";
 
       final SemanticError resultForPreferredName = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, focusNode, sammUrns.preferredNameUrn, VIOLATION_URN, "Test Aspect" );
+            messageInvalidLangString, focusNode, sammUrns.preferredNameUrn, violationUrn, "Test Aspect" );
       final SemanticError resultForDescription = new SemanticError(
-            MESSAGE_INVALID_LANG_STRING, focusNode, sammUrns.descriptionUrn, VIOLATION_URN,
+            messageInvalidLangString, focusNode, sammUrns.descriptionUrn, violationUrn,
             "Test Aspect Description" );
       expectSemanticValidationErrors( "aspect-shape", "TestAspectWithInvalidLangStrings", metaModelVersion,
             resultForPreferredName, resultForDescription );
@@ -121,10 +121,11 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testPropertyListContainsInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidProperties", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY",
+            metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( ENTITY_NODE );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
+      assertThat( result.getValue() ).isEqualTo( entityNode );
    }
 
    @ParameterizedTest
@@ -132,9 +133,9 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testOperationListContainsInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidOperations", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_NO_OPERATION );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
-      assertThat( result.getValue() ).isEqualTo( ENTITY_NODE );
+      assertThat( result.getResultMessage() ).isEqualTo( messageNoOperation );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
+      assertThat( result.getValue() ).isEqualTo( entityNode );
    }
 
    @ParameterizedTest
@@ -148,9 +149,10 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidOptionalPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidOptionalProperty", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY",
+            metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isNotEmpty();
    }
 
@@ -159,9 +161,10 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithMissingOptionalPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithMissingOptionalProperty", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY",
+            metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isEmpty();
    }
 
@@ -170,9 +173,10 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidNotInPayloadPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithInvalidNotInPayloadProperty", metaModelVersion );
-      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY", metaModelVersion );
+      final String validationMessage = validator.getMessageText( "samm:AspectShape", "samm:properties", "ERR_INVALID_PROPERTY",
+            metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( validationMessage, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isNotEmpty();
    }
 
@@ -193,8 +197,9 @@ public class AspectShapeTest extends AbstractShapeTest {
    public void testAspectWithInvalidPropertyReferenceExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "aspect-shape", "TestAspectWithDoubleInstantiation", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( "':MyText' can not be an instance of 'samm-c:Text', because 'samm-c:Text' is an instance itself." );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultMessage() ).isEqualTo(
+            "':MyText' can not be an instance of 'samm-c:Text', because 'samm-c:Text' is an instance itself." );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isNotEmpty();
    }
 }

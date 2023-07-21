@@ -1,0 +1,982 @@
+# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix mmm: <urn:samm:org.eclipse.esmf.samm:meta-meta-model:2.1.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dash: <http://datashapes.org/dash#> .
+
+samm:ConceptShape
+   a sh:NodeShape ;
+   sh:targetClass mmm:Concept ;
+   sh:property [
+      sh:order 1 ;
+      sh:path samm:preferredName ;
+      sh:datatype rdf:langString ;
+      sh:uniqueLang true ;
+      sh:minLength 1 ;
+      sh:name "preferredName" ;
+      sh:description "A language specific name for the model element. There may be multiple preferred names." ;
+   ] ;
+   sh:property [
+      sh:order 2 ;
+      sh:path samm:description ;
+      sh:datatype rdf:langString ;
+      sh:uniqueLang true ;
+      sh:minLength 1 ;
+      sh:name "description" ;
+      sh:description "A language specific description of the model element. There may be multiple descriptions." ;
+   ] ;
+   sh:property [
+      sh:path samm:see ;
+      sh:nodeKind sh:IRI ;
+      sh:name "see" ;
+      sh:description "Contains a link to an external taxonomy/ontology." ;
+   ] .
+
+samm:NamedConceptShape
+   a sh:NodeShape ;
+   sh:targetClass mmm:NamedConcept ;
+   sh:nodeKind sh:IRI .
+
+samm:AspectShape
+   a sh:NodeShape ;
+   sh:targetClass samm:Aspect ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:properties ;
+      sh:node dash:ListShape ;
+      mmm:listType samm:Property ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "properties" ;
+      sh:description "A list of Properties exposed by the Aspect." ;
+      sh:property [
+         sh:path ( [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+         sh:nodeKind sh:BlankNodeOrIRI ;
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Element '{?value}' in the property list of Aspect '{$this}' must be either a Property or a blank node referring to a Property and defining samm:optional \"true\"^^xsd:boolean and/or samm:payloadName." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?properties ?value ?code ?highlight
+            where {
+               $this samm:properties ?properties .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( not exists { ?property samm:property?/rdf:type/rdfs:subClassOf* samm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property samm:optional true } ) )
+               filter (not exists { ?property samm:property?/rdf:type/rdfs:subClassOf* samm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property samm:payloadName ?any } ))
+               optional {
+                 ?property samm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
+               bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] ;
+   sh:property [
+      sh:order 4 ;
+      sh:path samm:operations ;
+      sh:node dash:ListShape ;
+      mmm:listType samm:Operation ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "operations" ;
+      sh:description "A list of Operations exposed by the Aspect." ;
+      sh:property [
+         sh:path ( [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+         sh:class samm:Operation
+      ]
+   ] ;
+   sh:property [
+      sh:order 5 ;
+      sh:path samm:events ;
+      sh:node dash:ListShape ;
+      mmm:listType samm:Event ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "events" ;
+      sh:description "A list of Events exposed by the Aspect." ;
+      sh:property [
+         sh:path ( [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+         sh:class samm:Event
+      ]
+   ] .
+
+samm:EntityShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdfs:subClassOf* samm:Entity .
+         }
+      """
+   ] ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:properties ;
+      sh:node dash:ListShape ;
+      mmm:listType samm:Property ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "properties" ;
+      sh:description "A list of properties defined in the scope of the Entity." ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Element '{?value}' in the Entity's '{$this}' properties list must be a property - either directly or via a reference to a property with an attribute samm:optional \"true\"^^xsd:boolean and/or samm:payloadName or samm:notInPayload \"true\"^^xsd:boolean." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?properties ?value ?code ?highlight
+            where {
+               $this samm:properties ?properties .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( not exists { ?property samm:property?/rdf:type/rdfs:subClassOf* samm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property samm:optional true } ) )
+               filter ( not exists { ?property samm:property?/rdf:type/rdfs:subClassOf* samm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property samm:notInPayload true } ) )
+               filter ( not exists { ?property samm:property?/rdf:type/rdfs:subClassOf* samm:Property }
+                   || ( isBlank( ?property ) && not exists { ?property samm:payloadName ?any } ) )
+               filter ( not exists {
+                 $this samm:extends+ ?abstractEntity .
+                 ?abstractEntity a samm:AbstractEntity .
+                 ?property samm:extends ?abstractProperty .
+                 ?abstractEntity samm:properties/rdf:rest*/rdf:first ?abstractProperty .
+                 ?property samm:characteristic/rdf:type/rdfs:subClassOf* samm:Characteristic .
+              } )
+              optional {
+                ?property samm:property ?actualProperty .
+              }
+              bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
+              bind( 'ERR_INVALID_PROPERTY' as ?code )
+              bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Property '{?value}' of the Entity '{$this}' may only be defined with samm:notInPayload \"true\"^^xsd:boolean when the Entity, or one of its parent Entities/Abstract Entities, is used as the data type of an Enumeration." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?properties ?value ?code ?highlight
+            where {
+               $this samm:properties ?properties .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( isBlank( ?property ) && exists { ?property samm:notInPayload true } ) .
+               filter ( not exists {
+                  ?enumeration rdf:type/rdfs:subClassOf* samm-c:Enumeration .
+                  ?enumeration (<>|!<>)* $this
+               } )
+               optional {
+                 ?property samm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
+               bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Entity '{$this}' defining a Property with samm:notInPayload \"true\"^^xsd:boolean must define at least one more Property." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?properties ?code
+            where {
+              $this samm:properties ?properties .
+              ?properties rdf:rest*/rdf:first ?value .
+              filter ( isBlank( ?value ) && exists { ?value samm:notInPayload true } )
+              filter ( exists {
+                ?enumeration rdf:type/rdfs:subClassOf* samm-c:Enumeration .
+                ?enumeration samm:dataType $this
+              } )
+              optional {
+                select $this ( count( ?property ) as ?propertyCount )
+                where {
+                  $this samm:properties ?properties .
+                  ?properties  rdf:rest*/rdf:first  ?property .
+                  filter ( not exists { ?property samm:notInPayload true } )
+                }
+                group by $this
+              }
+              filter ( !bound( ?propertyCount ) || ( ?propertyCount = 0 ) )
+              bind( 'ERR_INVALID_PROPERTY' as ?code )
+            }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Property '{?value}' of the Entity '{$this}' must not be defined as both samm:optional \"true\"^^xsd:boolean and samm:notInPayload \"true\"^^xsd:boolean." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?properties ?value ?code ?highlight
+            where {
+               $this samm:properties ?properties .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( isBlank( ?property ) && exists { ?property samm:notInPayload true } && exists { ?property samm:optional true } ) .
+               optional {
+                 ?property samm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
+               bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Property '{?value}' of the Entity '{$this}' must not be defined as both samm:payloadName and samm:notInPayload \"true\"^^xsd:boolean." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?properties ?value ?code ?highlight
+            where {
+               $this samm:properties ?properties .
+               ?properties rdf:rest*/rdf:first ?property .
+               filter ( isBlank( ?property ) && exists { ?property samm:notInPayload true } && exists { ?property samm:payloadName ?any } ) .
+               optional {
+                 ?property samm:property ?actualProperty .
+               }
+               bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
+               bind( 'ERR_INVALID_PROPERTY' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] .
+
+samm:PropertyShape
+   a sh:NodeShape ;
+   sh:targetClass samm:Property ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:characteristic ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:class samm:Characteristic ;
+      sh:maxCount 1 ;
+      sh:name "characteristic" ;
+      sh:description "The Characteristic describing the semantics of the Property." ;
+   ] ;
+   sh:property [
+      sh:order 4 ;
+      sh:path samm:exampleValue ;
+      sh:nodeKind sh:Literal ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The datatype '{?value}' of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+               $this samm:exampleValue ?exampleValue .
+               $this samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?characteristicDataType .
+               bind( datatype( ?exampleValue ) as ?providedType )
+               filter( ?providedType not in (
+                  xsd:string,
+                  xsd:boolean,
+                  xsd:decimal,
+                  xsd:integer,
+                  xsd:double,
+                  xsd:float,
+                  xsd:date,
+                  xsd:time,
+                  xsd:dateTime,
+                  xsd:dateTimeStamp,
+                  xsd:gYear,
+                  xsd:gMonth,
+                  xsd:gDay,
+                  xsd:gYearMonth,
+                  xsd:gMonthDay,
+                  xsd:duration,
+                  xsd:yearMonthDuration,
+                  xsd:dayTimeDuration,
+                  xsd:byte,
+                  xsd:short,
+                  xsd:int,
+                  xsd:long,
+                  xsd:unsignedByte,
+                  xsd:unsignedShort,
+                  xsd:unsignedInt,
+                  xsd:unsignedLong,
+                  xsd:positiveInteger,
+                  xsd:negativeInteger,
+                  xsd:nonPositiveInteger,
+                  xsd:nonNegativeInteger,
+                  xsd:hexBinary,
+                  xsd:base64Binary,
+                  xsd:anyURI,
+                  rdf:langString,
+                  samm:curie
+                 ) || ( ( ?providedType != ?characteristicDataType ) &&
+                    not exists { ?providedType samm:canBeCastTo* ?characteristicDataType } )
+               )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?providedType as ?value )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "An example value may not be set on a Property '{$this}' which does not have a Characteristic" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?code
+            where {
+               $this samm:exampleValue [] .
+               filter ( not exists { $this samm:characteristic [] } )
+               bind( 'ERR_EXAMPLE_VALUE_NOT_ALLOWED' as ?code )
+            }
+         """
+      ] ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "exampleValue" ;
+      sh:description "A real world example value." ;
+   ] .
+
+samm:AbstractPropertyShape
+   a sh:NodeShape ;
+   sh:targetClass samm:AbstractProperty ;
+   sh:property [
+      sh:path samm:characteristic ;
+      sh:maxCount 0;
+   ] ;
+   sh:property [
+      sh:path samm:exampleValue ;
+      sh:maxCount 0;
+   ] .
+
+samm:CharacteristicShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type?/rdfs:subClassOf+|rdf:type|rdfs:subClassOf+ samm:Characteristic .
+         }
+      """
+   ] ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:dataType ;
+      sh:nodeKind sh:IRI ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The dataType '{?value}' used on Characteristic '{$this}' is neither an allowed xsd or rdf type, nor a type that is defined as rdfs:Class." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select distinct $this ?value ?code ?highlight
+            where {
+               $this (samm-c:left*|samm-c:right*|samm-c:baseCharacteristic*)/samm:dataType ?value .
+               filter( not exists { ?value rdf:type*/rdfs:subClassOf* samm:Entity }
+                      && not exists { ?value rdf:type*/rdfs:subClassOf* samm:AbstractEntity }
+                      && ?value not in (
+                        xsd:string,
+                        xsd:boolean,
+                        xsd:decimal,
+                        xsd:integer,
+                        xsd:double,
+                        xsd:float,
+                        xsd:date,
+                        xsd:time,
+                        xsd:dateTime,
+                        xsd:dateTimeStamp,
+                        xsd:gYear,
+                        xsd:gMonth,
+                        xsd:gDay,
+                        xsd:gYearMonth,
+                        xsd:gMonthDay,
+                        xsd:duration,
+                        xsd:yearMonthDuration,
+                        xsd:dayTimeDuration,
+                        xsd:byte,
+                        xsd:short,
+                        xsd:int,
+                        xsd:long,
+                        xsd:unsignedByte,
+                        xsd:unsignedShort,
+                        xsd:unsignedInt,
+                        xsd:unsignedLong,
+                        xsd:positiveInteger,
+                        xsd:negativeInteger,
+                        xsd:nonPositiveInteger,
+                        xsd:nonNegativeInteger,
+                        xsd:hexBinary,
+                        xsd:base64Binary,
+                        xsd:anyURI,
+                        rdf:langString,
+                        samm:curie
+                     )
+               )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
+             }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "No datatype is defined on the Characteristic instance '{$this}'." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+         select $this ?code
+         where {
+            # select all characteristic instances
+            $this rdf:type/rdfs:subClassOf* samm:Characteristic .
+            # exclude 'Either' Characteristic since it does not define the data type directly
+            filter ( not exists { $this rdf:type/rdfs:subClassOf* samm-c:Either } )
+            # exclude 'Collection' Characteristic since it may define the data type in different ways
+            filter ( not exists { $this rdf:type/rdfs:subClassOf* samm-c:Collection } )
+            # exclude 'Trait' Characteristic since it refers to the datatype via its baseCharacteristic
+            filter ( not exists { $this rdf:type/rdfs:subClassOf* samm-c:Trait } )
+            # find all characteristic instances which do not define a data type
+            filter ( not exists { $this samm:dataType [] } ) .
+            filter ( not exists { $this rdf:type/rdfs:subClassOf*/samm:dataType [] } )
+            bind( 'ERR_NO_DATATYPE' as ?code )
+         }
+       """
+      ];
+      sh:maxCount 1 ;
+      sh:name "dataType" ;
+      sh:description "Defines the data type of all Properties which use this Characteristic." ;
+   ] .
+
+samm:ConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm:Constraint ;
+   sh:property [
+      sh:order 0 ;
+      sh:path samm-c:baseCharacteristic ;
+      sh:class samm:Characteristic ;
+      sh:minCount 0 ;
+      sh:maxCount 0 ;
+      sh:name "baseCharacteristic" ;
+      sh:description "The baseCharacteristic must not be set on the Constraint, but the Trait" ;
+   ] ;
+   sh:property [
+      sh:order 1 ;
+      sh:path samm:dataType;
+      sh:minCount 0 ;
+      sh:maxCount 0 ;
+      sh:name "dataType" ;
+      sh:description "A Constraint may not change the data type of the Characteristic being constrained." ;
+   ] .
+
+samm:OperationShape
+   a sh:NodeShape ;
+   sh:targetClass samm:Operation ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:input ;
+      sh:node dash:ListShape ;
+      mmm:listType samm:Property ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "input" ;
+      sh:description "A list of input parameters for the Operation. If the operation does not take any input parameters, the input may be omitted." ;
+      sh:property [
+         sh:path ( [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+         sh:class samm:Property
+      ]
+   ] ;
+   sh:property [
+      sh:order 4 ;
+      sh:path samm:output ;
+      sh:class samm:Property ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "output" ;
+      sh:description "The return value of the Operation. If the Operation does not return anything, the output may be omitted." ;
+   ] .
+
+samm:EventShape
+   a sh:NodeShape ;
+   sh:targetClass samm:Event ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:parameters ;
+      sh:node dash:ListShape ;
+      mmm:listType samm:Property ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "parameters" ;
+      sh:description "The parameters defined by an Event." ;
+      sh:property [
+         sh:path ( [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+         sh:class samm:Property
+      ]
+   ] .
+
+samm:UnitShape
+   a sh:NodeShape ;
+   sh:targetClass samm:Unit ;
+   sh:property [
+      sh:order 3 ;
+      sh:path samm:commonCode ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1;
+      sh:name "commonCode" ;
+      sh:description "Normalized short code for a unit." ;
+   ] ;
+   sh:property [
+      sh:order 4 ;
+      sh:path samm:conversionFactor ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:name "conversionFactor" ;
+      sh:description "If the unit is derived from a reference unit, the human readable multiplication factor, e.g., \"10⁻²⁸ m²\"" ;
+   ] ;
+   sh:property [
+      sh:order 5 ;
+      sh:path samm:numericConversionFactor ;
+      sh:datatype xsd:double ;
+      sh:maxCount 1 ;
+      sh:name "numericConversionFactor" ;
+      sh:description "If the unit is derived from a reference unit, the numeric multiplication factor, e.g., \"1.0E-28\"" ;
+   ] ;
+   sh:property [
+      sh:order 6 ;
+      sh:path samm:quantityKind ;
+      sh:class samm:QuantityKind ;
+      sh:name "quantityKind" ;
+      sh:description "A quantity kind for this unit, for example the unit litre has the quantity kind volume, the unit metre has the quantity kinds length, distance, diameter etc." ;
+   ] ;
+   sh:property [
+      sh:order 7 ;
+      sh:path samm:referenceUnit ;
+      sh:class samm:Unit ;
+      sh:maxCount 1 ;
+      sh:name "referenceUnit" ;
+      sh:description "The unit this unit is derived from, e.g., centimetre is derived from metre" ;
+   ] ;
+   sh:property [
+      sh:order 8 ;
+      sh:path samm:symbol ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:name "symbol" ;
+      sh:description "The unit’s symbol, e.g., for centimetre the symbol is cm" ;
+   ] .
+
+samm:PayloadNameShape
+   a sh:NodeShape ;
+   sh:targetSubjectsOf samm:payloadName ;
+   sh:property [
+      sh:order 0 ;
+      sh:path samm:payloadName ;
+      sh:datatype xsd:string ;
+   ] .
+
+samm:ValidEntityInstances
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdf:type samm:Entity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "Entity instance '{$this}' is missing required Property '{?value}'." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?code
+         where {
+           $this a ?entityType .
+           ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
+
+           # Select only the non-optional Properties
+           filter( exists { ?property a samm:Property } || ( isBlank( ?property ) && exists { ?property samm:notInPayload true } ) ) .
+
+           # Check that the instance uses the Property
+           filter( ( !isBlank( ?property ) && not exists { $this ?property [] } ) || ( isBlank( ?property ) && not exists {
+                   ?property samm:property ?actualProperty .
+                   $this ?actualProperty [] .
+                 } ) )
+
+           optional {
+             ?property samm:property ?actualProperty .
+           }
+           bind( if( isBlank( ?property ), ?actualProperty, ?property ) as ?value )
+           bind( 'ERR_MISSING_PROPERTY' as ?code )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The type of the value of the Property '{?path}' of the Entity instance '{$this}' does not match the Property definition." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?path ?code ?highlight
+         where {
+           $this a ?entityType .
+           ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
+           ?property samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?characteristicDataType .
+           $this ?property ?instanceValue .
+           bind( datatype( ?instanceValue ) as ?providedType )
+           filter( ( ?providedType != ?characteristicDataType ) &&
+                  not exists { ?providedType samm:canBeCastTo* ?characteristicDataType } )
+           bind( ?property as ?path )
+           bind( str( ?instanceValue ) as ?value )
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
+           bind( ?path as ?highlight )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The value for a list Property '{?path}' of the Entity instance '{$this}' is not defined as a list." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?path ?code ?highlight
+         where {
+           $this a ?entityType .
+          ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
+          ?property samm:characteristic/samm-c:baseCharacteristic* ?characteristic .
+          filter ( exists { ?characteristic rdf:type/rdfs:subClassOf* samm-c:Collection } )
+          ?characteristic samm:dataType ?characteristicDataType .
+          $this ?property ?listInstance .
+          filter ( not exists { ?listInstance rdf:rest*/rdf:first ?instanceValue } ) .
+          bind( ?property as ?path )
+          bind( 'ERR_LIST_REQUIRED' as ?code )
+          bind( ?path as ?highlight )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+        sh:message "Value '{?value}' for list Property '{?path}' of the Entity instance '{$this}' has an invalid data type." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?path ?code ?highlight
+         where {
+           $this a ?entityType .
+           ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
+           ?property samm:characteristic/samm-c:baseCharacteristic* ?characteristic .
+           filter ( exists { ?characteristic rdf:type/rdfs:subClassOf* samm-c:Collection } )
+           ?property samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?characteristicDataType .
+           $this ?property ?listInstance .
+           ?listInstance rdf:rest*/rdf:first ?instanceValue
+           optional { ?instanceValue rdf:type ?entityListType }
+           bind( coalesce( ?entityListType, dataType( ?instanceValue ) ) as ?providedType )
+           filter( ( ?providedType != ?characteristicDataType ) &&
+                not exists { ?providedType samm:canBeCastTo* ?characteristicDataType } )
+           bind( ?property as ?path )
+           bind( ?instanceValue as ?value )
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
+           bind( ?value as ?highlight )
+         }
+      """
+   ] .
+
+samm:UniqueEntityInstances
+   a sh:NodeShape ;
+   sh:severity sh:Warning ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdf:type samm:Entity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "Values for Properties of Entity instance '{$this}' should be unique, but there is a conflict with '{?value}'." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+        select distinct $this ?value ?code ?highlight
+        where {
+          ?entityType rdf:type samm:Entity .
+          $this a ?entityType .
+          ?anotherInstance a ?entityType .
+          filter( str( $this ) < str( ?anotherInstance ) )
+          filter( $this != ?anotherInstance )
+
+          {
+            select $this ?instance1 ( group_concat( ?part; separator=" " ) as ?serialized1 )
+            where {
+              ?instance1 rdf:type/rdf:type samm:Entity .
+              {
+                select $this ?instance1 ?property
+                where {
+                  ?instance1 ?property [] .
+                  filter( ?property != rdf:type )
+                }
+              }
+              ?instance1 ?property ?val .
+              bind( concat( str( ?property ), ":", str( ?val ) ) as ?part )
+            }
+            group by ?instance1 $this
+          }
+
+          {
+            select $this ?instance2 ( group_concat( ?part; separator=" " ) as ?serialized2 )
+            where {
+              ?instance2 rdf:type/rdf:type samm:Entity .
+              {
+                select $this ?instance2 ?property
+                where {
+                  ?instance2 ?property [] .
+                  filter( ?property != rdf:type )
+                }
+              }
+              ?instance2 ?property ?val .
+              bind( concat( str( ?property ), ":", str( ?val ) ) as ?part )
+            }
+            group by ?instance2 $this
+          }
+
+          filter( ( ?instance1 != ?instance2 ) && ( ?serialized1 = ?serialized2 ) )
+          bind( ?anotherInstance as ?value )
+          bind( 'ERR_DUPLICATE_ENTRY' as ?code )
+          bind( ?value as ?highlight )
+        }
+      """
+   ] .
+
+samm:EntityInstancesHaveOnlyKnownProperties
+   a sh:NodeShape ;
+   sh:severity sh:Warning ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdf:type samm:Entity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "Entity instance '{$this}' has an attribute '{?value}' that is not a Property defined in the Entity." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+        select $this ?value ?code ?highlight
+        where {
+          $this a ?entityType .
+          $this ?property [] .
+          filter( ?property != rdf:type )
+          filter ( not exists { ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property } )
+          filter ( not exists {
+            ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?blankProperty .
+            ?blankProperty samm:property ?property .
+          } )
+          bind( ?property as ?value )
+          bind( 'ERR_INVALID_PROPERTY' as ?code )
+          bind( ?value as ?highlight )
+        }
+      """
+   ] .
+
+samm:AbstractEntityDataTypeShape
+   a sh:NodeShape ;
+   sh:targetClass samm:AbstractEntity ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The datatype '{$this}' of Characteristic '{?value}' is an AbstractEntity. Only regular Entities (and simple data types) are permitted." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?code ?highlight
+         where {
+           $this rdf:type samm:AbstractEntity .
+           filter ( exists { ?property samm:characteristic/samm-c:baseCharacteristic*/samm:dataType $this } ) .
+           filter( not exists { [] samm:extends $this } ) .
+           ?property samm:characteristic ?characteristic .
+           bind( ?characteristic as ?value )
+           bind( 'ERR_ABSTRACT_USAGE' as ?code )
+           bind( ?value as ?highlight )
+         }
+      """
+   ] .
+
+samm:AbstractEntityDirectlyInstantiated
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdf:type samm:AbstractEntity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "'{$this}': Abstract Entities may not be directly instantiated." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?code
+         where {
+           $this a ?value .
+           bind( 'ERR_ABSTRACT_USAGE' as ?code )
+         }
+      """
+   ] .
+
+samm:ExtendsShape
+   a sh:NodeShape ;
+   sh:targetSubjectsOf samm:extends ;
+   sh:property [
+      sh:path samm:extends ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+   ] .
+
+samm:AmbiguousEntityShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this samm:extends/samm:extends* ?extendedEntity .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      rdfs:comment "Ensures that all Entities in a chain of extending Entities do not use ambiguous Property naming." ;
+      sh:message "The Entity '{$this}' contains Property '{?thisName}' which causes ambiguity in combination with the '{?other}' Entity." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?thisName ?other ?code ?highlight
+         where {
+           optional { $this samm:extends ?other }
+           optional { ?other samm:extends $this }
+
+           $this samm:properties/rdf:rest*/rdf:first ?thisPropertyNode .
+           ?other samm:properties/rdf:rest*/rdf:first ?otherPropertyNode .
+
+           # Matches usage of an actual Property, e.g.,
+           # :Foo samm:properties ( :myProperty )
+           optional {
+             ?thisPropertyNode a samm:Property .
+             bind( strafter( str( ?thisPropertyNode ), "#" ) as ?thisDirectName )
+           }
+
+           # Matches usage of a Property usage, e.g.,
+           # :Foo samm:properties ( [ samm:property :myProperty ; samm:optional true ] )
+           optional {
+             ?thisPropertyNode samm:property/rdf:type samm:Property .
+             ?thisPropertyNode samm:property ?thisProperty .
+             bind( strafter( str( ?thisProperty ), "#" ) as ?thisDirectName )
+           }
+
+           # Matches usage of a Property usage with a payloadName, e.g.,
+           # :Foo samm:properties ( [ samm:property :myProperty ; samm:payloadName "MyProperty" ] )
+           optional {
+             ?thisPropertyNode samm:property/rdf:type samm:Property .
+             ?thisPropertyNode samm:payloadName ?thisPayloadName
+           }
+           bind( coalesce( ?thisPayloadName, ?thisDirectName ) as ?thisName ) .
+
+           # Matches usage of an actual Property, e.g.,
+           # :Foo samm:properties ( :myProperty )
+           optional {
+             ?otherPropertyNode a samm:Property .
+             bind( strafter( str( ?otherPropertyNode ), "#" ) as ?otherDirectName )
+           }
+
+           # Matches usage of a Property usage, e.g.,
+           # :Foo samm:properties ( [ samm:property :myProperty ; samm:optional true ] )
+           optional {
+             ?otherPropertyNode samm:property/rdf:type samm:Property .
+             ?otherPropertyNode samm:property ?otherProperty .
+             bind( strafter( str( ?otherProperty ), "#" ) as ?otherDirectName )
+           }
+
+           # Matches usage of a Property usage with a payloadName, e.g.,
+           # :Foo samm:properties ( [ samm:property :myProperty ; samm:payloadName "MyProperty" ] )
+           optional {
+             ?otherPropertyNode samm:property/rdf:type samm:Property .
+             ?otherPropertyNode samm:payloadName ?otherPayloadName
+           }
+           bind( coalesce( ?otherPayloadName, ?otherDirectName ) as ?otherName  ) .
+
+           filter( ?thisName = ?otherName )
+           bind( ?thisName as ?value )
+           bind( 'ERR_AMBIGUOUS_PROPERTY' as ?code )
+           bind( ?thisName as ?highlight )
+         }
+      """
+   ] .
+
+samm:DoubleInstantiationShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+           $this rdf:type/rdf:type ?sammElement .
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "'{$this}' can not be an instance of '{?value}', because '{?value}' is an instance itself." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+        select $this ?value ?code ?highlight
+        where {
+         $this a ?value .
+         ?value a ?sammElement .
+         filter( exists { ?sammElement rdfs:subClassOf* mmm:Concept } )
+         filter( ?sammElement != samm:Entity && ?sammElement != samm:AbstractEntity )
+         bind( 'ERR_DOUBLE_INSTANTIATION' as ?code )
+         bind( ?value as ?highlight )
+       }
+      """
+  ] .
+
+samm:ConstrainListTypeUsageShape
+   a sh:NodeShape ;
+   sh:targetSubjectsOf mmm:listType ;
+   sh:property [
+      sh:order 0 ;
+      sh:path mmm:listType ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Metamodel violation: '{this}': mmm:listType may only be used for List Shapes." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this
+            where {
+              $this mmm:listType []
+              filter ( not exists { $this sh:node dash:ListShape } )
+            }
+         """
+      ]
+   ] .

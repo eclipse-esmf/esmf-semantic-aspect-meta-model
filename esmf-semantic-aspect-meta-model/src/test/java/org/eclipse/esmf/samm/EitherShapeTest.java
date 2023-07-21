@@ -30,12 +30,12 @@ public class EitherShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingPropertiesExpectFailure2( final KnownVersion metaModelVersions ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersions );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEitherMissingRequiredProperties";
+      final String focusNode = testNamespacePrefix + "TestEitherMissingRequiredProperties";
 
       final SemanticError resultForLeft = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.leftUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.leftUrn, violationUrn, "" );
       final SemanticError resultForRight = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.rightUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.rightUrn, violationUrn, "" );
       expectSemanticValidationErrors( "either-shape", "TestEitherMissingRequiredProperties",
             metaModelVersions, resultForLeft, resultForRight );
    }
@@ -44,11 +44,11 @@ public class EitherShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testValueForLeftAttributeIsNotACharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEitherLeftAttributeNotACharacteristic";
+      final String focusNode = testNamespacePrefix + "TestEitherLeftAttributeNotACharacteristic";
 
       final SemanticError resultForLeft = new SemanticError(
-            MESSAGE_VALUE_MUST_BE_CHARACTERISTIC, focusNode, sammUrns.leftUrn, VIOLATION_URN,
-            TEST_NAMESPACE_PREFIX + "LeftType" );
+            messageValueMustBeCharacteristic, focusNode, sammUrns.leftUrn, violationUrn,
+            testNamespacePrefix + "LeftType" );
       expectSemanticValidationErrors( "either-shape", "TestEitherLeftAttributeNotACharacteristic",
             metaModelVersion, resultForLeft );
    }
@@ -57,11 +57,11 @@ public class EitherShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testValueForRightAttributeIsNotACharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEitherRightAttributeNotACharacteristic";
+      final String focusNode = testNamespacePrefix + "TestEitherRightAttributeNotACharacteristic";
 
       final SemanticError resultForRight = new SemanticError(
-            MESSAGE_VALUE_MUST_BE_CHARACTERISTIC, focusNode, sammUrns.rightUrn, VIOLATION_URN,
-            TEST_NAMESPACE_PREFIX + "RightType" );
+            messageValueMustBeCharacteristic, focusNode, sammUrns.rightUrn, violationUrn,
+            testNamespacePrefix + "RightType" );
       expectSemanticValidationErrors( "either-shape", "TestEitherRightAttributeNotACharacteristic",
             metaModelVersion, resultForRight );
    }
@@ -70,10 +70,11 @@ public class EitherShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testSameCharacteristicForLeftAndRightExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEitherSameCharacteristicForLeftAndRight";
-      final String expectedMessage = validator.getMessageText( "samm-c:EitherShape", "samm-c:left", "ERR_WRONG_DATATYPE", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestEitherSameCharacteristicForLeftAndRight";
+      final String expectedMessage = validator.getMessageText( "samm-c:EitherShape", "samm-c:left", "ERR_WRONG_DATATYPE",
+            metaModelVersion );
       final SemanticError result = new SemanticError( expectedMessage,
-            focusNode, sammUrns.leftUrn, VIOLATION_URN, "" );
+            focusNode, sammUrns.leftUrn, violationUrn, "" );
       expectSemanticValidationErrors( "either-shape", "TestEitherSameCharacteristicForLeftAndRight",
             metaModelVersion, result );
    }
@@ -82,10 +83,10 @@ public class EitherShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testEitherDefinesDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestEitherDefinesDataType";
+      final String focusNode = testNamespacePrefix + "TestEitherDefinesDataType";
 
       final SemanticError result = new SemanticError(
-            MESSAGE_MORE_THAN_ZERO_VALUES, focusNode, sammUrns.datatypeUrn, VIOLATION_URN, "" );
+            messageMoreThanZeroValues, focusNode, sammUrns.datatypeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "either-shape", "TestEitherDefinesDataType",
             metaModelVersion, result );
    }

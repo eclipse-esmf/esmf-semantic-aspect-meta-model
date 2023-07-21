@@ -31,10 +31,10 @@ public class SeeShapeTest extends AbstractShapeTest {
    public void testSeePropertyDoesNotHaveNodeKindIriExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String aspectName = "TestSeePropertyDoesNotHaveNodeKindIri";
-      final String focusNode = TEST_NAMESPACE_PREFIX + aspectName;
+      final String focusNode = testNamespacePrefix + aspectName;
       final SemanticError resultForSee = new SemanticError(
-            MESSAGE_VALUE_DOES_NOT_HAVE_NODE_KIND_IRI, focusNode, sammUrns.seeUrn, VIOLATION_URN,
-            "http://open-manufacturing.org/" );
+            messageValueDoesNotHaveNodeKindIri, focusNode, sammUrns.seeUrn, violationUrn,
+            "https://eclipse-esmf.github.io/" );
       expectSemanticValidationErrors( "see-shape", aspectName, metaModelVersion, resultForSee );
    }
 }

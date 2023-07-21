@@ -30,10 +30,10 @@ public class LanguageConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredProperties2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLanguageConstraintMissingRequiredProperties";
+      final String focusNode = testNamespacePrefix + "TestLanguageConstraintMissingRequiredProperties";
 
       final SemanticError resultForLanguageCode = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.languageCodeUrn, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.languageCodeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "language-constraint-shape",
             "TestLanguageConstraintMissingRequiredProperties",
             metaModelVersion, resultForLanguageCode );
@@ -43,10 +43,10 @@ public class LanguageConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMultipleLanguageCodeProperties( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLanguageConstraintMultipleLanguageCodeProperties";
+      final String focusNode = testNamespacePrefix + "TestLanguageConstraintMultipleLanguageCodeProperties";
 
-      final SemanticError result = new SemanticError( MESSAGE_DUPLICATE_PROPERTY, focusNode,
-            sammUrns.languageCodeUrn, VIOLATION_URN, "" );
+      final SemanticError result = new SemanticError( messageDuplicateProperty, focusNode,
+            sammUrns.languageCodeUrn, violationUrn, "" );
       expectSemanticValidationErrors(
             "language-constraint-shape", "TestLanguageConstraintMultipleLanguageCodeProperties",
             metaModelVersion, result );
@@ -56,11 +56,12 @@ public class LanguageConstraintShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testInvalidLanguageCodeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestLanguageConstraintInvalidLanguageCode";
-      final String expectedMessage = validator.getMessageText( "samm-c:LanguageConstraintShape", "samm-c:languageCode", "ERR_WRONG_LANGCODE",
+      final String focusNode = testNamespacePrefix + "TestLanguageConstraintInvalidLanguageCode";
+      final String expectedMessage = validator.getMessageText( "samm-c:LanguageConstraintShape", "samm-c:languageCode",
+            "ERR_WRONG_LANGCODE",
             metaModelVersion );
       final SemanticError result = new SemanticError( expectedMessage, focusNode,
-            sammUrns.languageCodeUrn, VIOLATION_URN, "DE_de" );
+            sammUrns.languageCodeUrn, violationUrn, "DE_de" );
       expectSemanticValidationErrors( "language-constraint-shape", "TestLanguageConstraintInvalidLanguageCode", metaModelVersion, result );
    }
 }

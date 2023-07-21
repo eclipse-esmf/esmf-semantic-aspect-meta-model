@@ -23,10 +23,11 @@ public class EntityInstancesHaveOnlyKnownPropertiesShapeTest extends AbstractSha
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testAdditionalUnknownPropertyExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "Instance";
-      final String expectedMessage = validator.getMessageText( "samm:EntityInstancesHaveOnlyKnownProperties", "ERR_INVALID_PROPERTY", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "Instance";
+      final String expectedMessage = validator.getMessageText( "samm:EntityInstancesHaveOnlyKnownProperties", "ERR_INVALID_PROPERTY",
+            metaModelVersion );
       final SemanticError resultForName = new SemanticError(
-            expectedMessage, focusNode, "", WARNING_URN, TEST_NAMESPACE_PREFIX + "intProperty" );
+            expectedMessage, focusNode, "", warningUrn, testNamespacePrefix + "intProperty" );
       expectSemanticValidationErrors( "entities-have-only-known-properties-shape",
             "TestEntityInstanceWithUnknownProperties", metaModelVersion, resultForName );
    }
@@ -34,10 +35,11 @@ public class EntityInstancesHaveOnlyKnownPropertiesShapeTest extends AbstractSha
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
    public void testAdditionalUnknownPropertyInExtendingEntityInstanceExpectFailure( final KnownVersion metaModelVersion ) {
-      final String expectedMessage = validator.getMessageText( "samm:EntityInstancesHaveOnlyKnownProperties", "ERR_INVALID_PROPERTY", metaModelVersion );
+      final String expectedMessage = validator.getMessageText( "samm:EntityInstancesHaveOnlyKnownProperties", "ERR_INVALID_PROPERTY",
+            metaModelVersion );
       final SemanticError resultForName = new SemanticError(
-            expectedMessage, TEST_NAMESPACE_PREFIX + "ExtendingEntityInstance", "",
-            WARNING_URN, TEST_NAMESPACE_PREFIX + "unkown" );
+            expectedMessage, testNamespacePrefix + "ExtendingEntityInstance", "",
+            warningUrn, testNamespacePrefix + "unkown" );
       expectSemanticValidationErrors( "entities-have-only-known-properties-shape",
             "ExtendingEntityInstanceWithUnknownProperties", metaModelVersion, resultForName );
    }

@@ -40,44 +40,44 @@ public class CollectionInstanceShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testCollectionCharacteristicWithoutDataTypeOrElementCharacteristicExpectFailure(
          final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithoutDataTypeAndElementCharacteristic";
+      final String focusNode = testNamespacePrefix + "TestCollectionWithoutDataTypeAndElementCharacteristic";
       final SemanticError result = getSingleSemanticValidationError(
             "collection-instance-shape", "TestCollectionWithoutDataTypeAndElementCharacteristic", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( messageCollectionWithoutDataType, result ) );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testCollectionCharacteristicWithInvalidElementCharacteristic( final KnownVersion metaModelversion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithInvalidElementCharacteristic";
+      final String focusNode = testNamespacePrefix + "TestCollectionWithInvalidElementCharacteristic";
       final SemanticError result = getSingleSemanticValidationError(
             "collection-instance-shape", "TestCollectionWithInvalidElementCharacteristic", metaModelversion );
-      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( messageCollectionWithoutDataType, result ) );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testCollectionCharacteristicWithMultipleElementCharacteristics( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithMultipleElementCharacteristics";
+      final String focusNode = testNamespacePrefix + "TestCollectionWithMultipleElementCharacteristics";
       final SemanticError result = getSingleSemanticValidationError(
             "collection-instance-shape", "TestCollectionWithMultipleElementCharacteristics", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( MESSAGE_DUPLICATE_PROPERTY );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultMessage() ).isEqualTo( messageDuplicateProperty );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void TestCollectionWithInvalidCollectionFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestCollectionWithInvalidCharacteristic";
+      final String focusNode = testNamespacePrefix + "TestCollectionWithInvalidCharacteristic";
       final SemanticError result = getSingleSemanticValidationError( "collection-instance-shape",
             "TestCollectionWithInvalidCharacteristic", metaModelVersion );
-      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( MESSAGE_COLLECTION_WITHOUT_DATA_TYPE, result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+      assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage( messageCollectionWithoutDataType, result ) );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getFocusNode() ).isEqualTo( focusNode );
    }
 

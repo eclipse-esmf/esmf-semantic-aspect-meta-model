@@ -33,14 +33,14 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueMissingRequiredProperties";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueMissingRequiredProperties";
 
       final SemanticError resultForDeconstructionRule = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.deconstructionRule, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.deconstructionRule, violationUrn, "" );
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_MISSING_REQUIRED_PROPERTY, focusNode, sammUrns.elements, VIOLATION_URN, "" );
+            messageMissingRequiredProperty, focusNode, sammUrns.elements, violationUrn, "" );
       final SemanticError resultForDatatype = new SemanticError(
-            MESSAGE_MISSING_DATATYPE, focusNode, sammUrns.datatypeUrn, VIOLATION_URN, "" );
+            messageMissingDatatype, focusNode, sammUrns.datatypeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueMissingRequiredProperties",
             metaModelVersion, resultForDeconstructionRule, resultForElements, resultForDatatype );
    }
@@ -50,10 +50,10 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    public void testStructuredValueValidationWithInvalidRegularExpressionExpectFailure(
          final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithInvalidRegularExpression";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidRegularExpression";
 
       final SemanticError resultForRegularExpression = new SemanticError(
-            MESSAGE_INVALID_DECONSTRUCTION_RULE, focusNode, sammUrns.deconstructionRule, VIOLATION_URN, "((((" );
+            messageInvalidDeconstructionRule, focusNode, sammUrns.deconstructionRule, violationUrn, "((((" );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueWithInvalidRegularExpression",
             metaModelVersion, resultForRegularExpression );
@@ -65,8 +65,9 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
       final SemanticError result = getSingleSemanticValidationError(
             "structured-value-shape", "TestStructuredValueWithInvalidElements", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage(
-            validator.getMessageText( "samm-c:StructuredValueShape", "samm-c:elements", "ERR_WRONG_DATATYPE", metaModelVersion ), result ) );
-      assertThat( result.getResultSeverity() ).isEqualTo( VIOLATION_URN );
+            validator.getMessageText( "samm-c:StructuredValueShape", "samm-c:elements", "ERR_WRONG_DATATYPE", metaModelVersion ),
+            result ) );
+      assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isEqualTo( "42" );
    }
 
@@ -74,13 +75,13 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testEmptyElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithEmptyElements";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueWithEmptyElements";
 
       final SemanticError resultForElements = new SemanticError(
             validator.getMessageText( "samm-c:StructuredValueShape", "samm-c:elements", "ERR_MISSING_VALUE", metaModelVersion ),
-            focusNode, sammUrns.elements, VIOLATION_URN, focusNode );
+            focusNode, sammUrns.elements, violationUrn, focusNode );
       final SemanticError resultForGroups = new SemanticError(
-            MESSAGE_INVALID_MATCHING_GROUPS2, focusNode, "", VIOLATION_URN, "" );
+            messageInvalidMatchingGroups2, focusNode, "", violationUrn, "" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueWithEmptyElements",
             metaModelVersion, resultForElements, resultForGroups );
    }
@@ -89,11 +90,11 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testStructuredValueWithInvalidTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithInvalidDatatype";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidDatatype";
 
       final SemanticError resultForDataType = new SemanticError(
             validator.getMessageText( "samm-c:StructuredValueShape", "samm:dataType", "ERR_WRONG_DATATYPE", metaModelVersion ),
-            focusNode, sammUrns.datatypeUrn, VIOLATION_URN,
+            focusNode, sammUrns.datatypeUrn, violationUrn,
             XSD.xboolean.getURI() );
       expectSemanticValidationErrors(
             "structured-value-shape", "TestStructuredValueWithInvalidDatatype",
@@ -103,10 +104,10 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidDeconstructionExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithInvalidDeconstruction";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidDeconstruction";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_INVALID_DECONSTRUCTION, focusNode, "", VIOLATION_URN, "" );
+            messageInvalidDeconstruction, focusNode, "", violationUrn, "" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueWithInvalidDeconstruction",
             metaModelVersion, resultForElements );
    }
@@ -114,10 +115,10 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testInvalidMatchingGroupsExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithInvalidMatchingGroups";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidMatchingGroups";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_INVALID_MATCHING_GROUPS, focusNode, "", VIOLATION_URN, "" );
+            messageInvalidMatchingGroups, focusNode, "", violationUrn, "" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueWithInvalidMatchingGroups",
             metaModelVersion, resultForElements );
    }
@@ -125,10 +126,10 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testNonMatchingGroupsExpectFailure( final KnownVersion metaModelVersion ) {
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueWithNonMatchingGroups";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueWithNonMatchingGroups";
 
       final SemanticError resultForElements = new SemanticError(
-            MESSAGE_NON_MATCHING_GROUPS, focusNode, "", VIOLATION_URN, "" );
+            messageNonMatchingGroups, focusNode, "", violationUrn, "" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueWithNonMatchingGroups",
             metaModelVersion, resultForElements );
    }
@@ -137,11 +138,11 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testElementsContainsNoProperty( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithoutProperties";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueElementsWithoutProperties";
 
       final SemanticError resultForElements = new SemanticError(
             validator.getMessageText( "samm-c:StructuredValueShape", "samm-c:elements", "ERR_MISSING_PROPERTY", metaModelVersion ),
-            focusNode, sammUrns.elements, VIOLATION_URN, "foo" );
+            focusNode, sammUrns.elements, violationUrn, "foo" );
       expectSemanticValidationErrors( "structured-value-shape", "TestStructuredValueElementsWithoutProperties",
             metaModelVersion, resultForElements );
    }
@@ -150,12 +151,12 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testElementsWithNonScalarDatatype( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithNonScalarDatatype";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueElementsWithNonScalarDatatype";
 
       final SemanticError resultForElements = new SemanticError(
             "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType",
-            focusNode, sammUrns.elements, VIOLATION_URN,
-            TEST_NAMESPACE_PREFIX + "prop" );
+            focusNode, sammUrns.elements, violationUrn,
+            testNamespacePrefix + "prop" );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueElementsWithNonScalarDatatype",
             metaModelVersion, resultForElements );
@@ -165,11 +166,11 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testElementsWithListCharacteristic( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithListCharacteristic";
+      final String focusNode = testNamespacePrefix + "TestStructuredValueElementsWithListCharacteristic";
 
       final SemanticError resultForElements = new SemanticError(
             validator.getMessageText( "samm-c:StructuredValueShape", "samm-c:elements", "ERR_WRONG_USAGE", metaModelVersion ),
-            focusNode, sammUrns.elements, VIOLATION_URN,
+            focusNode, sammUrns.elements, violationUrn,
             sammUrns.list );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueElementsWithListCharacteristic",
@@ -181,11 +182,11 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
    public void testElementsWithStructuredValueCharacteristic( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode =
-            TEST_NAMESPACE_PREFIX + "TestStructuredValueElementsWithStructuredValueCharacteristic";
+            testNamespacePrefix + "TestStructuredValueElementsWithStructuredValueCharacteristic";
 
       final SemanticError resultForElements = new SemanticError(
             validator.getMessageText( "samm-c:StructuredValueShape", "samm-c:elements", "ERR_WRONG_USAGE", metaModelVersion ),
-            focusNode, sammUrns.elements, VIOLATION_URN,
+            focusNode, sammUrns.elements, violationUrn,
             sammUrns.structuredValue );
       expectSemanticValidationErrors( "structured-value-shape",
             "TestStructuredValueElementsWithStructuredValueCharacteristic",

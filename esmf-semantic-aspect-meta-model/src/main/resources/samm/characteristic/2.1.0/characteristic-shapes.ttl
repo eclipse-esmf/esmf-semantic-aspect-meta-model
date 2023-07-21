@@ -1,0 +1,809 @@
+# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix mmm: <urn:samm:org.eclipse.esmf.samm:meta-meta-model:2.1.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+samm-c:TraitShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Trait ;
+   sh:property [
+      sh:path samm-c:baseCharacteristic ;
+      sh:class samm:Characteristic ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "baseCharacteristic" ;
+      sh:description "The Characteristic which is wrapped by the Trait." ;
+   ] ;
+   sh:property [
+      sh:path samm-c:constraint ;
+      sh:class samm:Constraint ;
+      sh:minCount 1 ;
+      sh:description "A constraint that is applied to the Characteristic." ;
+   ] .
+
+samm-c:QuantifiableShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Quantifiable ;
+   sh:property [
+      sh:path samm-c:unit ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The unit definition '{?value}' of the Quantifiable (Characteristic) '{$this}' is not valid." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+               $this samm-c:unit ?value .
+               filter( not exists { ?value rdf:type/rdfs:subClassOf* samm:Unit } ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "unit" ;
+      sh:description "The Unit of the Quantifiable." ;
+   ] .
+
+samm-c:MeasurementShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Measurement ;
+   sh:property [
+      sh:path samm-c:unit ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "unit" ;
+      sh:description "The Unit of the Measurement." ;
+   ] .
+
+samm-c:CollectionShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdfs:subClassOf* samm-c:Collection .
+         }
+      """
+   ] ;
+   sh:property [
+      sh:path mmm:allowDuplicates ;
+      sh:datatype xsd:boolean ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The property 'allowDuplicates' must be set for Collection '{$this}'." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?code
+            where {
+              $this rdfs:subClassOf* samm-c:Collection .
+              filter ( not exists { $this rdfs:subClassOf*/mmm:allowDuplicates [] } ) .
+              bind( 'ERR_MISSING_PROPERTY' as ?code )
+            }
+         """
+      ] ;
+      sh:maxCount 1 ;
+      sh:name "allowDuplicates" ;
+      sh:description "Ensures that the property allowDuplicates is set at least once for Collections." ;
+   ] ;
+   sh:property [
+      sh:path mmm:ordered ;
+      sh:datatype xsd:boolean ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The property 'ordered' must be set for Collection '{$this}'." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?code
+            where {
+              $this rdfs:subClassOf* samm-c:Collection .
+              filter ( not exists { $this rdfs:subClassOf*/mmm:ordered [] } ) .
+              bind( 'ERR_MISSING_PROPERTY' as ?code )
+            }
+         """
+      ] ;
+      sh:maxCount 1 ;
+      sh:name "ordered" ;
+      sh:description "Ensures that the property ordered is set at least once for Collections." ;
+   ] .
+
+samm-c:CollectionInstanceShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this
+         where {
+            $this rdf:type/rdfs:subClassOf* samm-c:Collection .
+         }
+      """
+   ] ;
+   sh:property [
+      sh:path [ sh:alternativePath ( samm:dataType samm-c:elementCharacteristic ) ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Collection '{$this}' must be defined with either a 'samm:dataType' or a 'samm-c:elementCharacteristic'." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?code
+            where {
+               $this rdf:type/rdfs:subClassOf* samm-c:Collection .
+               optional { $this samm-c:elementCharacteristic ?elementCharacteristic . }
+               filter ( ( not exists { $this samm:dataType [] } && not exists { $this samm-c:elementCharacteristic [] } ) ||
+               not exists { ?elementCharacteristic rdf:type/rdfs:subClassOf* samm:Characteristic }) .
+               bind( 'ERR_MISSING_DATATYPE' as ?code )
+            }
+         """
+      ] ;
+      sh:maxCount 1 ;
+   ] .
+
+samm-c:PreventRedefiningCollectionShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Collection ;
+   sh:property [
+      sh:path mmm:allowDuplicates ;
+      sh:datatype xsd:boolean ;
+      sh:minCount 0 ;
+      sh:maxCount 0;
+      sh:message "Overriding allowDuplicates for Collections is not allowed." ;
+      sh:name "allowDuplicates" ;
+      sh:description "Prevents instances of Collection Characteristics to override the allow duplicates property and hence change the semantics of a Collection." ;
+   ] ;
+   sh:property [
+      sh:path mmm:ordered ;
+      sh:datatype xsd:boolean ;
+      sh:minCount 0 ;
+      sh:maxCount 0;
+      sh:message "Overriding ordered for Collections is not allowed." ;
+      sh:name "ordered" ;
+      sh:description "Prevents instances of Collection Characteristics to override the ordered property and hence change the semantics of a Collection." ;
+   ] .
+
+samm-c:LanguageConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:LanguageConstraint ;
+   sh:property [
+      sh:path samm-c:languageCode ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The language code '{?value}' of LanguageConstraint '{$this}' is not a valid ISO 639-1 language code." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+               $this samm-c:languageCode ?value .
+               filter( ?value not in ( "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi", "bm", "bn", "bo", "br",
+                "bs", "ca", "ce", "ch", "co", "cr", "cs", "cu", "cv", "cy", "da", "de", "dv", "dz", "ee", "el", "en", "eo", "es", "et", "eu", "fa", "ff", "fi",
+                "fj", "fo", "fr", "fy", "ga", "gd", "gl", "gn", "gu", "gv", "ha", "he", "hi", "ho", "hr", "ht", "hu", "hy", "hz", "ia", "id", "ie", "ig", "ii",
+                "ik", "io", "is", "it", "iu", "ja", "jv", "ka", "kg", "ki", "kj", "kk", "kl", "km", "kn", "ko", "kr", "ks", "ku", "kv", "kw", "ky", "la", "lb",
+                "lg", "li", "ln", "lo", "lt", "lu", "lv", "mg", "mh", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "na", "nb", "nd", "ne", "ng", "nl", "nn",
+                "no", "nr", "nv", "ny", "oc", "oj", "om", "or", "os", "pa", "pi", "pl", "ps", "pt", "qu", "rm", "rn", "ro", "ru", "rw", "sa", "sc", "sd", "se",
+                "sg", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti", "tk", "tl", "tn", "to", "tr",
+                "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo", "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu" ) )
+                bind( 'ERR_WRONG_LANGCODE' as ?code )
+                bind( ?value as ?highlight )
+            }
+            """
+      ] ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "languageCode" ;
+      sh:description "An ISO 639-1 language code for the language of the value of the constrained Property"
+   ] .
+
+samm-c:LocaleConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:LocaleConstraint ;
+   sh:property [
+      sh:path samm-c:localeCode ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "localeCode" ;
+      sh:description "An IETF BCP 47 locale code for the language of the value of the constrained Property" ;
+      sh:js [
+         a sh:JSConstraint ;
+         sh:jsLibrary samm:jsValidations ;
+         sh:jsFunctionName "isValidBCP47LanguageTag" ;
+      ] ;
+   ] .
+
+samm-c:EncodingConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:EncodingConstraint ;
+   sh:property [
+      sh:path samm:value ;
+      sh:in ( samm:US-ASCII samm:ISO-8859-1 samm:UTF-8 samm:UTF-16 samm:UTF-16BE samm:UTF-16LE );
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "value" ;
+      sh:description "Constrains the encoding (character set) of a property." ;
+      sh:message "Value must be one of [samm:US-ASCII samm:ISO-8859-1 samm:UTF-8 samm:UTF-16 samm:UTF-16BE samm:UTF-16LE]" ;
+   ] .
+
+samm-c:LengthConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:LengthConstraint ;
+   sh:property [
+      sh:path samm-c:minValue ;
+      sh:datatype xsd:nonNegativeInteger ;
+      sh:maxCount 1 ;
+      sh:name "minValue" ;
+      sh:description "The lower bound of the length constraint." ;
+   ] ;
+   sh:property [
+      sh:path samm-c:maxValue ;
+      sh:datatype xsd:nonNegativeInteger ;
+      sh:maxCount 1 ;
+      sh:name "maxValue" ;
+      sh:description "The upper bound of the length constraint." ;
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "LengthConstraint '{$this}' must have a minValue or a maxValue." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?code
+         where {
+           $this rdf:type samm-c:LengthConstraint .
+           filter( not exists { $this samm-c:maxValue [] } && not exists { $this samm-c:minValue [] } )
+           bind( 'ERR_MISSING_PROPERTY' as ?code )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "LengthConstraint '{$this}' is not applicable to the base Characteristic's data type '{?value}'." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?code
+         where {
+           $this rdf:type samm-c:LengthConstraint .
+           $this ^samm-c:constraint/samm-c:baseCharacteristic*/samm:dataType ?value .
+           # Length constraints apply to string-alike dataTypes
+           filter( not exists { ?value samm:hasCharacterValueSpace true }
+           # and collections
+                && not exists { $this ^samm-c:constraint/samm-c:baseCharacteristic*/rdf:type/rdfs:subClassOf* samm-c:Collection } )
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "LengthConstraint '{$this}': the maxValue must be greater or equal than the minValue ('{?value}')." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?code
+         where {
+           $this rdf:type samm-c:LengthConstraint .
+           $this samm-c:minValue ?minValue .
+           $this samm-c:maxValue ?maxValue .
+           filter( ?minValue > ?maxValue )
+           bind( concat( "minValue: ", str( ?minValue ), " maxValue: ", str( ?maxValue ) ) as ?value )
+           bind( 'ERR_INVALID_VALUE' as ?code )
+         }
+      """
+   ] .
+
+samm-c:RegularExpressionConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:RegularExpressionConstraint ;
+   sh:property [
+      sh:path samm:value ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "value" ;
+      sh:description "Constrains the lexical value of a property." ;
+      sh:js [
+         a sh:JSConstraint ;
+         sh:message "The RegularExpressionConstraint's value is no valid regular expression." ;
+         sh:jsLibrary samm:jsValidations ;
+         sh:jsFunctionName "isValidRegularExpression" ;
+      ] ;
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "RegularExpressionConstraint '{$this}' is not applicable to the base Characteristic's data type '{?value}'." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?value ?code
+         where {
+           $this rdf:type samm-c:RegularExpressionConstraint .
+           $this ^samm-c:constraint/samm-c:baseCharacteristic*/samm:dataType ?value .
+           # Regular expression constraints apply to string-alike dataTypes
+           filter( not exists { ?value samm:hasCharacterValueSpace true } )
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
+         }
+      """
+   ] .
+
+samm-c:RangeShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:RangeConstraint ;
+   sh:property [
+      sh:path samm-c:minValue ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The data type of the min value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?baseCharacteristic ?baseCharacteristicDataType ?code
+            where {
+               $this rdf:type samm-c:RangeConstraint .
+               $this ^samm-c:constraint/samm-c:baseCharacteristic* ?baseCharacteristic .
+               ?baseCharacteristic samm:dataType ?baseCharacteristicDataType .
+               $this samm-c:minValue ?minValue .
+               bind( datatype( ?minValue ) as ?minValueDataType ) .
+               filter( ?minValueDataType != ?baseCharacteristicDataType ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+            }
+         """
+      ] ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "minValue" ;
+      sh:description "The lower bound of a range." ;
+   ] ;
+   sh:property [
+      sh:path samm-c:maxValue ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The data type of the max value for the Range Constraint '{$this}' is not the data type defined in the base Characteristic." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?baseCharacteristic ?baseCharacteristicDataType ?code
+            where {
+               $this rdf:type samm-c:RangeConstraint .
+               $this ^samm-c:constraint/samm-c:baseCharacteristic*/samm:dataType ?baseCharacteristicDataType .
+               $this samm-c:maxValue ?maxValue .
+               bind( datatype( ?maxValue ) as ?maxValueDataType ) .
+               filter( ?maxValueDataType != ?baseCharacteristicDataType ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+            }
+         """
+      ] ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "maxValue" ;
+      sh:description "The upper bound of a range." ;
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "RangeConstraint '{$this}' must have a minValue or a maxValue." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?code
+         where {
+           $this rdf:type samm-c:RangeConstraint .
+           filter( not exists { $this samm-c:maxValue [] } && not exists { $this samm-c:minValue [] } )
+           bind( 'ERR_MISSING_PROPERTY' as ?code )
+         }
+      """
+   ] ;
+   sh:property [
+      sh:path samm-c:lowerBoundDefinition ;
+      sh:in ( samm-c:AT_LEAST samm-c:GREATER_THAN );
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "lowerBoundDefinition" ;
+      sh:description "The definition of how the lower bound of a range is to be interpreted." ;
+      sh:message "Value must be exactly one of [samm-c:AT_LEAST, samm-c:GREATER_THAN]" ;
+   ] ;
+   sh:property [
+      sh:path samm-c:upperBoundDefinition ;
+      sh:in ( samm-c:LESS_THAN samm-c:AT_MOST );
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "upperBoundDefinition" ;
+      sh:description "The definition of how the upper bound of a range is to be interpreted." ;
+      sh:message "Value must be exactly one of [samm-c:LESS_THAN, samm-c:AT_MOST]" ;
+   ] .
+
+samm-c:StateShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:State ;
+   sh:property [
+      sh:path samm-c:defaultValue ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "defaultValue" ;
+      sh:description "The default value for this state" ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "StateShape '{$this}': The default value is not one of the defined values." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?defaultValue ?values ?code
+            where {
+               $this samm-c:values ?values .
+               $this samm-c:defaultValue ?defaultValue .
+               filter ( not exists {
+                  $this samm-c:values/rdf:rest*/rdf:first ?defaultValue .
+               } )
+               bind( 'ERR_MISSING_DEFAULT_VALUE' as ?code )
+            }
+         """
+      ] ;
+   ] .
+
+samm-c:DurationShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Duration ;
+   sh:property [
+      sh:path samm-c:unit ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "unit" ;
+      sh:description "The Unit in which the Duration is measured." ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "DurationShape '{$this}': Unit of Duration '{?value}' does not have the quantity kind time." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?unit ?value ?code ?highlight
+            where {
+               $this rdf:type/rdfs:subClassOf* samm-c:Duration .
+               $this samm-c:unit ?unit .
+               filter( not exists { ?unit samm:referenceUnit?/samm:quantityKind unit:time } )
+               bind( ?unit as ?value )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ]
+   ] .
+
+samm-c:EnumerationShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Enumeration ;
+   sh:property [
+     sh:path samm-c:values ;
+     sh:node dash:ListShape ;
+     sh:minCount 1 ;
+     sh:maxCount 1 ;
+     sh:name "values" ;
+     sh:description "A list of valid states." ;
+     sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "EnumerationShape '{$this}': one of the values ('{?item}') does not have the specified data type '{?definedDataType}'." ;
+        sh:prefixes samm:prefixDeclarations ;
+        sh:select """
+           select $this ?values ?dataType ?item ?definedDataType ?code ?highlight
+           where {
+             $this rdf:type/rdfs:subClassOf* samm-c:Enumeration .
+             $this samm-c:values ?values .
+             $this samm:dataType ?definedDataType .
+             ?values rdf:rest*/rdf:first ?item .
+             bind( datatype( ?item ) as ?literalDataType ) .
+             bind( strlen( str( ?literalDataType ) ) as ?literalDataTypeLength ) .
+             filter( ( ?literalDataType != ?definedDataType ) && ( ?literalDataTypeLength > 0 ) ) .
+             bind( 'ERR_WRONG_DATATYPE' as ?code )
+             bind( ?item as ?highlight )
+           }
+        """
+     ] ;
+     sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "EnumerationShape '{$this}': DataType is a literal type but one of the values ('{?item}') is defined as samm:Property." ;
+        sh:prefixes samm:prefixDeclarations ;
+        sh:select """
+           select $this ?values ?item ?code ?highlight
+           where {
+              $this rdf:type/rdfs:subClassOf* samm-c:Enumeration .
+              filter ( not exists { $this samm:dataType samm:Property } ) .
+              $this samm-c:values ?values .
+              ?values rdf:rest/rdf:first ?item .
+              filter ( exists { ?item rdf:type samm:Property } )
+              bind( 'ERR_LITERAL_EXPECTED' as ?code )
+              bind( ?item as ?highlight )
+           }
+        """
+     ] ;
+   ] .
+
+samm-c:SingleEntityShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:SingleEntity ;
+   sh:property [
+      sh:path samm:dataType ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "dataType" ;
+      sh:description "Defines the data type of all Properties which use this Characteristic." ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Element '{$this}': the dataType '{?value}' that is used as dataType on the Characteristic is not a samm:Entity." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this $value ?code ?highlight
+            where {
+               $this samm:dataType ?value .
+               filter( not exists { ?value rdf:type* samm:Entity } && not exists { ?value rdf:type* samm:AbstractEntity } )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] .
+
+samm-c:EitherShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Either ;
+   sh:property [
+      sh:path samm-c:left ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "left" ;
+      sh:description "The Characteristic for the left side value of a disjoint union." ;
+      sh:class samm:Characteristic ;
+      sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "EitherShape '{$this}': the Characteristic referenced by the samm-c:left and samm-c:right attributes may not be equivalent." ;
+        sh:prefixes samm:prefixDeclarations ;
+        sh:select """
+           select $this ?code
+           where {
+              # select all Either Characteristics
+              $this rdf:type/rdfs:subClassOf* samm-c:Either .
+              $this samm-c:left ?left .
+              $this samm-c:right ?right .
+              filter ( ?left = ?right ) .
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
+           }
+        """
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm-c:right ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "right" ;
+      sh:description "The Characteristic for the right side value of a disjoint union." ;
+      sh:class samm:Characteristic ;
+   ] ;
+   sh:property [
+      sh:path samm:dataType;
+      sh:minCount 0 ;
+      sh:maxCount 0 ;
+      sh:name "dataType" ;
+      sh:description "An Either Characteristic may not define a data type. The data type is set by the Characteristics for the left and right side of the disjoint union." ;
+   ] .
+
+samm-c:StructuredValueShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:StructuredValue ;
+   sh:js [
+      a sh:JSConstraint ;
+      sh:jsLibrary samm:jsValidations ;
+      sh:jsFunctionName "testStructuredValueConstruction" ;
+   ] ;
+   sh:property [
+      sh:path samm-c:deconstructionRule ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "deconstructionRule" ;
+      sh:description "A regular expression that deconstructs a string into groups." ;
+      sh:js [
+         a sh:JSConstraint ;
+         sh:message "The StructuredValue's deconstructionRule is no valid regular expression." ;
+         sh:jsLibrary samm:jsValidations ;
+         sh:jsFunctionName "isValidRegularExpression" ;
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm-c:elements ;
+      sh:node dash:ListShape ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:name "elements" ;
+      sh:description """List of elements of possibly different types, e.g. ( "literal value" :reference )""" ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "StructuredValue's '{$this}' elements ('{?value}') may only be Properties or string literals" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+              $this samm-c:elements ?elements .
+              ?elements rdf:rest*/rdf:first ?element .
+              filter( ( isURI( ?element ) && not exists { ?element a samm:Property } )
+                 || ( datatype( ?element ) != xsd:string  ) )
+              bind( str( ?element ) as ?value )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "StructuredValue's '{$this}' elements may not be empty" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+              $this samm-c:elements ?elements .
+              filter( not exists {
+                ?elements rdf:rest*/rdf:first ?element .
+                filter( ?element != rdf:NIL )
+              } )
+              bind( str( $this ) as ?value )
+              bind( 'ERR_MISSING_VALUE' as ?code )
+            }
+         """
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm-c:elements;
+      sh:name "elements" ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "StructuredValue's '{$this}' elements must contain at least one Property" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+              $this samm-c:elements ?elements .
+              filter( not exists {
+                ?elements rdf:rest*/rdf:first ?element .
+                filter( exists { ?element a samm:Property } )
+              } )
+              {
+                select $this ( group_concat( ?valuePart; separator=" " ) as ?value )
+                where {
+                  $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+                  $this samm-c:elements/rdf:rest*/rdf:first ?element .
+                  bind( str( ?element ) as ?valuePart )
+                }
+                group by $this
+              }
+              bind( 'ERR_MISSING_PROPERTY' as ?code )
+            }
+         """
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm-c:elements;
+      sh:name "elements" ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Properties referred to in StructuredValue's '{$this}' elements must have a Characteristic with a scalar dataType" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+              $this samm-c:elements/rdf:rest*/rdf:first ?value .
+              ?value a samm:Property .
+              ?value samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?dataType .
+              filter( !strstarts( str( ?dataType ), str( xsd: ) )
+                     && !strstarts( str( ?dataType ), str( rdf: ) )
+                     && str( ?dataType) != str( samm:curie ) )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
+            }
+         """
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm-c:elements;
+      sh:name "elements" ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Characteristic '{?value}' may not be used with Properties that appear as elements in a StructuredValue '{$this}'" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select distinct $this ?value ?code ?highlight
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+              $this samm-c:elements/rdf:rest*/rdf:first ?property .
+              ?property a samm:Property .
+              ?property samm:characteristic/( samm-c:baseCharacteristic* | rdfs:subClassOf* )/rdf:type ?value .
+              filter( ?value in( samm-c:Collection, samm-c:Set, samm-c:SortedSet, samm-c:List, samm-c:TimeSeries, samm-c:Either, samm-c:StructuredValue ) )
+              bind( 'ERR_WRONG_USAGE' as ?code )
+              bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm:dataType;
+      sh:name "dataType" ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "StructuredValue's '{$this}' dataType '{?value}' must have a string-like value space" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:StructuredValue .
+              $this samm:dataType ?value .
+              filter( not exists { ?value samm:hasCharacterValueSpace true } )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] .
+
+samm-c:FixedPointConstraintShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:FixedPointConstraint ;
+   sh:property [
+      sh:path samm-c:scale ;
+      sh:datatype xsd:positiveInteger ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "scale" ;
+      sh:description "The scaling factor for a fixed point number." ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Fixed Point Constraint '{$this}' may only be used with Characteristics whose data type is xsd:decimal, but the actual value is '{?value}'." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+               $this rdf:type/rdfs:subClassOf* samm-c:FixedPointConstraint .
+               $this ^samm-c:constraint/samm-c:baseCharacteristic*/samm:dataType ?value .
+               filter( str( ?value ) != str( xsd:decimal ) )
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] ;
+   sh:property [
+      sh:path samm-c:integer ;
+      sh:datatype xsd:positiveInteger ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "integer" ;
+      sh:description "The number of integral digits for a fixed point number." ;
+   ] .
+
+samm-c:TimeSeriesShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:TimeSeries ;
+   sh:property [
+      sh:path samm:dataType ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:name "dataType" ;
+      sh:description "The current data tуpe is the child of TimeSeries or its derived types." ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "Used data type '{?definedDataType}' on '{$this}' must extend TimeSeriesEntity." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?definedDataType ?code
+            where {
+               $this samm:dataType ?definedDataType .
+               filter ( not exists { ?definedDataType samm:extends+ samm-e:TimeSeriesEntity } ) .
+               bind( 'ERR_WRONG_DATATYPE' as ?code )
+            }
+         """
+      ]
+   ].

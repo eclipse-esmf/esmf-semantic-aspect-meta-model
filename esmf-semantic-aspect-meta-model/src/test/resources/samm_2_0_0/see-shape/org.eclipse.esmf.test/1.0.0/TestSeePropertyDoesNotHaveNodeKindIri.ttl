@@ -16,6 +16,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :TestSeePropertyDoesNotHaveNodeKindIri a samm:Aspect ;
-   samm:see "http://open-manufacturing.org/"^^xsd:string ;
+   samm:see "https://eclipse-esmf.github.io/"^^xsd:string ;
    samm:properties ( ) ;
    samm:operations ( ) .

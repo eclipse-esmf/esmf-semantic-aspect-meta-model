@@ -19,7 +19,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.eclipse.esmf.samm.validation.SemanticError;
 
 public class AbstractPropertyShapeTest extends AbstractShapeTest {
-   private final String FOCUS_NODE = TEST_NAMESPACE_PREFIX + "testProperty";
+   private final String focusNode = testNamespacePrefix + "testProperty";
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
@@ -32,8 +32,8 @@ public class AbstractPropertyShapeTest extends AbstractShapeTest {
    public void testAbstractPropertyWithCharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_MORE_THAN_ZERO_VALUES,
-            TEST_NAMESPACE_PREFIX + "x", sammUrns.characteristicUrn, VIOLATION_URN, "" );
+      final SemanticError resultForName = new SemanticError( messageMoreThanZeroValues,
+            testNamespacePrefix + "x", sammUrns.characteristicUrn, violationUrn, "" );
       expectSemanticValidationErrors( "abstract-property-shape", "TestAbstractPropertyWithCharacteristic",
             metaModelVersion, resultForName );
    }
@@ -43,8 +43,8 @@ public class AbstractPropertyShapeTest extends AbstractShapeTest {
    public void testAbstractPropertyWithExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
-      final SemanticError resultForName = new SemanticError( MESSAGE_MORE_THAN_ZERO_VALUES,
-            TEST_NAMESPACE_PREFIX + "x", sammUrns.exampleValueUrn, VIOLATION_URN, "" );
+      final SemanticError resultForName = new SemanticError( messageMoreThanZeroValues,
+            testNamespacePrefix + "x", sammUrns.exampleValueUrn, violationUrn, "" );
       expectSemanticValidationErrors( "abstract-property-shape", "TestAbstractPropertyWithExampleValue",
             metaModelVersion, resultForName );
    }

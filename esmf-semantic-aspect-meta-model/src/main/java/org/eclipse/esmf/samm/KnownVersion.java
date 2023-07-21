@@ -22,7 +22,8 @@ import java.util.Optional;
  */
 public enum KnownVersion {
    SAMM_1_0_0,
-   SAMM_2_0_0;
+   SAMM_2_0_0,
+   SAMM_2_1_0;
 
    /**
     * Returns this version as a standard version string, e.g. 1.2.3
@@ -35,8 +36,8 @@ public enum KnownVersion {
 
    public static Optional<KnownVersion> fromVersionString( final String version ) {
       return Arrays.stream( KnownVersion.values() )
-                   .filter( value -> value.toVersionString().equals( version ) )
-                   .findAny();
+            .filter( value -> value.toVersionString().equals( version ) )
+            .findAny();
    }
 
    public static KnownVersion getLatest() {

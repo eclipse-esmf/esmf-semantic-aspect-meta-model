@@ -32,10 +32,11 @@ public class DurationShapeTest extends AbstractShapeTest {
       final UnitUrns unitUrns = new UnitUrns( "unit", metaModelVersions );
 
       final String durationName = "TestDurationWithInvalidUnit";
-      final String durationId = TEST_NAMESPACE_PREFIX + durationName;
-      final String expectedMessage = validator.getMessageText( "samm-c:DurationShape", "samm-c:unit", "ERR_WRONG_DATATYPE", metaModelVersions );
+      final String durationId = testNamespacePrefix + durationName;
+      final String expectedMessage = validator.getMessageText( "samm-c:DurationShape", "samm-c:unit", "ERR_WRONG_DATATYPE",
+            metaModelVersions );
       final SemanticError invalidQuantityKind = new SemanticError( expectedMessage,
-            durationId, sammUrns.unitUrn, VIOLATION_URN, unitUrns.voltUrn );
+            durationId, sammUrns.unitUrn, violationUrn, unitUrns.voltUrn );
       expectSemanticValidationErrors( "duration-shape", durationName,
             metaModelVersions, invalidQuantityKind );
    }

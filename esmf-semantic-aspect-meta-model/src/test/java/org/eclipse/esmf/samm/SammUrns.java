@@ -52,54 +52,54 @@ public class SammUrns {
    final String zUrn;
 
    SammUrns( final KnownVersion testedMetaModelVersion ) {
-      final String META_META_MODEL_URN = "urn:samm:org.eclipse.esmf.samm:meta-meta-model:%s#";
-      final String META_MODEL_URN = "urn:samm:org.eclipse.esmf.samm:meta-model:%s#";
-      final String CHARACTERISTICS_URN = "urn:samm:org.eclipse.esmf.samm:characteristic:%s#";
-      final String ENTITIES_URN = "urn:samm:org.eclipse.esmf.samm:entity:%s#";
+      final String metaMetaModelUrn = "urn:samm:org.eclipse.esmf.samm:meta-meta-model:%s#";
+      final String metaModelUrn = "urn:samm:org.eclipse.esmf.samm:meta-model:%s#";
+      final String characteristicsUrn = "urn:samm:org.eclipse.esmf.samm:characteristic:%s#";
+      final String entitiesUrn = "urn:samm:org.eclipse.esmf.samm:entity:%s#";
 
-      listTypeUrn = String.format( META_META_MODEL_URN + "listType", testedMetaModelVersion.toVersionString() );
+      listTypeUrn = String.format( metaMetaModelUrn + "listType", testedMetaModelVersion.toVersionString() );
       allowDuplicatesUrn = String
-            .format( META_META_MODEL_URN + "allowDuplicates", testedMetaModelVersion.toVersionString() );
-      orderedUrn = String.format( META_META_MODEL_URN + "ordered", testedMetaModelVersion.toVersionString() );
+            .format( metaMetaModelUrn + "allowDuplicates", testedMetaModelVersion.toVersionString() );
+      orderedUrn = String.format( metaMetaModelUrn + "ordered", testedMetaModelVersion.toVersionString() );
 
-      nameUrn = String.format( META_MODEL_URN + "name", testedMetaModelVersion.toVersionString() );
-      preferredNameUrn = String.format( META_MODEL_URN + "preferredName", testedMetaModelVersion.toVersionString() );
-      descriptionUrn = String.format( META_MODEL_URN + "description", testedMetaModelVersion.toVersionString() );
-      propertiesUrn = String.format( META_MODEL_URN + "properties", testedMetaModelVersion.toVersionString() );
-      operationsUrn = String.format( META_MODEL_URN + "operations", testedMetaModelVersion.toVersionString() );
-      datatypeUrn = String.format( META_MODEL_URN + "dataType", testedMetaModelVersion.toVersionString() );
-      characteristicUrn = String.format( META_MODEL_URN + "characteristic", testedMetaModelVersion.toVersionString() );
-      exampleValueUrn = String.format( META_MODEL_URN + "exampleValue", testedMetaModelVersion.toVersionString() );
-      valueUrn = String.format( META_MODEL_URN + "value", testedMetaModelVersion.toVersionString() );
-      inputUrn = String.format( META_MODEL_URN + "input", testedMetaModelVersion.toVersionString() );
-      seeUrn = String.format( META_MODEL_URN + "see", testedMetaModelVersion.toVersionString() );
-      leftUrn = String.format( CHARACTERISTICS_URN + "left", testedMetaModelVersion.toVersionString() );
-      rightUrn = String.format( CHARACTERISTICS_URN + "right", testedMetaModelVersion.toVersionString() );
+      nameUrn = String.format( metaModelUrn + "name", testedMetaModelVersion.toVersionString() );
+      preferredNameUrn = String.format( metaModelUrn + "preferredName", testedMetaModelVersion.toVersionString() );
+      descriptionUrn = String.format( metaModelUrn + "description", testedMetaModelVersion.toVersionString() );
+      propertiesUrn = String.format( metaModelUrn + "properties", testedMetaModelVersion.toVersionString() );
+      operationsUrn = String.format( metaModelUrn + "operations", testedMetaModelVersion.toVersionString() );
+      datatypeUrn = String.format( metaModelUrn + "dataType", testedMetaModelVersion.toVersionString() );
+      characteristicUrn = String.format( metaModelUrn + "characteristic", testedMetaModelVersion.toVersionString() );
+      exampleValueUrn = String.format( metaModelUrn + "exampleValue", testedMetaModelVersion.toVersionString() );
+      valueUrn = String.format( metaModelUrn + "value", testedMetaModelVersion.toVersionString() );
+      inputUrn = String.format( metaModelUrn + "input", testedMetaModelVersion.toVersionString() );
+      seeUrn = String.format( metaModelUrn + "see", testedMetaModelVersion.toVersionString() );
+      leftUrn = String.format( characteristicsUrn + "left", testedMetaModelVersion.toVersionString() );
+      rightUrn = String.format( characteristicsUrn + "right", testedMetaModelVersion.toVersionString() );
 
-      defaultValueUrn = String.format( CHARACTERISTICS_URN + "defaultValue", testedMetaModelVersion.toVersionString() );
-      unitUrn = String.format( CHARACTERISTICS_URN + "unit", testedMetaModelVersion.toVersionString() );
-      minValueUrn = String.format( CHARACTERISTICS_URN + "minValue", testedMetaModelVersion.toVersionString() );
-      maxValueUrn = String.format( CHARACTERISTICS_URN + "maxValue", testedMetaModelVersion.toVersionString() );
-      valuesUrn = String.format( CHARACTERISTICS_URN + "values", testedMetaModelVersion.toVersionString() );
+      defaultValueUrn = String.format( characteristicsUrn + "defaultValue", testedMetaModelVersion.toVersionString() );
+      unitUrn = String.format( characteristicsUrn + "unit", testedMetaModelVersion.toVersionString() );
+      minValueUrn = String.format( characteristicsUrn + "minValue", testedMetaModelVersion.toVersionString() );
+      maxValueUrn = String.format( characteristicsUrn + "maxValue", testedMetaModelVersion.toVersionString() );
+      valuesUrn = String.format( characteristicsUrn + "values", testedMetaModelVersion.toVersionString() );
       lowerBoundDefinition = String
-            .format( CHARACTERISTICS_URN + "lowerBoundDefinition", testedMetaModelVersion.toVersionString() );
+            .format( characteristicsUrn + "lowerBoundDefinition", testedMetaModelVersion.toVersionString() );
       upperBoundDefinition = String
-            .format( CHARACTERISTICS_URN + "upperBoundDefinition", testedMetaModelVersion.toVersionString() );
+            .format( characteristicsUrn + "upperBoundDefinition", testedMetaModelVersion.toVersionString() );
       deconstructionRule = String
-            .format( CHARACTERISTICS_URN + "deconstructionRule", testedMetaModelVersion.toVersionString() );
-      elements = String.format( CHARACTERISTICS_URN + "elements", testedMetaModelVersion.toVersionString() );
-      list = String.format( CHARACTERISTICS_URN + "List", testedMetaModelVersion.toVersionString() );
-      structuredValue = String.format( CHARACTERISTICS_URN + "StructuredValue", testedMetaModelVersion.toVersionString() );
-      scale = String.format( CHARACTERISTICS_URN + "scale", testedMetaModelVersion.toVersionString() );
-      integer = String.format( CHARACTERISTICS_URN + "integer", testedMetaModelVersion.toVersionString() );
-      languageCodeUrn = String.format( CHARACTERISTICS_URN + "languageCode", testedMetaModelVersion.toVersionString() );
-      localeCodeUrn = String.format( CHARACTERISTICS_URN + "localeCode", testedMetaModelVersion.toVersionString() );
+            .format( characteristicsUrn + "deconstructionRule", testedMetaModelVersion.toVersionString() );
+      elements = String.format( characteristicsUrn + "elements", testedMetaModelVersion.toVersionString() );
+      list = String.format( characteristicsUrn + "List", testedMetaModelVersion.toVersionString() );
+      structuredValue = String.format( characteristicsUrn + "StructuredValue", testedMetaModelVersion.toVersionString() );
+      scale = String.format( characteristicsUrn + "scale", testedMetaModelVersion.toVersionString() );
+      integer = String.format( characteristicsUrn + "integer", testedMetaModelVersion.toVersionString() );
+      languageCodeUrn = String.format( characteristicsUrn + "languageCode", testedMetaModelVersion.toVersionString() );
+      localeCodeUrn = String.format( characteristicsUrn + "localeCode", testedMetaModelVersion.toVersionString() );
       baseCharacteristicUrn = String
-            .format( CHARACTERISTICS_URN + "baseCharacteristic", testedMetaModelVersion.toVersionString() );
-      extendsUrn = String.format( META_MODEL_URN + "extends", testedMetaModelVersion.toVersionString() );
+            .format( characteristicsUrn + "baseCharacteristic", testedMetaModelVersion.toVersionString() );
+      extendsUrn = String.format( metaModelUrn + "extends", testedMetaModelVersion.toVersionString() );
 
-      xUrn = String.format( ENTITIES_URN + "x", testedMetaModelVersion.toVersionString() );
-      yUrn = String.format( ENTITIES_URN + "y", testedMetaModelVersion.toVersionString() );
-      zUrn = String.format( ENTITIES_URN + "z", testedMetaModelVersion.toVersionString() );
+      xUrn = String.format( entitiesUrn + "x", testedMetaModelVersion.toVersionString() );
+      yUrn = String.format( entitiesUrn + "y", testedMetaModelVersion.toVersionString() );
+      zUrn = String.format( entitiesUrn + "z", testedMetaModelVersion.toVersionString() );
    }
 }

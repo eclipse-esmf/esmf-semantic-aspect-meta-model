@@ -14,30 +14,30 @@
 package org.eclipse.esmf.samm;
 
 import org.eclipse.esmf.samm.validation.SemanticError;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class TimeSeriesTest extends AbstractShapeTest {
 
-    @ParameterizedTest
-    @MethodSource( value = "versionsStartingWith2_0_0")
-    void testTimeSeriesValidationExtendedEntity (final KnownVersion metaModelVersion) {
-        checkValidity("time-series", "TimeSeriesTestEntity", metaModelVersion);
-    }
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   void testTimeSeriesValidationExtendedEntity( final KnownVersion metaModelVersion ) {
+      checkValidity( "time-series", "TimeSeriesTestEntity", metaModelVersion );
+   }
 
-    @ParameterizedTest
-    @MethodSource( value = "versionsStartingWith2_0_0")
-    void testTimeSeriesInvalidExtendedValidationEntity (final KnownVersion metaModelVersion) {
-        final SammUrns sammUrns = new SammUrns( metaModelVersion );
-        final String focusNode = TEST_NAMESPACE_PREFIX + "TimeSeries";
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   void testTimeSeriesInvalidExtendedValidationEntity( final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TimeSeries";
 
-        final SemanticError resultForInvalidTimeSeriesEntity = new SemanticError(
-                "Used data type ':TimeSeriesEntry' on ':TimeSeries' must extend TimeSeriesEntity.",
-                focusNode, sammUrns.datatypeUrn, VIOLATION_URN, ""
-        );
+      final SemanticError resultForInvalidTimeSeriesEntity = new SemanticError(
+            "Used data type ':TimeSeriesEntry' on ':TimeSeries' must extend TimeSeriesEntity.",
+            focusNode, sammUrns.datatypeUrn, violationUrn, ""
+      );
 
-        expectSemanticValidationErrors("time-series", "TimeSeriesInvalidExtendedTestEntity",
-                metaModelVersion, resultForInvalidTimeSeriesEntity);
-    }
-
+      expectSemanticValidationErrors( "time-series", "TimeSeriesInvalidExtendedTestEntity",
+            metaModelVersion, resultForInvalidTimeSeriesEntity );
+   }
 }

@@ -36,10 +36,10 @@ public class QuantifiableShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testMissingPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestQuantifiableWithMissingProperties";
+      final String focusNode = testNamespacePrefix + "TestQuantifiableWithMissingProperties";
 
-      final SemanticError resultForDataType = new SemanticError( MESSAGE_MISSING_DATATYPE,
-            focusNode, sammUrns.datatypeUrn, VIOLATION_URN, "" );
+      final SemanticError resultForDataType = new SemanticError( messageMissingDatatype,
+            focusNode, sammUrns.datatypeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "quantifiable-shape", "TestQuantifiableWithMissingProperties",
             metaModelVersion, resultForDataType );
    }
@@ -48,10 +48,11 @@ public class QuantifiableShapeTest extends AbstractShapeTest {
    @MethodSource( value = "allVersions" )
    public void testInvalidUnitExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
-      final String focusNode = TEST_NAMESPACE_PREFIX + "TestQuantifiableWithInvalidUnit";
-      final String expectedMessage = validator.getMessageText( "samm-c:QuantifiableShape", "samm-c:unit", "ERR_WRONG_DATATYPE", metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestQuantifiableWithInvalidUnit";
+      final String expectedMessage = validator.getMessageText( "samm-c:QuantifiableShape", "samm-c:unit", "ERR_WRONG_DATATYPE",
+            metaModelVersion );
       final SemanticError error = new SemanticError( expectedMessage, focusNode,
-            sammUrns.unitUrn, VIOLATION_URN, TEST_NAMESPACE_PREFIX + "Entity" );
+            sammUrns.unitUrn, violationUrn, testNamespacePrefix + "Entity" );
       expectSemanticValidationErrors( "quantifiable-shape", "TestQuantifiableWithInvalidUnit",
             metaModelVersion, error );
    }

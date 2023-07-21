@@ -9,14 +9,76 @@ SPDX-License-Identifier: MPL-2.0
 ////
 
 :page-partial:
-:sectnums:
 
 [[release-notes]]
 = Release Notes - {meta-model-full-name}
 
 NOTE: Version 1.0.0 of the meta model was released in the scope of the Open Manufacturing Platform (OMP)
 and was called _BAMM Aspect Meta Model (BAMM)_. Version 2.0.0 was also released as _BAMM_, then
-re-released as Eclise Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM) 2.0.0.
+re-released as Eclipse Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM) 2.0.0.
+
+[[samm-2.1.0]]
+== Release 2.1.0
+
+{meta-model-abbr} 2.1.0 is the first feature release on the Eclipse Semantic Modeling Framework with improvements
+on validation and documentation as follows:
+
+[[samm-2.1.0-validation]]
+=== Validation
+
+* The validation rule "all Properties defined in an Entity as well as in the Entity or
+  AbstractEntity it is extending must have a unique name" has been removed. This means that it is
+  now valid that multiple Entities inheriting from a common parent may share names.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/161[Issue on Github].
+
+* Validation of
+  xref:samm-specification:ROOT:characteristics#time-series-characteristic[samm-c:TimeSeries] was
+  improved: The referenced type is checked by the validation now.
+  https://github.com/eclipse-esmf/esmf-sdk/issues/194[Issue on Github].
+
+[[samm-2.1.0-documentation]]
+=== Documentation
+
+* The {meta-model-abbr} project now uses https://adr.github.io/madr/[MADR] as a template for
+  https://github.com/joelparkerhenderson/architecture-decision-record[Architecture Decision Records
+  (ADR)]. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/pull/241[Issue on Github].
+
+* Architecture decision records were added to properly document important past design decisions.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/pull/243[Issue on Github].
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0001-formalism-for-aspect-models.md[Formalism for the definition of Aspect Models: RDF with Turtle syntax]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0002-aspect-model-file-extension.md[Aspect
+    Model File Extension: Use .ttl]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0003-meta-model-specification.md[Formal and informal Meta Model Specification: Specify via SHACL]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0004-urn-as-identifiers.md[Usage
+    of URNs as identifiers for model elements]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0005-rdf-vocabulary.md[Aspect Meta Model RDF Vocabulary]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0006-unit-catalog.md[Unit Catalog: Use UNECE Recommendation 20]
+
+* Section on xref:samm-specification:ROOT:modeling-guidelines.adoc#declaring-events[Declaring
+  Events] was added; wrong edges in the xref:samm-specification:ROOT:meta-model-elements.adoc[Meta
+  Model Elements overview diagram] were fixed.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/104[Issue on Github].
+
+* xref:samm-specification:ROOT:modeling-guidelines.adoc#naming-rules[Naming convention] for Events
+  was clarified: Events should use UpperCamelCase, like Aspects, Entities, Constraints and
+  Characteristics. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/147[Issue on Github].
+
+* Section on xref:samm-specification:appendix:model-evolution.adoc[Model Evolution] was added in
+  appendix. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/82[Issue on
+  Github].
+
+* Reference to outdated terminology "leaf Characteristic" was fixed.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/pull/215[Issue on Github].
+
+* Japanese sample text in xref:samm-specification:ROOT:datatypes.adoc[Data Types] was fixed.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/172[Issue on Github].
+
+[[samm-2.1.0-others]]
+=== Others
+
+* The {meta-model-abbr} project was set up to be based on shared
+  https://github.com/eclipse-esmf/esmf-parent[esmf-parent] Maven parent project.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/219[Issue on Github].
 
 [[samm-2.0.0]]
 == Release 2.0.0
