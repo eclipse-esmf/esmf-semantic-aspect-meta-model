@@ -18,6 +18,9 @@ be built. The following diagram shows the basic building blocks:
 
 image::aspect-meta-model.svg[width=100%]
 
+* An _Aspect_ is the root element of each Aspect Model and has a number of Properties, Events, and
+  Operations.
+  
 * A _Property_ represents a named value.
 
 * An _Abstract Entity_ is a logical encapsulation of a shared concept. It has a number of Properties. An _Abstract Entity_ can extend another _Abstract Entity_.
@@ -28,7 +31,10 @@ image::aspect-meta-model.svg[width=100%]
   such as its data type, if it is a collection, that a string value is to be interpreted as one of a
   fixed number of valid states or that a numeric value has an associated physical unit.
 
-* A _Constraint_ represents a limitation that is applied to another Characteristic (for example on the
+* A _Trait_ is used to add one or more constraints to a Characteristic, which is referred to 
+  as the "base Characteristic".
+
+* A _Constraint_ represents a limitation that is applied to a Characteristic (for example on the
   numeric value range or the maximum length of string).
 
 Characteristics, Constraints and element descriptions, are _not part of the data_ an Aspect sends,
@@ -42,9 +48,6 @@ xref:characteristics.adoc#characteristics[Characteristics] for more information.
 
 * An _Event_ is a model element that represents a single occurence where the timing is important.
   Assets can for instance emit events to notify other assets in case of special occurences.
-
-* An _Aspect_ is the root element of each Aspect Model and has a number of Properties, Events, and
-  Operations.
 
 * A _Unit_ refers to a physical unit, such as _metre_ or _degree celsius_. A catalog of units are
 predefined in the scope of the {meta-model-full-name}, see section xref:units.adoc[Units] for an
