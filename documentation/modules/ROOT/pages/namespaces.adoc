@@ -25,7 +25,7 @@ urn:samm:org.eclipse.esmf.samm:<element-type>:<version>#<element-name>
 
 where the variable parts are interpreted as follows:
 
-* *element-type* -- a selector describing the kind of thing the URN describes, must be one of:
+* *element-type* -- a selector describing the kind of thing the URN describes, _must_ be one of:
 ** `meta-model` - For meta model elements
 ** `characteristic` - For Characteristics and Constraints that are defined in the scope of the meta model
 ** `entity` - For Entities that are defined inside the scope of the meta model
@@ -87,13 +87,13 @@ xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]] and
 https://www.w3.org/TR/sparql11-query/#QSynIRI[PREFIX] in SPARQL
 xref:samm-specification:appendix:bibliography.adoc#sparql[[sparql\]]):
 
-* The prefix "samm" shall be used for the URN `{samm}`
-* The prefix "samm-c" shall be used for the URN `{samm-c}`
-* The prefix "samm-e" shall be used for the URN `{samm-e}`
-* The prefix "unit" shall be used for the URN `{unit}`
-* The empty prefix (":" in RDF/Turtle) shall be used for the URN prefix of the current model scope, i.e.
+* The prefix "samm" _must_ be used for the URN `{samm}`
+* The prefix "samm-c" _must_ be used for the URN `{samm-c}`
+* The prefix "samm-e" _must_ be used for the URN `{samm-e}`
+* The prefix "unit" _must_ be used for the URN `{unit}`
+* The empty prefix (":" in RDF/Turtle) _must_ be used for the URN prefix of the current model scope, i.e.
   everything up to and including the `#` of the model elements that are being defined
-* For other elements, use prefixes that do not contain the string `samm`.
+* For other elements, use prefixes that _must not_ contain the string `samm`.
 
 *Example of Aspect Model description in RDF/Turtle, with prefix declarations and usage:*
 
