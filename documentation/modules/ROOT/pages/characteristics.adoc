@@ -16,9 +16,9 @@ SPDX-License-Identifier: MPL-2.0
 [[characteristics-classes]]
 == Characteristics Classes
 
-Characteristics Classes describe abstract concepts that need to be made specific when they are used.
-So for example, the Enumeration Characteristic represents the concept "one of multiple predefined
-values". In order to use the Characteristic, an instance of it needs to be specified in the
+Characteristics Classes describe abstract concepts that must be made specific when they are used.
+For example, the Enumeration Characteristic represents the concept "one of multiple predefined
+values". In order to use the Characteristic, an instance of it must be specified in the
 corresponding Aspect Model, that determines which values are valid for the respective Property.
 
 The following diagram shows the Characteristics Classes defined in the scope of the
@@ -295,7 +295,7 @@ See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage i
 {samm-c}SingleEntity
 --
 
-Describes a Property whose data type is an Entity. The Entity used as data type may be defined in
+Describes a Property whose data type is an Entity. The Entity used as data type could be defined in
 the same Aspect Model or the shared Entity namespace of the {meta-model-full-name}.
 
 See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteristics] for usage in an Aspect Model.
@@ -310,7 +310,7 @@ See xref:modeling-guidelines.adoc#declaring-characteristics[declaring characteri
 Describes a Property which contains a scalar xref:datatypes.adoc#data-types[string-like value space]
 value with a well-defined structure. The Structured Value Characteristic allows the description of
 the parts of the Property's value by linking to a separate Property definition for each part. To
-define the parts, the value is deconstructed using a regular expression.
+define the parts, the value must be deconstructed using a regular expression.
 
 See xref:modeling-guidelines.adoc#declaring-structured-value[declaring structured value] for usage in an Aspect Model.
 
@@ -349,6 +349,7 @@ image::characteristics-instances.svg[width=100%]
 --
 
 Describes a Property which contains the date and time with an optional timezone.
+// What will happend if no timezone is provided? What will become a default timezone (or just ignore it)?
 
 dataType: `xref:datatypes.adoc#data-types[xsd:dateTime]`
 
@@ -370,7 +371,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 --
 {samm-c}MultiLanguageText
 --
-
+// From the diagram, readers would aspect to read from left to right, so the MultiLangaugeText box should appear to the right of the Text box, as Timestamp box is described first.
 Describes a Property which contains plain text in multiple languages. This is intended exclusively
 for human readable strings, not for identifiers, measurement values, etc.
 
@@ -393,7 +394,6 @@ dataType: `xref:datatypes.adoc#data-types[xsd:boolean]`
 --
 {samm-c}Locale
 --
-
 Describes a Property containing a locale according to IETF BCP 47
 xref:samm-specification:appendix:bibliography.adoc#bcp47[[bcp47\]], for example "de-DE".
 
@@ -406,6 +406,7 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 {samm-c}Language
 --
 
+// This should come right after the MultiLanguageText box, Language, Locale, and then Boolean.
 Describes a Property containing a language according to ISO 639-1
 xref:samm-specification:appendix:bibliography.adoc#iso639[[iso639\]], for example "de".
 
@@ -539,7 +540,7 @@ Constraint restricts the range of the value. The scalar data types that can be r
 `xsd:long`, `xsd:unsignedByte`, `xsd:unsignedShort`, `xsd:unsignedInt`, `xsd:unsignedLong`,
 `xsd:positiveInteger` , `xsd:nonPositiveInteger`, `xsd:negativeInteger` and
 `xsd:nonNegativeInteger`.
-* Characteristics that have a xref:datatypes.adoc#data-types[time and date data type];. In this case
+* Characteristics that have a xref:datatypes.adoc#data-types[time and date data type]; in this case
 the Constraint restricts the scalar data types: `xsd:date`,`xsd:time`, `xsd:dateTime`,
 `xsd:dateTimeStamp`, `xsd:gYear`, `xsd:gMonth`, `xsd:gMonthDay`, `xsd:duration`,
 `xsd:yearMonthDuration`, `xsd:dayTimeDuration`.
@@ -556,7 +557,7 @@ Restricts the encoding of a Property.
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `samm:value` | Configures the encoding. This may be one of the following: `samm:US-ASCII`,
+| `samm:value` | Configures the encoding. This must be one of the following: `samm:US-ASCII`,
   `samm:ISO-8859-1`, `samm:UTF-8`, `samm:UTF-16`, `samm:UTF-16BE` or `samm:UTF-16LE`. | {ok}
 |===
 
