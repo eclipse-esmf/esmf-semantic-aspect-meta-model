@@ -94,6 +94,26 @@ xref:namespaces.adoc#namespaces-and-versions[Namespaces and Versions] for more d
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 ----
 
+[[declaring-namespaces]]
+=== Declaring Namespaces
+
+A Namespace defines the scope in which other model elements, including Aspects,
+are declared. Explicit declarations of Namespaces are not required, they
+exist implicitly by declaring model elements in them. However, the explicit
+declaration of a Namespace is useful if you want to assign human-readable names or
+descriptions to it.
+
+[source,turtle,subs="attributes+,+quotes"]
+----
+@prefix : urn:samm:{example-ns}.myapplication:1.0.0# .
+@prefix samm: <{samm}> .
+
+# The colon denotes the namespace as defined in the first @prefix declaration above.
+: a samm:Namespace ;
+   samm:preferredName "..."@en ;
+   samm:description "..."@en .
+----
+
 [[declaring-aspects]]
 === Declaring Aspects
 
