@@ -33,12 +33,12 @@ asciidoc:
     stem: 'asciimath'
     ok: 'icon:check-circle[role="green",size="2x"]'
     nok: 'icon:times-circle[role="red",size="2x"]'
-    meta-model-version: 2.1.0
+    meta-model-version: 2.2.0
     meta-model-full-name: Semantic Aspect Meta Model
     meta-model-abbr: SAMM
-    samm: urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#@
-    samm-c: urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#@
-    samm-e: urn:samm:org.eclipse.esmf.samm:entity:2.1.0#@
-    unit: urn:samm:org.eclipse.esmf.samm:unit:2.1.0#@
+    samm: urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#@
+    samm-c: urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#@
+    samm-e: urn:samm:org.eclipse.esmf.samm:entity:2.2.0#@
+    unit: urn:samm:org.eclipse.esmf.samm:unit:2.2.0#@
     example-ns: com.mycompany@
 

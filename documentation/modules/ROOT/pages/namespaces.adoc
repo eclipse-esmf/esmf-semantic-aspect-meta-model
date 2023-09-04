@@ -104,3 +104,23 @@ xref:samm-specification:appendix:bibliography.adoc#sparql[[sparql\]]):
 
 include::example$prefixes-sample.ttl[tags=content]
 ----
+
+[[describe-namespace-in-an-Aspect]]
+== Describe Namespace in an Aspect
+
+Currently there is official way to provide a human-readable name and a description for namespaces.
+This is supported for general Meta-Model definitions like Aspects, Entities, etc.
+A name and description allows users to better understand the intended use (provide further context information/meaning).
+
+For example, if a namespace provides a list of Events and is intended to be used as definition library or in case of Operations, for which use case the operations are intended for, e.g. for a forklift, or a car multimedia system.
+
+----
+@prefix : <urn:samm:com.example:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#> .
+
+# In the following line, a single colon is the subject, which is valid RDF/Turtle
+# and means we refer to the empty prefix without any element name
+: a samm:Namespace ;
+  samm:preferredName "..."@en ;
+  samm:description "..."@en ;
+----
