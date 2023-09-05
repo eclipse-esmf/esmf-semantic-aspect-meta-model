@@ -221,7 +221,7 @@ Renaming the Property in the last step is a change made to demonstrate dealing w
 Alternatively, the modeler could rename the Property but still keep this change a safe change by
 specifying a xref:ROOT:modeling-guidelines.adoc#payload-names[samm:payloadName] ⑥ that corresponds
 to the effective payload name of the Property in the previous version of the Aspect Model (i.e.,
-1.0.2). In this scenario, since the change is a safe changes, the version is increased to 1.0.3
+1.0.2). In this scenario, since the change is a safe change, the version is increased to 1.0.3
 instead of 1.1.0.
 |====
 

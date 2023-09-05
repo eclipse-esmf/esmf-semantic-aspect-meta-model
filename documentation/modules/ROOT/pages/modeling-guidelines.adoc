@@ -290,7 +290,7 @@ Example with complex values:
 Declaring an Enumeration with a complex value is usally done in order to add a description to the
 actual value, e.g., the `state` in the example below, which provides information regarding the
 meaning of the value. This description only exists in the Aspect Model and is not part of the
-payload provided by an Aspect at runtime. In order to define that a Property of an Entity is not
+payload provided by an Aspect at runtime. In order to define that a Property of an Entity is _not_
 part of the runtime data, the `samm:notInPayload` attribute is used.
 
 NOTE: `samm:notInPayload` cannot be used in Abstract Entities, but the setting for a specific property
@@ -385,7 +385,7 @@ for Properties when all of the following conditions are met:
 
 One of the main use cases is complex identifiers that encode context information such as provenance
 information, version numbers, locations codes and so on. It is unreasonable to split such a value up
-into separate Properties, because it complicates working with corresponding data: For example, such
+into separate Properties, because it complicates working with corresponding data. For example, such
 values could appear in payloads, databases or documents and would have to be converted back and
 forth, often times manually. On the other hand, properly describing the value and the parts it
 comprises can be difficult, especially in a machine-readable way.
@@ -470,9 +470,9 @@ Constraint as a `samm-c:constraint` to the Trait:
 include::example$constrained-numberlist.ttl[tags=content]
 ----
 
-Another more complex example is given below: The Property `someIdentifier` is defined that uses a
+Another more complex example is given below. The Property `someIdentifier` is defined that uses a
 xref:characteristics.adoc#code-characteristic[Code] instance using a dataType of `xsd:string`,
-combined with two Constraints: An xref:characteristics.adoc#encoding-constraint[Encoding Constraint]
+combined with two Constraints: an xref:characteristics.adoc#encoding-constraint[Encoding Constraint]
 that restricts the value space to US-ASCII and a xref:characteristics.adoc#length-constraint[Length
 Constraint] that limits the string to 80 characters.
 
@@ -565,7 +565,7 @@ include::example$aspect-sample.ttl[tags=abstract-entity-declaration]
 When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
 Abstract Entity (i.e., extending it) should be able to decide the Property's Characteristic, the
 Property can be declared a `samm:AbstractProperty`. An Abstract Property is similar to a Property,
-with two differences: Firstly, it has no `samm:Characteristic` attribute and secondly, it must only
+with two differences: firstly, it has no `samm:Characteristic` attribute and secondly, it must only
 be used in Abstract Entities. Consider the following example of two-dimensional vector which is
 declared as an Abstract Entity using two Abstract Properties for its `x` and `y` values, leaving for
 the user to decide which Characteristic and hence which data type should be used:
@@ -576,7 +576,7 @@ include::example$abstract-property-sample.ttl[tags=abstract-entity-with-abstract
 ----
 
 The usage of the Abstract Properties allows to specify the contract (a two-dimensional vector must
-have x and y Properties), but allows flexible reuse: Only when it is used, one must decide on the
+have x and y Properties), but allows flexible reuse. Only when it is used, one must decide on the
 Characteristic and with it its effective datatype such as `xsd:int`, `xsd:float` or `xsd:decimal`.
 
 To use the `Vec2` Abstract Entity, the Characteristic to bind to the Abstract Properties is declared
@@ -623,7 +623,7 @@ Events have the following attributes:
 | Attributes | Description | Required
 | `samm:parameters` | The parameters that describe the Event, given as a list of Properties.| {ok}
 |===
-
+// Check again with the diagram on the meta-model-elements page, the parameters of events are *
 Example:
 
 [source,turtle,subs="attributes+"]
@@ -726,7 +726,7 @@ NOTE: The value for the `samm:payloadName` attribute must be of type `xsd:string
 include::example$payload-name-sample.ttl[tags=payload-name-declaration]
 ----
 
-CAUTION: A Property may not be marked as not being included in the payload using `samm:notInPayload
+CAUTION: A Property must not be marked as not being included in the payload using `samm:notInPayload
 true` and have a payload name declared using `samm:payloadName`.
 
 NOTE: It is also useful to know that the payload name definition is inherited from parent Entity

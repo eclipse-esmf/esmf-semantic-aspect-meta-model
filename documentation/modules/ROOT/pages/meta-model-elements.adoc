@@ -25,7 +25,7 @@ It has any number of Properties, Operations and Events ([0..n]).
   
 * A _Property_ represents a named value. 
 This element is optional and can appear multiple times in a model ([0..n]).
-One Property has at most one Characteristic ([0..1]). 
+One Property has exactly one Characteristic. 
 
 * An _Abstract Entity_ is a logical encapsulation of a shared concept. It has any number of Properties ([0..n]). An _Abstract Entity_ can extend another _Abstract Entity_ ([0..1]). 
 This element is optional and can appear multiple times in a model ([0..n]).
@@ -36,7 +36,7 @@ This element is optional and can appear multiple times in a model ([0..n]).
 * A _Characteristic_ describes a Property's meaning in the context of the Aspect with information
   such as its data type, if it is a collection, that a string value is to be interpreted as one of a
   fixed number of valid states or that a numeric value has an associated physical unit. 
-This element is optional, but recommended. It _should_ appear once at most per a Property ([0..1] per one Property). 
+This element is mandatory. It _must_ appear once per a Property. 
 
 * A _Trait_ is used to add one or more constraints to a Characteristic ([1..n]), which is referred to 
   as the "base Characteristic".
