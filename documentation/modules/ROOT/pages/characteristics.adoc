@@ -1,5 +1,5 @@
 ////
-Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
 
 See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
 
@@ -349,7 +349,6 @@ image::characteristics-instances.svg[width=100%]
 --
 
 Describes a Property which contains the date and time with an optional timezone.
-// What will happend if no timezone is provided? What will become a default timezone (or just ignore it)?
 
 dataType: `xref:datatypes.adoc#data-types[xsd:dateTime]`
 
@@ -371,22 +370,23 @@ dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 --
 {samm-c}MultiLanguageText
 --
-// From the diagram, readers would aspect to read from left to right, so the MultiLangaugeText box should appear to the right of the Text box, as Timestamp box is described first.
+// From the diagram, readers would aspect to read from left to right, so the MultiLanguageText box should appear to the right of the Text box, as Timestamp box is described first.
 Describes a Property which contains plain text in multiple languages. This is intended exclusively
 for human readable strings, not for identifiers, measurement values, etc.
 
 dataType: `xref:datatypes.adoc#data-types[rdf:langString]`
 
-[[boolean-characteristic]]
-=== Boolean
+[[language-characteristic]]
+=== Language
 [.element-urn]
 --
-{samm-c}Boolean
+{samm-c}Language
 --
 
-Represents a boolean value (i.e., a "flag").
+Describes a Property containing a language according to ISO 639-1
+xref:samm-specification:appendix:bibliography.adoc#iso639[[iso639\]], for example "de".
 
-dataType: `xref:datatypes.adoc#data-types[xsd:boolean]`
+dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
 [[locale-characteristic]]
 === Locale
@@ -399,18 +399,16 @@ xref:samm-specification:appendix:bibliography.adoc#bcp47[[bcp47\]], for example 
 
 dataType: `xref:datatypes.adoc#data-types[xsd:string]`
 
-[[language-characteristic]]
-=== Language
+[[boolean-characteristic]]
+=== Boolean
 [.element-urn]
 --
-{samm-c}Language
+{samm-c}Boolean
 --
 
-// This should come right after the MultiLanguageText box, Language, Locale, and then Boolean.
-Describes a Property containing a language according to ISO 639-1
-xref:samm-specification:appendix:bibliography.adoc#iso639[[iso639\]], for example "de".
+Represents a boolean value (i.e., a "flag").
 
-dataType: `xref:datatypes.adoc#data-types[xsd:string]`
+dataType: `xref:datatypes.adoc#data-types[xsd:boolean]`
 
 [[resource-path-characteristic]]
 === Resource Path

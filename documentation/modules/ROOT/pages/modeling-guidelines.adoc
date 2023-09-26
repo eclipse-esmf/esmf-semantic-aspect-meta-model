@@ -1,5 +1,5 @@
 ////
-Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
 
 See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
@@ -623,7 +623,7 @@ Events have the following attributes:
 | Attributes | Description | Required
 | `samm:parameters` | The parameters that describe the Event, given as a list of Properties.| {ok}
 |===
-// Check again with the diagram on the meta-model-elements page, the parameters of events are *
+
 Example:
 
 [source,turtle,subs="attributes+"]
