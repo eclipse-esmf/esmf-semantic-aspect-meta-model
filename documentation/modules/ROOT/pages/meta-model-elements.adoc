@@ -1,7 +1,7 @@
 ////
-Copyright (c) 2020 Robert Bosch Manufacturing Solutions GmbH
+Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -18,18 +18,34 @@ be built. The following diagram shows the basic building blocks:
 
 image::aspect-meta-model.svg[width=100%]
 
+* An _Aspect_ is the root element of each Aspect Model and has a number of Properties, Events, and
+  Operations.
+This element is mandatory and _must_ appear exactly once per model.
+It has any number of Properties, Operations and Events ([0..n]).
+
 * A _Property_ represents a named value.
+This element is optional and can appear multiple times in a model ([0..n]).
+One Property has exactly one Characteristic.
 
-* An _Abstract Entity_ is a logical encapsulation of a shared concept. It has a number of Properties. An _Abstract Entity_ can extend another _Abstract Entity_.
+* An _Abstract Entity_ is a logical encapsulation of a shared concept. It has any number of
+Properties ([0..n]). An _Abstract Entity_ can extend another _Abstract Entity_ ([0..1]). This
+element is optional and can appear multiple times in a model ([0..n]).
 
-* An _Entity_ is a logical encapsulation of multiple values. It has a number of Properties. An _Entity_ can extend either another _Entity_ or an _Abstract Entity_.
+* An _Entity_ is a logical encapsulation of multiple values. It has any number of Properties
+([0..n]). An _Entity_ can extend either another _Entity_ ([0..1]) or an _Abstract Entity_ ([0..1]).
+This element is optional and can appear multiple times in a model ([0..n]).
 
 * A _Characteristic_ describes a Property's meaning in the context of the Aspect with information
   such as its data type, if it is a collection, that a string value is to be interpreted as one of a
   fixed number of valid states or that a numeric value has an associated physical unit.
+This element is mandatory. It _must_ appear once per Property.
 
-* A _Constraint_ represents a limitation that is applied to another Characteristic (for example on the
+* A _Trait_ is used to add one or more constraints to a Characteristic ([1..n]), which is referred to
+  as the "base Characteristic".
+
+* A _Constraint_ represents a limitation that is applied to a Characteristic (for example on the
   numeric value range or the maximum length of string).
+This element is optional and can appear multiple times per Characteristic ([0..n]).
 
 Characteristics, Constraints and element descriptions, are _not part of the data_ an Aspect sends,
 but only exist in its model. A number of commonly used Characteristics and Constraints are
@@ -39,21 +55,25 @@ xref:characteristics.adoc#characteristics[Characteristics] for more information.
 * An _Operation_ represents an action that can be triggered on the Aspect. Depending on the Aspect,
   this can, but does not have to, trigger an action on the asset that is represented by the Digital
   Twin, for example switching a part of a machine on or off.
+This element is optional and can appear multiple times per Aspect ([0..n]).
+One Operation has any number of input Properties ([0..n]) and at most one output Property ([0..1]).
 
 * An _Event_ is a model element that represents a single occurence where the timing is important.
   Assets can for instance emit events to notify other assets in case of special occurences.
-
-* An _Aspect_ is the root element of each Aspect Model and has a number of Properties, Events, and
-  Operations.
-
-* A _Unit_ refers to a physical unit, such as _metre_ or _degree celsius_. A catalog of units are
-predefined in the scope of the {meta-model-full-name}, see section xref:units.adoc[Units] for an
-in-depth description.
-
-* A _Quantity Kind_ describes the kind a Unit refers to, such as _length_ or _temperature_.
+This element is optional and can appear multiple times per Aspect ([0..n]).
+One Event has any number of parameter Properties ([0..n]).
 
 * _xref:characteristics.adoc#quantifiable-characteristic[Quantifiable]_ is the Characteristic that
   makes use of a Unit. Other Characteristics that are derived from Quantifiable have a Unit as well.
+
+* A _Unit_ refers to a physical unit, such as _metre_ or _degree celsius_. A catalog of units are
+predefined in the scope of the {meta-model-full-name}, see section xref:units.adoc[Units] for an
+in-depth description. A custom Unit can be added to a Characteristic, when the Characteristic is
+defined as Quantifiable class. It _must_ appear exactly once per Quantifiable Characteristic.
+
+* A _Quantity Kind_ describes the kind a Unit refers to, such as _length_ or _temperature_.
+This attribute is optional and can appear multiple times per Unit ([0..n]).
+
 
 NOTE: See the sections
 xref:modeling-guidelines.adoc#attributes-that-all-model-elements-have[Attributes

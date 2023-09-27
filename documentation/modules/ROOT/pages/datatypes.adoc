@@ -27,7 +27,7 @@ boolean, number for all numeric types, JSON object for Entities and string for e
 
 The following figure shows the type hierarchy, in which arrows are interpreted as "is a subtype of
 and can therefore be cast to". The types `anyType` and `anySimpleType` are "special" types of the
-XSD type hierarchy and should not be directly used.
+XSD type hierarchy and _should not_ be directly used.
 
 NOTE: All data types inheriting from `anySimpleType` are called _scalar_, i.e. every allowed data
 type except `samm:Entity` is scalar.
@@ -89,7 +89,7 @@ definition in the respective standards and an informative description of their v
 |===
 
 The following types defined by the XSD and RDF specifications, respectively, are considered
-unsuitable in Aspect Models and should not be used:
+unsuitable in Aspect Models and _should not_ be used:
 
 `xsd:language`, `xsd:normalizedString`, `xsd:token`, `xsd:NMTOKEN`, `xsd:Name`, `xsd:NCName`,
 `xsd:QName`, `xsd:ENTITY`, `xsd:ID`, `xsd:IDREF`, `xsd:NOTATION`, `xsd:IDREFS`, `xsd:ENTITIES`,
