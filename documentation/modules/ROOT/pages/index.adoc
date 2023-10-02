@@ -50,3 +50,5 @@ syntax (TTL, xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]
 validation rules in the Shapes Constraint Language (SHACL,
 xref:samm-specification:appendix:bibliography.adoc#shacl[[shacl\]]). Aspect Models are likewise
 specified in RDF/Turtle, following {meta-model-abbr} semantics.
+
+Please also refer to the https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/tree/main/documentation/decisions[list of decisions] how SAMM has been specified.
