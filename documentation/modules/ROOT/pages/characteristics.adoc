@@ -624,6 +624,6 @@ type.
 | Attributes | Description | Required
 | `samm-c:scale` | The scaling factor for a fixed point number. E.g. if a fixedpoint number is 123.04, the scaling factor is 2 (the number of digits after the decimal point). Must be given as
   `xsd:positiveInteger`. | {ok}
-| `samm-c:integer` | The number of integral digits for a fixed point number. E.g. if a fixedpoint number is 123.04, the scaling factor is 3 (the number of digits before the decimal point). Must be given as
+| `samm-c:integer` | The number of integral digits for a fixed point number. E.g., if a fixedpoint number is 123.04, the integer factor is 3 (the number of digits before the decimal point). Must be given as
   `xsd:positiveInteger`. | {ok}
 |===
