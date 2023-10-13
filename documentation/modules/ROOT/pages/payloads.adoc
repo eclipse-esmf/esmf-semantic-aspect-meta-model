@@ -56,6 +56,47 @@ applied. The other way round they can also be used to describe a validation algo
 * Operations defined in the Aspect Model are not subject to serialization.
 * Events defined in the Aspect Model are not subject to serialization.
 
+== Example
+Aspect Model
+[source, turtle]
+----
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.0.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:org.eclipse.examples.movement:1.0.0#> .
+
+:Movement a samm:Aspect ;
+   samm:preferredName "movement"@en ;
+   samm:properties ( :isMoving :speed ) ;
+   samm:operations ( ) ;
+   samm:events ( ) . 
+
+:isMoving a samm:Property ;
+   samm:preferredName "is moving"@en ;
+   samm:characteristic samm-c:Boolean .
+
+:speed a samm:Property ;
+   samm:preferredName "speed"@en ;
+   samm:characteristic :Speed ;
+   samm:exampleValue "0.5"^^xsd:float .
+
+:Speed a samm-c:Measurement ;
+   samm:preferredName "speed"@en ;
+   samm:dataType xsd:float ;
+   samm-c:unit unit:kilometrePerHour .
+----
+Payload
+[source, json]
+----
+{
+  "isMoving": true,
+  "speed": 0.5
+}
+----
+
+
+
 [[data-type-mappings]]
 == Data type mappings
 
