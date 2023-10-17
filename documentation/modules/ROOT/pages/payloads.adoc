@@ -56,6 +56,48 @@ applied. The other way round they can also be used to describe a validation algo
 * Operations defined in the Aspect Model are not subject to serialization.
 * Events defined in the Aspect Model are not subject to serialization.
 
+== Example
+=== Aspect Model
+[source,turtle,subs="attributes+,+quotes"]
+----
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+@prefix samm: <{samm}> .
+@prefix samm-c: <{samm-c}> .
+@prefix samm-e: <{samm-e}> .
+@prefix unit: <{unit}> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Movement a samm:Aspect ;
+   samm:preferredName "movement"@en ;
+   samm:properties ( :isMoving :speed ) ;
+   samm:operations ( ) ;
+   samm:events ( ) . 
+
+:isMoving a samm:Property ;
+   samm:preferredName "is moving"@en ;
+   samm:characteristic samm-c:Boolean .
+
+:speed a samm:Property ;
+   samm:preferredName "speed"@en ;
+   samm:characteristic :Speed ;
+   samm:exampleValue "0.5"^^xsd:float .
+
+:Speed a samm-c:Measurement ;
+   samm:preferredName "speed"@en ;
+   samm:dataType xsd:float ;
+   samm-c:unit unit:kilometrePerHour .
+----
+=== Payload
+[source, json]
+----
+{
+  "isMoving": true,
+  "speed": 0.5
+}
+----
+
+
+
 [[data-type-mappings]]
 == Data type mappings
 
