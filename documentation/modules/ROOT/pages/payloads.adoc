@@ -57,7 +57,7 @@ applied. The other way round they can also be used to describe a validation algo
 * Events defined in the Aspect Model are not subject to serialization.
 
 == Example
-Aspect Model
+=== Aspect Model
 [source,turtle,subs="attributes+,+quotes"]
 ----
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
