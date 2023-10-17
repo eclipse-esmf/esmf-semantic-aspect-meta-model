@@ -86,7 +86,7 @@ Aspect Model
    samm:dataType xsd:float ;
    samm-c:unit unit:kilometrePerHour .
 ----
-Payload
+=== Payload
 [source, json]
 ----
 {
