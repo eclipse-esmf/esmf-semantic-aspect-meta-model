@@ -60,11 +60,11 @@ applied. The other way round they can also be used to describe a validation algo
 === Aspect Model
 [source,turtle,subs="attributes+,+quotes"]
 ----
-@prefix : <urn:samm:com.mycompany.myapplication:1.0.0#> .
-@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
-@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
-@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
-@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
+@prefix samm: <{samm}> .
+@prefix samm-c: <{samm-c}> .
+@prefix samm-e: <{samm-e}> .
+@prefix unit: <{unit}> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :Movement a samm:Aspect ;
