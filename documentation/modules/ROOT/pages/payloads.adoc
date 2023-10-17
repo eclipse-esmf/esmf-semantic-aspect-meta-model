@@ -58,7 +58,7 @@ applied. The other way round they can also be used to describe a validation algo
 
 == Example
 Aspect Model
-[source, turtle]
+[source,turtle,subs="attributes+,+quotes"]
 ----
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.0.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
