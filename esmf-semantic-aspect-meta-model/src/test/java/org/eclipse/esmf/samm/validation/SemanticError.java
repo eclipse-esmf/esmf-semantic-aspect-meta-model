@@ -120,7 +120,7 @@ public class SemanticError {
       this.context = context;
    }
 
-   public SemanticError withParams( Map<String, String> messageParams ) {
+   public SemanticError withParams( final Map<String, String> messageParams ) {
       this.messageParams = messageParams;
       return this;
    }

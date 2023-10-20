@@ -30,7 +30,7 @@ public class ModelLoader {
       final URL resourceUrl = ModelLoader.class.getClassLoader().getResource( resourcePath );
       if ( resourceUrl != null )
          return createModel( resourceUrl );
-      throw new IllegalArgumentException( String.format( "The requested model \"%s\" is not presented.", resourcePath ) );
+      throw new IllegalArgumentException( String.format( "The requested model \"%s\" is not present.", resourcePath ) );
    }
 
    public static Model createModel( final URL input ) {

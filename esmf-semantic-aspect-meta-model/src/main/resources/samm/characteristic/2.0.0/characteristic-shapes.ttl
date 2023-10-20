@@ -336,25 +336,6 @@ samm-c:RegularExpressionConstraintShape
            bind( 'ERR_WRONG_DATATYPE' as ?code )
          }
       """
-             ] ;
-   sh:sparql [
-       a sh:SPARQLConstraint ;
-       sh:message "The the exampleValue '{?exampleValue}' of the Property '{?property}' doesn't  matches to the RegularExpressionConstraints '{$this}' regex '{?regex}'." ;
-       sh:prefixes samm:prefixDeclarations ;
-       sh:select """
-         select $this ?regex ?property ?exampleValue ?code
-         where {
-            $this rdf:type samm-c:RegularExpressionConstraint .
-            $this samm:value ?regex .
-
-            $this ^samm-c:constraint/^samm:characteristic ?property .
-            ?property samm:exampleValue ?exampleValue .
-
-            filter( !regex( ?exampleValue, ?regex ) )
-
-            bind( 'ERR_WRONG_EXAMPLE_VALUE' as ?code )
-         }
-      """
    ] .
 
 samm-c:RangeShape

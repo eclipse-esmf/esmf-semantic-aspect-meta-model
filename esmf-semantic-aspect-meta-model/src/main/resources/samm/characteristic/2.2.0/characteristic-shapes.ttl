@@ -339,7 +339,7 @@ samm-c:RegularExpressionConstraintShape
              ] ;
    sh:sparql [
        a sh:SPARQLConstraint ;
-       sh:message "The the exampleValue '{?exampleValue}' of the Property '{?property}' doesn't  matches to the RegularExpressionConstraints '{$this}' regex '{?regex}'." ;
+       sh:message "The the exampleValue '{?exampleValue}' of the Property '{?property}' does not match the pattern '{?regex}' given in '{$this}'." ;
        sh:prefixes samm:prefixDeclarations ;
        sh:select """
          select $this ?regex ?property ?exampleValue ?code

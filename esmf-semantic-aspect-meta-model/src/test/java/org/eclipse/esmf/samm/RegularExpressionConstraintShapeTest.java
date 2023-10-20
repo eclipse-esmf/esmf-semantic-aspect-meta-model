@@ -60,13 +60,13 @@ public class RegularExpressionConstraintShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsStartingWith2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_2_0" )
    public void testValidExampleValuesValidation( final KnownVersion metaModelVersion ) {
       checkValidity( SPEC_PATH, "TestPropertyWithExampleValues", metaModelVersion );
    }
 
    @ParameterizedTest
-   @MethodSource( value = "versionsStartingWith2_0_0" )
+   @MethodSource( value = "versionsStartingWith2_2_0" )
    public void testInvalidExampleValuesValidation( final KnownVersion metaModelVersion ) {
       final String aspect = "TestPropertyWithInvalidExampleValues";
       final String focusNode = testNamespacePrefix + "TestRegularExpressionConstraint";
