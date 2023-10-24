@@ -127,7 +127,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsUpToIncluding1_0_0" )
    public void testRefinePropertyWithoutCharacteristicExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "property-shape", "TestPropertyRefiningPropertyWithoutCharacteristic", metaModelVersion );
    }
