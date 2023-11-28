@@ -28,7 +28,9 @@ import org.apache.jena.riot.RDFLanguages;
 public class ModelLoader {
    public static Model createModel( final String resourcePath ) {
       final URL resourceUrl = ModelLoader.class.getClassLoader().getResource( resourcePath );
-      return resourceUrl != null ? createModel( resourceUrl ) : ModelFactory.createDefaultModel();
+      if ( resourceUrl != null )
+         return createModel( resourceUrl );
+      throw new IllegalArgumentException( String.format( "The requested model \"%s\" is not present.", resourcePath ) );
    }
 
    public static Model createModel( final URL input ) {

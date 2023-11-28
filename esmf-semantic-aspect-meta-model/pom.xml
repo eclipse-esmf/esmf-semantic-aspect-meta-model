@@ -57,7 +57,7 @@
       <!-- This is the meta model version (as included in the URNs).
            Note that this can differ from the project.version: The project.version could for example be the
            version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
-      <meta-model-version>2.1.0</meta-model-version>
+      <meta-model-version>2.2.0</meta-model-version>
       <shacl-version>1.3.1</shacl-version>
       <jena-version>3.13.0</jena-version>
    </properties>

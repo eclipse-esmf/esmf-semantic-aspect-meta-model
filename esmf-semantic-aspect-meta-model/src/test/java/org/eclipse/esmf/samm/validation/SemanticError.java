@@ -13,7 +13,10 @@
 
 package org.eclipse.esmf.samm.validation;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.jena.rdf.model.Model;
@@ -31,6 +34,8 @@ public class SemanticError {
 
    Model context;
 
+   Map<String, String> messageParams;
+
    public final static String ANY_VALUE = UUID.randomUUID().toString();
 
    public SemanticError( final String resultMessage, final String focusNode, final String resultPath, final String resultSeverity, final String value ) {
@@ -44,6 +49,8 @@ public class SemanticError {
    public void resolveGenericMessage( final Model model ) {
       resultMessage = resultMessage.replace( "{$this}", remapNamespace( model, focusNode ) )
             .replace( "{?value}", remapNamespace( model, value ) );
+      Optional.ofNullable( messageParams ).stream().map( Map::entrySet ).flatMap( Collection::stream )
+            .forEach( e -> resultMessage = resultMessage.replace( e.getKey(), remapNamespace( model, e.getValue() ) ) );
    }
 
    private String remapNamespace( final Model model, final String elementName ) {
@@ -111,5 +118,10 @@ public class SemanticError {
 
    public void setContext( final Model context ) {
       this.context = context;
+   }
+
+   public SemanticError withParams( final Map<String, String> messageParams ) {
+      this.messageParams = messageParams;
+      return this;
    }
 }
