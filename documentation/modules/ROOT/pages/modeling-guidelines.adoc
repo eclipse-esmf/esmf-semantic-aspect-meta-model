@@ -566,10 +566,8 @@ include::example$extending-entity-declaration-inheritance.ttl[tags=extending-ent
 [[declaring-abstract-entities]]
 ==== Declaring Abstract Entities
 
-In contrast to Entities, Abstract Entities cannot directly be used as data types. The main use case
-for Abstract Entities is to share Properties across multiple Entities. This can be achieved through
-inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be
-extended in a manner not dissimilar to how abstract classes are used in many programming languages.
+In contrast to Entities, Abstract Entities cannot directly be instantiated. A Characteristic class may have a type `samm:entity` or `samm:AbstractEntity`. But for a Characteristic instance, it cannot have a type `samm:AbstractEntity`. If there is an instance created from a Characteristic that uses an Abstract Entity as its type, this Characteristic instance's dataType must be a sub-Entity of the Abstract Entity.
+The main use case for Abstract Entities is to share Properties across multiple Entities. This can be achieved through inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be extended in a manner not dissimilar to how abstract classes are used in many programming languages.
 
 In the following example, both `SteeringWheel` and `Seat` _extend_ the Abstract Entity
 `VehicleComponent`. Both inherit the `typeNumber` and the `manufacturer` Properties:
