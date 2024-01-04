@@ -468,8 +468,6 @@ samm:CharacteristicShape
             filter ( not exists { $this rdf:type/rdfs:subClassOf* samm-c:Collection } )
             # exclude 'Trait' Characteristic since it refers to the datatype via its baseCharacteristic
             filter ( not exists { $this rdf:type/rdfs:subClassOf* samm-c:Trait } )
-            # exclude 'AbstractEntity' Characteristic since it is not allowed for Characteristic instance
-            filter ( not exists { $this rdf:type/rdfs:subClassOf* samm:AbstractEntity } )
             # find all characteristic instances which do not define a data type
             filter ( not exists { $this samm:dataType [] } ) .
             filter ( not exists { $this rdf:type/rdfs:subClassOf*/samm:dataType [] } )
@@ -739,7 +737,6 @@ samm:UniqueEntityInstances
           ?anotherInstance a ?entityType .
           filter( str( $this ) < str( ?anotherInstance ) )
           filter( $this != ?anotherInstance )
-
           {
             select $this ?instance1 ( group_concat( ?part; separator=" " ) as ?serialized1 )
             where {
