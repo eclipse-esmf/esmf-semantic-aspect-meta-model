@@ -13,6 +13,8 @@
 
 package org.eclipse.esmf.samm;
 
+import org.apache.jena.rdf.model.Model;
+import org.eclipse.esmf.samm.validation.ValidationReport;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -20,13 +22,13 @@ import org.eclipse.esmf.samm.validation.SemanticError;
 
 public class ConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsUpToIncluding2_1_0" )
    public void testConstraintValidationExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "constraint-shape", "TestConstraint", metaModelVersion );
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsUpToIncluding2_1_0" )
    public void testEmptyPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
@@ -41,7 +43,24 @@ public class ConstraintShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsStartingWith2_2_0")
+   public void testConstraint ( final KnownVersion metaModelVersion) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+
+      final String constraintName = "TestConstraintWithoutProperties";
+      final String constraintId = testNamespacePrefix + constraintName;
+      final String value = testNamespacePrefix + constraintName;
+
+      final SemanticError resultForEmptyConstraint = new SemanticError( messageHasToUseSubClass,
+            constraintId, "", violationUrn,  value);
+
+      expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForEmptyConstraint );
+
+   }
+
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsUpToIncluding2_1_0" )
    public void testLanguageStringNotUniqueExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
@@ -56,7 +75,7 @@ public class ConstraintShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsUpToIncluding2_1_0" )
    public void testInvalidLanguageStringsExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
@@ -71,7 +90,7 @@ public class ConstraintShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
+   @MethodSource( value = "versionsUpToIncluding2_1_0" )
    public void testConstraintDefinesDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
