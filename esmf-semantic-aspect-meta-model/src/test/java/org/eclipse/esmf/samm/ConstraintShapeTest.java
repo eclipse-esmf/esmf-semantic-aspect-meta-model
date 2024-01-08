@@ -13,8 +13,6 @@
 
 package org.eclipse.esmf.samm;
 
-import org.apache.jena.rdf.model.Model;
-import org.eclipse.esmf.samm.validation.ValidationReport;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -55,9 +53,7 @@ public class ConstraintShapeTest extends AbstractShapeTest {
             constraintId, "", violationUrn,  value);
 
       expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForEmptyConstraint );
-
    }
-
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding2_1_0" )
