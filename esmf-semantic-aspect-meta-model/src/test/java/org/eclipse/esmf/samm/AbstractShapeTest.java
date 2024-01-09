@@ -67,10 +67,6 @@ public abstract class AbstractShapeTest {
       return versionsUpToIncluding( KnownVersion.SAMM_1_0_0 );
    }
 
-   protected static Stream<KnownVersion> versionsUpToIncluding2_1_0() {
-      return versionsUpToIncluding( KnownVersion.SAMM_2_1_0 );
-   }
-
    final String violationUrn = "http://www.w3.org/ns/shacl#Violation";
    final String warningUrn = "http://www.w3.org/ns/shacl#Warning";
 
@@ -83,7 +79,7 @@ public abstract class AbstractShapeTest {
    final String messageDuplicateProperty = "Property may only have 1 value, but found 2";
    final String messageMissingDatatype = "No datatype is defined on the Characteristic instance '{$this}'.";
 
-   final String messageHasToUseSubClass = "It is necessary to use a SubClass and not its parent.";
+   final String messageHasToUseSubClass = "Constraint '{$this}' has invalid type samm:Constraint, only subtypes of samm:Constraint may be used.";
    final String messageInvalidEntryEntityPropertyList =
          "Element '{?value}' in the Entity's '{$this}' properties list must be a property - either directly or " +
                "via a reference to a property with an attribute samm:optional \"true\"^^xsd:boolean and/or samm:payloadName or "

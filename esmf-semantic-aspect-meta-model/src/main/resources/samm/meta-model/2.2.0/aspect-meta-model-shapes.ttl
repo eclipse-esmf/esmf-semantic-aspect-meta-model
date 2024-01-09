@@ -502,13 +502,12 @@ samm:ConstraintShape
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
-      sh:message "Constraint '{$this}' must have a baseCharacteristic or a dataType." ;
+      sh:message "Constraint '{$this}' has invalid type samm:Constraint, only subtypes of samm:Constraint may be used." ;
       sh:prefixes samm:prefixDeclarations ;
       sh:select """
          select $this ?message ?code
          where {
            $this rdf:type samm:Constraint .
-           bind( "It is necessary to use a SubClass and not its parent." as ?message )
            bind( 'ERR_WRONG_DATATYPE' as ?code )
          }
       """
