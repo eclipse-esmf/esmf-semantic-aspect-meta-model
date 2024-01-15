@@ -15,6 +15,7 @@
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestConstraint a samm:Constraint ;
-   samm:preferredName "Test Constraint"@en ;
-   samm:description "TestConstraint"@en .
+:TestConstraintWithDataType a samm-c:LengthConstraint ;
+   samm:dataType xsd:float ;
+   samm-c:minValue "5"^^xsd:nonNegativeInteger ;
+   samm-c:maxValue "10"^^xsd:nonNegativeInteger .
