@@ -593,10 +593,9 @@ At least one of `samm-c:maxValue` or `samm-c:minValue` must be present in a Leng
 |===
 
 IMPORTANT: When using the `samm-c:minValue` parameter in Length Constraint, it is crucial to consider the following:
-* Creating a Model with a <<set-characteristic>>/<<sorted-set-characteristic>> based on a finite Base Characteristic (`https://eclipse-esmf.github.io/samm-specification/snapshot/characteristics.html#boolean-characteristic[Boolean]` or `https://eclipse-esmf.github.io/samm-specification/snapshot/characteristics.html#enumeration-characteristic[Enumeration]`)
-and adding Length Constraint, the `samm-c:minValue` should not exceed the total number of elements in the Base Characteristic.
-Models with such conditions are not recognized as invalid, but for which no payload can exist.
-The responsibility is borne by the user who created these models with such Length Constraints for the characteristics.
+* Creating a Model with a <<set-characteristic>>/<<sorted-set-characteristic>> based on a finite Base Characteristic (<<boolean-characteristic>> or <<enumeration-characteristic>>)
+and adding Length Constraint, the `samm-c:minValue` must not exceed the total number of elements in the Base Characteristic.
+Models with such conditions are not recognized as invalid, but no valid payloads can exist for them.
 
 [[regular-expression-constraint]]
 === Regular Expression Constraint
