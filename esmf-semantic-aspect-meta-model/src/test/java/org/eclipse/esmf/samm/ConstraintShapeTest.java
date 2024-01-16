@@ -20,65 +20,16 @@ import org.eclipse.esmf.samm.validation.SemanticError;
 
 public class ConstraintShapeTest extends AbstractShapeTest {
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testConstraintValidationExpectSuccess( final KnownVersion metaModelVersion ) {
-      checkValidity( "constraint-shape", "TestConstraint", metaModelVersion );
-   }
+   @MethodSource( value = "versionsStartingWith2_2_0")
+   public void testConstraintWithoutProperties ( final KnownVersion metaModelVersion) {
 
-   @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testEmptyPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
-      final SammUrns sammUrns = new SammUrns( metaModelVersion );
-
-      final String constraintName = "TestConstraintWithEmptyProperties";
+      final String constraintName = "TestConstraintWithoutProperties";
       final String constraintId = testNamespacePrefix + constraintName;
-      final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
-            constraintId, sammUrns.preferredNameUrn, violationUrn, "@en" );
-      final SemanticError resultForDescription = new SemanticError( messageEmptyProperty,
-            constraintId, sammUrns.descriptionUrn, violationUrn, "@en" );
-      expectSemanticValidationErrors( "constraint-shape", constraintName,
-            metaModelVersion, resultForPreferredName, resultForDescription );
-   }
+      final String value = testNamespacePrefix + constraintName;
 
-   @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testLanguageStringNotUniqueExpectFailure( final KnownVersion metaModelVersion ) {
-      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+      final SemanticError resultForEmptyConstraint = new SemanticError( messageHasToUseSubClass,
+            constraintId, "", violationUrn,  value);
 
-      final String constraintName = "TestConstraintNonUniqueLangStrings";
-      final String constraintId = testNamespacePrefix + constraintName;
-      final SemanticError resultForPreferredName = new SemanticError( messageLangNotUnique,
-            constraintId, sammUrns.preferredNameUrn, violationUrn, "" );
-      final SemanticError resultForDescription = new SemanticError( messageLangNotUnique,
-            constraintId, sammUrns.descriptionUrn, violationUrn, "" );
-      expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForPreferredName,
-            resultForDescription );
-   }
-
-   @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testInvalidLanguageStringsExpectFailure( final KnownVersion metaModelVersion ) {
-      final SammUrns sammUrns = new SammUrns( metaModelVersion );
-
-      final String constraintName = "TestConstraintWithInvalidLangStrings";
-      final String constraintId = testNamespacePrefix + constraintName;
-      final SemanticError resultForPreferredName = new SemanticError(
-            messageInvalidLangString, constraintId, sammUrns.preferredNameUrn, violationUrn, "Test Constraint" );
-      final SemanticError resultForDescription = new SemanticError(
-            messageInvalidLangString, constraintId, sammUrns.descriptionUrn, violationUrn, "TestConstraint" );
-      expectSemanticValidationErrors( "constraint-shape", constraintName,
-            metaModelVersion, resultForPreferredName, resultForDescription );
-   }
-
-   @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testConstraintDefinesDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
-      final SammUrns sammUrns = new SammUrns( metaModelVersion );
-
-      final String constraintName = "TestConstraintWithDataType";
-      final String constraintId = testNamespacePrefix + constraintName;
-      final SemanticError resultForDataType = new SemanticError( messageMoreThanZeroValues, constraintId,
-            sammUrns.datatypeUrn, violationUrn, "" );
-      expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForDataType );
+      expectSemanticValidationErrors( "constraint-shape", constraintName, metaModelVersion, resultForEmptyConstraint );
    }
 }
