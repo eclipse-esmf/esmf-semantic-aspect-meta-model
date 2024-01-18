@@ -88,6 +88,11 @@ When trying to refer to a physical unit, please see the
 xref:appendix:unitcatalog.adoc[Unit Catalog]. When searching for the unit,
 remember that the unit catalog uses British English.
 
+TIP: If you're modeling quantities for which both metric (SI) and imperial units exist, such as
+meter vs. feet, it is always recommended to use SI units unless there are specific reasons to create
+the model differently. In any case it is strongly recommended to not add multiple Properties in
+the same scope which represent the same value only using different units.
+
 [[choosing-a-characteristic]]
 == Choosing a Characteristic
 
