@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
 #
 # See the AUTHORS file(s) distributed with this work for additional
 # information regarding authorship.
@@ -21,12 +21,4 @@
 :TestEntityDataType a samm:Entity ;
    samm:preferredName "Test Entity"@en ;
    samm:description "A test Entity"@en ;
-   samm:properties ( :testPropertyEntityDataType ) .
-
-:testPropertyEntityDataType a samm:Property ;
-  samm:preferredName "Test Property"@en ;
-  samm:description "A property with a text value."@en ;
-  samm:characteristic [
-                          a samm:Characteristic ;
-                          samm:dataType xsd:integer
-                      ] .
+   samm:properties ( ) .
