@@ -84,14 +84,16 @@ range, while a Property such as `numberOfProducedItems` is not logically limited
 [[choosing-a-unit]]
 == Choosing a Unit
 
-When trying to refer to a physical unit, please see the
-xref:appendix:unitcatalog.adoc[Unit Catalog]. When searching for the unit,
-remember that the unit catalog uses British English.
+When trying to refer to a physical unit, please see the xref:appendix:unitcatalog.adoc[Unit
+Catalog]. When searching for the unit, remember that the unit catalog uses British English, e.g.,
+_metre_ instead of _meter_.
 
-TIP: If you're modeling quantities for which both metric (SI) and imperial units exist, such as
-meter vs. feet, it is always recommended to use SI units unless there are specific reasons to create
-the model differently. In any case it is strongly recommended to not add multiple Properties in
-the same scope which represent the same value only using different units.
+TIP: If you're modeling quantities for which both the metric system and the imperial system provide
+units, such as meter vs feet, it is always recommended to use the metric system (preferably SI units
+like meter or others like kilometer if more common in the domain) – unless there are specific
+reasons to create the model differently. In any case it is strongly discouraged to add multiple
+Properties in the same scope representing the same value only using different units due to the
+inherent complexity.
 
 [[choosing-a-characteristic]]
 == Choosing a Characteristic
