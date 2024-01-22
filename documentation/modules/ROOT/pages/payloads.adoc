@@ -185,7 +185,7 @@ In this section provided specific cases for the xref:characteristics.adoc[Charac
 |===
 
 
-Another one example for `samm-c:Either`, a Property `speedProperty` has Characteristic and effective data type `samm-c:Either` and the possible values
+Example for `samm-c:Either`, a Property `speedProperty` has Characteristic and effective data type `samm-c:Either` and the possible values
 `isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`xsd:integer`) would be serialized in the JSON payload as follows:
 
 Example:
@@ -216,7 +216,7 @@ or
 }
 ----
 
-A Property `speedProperty` has Characteristic and effective data type `samm-c:Either`. Field `samm-c:left` has type `samm-c:Either` and field `samm-c:right` has type `xref:datatypes.adoc#data-types[xsd:boolean]`.
+Another one example for Property `speedProperty` has Characteristic and effective data type `samm-c:Either`. Field `samm-c:left` has type `samm-c:Either` and field `samm-c:right` has type `xref:datatypes.adoc#data-types[xsd:boolean]`.
 Field `samm-c:left` has possible values `isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`xsd:integer`). This structure would be serialized in the JSON payload as follows:
 
 Example:
