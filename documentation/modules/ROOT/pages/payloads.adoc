@@ -145,12 +145,11 @@ the data. The mappings are described in the following table.
 .2+| Encoded binary data
 | `xsd:hexBinary` | String
 | `xsd:base64Binary` | String
-.4+| Miscellaneous types
+.3+| Miscellaneous types
 | `xsd:anyURI` | String
 | `samm:curie` | String
 | `rdf:langString`
 | A JSON object with a structure as described in the rules above.
-| `samm-c:Either` | A JSON object with the left field and the value, which is one of the types proposed in `xref:characteristics.adoc#either-characteristic[Either]`.
 |===
 
 For example, a Property `errorMessage` with effective data type `rdf:langString` and the value
@@ -175,8 +174,29 @@ A Property `errorMessages` with a Collection Characteristic and effective data t
 }
 ----
 
+[[characteristics-payload-mappings]]
+== Specific payload mappings for Characteristics
+
+In this section provided specific cases for the xref:characteristics.adoc[Characteristics].
+
+|===
+| Characteristic Name | Corresponding JSON data type
+| `samm-c:Either` | A JSON object with the left field and the value, which is one of the types proposed in `xref:characteristics.adoc#either-characteristic[Either]`.
+|===
+
+
 Another one example for `samm-c:Either`, a Property `speedProperty` has Characteristic and effective data type `samm-c:Either` and the possible values
-`isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`Number`) would be serialized in the JSON payload as follows:
+`isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`xsd:integer`) would be serialized in the JSON payload as follows:
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-with-either-characteristic.ttl[tags=aspect-with-either-characteristic]
+----
+
+Generated payload:
+
 [source,json]
 ----
 {
@@ -184,9 +204,11 @@ Another one example for `samm-c:Either`, a Property `speedProperty` has Characte
     "left": true
   }
 }
+----
 
 or
 
+----
 {
   "speedProperty": {
     "left": 60
@@ -195,7 +217,15 @@ or
 ----
 
 A Property `speedProperty` has Characteristic and effective data type `samm-c:Either`. Field `samm-c:left` has type `samm-c:Either` and field `samm-c:right` has type `xref:datatypes.adoc#data-types[xsd:boolean]`.
-Field `samm-c:left` has possible values `isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`Number`). This structure would be serialized in the JSON payload as follows:
+Field `samm-c:left` has possible values `isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`xsd:integer`). This structure would be serialized in the JSON payload as follows:
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-with-double-either-characteristic.ttl[tags=aspect-with-double-either-characteristic]
+----
+
 [source,json]
 ----
 {
