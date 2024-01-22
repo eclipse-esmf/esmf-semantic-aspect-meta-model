@@ -7,15 +7,14 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**How: List of performed steps**
 
-**Where**
-Indicate the location of the bug (e.g., in which document, section and paragraph you found the bug).
+**What: Actual result vs expected result**
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Where: (e.g. component, version, url, your system info)**
 
+**Input (files/screenshots)**
 
-**Additional context**
-Add any other context about the problem here.
+**Output (files/screenshots)**
+
+**Additional context (e.g. references)**

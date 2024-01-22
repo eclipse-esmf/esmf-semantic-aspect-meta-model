@@ -499,6 +499,18 @@ samm:ConstraintShape
       sh:maxCount 0 ;
       sh:name "dataType" ;
       sh:description "A Constraint may not change the data type of the Characteristic being constrained." ;
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "Constraint '{$this}' has invalid type samm:Constraint, only subtypes of samm:Constraint may be used." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?message ?code
+         where {
+           $this rdf:type samm:Constraint .
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
+         }
+      """
    ] .
 
 samm:OperationShape
