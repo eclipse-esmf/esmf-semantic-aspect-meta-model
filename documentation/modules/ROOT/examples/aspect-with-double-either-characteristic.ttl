@@ -15,38 +15,39 @@
 
 # tag::aspect-with-double-either-characteristic[]
 :AspectWithEither a samm:Aspect ;
-   samm:name "AspectWithEither" ;
    samm:properties ( :speedProperty ) ;
    samm:operations ( ) .
 
 :speedProperty a samm:Property ;
-   samm:name "speedProperty" ;
    samm:characteristic :TestEither .
 
 :TestEither a samm-c:Either ;
-   samm:name "TestEither" ;
    samm:preferredName "Test Either"@en ;
    samm:description "This is a test Either."@en ;
-   samm:see <http://example.com/> ;
-   samm-c:left :LeftType ;
-   samm-c:right :IsMoving .
-
-:LeftType a samm-c:Either ;
-   samm:name "TestEither" ;
-   samm:preferredName "Left Either Type"@en ;
-   samm:description "This is a left Either type."@en ;
-   samm:see <http://example.com/> ;
-   samm-c:left :IsMovingLeft ;
+   samm-c:left :Status ;
    samm-c:right :Speed .
 
-:IsMoving a samm:Characteristic ;
-   samm:name "isMoving" ;
-   samm:dataType xsd:boolean .
-
-:IsMovingLeft a samm:Characteristic ;
-   samm:name "isMovingLeft" ;
-   samm:dataType xsd:boolean .
+:Status a samm-c:Either ;
+   samm:preferredName "Status Either Type"@en ;
+   samm:description "This is a Status Either for speed."@en ;
+   samm-c:left :ErrorMessage ;
+   samm-c:right :StatusCode .
 
 :Speed a samm:Characteristic ;
-   samm:name "speed" ;
    samm:dataType xsd:integer .
+
+:ErrorMessage a samm:Characteristic ;
+   samm:dataType :ErrorEntity .
+
+:ErrorEntity a samm:Entity ;
+   samm:properties ( :errorCode :errorDescription ) .
+
+:errorCode a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:errorDescription a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:StatusCode a samm:Characteristic ;
+   samm:dataType xsd:integer .
+# end::aspect-with-double-either-characteristic[]

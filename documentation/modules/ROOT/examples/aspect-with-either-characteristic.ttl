@@ -15,26 +15,30 @@
 
 # tag::aspect-with-either-characteristic[]
 :AspectWithEither a samm:Aspect ;
-   samm:name "AspectWithEither" ;
    samm:properties ( :speedProperty ) ;
    samm:operations ( ) .
 
 :speedProperty a samm:Property ;
-   samm:name "speedProperty" ;
    samm:characteristic :TestEither .
 
 :TestEither a samm-c:Either ;
-   samm:name "TestEither" ;
    samm:preferredName "Test Either"@en ;
    samm:description "This is a test Either."@en ;
-   samm:see <http://example.com/> ;
-   samm-c:left :IsMoving ;
+   samm-c:left :ErrorMessage ;
    samm-c:right :Speed .
 
-:IsMoving a samm:Characteristic ;
-   samm:name "isMoving" ;
-   samm:dataType xsd:boolean .
+:ErrorMessage a samm:Characteristic ;
+   samm:dataType :ErrorEntity .
 
 :Speed a samm:Characteristic ;
-   samm:name "speed" ;
    samm:dataType xsd:integer .
+
+:ErrorEntity a samm:Entity ;
+   samm:properties ( :errorCode :errorDescription ) .
+
+:errorCode a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:errorDescription a samm:Property ;
+   samm:characteristic samm-c:Text .
+# end::aspect-with-either-characteristic[]

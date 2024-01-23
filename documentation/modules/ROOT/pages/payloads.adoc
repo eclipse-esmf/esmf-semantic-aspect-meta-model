@@ -177,7 +177,7 @@ A Property `errorMessages` with a Collection Characteristic and effective data t
 [[characteristics-payload-mappings]]
 == Specific payload mappings for Characteristics
 
-In this section provided specific cases for the xref:characteristics.adoc[Characteristics].
+This section describes how data payloads look like for specific xref:characteristics.adoc[Characteristics].
 
 |===
 | Characteristic Name | Corresponding JSON data type
@@ -186,7 +186,7 @@ In this section provided specific cases for the xref:characteristics.adoc[Charac
 
 
 Example for `samm-c:Either`, a Property `speedProperty` has Characteristic and effective data type `samm-c:Either` and the possible values
-`isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`xsd:integer`) would be serialized in the JSON payload as follows:
+`ErrorMessage` (`xref:characteristics.adoc#single-entity-characteristic[Entity]` data type), which shows why speed can't be retrieved, or '60' (`xsd:integer`) would be serialized in the JSON payload as follows:
 
 Example:
 
@@ -200,14 +200,18 @@ Generated payload:
 [source,json]
 ----
 {
-  "speedProperty": {
-    "left": true
+  "speedProperty" : {
+    "left" : {
+      "errorDescription" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
+      "errorCode" : "eOMtThyhVNLWUZNRcBaQKxI"
+    }
   }
 }
 ----
 
 or
 
+[source,json]
 ----
 {
   "speedProperty": {
@@ -216,8 +220,8 @@ or
 }
 ----
 
-Another one example for Property `speedProperty` has Characteristic and effective data type `samm-c:Either`. Field `samm-c:left` has type `samm-c:Either` and field `samm-c:right` has type `xref:datatypes.adoc#data-types[xsd:boolean]`.
-Field `samm-c:left` has possible values `isMoving` (`xref:datatypes.adoc#data-types[xsd:boolean]` data type) or '60' (`xsd:integer`). This structure would be serialized in the JSON payload as follows:
+Another one example for Property `speedProperty` has Characteristic and effective data type `samm-c:Either`. Field `samm-c:left` with name 'Status' has type `samm-c:Either` and field `samm-c:right` with name 'Speed has type `xsd:integer`.
+Field `samm-c:left` with name 'ErrorMessage' has `xref:characteristics.adoc#single-entity-characteristic[Entity]` data type and shows why speed can't be retrieved or 'StatusCode' with (`xsd:integer`) data type in `samm-c:right` field. This structure would be serialized in the JSON payload as follows:
 
 Example:
 
@@ -229,18 +233,37 @@ include::example$aspect-with-double-either-characteristic.ttl[tags=aspect-with-d
 [source,json]
 ----
 {
-  "speedProperty": {
-    "left": {
-        "left": 60
+  "speedProperty" : {
+    "left" : {
+      "left" : {
+        "errorDescription" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
+        "errorCode" : "eOMtThyhVNLWUZNRcBaQKxI"
+      }
     }
   }
 }
+----
 
 or
 
+[source,json]
+----
+{
+  "speedProperty" : {
+    "left" : {
+      "left" : 200
+    }
+  }
+}
+----
+
+or
+
+[source,json]
+----
 {
   "speedProperty": {
-    "left": true
+    "left": 60
   }
 }
 ----
