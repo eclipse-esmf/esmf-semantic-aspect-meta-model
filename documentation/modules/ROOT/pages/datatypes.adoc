@@ -95,6 +95,25 @@ unsuitable in Aspect Models and _should not_ be used:
 `xsd:QName`, `xsd:ENTITY`, `xsd:ID`, `xsd:IDREF`, `xsd:NOTATION`, `xsd:IDREFS`, `xsd:ENTITIES`,
 `xsd:NMTOKENS`, `rdf:HTML` and `rdf:XMLLiteral`.
 
+[[samm-curie]]
+== Value range for `samm:curie` values
+
+Values with the type of `samm:curie` are interpreted in the context of the Aspect Model that
+describes the Aspect. The prefix part of their value therefore refers to the RDF prefixes as defined
+in the Aspect Model. Aspect Models do not use the https://www.w3.org/TR/turtle/#relative-iri[@base
+or BASE] directive in RDF/Turtle, so values with `samm:curie` type must always contain a colon `:`
+to delimit the (possibly) empty prefix part from the local name.
+
+.Allowed `samm:curie` values
+[options="header"]
+|===
+| Example Curie value | Allowed | Interpreted as URI
+| `unit:hectopascal` | {ok} | `{unit}hectopascal`
+| `xsd:string` | {ok} | `\http://www.w3.org/2001/XMLSchema#string`
+| `:myProperty` | {ok} | Depends on the Aspect Model's `@prefix :` definition
+| `myProperty` | {nok} |
+|===
+
 [[implicit-conversions]]
 == Implicit Conversions
 
