@@ -15,39 +15,35 @@
 
 # tag::aspect-with-double-either-characteristic[]
 :AspectWithEither a samm:Aspect ;
-   samm:properties ( :speedProperty ) ;
-   samm:operations ( ) .
+  samm:properties ( :speedProperty ) ;
+  samm:operations ( ) .
 
 :speedProperty a samm:Property ;
-   samm:characteristic :Result .
+  samm:characteristic :Result .
 
 :Result a samm-c:Either ;
-   samm:preferredName "Test Either"@en ;
-   samm:description "This is a test Either."@en ;
-   samm-c:left :Error ;
-   samm-c:right :Speed .
+  samm:description "The result is either an error or a SpeedValue"@en ;
+  samm-c:left :Error ;
+  samm-c:right :SpeedValue .
 
 :Error a samm-c:Either ;
-   samm:preferredName "Status Either Type"@en ;
-   samm:description "This is a Status Either for speed."@en ;
-   samm-c:left :ErrorMessage ;
-   samm-c:right :StatusCode .
+  samm:description "An error can be either a simple text, or a complex object with separate errorCode and errorDescription"@en ;
+  samm-c:left samm-c:Text ;
+  samm-c:right :ErrorMessage .
 
-:Speed a samm:Characteristic ;
-   samm:dataType xsd:integer .
+:SpeedValue a samm-c:Quantifiable ;
+  samm:dataType xsd:integer .
 
 :ErrorMessage a samm:Characteristic ;
-   samm:dataType :ErrorEntity .
+  samm:dataType :ErrorEntity .
 
 :ErrorEntity a samm:Entity ;
-   samm:properties ( :errorCode :errorDescription ) .
+  samm:properties ( :errorCode :errorDescription ) .
 
 :errorCode a samm:Property ;
-   samm:characteristic samm-c:Text .
+  samm:characteristic samm-c:Text .
 
 :errorDescription a samm:Property ;
-   samm:characteristic samm-c:Text .
+  samm:characteristic samm-c:Text .
 
-:StatusCode a samm:Characteristic ;
-   samm:dataType xsd:integer .
 # end::aspect-with-double-either-characteristic[]

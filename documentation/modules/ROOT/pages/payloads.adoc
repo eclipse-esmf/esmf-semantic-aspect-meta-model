@@ -218,8 +218,8 @@ or it can contain a `right` key with the success status:
 }
 ----
 
-Another one example Aspect uses `samm-c:Either` to express that the Property `speedValue` can either return the integer value for speed,
-or an `Error`, if the value could not be determined. `Error` can either return the integer value for status code (StatusCode) or Error message (using an Entity).
+Another one example Aspect uses `samm-c:Either` to express that the Property `speedProperty` can either return the integer value for speed `SpeedValue`,
+or an `Error`, if the value could not be determined. `Error` can either return the `samm-c:Text` with simple error text or `ErrorMessage` (using an Entity) for details of error like `errorCode` and `errorDescription`.
 
 So, assuming an Aspect has a Property `speedProperty` with `samm-characteristics` set to `:Result` according to the following definition:
 [source,turtle,subs="attributes+"]
@@ -229,13 +229,23 @@ include::example$aspect-with-double-either-characteristic.ttl[tags=aspect-with-d
 
 the corresponding JSON payload either contain a `left` key with the `Error`:
 
-- possible `left` key possible contains Error message:
+it can contain `right` key with the speed value:
+[source,json]
+----
+{
+  "speedProperty": {
+    "right": 60
+  }
+}
+----
+
+or possible `left` key of `Error` contains Error message:
 [source,json]
 ----
 {
   "speedProperty" : {
     "left" : {
-      "left" : {
+      "right" : {
         "errorDescription" : "...",
         "errorCode" : "..."
       }
@@ -244,25 +254,14 @@ the corresponding JSON payload either contain a `left` key with the `Error`:
 }
 ----
 
-- or it can contain `right` key for with integer value of `StatusCode`:
-
+or it can contain `right` key of `Error` with simple error text:
 [source,json]
 ----
 {
   "speedProperty" : {
     "left" : {
-      "right" : 200
+      "left" : "Simple error description..."
     }
-  }
-}
-----
-
-or it can contain `right` key with the speed value:
-[source,json]
-----
-{
-  "speedProperty": {
-    "right": 60
   }
 }
 ----
