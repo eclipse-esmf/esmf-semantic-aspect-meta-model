@@ -181,89 +181,88 @@ This section describes how data payloads look like for specific xref:characteris
 
 |===
 | Characteristic Name | Corresponding JSON data type
-| `samm-c:Either` | A JSON object with the left field and the value, which is one of the types proposed in `xref:characteristics.adoc#either-characteristic[Either]`.
+| `samm-c:Either` | A JSON object with exactly either a `left` or `right` key. If the `left` key is present, its data type is the effective data type of the Characteristic referred to by `samm-c:left`; if the `right` key is present, its data type is the effective data type of the Characteristic referred to by `samm-c:right`.
 |===
 
 
-Example for `samm-c:Either`, a Property `speedProperty` has Characteristic and effective data type `samm-c:Either` and the possible values
-`ErrorMessage` (`xref:characteristics.adoc#single-entity-characteristic[Entity]` data type), which shows why speed can't be retrieved, or '60' (`xsd:integer`) would be serialized in the JSON payload as follows:
+The following example Aspect uses `samm-c:Either` to express that the Property `speedValue` can either return the integer value for speed,
+or an Error message (using an Entity), if the value could not be determined (cf. xref:modeling-guidelines.adoc#declaring-either[Declaring Either]).
 
-Example:
-
+So, assuming an Aspect Model has a Property `result` with its `samm:characteristic` set to `:Result` according to the following definition:
 [source,turtle,subs="attributes+"]
 ----
-include::example$aspect-with-either-characteristic.ttl[tags=aspect-with-either-characteristic]
+include::example$declaring-either.ttl[tags=either-declaration]
 ----
 
-Generated payload:
-
+the corresponding JSON payload either contain a `left` key with the error description:
 [source,json]
 ----
 {
-  "speedProperty" : {
-    "left" : {
-      "errorDescription" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
-      "errorCode" : "eOMtThyhVNLWUZNRcBaQKxI"
+  "result": {
+    "left": {
+      "errorCode": "...",
+      "errorDescription": "..."
+    }
+  }
+}
+----
+or it can contain a `right` key with the success status:
+[source,json]
+----
+{
+  "result": {
+    "right": {
+      "status": "..."
     }
   }
 }
 ----
 
-or
+Another one example Aspect uses `samm-c:Either` to express that the Property `speedValue` can either return the integer value for speed,
+or an `Error`, if the value could not be determined. `Error` can either return the integer value for status code (StatusCode) or Error message (using an Entity).
 
-[source,json]
-----
-{
-  "speedProperty": {
-    "left": 60
-  }
-}
-----
-
-Another one example for Property `speedProperty` has Characteristic and effective data type `samm-c:Either`. Field `samm-c:left` with name 'Status' has type `samm-c:Either` and field `samm-c:right` with name 'Speed has type `xsd:integer`.
-Field `samm-c:left` with name 'ErrorMessage' has `xref:characteristics.adoc#single-entity-characteristic[Entity]` data type and shows why speed can't be retrieved or 'StatusCode' with (`xsd:integer`) data type in `samm-c:right` field. This structure would be serialized in the JSON payload as follows:
-
-Example:
-
+So, assuming an Aspect has a Property `speedProperty` with `samm-characteristics` set to `:Result` according to the following definition:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-with-double-either-characteristic.ttl[tags=aspect-with-double-either-characteristic]
 ----
 
+the corresponding JSON payload either contain a `left` key with the `Error`:
+
+- possible `left` key possible contains Error message:
 [source,json]
 ----
 {
   "speedProperty" : {
     "left" : {
       "left" : {
-        "errorDescription" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
-        "errorCode" : "eOMtThyhVNLWUZNRcBaQKxI"
+        "errorDescription" : "...",
+        "errorCode" : "..."
       }
     }
   }
 }
 ----
 
-or
+- or it can contain `right` key for with integer value of `StatusCode`:
 
 [source,json]
 ----
 {
   "speedProperty" : {
     "left" : {
-      "left" : 200
+      "right" : 200
     }
   }
 }
 ----
 
-or
-
+or it can contain `right` key with the speed value:
 [source,json]
 ----
 {
   "speedProperty": {
-    "left": 60
+    "right": 60
   }
 }
 ----

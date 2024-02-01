@@ -15,19 +15,19 @@
 
 # tag::aspect-with-double-either-characteristic[]
 :AspectWithEither a samm:Aspect ;
-   samm:properties ( :speedProperty ) ;
+   samm:properties ( :`speedProperty` ) ;
    samm:operations ( ) .
 
 :speedProperty a samm:Property ;
-   samm:characteristic :TestEither .
+   samm:characteristic :Result .
 
-:TestEither a samm-c:Either ;
+:Result a samm-c:Either ;
    samm:preferredName "Test Either"@en ;
    samm:description "This is a test Either."@en ;
-   samm-c:left :Status ;
+   samm-c:left :Error ;
    samm-c:right :Speed .
 
-:Status a samm-c:Either ;
+:Error a samm-c:Either ;
    samm:preferredName "Status Either Type"@en ;
    samm:description "This is a Status Either for speed."@en ;
    samm-c:left :ErrorMessage ;
