@@ -15,7 +15,7 @@
 
 # tag::aspect-with-double-either-characteristic[]
 :AspectWithEither a samm:Aspect ;
-   samm:properties ( :`speedProperty` ) ;
+   samm:properties ( :speedProperty ) ;
    samm:operations ( ) .
 
 :speedProperty a samm:Property ;
