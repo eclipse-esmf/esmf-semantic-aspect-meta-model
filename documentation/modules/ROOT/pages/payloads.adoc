@@ -191,7 +191,7 @@ or an Error message (using an Entity), if the value could not be determined (cf.
 So, assuming an Aspect Model has a Property `result` with its `samm:characteristic` set to `:Result` according to the following definition:
 [source,turtle,subs="attributes+"]
 ----
-include::example$declaring-either.ttl[tags=either-declaration]
+include:ROOT:example$either-declaration.ttl[tags=either-declaration]
 ----
 
 the corresponding JSON payload either contain a `left` key with the error description:
@@ -218,16 +218,14 @@ or it can contain a `right` key with the success status:
 }
 ----
 
-Another one example Aspect uses `samm-c:Either` to express that the Property `speedProperty` can either return the integer value for speed `SpeedValue`,
+In the following example the Property `speedProperty` can either return the integer value for speed `SpeedValue`,
 or an `Error`, if the value could not be determined. `Error` can either return the `samm-c:Text` with simple error text or `ErrorMessage` (using an Entity) for details of error like `errorCode` and `errorDescription`.
 
-So, assuming an Aspect has a Property `speedProperty` with `samm-characteristics` set to `:Result` according to the following definition:
+So, assuming the Property `speedProperty` with `samm-characteristics` set to `:Result` according to the following definition:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-with-double-either-characteristic.ttl[tags=aspect-with-double-either-characteristic]
 ----
-
-the corresponding JSON payload either contain a `left` key with the `Error`:
 
 it can contain `right` key with the speed value:
 [source,json]
@@ -266,8 +264,10 @@ or it can contain `right` key of `Error` with simple error text:
 }
 ----
 
+[[limitations]]
+== Limitations
 
-CAUTION: Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
+Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
 represention of numbers] in JSON, the maximum integer number that can be used without losing
 precision is 2⁵³-1 (defined as
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER[Number.MAX_SAFE_INTEGER]).

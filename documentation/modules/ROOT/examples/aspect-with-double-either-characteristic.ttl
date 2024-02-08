@@ -13,11 +13,11 @@
 @prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# tag::aspect-with-double-either-characteristic[]
 :AspectWithEither a samm:Aspect ;
   samm:properties ( :speedProperty ) ;
   samm:operations ( ) .
 
+# tag::aspect-with-double-either-characteristic[]
 :speedProperty a samm:Property ;
   samm:characteristic :Result .
 
@@ -27,7 +27,7 @@
   samm-c:right :SpeedValue .
 
 :Error a samm-c:Either ;
-  samm:description "An error can be either a simple text, or a complex object with separate errorCode and errorDescription"@en ;
+  samm:description "An error can be either a simple text, <br> or a complex object with separate errorCode and errorDescription"@en ;
   samm-c:left samm-c:Text ;
   samm-c:right :ErrorMessage .
 

@@ -382,7 +382,7 @@ Aspects each containing a single Collection.
 Describes a Property whose value can have one of two possible types (a disjoint union). This
 Characteristic is special since it does not directly define a data type. The data type is defined in
 the two Characteristics which define the left and right value of the disjoint union. Also see
-xref:characteristics.adoc#either-characteristic[Either] and xref:payload.adoc#characteristics-payload-mappings[Payload mappings to JSON for Characteristics].
+xref:characteristics.adoc#either-characteristic[Either] and xref:payloads.adoc#characteristics-payload-mappings[Payload mappings to JSON for Characteristics].
 
 Example:
 
