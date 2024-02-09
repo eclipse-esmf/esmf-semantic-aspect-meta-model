@@ -13,22 +13,26 @@
 @prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.0.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+:AspectWithEither a samm:Aspect ;
+  samm:properties ( :speedProperty ) ;
+  samm:operations ( ) .
+
 # tag::either-declaration[]
-:Result a samm-c:Either ;
-   samm-c:left :ErrorCode ;
-   samm-c:right :SuccessCode .
+:speedProperty a samm:Property ;
+  samm:characteristic :speedValue .
 
-:ErrorCode a samm-c:SingleEntity ;
-   samm:dataType :ErrorEntity .
+:speedValue a samm-c:Either ;
+  samm-c:left :ErrorMessage ;
+  samm-c:right :SpeedValue .
 
-:SuccessCode a samm-c:SingleEntity ;
-   samm:dataType :SuccessEntity .
+:ErrorMessage a samm-c:SingleEntity ;
+  samm:dataType :ErrorEntity .
+
+:SpeedValue a samm-c:Quantifiable ;
+  samm:dataType xsd:integer .
 
 :ErrorEntity a samm:Entity ;
    samm:properties ( :errorCode :errorDescription ) .
-
-:SuccessEntity a samm:Entity ;
-   samm:properties ( :status ) .
 # end::either-declaration[]
 
 # To make :Result valid
