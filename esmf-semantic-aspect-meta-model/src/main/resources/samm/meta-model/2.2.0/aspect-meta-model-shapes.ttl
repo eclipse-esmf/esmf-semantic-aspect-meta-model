@@ -366,6 +366,20 @@ samm:PropertyShape
             }
          """
       ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "An example value with boolean dataType '{$this}' can contain just 'true' or 'false' values in lower case." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+         select $this ?exampleValue ?code
+            where {
+               $this samm:exampleValue ?exampleValue .
+               bind( datatype( ?exampleValue ) as ?providedType )
+               filter ( ?providedType = xsd:boolean && ( STR( ?exampleValue ) != "true" && STR( ?exampleValue ) != "false" ) )
+               BIND('ERR_EXAMPLE_VALUE_NOT_ALLOWED' AS ?code)
+            }
+         """
+      ] ;
       sh:minCount 0 ;
       sh:maxCount 1 ;
       sh:name "exampleValue" ;

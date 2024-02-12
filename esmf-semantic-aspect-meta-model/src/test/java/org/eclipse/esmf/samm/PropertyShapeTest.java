@@ -127,6 +127,18 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testExampleValueOnPropertyWithInvalidBooleanFormatExpectFailure(
+         final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+      final SemanticError resultForExampleValue = new SemanticError( messageWrongBooleanValues,
+            FOCUS_NODE, sammUrns.exampleValueUrn, violationUrn,  "");
+
+      expectSemanticValidationErrors( "property-shape", "TestPropertyWithInvalidBooleanExampleValue",
+            metaModelVersion, resultForExampleValue );
+   }
+
+   @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
    public void testRefinePropertyWithoutCharacteristicExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "property-shape", "TestPropertyRefiningPropertyWithoutCharacteristic", metaModelVersion );
