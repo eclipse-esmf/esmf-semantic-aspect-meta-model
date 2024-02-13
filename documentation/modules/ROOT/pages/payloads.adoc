@@ -174,8 +174,100 @@ A Property `errorMessages` with a Collection Characteristic and effective data t
 }
 ----
 
+[[characteristics-payload-mappings]]
+== Specific payload mappings for Characteristics
 
-CAUTION: Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
+This section describes how data payloads look like for specific xref:characteristics.adoc[Characteristics].
+
+|===
+| Characteristic Name | Corresponding JSON data type
+| `samm-c:Either` | A JSON object with exactly either a `left` or `right` key. If the `left` key is present, its data type is the effective data type of the Characteristic referred to by `samm-c:left`; if the `right` key is present, its data type is the effective data type of the Characteristic referred to by `samm-c:right`.
+|===
+
+
+The following example Aspect uses `samm-c:Either` to express that the Property `speedValue` can either return the integer value for speed,
+or an Error message (using an Entity), if the value could not be determined (cf. xref:modeling-guidelines.adoc#declaring-either[Declaring Either]).
+
+So, assuming an Aspect Model has a Property `speedProperty` with its `samm:characteristic` set to `:Result` according to the following definition:
+[source,turtle,subs="attributes+"]
+----
+include::ROOT:example$either-declaration.ttl[tags=either-declaration]
+----
+
+the corresponding JSON payload either contains a `left` key with the error description:
+[source,json]
+----
+{
+  "result": {
+    "left": {
+      "errorCode": "...",
+      "errorDescription": "..."
+    }
+  }
+}
+----
+or it can contain a `right` key with the success status:
+[source,json]
+----
+{
+  "result": {
+    "right": {
+      "status": "..."
+    }
+  }
+}
+----
+
+In the following example the Property `speedProperty` can either return the integer value for speed `SpeedValue`,
+or an `Error`, if the value could not be determined. `Error` can either return the `samm-c:Text` with simple error text or `ErrorMessage` (using an Entity) for details of error like `errorCode` and `errorDescription`.
+
+So, assuming the Property `speedProperty` with `samm-characteristics` set to `:Result` according to the following definition:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-with-double-either-characteristic.ttl[tags=aspect-with-double-either-characteristic]
+----
+
+it can contain `right` key with the speed value:
+[source,json]
+----
+{
+  "speedProperty": {
+    "right": 60
+  }
+}
+----
+
+or possible `left` key of `Error` contains Error message:
+[source,json]
+----
+{
+  "speedProperty" : {
+    "left" : {
+      "right" : {
+        "errorDescription" : "...",
+        "errorCode" : "..."
+      }
+    }
+  }
+}
+----
+
+or it can contain `right` key of `Error` with simple error text:
+[source,json]
+----
+{
+  "speedProperty" : {
+    "left" : {
+      "left" : "Simple error description..."
+    }
+  }
+}
+----
+
+[[limitations]]
+== Limitations
+
+Due to the https://www.ecma-international.org/ecma-262/5.1/#sec-8.5[limits in the
 represention of numbers] in JSON, the maximum integer number that can be used without losing
 precision is 2⁵³-1 (defined as
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER[Number.MAX_SAFE_INTEGER]).
