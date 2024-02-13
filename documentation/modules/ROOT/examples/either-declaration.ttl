@@ -19,9 +19,9 @@
 
 # tag::either-declaration[]
 :speedProperty a samm:Property ;
-  samm:characteristic :speedValue .
+  samm:characteristic :Result .
 
-:speedValue a samm-c:Either ;
+:Result a samm-c:Either ;
   samm-c:left :ErrorMessage ;
   samm-c:right :SpeedValue .
 

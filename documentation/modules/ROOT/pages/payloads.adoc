@@ -188,13 +188,13 @@ This section describes how data payloads look like for specific xref:characteris
 The following example Aspect uses `samm-c:Either` to express that the Property `speedValue` can either return the integer value for speed,
 or an Error message (using an Entity), if the value could not be determined (cf. xref:modeling-guidelines.adoc#declaring-either[Declaring Either]).
 
-So, assuming an Aspect Model has a Property `result` with its `samm:characteristic` set to `:Result` according to the following definition:
+So, assuming an Aspect Model has a Property `speedProperty` with its `samm:characteristic` set to `:Result` according to the following definition:
 [source,turtle,subs="attributes+"]
 ----
-include:ROOT:example$either-declaration.ttl[tags=either-declaration]
+include::ROOT:example$either-declaration.ttl[tags=either-declaration]
 ----
 
-the corresponding JSON payload either contain a `left` key with the error description:
+the corresponding JSON payload either contains a `left` key with the error description:
 [source,json]
 ----
 {

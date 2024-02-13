@@ -27,7 +27,7 @@
   samm-c:right :SpeedValue .
 
 :Error a samm-c:Either ;
-  samm:description "An error can be either a simple text, <br> or a complex object with separate errorCode and errorDescription"@en ;
+  samm:description """An error can be either a simple text,  or a complex object with separate errorCode and errorDescription"""@en ;
   samm-c:left samm-c:Text ;
   samm-c:right :ErrorMessage .
 
