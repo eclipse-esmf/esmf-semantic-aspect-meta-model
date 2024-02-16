@@ -101,6 +101,13 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testExampleValueOnPropertyWithValidLangStringValueExpectFailure(
+         final KnownVersion metaModelVersion ) {
+      checkValidity("property-shape", "TestPropertyWithInvalidLangStringExampleValue", metaModelVersion);
+   }
+
+   @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMultipleExampleValuesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
