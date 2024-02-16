@@ -375,8 +375,8 @@ samm:PropertyShape
             where {
                $this samm:exampleValue ?exampleValue .
                bind( datatype( ?exampleValue ) as ?providedType )
-               filter ( ?providedType = xsd:boolean && ( STR( ?exampleValue ) != "true" && STR( ?exampleValue ) != "false" ) )
-               BIND('ERR_EXAMPLE_VALUE_NOT_ALLOWED' AS ?code)
+               filter ( ?providedType = xsd:boolean && ( str( ?exampleValue ) != "true" && str( ?exampleValue ) != "false" ) )
+               bind('ERR_EXAMPLE_VALUE_NOT_ALLOWED' AS ?code)
             }
          """
       ] ;
