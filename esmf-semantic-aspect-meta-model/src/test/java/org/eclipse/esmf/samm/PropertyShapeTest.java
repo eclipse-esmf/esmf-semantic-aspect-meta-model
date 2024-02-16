@@ -104,7 +104,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
    @MethodSource( value = "versionsStartingWith2_2_0" )
    public void testExampleValueOnPropertyWithValidLangStringValueExpectFailure(
          final KnownVersion metaModelVersion ) {
-      checkValidity("property-shape", "TestPropertyWithInvalidLangStringExampleValue", metaModelVersion);
+      checkValidity("property-shape", "TestPropertyWithValidLangStringExampleValue", metaModelVersion);
    }
 
    @ParameterizedTest
