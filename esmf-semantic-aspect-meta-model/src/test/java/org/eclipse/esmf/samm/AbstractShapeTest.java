@@ -80,6 +80,8 @@ public abstract class AbstractShapeTest {
    final String messageMissingDatatype = "No datatype is defined on the Characteristic instance '{$this}'.";
 
    final String messageHasToUseSubClass = "Constraint '{$this}' has invalid type samm:Constraint, only subtypes of samm:Constraint may be used.";
+
+   final String messageWrongBooleanValues = "An example value with boolean dataType '{$this}' can contain just 'true' or 'false' values in lower case.";
    final String messageInvalidEntryEntityPropertyList =
          "Element '{?value}' in the Entity's '{$this}' properties list must be a property - either directly or " +
                "via a reference to a property with an attribute samm:optional \"true\"^^xsd:boolean and/or samm:payloadName or "
