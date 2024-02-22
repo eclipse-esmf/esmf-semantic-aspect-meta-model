@@ -69,7 +69,7 @@ definition in the respective standards and an informative description of their v
 .12+| Limited-range integer numbers
 | `https://www.w3.org/TR/xmlschema11-2/#byte[xsd:byte]` | -128…+127 (8 bit) | -1, 0, 127 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#short[xsd:short]` | -32768…+32767 (16 bit) | -1, 0, 32767 | {nok}
-| `https://www.w3.org/TR/xmlschema11-2/#int[xsd:int]` | 2147483648…+2147483647 (32 bit) | -1, 0, 2147483647 | {nok}
+| `https://www.w3.org/TR/xmlschema11-2/#int[xsd:int]` | -2147483648…+2147483647 (32 bit) | -1, 0, 2147483647 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#long[xsd:long]` | -9223372036854775808…+9223372036854775807 (64 bit) | -1, 0, 9223372036854775807 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#unsignedByte[xsd:unsignedByte]` | 0…255 (8 bit) | 0, 1, 255 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#unsignedShort[xsd:unsignedShort]` | 0…65535 (16 bit) | 0, 1, 65535 | {nok}
