@@ -264,6 +264,25 @@ or it can contain `right` key of `Error` with simple error text:
 }
 ----
 
+NOTE: It is necessary to clarify, that sample payload may be invalid.
+To be careful when designing Aspect. See an example of a similar case below.
+
+=== Example with Invalid Payload
+
+This example covered situation Sample payload with duplicates in Set and xref:characteristics.adoc#length-constraint[Length Constraint].
+
+----
+include::ROOT:example$aspect-property-duplicates-in-set.ttl[tags=aspect-property-duplicates-in-set]
+----
+
+=== Payload
+[source, json]
+----
+{
+  "property1" : [ false, true, true, false ]
+}
+----
+
 [[limitations]]
 == Limitations
 
