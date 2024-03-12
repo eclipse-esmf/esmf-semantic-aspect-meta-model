@@ -264,6 +264,9 @@ or it can contain `right` key of `Error` with simple error text:
 }
 ----
 
+IMPORTANT: If the model is invalid, it might be impossible to build a JSON payload that corresponds to the model.
+For example, if a Set of `xsd:boolean` values has a xref:characteristics.adoc#length-constraint[Length Constraint] of `samm-c:minValue` 3, no valid payload can be constructed.
+
 [[limitations]]
 == Limitations
 
