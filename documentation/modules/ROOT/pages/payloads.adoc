@@ -264,32 +264,8 @@ or it can contain `right` key of `Error` with simple error text:
 }
 ----
 
-IMPORTANT: It is necessary to clarify, that sample payload may be invalid.
-
-Here are a few points that should consider when designing Aspect Models:
-====
-* Aspect Models are permitted even when no valid payload can exist;
-* The sample payload generator may not consistently produce a valid payload even if one exists;
-* The generated payload data result can be invalid.
-====
-
-See an example of a similar case below.
-
-=== Example with Invalid Payload
-
-This example covered situation Sample payload with duplicates in Set and xref:characteristics.adoc#length-constraint[Length Constraint].
-
-----
-include::ROOT:example$aspect-property-duplicates-in-set.ttl[tags=aspect-property-duplicates-in-set]
-----
-
-=== Payload
-[source, json]
-----
-{
-  "property1" : [ false, true, true, false ]
-}
-----
+IMPORTANT: If the model is invalid, it might be impossible to build a JSON payload that corresponds to the model.
+For example, if a Set of `xsd:boolean` values has a xref:characteristics.adoc#length-constraint[Length Constraint] of `samm-c:minValue` 3, no valid payload can be constructed.
 
 [[limitations]]
 == Limitations
