@@ -24,14 +24,39 @@ class NamespaceTest extends AbstractShapeTest{
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_2_0")
-   void testNamespaceInvalidUrn( final KnownVersion metaModelVersion) {
+   void testNamespaceInvalidUrnPattern( final KnownVersion metaModelVersion) {
       final String focusNode = "urn:samm:org.eclipse.esmf.samm.test:1.q.0#";
 
       final SemanticError resultForInvalidUrnNamespace = new SemanticError(
               "Namespace '<urn:samm:org.eclipse.esmf.samm.test:1.q.0#>' uses an invalid URN pattern",
               focusNode, "", violationUrn, focusNode
       );
-      expectSemanticValidationErrors( "namespace", "TestNamespaceInvalidUrn",
+      expectSemanticValidationErrors( "namespace", "TestNamespaceInvalidUrnVersion",
               metaModelVersion, resultForInvalidUrnNamespace );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0")
+   void testNamespaceInvalidUrn( final KnownVersion metaModelVersion) {
+      final String focusNode = "urn:samm:org.eclipse.esmf.samm+test:1.0.0#";
+
+      final SemanticError resultForInvalidUrnNamespace = new SemanticError(
+            "Namespace '<urn:samm:org.eclipse.esmf.samm+test:1.0.0#>' uses an invalid URN pattern",
+            focusNode, "", violationUrn, focusNode
+      );
+      expectSemanticValidationErrors( "namespace", "TestNamespaceInvalidUrn",
+            metaModelVersion, resultForInvalidUrnNamespace );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0")
+   void testNamespaceValidWithDash( final KnownVersion metaModelVersion) {
+      checkValidity( "namespace", "TestNamespaceValidWithDash", metaModelVersion );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0")
+   void testNamespaceValidWithUnderscore( final KnownVersion metaModelVersion) {
+      checkValidity( "namespace", "TestNamespaceValidWithUnderscore", metaModelVersion );
    }
 }
