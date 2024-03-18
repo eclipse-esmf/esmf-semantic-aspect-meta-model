@@ -167,4 +167,37 @@ public class CharacteristicShapeTest extends AbstractShapeTest {
             instanceId, sammUrns.datatypeUrn, violationUrn, value );
       expectSemanticValidationErrors( "characteristic-shape", instanceName, metaModelVersion, resultForDataType );
    }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_0_0" )
+   public void testCharacteristicWithEntityDataType( final KnownVersion metaModelVersion ) {
+      checkValidity( "characteristic-shape", "TestCharacteristicInstanceWithEntityDataType",
+              metaModelVersion );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testCharacteristicWithAbstractEntityDataType( final KnownVersion metaModelVersion ) {
+      checkValidity( "characteristic-shape", "TestCharacteristicInstanceWithAbstractEntityDataType",
+              metaModelVersion );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testCharacteristicWithExtendedInstantiatedAbstractEntityDataType( final KnownVersion metaModelVersion ) {
+      checkValidity( "characteristic-shape", "TestCharacteristicInstanceWithExtendedInstantiatedAbstractEntityDataType",
+              metaModelVersion );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testCharacteristicWithDirectInstantiatedAbstractEntityDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
+      final String focusNode = testNamespacePrefix + "InstantiatedAbstractEntityInstance";
+      final String value = testNamespacePrefix + "AbstractTestEntity";
+      final String errorAbstractUsageMessage = validator.getMessageText( "samm:AbstractEntityDirectlyInstantiated", "ERR_ABSTRACT_USAGE", metaModelVersion );
+      final SemanticError resultErrorAbstractUsageMessage = new SemanticError( errorAbstractUsageMessage,
+              focusNode, "", violationUrn, value );
+      expectSemanticValidationErrors( "characteristic-shape", "TestCharacteristicInstanceWithDirectInstantiatedAbstractEntityDataType", metaModelVersion,
+              resultErrorAbstractUsageMessage );
+   }
 }

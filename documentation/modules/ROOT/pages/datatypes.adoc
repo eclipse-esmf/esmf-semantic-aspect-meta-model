@@ -69,7 +69,7 @@ definition in the respective standards and an informative description of their v
 .12+| Limited-range integer numbers
 | `https://www.w3.org/TR/xmlschema11-2/#byte[xsd:byte]` | -128…+127 (8 bit) | -1, 0, 127 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#short[xsd:short]` | -32768…+32767 (16 bit) | -1, 0, 32767 | {nok}
-| `https://www.w3.org/TR/xmlschema11-2/#int[xsd:int]` | 2147483648…+2147483647 (32 bit) | -1, 0, 2147483647 | {nok}
+| `https://www.w3.org/TR/xmlschema11-2/#int[xsd:int]` | -2147483648…+2147483647 (32 bit) | -1, 0, 2147483647 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#long[xsd:long]` | -9223372036854775808…+9223372036854775807 (64 bit) | -1, 0, 9223372036854775807 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#unsignedByte[xsd:unsignedByte]` | 0…255 (8 bit) | 0, 1, 255 | {nok}
 | `https://www.w3.org/TR/xmlschema11-2/#unsignedShort[xsd:unsignedShort]` | 0…65535 (16 bit) | 0, 1, 65535 | {nok}
@@ -94,6 +94,25 @@ unsuitable in Aspect Models and _should not_ be used:
 `xsd:language`, `xsd:normalizedString`, `xsd:token`, `xsd:NMTOKEN`, `xsd:Name`, `xsd:NCName`,
 `xsd:QName`, `xsd:ENTITY`, `xsd:ID`, `xsd:IDREF`, `xsd:NOTATION`, `xsd:IDREFS`, `xsd:ENTITIES`,
 `xsd:NMTOKENS`, `rdf:HTML` and `rdf:XMLLiteral`.
+
+[[samm-curie]]
+== Value range for `samm:curie` values
+
+Values with the type of `samm:curie` are interpreted in the context of the Aspect Model that
+describes the Aspect. The prefix part of their value therefore refers to the RDF prefixes as defined
+in the Aspect Model. Aspect Models do not use the https://www.w3.org/TR/turtle/#relative-iri[@base
+or BASE] directive in RDF/Turtle, so values with `samm:curie` type must always contain a colon `:`
+to delimit the (possibly) empty prefix part from the local name.
+
+.Allowed `samm:curie` values
+[options="header"]
+|===
+| Example Curie value | Allowed | Interpreted as URI
+| `unit:hectopascal` | {ok} | `{unit}hectopascal`
+| `xsd:string` | {ok} | `\http://www.w3.org/2001/XMLSchema#string`
+| `:myProperty` | {ok} | Depends on the Aspect Model's `@prefix :` definition
+| `myProperty` | {nok} |
+|===
 
 [[implicit-conversions]]
 == Implicit Conversions
