@@ -75,12 +75,14 @@ Diagrams are kept in the [diagrams](documentation/modules/ROOT/diagrams) folder 
 them into .svg, run
 
 ```sh
+./mvnw clean install -pl esmf-samm-build-plugin
 ./mvnw generate-sources -pl documentation -Prender-diagrams
 ```
 
 In order to render the diagrams and the Antora documentation in one step, run
 
 ```sh
+./mvnw clean install -pl esmf-samm-build-plugin
 ./mvnw generate-resources -pl documentation -Prender-diagrams,antora
 ```
 

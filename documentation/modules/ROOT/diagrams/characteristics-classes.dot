@@ -38,28 +38,92 @@ digraph characteristics_classes {
   ]
 
   // Wide nodes
-  Characteristic [label="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}", href="../characteristics.html#characteristic-characteristic"]
-  StructuredValue [label="{ StructuredValue|deconstructionRule\lelements\l}", href="../characteristics.html#structured-value-characteristic"]
+  Characteristic [
+    label="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}",
+    href="../characteristics.html#characteristic-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  StructuredValue [
+    label="{ StructuredValue|deconstructionRule\lelements\l}",
+    href="../characteristics.html#structured-value-characteristic",
+    fillcolor="#d6e2a6"
+  ]
 
   // Narrow nodes
   node [
     width = 1.2
   ]
 
-  Quantifiable [label="{ Quantifiable|unit\l}", href="../characteristics.html#quantifiable-characteristic"]
-  Either [label="{ Either|left\lright\l}", href="../characteristics.html#either-characteristic"]
-  Enumeration [label="{ Enumeration|values\l}", href="../characteristics.html#enumeration-characteristic"]
-  Collection [label="{ Collection|}", href="../characteristics.html#collection-characteristic"]
-  Trait [label="{ Trait|baseCharacteristic\lconstraint [1..*]\l}", href="../characteristics.html#trait-characteristic"]
-  State [label="{ State|defaultValue\l}", href="../characteristics.html#state-characteristic"]
-  Set [label="{ Set|}", href="../characteristics.html#set-characteristic"]
-  List [label="{ List|}", href="../characteristics.html#list-characteristic"]
-  TimeSeries [label="{ TimeSeries|}", href="../characteristics.html#time-series-characteristic"]
-  Duration [label="{ Duration|}", href="../characteristics.html#duration-characteristic"]
-  Measurement [label="{ Measurement|}", href="../characteristics.html#measurement-characteristic"]
-  Code [label="{ Code|}", href="../characteristics.html#code-characteristic"]
-  SingleEntity [label="{ SingleEntity|}", href="../characteristics.html#single-entity-characteristic"]
-  SortedSet [label="{ SortedSet|}", href="../characteristics.html#sorted-set-characteristic"]
+  Quantifiable [
+    label="{ Quantifiable|unit\l}",
+    href="../characteristics.html#quantifiable-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Either [
+    label="{ Either|left\lright\l}",
+    href="../characteristics.html#either-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Enumeration [
+    label="{ Enumeration|values\l}",
+    href="../characteristics.html#enumeration-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Collection [
+    label="{ Collection|}",
+    href="../characteristics.html#collection-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Trait [
+    label="{ Trait|baseCharacteristic\lconstraint [1..*]\l}",
+    href="../characteristics.html#trait-characteristic",
+    fillcolor="#74aeaf"
+  ]
+  State [
+    label="{ State|defaultValue\l}",
+    href="../characteristics.html#state-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Set [
+    label="{ Set|}",
+    href="../characteristics.html#set-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  List [
+    label="{ List|}",
+    href="../characteristics.html#list-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  TimeSeries [
+    label="{ TimeSeries|}",
+    href="../characteristics.html#time-series-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Duration [
+    label="{ Duration|}",
+    href="../characteristics.html#duration-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Measurement [
+    label="{ Measurement|}",
+    href="../characteristics.html#measurement-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  Code [
+    label="{ Code|}",
+    href="../characteristics.html#code-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  SingleEntity [
+    label="{ SingleEntity|}",
+    href="../characteristics.html#single-entity-characteristic",
+    fillcolor="#d6e2a6"
+  ]
+  SortedSet [
+    label="{ SortedSet|}",
+    href="../characteristics.html#sorted-set-characteristic",
+    fillcolor="#d6e2a6"
+  ]
 
   Either -> Characteristic
   Enumeration -> Characteristic
