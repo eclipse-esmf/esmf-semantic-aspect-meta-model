@@ -38,13 +38,26 @@ class NamespaceTest extends AbstractShapeTest{
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_2_0")
    void testNamespaceInvalidUrn( final KnownVersion metaModelVersion) {
-      final String focusNode = "urn:samm:org.eclipse.esmf.samm+test:1.0.0#";
+      final String focusNode = "urn:samm:org.eclipse.esmf.samm+:1.0.0#";
 
       final SemanticError resultForInvalidUrnNamespace = new SemanticError(
-            "Namespace '<urn:samm:org.eclipse.esmf.samm+test:1.0.0#>' uses an invalid URN pattern",
+            "Namespace '<urn:samm:org.eclipse.esmf.samm+:1.0.0#>' uses an invalid URN pattern",
             focusNode, "", violationUrn, focusNode
       );
       expectSemanticValidationErrors( "namespace", "TestNamespaceInvalidUrn",
+            metaModelVersion, resultForInvalidUrnNamespace );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0")
+   void testNamespaceInvalidUrnStructure( final KnownVersion metaModelVersion) {
+      final String focusNode = "urn:samm:org:1.0.0#";
+
+      final SemanticError resultForInvalidUrnNamespace = new SemanticError(
+            "Namespace '<urn:samm:org:1.0.0#>' uses an invalid URN pattern",
+            focusNode, "", violationUrn, focusNode
+      );
+      expectSemanticValidationErrors( "namespace", "TestNamespaceInvalidUrnStructure",
             metaModelVersion, resultForInvalidUrnNamespace );
    }
 
