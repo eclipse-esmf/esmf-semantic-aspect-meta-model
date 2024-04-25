@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
 #
 # See the AUTHORS file(s) distributed with this work for additional
 # information regarding authorship.
@@ -15,6 +15,10 @@
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestConstraint a samm:Constraint ;
-   samm:preferredName "Test Constraint"@en ;
-   samm:description "TestConstraint"@en .
+:TestCharacteristicInstanceWithEntityDataType a samm:Characteristic ;
+   samm:dataType :TestEntityDataType .
+
+:TestEntityDataType a samm:Entity ;
+   samm:preferredName "Test Entity"@en ;
+   samm:description "A test Entity"@en ;
+   samm:properties ( ) .

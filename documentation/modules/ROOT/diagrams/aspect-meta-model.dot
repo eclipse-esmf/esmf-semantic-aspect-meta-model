@@ -33,19 +33,66 @@ digraph aspect_model {
     outputorder="edgesfirst"
   ]
 
-  Aspect [label="{ «Aspect»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="0,0.38!"]
-  Property [label="{ «Property»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lexampleValue : \<type\> [0..1]\lsee : anyURI [0..n]\l}", pos="0,-1.30!"]
-  Entity [label="{ «Entity»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="0,-2.9!"]
-  AbstractEntity [label="{ «AbstractEntity»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="0,-4.5!"]
-  Operation [label="{ «Operation»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="0,-6.0!"]
-  Event [label="{ «Event»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="0,-7.5!"]
-
-  Trait [label="{ «Trait»}", pos="5.0,-0.07!"]
-  Constraint [label="{ «Constraint»}", pos="5.0,0.7!"]
-  Characteristic [label="{ «Characteristic»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\ldataType : \<type\>\l}", pos="5.0,-1.6!"]
-  Quantifiable [label="{ «Quantifiable»}", pos="5.0,-2.8!"]
-  Unit [label="{ «Unit»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\lsymbol : string\lconversionFactor : string [0..1]\lnumericConversionFactor : double [0..1]\lcommonCode : string [0..1]\l}", pos="5.0,-4.2!"]
-  QuantityKind [label="{ «QuantityKind»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}", pos="5.0,-6.3!"]
+  Aspect [
+    label="{ «Aspect»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}",
+    pos="0,0.38!",
+    fillcolor="#7589c8"
+  ]
+  Property [
+    label="{ «Property»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lexampleValue : \<type\> [0..1]\lsee : anyURI [0..n]\l}",
+    pos="0,-1.30!",
+    fillcolor="#c5c8d4"
+  ]
+  Entity [
+    label="{ «Entity»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}",
+    pos="0,-2.9!",
+    fillcolor="#aeade0"
+  ]
+  AbstractEntity [
+    label="{ «AbstractEntity»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}",
+    pos="0,-4.5!",
+    fillcolor="#aeade0"
+  ]
+  Operation [
+    label="{ «Operation»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}",
+    pos="0,-6.0!",
+    fillcolor="#d5bfda"
+  ]
+  Event [
+    label="{ «Event»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}",
+    pos="0,-7.5!",
+    fillcolor="#b9d8fa"
+  ]
+  Trait [
+    label="{ «Trait»}",
+    pos="5.0,-0.07!",
+    fillcolor="#74aeaf"
+  ]
+  Constraint [
+    label="{ «Constraint»}",
+    pos="5.0,0.7!",
+    fillcolor="#74aeaf"
+  ]
+  Characteristic [
+    label="{ «Characteristic»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\ldataType : \<type\>\l}",
+    pos="5.0,-1.6!",
+    fillcolor="#d6e2a6"
+  ]
+  Quantifiable [
+    label="{ «Quantifiable»}",
+    pos="5.0,-2.8!",
+    fillcolor="#d6e2a6"
+  ]
+  Unit [
+    label="{ «Unit»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\lsymbol : string\lconversionFactor : string [0..1]\lnumericConversionFactor : double [0..1]\lcommonCode : string [0..1]\l}",
+    pos="5.0,-4.2!",
+    fillcolor="#b9ab50"
+  ]
+  QuantityKind [
+    label="{ «QuantityKind»|name : string\lpreferredName : langString [0..n]\ldescription : langString [0..n]\lsee : anyURI [0..n]\l}",
+    pos="5.0,-6.3!",
+    fillcolor="#b9ab50"
+  ]
 
   // Quantifiable --|> Characteristic
   Quantifiable -> Characteristic [arrowhead="empty"]

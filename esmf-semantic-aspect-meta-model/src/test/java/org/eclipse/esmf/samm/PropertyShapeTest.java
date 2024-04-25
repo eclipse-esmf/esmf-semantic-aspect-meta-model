@@ -101,6 +101,13 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testExampleValueOnPropertyWithValidLangStringValueExpectFailure(
+         final KnownVersion metaModelVersion ) {
+      checkValidity("property-shape", "TestPropertyWithValidLangStringExampleValue", metaModelVersion);
+   }
+
+   @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMultipleExampleValuesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
@@ -123,6 +130,18 @@ public class PropertyShapeTest extends AbstractShapeTest {
             validator.getMessageText( "samm:PropertyShape", "samm:exampleValue", "ERR_EXAMPLE_VALUE_NOT_ALLOWED", metaModelVersion ),
             PROPERTY_TO_BE_REFINED_URN, sammUrns.exampleValueUrn, violationUrn, "" );
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithExampleValueWithoutCharacteristic",
+            metaModelVersion, resultForExampleValue );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   public void testExampleValueOnPropertyWithInvalidBooleanFormatExpectFailure(
+         final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+      final SemanticError resultForExampleValue = new SemanticError( messageWrongBooleanValues,
+            FOCUS_NODE, sammUrns.exampleValueUrn, violationUrn,  "");
+
+      expectSemanticValidationErrors( "property-shape", "TestPropertyWithInvalidBooleanExampleValue",
             metaModelVersion, resultForExampleValue );
    }
 

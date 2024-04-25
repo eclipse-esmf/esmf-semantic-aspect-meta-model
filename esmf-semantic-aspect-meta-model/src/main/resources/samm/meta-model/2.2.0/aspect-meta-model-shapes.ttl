@@ -64,7 +64,7 @@ samm:NamespaceShape
          select $this ?value ?code
          where {
             bind( str( $this ) as ?value )
-            filter( !regex( ?value, "^urn:samm:[^:]+:[0-9]+.[0-9]+.[0-9]+#$" ))
+            filter( !regex( ?value, "^urn:samm:[a-zA-Z][a-zA-Z0-9]{1,62}.[a-zA-Z0-9-]{1,63}(.[a-zA-Z0-9_-]{1,63})+:[0-9]+.[0-9]+.[0-9]+#$" ))
             bind( 'ERR_WRONG_URN' as ?code )
          }
       """ ;
@@ -366,6 +366,20 @@ samm:PropertyShape
             }
          """
       ] ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "An example value with boolean dataType '{$this}' can contain just 'true' or 'false' values in lower case." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+         select $this ?exampleValue ?code
+            where {
+               $this samm:exampleValue ?exampleValue .
+               bind( datatype( ?exampleValue ) as ?providedType )
+               filter ( ?providedType = xsd:boolean && ( str( ?exampleValue ) != "true" && str( ?exampleValue ) != "false" ) )
+               bind('ERR_EXAMPLE_VALUE_NOT_ALLOWED' AS ?code)
+            }
+         """
+      ] ;
       sh:minCount 0 ;
       sh:maxCount 1 ;
       sh:name "exampleValue" ;
@@ -499,6 +513,18 @@ samm:ConstraintShape
       sh:maxCount 0 ;
       sh:name "dataType" ;
       sh:description "A Constraint may not change the data type of the Characteristic being constrained." ;
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "Constraint '{$this}' has invalid type samm:Constraint, only subtypes of samm:Constraint may be used." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this ?message ?code
+         where {
+           $this rdf:type samm:Constraint .
+           bind( 'ERR_WRONG_DATATYPE' as ?code )
+         }
+      """
    ] .
 
 samm:OperationShape

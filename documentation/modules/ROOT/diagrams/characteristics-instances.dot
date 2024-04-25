@@ -37,13 +37,18 @@ digraph characteristics_instances {
     arrowhead = empty
   ]
 
-  Characteristic [label="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}", href="../characteristics.html#characteristic-characteristic"]
+  Characteristic [
+    label="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}",
+    href="../characteristics.html#characteristic-characteristic",
+    fillcolor="#d6e2a6"
+  ]
 
   node [
     shape = plaintext
     width = 0
     height = 0
     margin = 0
+    fillcolor="#d6e2a6"
   ]
 
   edge [
