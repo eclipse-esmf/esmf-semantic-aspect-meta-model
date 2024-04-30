@@ -12,7 +12,7 @@ SPDX-License-Identifier: MPL-2.0
 [[references]]
 = Bibliography
 
-- [#rec20]#[rec20]# UN Economic Commission for Europe (UNECE) Recommendation 20 -- Codes for Units of Measure Used in International Trade. URL: http://tfig.unece.org/contents/recommendation-20.htm
+- [#rec20]#[rec20]# UN Economic Commission for Europe (UNECE) Recommendation 20 -- Codes for Units of Measure Used in International Trade. URL: https://tfig.unece.org/instruments/recommendations-and-standards/unece-and-uncefact-recommendations/recommendation-no-20/
 
 - [#rdf11]#[rdf11]# Richard Cyganiak, David Wood, Markus Lanthaler. RDF 1.1 Concepts and Abstract Syntax. W3C Recommendation, 25 February 2014. URL: http://www.w3.org/TR/rdf11-concepts/
 
