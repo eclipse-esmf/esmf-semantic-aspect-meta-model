@@ -13,10 +13,6 @@ SPDX-License-Identifier: MPL-2.0
 [[release-notes]]
 = Release Notes - {meta-model-full-name}
 
-NOTE: Version 1.0.0 of the meta model was released in the scope of the Open Manufacturing Platform (OMP)
-and was called _BAMM Aspect Meta Model (BAMM)_. Version 2.0.0 was also released as _BAMM_, then
-re-released as Eclipse Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM) 2.0.0.
-
 [[samm-2.1.0]]
 == Release 2.1.0
 
@@ -92,6 +88,10 @@ Manufacturing Platform (OMP) Semantic Data Structuring (SDS) working group BAMM 
 * Meta model URNs are changed from `urn:bamm:io.openmanufacturing:<element-type>:<version>#<element-name>` to `urn:samm:org.eclipse.esmf.samm:<element-type>:<version>#<element-name>`.
 * The namespace rules for model elements changed accordingly from `bamm` to `samm` in the URN schema.
 * RDF prefixes are renamed from `bamm`, `bamm-c` and `bamm-e` to `samm`, `samm-c` and `samm-e`, respectively.
+
+NOTE: Version 1.0.0 of the meta model was released in the scope of the Open Manufacturing Platform (OMP)
+and was called _BAMM Aspect Meta Model (BAMM)_. Version 2.0.0 was also released as _BAMM_, then
+re-released as Eclipse Semantic Modeling Framework (ESMF) Semantic Aspect Meta Model (SAMM) 2.0.0.
 
 [[bamm-2.0.0]]
 == Release 2.0.0 (Legacy: BAMM)
