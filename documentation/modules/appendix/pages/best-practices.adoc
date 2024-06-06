@@ -135,41 +135,15 @@ image::constraints-decision-tree.svg[width=100%]
 [[reuse-elements]]
 == Reuse Elements
 
-To ensure efficiency and maintainability, it is essential to reuse these elements across different Aspects
-*_WHENEVER_* possible.
+It is generally advisable to reuse definitions of existing model elements that describe the desired semantics. This not only ensures efficiency
+and maintainability, but more importantly, it explicitly expresses that the model builds upon a set of agreed-upon abstractions.
+Reuse of exising model element definitions makes it clear that your model talks about _the same thing_. On the other hand,
+introducing another definition of an allegedly already existing concept is equivalent to stating that the deliberately newly created definition
+does indeed mean something different. This is particularly useful when model elements are created for terminology that can have many different
+meanings in various contexts, such as the term "process".
 
 `xref:ROOT:entities.adoc#entities[Entities]`, `xref:ROOT:characteristics.adoc#characteristics[Characteristics]`,
 `xref:ROOT:modeling-guidelines.adoc#declaring-events[Events]`, `xref:ROOT:modeling-guidelines.adoc#declaring-constraints[Constraints]`
 and `xref:ROOT:modeling-guidelines.adoc#declaring-properties[Properties]` are fundamental components of an Aspect.
 Reusing these elements across different Aspects ensures consistency, reduces redundancy, and simplifies the management and
 integration of shared attributes and interactions.
-
-[[strict-ttl]]
-== The rules of "Strict TTL"
-
-To avoid potential issues when working with Aspects, it is best to adhere to stricter rules, known as "Strict TTL".
-Below is a list of these rules:
-
-* An aspect model file may only contain model elements of exactly one `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]`;
-
-* Model element definitions of a `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]` may be spread across any number
-of Aspect model files (i.e., the namespace's namespace files);
-
-* A model element definition may only appear once per `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]` and aspect model file;
-
-* A `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]` may contain any number of model elements, including `samm:Aspect`;
-
-* An aspect model file may contain at most one model element definition for `samm:Aspect`;
-
-* A namespace's set of `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]` files may contain at most
-one `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]` element definition, which must match
-the `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]`;
-
-* In filesystem-based model storage, aspect model files must end with `".ttl"`;
-
-* In filesystem-based model storage, models should be stored in the directory structure
-`models_root/package_part/version_part/aspect_model_file.ttl`;
-
-* In filesystem-based model storage, the `xref:ROOT:modeling-guidelines.adoc#using-namespaces[namespace]` file containing an Aspect model element definition should have the same name as
-the Aspect's local name suffixed with `".ttl"`.
-
