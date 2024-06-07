@@ -132,3 +132,18 @@ broken special characters.
 
 image::constraints-decision-tree.svg[width=100%]
 
+[[reuse-elements]]
+== Reuse Elements
+
+It is generally advisable to reuse definitions of existing model elements that describe the desired semantics. This not only ensures efficiency
+and maintainability, but more importantly, it explicitly expresses that the model builds upon a set of agreed-upon abstractions.
+Reuse of exising model element definitions makes it clear that your model talks about _the same thing_. On the other hand,
+introducing another definition of an allegedly already existing concept is equivalent to stating that the deliberately newly created definition
+does indeed mean something different. This is particularly useful when model elements are created for terminology that can have many different
+meanings in various contexts, such as the term "process".
+
+`xref:ROOT:entities.adoc#entities[Entities]`, `xref:ROOT:characteristics.adoc#characteristics[Characteristics]`,
+`xref:ROOT:modeling-guidelines.adoc#declaring-events[Events]`, `xref:ROOT:modeling-guidelines.adoc#declaring-constraints[Constraints]`
+and `xref:ROOT:modeling-guidelines.adoc#declaring-properties[Properties]` are fundamental components of an Aspect.
+Reusing these elements across different Aspects ensures consistency, reduces redundancy, and simplifies the management and
+integration of shared attributes and interactions.
