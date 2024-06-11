@@ -12,8 +12,10 @@ resolved.
 
 ## Decision Drivers
 
-* Certain assumptions and workflows specific to tools and projects were established, not all of
-  which are completely consistent with each other. This includes, but is not limited to:
+* Certain assumptions and workflows specific to tools and projects were established, which must use
+  Aspect Models and TTL files in a completely consistent and by convention as simple as possible
+  way. Only doing so, development and usage of tools as well as manual searches and manipulations
+  can be achieved efficiently. These tools and projects include, but are not limited to:
   * The model resolution Java API (AspectModelResolver, ResolutionStrategy) in the
     [esmf-sdk](https://github.com/eclipse-esmf/esmf-sdk).
   * The [models directory
