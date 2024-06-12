@@ -87,12 +87,12 @@ interoperability.
      file in one continuous block ("the comment block") of commented lines (lines that start with
      the `#` symbol), before any `@prefix` declarations.
    * The comment block can have any length and can contain any text.
-   * To declare copyright information, a line in the comment block must use the pattern:
-     `# Copyright [optional additional text] XXXX[-YYYY] COPYRIGHT HOLDER` where sections in []
-     are optional, XXXX and YYYY are years.
+   * To declare copyright information, a line in the comment block must use the pattern:\
+     `# Copyright [optional additional text] XXXX[-YYYY] COPYRIGHT HOLDER`\
+     where sections in [] are optional, XXXX and YYYY are years.
    * The comment block can contain any number of lines with such a copyright pattern.
-   * To declare license information, exactly one line in the comment block must use the pattern: `#
-     SPDX-License-Identifier: IDENTIFIER` where IDENTIFIER is a valid [SPDX license
-     identifer](https://spdx.org/licenses/).
+   * To declare license information, exactly one line in the comment block must use the pattern:\
+   `# SPDX-License-Identifier: IDENTIFIER`\
+   where IDENTIFIER is a valid [SPDX license identifer](https://spdx.org/licenses/).
 * Tools that process (i.e., read and write) Aspect Models should repeat the comment block unchanged
   when writing a file.
