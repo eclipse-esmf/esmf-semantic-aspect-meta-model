@@ -773,7 +773,7 @@ samm-c:ReferenceShape
    sh:targetClass samm-c:Reference ;
    sh:property [
       sh:path samm-c:referenceType ;
-      sh:name referenceType ;
+      sh:name "referenceType" ;
       sh:sparql [
          a sh:SPARQLConstraint ;
          sh:message "The referenceType must be a global reference (URN) or a samm:Property." ;
