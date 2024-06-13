@@ -768,6 +768,30 @@ samm-c:StructuredValueShape
       ] ;
    ] .
 
+samm-c:ReferenceShape
+   a sh:NodeShape ;
+   sh:targetClass samm-c:Reference ;
+   sh:property [
+      sh:path samm-c:referenceType ;
+      sh:name referenceType ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
+         sh:message "The referenceType must be a global reference (URN) or a samm:Property." ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+              $this rdf:type/rdfs:subClassOf* samm-c:Reference .
+              $this samm-c:referenceType ?referenceType .
+              filter( ( isURI( ?referenceType ) && not exists { ?element a samm:Property } )
+              bind( str( ?referenceType ) as ?value )
+              bind( 'ERR_WRONG_DATATYPE' as ?code )
+              bind( ?value as ?highlight )
+            }
+         """
+      ] ;
+   ] .
+
 samm-c:FixedPointConstraintShape
    a sh:NodeShape ;
    sh:targetClass samm-c:FixedPointConstraint ;
