@@ -445,6 +445,20 @@ deconstruction rule corresponds with the named fields; secondly, it is used for 
 check if it can be deconstructed using the deconstruction rule and reconstructed using the elements,
 i.e., that the deconstruction rule actually does what the model author intended.
 
+[[declaring-reference]]
+==== Declaring Reference
+
+xref:characteristics.adoc#reference-characteristic[Reference] are intended to be used
+for scenarios where you need to create a unique property that can link to external
+or internal elements in a flexible and versatile manner.
+
+:attribute-missing: skip
+[source,turtle,subs="attributes+"]
+----
+include::example$reference-declaration.ttl[tags=content]
+----
+:attribute-missing: warn
+
 [[using-unit-reference]]
 ==== Using Unit Reference
 

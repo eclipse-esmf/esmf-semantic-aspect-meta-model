@@ -1,0 +1,69 @@
+#
+# Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+@prefix : <urn:samm:org.eclipse.esmf.samm.test:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.2.0#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:TestReference a samm-c:Reference ;
+    samm:dataType xsd:anyURI ;
+    samm-c:referenceType :ReferenceEntity .
+
+:ReferenceEntity a samm:Entity ;
+    samm:properties ( :keys :type [ samm:property :referredSemanticId; samm:optional "true"^^xsd:boolean ] ) .
+
+:keys a samm:Property ;
+    samm:characteristic :ListOfKeys .
+
+:type a samm:Property;
+    samm:characteristic :ReferenceTypes ;
+    samm:exampleValue "ExternalReference" .
+
+:ListOfKeys a samm-c:List ;
+    samm:dataType :Key .
+
+:Key a samm:Entity ;
+    samm:properties ( :keyType :value ) .
+
+:keyType a samm:Property ;
+    samm:characteristic :KeyTypesEnum .
+
+:IdentifierDataType a samm-c:Trait ;
+    samm-c:baseCharacteristic samm-c:Text ;
+    samm-c:constraint :IdentifierLengthConstraint .
+
+:KeyTypesEnum a samm-c:Enumeration ;
+    samm:dataType xsd:string ;
+    samm-c:values ( "AnnotationRelationshipElement" "AssetAdministrationShell" "BasicEventElement" "Blob" "Capability" "ConceptDescription" "DataElement" "Entity" "EventElement" "File" "FragmentReference" "GlobalReference" "Identifiable" "MultiLanguageProperty" "Operation" "Property" "Range" "Referable" "ReferenceElement" "RelationshipElement" "Submodel" "SubmodelElement" "SubmodelElementCollection" "SubmodelElementList" ) .
+
+:value a samm:Property ;
+    samm:characteristic :IdentifierDataType .
+
+:IdentifierLengthConstraint a samm-c:LengthConstraint ;
+    samm-c:maxValue "2000"^^xsd:nonNegativeInteger ;
+    samm-c:minValue "1"^^xsd:nonNegativeInteger .
+
+:ReferenceTypes a samm-c:Enumeration ;
+    samm:dataType xsd:string ;
+    samm-c:values ("ExternalReference" "ModelReference") .
+
+:referredSemanticId a samm:Property ;
+    samm:characteristic [
+          a samm:Characteristic ;
+          samm:dataType :TestEntity
+       ] ;
+    samm:description "type now Identifier because recursive otherwise: needs to be fixed"@en .
+
+:TestEntity a samm:Entity ;
+   samm:properties ( ).
