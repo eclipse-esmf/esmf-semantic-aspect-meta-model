@@ -772,8 +772,8 @@ samm-c:ReferenceShape
    a sh:NodeShape ;
    sh:targetClass samm-c:Reference ;
    sh:property [
-      sh:path samm-c:referenceType ;
-      sh:name "referenceType" ;
+      sh:path samm-c:referenceValue ;
+      sh:name "referenceValue" ;
    ] .
 
 samm-c:FixedPointConstraintShape

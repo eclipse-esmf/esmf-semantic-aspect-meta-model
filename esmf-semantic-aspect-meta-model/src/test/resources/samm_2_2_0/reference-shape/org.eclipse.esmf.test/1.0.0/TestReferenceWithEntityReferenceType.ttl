@@ -18,7 +18,7 @@
 
 :TestReference a samm-c:Reference ;
     samm:dataType xsd:anyURI ;
-    samm-c:referenceType :ReferenceEntity .
+    samm-c:referenceValue :ReferenceEntity .
 
 :ReferenceEntity a samm:Entity ;
     samm:properties ( :keys :type [ samm:property :referredSemanticId; samm:optional "true"^^xsd:boolean ] ) .

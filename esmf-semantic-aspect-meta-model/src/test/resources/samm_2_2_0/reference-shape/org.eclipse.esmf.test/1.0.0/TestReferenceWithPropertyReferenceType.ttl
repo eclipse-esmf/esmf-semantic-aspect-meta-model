@@ -18,7 +18,7 @@
 
 :TestReference a samm-c:Reference ;
     samm:dataType xsd:anyURI ;
-    samm-c:referenceType :referenceProperty .
+    samm-c:referenceValue :referenceProperty .
 
 :referenceProperty a samm:Property ;
     samm:characteristic :ListOfKeys .

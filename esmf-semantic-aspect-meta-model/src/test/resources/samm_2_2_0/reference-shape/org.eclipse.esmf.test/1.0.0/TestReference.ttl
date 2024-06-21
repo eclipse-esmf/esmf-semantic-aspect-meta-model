@@ -18,4 +18,4 @@
 
 :TestReference a samm-c:Reference ;
     samm:dataType xsd:string ;
-    samm-c:referenceType "urn:samm:com.example:1.0.0#otherProperty" .
+    samm-c:referenceValue "urn:samm:com.example:1.0.0#otherProperty" .

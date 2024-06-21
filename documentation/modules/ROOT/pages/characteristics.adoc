@@ -348,7 +348,11 @@ See xref:modeling-guidelines.adoc#declaring-reference[declaring Reference] for u
 [width="100%", options="header", cols="30,60,10"]
 |===
 | Attributes | Description | Required
-| `samm-c:referenceType` | The `samm-c:referenceType` is set to a URN, but it could be any value,
+| `samm-c:dataType` | The `samm-c:dataType` provided from `Characteristic` has to explain
+type of the xref:modeling-guidelines.adoc#declaring-reference[Reference].
+It can be `https://www.w3.org/TR/xmlschema11-2/#string[xsd:string]` for the text references or
+`https://www.w3.org/TR/xmlschema11-2/#anyURI[xsd:anyURI]` for the references to the properties. | {ok}
+| `samm-c:referenceValue` | The `samm-c:referenceValue` is set to a URN, but it could be any value,
 including a URI, a literal, or another entity. | {ok}
 |===
 
