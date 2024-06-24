@@ -209,10 +209,6 @@ samm-c:StructuredValue rdfs:subClassOf samm:Characteristic ;
    rdfs:label "StructuredValue" ;
    rdfs:comment "Describes how the value of a Property is structured from parts."@en .
 
-samm-c:Reference rdfs:subClassOf samm:Characteristic ;
-   rdfs:label "Reference" ;
-   rdfs:comment "Defines a unique type of Property. This reference can either be a global reference, such as a URN, or it can refer to a property of another aspect within a different twin."@en .
-
 # Constraints
 samm-c:RangeConstraint rdfs:subClassOf samm:Constraint ;
    rdfs:label "RangeConstraint" ;

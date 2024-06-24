@@ -16,6 +16,5 @@
 @prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.2.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:TestReference a samm-c:Reference ;
-    samm:dataType xsd:string ;
-    samm-c:referenceValue "urn:samm:com.example:1.0.0#otherProperty" .
+:TestProperty a samm:Property ;
+    samm:characteristic samm-c:Reference .

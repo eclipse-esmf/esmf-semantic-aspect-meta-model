@@ -768,14 +768,6 @@ samm-c:StructuredValueShape
       ] ;
    ] .
 
-samm-c:ReferenceShape
-   a sh:NodeShape ;
-   sh:targetClass samm-c:Reference ;
-   sh:property [
-      sh:path samm-c:referenceValue ;
-      sh:name "referenceValue" ;
-   ] .
-
 samm-c:FixedPointConstraintShape
    a sh:NodeShape ;
    sh:targetClass samm-c:FixedPointConstraint ;

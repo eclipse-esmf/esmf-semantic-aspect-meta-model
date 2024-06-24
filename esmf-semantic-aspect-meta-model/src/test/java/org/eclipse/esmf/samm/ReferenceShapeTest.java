@@ -10,16 +10,4 @@ class ReferenceShapeTest extends AbstractShapeTest {
    void testValidReferenceExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "reference-shape", "TestReference", metaModelVersion );
    }
-
-   @ParameterizedTest
-   @MethodSource( value = "versionsStartingWith2_2_0" )
-   void testValidReferenceWithEntityExpectSuccess( final KnownVersion metaModelVersion ) {
-      checkValidity( "reference-shape", "TestReferenceWithEntityReferenceType", metaModelVersion );
-   }
-
-   @ParameterizedTest
-   @MethodSource( value = "versionsStartingWith2_2_0" )
-   void testValidReferenceWithPropertyExpectSuccess( final KnownVersion metaModelVersion ) {
-      checkValidity( "reference-shape", "TestReferenceWithPropertyReferenceType", metaModelVersion );
-   }
 }
