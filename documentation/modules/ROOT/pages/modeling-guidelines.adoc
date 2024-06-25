@@ -448,9 +448,10 @@ i.e., that the deconstruction rule actually does what the model author intended.
 [[declaring-reference]]
 ==== Declaring Reference
 
-xref:characteristics.adoc#reference-characteristic[Reference] are intended to be used
-for scenarios where you need to create a unique property that can link to external
-or internal elements in a flexible and versatile manner.
+The xref:characteristics.adoc#reference-characteristic[Reference] Characteristic is intended to be used
+for scenarios where a reference to a concept external to the Aspect Model is required, but the value of the
+reference (i.e., the identifier of the linked concept) is not known at modeling time yet. Other than that,
+it is conceptually similar to a xref:modeling-guidelines.adoc#adding-external-references[samm:see reference].
 
 :attribute-missing: skip
 [source,turtle,subs="attributes+"]
