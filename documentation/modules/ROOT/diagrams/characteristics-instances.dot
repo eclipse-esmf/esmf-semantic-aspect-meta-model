@@ -138,7 +138,7 @@ digraph characteristics_instances {
       <td><u>Reference</u></td>
     </tr>
     <tr>
-      <td>dataType : samm:anyURI</td>
+      <td>dataType : xsd:anyURI</td>
     </tr>
     </table>>
   ]
