@@ -59,3 +59,8 @@ samm-c:MimeType a samm:Characteristic ;
    samm:description """A MIME type as defined in RFC 2046, for example "application/pdf"."""@en ;
    samm:dataType xsd:string .
 
+samm-c:Reference a samm:Characteristic ;
+    samm:preferredName "Reference"@en ;
+    samm:description "Defines a unique type of Property. This reference can either be a global reference, such as a URN, or it can refer to a Property of another aspect within a different twin."@en ;
+    samm:dataType xsd:anyURI .
+

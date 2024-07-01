@@ -131,6 +131,18 @@ digraph characteristics_instances {
     </table>>
   ]
 
+  Reference [
+    label =
+    <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#reference-characteristic">
+    <tr>
+      <td><u>Reference</u></td>
+    </tr>
+    <tr>
+      <td>dataType : xsd:anyURI</td>
+    </tr>
+    </table>>
+  ]
+
   MultiLanguageText [
     label =
     <<table border="0" cellpadding="5" cellspacing="0" cellborder="1" href="../characteristics.html#multi-language-text-characteristic">
@@ -181,6 +193,7 @@ digraph characteristics_instances {
   { rank = same;
     Timestamp;
     UnitReference;
+    Reference;
     ResourcePath;
     MimeType;
     Boolean;
@@ -192,12 +205,14 @@ digraph characteristics_instances {
   Locale -> Characteristic
   Language -> Characteristic
   UnitReference -> Characteristic
+  Reference -> Characteristic
   MultiLanguageText -> Characteristic
   ResourcePath -> Characteristic
   MimeType -> Characteristic
 
   Timestamp -> Text [style=invis]
   UnitReference -> MultiLanguageText [style=invis]
+  Reference -> MultiLanguageText [style=invis]
   ResourcePath -> Locale[style=invis]
   MimeType -> Language [style=invis]
   Boolean -> Language [style=invis]
