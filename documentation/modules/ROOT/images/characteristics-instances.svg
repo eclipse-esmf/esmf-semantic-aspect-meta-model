@@ -1,5 +1,5 @@
-<svg width="914px" height="304px"
- viewBox="0.00 0.00 913.62 303.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="904px" height="304px"
+ viewBox="0.00 0.00 903.88 303.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
 <style>
 @font-face {
@@ -8,18 +8,18 @@ src: url("data:application/font-truetype;charset=utf-8;base64,AAEAAAARAQAABAAQR1
 }
 </style><g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0.0) translate(4.0 299.75)">
 <title>characteristics_instances</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-299.75 909.62,-299.75 909.62,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-299.75 899.88,-299.75 899.88,4 -4,4"/>
 <!-- Characteristic -->
 <g id="node1" class="node">
 <title>Characteristic</title>
 <g id="a_node1"><a xlink:href="../characteristics.html#characteristic-characteristic" xlink:title="{ Characteristic|name\lpreferredName\ldescription\ldataType\l}">
-<polygon fill="#d6e2a6" stroke="#000000" points="360.5,-215.5 360.5,-295.25 504.5,-295.25 504.5,-215.5 360.5,-215.5"/>
-<text text-anchor="middle" x="432.12" y="-279.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">Characteristic</text>
-<polyline fill="none" stroke="#000000" points="360.5,-274.5 503.75,-274.5"/>
-<text text-anchor="start" x="368.5" y="-259.1" font-family="Roboto Condensed" font-size="12.00" fill="#000000">name</text>
-<text text-anchor="start" x="368.5" y="-246.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">preferredName</text>
-<text text-anchor="start" x="368.5" y="-233.6" font-family="Roboto Condensed" font-size="12.00" fill="#000000">description</text>
-<text text-anchor="start" x="368.5" y="-220.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType</text>
+<polygon fill="#d6e2a6" stroke="#000000" points="362.5,-215.5 362.5,-295.25 506.5,-295.25 506.5,-215.5 362.5,-215.5"/>
+<text text-anchor="middle" x="434.12" y="-279.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">Characteristic</text>
+<polyline fill="none" stroke="#000000" points="362.5,-274.5 505.75,-274.5"/>
+<text text-anchor="start" x="370.5" y="-259.1" font-family="Roboto Condensed" font-size="12.00" fill="#000000">name</text>
+<text text-anchor="start" x="370.5" y="-246.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">preferredName</text>
+<text text-anchor="start" x="370.5" y="-233.6" font-family="Roboto Condensed" font-size="12.00" fill="#000000">description</text>
+<text text-anchor="start" x="370.5" y="-220.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType</text>
 </a>
 </g>
 </g>
@@ -38,18 +38,18 @@ src: url("data:application/font-truetype;charset=utf-8;base64,AAEAAAARAQAABAAQR1
 <!-- Timestamp&#45;&gt;Characteristic -->
 <g id="edge1" class="edge">
 <title>Timestamp&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M42.88,-49.27C42.88,-112.43 42.88,-275.75 42.88,-275.75 42.88,-275.75 348.61,-275.75 348.61,-275.75"/>
-<polygon fill="#000000" stroke="#000000" points="348.61,-279.25 358.61,-275.75 348.61,-272.25 348.61,-279.25"/>
+<path fill="none" stroke="#000000" d="M43.88,-49.27C43.88,-112.43 43.88,-275.75 43.88,-275.75 43.88,-275.75 350.88,-275.75 350.88,-275.75"/>
+<polygon fill="#000000" stroke="#000000" points="350.88,-279.25 360.88,-275.75 350.88,-272.25 350.88,-279.25"/>
 </g>
 <!-- Text -->
 <g id="node3" class="node">
 <title>Text</title>
-<polygon fill="#d6e2a6" stroke="none" points="207.25,-157 85.75,-157 85.75,-107.5 207.25,-107.5 207.25,-157"/>
+<polygon fill="#d6e2a6" stroke="none" points="209.25,-157 87.75,-157 87.75,-107.5 209.25,-107.5 209.25,-157"/>
 <g id="a_node3_1"><a xlink:href="../characteristics.html#text-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="85.75,-132.25 85.75,-157 207.25,-157 207.25,-132.25 85.75,-132.25"/>
-<text text-anchor="start" x="135.62" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Text</text>
-<polygon fill="none" stroke="#000000" points="85.75,-107.5 85.75,-132.25 207.25,-132.25 207.25,-107.5 85.75,-107.5"/>
-<text text-anchor="start" x="91.75" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
+<polygon fill="none" stroke="#000000" points="87.75,-132.25 87.75,-157 209.25,-157 209.25,-132.25 87.75,-132.25"/>
+<text text-anchor="start" x="137.62" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Text</text>
+<polygon fill="none" stroke="#000000" points="87.75,-107.5 87.75,-132.25 209.25,-132.25 209.25,-107.5 87.75,-107.5"/>
+<text text-anchor="start" x="93.75" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
 </a>
 </g>
 </g>
@@ -57,36 +57,36 @@ src: url("data:application/font-truetype;charset=utf-8;base64,AAEAAAARAQAABAAQR1
 <!-- Text&#45;&gt;Characteristic -->
 <g id="edge3" class="edge">
 <title>Text&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M146.5,-156.95C146.5,-192.99 146.5,-255.75 146.5,-255.75 146.5,-255.75 348.82,-255.75 348.82,-255.75"/>
-<polygon fill="#000000" stroke="#000000" points="348.82,-259.25 358.82,-255.75 348.82,-252.25 348.82,-259.25"/>
+<path fill="none" stroke="#000000" d="M148.5,-156.95C148.5,-192.99 148.5,-255.75 148.5,-255.75 148.5,-255.75 350.82,-255.75 350.82,-255.75"/>
+<polygon fill="#000000" stroke="#000000" points="350.82,-259.25 360.82,-255.75 350.82,-252.25 350.82,-259.25"/>
 </g>
 <!-- Boolean -->
 <g id="node4" class="node">
 <title>Boolean</title>
-<polygon fill="#d6e2a6" stroke="none" points="301.38,-49.5 165.62,-49.5 165.62,0 301.38,0 301.38,-49.5"/>
+<polygon fill="#d6e2a6" stroke="none" points="305.38,-49.5 169.62,-49.5 169.62,0 305.38,0 305.38,-49.5"/>
 <g id="a_node4_2"><a xlink:href="../characteristics.html#boolean-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="165.62,-24.75 165.62,-49.5 301.38,-49.5 301.38,-24.75 165.62,-24.75"/>
-<text text-anchor="start" x="211" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Boolean</text>
-<polygon fill="none" stroke="#000000" points="165.62,0 165.62,-24.75 301.38,-24.75 301.38,0 165.62,0"/>
-<text text-anchor="start" x="171.62" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:boolean</text>
+<polygon fill="none" stroke="#000000" points="169.62,-24.75 169.62,-49.5 305.38,-49.5 305.38,-24.75 169.62,-24.75"/>
+<text text-anchor="start" x="215" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Boolean</text>
+<polygon fill="none" stroke="#000000" points="169.62,0 169.62,-24.75 305.38,-24.75 305.38,0 169.62,0"/>
+<text text-anchor="start" x="175.62" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:boolean</text>
 </a>
 </g>
 </g>
 <!-- Boolean&#45;&gt;Characteristic -->
 <g id="edge4" class="edge">
 <title>Boolean&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M235.5,-49.37C235.5,-105.03 235.5,-235.75 235.5,-235.75 235.5,-235.75 348.75,-235.75 348.75,-235.75"/>
-<polygon fill="#000000" stroke="#000000" points="348.75,-239.25 358.75,-235.75 348.75,-232.25 348.75,-239.25"/>
+<path fill="none" stroke="#000000" d="M237.5,-49.37C237.5,-105.03 237.5,-235.75 237.5,-235.75 237.5,-235.75 350.75,-235.75 350.75,-235.75"/>
+<polygon fill="#000000" stroke="#000000" points="350.75,-239.25 360.75,-235.75 350.75,-232.25 350.75,-239.25"/>
 </g>
 <!-- Language -->
 <g id="node5" class="node">
 <title>Language</title>
-<polygon fill="#d6e2a6" stroke="none" points="385.25,-157 263.75,-157 263.75,-107.5 385.25,-107.5 385.25,-157"/>
+<polygon fill="#d6e2a6" stroke="none" points="387.25,-157 265.75,-157 265.75,-107.5 387.25,-107.5 387.25,-157"/>
 <g id="a_node5_3"><a xlink:href="../characteristics.html#language-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="263.75,-132.25 263.75,-157 385.25,-157 385.25,-132.25 263.75,-132.25"/>
-<text text-anchor="start" x="297.5" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Language</text>
-<polygon fill="none" stroke="#000000" points="263.75,-107.5 263.75,-132.25 385.25,-132.25 385.25,-107.5 263.75,-107.5"/>
-<text text-anchor="start" x="269.75" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
+<polygon fill="none" stroke="#000000" points="265.75,-132.25 265.75,-157 387.25,-157 387.25,-132.25 265.75,-132.25"/>
+<text text-anchor="start" x="299.5" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Language</text>
+<polygon fill="none" stroke="#000000" points="265.75,-107.5 265.75,-132.25 387.25,-132.25 387.25,-107.5 265.75,-107.5"/>
+<text text-anchor="start" x="271.75" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
 </a>
 </g>
 </g>
@@ -94,54 +94,54 @@ src: url("data:application/font-truetype;charset=utf-8;base64,AAEAAAARAQAABAAQR1
 <!-- Language&#45;&gt;Characteristic -->
 <g id="edge6" class="edge">
 <title>Language&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M372.88,-156.87C372.88,-156.87 372.88,-203.77 372.88,-203.77"/>
-<polygon fill="#000000" stroke="#000000" points="369.38,-203.77 372.88,-213.77 376.38,-203.77 369.38,-203.77"/>
+<path fill="none" stroke="#000000" d="M374.88,-156.87C374.88,-156.87 374.88,-203.77 374.88,-203.77"/>
+<polygon fill="#000000" stroke="#000000" points="371.38,-203.77 374.88,-213.77 378.38,-203.77 371.38,-203.77"/>
 </g>
 <!-- Locale -->
 <g id="node6" class="node">
 <title>Locale</title>
-<polygon fill="#d6e2a6" stroke="none" points="601.25,-157 479.75,-157 479.75,-107.5 601.25,-107.5 601.25,-157"/>
+<polygon fill="#d6e2a6" stroke="none" points="603.25,-157 481.75,-157 481.75,-107.5 603.25,-107.5 603.25,-157"/>
 <g id="a_node6_4"><a xlink:href="../characteristics.html#locale-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="479.75,-132.25 479.75,-157 601.25,-157 601.25,-132.25 479.75,-132.25"/>
-<text text-anchor="start" x="522.5" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Locale</text>
-<polygon fill="none" stroke="#000000" points="479.75,-107.5 479.75,-132.25 601.25,-132.25 601.25,-107.5 479.75,-107.5"/>
-<text text-anchor="start" x="485.75" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
+<polygon fill="none" stroke="#000000" points="481.75,-132.25 481.75,-157 603.25,-157 603.25,-132.25 481.75,-132.25"/>
+<text text-anchor="start" x="524.5" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Locale</text>
+<polygon fill="none" stroke="#000000" points="481.75,-107.5 481.75,-132.25 603.25,-132.25 603.25,-107.5 481.75,-107.5"/>
+<text text-anchor="start" x="487.75" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
 </a>
 </g>
 </g>
 <!-- Locale&#45;&gt;Characteristic -->
 <g id="edge7" class="edge">
 <title>Locale&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M492.12,-156.87C492.12,-156.87 492.12,-203.77 492.12,-203.77"/>
-<polygon fill="#000000" stroke="#000000" points="488.63,-203.77 492.13,-213.77 495.63,-203.77 488.63,-203.77"/>
+<path fill="none" stroke="#000000" d="M494.12,-156.87C494.12,-156.87 494.12,-203.77 494.12,-203.77"/>
+<polygon fill="#000000" stroke="#000000" points="490.63,-203.77 494.13,-213.77 497.63,-203.77 490.63,-203.77"/>
 </g>
 <!-- UnitReference -->
 <g id="node7" class="node">
 <title>UnitReference</title>
-<polygon fill="#d6e2a6" stroke="none" points="741.5,-49.5 609.5,-49.5 609.5,0 741.5,0 741.5,-49.5"/>
+<polygon fill="#d6e2a6" stroke="none" points="745.5,-49.5 613.5,-49.5 613.5,0 745.5,0 745.5,-49.5"/>
 <g id="a_node7_5"><a xlink:href="../characteristics.html#unit-reference-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="609.5,-24.75 609.5,-49.5 741.5,-49.5 741.5,-24.75 609.5,-24.75"/>
-<text text-anchor="start" x="636.88" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">UnitReference</text>
-<polygon fill="none" stroke="#000000" points="609.5,0 609.5,-24.75 741.5,-24.75 741.5,0 609.5,0"/>
-<text text-anchor="start" x="615.5" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : samm:curie</text>
+<polygon fill="none" stroke="#000000" points="613.5,-24.75 613.5,-49.5 745.5,-49.5 745.5,-24.75 613.5,-24.75"/>
+<text text-anchor="start" x="640.88" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">UnitReference</text>
+<polygon fill="none" stroke="#000000" points="613.5,0 613.5,-24.75 745.5,-24.75 745.5,0 613.5,0"/>
+<text text-anchor="start" x="619.5" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : samm:curie</text>
 </a>
 </g>
 </g>
 <!-- UnitReference&#45;&gt;Characteristic -->
 <g id="edge8" class="edge">
 <title>UnitReference&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M633.56,-49.37C633.56,-105.03 633.56,-235.75 633.56,-235.75 633.56,-235.75 516.32,-235.75 516.32,-235.75"/>
-<polygon fill="#000000" stroke="#000000" points="516.32,-232.25 506.32,-235.75 516.32,-239.25 516.32,-232.25"/>
+<path fill="none" stroke="#000000" d="M636.56,-49.37C636.56,-105.03 636.56,-235.75 636.56,-235.75 636.56,-235.75 518.39,-235.75 518.39,-235.75"/>
+<polygon fill="#000000" stroke="#000000" points="518.39,-232.25 508.39,-235.75 518.39,-239.25 518.39,-232.25"/>
 </g>
 <!-- MultiLanguageText -->
 <g id="node8" class="node">
 <title>MultiLanguageText</title>
-<polygon fill="#d6e2a6" stroke="none" points="799.38,-157 657.62,-157 657.62,-107.5 799.38,-107.5 799.38,-157"/>
+<polygon fill="#d6e2a6" stroke="none" points="801.38,-157 659.62,-157 659.62,-107.5 801.38,-107.5 801.38,-157"/>
 <g id="a_node8_6"><a xlink:href="../characteristics.html#multi-language-text-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="657.62,-132.25 657.62,-157 799.38,-157 799.38,-132.25 657.62,-132.25"/>
-<text text-anchor="start" x="677.88" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">MultiLanguageText</text>
-<polygon fill="none" stroke="#000000" points="657.62,-107.5 657.62,-132.25 799.38,-132.25 799.38,-107.5 657.62,-107.5"/>
-<text text-anchor="start" x="663.62" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : rdf:langString</text>
+<polygon fill="none" stroke="#000000" points="659.62,-132.25 659.62,-157 801.38,-157 801.38,-132.25 659.62,-132.25"/>
+<text text-anchor="start" x="679.88" y="-140.6" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">MultiLanguageText</text>
+<polygon fill="none" stroke="#000000" points="659.62,-107.5 659.62,-132.25 801.38,-132.25 801.38,-107.5 659.62,-107.5"/>
+<text text-anchor="start" x="665.62" y="-114.85" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : rdf:langString</text>
 </a>
 </g>
 </g>
@@ -149,64 +149,64 @@ src: url("data:application/font-truetype;charset=utf-8;base64,AAEAAAARAQAABAAQR1
 <!-- MultiLanguageText&#45;&gt;Characteristic -->
 <g id="edge10" class="edge">
 <title>MultiLanguageText&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M728.5,-156.95C728.5,-192.99 728.5,-255.75 728.5,-255.75 728.5,-255.75 516.42,-255.75 516.42,-255.75"/>
-<polygon fill="#000000" stroke="#000000" points="516.42,-252.25 506.42,-255.75 516.42,-259.25 516.42,-252.25"/>
+<path fill="none" stroke="#000000" d="M730.5,-156.95C730.5,-192.99 730.5,-255.75 730.5,-255.75 730.5,-255.75 518.42,-255.75 518.42,-255.75"/>
+<polygon fill="#000000" stroke="#000000" points="518.42,-252.25 508.42,-255.75 518.42,-259.25 518.42,-252.25"/>
 </g>
 <!-- Reference -->
 <g id="node9" class="node">
 <title>Reference</title>
-<polygon fill="#d6e2a6" stroke="none" points="905.62,-49.5 759.38,-49.5 759.38,0 905.62,0 905.62,-49.5"/>
+<polygon fill="#d6e2a6" stroke="none" points="895.88,-49.5 763.12,-49.5 763.12,0 895.88,0 895.88,-49.5"/>
 <g id="a_node9_7"><a xlink:href="../characteristics.html#reference-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="759.38,-24.75 759.38,-49.5 905.62,-49.5 905.62,-24.75 759.38,-24.75"/>
-<text text-anchor="start" x="804.75" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Reference</text>
-<polygon fill="none" stroke="#000000" points="759.38,0 759.38,-24.75 905.62,-24.75 905.62,0 759.38,0"/>
-<text text-anchor="start" x="765.38" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : samm:anyURI</text>
+<polygon fill="none" stroke="#000000" points="763.12,-24.75 763.12,-49.5 895.88,-49.5 895.88,-24.75 763.12,-24.75"/>
+<text text-anchor="start" x="801.75" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">Reference</text>
+<polygon fill="none" stroke="#000000" points="763.12,0 763.12,-24.75 895.88,-24.75 895.88,0 763.12,0"/>
+<text text-anchor="start" x="769.12" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:anyURI</text>
 </a>
 </g>
 </g>
 <!-- Reference&#45;&gt;Characteristic -->
 <g id="edge11" class="edge">
 <title>Reference&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M852.5,-49.27C852.5,-112.43 852.5,-275.75 852.5,-275.75 852.5,-275.75 516.21,-275.75 516.21,-275.75"/>
-<polygon fill="#000000" stroke="#000000" points="516.21,-272.25 506.21,-275.75 516.21,-279.25 516.21,-272.25"/>
+<path fill="none" stroke="#000000" d="M848.62,-49.27C848.62,-112.43 848.62,-275.75 848.62,-275.75 848.62,-275.75 518.15,-275.75 518.15,-275.75"/>
+<polygon fill="#000000" stroke="#000000" points="518.15,-272.25 508.15,-275.75 518.15,-279.25 518.15,-272.25"/>
 </g>
 <!-- Reference&#45;&gt;MultiLanguageText -->
 <!-- ResourcePath -->
 <g id="node10" class="node">
 <title>ResourcePath</title>
-<polygon fill="#d6e2a6" stroke="none" points="591.88,-49.5 459.12,-49.5 459.12,0 591.88,0 591.88,-49.5"/>
+<polygon fill="#d6e2a6" stroke="none" points="595.88,-49.5 463.12,-49.5 463.12,0 595.88,0 595.88,-49.5"/>
 <g id="a_node10_8"><a xlink:href="../characteristics.html#resource-path-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="459.12,-24.75 459.12,-49.5 591.88,-49.5 591.88,-24.75 459.12,-24.75"/>
-<text text-anchor="start" x="487.25" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">ResourcePath</text>
-<polygon fill="none" stroke="#000000" points="459.12,0 459.12,-24.75 591.88,-24.75 591.88,0 459.12,0"/>
-<text text-anchor="start" x="465.12" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:anyURI</text>
+<polygon fill="none" stroke="#000000" points="463.12,-24.75 463.12,-49.5 595.88,-49.5 595.88,-24.75 463.12,-24.75"/>
+<text text-anchor="start" x="491.25" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">ResourcePath</text>
+<polygon fill="none" stroke="#000000" points="463.12,0 463.12,-24.75 595.88,-24.75 595.88,0 463.12,0"/>
+<text text-anchor="start" x="469.12" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:anyURI</text>
 </a>
 </g>
 </g>
 <!-- ResourcePath&#45;&gt;Characteristic -->
 <g id="edge13" class="edge">
 <title>ResourcePath&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M469.44,-49.43C469.44,-49.43 469.44,-203.55 469.44,-203.55"/>
-<polygon fill="#000000" stroke="#000000" points="465.94,-203.55 469.44,-213.55 472.94,-203.55 465.94,-203.55"/>
+<path fill="none" stroke="#000000" d="M472.44,-49.43C472.44,-49.43 472.44,-203.55 472.44,-203.55"/>
+<polygon fill="#000000" stroke="#000000" points="468.94,-203.55 472.44,-213.55 475.94,-203.55 468.94,-203.55"/>
 </g>
 <!-- ResourcePath&#45;&gt;Locale -->
 <!-- MimeType -->
 <g id="node11" class="node">
 <title>MimeType</title>
-<polygon fill="#d6e2a6" stroke="none" points="441.25,-49.5 319.75,-49.5 319.75,0 441.25,0 441.25,-49.5"/>
+<polygon fill="#d6e2a6" stroke="none" points="445.25,-49.5 323.75,-49.5 323.75,0 445.25,0 445.25,-49.5"/>
 <g id="a_node11_9"><a xlink:href="../characteristics.html#mime-type-characteristic" xlink:title="&lt;TABLE&gt;">
-<polygon fill="none" stroke="#000000" points="319.75,-24.75 319.75,-49.5 441.25,-49.5 441.25,-24.75 319.75,-24.75"/>
-<text text-anchor="start" x="352.75" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">MimeType</text>
-<polygon fill="none" stroke="#000000" points="319.75,0 319.75,-24.75 441.25,-24.75 441.25,0 319.75,0"/>
-<text text-anchor="start" x="325.75" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
+<polygon fill="none" stroke="#000000" points="323.75,-24.75 323.75,-49.5 445.25,-49.5 445.25,-24.75 323.75,-24.75"/>
+<text text-anchor="start" x="356.75" y="-33.1" font-family="Roboto Condensed" text-decoration="underline" font-size="12.00" fill="#000000">MimeType</text>
+<polygon fill="none" stroke="#000000" points="323.75,0 323.75,-24.75 445.25,-24.75 445.25,0 323.75,0"/>
+<text text-anchor="start" x="329.75" y="-7.35" font-family="Roboto Condensed" font-size="12.00" fill="#000000">dataType : xsd:string</text>
 </a>
 </g>
 </g>
 <!-- MimeType&#45;&gt;Characteristic -->
 <g id="edge15" class="edge">
 <title>MimeType&#45;&gt;Characteristic</title>
-<path fill="none" stroke="#000000" d="M413.25,-49.43C413.25,-49.43 413.25,-203.55 413.25,-203.55"/>
-<polygon fill="#000000" stroke="#000000" points="409.75,-203.55 413.25,-213.55 416.75,-203.55 409.75,-203.55"/>
+<path fill="none" stroke="#000000" d="M416.25,-49.43C416.25,-49.43 416.25,-203.55 416.25,-203.55"/>
+<polygon fill="#000000" stroke="#000000" points="412.75,-203.55 416.25,-213.55 419.75,-203.55 412.75,-203.55"/>
 </g>
 <!-- MimeType&#45;&gt;Language -->
 </g>
