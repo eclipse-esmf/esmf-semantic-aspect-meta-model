@@ -37,13 +37,9 @@ should be considered when naming elements such as Aspects, Properties or Entitie
   `urn:samm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
   `count`&#8203;'s identifier.
 
-* The attributes `preferredName` and `description` are meant to provide a
-  human-readable name and
-  description, respectively, for example for the generation of documentation from the Aspect Model.
-  If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
-** Make the name upper case
-** If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g. the name
-   `machineTemperature` should become the preferredName `Machine Temperature`.
+* The optional attributes `preferredName` and `description` provide a human-readable name and description, respectively (which will be used by the SDKs for generated documentation, OpenAPI generation, JavaScript code etc). Providing a meaningful `preferredName` and `description` helps users and developers to get more value from the Aspect. Make sure to 
+** Make the `preferredName` upper case (since it is often used in titles)
+** Separate multiple words by space (unlike the name attribute which is a single word)
 
 * If there is exactly one Property in an Aspect that has a
 xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
