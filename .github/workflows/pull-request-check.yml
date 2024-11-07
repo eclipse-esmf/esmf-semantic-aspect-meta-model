@@ -70,7 +70,7 @@ jobs:
         zip -r ../SAMM-snapshot-specification.zip SAMM-snapshot
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       if: env.ONLY_MD != 'true'
       with:
         name: samm-artifacts

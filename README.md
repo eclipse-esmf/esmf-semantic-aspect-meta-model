@@ -52,7 +52,7 @@ SAMM uses semantic versioning (`major.minor.micro`) with the following rules:
 Are you having trouble with Semantic Aspect Meta Model? We want to help!
 
 * Check the reference [documentation](https://eclipse-esmf.github.io/samm-specification/snapshot/index.html).
-* Ask a question the [community forum](https://www.eclipse.org/forums/index.php/f/617/).
+* Ask a question the [ESMF Chat](https://chat.eclipse.org/#/room/#eclipse-semantic-modeling-framework:matrix.eclipse.org).
 * Having issues with SAMM? Open a [GitHub issue]( https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues).
 
 ## Build and contribute

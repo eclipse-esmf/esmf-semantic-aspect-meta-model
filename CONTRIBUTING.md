@@ -15,8 +15,7 @@ Framework](https://projects.eclipse.org/projects/dt.esmf/).
 
 # Contributing Source Code and Technical Specifications for this Project (using GitHub)
 * We use this GitHub repository to track issues and feature requests.
-* For general discussions of the ESMF, modeling questions etc. we use the [community
-  forum](https://www.eclipse.org/forums/index.php/f/617/).
+* For general discussions of the ESMF, modeling questions etc. we use the [ESMF Chat](https://chat.eclipse.org/#/room/#eclipse-semantic-modeling-framework:matrix.eclipse.org).
 * Opening `Issues` and `PRs` in GitHub is the preferred way to interact with the community around
   this repository and the Semantic Aspect Meta Model.
 * For deeper discussions specific to development, there is also the [developer mailing
