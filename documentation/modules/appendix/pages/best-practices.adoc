@@ -1,7 +1,7 @@
 ////
 Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -132,8 +132,8 @@ broken special characters.
 
 image::constraints-decision-tree.svg[width=100%]
 
-[[reuse-elements]]
-== Reuse Elements
+[[reusing-elements]]
+== Reusing Elements
 
 It is generally advisable to reuse definitions of existing model elements that describe the desired semantics. This not only ensures efficiency
 and maintainability, but more importantly, it explicitly expresses that the model builds upon a set of agreed-upon abstractions.
