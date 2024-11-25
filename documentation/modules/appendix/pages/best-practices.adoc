@@ -17,7 +17,7 @@ SPDX-License-Identifier: MPL-2.0
 == Naming Elements
 
 In addition to the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules], the following points
-should be considered when naming elements such as Aspects, Properties or Entities:
+should be considered when naming elements such as Aspects, Properties, or Entities:
 
 * Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be
   misunderstood in different contexts. For example, "temp" could mean "temperature" or "temporary".
@@ -28,35 +28,33 @@ should be considered when naming elements such as Aspects, Properties or Entitie
   name] to the Property's usage instead of renaming the Property.
 
 * Do not use redundant naming parts. In particular, the name of an Aspect should not end with
-  "Aspect". It is however fine to distinguish between e.g. an Entity and a related Characteristic
-  by a suffix when necessary.
+"Aspect". It is, however, fine to distinguish between, e.g., an Entity and a related Characteristic
+by a suffix when necessary.
 
-* Do not use redundant prefixes, e.g. when authoring an Aspect Model for the domain _Foo_, do not
-  name your Properties _fooCount_, _fooId_ etc. Remember that the full identifier of a Property is
-  the versioned namespace concatenated with the element name, e.g.
-  `urn:samm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
-  `count`&#8203;'s identifier.
+* Do not use redundant prefixes, e.g., when authoring an Aspect Model for the domain _Foo_, do not
+name your Properties _fooCount_, _fooId_, etc. Remember that the full identifier of a Property is
+the versioned namespace concatenated with the element name, e.g.,
+`urn:samm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
+`count`&#8203;'s identifier.
 
-* The attributes `preferredName` and `description` are meant to provide a
-  human-readable name and
-  description, respectively, for example for the generation of documentation from the Aspect Model.
-  If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
-** Make the name upper case
-** If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g. the name
-   `machineTemperature` should become the preferredName `Machine Temperature`.
+* The attributes `preferredName` and `description` are meant to provide a human-readable name and description, respectively, for example, for the generation of documentation from the Aspect Model.
+If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
+** Make the name upper case.
+** If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g., the name
+`machineTemperature` should become the preferredName `Machine Temperature`.
 
 * If there is exactly one Property in an Aspect that has a
 xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
 xref:ROOT:characteristics.adoc#list-characteristic[List],
 xref:ROOT:characteristics.adoc#set-characteristic[Set],
-xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] or
+xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set], or
 xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic (and no other
 Properties), the Property should be named `items`.
 
 * If there is exactly one Property in an Aspect that has a
   xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
   xref:ROOT:characteristics.adoc#list-characteristic[List],
-  xref:ROOT:characteristics.adoc#set-characteristic[Set] or
+  xref:ROOT:characteristics.adoc#set-characteristic[Set], or
   xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic (and no other
   Properties), the Aspect's name should be in plural. Otherwise, if there is exactly one Property in
   the Aspect that has a xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series]
@@ -89,24 +87,24 @@ Catalog]. When searching for the unit, remember that the unit catalog uses Briti
 _metre_ instead of _meter_.
 
 TIP: If you're modeling quantities for which both the metric system and the imperial system provide
-units, such as meter vs feet, it is always recommended to use the metric system (preferably SI units
+units, such as meter vs. feet, it is always recommended to use the metric system (preferably SI units
 like meter or others like kilometer if more common in the domain) – unless there are specific
-reasons to create the model differently. In any case it is strongly discouraged to add multiple
-Properties in the same scope representing the same value only using different units due to the
+reasons to create the model differently. In any case, it is strongly discouraged to add multiple
+Properties in the same scope representing the same value but only using different units due to the
 inherent complexity.
 
 [[choosing-a-characteristic]]
 == Choosing a Characteristic
 
-The following decision tree helps finding the right Characteristic for a Property.
+The following decision tree helps to find the right Characteristic for a Property.
 
 IMPORTANT: A common error is using the `Text` Characteristic for anything resembling a string.
-`Text` is intended for values that are meant _only_ for humans, for example a description of a
+`Text` is intended for values that are meant _only_ for humans, for example, a description of a
 device that is entered by a user as free text. Values such as identifiers, hostnames, table names,
 license plate numbers etc. should not use the `Text` Characteristic.
 
 If you create Characteristics that are not limited to your modeled domain but are generally useful,
-please consider contributing them, so that they can be included in the {meta-model-full-name}'s
+please consider contributing them so that they can be included in the {meta-model-full-name}'s
 Characteristic catalog.
 
 image::characteristics-decision-tree.svg[width=100%]
@@ -118,11 +116,10 @@ Constraints are used to precisely specify limiting conditions of Characteristics
 to use Constraints thoroughly:
 
 . It makes the intent of the respective Property clear for humans reading the model or documentation
-generated from the model
-. It allows tooling to generate code for the Aspect that can take the Constraints into account. Validation code
-corresponding to the Constraints can be directly inserted, thus reducing manual implementation effort.
+generated from the model.
+. It allows tooling to generate code for the Aspect that can take the Constraints into account. Validation code corresponding to the Constraints can be directly inserted, thus reducing manual implementation effort.
 
-The following decision tree helps finding matching Constraints for a Characteristic. Note that
+The following decision tree helps to find matching Constraints for a Characteristic. Note that
 multiple Constraints can be combined.
 
 CAUTION: If and only if the value has a xref:ROOT:datatypes.adoc#data-types[string-like value space] and
@@ -136,14 +133,16 @@ image::constraints-decision-tree.svg[width=100%]
 == Reusing Elements
 
 It is generally advisable to reuse definitions of existing model elements that describe the desired semantics. This not only ensures efficiency
-and maintainability, but more importantly, it explicitly expresses that the model builds upon a set of agreed-upon abstractions.
-Reuse of exising model element definitions makes it clear that your model talks about _the same thing_. On the other hand,
+and maintainability but, more importantly, it explicitly expresses that the model builds upon a set of agreed-upon abstractions.
+The reuse of existing model element definitions makes it clear that your model talks about _the same thing_. On the other hand,
 introducing another definition of an allegedly already existing concept is equivalent to stating that the deliberately newly created definition
 does indeed mean something different. This is particularly useful when model elements are created for terminology that can have many different
 meanings in various contexts, such as the term "process".
 
-`xref:ROOT:entities.adoc#entities[Entities]`, `xref:ROOT:characteristics.adoc#characteristics[Characteristics]`,
-`xref:ROOT:modeling-guidelines.adoc#declaring-events[Events]`, `xref:ROOT:modeling-guidelines.adoc#declaring-constraints[Constraints]`
-and `xref:ROOT:modeling-guidelines.adoc#declaring-properties[Properties]` are fundamental components of an Aspect.
+`xref:ROOT:entities.adoc#entities[Entities]`,
+`xref:ROOT:characteristics.adoc#characteristics[Characteristics]`,
+`xref:ROOT:modeling-guidelines.adoc#declaring-events[Events]`,
+`xref:ROOT:modeling-guidelines.adoc#declaring-constraints[Constraints]`, and
+`xref:ROOT:modeling-guidelines.adoc#declaring-properties[Properties]` are fundamental components of an Aspect.
 Reusing these elements across different Aspects ensures consistency, reduces redundancy, and simplifies the management and
 integration of shared attributes and interactions.
