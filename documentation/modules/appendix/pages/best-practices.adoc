@@ -61,6 +61,11 @@ Properties), the Property should be named `items`.
   Characteristic, the Aspect's name should end with "History". Otherwise, the Aspect's name should
   be in singular.
 
+[[Writing-element-descriptions]]
+== Writing Element Descriptions
+
+
+
 [[choosing-a-numeric-type]]
 == Choosing a Numeric Type
 
