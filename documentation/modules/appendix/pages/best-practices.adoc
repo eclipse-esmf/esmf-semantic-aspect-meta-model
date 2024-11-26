@@ -59,14 +59,57 @@ The separation of concerns allows the model to be more stable, reusable, and mai
 
 === Adjust the `preferredName` for reader-friendliness
 
-The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model.
+The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model. Consider it a display name.
+// TODO Is "Consider it a display name" too sloppy? Too one-dimensional even? Then remove it.
 
-Should you copy and paste an element's `name` to the `preferredName`, make sure to adapt it:
+==== Separate words
 
-* If the `name` consists of more than one word, written in camelCase, separate it into two words.
-For example:
-** `name`: `machineTemperature`
-** `preferredName`: `machine temperature`
+Should you copy and paste an element's `name` to use it as the `preferredName`, adapt it accordingly. For example, if the `name` consists of more than one word, written in camelCase, separate it into two words:
+
+* `name`: `machineTemperature`
+* `preferredName`: `machine temperature`
+
+//TODO Sure about the "start small"/"start as in dictionary" practice? -- Consider updating SAMM resources then, see, for example, preferredNames over here: https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/esmf-semantic-aspect-meta-model/src/main/resources/samm/entity/2.2.0/TimeSeriesEntity.ttl
+
+==== Capitalization: as in dictionary, and no article
+
+In English, capital letters are reserved for proper nouns. Therefore, your `preferredName` typically would to start in lower case, just as you would encounter it in a dictionary.
+
+For other languages, for example for German, the same practice applies: put the name as you would encounter it in a dictionary.
+
+Also: an article does not belong to the name, avoid any articles.
+
+//TODO Is there any way of referring to the `preferredName` without constantly using it as an attribute name? Does `preferredName` have a preferred name?
+The following tables detail examples for transferring a `name`, e.g., `machineTemperature` or `allowDuplicates`, to an appropriate `preferredName`.
+
+|===
+|DON'T |DO
+
+|`Machine Temperature` +
+`Machine temperature` +
+`the machine temperature` +
+`a machine temperature`
+|`machine temperature`
+|`Allow Duplicates` +
+`Allow duplicates` +
+|`allow duplicates`
+|===
+
+|===
+|DON'T |DO
+
+|`maschinentemperatur` +
+`Maschinen-Temperatur` +
+`die Maschinentemperatur` +
+`eine Maschinentemperatur`
+|`Maschinentemperatur`
+|`Erlaube Duplikate` +
+|`erlaube Duplikate`
+|===
+
+//TODO Verify tip for correctness
+TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications. For example, to use it to complete a sentence or message in a UI, it can be used as-is. If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
+
 
 === If certain Characteristics are present
 
@@ -94,7 +137,6 @@ If there is exactly one Property in an Aspect that has one of the following Char
 |xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic
 |Name the Property `items`.
 |Put the Aspect's name in *singular* and add a `History` suffix to it.
-
 |===
 
 [[Writing-element-descriptions]]
