@@ -18,50 +18,86 @@ The following best practices, while not mandatory, are highly recommended for op
 [[naming-elements]]
 == Naming Elements
 
-In addition to the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules], the following points
-should be considered when naming elements such as Aspects, Properties, or Entities:
+To name model elements such as Aspects, Properties, etc., adhere to the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules].
 
-* Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be
-  misunderstood in different contexts. For example, "temp" could mean "temperature" or "temporary".
-  On the other hand, abbreviating "minimum" and "maximum" with "min" and "max", respectively, is
-  fine. The Aspect Model should be reasonably expressive. Do not add alleged premature optimizations
-  that belong in the Aspect implementation: if you think a Property is name expressive but too long
-  for the runtime payload, consider adding xref:ROOT:modeling-guidelines.adoc#payload-names[a payload
-  name] to the Property's usage instead of renaming the Property.
+For optimal results, also consider the following best practices.
 
-* Do not use redundant naming parts. In particular, the name of an Aspect should not end with
-"Aspect". It is, however, fine to distinguish between, e.g., an Entity and a related Characteristic
-by a suffix when necessary.
+=== Use abbreviations with care
 
-* Do not use redundant prefixes, e.g., when authoring an Aspect Model for the domain _Foo_, do not
-name your Properties _fooCount_, _fooId_, etc. Remember that the full identifier of a Property is
-the versioned namespace concatenated with the element name, e.g.,
-`urn:samm:{example-ns}.myapplication:1.0.0#count`, so the context is already part of
-`count`&#8203;'s identifier.
+Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be misunderstood in different contexts.
 
-* The attributes `preferredName` and `description` are meant to provide a human-readable name and description, respectively, for example, for the generation of documentation from the Aspect Model.
-If you copy and paste the element's name to the `preferredName`, make sure to adjust it:
-** Make the name upper case.
-** If the name consists of more than one word (i.e., camelCase), turn it into two words, e.g., the name
-`machineTemperature` should become the preferredName `Machine Temperature`.
+* For example, `temp` could mean "temperature" or "temporary".
+* On the other hand, using `min` or `max` for “minimum” and “maximum” is commonly used and therefore acceptable.
 
-* If there is exactly one Property in an Aspect that has a
-xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
-xref:ROOT:characteristics.adoc#list-characteristic[List],
-xref:ROOT:characteristics.adoc#set-characteristic[Set],
-xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set], or
-xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic (and no other
-Properties), the Property should be named `items`.
+=== Avoid redundancies
 
-* If there is exactly one Property in an Aspect that has a
-  xref:ROOT:characteristics.adoc#collection-characteristic[Collection],
-  xref:ROOT:characteristics.adoc#list-characteristic[List],
-  xref:ROOT:characteristics.adoc#set-characteristic[Set], or
-  xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic (and no other
-  Properties), the Aspect's name should be in plural. Otherwise, if there is exactly one Property in
-  the Aspect that has a xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series]
-  Characteristic, the Aspect's name should end with "History". Otherwise, the Aspect's name should
-  be in singular.
+Do not add redundant suffixes to your model element names (if not necessary).
+
+* In particular, the name of an Aspect should not end with "Aspect".
+* On the other hand, to distinguish between, for example, an Entity and a related Characteristic, it is acceptable to add a corresponding suffix.
+
+Also, do not use redundant prefixes.
+
+* For example, when authoring an Aspect Model for the domain _Foo_, do not name your Properties `fooCount`, `fooId`, `fooXyz`, etc. +
+TIP:: Remember that the full identifier of a Property is the versioned namespace concatenated with the element name, e.g., `urn:samm:foo.myapplication:1.0.0#count`, so the `foo` context is already part of `count`&#8203;'s identifier.
+
+=== Create expressive names
+
+For any model element, make sure the name is meaningful.
+
+==== Add payload names for Properties where necessary
+
+If you think a Property is name expressive but too long for the runtime payload,
+consider adding xref:ROOT:modeling-guidelines.adoc#payload-names[a payload name] to the Property's usage instead of renaming the Property.
+
+==== Leave out implementation details or optimization goals
+
+The Aspect Model -- including it's respective name -- should be reasonably expressive.
+Do not add alleged premature optimizations that actually belong in the Aspect implementation.
+For example, leave performance and implementation details to the Aspect implementation itself.
+The separation of concerns allows the model to be more stable, reusable, and maintainable.
+
+=== Adjust the `preferredName` for reader-friendliness
+
+The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model.
+
+Should you copy and paste an element's `name` to the `preferredName`, make sure to adapt it:
+
+//TODO Doublecheck capitalization best practice
+* Put the name in capital letters.
+* If the `name` consists of more than one word, written in camelCase, separate it into two words.
+For example:
+** `name`: `machineTemperature`
+** `preferredName`: `Machine Temperature`
+
+=== If certain Characteristics are present
+
+If there is exactly one Property in an Aspect that has one of the following Characteristics and no other Properties, consider the following name advice for the Property itself and for the corresponding Aspect.
+
+|===
+|Characteristic held by Property|How to name the Property |How to name the Aspect
+
+|xref:ROOT:characteristics.adoc#collection-characteristic[Collection] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#list-characteristic[List] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#set-characteristic[Set] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *singular* and add a `History` suffix to it.
+
+|===
 
 [[Writing-element-descriptions]]
 == Writing Element Descriptions
