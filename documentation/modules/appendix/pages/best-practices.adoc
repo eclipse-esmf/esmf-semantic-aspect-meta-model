@@ -63,12 +63,10 @@ The attribute `preferredName` is meant to provide a human-readable name, for exa
 
 Should you copy and paste an element's `name` to the `preferredName`, make sure to adapt it:
 
-//TODO Doublecheck capitalization best practice
-* Put the name in capital letters.
 * If the `name` consists of more than one word, written in camelCase, separate it into two words.
 For example:
 ** `name`: `machineTemperature`
-** `preferredName`: `Machine Temperature`
+** `preferredName`: `machine temperature`
 
 === If certain Characteristics are present
 
@@ -101,6 +99,7 @@ If there is exactly one Property in an Aspect that has one of the following Char
 
 [[Writing-element-descriptions]]
 == Writing Element Descriptions
+
 
 
 
