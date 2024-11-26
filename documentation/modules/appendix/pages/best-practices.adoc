@@ -28,7 +28,7 @@ For optimal results, also consider the following best practices.
 Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules]. Also apply it to any acronyms that may be present in your model element names.
 
 |===
-|DON'T |DO
+|{nok} DON'T |{ok} DO
 
 |`mainECU` +
 `MainECU`
@@ -132,7 +132,7 @@ Also: an article does not belong to the name, avoid any articles.
 The following tables detail examples for transferring a `name`, e.g., `machineTemperature` or `allowDuplicates`, to an appropriate `preferredName`.
 
 |===
-|DON'T |DO
+|{nok} DON'T |{ok} DO
 
 |`Machine Temperature` +
 `Machine temperature` +
@@ -152,7 +152,7 @@ The following tables detail examples for transferring a `name`, e.g., `machineTe
 |===
 
 |===
-|DON'T |DO
+|{nok} DON'T |{ok} DO
 
 |`maschinentemperatur` +
 `Maschinen-Temperatur` +
