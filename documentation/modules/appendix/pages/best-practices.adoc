@@ -57,6 +57,34 @@ Do not add alleged premature optimizations that actually belong in the Aspect im
 For example, leave performance and implementation details to the Aspect implementation itself.
 The separation of concerns allows the model to be more stable, reusable, and maintainable.
 
+=== If certain Characteristics are present
+
+If there is exactly one Property in an Aspect that has one of the following Characteristics and no other Properties, consider the following name advice for the Property itself and for the corresponding Aspect.
+
+|===
+|Characteristic held by Property|How to name the Property |How to name the Aspect
+
+|xref:ROOT:characteristics.adoc#collection-characteristic[Collection] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#list-characteristic[List] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#set-characteristic[Set] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *plural*.
+
+|xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic
+|Name the Property `items`.
+|Put the Aspect's name in *singular* and add a `History` suffix to it.
+|===
+
 === Adjust the `preferredName` for reader-friendliness
 
 The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model. Consider it a display name.
@@ -110,34 +138,6 @@ The following tables detail examples for transferring a `name`, e.g., `machineTe
 //TODO Verify tip for correctness
 TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications. For example, to use it to complete a sentence or message in a UI, it can be used as-is. If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
 
-
-=== If certain Characteristics are present
-
-If there is exactly one Property in an Aspect that has one of the following Characteristics and no other Properties, consider the following name advice for the Property itself and for the corresponding Aspect.
-
-|===
-|Characteristic held by Property|How to name the Property |How to name the Aspect
-
-|xref:ROOT:characteristics.adoc#collection-characteristic[Collection] Characteristic
-|Name the Property `items`.
-|Put the Aspect's name in *plural*.
-
-|xref:ROOT:characteristics.adoc#list-characteristic[List] Characteristic
-|Name the Property `items`.
-|Put the Aspect's name in *plural*.
-
-|xref:ROOT:characteristics.adoc#set-characteristic[Set] Characteristic
-|Name the Property `items`.
-|Put the Aspect's name in *plural*.
-
-|xref:ROOT:characteristics.adoc#sorted-set-characteristic[Sorted Set] Characteristic
-|Name the Property `items`.
-|Put the Aspect's name in *plural*.
-
-|xref:ROOT:characteristics.adoc#time-series-characteristic[Time Series] Characteristic
-|Name the Property `items`.
-|Put the Aspect's name in *singular* and add a `History` suffix to it.
-|===
 
 [[Writing-element-descriptions]]
 == Writing Element Descriptions
