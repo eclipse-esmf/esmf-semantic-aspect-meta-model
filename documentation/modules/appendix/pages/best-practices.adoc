@@ -176,6 +176,197 @@ TIP: By using words the same way they would appear in a dictionary, the `preferr
 [[describing-elements]]
 == Describing Elements
 
+The `description` attribute xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[allows for] human-readable text in a specific language. Such information provides context for anyone concerned with an Aspect Model or any applications based on it. Therefore, it is recommended to keep description texts consistent across all model elements and even across all Aspect Models in a namespace (and even better: across various namespaces).
+
+[[writing-advice-for-descriptions]]
+=== Writing advice for descriptions
+
+What you already do for the `name` attribute, also applies for the `description` attribute:
+
+* <<choose-abbreviations-carefully,Choose abbreviations carefully>>
+* <<avoid-redundancies,Avoid redundancies>>, do not start with "This Entity/Property/Aspect ..." or "This <preferredName> ..."
+// TODO Explicitly add this or is it enough to say "avoid redundancies"?  --> "Do not mention the SAMM Class, like "Characteristic", "Trait" etc. Imagine that it can be used in a completely different modelling language" --- If we say it: need some background to understand the issue here
+
+Also consider:
+
+* Do not use brand names or other proper names in descriptions
+* If other Properties are mentioned in the description, refer to them by their `preferredName`
+
+=== Start with a capital letter
+
+Start your description with a capital letter. This has several advantages, for example, it:
+
+* Makes descriptions work in further applications, for example, in graphical user interfaces
+* Improves readability when working with Aspect Model turtle files
+
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter"@en ;
+----
+
+=== No article
+
+To avoid redundacy and enforce conciseness, leave out any article.
+
+Think about a description as a sentence fragment that completes one of the following sentence starters.
+
+.For descriptions starting with a noun
+[source,text,subs="attributes+,+quotes"]
+----
+This <model element> is (a/the) ...
+----
+
+.For descriptions starting with a verb
+[source,text,subs="attributes+,+quotes"]
+----
+This <model element> ...
+----
+
+=== About full stops
+
+If you only have one sentence fragment as a description, do not add a full stop. Why? First, it is not needed in a sentence fragment. Second, it enables the description to be used, for example, as a tooltip in user interfaces. Tooltips do not carry full stops.
+
+However, if you want to add more content to the description field, do put a full stop after your initial sentence fragment to separate it from the rest.
+
+.Only add a full stop to your sentence fragment if it is followed by more text
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter. Then we add more content. All end with a full stop."@en ;
+----
+
+=== Long descriptions
+
+Adding more content to the initial sentence fragment of your description is fine.
+//TODO Are there length restrictions?
+
+
+.How a longer description could look like
+[source,text,subs="attributes+,+quotes"]
+----
+Sentence fragment starting with a capital letter.
+
+Then we add more content. All ending with full stops. There is more to say about this. Yet another sentence.
+
+NOTE: We can highlight information with a NOTE.
+
+EXAMPLE: We can also give examples. Even more than one, then you would numerate them like EXAMPLE1 etc.
+
+Or we can use ordered or unordered lists. This can be handy for adding further resources that otherwise would not fit into the see attribute.
+Like:
+1. A list item
+2. Another list item
+----
+
+.The above text example in turtle notation
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter.\n\nThen we add more content. All ending with full stops. There is more to say about this. Yet another sentence.\n\nNOTE: We can highlight information with a NOTE.\n\nEXAMPLE: We can also give examples.\n\nOr we can use ordered or unordered lists.\nLike:\n1. A list item\n2. Another list item"@en ;
+----
+
+Adding line breaks to the text in the turtle file helps to display the text well in further applications.
+
+//TODO Add pic of example description as displayed in AME?
+
+=== Examples
+
+The following table details examples for description texts that have writing issues, explains the issues and indicates how to improve the texts.
+
+|===
+|Example model element |{nok-small} Description text with issues |Explanation of issues |{ok-small} Recommended version for description text
+
+//SOURCE: locations.ttl
+|Property `houseNumber`
+|##n##umber of a building in a street##.##
+a|* Start with a capital letter
+* No full stop at the end if not followed by further content
+|Number of a building in a street
+
+//SOURCE: plant.ttl
+|Property `productFamily`
+|[.underline]#The# product family
+a|* Avoid starting with an article
+* Also, just repeating the name is not a proper description
+|Set of products sharing similar features
+
+//SOURCE: https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.week_based_material_demand/3.0.0/WeekBasedMaterialDemand.ttl
+a|Property `materialDemandId` +
+{nbsp} +
+Preferred Name: `Material Demand ID`
+|[.underline]#The Material Demand ID# uniquely identifies the material demand within the business relationship between a customer and its supplier.
+|Avoid redundancies: do not start the description with the `preferredName`.
+|Uniquely identifies the material demand within the business relationship between a customer and its supplier
+
+//SOURCE: https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.generic.digital_product_passport/5.0.0/DigitalProductPassport.ttl
+|Entity `IdentificationEntity`
+|[.underline]#Entity# with identification information of the product with part type information, local identifiers, other codes and the data carrier.
+|Avoid redundancies: in the `name` as well as in the description. Do not start the description by mentioning the model element type.
+|Identification information about the product with part-type information, local identifiers, other codes and the data carrier
+
+//TODO Hm, so which brand do we name here then? ;)
+|TBD
+|TBD
+|Do not use brand names or other proper names in descriptions
+|TBD
+
+//TODO Example?
+|TBD
+|TBD
+|If other Properties are mentioned in the description, refer to them by their `preferredName`
+|TBD
+
+//SOURCE: https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.generic.digital_product_passport/5.0.0/DigitalProductPassport.ttl
+|Property `dataType`
+|Data type that describes the content of the attributes' children and data. In case "object" is selected in the enumeration, the children field will be used in the [.underline]#AdditionalDataEntity# instead of the "data" property. If it is another type, the content will be specified in "data" as a string.
+//TODO only valid for Properties?
+|If other Properties are mentioned in the description, refer to them by their `preferredName`
+//TODO Really repeat redundancy in name in our solution?
+|Describes the content of the attributes' children and data. In case "object" is selected in the enumeration, the children field will be used in the Additional Data Entity Entity instead of the "data" property. If it is another type, the content will be specified in "data" as a string.
+
+|TBD
+|TBD
+|TBD
+|TBD
+|===
+
+//TODO Delete before filing PR
+== TEMP: REQUIREMENTS FROM GH ISSUE
+=== The first line of the description
+
+    depending on language:
+
+    for English always start with small letter
+    in German as used in dictionary, for nouns capital letter, for verbs small letter
+
+    Do not start with preferred name "the <...>
+
+    no complete sentence
+
+
+=== Further content in the description
+
+    If additional information needed for explanation add (numerated) notes
+
+    If additional examples needed for explanation add (numerated) examples with captial letter "EXAMPLE ", if only one example then no number
+
+    If see-Attribute information not sufficient add source information
+
+=== Applies to whole description
+
+    do not use abbreviations in description, only if known very widely
+
+    Do not use brand names or other proper names in descriptions
+
+    if other properties are mentioned in the description use the preferred name, not the display name or name
+
+    Do not mention the SAMM Class, like "Characteristic", "Trait" etc. Imagine that it can be used in a completely different modelling language
+
+=== Hm
+
+    formulate description such that it would be a good tool tip +
+--> Then we should start start in upper case and not add a dot. It would look really bad if just the fragment sits there. Or do we trust that implementations would parse it towards capitalization? We communicated that we do so for the preferred name.
+
+    formulate description such that is could be the definition in an IEC/ISO glossary +
+--> Hm, why? Do we observe any fails in meeting a formal tone? This rule might confuse users
 
 
 [[choosing-a-numeric-type]]
