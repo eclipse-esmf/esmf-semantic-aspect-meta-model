@@ -12,6 +12,8 @@ SPDX-License-Identifier: MPL-2.0
 
 [[best-practices]]
 = Best Practices
+:nok-small: icon:times-circle[role="red",size="1x"]
+:ok-small: icon:check-circle[role="green",size="1x"]
 
 The following best practices, while not mandatory, are highly recommended for optimal performance and to mitigate potential issues, especially when working with Aspect Models at scale.
 
@@ -28,7 +30,7 @@ For optimal results, also consider the following best practices.
 Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules]. Also apply it to any acronyms that may be present in your model element names.
 
 |===
-|{nok} DON'T |{ok} DO
+|{nok-small} DON'T |{ok-small} DO
 
 |`mainECU` +
 `MainECU`
@@ -41,8 +43,9 @@ Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[n
 |===
 
 //TODO Verify TIP, rephrase where needed
-TIP: Enforcing a strict camel case naming rule, also for acronyms, mitigates issues with further tools parsing Aspect Models. That way, a capital letter can be trusted to always trigger the start of a new name part.
+NOTE: Enforcing a strict camel case naming rule, also for acronyms, mitigates issues with further tools parsing Aspect Models. That way, a capital letter can be trusted to always trigger the start of a new name part.
 
+[[choose-abbreviations-carefully]]
 === Choose abbreviations carefully
 
 Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations can be misunderstood in different contexts.
@@ -50,6 +53,9 @@ Avoid abbreviations that are not sufficiently common. Seemingly obvious abbrevia
 * For example, `temp` could mean "temperature" or "temporary".
 * On the other hand, using `min` or `max` for “minimum” and “maximum” is commonly used and therefore acceptable.
 
+This does not only apply for names but also for <<writing-advice-for-descriptions,description texts>>.
+
+[[avoid-redundancies]]
 === Avoid redundancies
 
 Do not add redundant suffixes to your model element names (if not necessary).
@@ -60,7 +66,7 @@ Do not add redundant suffixes to your model element names (if not necessary).
 Also, do not use redundant prefixes.
 
 * For example, when authoring an Aspect Model for the domain _Foo_, do not name your Properties `fooCount`, `fooId`, `fooXyz`, etc. +
-TIP:: Remember that the full identifier of a Property is the versioned namespace concatenated with the element name, e.g., `urn:samm:foo.myapplication:1.0.0#count`, so the `foo` context is already part of `count`&#8203;'s identifier.
+NOTE:: Remember that the full identifier of a Property is the versioned namespace concatenated with the element name, e.g., `urn:samm:foo.myapplication:1.0.0#count`, so the `foo` context is already part of `count`&#8203;'s identifier.
 
 === Create expressive names
 
@@ -132,7 +138,7 @@ Also: an article does not belong to the name, avoid any articles.
 The following tables detail examples for transferring a `name`, e.g., `machineTemperature` or `allowDuplicates`, to an appropriate `preferredName`.
 
 |===
-|{nok} DON'T |{ok} DO
+|{nok-small} DON'T |{ok-small} DO
 
 |`Machine Temperature` +
 `Machine temperature` +
@@ -152,7 +158,7 @@ The following tables detail examples for transferring a `name`, e.g., `machineTe
 |===
 
 |===
-|{nok} DON'T |{ok} DO
+|{nok-small} DON'T |{ok-small} DO
 
 |`maschinentemperatur` +
 `Maschinen-Temperatur` +
@@ -164,12 +170,11 @@ The following tables detail examples for transferring a `name`, e.g., `machineTe
 |===
 
 //TODO Verify tip for correctness
-TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications. For example, to use it to complete a sentence or message in a UI, it can be used as-is. If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
+TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications.For example, to use it to complete a sentence or message in a UI, it can be used as-is.If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
 
 
-[[Writing-element-descriptions]]
-== Writing Element Descriptions
-
+[[describing-elements]]
+== Describing Elements
 
 
 
