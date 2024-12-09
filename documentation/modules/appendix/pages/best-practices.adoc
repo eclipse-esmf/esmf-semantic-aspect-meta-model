@@ -22,9 +22,23 @@ The following best practices, while not mandatory, are highly recommended for op
 
 To name model elements such as Aspects, Properties, etc., adhere to the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules].
 
-For optimal results, also consider the following best practices.
+For optimal results, also consider the following best practices:
 
-=== Apply camel case to acronyms, too
+* <<apply-camel-case-to-acronyms>>
+* <<choose-abbreviations-carefully>>
+* <<avoid-redundancies>>
+* <<reduce-technical-debt-by-choosing-meaningful-names>>
+* <<add-payload-names-for-properties-where-necessary>>
+* <<if-certain-characteristics-are-present>>
+* <<adjust-the-preferredName-for-reader-friendliness>>
+* <<separate-words-for-preferredName>>
+* <<capitalization-for-preferredName>>
+
+In addition to that, there are also best practices for <<describing-elements>>.
+
+
+[[apply-camel-case-to-acronyms]]
+=== Apply camel case to acronyms
 
 Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules]. Also apply it to any acronyms that may be present in your model element names.
 
@@ -51,7 +65,7 @@ Avoid abbreviations that are not sufficiently common. Seemingly obvious abbrevia
 * For example, `temp` could mean "temperature" or "temporary".
 * On the other hand, using `min` or `max` for “minimum” and “maximum” is commonly used and therefore acceptable.
 
-This does not only apply for names but also for <<writing-advice-for-descriptions,description texts>>.
+This does not only apply for names but also for <<abbreviations-and-redundancies,description texts>>.
 
 [[avoid-redundancies]]
 === Avoid redundancies
@@ -66,6 +80,7 @@ Also, do not use redundant prefixes.
 * For example, when authoring an Aspect Model for the domain _Foo_, do not name your Properties `fooCount`, `fooId`, `fooXyz`, etc. +
 NOTE:: Remember that the full identifier of a Property is the versioned namespace concatenated with the element name, e.g., `urn:samm:foo.myapplication:1.0.0#count`, so the `foo` context is already part of `count`&#8203;'s identifier.
 
+[[reduce-technical-debt-by-choosing-meaningful-names]]
 === Reduce technical debt by choosing meaningful names
 
 Choose meaningful names for your Aspect Model elements.
@@ -75,6 +90,7 @@ While convenient in the short term, this creates technical debt.
 Meaningful names improve code readability and maintainability, whereas arbitrary names make understanding and modifying the model harder in the long run.
 Invest the time upfront to choose descriptive names that reflect the purpose and meaning of each element.
 
+[[add-payload-names-for-properties-where-necessary]]
 === Add payload names for Properties where necessary
 
 An expressive Property name can be long.
@@ -82,6 +98,7 @@ If you think a Property's is too long for the runtime payload, consider adding x
 
 Do not rename Properties just for the sake of a short runtime payload.
 
+[[if-certain-characteristics-are-present]]
 === If certain Characteristics are present in a "Collection Aspect"
 
 An Aspect with exactly one Property on root level which holds a Collection Characteristic can be perceived as a "Collection Aspect".
@@ -114,11 +131,13 @@ For a "Collection Aspect", consider the following name advice for the Property i
 |Put the Aspect's name in *singular* and add a `History` suffix to it.
 |===
 
+[[adjust-the-preferredName-for-reader-friendliness]]
 === Adjust the `preferredName` for reader-friendliness
 
 The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model.
 Consider the Preferred Name a display name.
 
+[[separate-words-for-preferredName]]
 === Separate words for `preferredName`
 
 Should you copy and paste an element's `name` to use it as the `preferredName`, adapt it accordingly. For example, if the `name` consists of more than one word, written in camel case, separate it into two words:
@@ -126,6 +145,7 @@ Should you copy and paste an element's `name` to use it as the `preferredName`, 
 * `name`: `machineTemperature`
 * `preferredName`: `machine temperature`
 
+[[capitalization-for-preferredName]]
 === Capitalization for `preferredName`: as in dictionary, and no article
 
 In English, capital letters are reserved for proper names. Therefore, your `preferredName` usually begins with a lowercase letter, just as you would find the words in a dictionary.
@@ -178,99 +198,62 @@ TIP: By using words the same way they would appear in a dictionary, the `preferr
 [[describing-elements]]
 == Describing Elements
 
-The `description` attribute xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[allows for] human-readable text in a specific language. Such information provides context for anyone concerned with an Aspect Model or any applications based on it. Therefore, it is recommended to keep description texts consistent across all model elements and even across all Aspect Models in a namespace (and even better: across various namespaces).
+The `description` attribute xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[allows for] human-readable text in a specific language.
+Such information provides context for anyone concerned with an Aspect Model or any applications based on it.
+Therefore, it is recommended to keep description texts consistent across all model elements and across all Aspect Models in a namespace (and even better: across various namespaces).
 
-[[writing-advice-for-descriptions]]
-=== Writing advice for descriptions
+For optimal results, consider the following best practices:
 
-What you already do for the `name` attribute, also applies for the `description` attribute:
+* <<no-brand-names>>
+* <<easy-and-concise>>
+* <<start-with-a-capital-letter-and-no-article>>
+* <<abbreviations-and-redundancies>>
+* <<about-full-stops>>
+* <<long-descriptions>>
 
-* <<choose-abbreviations-carefully,Choose abbreviations carefully>>
-* <<avoid-redundancies,Avoid redundancies>>:
-** Do not start with "This Entity/Property/Aspect ..." as the Aspect Model could have been parsed towards another output format or modelling language where SAMM model elements are not known.
-** Do not start with "This <preferredName> ..." as this duplicates information. It might even interfere with other usages of the description field's content, for example, when being displayed in a user interface.
+[[no-brand-names]]
+=== No brand names
 
-Also consider:
+Do not use brand names or company names in descriptions.
 
-* Do not use brand names or other proper names in descriptions
-* If other Properties are mentioned in the description, refer to them by their `preferredName`
+[[easy-and-concise]]
+=== Easy and concise
 
-=== Start with a capital letter
+Choose a writing style that is *easy to read*.
+Users might need to understand your descriptions from encountering them as tooltips in user interfaces.
 
-Start your description with a capital letter. This has several advantages, for example, it:
+Also, be *concise*.
+To get an idea, think of definitions in an IEC/ISO glossary.
 
-* Makes descriptions work in further applications, for example, in graphical user interfaces
-* Improves readability when working with Aspect Model turtle files
+If you add other sources' definitions to your description field, make sure to add the source.
+To do so, use xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[the `see` attribute].
+If the `see` attribute does not suffice, you can also use the description itself to add the source of a description text.
 
+.Example: indicating a definition's source for a description text
+[source,text,subs="attributes+,+quotes"]
+----
+information and services representing an entity from a given viewpoint
+
+[SOURCE: IEC 63278-1:2023, editorial changes, no examples]
+----
+
+[[start-with-a-capital-letter-and-no-article]]
+=== Start with a capital letter and no article
+
+Start your description with a capital letter. This has several advantages, for example:
+
+* Descriptions work in other applications, such as graphical user interfaces
+* Improved readability when working with Aspect Model turtle (TTL) files
+
+To avoid redundancy and promote conciseness, omit any article at the beginning of the description.
+
+.Example
 [source,turtle,subs="attributes+,+quotes"]
 ----
 samm:description "Sentence fragment starting with a capital letter"@en ;
 ----
 
-=== No article
-
-To avoid redundacy and enforce conciseness, leave out any article.
-
-Think about a description as a sentence fragment that completes one of the following sentence starters.
-
-.For descriptions starting with a noun
-[source,text,subs="attributes+,+quotes"]
-----
-This <model element> is (a/the) ...
-----
-
-.For descriptions starting with a verb
-[source,text,subs="attributes+,+quotes"]
-----
-This <model element> ...
-----
-
-=== About full stops
-
-If you only have one sentence fragment as a description, do not add a full stop. Why? First, it is not needed in a sentence fragment. Second, it enables the description to be used, for example, as a tooltip in user interfaces. Tooltips do not carry full stops.
-
-However, if you want to add more content to the description field, do put a full stop after your initial sentence fragment to separate it from the rest.
-
-.Only add a full stop to your sentence fragment if it is followed by more text
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description "Sentence fragment starting with a capital letter. Then we add more content. All end with a full stop."@en ;
-----
-
-=== Long descriptions
-
-Adding more content to the initial sentence fragment of your description is fine.
-
-.How a longer description could look like
-[source,text,subs="attributes+,+quotes"]
-----
-Sentence fragment starting with a capital letter.
-
-Then we add more content. All ending with full stops. There is more to say about this. Yet another sentence.
-
-NOTE: We can highlight information with a NOTE.
-
-EXAMPLE: We can also give examples. Even more than one, then you would numerate them like EXAMPLE1 etc.
-
-Or we can use ordered or unordered lists. This can be handy for adding further resources that otherwise would not fit into the see attribute.
-Like:
-1. A list item
-2. Another list item
-----
-
-.The above text example in turtle notation
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description "Sentence fragment starting with a capital letter.\n\nThen we add more content. All ending with full stops. There is more to say about this. Yet another sentence.\n\nNOTE: We can highlight information with a NOTE.\n\nEXAMPLE: We can also give examples.\n\nOr we can use ordered or unordered lists.\nLike:\n1. A list item\n2. Another list item"@en ;
-----
-
-Adding line breaks to the text in the turtle file helps to display the text well in further applications.
-
-//TODO Add pic of example description as displayed in AME?
-
-=== Examples
-
-The following table details examples for description texts that have writing issues, explains the issues and indicates how to improve the texts.
+The following table details examples for description texts with writing issues.
 
 |===
 |Example model element |{nok-small} Description text with issues |Explanation of issues |{ok-small} Recommended version for description text
@@ -289,6 +272,46 @@ a|* Avoid starting with an article
 * Also, just repeating the name is not a proper description
 |Set of products sharing similar features
 
+|===
+
+
+[[abbreviations-and-redundancies]]
+=== Abbreviations and redundancies
+
+What you already do for the `name` attribute, also applies for the `description` attribute:
+
+* <<choose-abbreviations-carefully,Choose abbreviations carefully>>
+* Avoid redundancies
+
+As for redundancies in descriptions:
+
+* *SAMM model element terms* like Entity, Property, Aspect, etc. do not belong in the description.
+The Aspect Model could have been transformed into another output format or modelling language in which SAMM model elements are not known and would confuse readers.
++
+TIP:: If you need to mention other Properties in the description, refer to them by their `preferredName`.
+
+* *Do not start with "This <preferredName> ..."* as this duplicates information.
+It might even interfere with other usages of the description field's content, for example, when being displayed in a user interface.
++
+TIP:: Think about a description as a sentence fragment that completes one of the following sentence starters.
++
+.For descriptions starting with a noun
+[source,text,subs="attributes+,+quotes"]
+----
+This <model element> is (a/the) ...
+----
++
+.For descriptions starting with a verb
+[source,text,subs="attributes+,+quotes"]
+----
+This <model element> ...
+----
+
+The following table details examples for description texts with writing issues.
+
+|===
+|Example model element |{nok-small} Description text with issues |Explanation of issues |{ok-small} Recommended version for description text
+
 //SOURCE: https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.week_based_material_demand/3.0.0/WeekBasedMaterialDemand.ttl
 a|Property `materialDemandId` +
 {nbsp} +
@@ -303,72 +326,85 @@ Preferred Name: `Material Demand ID`
 |Avoid redundancies: in the `name` as well as in the description. Do not start the description by mentioning the model element type.
 |Identification information about the product with part-type information, local identifiers, other codes and the data carrier
 
-//TODO Hm, so which brand do we name here then? ;)
-|TBD
-|TBD
-|Do not use brand names or other proper names in descriptions
-|TBD
-
-//TODO Example?
-|TBD
-|TBD
-|If other Properties are mentioned in the description, refer to them by their `preferredName`
-|TBD
-
-//SOURCE: https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.generic.digital_product_passport/5.0.0/DigitalProductPassport.ttl
-|Property `dataType`
-|Data type that describes the content of the attributes' children and data. In case "object" is selected in the enumeration, the children field will be used in the [.underline]#AdditionalDataEntity# instead of the "data" property. If it is another type, the content will be specified in "data" as a string.
-//TODO only valid for Properties?
-|If other Properties are mentioned in the description, refer to them by their `preferredName`
-//TODO Really repeat redundancy in name in our solution?
-|Describes the content of the attributes' children and data. In case "object" is selected in the enumeration, the children field will be used in the Additional Data Entity Entity instead of the "data" property. If it is another type, the content will be specified in "data" as a string.
-
-|TBD
-|TBD
-|TBD
-|TBD
 |===
 
-//TODO Delete before filing PR
-== TEMP: REQUIREMENTS FROM GH ISSUE
-=== The first line of the description
 
-    depending on language:
+[[about-full-stops]]
+=== About full stops
 
-    for English always start with small letter
-    in German as used in dictionary, for nouns capital letter, for verbs small letter
+If you only have one sentence fragment as a description, do not add a period.
 
-    Do not start with preferred name "the <...>
+First of all, it is not needed in a sentence fragment.
+Secondly, the description can be used as a tooltip in user interfaces, for example.
+Tooltips do not include full stops.
 
-    no complete sentence
+However, if you want to add more content to the description field, do put a period after your initial sentence fragment to separate it from the rest.
+
+.Only add a full stop to your sentence fragment if it is followed by more text
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter. Then we add more content. All end with a full stop."@en ;
+----
+
+[[long-descriptions]]
+=== Long descriptions
+
+Adding more content to the initial sentence fragment of your description is fine.
+Even multiline descriptions are possible.
+
+.How a longer description could look like
+[source,text,subs="attributes+,+quotes"]
+----
+Sentence fragment starting with a capital letter.
+
+Then we add more content. All ending with full stops. There is more to say about this. Yet another sentence.
+
+NOTE: We can highlight information with a NOTE. Even more than one, then you would numerate them like NOTE 1 etc.
+
+EXAMPLE 1: We can also give an examples.
+
+EXAMPLE 2: Or two.
+
+EXAMPLE 3: All numbered accordingly.
+
+Or we can use ordered or unordered lists. Like:
+1. A list item
+2. Another list item
+
+And we can add sources if our definition is taken from another source. For example:
+[SOURCE: IEC TS 62443-1-1]
+
+Or, if we have changed a source's definition:
+[SOURCE: IEC 63278-1:2023, editorial changes, no examples]
+----
+
+////
+.The above text example in turtle notation
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter.\n\nThen we add more content. All ending with full stops. There is more to say about this. Yet another sentence.\n\nNOTE: We can highlight information with a NOTE.\n\nEXAMPLE: We can also give examples.\n\nOr we can use ordered or unordered lists.\nLike:\n1. A list item\n2. Another list item"@en ;
+----
+
+Adding line breaks to the text in the turtle file helps to display the text well in further applications.
+
+//TODO To illustrate the last sentence, add a pic of the example description as displayed in AME
+
+////
 
 
-=== Further content in the description
+.Example description for "digital representation"
+[source,text,subs="attributes+,+quotes"]
+----
+Information and services representing an entity from a given viewpoint.
 
-    If additional information needed for explanation add (numerated) notes
+EXAMPLE 1: examples of information are properties (e.g. maximum temperature), actual parameters (e.g. actual velocity), events (e.g. notification of status change), schematics (electrical), and visualization information (2D and 3D drawings).
 
-    If additional examples needed for explanation add (numerated) examples with captial letter "EXAMPLE ", if only one example then no number
+EXAMPLE 2: examples of services are asset services (for example providing the history of the configuration data or providing the actual velocity) and asset related services (for example providing a simulation).
 
-    If see-Attribute information not sufficient add source information
+EXAMPLE 3: examples of viewpoints are mechanical, electrical, or commercial characteristics.
 
-=== Applies to whole description
-
-    do not use abbreviations in description, only if known very widely
-
-    Do not use brand names or other proper names in descriptions
-
-    if other properties are mentioned in the description use the preferred name, not the display name or name
-
-    Do not mention the SAMM Class, like "Characteristic", "Trait" etc. Imagine that it can be used in a completely different modelling language
-
-=== Hm
-
-    formulate description such that it would be a good tool tip +
---> Then we should start start in upper case and not add a dot. It would look really bad if just the fragment sits there. Or do we trust that implementations would parse it towards capitalization? We communicated that we do so for the preferred name.
-
-    formulate description such that is could be the definition in an IEC/ISO glossary +
---> Hm, why? Do we observe any fails in meeting a formal tone? This rule might confuse users
-
+[SOURCE: IEC 63278-1:2023, editorial changes]
+----
 
 [[choosing-a-numeric-type]]
 == Choosing a Numeric Type
