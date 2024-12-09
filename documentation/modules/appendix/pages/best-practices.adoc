@@ -24,7 +24,6 @@ To name model elements such as Aspects, Properties, etc., adhere to the xref:ROO
 
 For optimal results, also consider the following best practices.
 
-// TODO Is that just a best practice or isn't that actually already part of the naming rules? Should it go there?
 === Apply camel case to acronyms, too
 
 Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules]. Also apply it to any acronyms that may be present in your model element names.
@@ -42,7 +41,6 @@ Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[n
 `PlantId`
 |===
 
-//TODO Verify TIP, rephrase where needed
 NOTE: Enforcing a strict camel case naming rule, also for acronyms, mitigates issues with further tools parsing Aspect Models. That way, a capital letter can be trusted to always trigger the start of a new name part.
 
 [[choose-abbreviations-carefully]]
@@ -68,25 +66,29 @@ Also, do not use redundant prefixes.
 * For example, when authoring an Aspect Model for the domain _Foo_, do not name your Properties `fooCount`, `fooId`, `fooXyz`, etc. +
 NOTE:: Remember that the full identifier of a Property is the versioned namespace concatenated with the element name, e.g., `urn:samm:foo.myapplication:1.0.0#count`, so the `foo` context is already part of `count`&#8203;'s identifier.
 
-=== Create expressive names
+=== Reduce technical debt by choosing meaningful names
 
-For any model element, make sure the name is meaningful.
+Choose meaningful names for your Aspect Model elements.
+Do not simply mirror Property names from data sources like API responses (e.g., JSON).
+While convenient in the short term, this creates technical debt.
 
-==== Add payload names for Properties where necessary
+Meaningful names improve code readability and maintainability, whereas arbitrary names make understanding and modifying the model harder in the long run.
+Invest the time upfront to choose descriptive names that reflect the purpose and meaning of each element.
 
-If you think a Property is name expressive but too long for the runtime payload,
-consider adding xref:ROOT:modeling-guidelines.adoc#payload-names[a payload name] to the Property's usage instead of renaming the Property.
+=== Add payload names for Properties where necessary
 
-==== Leave out implementation details or optimization goals
+An expressive Property name can be long.
+If you think a Property's is too long for the runtime payload, consider adding xref:ROOT:modeling-guidelines.adoc#payload-names[a payload name].
 
-The Aspect Model -- including it's respective name -- should be reasonably expressive.
-Do not add alleged premature optimizations that actually belong in the Aspect implementation.
-For example, leave performance and implementation details to the Aspect implementation itself.
-The separation of concerns allows the model to be more stable, reusable, and maintainable.
+Do not rename Properties just for the sake of a short runtime payload.
 
-=== If certain Characteristics are present
+=== If certain Characteristics are present in a "Collection Aspect"
 
-If there is exactly one Property in an Aspect that has one of the following Characteristics and no other Properties, consider the following name advice for the Property itself and for the corresponding Aspect.
+An Aspect with exactly one Property on root level which holds a Collection Characteristic can be perceived as a "Collection Aspect".
+Data sets provided by such an Aspect may be very large.
+This also applies for other Characteristics, i.e., the List, Set, Sorted Set, and Time Series Characteristics.
+
+For a "Collection Aspect", consider the following name advice for the Property itself and for the corresponding Aspect.
 
 |===
 |Characteristic held by Property|How to name the Property |How to name the Aspect
@@ -114,28 +116,27 @@ If there is exactly one Property in an Aspect that has one of the following Char
 
 === Adjust the `preferredName` for reader-friendliness
 
-The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model. Consider it a display name.
-// TODO Is "Consider it a display name" too sloppy? Too one-dimensional even? Then remove it.
+The attribute `preferredName` is meant to provide a human-readable name, for example, in a documentation generated from an Aspect Model or in a user interface of an application based on an Aspect Model.
+Consider the Preferred Name a display name.
 
-==== Separate words
+=== Separate words for `preferredName`
 
-Should you copy and paste an element's `name` to use it as the `preferredName`, adapt it accordingly. For example, if the `name` consists of more than one word, written in camelCase, separate it into two words:
+Should you copy and paste an element's `name` to use it as the `preferredName`, adapt it accordingly. For example, if the `name` consists of more than one word, written in camel case, separate it into two words:
 
 * `name`: `machineTemperature`
 * `preferredName`: `machine temperature`
 
-//TODO Sure about the "start small"/"start as in dictionary" practice? -- Consider updating SAMM resources then, see, for example, preferredNames over here: https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/esmf-semantic-aspect-meta-model/src/main/resources/samm/entity/2.2.0/TimeSeriesEntity.ttl
+=== Capitalization for `preferredName`: as in dictionary, and no article
 
-==== Capitalization: as in dictionary, and no article
+In English, capital letters are reserved for proper names. Therefore, your `preferredName` usually begins with a lowercase letter, just as you would find the words in a dictionary.
 
-In English, capital letters are reserved for proper names. Therefore, your `preferredName` usually begins with a lowercase letter, just as you would find the words in a dictionary. Even if the words form a familiar acronym, such as ECU for engine control unit, the term itself is not a proper name and is therefore written in lower case.
+Even if the words form a familiar acronym, such as ECU for engine control unit, the term _engine control unit_ itself is not a proper name and is therefore written in lower case.
 
 For other languages, for example for German, the same practice applies: put the name as you would encounter it in a dictionary.
 
 Also: an article does not belong to the name, avoid any articles.
 
-//TODO Is there any way of referring to the `preferredName` without constantly using it as an attribute name? Does `preferredName` have a preferred name?
-The following tables detail examples for transferring a `name`, e.g., `machineTemperature` or `allowDuplicates`, to an appropriate `preferredName`.
+The following table details examples for appropriate Preferred Names in English.
 
 |===
 |{nok-small} DON'T |{ok-small} DO
@@ -157,6 +158,8 @@ The following tables detail examples for transferring a `name`, e.g., `machineTe
 |`plant ID`
 |===
 
+The following table details examples for appropriate Preferred Names in German.
+
 |===
 |{nok-small} DON'T |{ok-small} DO
 
@@ -169,8 +172,7 @@ The following tables detail examples for transferring a `name`, e.g., `machineTe
 |`erlaube Duplikate`
 |===
 
-//TODO Verify tip for correctness
-TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications.For example, to use it to complete a sentence or message in a UI, it can be used as-is.If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
+TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications. For example, to use it to complete a sentence or message in a UI, it can be used as-is. If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
 
 
 [[describing-elements]]
@@ -184,8 +186,9 @@ The `description` attribute xref:ROOT:modeling-guidelines.adoc#attributes-that-a
 What you already do for the `name` attribute, also applies for the `description` attribute:
 
 * <<choose-abbreviations-carefully,Choose abbreviations carefully>>
-* <<avoid-redundancies,Avoid redundancies>>, do not start with "This Entity/Property/Aspect ..." or "This <preferredName> ..."
-// TODO Explicitly add this or is it enough to say "avoid redundancies"?  --> "Do not mention the SAMM Class, like "Characteristic", "Trait" etc. Imagine that it can be used in a completely different modelling language" --- If we say it: need some background to understand the issue here
+* <<avoid-redundancies,Avoid redundancies>>:
+** Do not start with "This Entity/Property/Aspect ..." as the Aspect Model could have been parsed towards another output format or modelling language where SAMM model elements are not known.
+** Do not start with "This <preferredName> ..." as this duplicates information. It might even interfere with other usages of the description field's content, for example, when being displayed in a user interface.
 
 Also consider:
 
@@ -237,8 +240,6 @@ samm:description "Sentence fragment starting with a capital letter. Then we add 
 === Long descriptions
 
 Adding more content to the initial sentence fragment of your description is fine.
-//TODO Are there length restrictions?
-
 
 .How a longer description could look like
 [source,text,subs="attributes+,+quotes"]
