@@ -40,22 +40,24 @@ In addition to that, there are also best practices for <<describing-elements>>.
 [[apply-camel-case-to-acronyms]]
 === Apply camel case to acronyms
 
-Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules]. Also apply it to any acronyms that may be present in your model element names.
+Be strict about the camel case xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules].
+Also apply it to any acronyms that may be present in your model element names.
 
 |===
 |{nok-small} DON'T |{ok-small} DO
 
-|`mainECU` +
-`MainECU`
-|`mainEcu` +
-`MainEcu`
-|`plantID` +
-`PlantID`
-|`plantId` +
-`PlantId`
+|`mainECU`
+|`mainEcu`
+|`plantID`
+|`plantId`
+|`documentURL`
+|`documentUrl`
 |===
 
-NOTE: Enforcing a strict camel case naming rule, also for acronyms, mitigates issues with further tools parsing Aspect Models. That way, a capital letter can be trusted to always trigger the start of a new name part.
+Enforcing a strict camel case naming rule, also for acronyms, mitigates issues with further tools parsing Aspect Models.
+That way, a capital letter can be trusted to always trigger the start of a new name part.
+
+For example, it allows automated case-conversion, e.g., turning `documentUrl` into `DOCUMENT_URL`, when generating code from an Aspect Model. If, however, you kept the acronym in upper case (`documentURL`) you would end up with `DOCUMENT_U_R_L`.
 
 [[choose-abbreviations-carefully]]
 === Choose abbreviations carefully
