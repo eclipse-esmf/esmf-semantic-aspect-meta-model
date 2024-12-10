@@ -70,10 +70,9 @@
 
 :MachineStateTimeSeriesEntity a samm:Entity ;
    samm:extends samm-e:TimeSeriesEntity ;
-   samm:properties ( :machineState ) .
-
-:machineState a samm:Property ;
-   samm:characteristic :MachineState .
+   samm:properties (
+     [ samm:extends samm-e:value ; samm:characteristic :MachineState ]
+   ) .
 # end::timeseries-declaration[]
 
 # tag::enumeration-simple-declaration-string[]
