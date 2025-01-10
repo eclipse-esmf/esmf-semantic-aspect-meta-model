@@ -30,11 +30,12 @@ For optimal results, also consider the following best practices:
 * <<reduce-technical-debt-by-choosing-meaningful-names>>
 * <<add-payload-names-for-properties-where-necessary>>
 * <<if-certain-characteristics-are-present>>
-* <<adjust-the-preferredName-for-reader-friendliness>>
-* <<separate-words-for-preferredName>>
-* <<capitalization-for-preferredName>>
 
-In addition to that, there are also best practices for <<describing-elements>>.
+In addition to that, there are also best practices for:
+
+* <<naming-elements-preferred-name-specifics>>
+* <<describing-elements>>
+* <<describing-elements-syntax>>
 
 
 [[apply-camel-case-to-acronyms]]
@@ -133,6 +134,15 @@ For a "Collection Aspect", consider the following name advice for the Property i
 |Put the Aspect's name in *singular* and add a `History` suffix to it.
 |===
 
+[[naming-elements-preferred-name-specifics]]
+== Naming Elements: preferredName specifics
+
+This sections details best practices for the `preferredName` attribute:
+
+* <<adjust-the-preferredName-for-reader-friendliness>>
+* <<separate-words-for-preferredName>>
+* <<capitalization-for-preferredName>>
+
 [[adjust-the-preferredName-for-reader-friendliness]]
 === Adjust the `preferredName` for reader-friendliness
 
@@ -196,9 +206,8 @@ The following table details examples for appropriate Preferred Names in German.
 
 TIP: By using words the same way they would appear in a dictionary, the `preferredName` attribute is flexible to be used in further applications. For example, to use it to complete a sentence or message in a UI, it can be used as-is. If used to appear as a tooltip, standing alone, it can be parsed towards starting with a capital letter (recommended for English, other languages may follow different conventions).
 
-
 [[describing-elements]]
-== Describing Elements
+== Describing Elements: Writing Style
 
 The `description` attribute xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[allows for] human-readable text in a specific language.
 Such information provides context for anyone concerned with an Aspect Model or any applications based on it.
@@ -210,8 +219,6 @@ For optimal results, consider the following best practices:
 * <<easy-and-concise>>
 * <<start-with-a-capital-letter-and-no-article>>
 * <<abbreviations-and-redundancies>>
-* <<about-full-stops>>
-* <<long-descriptions>>
 
 [[no-brand-names]]
 === No brand names
@@ -234,9 +241,9 @@ If the `see` attribute does not suffice, you can also use the description itself
 .Example: indicating a definition's source for a description text
 [source,text,subs="attributes+,+quotes"]
 ----
-information and services representing an entity from a given viewpoint
+Information and services representing an entity from a given viewpoint
 
-[SOURCE: IEC 63278-1:2023, editorial changes, no examples]
+SOURCE: IEC 63278-1:2023, editorial changes, no examples
 ----
 
 [[start-with-a-capital-letter-and-no-article]]
@@ -330,22 +337,45 @@ Preferred Name: `Material Demand ID`
 
 |===
 
+[[describing-elements-syntax]]
+== Describing Elements: Syntax
+
+This section details the recommended syntax for the `description` attribute.
+
+The typical description looks like this:
+
+.Example
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter"@en ;
+----
+
+Further details and options:
+
+* <<about-full-stops>>
+* <<long-descriptions>>
 
 [[about-full-stops]]
-=== About full stops
+=== About full stops (aka: periods)
 
 If you only have one sentence fragment as a description, do not add a period.
 
 First of all, it is not needed in a sentence fragment.
-Secondly, the description can be used as a tooltip in user interfaces, for example.
-Tooltips do not include full stops.
+Secondly, the description can be used elsewhere, for example, as a tooltip in user interfaces.
+Tooltips and similar UI elements do not include full stops.
 
 However, if you want to add more content to the description field, do put a period after your initial sentence fragment to separate it from the rest.
 
-.Only add a full stop to your sentence fragment if it is followed by more text
+.(1) No period for short descriptions (sentence fragment)
 [source,turtle,subs="attributes+,+quotes"]
 ----
-samm:description "Sentence fragment starting with a capital letter. Then we add more content. All end with a full stop."@en ;
+samm:description "Sentence fragment starting with a capital letter and leaving out the full stop at the end"@en ;
+----
+
+.(2) Only add a period to your sentence fragment if it is followed by more text
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description "Sentence fragment starting with a capital letter and ending with a period. Because there is more content. That's why all sentences and sentence fragments end with a full stop."@en ;
 ----
 
 [[long-descriptions]]
@@ -354,30 +384,111 @@ samm:description "Sentence fragment starting with a capital letter. Then we add 
 Adding more content to the initial sentence fragment of your description is fine.
 Even multiline descriptions are possible.
 
-.How a longer description could look like
+.Example description – for an example Property called "digital representation"
 [source,text,subs="attributes+,+quotes"]
 ----
-Sentence fragment starting with a capital letter.
+Information and services representing an entity from a given viewpoint
 
-Then we add more content. All ending with full stops. There is more to say about this. Yet another sentence.
+EXAMPLE 1: examples of information are properties (e.g. maximum temperature), actual parameters (e.g. actual velocity), events (e.g. notification of status change), schematics (electrical), and visualization information (2D and 3D drawings).
 
-NOTE: We can highlight information with a NOTE. Even more than one, then you would numerate them like NOTE 1 etc.
+EXAMPLE 2: examples of services are asset services (for example providing the history of the configuration data or providing the actual velocity) and asset related services (for example providing a simulation).
 
-EXAMPLE 1: We can also give an examples.
+EXAMPLE 3: examples of viewpoints are mechanical, electrical, or commercial characteristics.
 
-EXAMPLE 2: Or two.
+SOURCE: IEC 63278-1:2023, editorial changes
+----
 
-EXAMPLE 3: All numbered accordingly.
+=== NOTE
 
-Or we can use ordered or unordered lists. Like:
-1. A list item
+TBD
+
+=== EXAMPLE
+
+TBD
+
+=== SOURCE
+
+TBD
+
+=== Lists
+
+TBD
+
+=== Line breaks
+
+TBD
+
+[[summary-long-descriptions]]
+=== Summary
+
+Items to structure your description:
+
+* In capital letters, followed by a colon, one-lined, preceded and followed by line breaks:
+** `NOTE` +
+If several are required: numerate them – NOTE 1, NOTE 2, etc.
+** `EXAMPLE` +
+If several are required: numerate them – EXAMPLE 1, EXAMPLE 2, etc.
+** `SOURCE` +
+If several are required: numerate them – SOURCE 1, SOURCE 2, etc.
+* Ordered lists
+* Unordered lists
+* Line breaks, using Turtle's built-in triple quote syntax `"""`
+
+.Elements a long description could include
+[source,text]
+// [source,text,subs="attributes+,+quotes"]
+----
+Sentence fragment starting with a capital letter, no article, and ending without a full stop
+
+Then, add more content. Use complete sentences and end them with full stops.
+
+NOTE: Highlight information with a NOTE. If you need more than one, numerate them, for example, with NOTE 1, NOTE 2, NOTE 3, etc.
+
+EXAMPLE 1: You can also provide examples. If there is only one example, do not add a number, just use EXAMPLE.
+
+EXAMPLE 2: Another example. Note that every example is separated by line breaks.
+
+EXAMPLE 3: Etc.
+
+You can also use ordered or unordered lists.
+
+An example for an ordered list:
+
+1. A list item, starting the list which is preceded and followed by a line break
 2. Another list item
+2.1 A sub item
+2.1.1 A sub sub item
+2.1.2 Another sub sub item
+2.2 Another sub item
+3. A list item
 
-And we can add sources if our definition is taken from another source. For example:
-[SOURCE: IEC TS 62443-1-1]
+An example for an unordered list:
 
-Or, if we have changed a source's definition:
-[SOURCE: IEC 63278-1:2023, editorial changes, no examples]
+* A list item
+* Another list item
+** A sub item
+*** A sub sub item
+*** Another sub sub item
+** Another sub item
+* A list item
+
+To be decided: Asterisk or hyphen to start a list item?
+
+- A list item
+- Another list item
+-- A sub item
+--- A sub sub item
+--- Another sub sub item
+-- Another sub item
+- A list item
+
+Add sources if your definition is taken from another source. For example:
+
+SOURCE: IEC TS 62443-1-1
+
+Or, if you adapted a source's original text:
+
+SOURCE: IEC 63278-1:2023, editorial changes, no examples
 ----
 
 ////
@@ -392,21 +503,6 @@ Adding line breaks to the text in the turtle file helps to display the text well
 //TODO To illustrate the last sentence, add a pic of the example description as displayed in AME
 
 ////
-
-
-.Example description for "digital representation"
-[source,text,subs="attributes+,+quotes"]
-----
-Information and services representing an entity from a given viewpoint.
-
-EXAMPLE 1: examples of information are properties (e.g. maximum temperature), actual parameters (e.g. actual velocity), events (e.g. notification of status change), schematics (electrical), and visualization information (2D and 3D drawings).
-
-EXAMPLE 2: examples of services are asset services (for example providing the history of the configuration data or providing the actual velocity) and asset related services (for example providing a simulation).
-
-EXAMPLE 3: examples of viewpoints are mechanical, electrical, or commercial characteristics.
-
-[SOURCE: IEC 63278-1:2023, editorial changes]
-----
 
 [[choosing-a-numeric-type]]
 == Choosing a Numeric Type
