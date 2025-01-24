@@ -28,7 +28,7 @@ on validation and documentation as follows:
 https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/161[Issue on Github].
 
 * Validation of
-  xref:samm-specification:ROOT:characteristics#time-series-characteristic[samm-c:TimeSeries] was
+  xref:ROOT:characteristics#time-series-characteristic[samm-c:TimeSeries] was
   improved: The referenced type is checked by the validation now.
   https://github.com/eclipse-esmf/esmf-sdk/issues/194[Issue on Github].
 
@@ -50,23 +50,23 @@ https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/161[Issue
 ** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0005-rdf-vocabulary.md[Aspect Meta Model RDF Vocabulary]
 ** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0006-unit-catalog.md[Unit Catalog: Use UNECE Recommendation 20]
 
-* Section on xref:samm-specification:ROOT:modeling-guidelines.adoc#declaring-events[Declaring
-  Events] was added; wrong edges in the xref:samm-specification:ROOT:meta-model-elements.adoc[Meta
+* Section on xref:ROOT:modeling-guidelines.adoc#declaring-events[Declaring
+  Events] was added; wrong edges in the xref:ROOT:meta-model-elements.adoc[Meta
   Model Elements overview diagram] were fixed.
   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/104[Issue on Github].
 
-* xref:samm-specification:ROOT:modeling-guidelines.adoc#naming-rules[Naming convention] for Events
+* xref:ROOT:modeling-guidelines.adoc#naming-rules[Naming convention] for Events
   was clarified: Events should use UpperCamelCase, like Aspects, Entities, Constraints and
   Characteristics. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/147[Issue on Github].
 
-* Section on xref:samm-specification:appendix:model-evolution.adoc[Model Evolution] was added in
+* Section on xref:appendix:model-evolution.adoc[Model Evolution] was added in
   appendix. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/82[Issue on
   Github].
 
 * Reference to outdated terminology "leaf Characteristic" was fixed.
   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/pull/215[Issue on Github].
 
-* Japanese sample text in xref:samm-specification:ROOT:datatypes.adoc[Data Types] was fixed.
+* Japanese sample text in xref:ROOT:datatypes.adoc[Data Types] was fixed.
   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/172[Issue on Github].
 
 [[samm-2.1.0-others]]
@@ -104,19 +104,19 @@ re-released as Eclipse Semantic Modeling Framework (ESMF) Semantic Aspect Meta M
   of an element is the local name part of its URI, i.e., the part following the `#` symbol.
 * The meta model elements `Unit`, `QuantityKinds` and their corresponding attributes have been moved
   from the `unit` namespace to the `bamm` namespace. The unit namespace is now solely reserved for
-  the units of the xref:samm-specification:appendix:unitcatalog.adoc#unit-catalog-units[unit
+  the units of the xref:appendix:unitcatalog.adoc#unit-catalog-units[unit
   catalog] itself.
 * The
    https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/src/main/resources/samm/unit/2.0.0/units.ttl[formal
    description (units.ttl)] of the units catalog is now automatically generated from its original
-   source (see xref:samm-specification:ROOT:units.adoc[Units]) and the
+   source (see xref:ROOT:units.adoc[Units]) and the
    https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/esmf-samm-build-plugin/src/main/resources/custom-units.ttl[local adjustments].
 * The `localeCode` and `languageCode` attributes have been moved from the `bamm` namespace to the
   `bamm-c` namespace.
 * Shared model elements have been adjusted:
-** The xref:samm-specification:ROOT:entities.adoc#point-3d[Point3d Entity] has been changed to use
+** The xref:ROOT:entities.adoc#point-3d[Point3d Entity] has been changed to use
    Abstract Properties for its components;
-** The xref:samm-specification:ROOT:entities.adoc#time-series-entity[Time Series Entity] has been
+** The xref:ROOT:entities.adoc#time-series-entity[Time Series Entity] has been
    changed to use an Abstract Property for its `value` component
 * The attributes `bamm:properties`, `bamm:operations` and `bamm:events` on `bamm:Aspect` are now
   optional, i.e., they do not have to be added any more even when they are empty lists.
