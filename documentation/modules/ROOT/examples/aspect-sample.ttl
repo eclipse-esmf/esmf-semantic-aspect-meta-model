@@ -75,6 +75,34 @@
    ) .
 # end::timeseries-declaration[]
 
+# tag::quantity-declaration[]
+:Parameter a samm:Entity ;
+  samm:extends samm-e:Quantity ;
+  samm:properties ( :parameterValue :parameterUnit ) .
+
+:parameterValue a samm:Property ;
+  samm:characteristic :ParameterValueCharacteristic .
+
+:ParameterValueCharacteristic a samm:Characteristic ;
+  samm:dataType xsd:integer .
+
+:parameterUnit a samm:Property ;
+  samm:characteristic samm-c:UnitReference .
+
+:ProcessParameterDetails a samm:Entity ;
+  samm:properties ( :parameter ) .
+
+:parameter a samm:Property ;
+  samm:characteristic [
+    a samm-c:SingleEntity ;
+    samm:dataType :Parameter ;
+  ] .
+
+:TestMeasurement a :Parameter ;
+  :parameterValue 75 ;
+  :parameterUnit unit:kilogram .
+# end::quantity-declaration[]
+
 # tag::enumeration-simple-declaration-string[]
 :Status a samm-c:Enumeration ;
    samm:dataType xsd:string ;
