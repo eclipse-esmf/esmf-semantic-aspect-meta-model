@@ -5,4 +5,5 @@ start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
   - modules/appendix/nav.adoc
+  - modules/release-notes/nav.adoc
   - modules/legal/nav.adoc
