@@ -38,7 +38,3 @@
     a samm-c:SingleEntity ;
     samm:dataType :Parameter ;
   ] .
-
-:TestMeasurement a :Parameter ;
-  :parameterValue 75 ;
-  :parameterUnit unit:kilogram .

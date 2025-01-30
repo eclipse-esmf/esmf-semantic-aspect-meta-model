@@ -408,11 +408,6 @@ Example:
 include::example$aspect-sample.ttl[tag=quantity-declaration]
 ----
 
-TIP: When defining measurements, ensure that both `value` and `unit` properties are always included
-together to maintain semantic integrity. If multiple units are relevant for a given aspect, consider
-defining explicit conversions or constraints to prevent ambiguity in data interpretation.
-
-
 [[declaring-either]]
 ==== Declaring Either
 

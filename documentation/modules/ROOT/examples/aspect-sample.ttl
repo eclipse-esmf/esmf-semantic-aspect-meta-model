@@ -97,10 +97,6 @@
     a samm-c:SingleEntity ;
     samm:dataType :Parameter ;
   ] .
-
-:TestMeasurement a :Parameter ;
-  :parameterValue 75 ;
-  :parameterUnit unit:kilogram .
 # end::quantity-declaration[]
 
 # tag::enumeration-simple-declaration-string[]
