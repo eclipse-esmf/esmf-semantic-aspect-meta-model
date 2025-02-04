@@ -14,8 +14,10 @@
 @prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.2.0#> .
 
 samm-e:Quantity a samm:AbstractEntity ;
-  samm:description "A numeric value and the physical unit of the value"@en ;
-  samm:properties ( samm-e:value samm-e:unit ) .
+   samm:preferredName "Quantity"@en ;
+   samm:description "A numeric value and the physical unit of the value."@en ;
+   samm:properties ( samm-e:value samm-e:unit ) .
 
 samm-e:unit a samm:Property ;
-  samm:characteristic samm-c:UnitReference .
+   samm:characteristic samm-c:UnitReference .
+
