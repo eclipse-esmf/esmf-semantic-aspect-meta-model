@@ -75,6 +75,16 @@
    ) .
 # end::timeseries-declaration[]
 
+# tag::quantity-declaration[]
+:Parameter a samm:Entity ;
+  samm:extends samm-e:Quantity ;
+  samm:properties (
+    [ samm:extends samm-e:value ; samm:characteristic :ParameterValueCharacteristic ]
+  ) .
+:ParameterValueCharacteristic a samm:Characteristic ;
+  samm:dataType xsd:integer .
+# end::quantity-declaration[]
+
 # tag::enumeration-simple-declaration-string[]
 :Status a samm-c:Enumeration ;
    samm:dataType xsd:string ;

@@ -376,6 +376,38 @@ related data is explicitly linked and contained in a single Collection. When mod
 two or more collections at root level which contain unrelated data, consider creating separate
 Aspects each containing a single Collection.
 
+[[declaring-quantities]]
+==== Declaring Quantities
+
+The `xref:characteristics.adoc#unit-reference-characteristic[UnitReference]` Characteristic is used
+to associate numeric values with their respective physical units in a structured and explicit way.
+The `Quantity` Entity is designed to represent such a pairing, ensuring that values are always
+interpreted correctly with their corresponding units.
+
+A `Quantity` is defined as an entity that contains a numeric `value` and a corresponding `unit`,
+both of which are essential for properly interpreting the data.
+The `xref:entities.adoc#quantity-entity[QuantityEntity]` is declared as an Abstract Entity,
+providing a standard way to associate measurements with units.
+
+To describe these semantics, the `Quantity` Entity defines the `value` Property as
+an `xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property]`,
+meaning it does not have an inherent Characteristic and must be specialized based on the context.
+The `unit` Property is assigned the `xref:characteristics.adoc#unit-reference-characteristic[Unit Reference]`
+Characteristic, which ensures that it references a recognized unit of measurement.
+
+To define a Quantity for a specific domain, the user should instantiate an Entity that extends
+the Abstract `Quantity` Entity and provide a specialized Characteristic for the `value` Property,
+specifying its data type and semantics according to the domain's needs. For details on how to extend
+an Abstract Entity, please refer
+to the `xref:modeling-guidelines.adoc#declaring-abstract-entities[Declaring Abstract Entities]` section.
+
+Example:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tag=quantity-declaration]
+----
+
 [[declaring-either]]
 ==== Declaring Either
 

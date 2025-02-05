@@ -16,17 +16,18 @@ package org.eclipse.esmf.samm;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import org.apache.jena.rdf.model.Model;
-
 import org.eclipse.esmf.samm.validation.ModelLoader;
 import org.eclipse.esmf.samm.validation.SemanticError;
 import org.eclipse.esmf.samm.validation.ValidationReport;
 import org.eclipse.esmf.samm.validation.Validator;
+
+import org.apache.jena.rdf.model.Model;
 
 public abstract class AbstractShapeTest {
    final static String TEST_NAMESPACE = "org.eclipse.esmf.test";
@@ -134,7 +135,7 @@ public abstract class AbstractShapeTest {
          + "Property's '{$this}' Characteristic's dataType.";
 
    Model loadMetaModelDefinitions( final KnownVersion version ) {
-      return ModelLoader.createModel( List.of(
+      List<String> files = new ArrayList<>( List.of(
             "samm/meta-model/" + version.toVersionString() + "/aspect-meta-model-definitions.ttl",
             "samm/meta-model/" + version.toVersionString() + "/type-conversions.ttl",
             "samm/characteristic/" + version.toVersionString() + "/characteristic-definitions.ttl",
@@ -144,6 +145,12 @@ public abstract class AbstractShapeTest {
             "samm/entity/" + version.toVersionString() + "/Point3d.ttl",
             "samm/unit/" + version.toVersionString() + "/units.ttl"
       ) );
+
+      if ( version.isNewerThan( KnownVersion.SAMM_2_1_0 ) ) {
+         files.add( "samm/entity/" + version.toVersionString() + "/Quantity.ttl" );
+      }
+
+      return ModelLoader.createModel( files );
    }
 
    protected void checkValidity( final String path, final String ttlDefinition, final KnownVersion testedVersion ) {

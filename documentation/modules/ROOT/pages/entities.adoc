@@ -73,3 +73,25 @@ Describes a resource with a relative or absolute location and a MIME type.
 | `samm-e:resource` | The location of the resource |  xref:characteristics.adoc#resource-path-characteristic[Resource Path]
 | `samm-e:mimeType` | The MIME type of the resource | xref:characteristics.adoc#mime-typecharacteristic[MIME Type]
 |===
+
+[[quantity-entity]]
+== Quantity Entity
+[.element-urn]
+--
+{samm-e}Quantity
+--
+
+The Quantity Entity is used to represent a numeric value along with its corresponding physical unit.
+It ensures that values are always explicitly associated with their units, providing clarity and consistency
+in data representation.
+
+This entity is particularly useful when working with dynamic units that are determined at runtime.
+
+See xref:modeling-guidelines.adoc#declaring-quantities[declaring quantities] for usage in an Aspect Model.
+
+[width="100%", options="header", cols="30,40,30"]
+|===
+| Property | Description | Characteristic
+| `samm-e:value` | The numeric value | This is an xref:modeling-guidelines.adoc#abstract-entities-with-abstract-properties[Abstract Property] without a Characteristic
+| `samm-e:unit` | The corresponding physical unit of the value | xref:characteristics.adoc#unit-reference-characteristic[Unit Reference]
+|===

@@ -1,0 +1,23 @@
+# Copyright (c) 2025 Robert Bosch Manufacturing Solutions GmbH
+#
+#  See the AUTHORS file(s) distributed with this work for additional
+#  information regarding authorship.
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.2.0#> .
+
+samm-e:Quantity a samm:AbstractEntity ;
+   samm:preferredName "Quantity"@en ;
+   samm:description "A numeric value and the physical unit of the value."@en ;
+   samm:properties ( samm-e:value samm-e:unit ) .
+
+samm-e:unit a samm:Property ;
+   samm:characteristic samm-c:UnitReference .
+
