@@ -57,12 +57,12 @@ For example:
 |`documentUrl`
 |===
 
-Create names where each capital letter can be trusted to trigger the start of a new name part.
+Create `name` attributes where each capital letter can be trusted to trigger the start of a new name part.
 
-That way, for example, automated case-conversion will produce meaningful names (e.g., when generating code based on an Aspect Model):
+That way, for example, automated case conversion will produce meaningful names (e.g., when generating code based on an Aspect Model):
 
 |===
-|SAMM `name` |Resulting name in generated code (automated case-conversion)
+|SAMM `name` |Resulting name in generated code (automated case conversion)
 
 |{nok-small} `documentURL`
 |`DOCUMENT_U_R_L` {nok-small}
@@ -73,7 +73,8 @@ That way, for example, automated case-conversion will produce meaningful names (
 [[unmistakable-abbreviations]]
 === Unmistakable abbreviations
 
-Avoid abbreviations that are not sufficiently common. Seemingly obvious abbreviations in one context can be misunderstood in different contexts.
+Avoid abbreviations that are not sufficiently common.
+Seemingly obvious abbreviations in one context can be misunderstood in different contexts.
 
 For example:
 
@@ -82,12 +83,12 @@ For example:
 
 |`temp`
 |Abbreviation unclear; not recommended. (Could mean "temperature" or "temporary".)
-|Abbreviating “minimum” or “maximum” by `min` or `max` is common enough and therefore acceptable.
+|Abbreviating “minimum” or “maximum” by `min` or `max` is common enough and, therefore, acceptable.
 |`minTemperature` +
 `maxSpeed`
 |===
 
-Using unmistakable abbreviations also applies for <<abbreviations-in-descriptions,description texts>>.
+Using unmistakable abbreviations also applies to <<abbreviations-in-descriptions,Description texts>>.
 
 [[no-redundant-prefix]]
 === No redundant prefix
@@ -104,25 +105,26 @@ Avoid prefixes that repeat a domain (the namespace) an Aspect Model belongs to.
 `fooXyz` +
 etc. +
 &nbsp; +
-Full identifier of such a Property: +
+Complete identifier of such a Property: +
 `urn:samm:foo.myapplication:1.0.0#fooCount`
 |`count` +
 `id` +
 `xyz` +
 etc. +
 &nbsp; +
-Full identifier of such a Property: +
+Complete identifier of such a Property: +
 `urn:samm:foo.myapplication:1.0.0#count`
 |===
 
-NOTE: The full identifier of a Property is the versioned namespace concatenated with the element name, for example, `urn:samm:foo.myapplication:1.0.0#count`. So the `foo` context (namespace) is already part of `count`&#8203;'s identifier.
+NOTE: The complete identifier of a Property is the versioned namespace concatenated with the element's `name`, for example, `urn:samm:foo.myapplication:1.0.0#count`.
+So, the `foo` context (namespace) is already part of `count`&#8203;'s identifier.
 
 [[no-redundant-suffix]]
 === No redundant suffix
 
 Do not duplicate information.
 
-Avoid suffixes that repeat the SAMM model element type such as Aspect, Property, etc.
+Avoid suffixes that repeat the SAMM model element type, such as Aspect, Property, etc.
 
 |===
 |{nok-small} DON'T |{ok-small} DO
@@ -137,12 +139,12 @@ Result in TTL file: +
 `:Movement a samm:Aspect ;`
 |===
 
-TIP: To distinguish between, for example, an Entity and a related Characteristic, it is acceptable to add a corresponding suffix.
+TIP: To distinguish between, for example, an Entity and a related Characteristic, it is acceptable to add corresponding suffixes.
 
 [[meaningful-names]]
 === Meaningful names (reduce technical debt)
 
-Choose meaningful names for your model elements to foster reusability and avoid technical debt.
+Choose meaningful names for your model elements to foster reuseability and avoid technical debt.
 
 That means:
 
@@ -153,7 +155,7 @@ That means:
 
 TIP: Meaningful names improve code readability and maintainability, whereas arbitrary names make understanding and modifying the model harder in the long run.
 
-Meaningfulness also applies for the `description` attribute; see <<no-repeat-preferredname>>.
+Regarding meaningfulness, see also the details given for the `description` attribute at <<no-repeated-preferredname>>.
 
 [[add-payload-names-for-properties]]
 === Payload names for Properties
@@ -169,7 +171,7 @@ NOTE: Do not rename Properties just for the sake of a short runtime payload.
 
 An Aspect with exactly one Property on root level which holds a Collection Characteristic can be perceived as a "Collection Aspect".
 Data sets provided by such an Aspect may be very large.
-This also applies for other Characteristics, i.e., the List, Set, Sorted Set, and Time Series Characteristics.
+This also applies to other Characteristics, i.e., the List, Set, Sorted Set, and Time Series Characteristics.
 
 For a "Collection Aspect", consider the following naming advice for the Property itself and for the corresponding Aspect.
 
@@ -225,27 +227,39 @@ Choose a Preferred Name that is precise and easy to understand.
 
 [TIP]
 ====
-Future users might encounter the Preferred Name, for example:
+People might encounter the Preferred Name, for example:
 
-* As a user of an Aspect Model--in a documentation generated from the Aspect Model
+* As a user of an Aspect Model--in documentation generated from the Aspect Model
 * As a user of a software solution--in a user interface of an application that was built based on the Aspect Model
 ====
-
 
 [[separate-words]]
 === Separate words
 
 Should you copy and paste an element's `name` to use it as the `preferredName`, adapt it accordingly.
 
-For example, if the `name` consists of more than one word, written in camel case, separate it into two words:
+For example, if the `name` consists of more than one word, written in camel case, separate it into the respective words.
 
-* `name`: `machineTemperature`
-* `preferredName`: `machine temperature`
+.Examples of Preferred Names derived from the `name` attributes of the model elements
+[source,turtle,subs="attributes+,+quotes"]
+----
+:plantId a samm:Property ;
+   samm:preferredName "plant ID"@en ;
+
+:machineTmperature a samm:Property ;
+   samm:preferredName "machine temperature"@en ;
+
+:euTaxonomyDisclosureStatement a samm:Property ;
+   samm:preferredName "EU taxonomy disclosure statement"@en ;
+
+:ttlFileName a samm:Property ;
+   samm:preferredName "TTL file name"@en ;
+----
 
 [[no-article]]
 === No article
 
-While an article and a noun can be combined, they do not automatically form a name.
+While an article and a noun can be combined, they do not automatically _belong_ together.
 
 Therefore, avoid articles in Preferred Names.
 
@@ -260,59 +274,81 @@ a machine temperature
 [[capitalization-as-in-dictionary]]
 === Capitalization: as in dictionary
 
-In English, capital letters are typically reserved for proper names. Therefore, your `preferredName` usually begins with a lowercase letter, just as you would find the words in a dictionary.
+Apply dictionary-style wording.
 
-Even if the words form a familiar acronym, such as ECU for engine control unit, the term _engine control unit_ itself is not a proper name and is therefore written in lowercase.
+That means:
 
-[NOTE]
-====
-By using words the same way they would be listed in a dictionary, the `preferredName` attribute is flexible to be used in further applications. For example:
+* Do not apply any artificial capitalization.
+* Put the words as they would be listed in a dictionary.
 
-* To complete an orthographically correct sentence or pop-up message in a user interface, it can be used as-is.
-* To appear as a tooltip in a user interface, standing alone, it can be parsed towards capitalization (typically: sentence case, starting the tooltip with a capital letter).
-====
+NOTE: In English, capital letters are reserved for *proper nouns*.
 
-*Rationale* Once a Preferred Name is capitalized--in sentence case or title case--it can't be reverted to its dictionary form. This is because the capitalization obscures proper names. To avoid this, input the Preferred Name in lowercase, as it would appear in a dictionary. The only exceptions are proper names, which should be capitalized as they usually would be.
+A term such as "engine control unit":
 
-That way, the Preferred Name string can always be parsed towards capitalization (where needed) while still being able to correctly complete sentences in, for example, UI messages.
+* *Is not a proper noun.* Therefore, following the dictionary, it is written in lowercase: _engine control unit_.
+* *May have an acronym,* such as "ECU" for _engine control unit_. +
+If required in a Preferred Name, an acronym ("ECU") remains in capital letters: _engine control unit (ECU)_.
 
 For example:
 
 |===
 |{nok-small} DON'T |{ok-small} DO
 
+|`Engine Control Unit (ECU)` +
+`Engine control unit (ECU)` +
+|`engine control unit (ECU)`
+|`plant Id` +
+`Plant ID` +
+`Plant Id`
+|`plant ID`
+|`ttl file name` +
+`TTL File Name`
+|`TTL file name`
+|`EU Taxonomy Disclosure Statement` +
+`EU Taxonomy disclosure statement`
+|`EU taxonomy disclosure statement`
 |`Machine Temperature` +
 `Machine temperature`
 |`machine temperature`
 |`Allow Duplicates` +
 `Allow duplicates` +
 |`allow duplicates`
-|`Engine Control Unit (ECU)` +
-`Engine control unit (ECU)` +
-|`engine control unit (ECU)`
-|`Plant ID` +
-`Plant Id` +
-`plant Id`
-|`plant ID`
 |===
 
-TIP: For other languages, the same practice applies: put the words for the Preferred Name as you would encounter them in a dictionary (except for proper names).
+Examples with proper nouns:
+
+|===
+|{nok-small} DON'T |{ok-small} DO
+
+|`Planned September Batch`
+|`planned September batch`
+|`Monday Delivery Report`
+|`Monday delivery report`
+|===
+
+For languages other than English, the same practice applies: put the words for the Preferred Name as they would be listed in a dictionary.
 
 For example, in German:
 
 |===
 |{nok-small} DON'T |{ok-small} DO
 
-|`maschinentemperatur` +
-`Maschinen-Temperatur` +
-`die Maschinentemperatur` +
-`eine Maschinentemperatur`
+|`Maschinen-Temperatur` +
+`die Maschinentemperatur`
 |`Maschinentemperatur`
 |`Erlaube Duplikate` +
 |`erlaube Duplikate`
 |===
 
+*Rationale* By using words the same way they would be listed in a dictionary, the `preferredName` attribute is flexible to be used in further applications, for example:
 
+* To complete an orthographically correct sentence, e.g., in a pop-up message within a user interface. +
+(The Preferred Name can be *used as-is*.)
+* To stand alone, e.g., to appear as a tooltip in a user interface. +
+(The Preferred Name can be *parsed towards* the desired capitalization style--sentence case or title case.)
+
+NOTE: Once a Preferred Name is artificially capitalized--whether in sentence case or title case--it can't be reverted (parsed back) to its dictionary form.
+This is because the applied capitalization obscures proper nouns.
 
 [[the-description-attribute]]
 == The `description` attribute
@@ -333,11 +369,14 @@ For optimal results, consider the following best practices:
 * <<no-this-preferred-name>>
 * <<no-the>>
 * <<triple-quotes>>
-* <<add-sources>>
+* <<keep-indentation>>
+* <<new-line>>
 * <<markdown-where-needed>>
-* <<notes-markdown>>
 * <<lists-markdown>>
+* <<notes-markdown>>
 * <<examples-markdown>>
+* <<sources-markdown>>
+* <<markdown-blockquote-summary>>
 
 In addition to that, there are also best practices for:
 
@@ -347,7 +386,7 @@ In addition to that, there are also best practices for:
 [[capitalization-start-uppercase]]
 === Capitalization: start uppercase
 
-A `description` consists at least of a few words forming a phrase or a sentence fragment.
+A `description` consists of at least a few words forming a phrase or a sentence fragment.
 
 Start with an uppercase letter.
 
@@ -384,15 +423,16 @@ Even though it is just a sentence fragment.
 === Writing style: comprehensible, concise
 
 Apply a neutral writing style that is *easy to understand*.
-This fosters usability and reusability of an Aspect Model.
+This fosters the usability and reuseability of an Aspect Model.
 
 Also, be *concise*.
 To get an idea, think of definitions in an IEC/ISO glossary.
 
 [[no-repeated-preferredname]]
-=== Do not just repeat the `preferredName`
+=== Meaningful: do not just repeat the `preferredName`
 
-Write a meaningful description.
+Write a meaningful Description.
+It can consist of only a sentence fragment, or it may be longer—but do not just repeat the Preferred Name for the Description.
 
 |===
 |Example model element |{nok-small} DON'T |{ok-small} DO
@@ -410,25 +450,26 @@ Regarding meaningfulness, see also the details given for the `name` attribute at
 
 Use abbreviations sparingly.
 
-Only use very common abbreviations; ensure they are not misleading. See also the details provided for the `name` attribute: <<unmistakable-abbreviations>>.
+Only use very common standard abbreviations; ensure they are not misleading.
+See also the details provided for the `name` attribute: <<unmistakable-abbreviations>>.
 
 It is acceptable to use editorial abbreviations such as `e.g.` ("for example") or `i.e.` ("that is") or `etc.` ("and so forth").
 
 [[no-brand-names]]
 === No brand names
 
-Where possible, avoid brand, product, or company names in descriptions.
-
-//TODO: Why
+Where possible, avoid brand, product, or company names in Descriptions.
+This fosters reuseability of shared Aspect Models.
 
 [[no-entity-property]]
 === No "Entity", "Property", etc.
 
-SAMM model element terms like Entity, Property, Aspect, etc. do not belong in the `description`.
+SAMM model element terms like Entity, Property, Aspect, etc. do not belong in the Description.
 
 NOTE: Descriptions must be understandable without knowledge of SAMM.
 
-*Rationale* An Aspect Model may be converted to a different output format or modeling language in which SAMM model elements are unknown. Users unfamiliar with SAMM might find the SAMM terminology confusing.
+*Rationale* An Aspect Model may be converted to a different output format or modeling language in which SAMM model elements are unknown.
+Users unfamiliar with SAMM might find the SAMM terminology confusing.
 
 For example:
 
@@ -441,16 +482,16 @@ For example:
 
 |===
 
-TIP: If you need to mention [.underline]#other# Properties etc. in the description, refer to them by their `preferredName`.
+TIP: If you need to mention [.underline]#other# Properties etc. in the Description, refer to them by their `preferredName`.
 
 [[no-this-preferred-name]]
 === No "This <preferredName> ..."
 
-Do not start the description with "This <preferredName> ..." as this duplicates information.
+Do not start the Description with "This <preferredName> ..." as this duplicates information.
 
-It might even interfere with further usages of the description, for example, when being displayed in a user interface.
+It could even interfere with further usages of the Description, for example, when displayed together with the Preferred Name in a user interface.
 
-TIP: Start the description as if it was a sentence fragment that would complete a sentence like "This model element is a/the ..." or just "This model element ...".
+TIP: Start the Description as if it was a sentence fragment that would complete a sentence like "This model element is a/the ..." or just "This model element ...".
 
 For example:
 
@@ -468,7 +509,7 @@ Preferred Name: `Material Demand ID`
 [[no-the]]
 === No "The ..."
 
-Avoid starting the `description` with an article (where possible).
+Avoid starting the Description with an article (where possible).
 
 |===
 |Example model element |{nok-small} DON'T |{ok-small} DO
@@ -481,9 +522,12 @@ Avoid starting the `description` with an article (where possible).
 [[triple-quotes]]
 === Triple quotes in TTL file
 
-For those working with Aspect Models as TTL files, reading descriptions along one long line does not help with grasping a description's meaning. Also long lines hide content far beyond the screen which makes it difficult to skim through TTL files.
+For those working with Aspect Models as Turtle (TTL) files, reading Descriptions along one long line does not help to grasp a Description's meaning.
+In addition, long lines hide content far beyond the screen width, which makes it difficult to skim through TTL files.
 
-Therefore, use the TTL triple quotes operator to mark the description as a section with line breaks.
+Therefore, use the TTL triple quotes operator to mark the Description as a section with line breaks.
+
+See also: <<new-line>>.
 
 .Example: Use triple quotes
 [source,turtle,subs="attributes+,+quotes"]
@@ -500,255 +544,322 @@ Therefore, use the TTL triple quotes operator to mark the description as a secti
    samm-c:values ( "green" "yellow" "red" ) .
 ----
 
-[[add-sources]]
-=== Add sources
+[[keep-indentation]]
+=== Indentation in TTL file
 
-To link to resources for further reference, use the xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[the `samm:see` attribute].
+Indent the Description content given within the triple quotes.
+See also <<triple-quotes>>.
 
-In the `description`, mention any sources that you have cited within the description.
+Use the three-blank indentation of Turtle (TTL) files.
 
-.Example: Indicating a definition's source (one line)
+.Example: Keep the indentation
 [source,turtle,subs="attributes+,+quotes"]
 ----
-samm:description "Information and services representing an entity from a given viewpoint. [SOURCE: IEC 63278-1:2023, editorial changes, no examples]"@en ;
+:TrafficLight a samm-c:Enumeration ;
+##   ##samm:preferredName "warning level"@en ;
+   samm:description """
+   ##   ##Represents speed of position change.
+   ##   ##Within specification, it turns green.
+   ##   ##Within tolerance, it turns yellow.
+   ##   ##Outside specification, it turns red.
+      """@en ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "green" "yellow" "red" ) .
 ----
 
-.Example: Indicating a definition's source (multiple lines, recommended)
+[[new-line]]
+=== New sentence, new line
+
+Stick to the general best practice of starting every sentence on a new line.
+
+With *one sentence per line*, any changes to a sentence will be treated on sentence level (instead of paragraph level) when working with TTL files and Git.
+
+[[markdown-where-needed]]
+=== Markdown where needed
+
+Optionally, use Markdown (CommonMark) to:
+
+* <<lists-markdown, List items>> in:
+** Ordered lists
+** Unordered lists
+* Highlight paragraphs such as:
+** <<notes-markdown, Notes>>
+** <<examples-markdown, Examples>>
+** <<sources-markdown, Sources>>
+** For a quick overview, see <<markdown-blockquote-summary>>.
+
+Try your Markdown syntax with
+https://spec.commonmark.org/dingus/?text=For%20the%20Description%20attribute%20in%20SAMM%20Aspect%20Models%2C%20optionally%20use%20Markdown.%0A%0AList%20items%20in%3A%0A*%20Ordered%20lists%0A*%20Unordered%20lists%0A%0AHighlight%20paragraphs%20such%20as%3A%0A*%20Notes%0A*%20Examples%0A%0ATry%20it!%0A[the CommonMark dingus.^]
+
+.Example: Markdown blockquote syntax for providing several examples and acknowledging the cited source
 [source,turtle,subs="attributes+,+quotes"]
 ----
+samm:preferredName "digital representation"@en ;
 samm:description """
    Information and services representing an entity from a given viewpoint.
-   [SOURCE: IEC 63278-1:2023, editorial changes, no examples]
+   > EXAMPLE 1: Examples of information are properties (e.g., maximum temperature), actual parameters (e.g., actual velocity), events (e.g., notification of status change), schematics (electrical), and visualization information (2D and 3D drawings).
+
+   > EXAMPLE 2: Examples of services are asset services (for example, providing the history of the configuration data or providing the actual velocity) and asset-related services (for example, providing a simulation).
+
+   > EXAMPLE 3: Examples of viewpoints are mechanical, electrical, or commercial characteristics.
+
+   > SOURCE: IEC 63278-1:2023, editorial changes
    """@en ;
 ----
 
-[TIP]
-====
-To provide the source you have cited, use parentheses and the term SOURCE, followed by a colon.
-[source,text,subs="attributes+,+quotes"]
-----
-[SOURCE: ...]
-----
-====
+https://spec.commonmark.org/dingus/?text=%20%20%20Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%20%20%20%3E%20EXAMPLE%201%3A%20examples%20of%20information%20are%20properties%20(e.g.%20maximum%20temperature)%2C%20actual%20parameters%20(e.g.%20actual%20velocity)%2C%20events%20(e.g.%20notification%20of%20status%20change)%2C%20schematics%20(electrical)%2C%20and%20visualization%20information%20(2D%20and%203D%20drawings).%0A%0A%20%20%20%3E%20EXAMPLE%202%3A%20examples%20of%20services%20are%20asset%20services%20(for%20example%20providing%20the%20history%20of%20the%20configuration%20data%20or%20providing%20the%20actual%20velocity)%20and%20asset%20related%20services%20(for%20example%20providing%20a%20simulation).%0A%0A%20%20%20%3E%20EXAMPLE%203%3A%20examples%20of%20viewpoints%20are%20mechanical%2C%20electrical%2C%20or%20commercial%20characteristics.%0A%0A%20%20%20%3E%20SOURCE%3A%20IEC%2063278-1%3A2023%2C%20editorial%20changes%0A[Try it^]
 
-Further examples:
+[[lists-markdown]]
+=== Use lists (Markdown)
 
+To use lists within the `description` attribute, use the Markdown list syntax.
+
+.Example: Markdown syntax for an ordered list
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   1. Create an ordered list
+   2. By using numbers
+   3. And dot delimiters
+   4. Conformant to the CommonMark specification
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%201.%20Create%20an%20ordered%20list%0A%20%20%202.%20By%20using%20numbers%0A%20%20%203.%20And%20dot%20delimiters%0A%20%20%204.%20Conformant%20to%20the%20CommonMark%20specification%0A[Try it^]
+
+.Example: Markdown syntax for an unordered list
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   * Create an unordered list
+   * (Also known as bullet list)
+   * By using asterisks
+   * Conformant to the CommonMark specification
+
+   After a blank line, some more lorem ipsum description text.
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%20*%20Create%20an%20unordered%20list%0A%20%20%20*%20(Also%20known%20as%20bullet%20list)%0A%20%20%20*%20By%20using%20asterisks%0A%20%20%20*%20Conformant%20to%20the%20CommonMark%20specification%0A%0A%20%20%20After%20a%20blank%20line%2C%20some%20more%20lorem%20ipsum%20description%20text.%0A[Try it^]
+
+Go back to the <<markdown-where-needed>> overview.
+
+[[notes-markdown]]
+=== Add notes (Markdown)
+
+To add one or more notes within the `description` attribute, use the Markdown blockquote syntax.
+
+TIP: Use *NOTE:* as a prefix. +
+(While not required by Markdown, this practice helps distinguish notes, examples, and sources in Aspect Models.)
+
+*When to use?* A "note" provides further information that requires extra attention.
+
+.Example: Markdown blockquote syntax for adding a note
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   > NOTE: A note detailing further info.
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%20%3E%20NOTE%3A%20A%20note%20detailing%20further%20info.%0A[Try it^]
+
+.Example: Markdown blockquote syntax for adding a note with several sentences
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   > NOTE: The note starts here.
+   > On TTL source-code level, write every sentence in a new line.
+   > This helps reviewing TTL source code changes (due to line-based diffs by Git).
+   > When parsed, for example, to HTML output, the note will be displayed as concurrent text, without line breaks.
+   >
+   > To force line breaks within a note, add a blank line.
+   >
+   > Do not be lazy:
+   >
+   > Explicitly add the > character for each new line of the note.
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%20%3E%20NOTE%3A%20The%20note%20starts%20here.%0A%20%20%20%3E%20On%20TTL%20source-code%20level%2C%20write%20every%20sentence%20in%20a%20new%20line.%0A%20%20%20%3E%20This%20helps%20reviewing%20TTL%20source%20code%20changes%20(due%20to%20line-based%20diffs%20by%20Git).%0A%20%20%20%3E%20When%20parsed%2C%20for%20example%2C%20to%20HTML%20output%2C%20the%20note%20will%20be%20displayed%20as%20concurrent%20text%2C%20without%20line%20breaks.%0A%20%20%20%3E%0A%20%20%20%3E%20To%20force%20line%20breaks%20within%20a%20note%2C%20add%20a%20blank%20line.%0A%20%20%20%3E%0A%20%20%20%3E%20Do%20not%20be%20lazy%3A%0A%20%20%20%3E%0A%20%20%20%3E%20Explicitly%20add%20the%20%3E%20character%20for%20each%20new%20line%20of%20the%20note.%0A[Try it^]
+
+.Example: Markdown blockquote syntax for adding several notes
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   > NOTE: A note detailing further info.
+
+   Important: Add a blank line before you add further description text.
+   > NOTE: Another note.
+   Further description text. Ooops! Without a blank line between note and further description text, text will be interpreted as if still being part of the note.
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%20%3E%20NOTE%3A%20A%20note%20detailing%20further%20info.%0A%0A%20%20%20Important%3A%20Add%20a%20blank%20line%20before%20you%20add%20further%20description%20text.%0A%20%20%20%3E%20NOTE%3A%20Another%20note.%0A%20%20%20Further%20description%20text.%20Ooops!%20Without%20a%20blank%20line%20between%20note%20and%20further%20description%20text%2C%20text%20will%20be%20interpreted%20as%20if%20still%20being%20part%20of%20the%20note.%0A[Try it^]
+
+Go back to the <<markdown-where-needed>> overview.
+
+[[examples-markdown]]
+=== Provide examples (Markdown)
+
+To provide examples within the `description` attribute, use the Markdown blockquote syntax.
+
+TIP: Use *EXAMPLE:* as a prefix. +
+(While not required by Markdown, this practice helps distinguish notes, examples, and sources in Aspect Models.)
+
+*When to use?* An "example" details one or more specific examples for a definition or explanation that was given before.
+
+.Example: Markdown blockquote syntax for providing an example
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   > EXAMPLE: Providing some example.
+
+   After a blank line, some more lorem ipsum description text.
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%20%3E%20EXAMPLE%3A%20Providing%20some%20example.%0A%0A%20%20%20After%20a%20blank%20line%2C%20some%20more%20lorem%20ipsum%20description%20text.%0A[Try it^]
+
+.Example: Markdown blockquote syntax for providing several examples
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text.
+   > EXAMPLE 1: Providing some example.
+
+   > EXAMPLE 2: After a blank line, providing another example for the given description.
+   > Another sentence of the example.
+   >
+   > After a line break, the last example sentence.
+
+   After a blank line, some more lorem ipsum description text.
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text.%0A%20%20%20%3E%20EXAMPLE%201%3A%20Providing%20some%20example.%0A%0A%20%20%20%3E%20EXAMPLE%202%3A%20After%20a%20blank%20line%2C%20providing%20another%20example%20for%20the%20given%20description.%0A%20%20%20%3E%20Another%20sentence%20of%20the%20example.%0A%20%20%20%3E%0A%20%20%20%3E%20After%20a%20line%20break%2C%20the%20last%20example%20sentence.%0A%0A%20%20%20After%20a%20blank%20line%2C%20some%20more%20lorem%20ipsum%20description%20text.%0A[Try it^]
+
+Go back to the <<markdown-where-needed>> overview.
+
+[[sources-markdown]]
+=== Acknowledge sources (Markdown)
+
+To indicate the cited sources used within the `description` attribute, use the Markdown blockquote syntax.
+
+TIP: Use *SOURCE:* as a prefix. +
+(While not required by Markdown, this practice helps distinguish notes, examples, and sources in Aspect Models.)
+
+*When to use?* A "source" acknowledges a source that was cited in the Description.
+
+NOTE: To generally link to related resources for further reference, use xref:ROOT:modeling-guidelines.adoc#attributes-that-all-model-elements-have[the `samm:see` attribute].
+
+.Example: Markdown blockquote syntax for indicating a cited source
+[source,turtle,subs="attributes+,+quotes"]
+----
+samm:description """
+   Lorem ipsum description text, citing a source.
+   > SOURCE: Indicate source, optionally add [a link](https://www.example.com)
+   """@en ;
+----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Lorem%20ipsum%20description%20text%2C%20citing%20a%20source.%0A%20%20%20%3E%20SOURCE%3A%20Indicate%20source%2C%20optionally%20add%20%5Ba%20link%5D(https%3A%2F%2Fwww.example.com)%0A[Try it^]
+
+.Example descriptions acknowledging cited sources
+[source,turtle,subs="attributes+,+quotes"]
+----
+<...>
+   samm:preferredName "digital representation"@en ;
+   samm:description """
+      Information and services representing an entity from a given viewpoint.
+      > SOURCE: IEC 63278-1:2023, editorial changes, no examples
+      """@en ;
+   <...>
+
+<...>
+   samm:preferredName "service"@en ;
+   samm:description """
+      Distinct part of the functionality that is provided by an entity through interfaces.
+      > SOURCE: IEC 63278-1:2023; IEC 60050-741:2020, 741-01-28
+      """@en ;
+   <...>
+
+<...>
+   samm:preferredName "system"@en ;
+   samm:description """
+      Interacting, interrelated, or interdependent elements forming a complex whole.
+      > SOURCE: IEC 63278-1:2023; IEC TS 62443-1-1:2009, 3.2.123
+      """@en ;
+   <...>
+----
+
+https://spec.commonmark.org/dingus/?text=%23%20Digital%20representation%0A%20%20%20Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%20%20%20%3E%20SOURCE%3A%20IEC%2063278-1%3A2023%2C%20editorial%20changes%2C%20no%20examples%0A%0A%23%20Service%0A%20%20%20Distinct%20part%20of%20the%20functionality%20that%20is%20provided%20by%20an%20entity%20through%20interfaces.%0A%20%20%20%3E%20SOURCE%3A%20IEC%2063278-1%3A2023%3B%20IEC%2060050-741%3A2020%2C%20741-01-28%0A%0A%23%20System%0A%20%20%20Interacting%2C%20interrelated%2C%20or%20interdependent%20elements%20forming%20a%20complex%20whole.%0A%20%20%20%3E%20SOURCE%3A%20IEC%2063278-1%3A2023%3B%20IEC%20TS%2062443-1-1%3A2009%2C%203.2.123%0A[Try it^] – This roughly sketches how the Preferred Name could be parsed and combined with the Description within an output.
+
+
+////
 .Example description for "service"
 [source,turtle,subs="attributes+,+quotes"]
 ----
 samm:description """
    Distinct part of the functionality that is provided by an entity through interfaces.
-   [SOURCE: IEC 63278-1:2023; IEC 60050-741:2020, 741-01-28]
+
+   > SOURCE: IEC 63278-1:2023; IEC 60050-741:2020, 741-01-28
    """@en ;
 ----
+
+https://spec.commonmark.org/dingus/?text=%20%20%20Distinct%20part%20of%20the%20functionality%20that%20is%20provided%20by%20an%20entity%20through%20interfaces.%0A%0A%20%20%20%3E%20SOURCE%3A%20IEC%2063278-1%3A2023%3B%20IEC%2060050-741%3A2020%2C%20741-01-28%0A[Try it^]
 
 .Example description for "system"
 [source,turtle,subs="attributes+,+quotes"]
 ----
 samm:description """
    Interacting, interrelated, or interdependent elements forming a complex whole.
-   [SOURCE: IEC 63278-1:2023; IEC TS 62443-1-1:2009, 3.2.123]
+
+   > SOURCE: IEC 63278-1:2023; IEC TS 62443-1-1:2009, 3.2.123
    """@en ;
 ----
 
-// TODO await decision
-
-CAUTION: ##Okay to promote sources for citations like that? (= without Markdown)## -- For Markdown versions, these would be options: (copy paste link below)
-
-.Link for tryout (copy & paste to browser)
-[source,text]
-----
-https://spec.commonmark.org/dingus/?text=Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0A%5BSOURCE%3A%20%5BIEC%2063278-1%3A2023%5D(http%3A%2F%2Fexample.com)%2C%20editorial%20changes%2C%20no%20examples%5D%0A%0A---%0A%0AInformation%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0A%3E%20%5BSOURCE%3A%20%5BIEC%2063278-1%3A2023%5D(http%3A%2F%2Fexample.com)%2C%20editorial%20changes%2C%20no%20examples%5D%0A%0A---%0A%0A%3E%20Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0A%5BSOURCE%3A%20%5BIEC%2063278-1%3A2023%5D(http%3A%2F%2Fexample.com)%2C%20editorial%20changes%2C%20no%20examples%5D%0A%0A---%0A%0A%3E%20Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%3E%0A%3E%20%5BSOURCE%3A%20%5BIEC%2063278-1%3A2023%5D(http%3A%2F%2Fexample.com)%2C%20editorial%20changes%2C%20no%20examples%5D%0A%0A---%0A%0AInformation%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0ASource%3A%20%0A~~~%0A%5BIEC%2063278-1%3A2023%5D(http%3A%2F%2Fexample.com)%2C%20editorial%20changes%2C%20no%20examples%0A~~~%0A%0A---%0A%0A~~~%0AInformation%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0A%5BSOURCE%3A%20IEC%2063278-1%3A2023%5D(http%3A%2F%2Fexample.com)%2C%20editorial%20changes%2C%20no%20examples%0A~~~%0A%0A%20%0A
-----
-
-[[markdown-where-needed]]
-=== Markdown where needed
-
-Where needed, use Markdown (CommonMark https://spec.commonmark.org/0.31.2/[0.31.2]) to:
-
-* Highlight text in blockquotes (such as notes or examples)
-* List items in:
-** Ordered lists
-** Unordered lists
-
-[[notes-markdown]]
-=== Notes (Markdown)
-
-.Example: Add a note (Markdown)
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description """
-   Sentence fragment ending with a period.
-   > A note detailing further info.
-
-   More description text.
-
-   > Another note.
-   > Note that such notes do not come with determining titles.
-   > They don't say "NOTE" or anything.
-   """@en ;
-----
-
-[[lists-markdown]]
-=== Lists (Markdown)
-
-.Example: Use an ordered list (Markdown)
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description """
-   Some description text that needs an ordered list.
-   1. Followed by
-   2. That ordered list
-   3. Created By
-   4. Using numbers and dot delimiters
-   5. Conformant to the CommonMark specification
-   """@en ;
-----
-
-.Example: Use an unordered list (Markdown)
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description """
-   Some description text that needs an unordered list.
-   * Followed by
-   * That unordered list (or bullet list)
-   * Created By
-   * Using asterisks
-   * Conformant to the CommonMark specification
-   """@en ;
-----
-
-[[examples-markdown]]
-=== Examples (Markdown)
-
-###TBD###
-
-//TODO await decision
-
-##Option 1--with blockquotes--they can have working URLs##
-
-.Example: Use blockquotes to provide examples
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description """
-   Information and services representing an entity from a given viewpoint.
-
-   > EXAMPLE 1: examples of information are properties (e.g. maximum temperature), actual parameters (e.g. actual velocity), events (e.g. notification of status change), schematics (electrical), and visualization information (2D and 3D drawings).
-
-   > EXAMPLE 2: examples of services are asset services (for example providing the history of the configuration data or providing the actual velocity) and asset related services (for example providing a simulation).
-
-   > EXAMPLE 3: examples of viewpoints are mechanical, electrical, or commercial characteristics.
-
-   [SOURCE: IEC 63278-1:2023, editorial changes]
-   """@en ;
-----
-
-https://spec.commonmark.org/dingus/?text=Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0A%3E%20EXAMPLE%201%3A%20examples%20of%20information%20are%20properties%20(e.g.%20maximum%20temperature)%2C%20actual%20parameters%20(e.g.%20actual%20velocity)%2C%20events%20(e.g.%20notification%20of%20status%20change)%2C%20schematics%20(electrical)%2C%20and%20visualization%20information%20(2D%20and%203D%20drawings).%0A%0A%3E%20EXAMPLE%202%3A%20examples%20of%20services%20are%20asset%20services%20(for%20example%20providing%20the%20history%20of%20the%20configuration%20data%20or%20providing%20the%20actual%20velocity)%20and%20asset%20related%20services%20(for%20example%20providing%20a%20simulation).%0A%0A%3E%20EXAMPLE%203%3A%20examples%20of%20viewpoints%20are%20mechanical%2C%20electrical%2C%20or%20commercial%20characteristics.%0A%0A%5BSOURCE%3A%20IEC%2063278-1%3A2023%2C%20editorial%20changes%5D[Try it (preview HTML code & example output)]
-
-##Option 2--with fenced code block--they can't contain clickable URLs##
-
-.Example: Use fenced code blocks to provide examples
-[source,turtle]
-----
-samm:description """
-   Information and services representing an entity from a given viewpoint.
-
-   ~~~
-   EXAMPLE 1: examples of information are properties (e.g. maximum temperature), actual parameters (e.g. actual velocity), events (e.g. notification of status change), schematics (electrical), and visualization information (2D and 3D drawings).
-   ~~~
-
-   ~~~
-   EXAMPLE 2: examples of services are asset services (for example providing the history of the configuration data or providing the actual velocity) and asset related services (for example providing a simulation).
-   ~~~
-
-   ~~~
-   EXAMPLE 3: examples of viewpoints are mechanical, electrical, or commercial characteristics.
-   ~~~
-
-   [SOURCE: IEC 63278-1:2023, editorial changes]
-   """@en ;
-----
-
-.Link for tryout (copy & paste to browser)
-[source,text]
-----
-https://spec.commonmark.org/dingus/?text=%20%20%20Information%20and%20services%20representing%20an%20entity%20from%20a%20given%20viewpoint.%0A%0A%20%20%20~~~%0A%20%20%20EXAMPLE%201%3A%20examples%20of%20information%20are%20properties%20(e.g.%20maximum%20temperature)%2C%20actual%20parameters%20(e.g.%20actual%20velocity)%2C%20events%20(e.g.%20notification%20of%20status%20change)%2C%20schematics%20(electrical)%2C%20and%20visualization%20information%20(2D%20and%203D%20drawings).%0A%20%20%20~~~%0A%0A%20%20%20~~~%0A%20%20%20EXAMPLE%202%3A%20examples%20of%20services%20are%20asset%20services%20(for%20example%20providing%20the%20history%20of%20the%20configuration%20data%20or%20providing%20the%20actual%20velocity)%20and%20asset%20related%20services%20(for%20example%20providing%20a%20simulation).%0A%20%20%20~~~%0A%0A%20%20%20~~~%0A%20%20%20EXAMPLE%203%3A%20examples%20of%20viewpoints%20are%20mechanical%2C%20electrical%2C%20or%20commercial%20characteristics.%0A%20%20%20~~~%0A%0A%20%20%20%5BSOURCE%3A%20IEC%2063278-1%3A2023%2C%20editorial%20changes%5D
-----
-
-
-CAUTION: ##Which one?## (Consider: Design decision was for "fenced code block = option 2. But: uses more space in TTL and cannot have working links as clickable URLs are typically not activated for the <code> tag in HTML.--*Still stick to 2/fenced code block?*--Is that even "right", semantically? We won't have actual code examples in Aspect Models, will we?)
+https://spec.commonmark.org/dingus/?text=%20%20%20Interacting%2C%20interrelated%2C%20or%20interdependent%20elements%20forming%20a%20complex%20whole.%0A%0A%20%20%20%3E%20SOURCE%3A%20IEC%2063278-1%3A2023%3B%20IEC%20TS%2062443-1-1%3A2009%2C%203.2.123%0A[Try it^]
 
 ////
-=== Trash
 
-.Example
-[source,turtle,subs="attributes+,+quotes"]
-----
-samm:description "Sentence fragment ending with a period."@en ;
-----
+Go back to the <<markdown-where-needed>> overview.
 
+[[markdown-blockquote-summary]]
+=== Markdown blockquote summary
 
-.Elements a long description could include
-[source,text]
-// [source,text,subs="attributes+,+quotes"]
-----
-Sentence fragment starting with a capital letter, no article, and ending with a period.
+The following table indicates how to employ the Markdown blockquote syntax to convey notes, examples, and sources within the `description` attribute.
 
-Then, add more content. Use complete sentences and end them with full stops.
+|===
+|Markdown syntax |Recommended prefix |Example
 
-NOTE: Highlight information with a NOTE. If you need more than one, numerate them, for example, with NOTE 1, NOTE 2, NOTE 3, etc.
+|`>`
+|`NOTE:`
+|`> NOTE: This provides further information that also needs some extra attention, which is why such a piece of information is highlighted as a "note".`
 
-EXAMPLE 1: You can also provide examples. If there is only one example, do not add a number, just use EXAMPLE.
+|`>`
+|`EXAMPLE:`
+|`> EXAMPLE: This details an example for a given definition.`
 
-EXAMPLE 2: Another example. Note that every example is separated by line breaks.
+|`>`
+|`SOURCE:`
+|`> SOURCE: This acknowledges a source that was cited in the Description--optionally including a [link](https://www.example.com).`
 
-EXAMPLE 3: Etc.
+|===
 
-You can also use ordered or unordered lists.
+How to use the Markdown blockquote syntax:
 
-An example for an ordered list:
+* Explicitly start each line with the `>` character. (Recommended)
+* To add more content after the blockquote element, add a blank line after the blockquote element. (Required)
 
-1. A list item, starting the list which is preceded and followed by a line break
-2. Another list item
-2.1 A sub item
-2.1.1 A sub sub item
-2.1.2 Another sub sub item
-2.2 Another sub item
-3. A list item
+TIP: All Markdown blockquote elements--notes, examples, and sources--can contain URLs in Markdown notation.
 
-An example for an unordered list:
-
-* A list item
-* Another list item
-** A sub item
-*** A sub sub item
-*** Another sub sub item
-** Another sub item
-* A list item
-
-To be decided: Asterisk or hyphen to start a list item?
-
-- A list item
-- Another list item
--- A sub item
---- A sub sub item
---- Another sub sub item
--- Another sub item
-- A list item
-
-Add sources if your definition is taken from another source. For example:
-
-SOURCE: IEC TS 62443-1-1
-
-Or, if you adapted a source's original text:
-
-SOURCE: IEC 63278-1:2023, editorial changes, no examples
-----
-
-
-//TODO To illustrate the last sentence, add a pic of the example description as displayed in AME
-
-////
+Go back to the <<markdown-where-needed>> overview.
 
 [[choosing-a-numeric-type]]
 == Choosing a Numeric Type
