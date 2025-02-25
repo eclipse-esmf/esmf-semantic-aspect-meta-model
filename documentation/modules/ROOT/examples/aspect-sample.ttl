@@ -109,6 +109,79 @@
    samm-c:values ( "2010-01-01"^^xsd:date "2012-05-07"^^xsd:date "2018-03-08"^^xsd:date ) .
 # end::enumeration-simple-declaration-date[]
 
+# tag::value-declaration[]
+:ValueOne a samm:Value ;
+   samm:value 1;
+   samm:preferredName "ValueOne Preferred Name"@en ;
+   samm:description "The value one description"@en ;
+   samm:see <https://en.wikipedia.org/wiki/One> .
+# end::value-declaration[]
+
+# tag::value-in-example-value-additional[]
+:valueWithProperty a samm:Property ;
+   samm:exampleValue :ValueOne ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:integer ;
+   ] .
+
+:ValueOne a samm:Value ;
+   samm:value 1;
+   samm:preferredName "ValueOne Preferred Name"@en ;
+   samm:description "The value one description"@en ;
+   samm:see <https://en.wikipedia.org/wiki/One> .
+# end::value-in-example-value-additional[]
+
+# tag::value-in-example-value-anonymous[]
+:propertyWithExampleValue a samm:Property ;
+   samm:exampleValue [
+      a samm:Value ;
+      samm:description "Some Description"@en ;
+      samm:value 2 ;
+   ] ;
+   samm:characteristic [
+      a samm:Characteristic ;
+      samm:dataType xsd:integer ;
+   ] .
+# end::value-in-example-value-anonymous[]
+
+# tag::enumeration-value-type-in-value-single-instance[]
+:SomeValueEnum a samm-c:Enumeration ;
+   samm:name "SomeValueEnum" ;
+   samm:preferredName "Some Value Enum"@en ;
+   samm:description "An enumeration of integers"@en ;
+   samm:dataType xsd:integer ;
+   samm-c:values ( :ValueOne ) .
+
+:ValueOne a samm:Value ;
+   samm:value 1 ;
+   samm:preferredName "ValueOne Preferred Name"@en ;
+   samm:description "The value one description"@en ;
+   samm:see <https://en.wikipedia.org/wiki/One> .
+# end::enumeration-value-type-in-value-single-instance[]
+
+# tag::enumeration-value-type-in-value-mixed-instance[]
+:SomeValueEnum a samm-c:Enumeration ;
+   samm:name "SomeValueEnum" ;
+   samm:preferredName "Some Value Enum"@en ;
+   samm:description "An enumeration of integers"@en ;
+   samm:dataType xsd:integer ;
+   samm-c:values (
+      :ValueOne         # A reference to a globally defined samm:Value
+      2                 # A direct literal value
+      [
+        a samm:Value ;  # An inline complex value with additional metadata
+        samm:value 3
+      ]
+   ) .
+
+:ValueOne a samm:Value ;
+   samm:value 1 ;
+   samm:preferredName "ValueOne Preferred Name"@en ;
+   samm:description "The value one description"@en ;
+   samm:see <https://en.wikipedia.org/wiki/One> .
+# end::enumeration-value-type-in-value-mixed-instance[]
+
 # tag::enumeration-complex-declaration[]
 :Results a samm-c:Enumeration ;
    samm:dataType :Result ;

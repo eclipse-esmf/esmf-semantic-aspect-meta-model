@@ -290,24 +290,24 @@ samm:PropertyShape
       sh:minCount 1 ;
       sh:maxCount 1 ;
       sh:class samm:Characteristic ;
-      sh:maxCount 1 ;
       sh:name "characteristic" ;
       sh:description "The Characteristic describing the semantics of the Property." ;
    ] ;
    sh:property [
       sh:order 4 ;
       sh:path samm:exampleValue ;
-      sh:nodeKind sh:Literal ;
       sh:sparql [
          a sh:SPARQLConstraint ;
          sh:message "The datatype '{?value}' of the exampleValue neither matches nor can be cast to the Property's '{$this}' Characteristic's dataType." ;
          sh:prefixes samm:prefixDeclarations ;
          sh:select """
-            select $this ?value ?code ?highlight
+            select $this ?value ?exampleValue ?providedType ?characteristicDataType ?code ?highlight
             where {
                $this samm:exampleValue ?exampleValue .
                $this samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?characteristicDataType .
-               bind( datatype( ?exampleValue ) as ?providedType )
+               optional { ?exampleValue a samm:Value ; samm:value ?innerValue . }
+               bind( coalesce(?innerValue, ?exampleValue) as ?actualValue )
+               bind( datatype(?actualValue) as ?providedType )
                filter( ?providedType not in (
                   xsd:string,
                   xsd:boolean,
@@ -374,8 +374,10 @@ samm:PropertyShape
          select $this ?exampleValue ?code
             where {
                $this samm:exampleValue ?exampleValue .
-               bind( datatype( ?exampleValue ) as ?providedType )
-               filter ( ?providedType = xsd:boolean && ( str( ?exampleValue ) != "true" && str( ?exampleValue ) != "false" ) )
+               optional { ?exampleValue a samm:Value ; samm:value ?innerValue . }
+               bind( coalesce(?innerValue, ?exampleValue) as ?actualValue )
+               bind( datatype(?actualValue) as ?providedType )
+               filter ( ?providedType = xsd:boolean && ( str(?actualValue) != "true" && str(?actualValue) != "false" ) )
                bind('ERR_EXAMPLE_VALUE_NOT_ALLOWED' AS ?code)
             }
          """
@@ -1024,3 +1026,14 @@ samm:ConstrainListTypeUsageShape
          """
       ]
    ] .
+
+samm:ValueShape
+  a sh:NodeShape ;
+  sh:targetClass samm:Value ;
+  sh:property [
+    sh:path samm:value ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:name "value" ;
+    sh:description "A single constant value or link to another resource." ;
+  ] .

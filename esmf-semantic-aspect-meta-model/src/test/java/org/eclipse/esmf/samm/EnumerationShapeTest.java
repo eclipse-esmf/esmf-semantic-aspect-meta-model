@@ -18,17 +18,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import org.eclipse.esmf.samm.validation.SemanticError;
 
-public class EnumerationShapeTest extends AbstractShapeTest {
+class EnumerationShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testEnumerationValidationExpectSuccess( final KnownVersion metaModelVersion ) {
+   void testEnumerationValidationExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "enumeration-shape", "TestEnumeration", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
+   void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestEnumerationMissingRequiredProperties";
 
@@ -42,7 +42,7 @@ public class EnumerationShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testValueIsNotOfDefinedDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
+   void testValueIsNotOfDefinedDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestEnumerationValueIsNotOfDefinedDataType";
 
@@ -56,7 +56,7 @@ public class EnumerationShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testValueIsNotALiteralTypeExpectFailure( final KnownVersion metaModelVersion ) {
+   void testValueIsNotALiteralTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestEnumerationValueIsNotALiteralType";
 
