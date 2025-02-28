@@ -514,9 +514,10 @@ samm-c:EnumerationShape
              $this samm-c:values ?values .
              $this samm:dataType ?definedDataType .
              ?values rdf:rest*/rdf:first ?item .
-             bind( datatype( ?item ) as ?literalDataType ) .
-             bind( strlen( str( ?literalDataType ) ) as ?literalDataTypeLength ) .
-             filter( ( ?literalDataType != ?definedDataType ) && ( ?literalDataTypeLength > 0 ) ) .
+             optional { ?item a samm:Value ; samm:value ?innerValue . }
+             bind( coalesce( datatype(?innerValue), datatype(?item) ) AS ?literalDataType ) .
+             filter( strlen(str(?literalDataType)) > 0 ) .
+             filter( ?literalDataType != ?definedDataType ) .
              bind( 'ERR_WRONG_DATATYPE' as ?code )
              bind( ?item as ?highlight )
            }
