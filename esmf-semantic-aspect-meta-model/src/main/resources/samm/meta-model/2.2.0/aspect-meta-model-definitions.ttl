@@ -156,7 +156,7 @@ samm:parameters a mmm:Attribute ;
 
 samm:exampleValue a mmm:Attribute ;
    rdfs:label "exampleValue" ;
-   rdfs:comment "An exemplary value the Property can take on that helps to understand the intended meaning of the property better. This attribute supports both scalar literal values (e.g., xsd:string or xsd:float) and entity-based example values (i.e., references to instances of samm:Value enriched with semantic metadata). The data type of the samm:exampleValue must be convertable to the effective data type of the Property’s Characteristic." ;
+   rdfs:comment "An exemplary value the Property can take on that helps to understand the intended meaning of the property better. This attribute supports both scalar literal values (e.g., xsd:string or xsd:float), an anonymous described scalar value and value references example values (i.e., references to instances of samm:Value enriched with semantic metadata). The data type of the samm:exampleValue must be convertable to the effective data type of the Property’s Characteristic." ;
    rdfs:domain samm:Property ;
    rdfs:range rdfs:Resource .
 

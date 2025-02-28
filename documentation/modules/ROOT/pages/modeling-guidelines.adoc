@@ -162,10 +162,9 @@ that all model elements have], Properties have the following attributes:
 | Attributes | Description | Required
 | `samm:characteristic` | The xref:characteristics.adoc#characteristics[Characteristic] describing
   this Property. | {ok}
-| `samm:exampleValue` | An exemplary value the Property can take on that helps to understand the
-intended meaning of the property better. This attribute supports both scalar literal values
-(e.g., `xsd:string`, `xsd:float`) and entity-based example values (i.e., references to instances of
-xref:modeling-guidelines.adoc#value-type[samm:Value]
+| `samm:exampleValue` | An exemplary value that the Property can take, helping to clarify the intended meaning of the Property.
+This attribute supports both scalar literal values (e.g., xsd:string, xsd:float), an anonymous described scalar value,
+and value references that point to example values (i.e., references to instances of xref:modeling-guidelines.adoc#value-type[samm:Value]).
 enriched with semantic metadata). In either case, the data type of the `samm:exampleValue` must be convertible to
 the effective data type defined by the Property's Characteristic. For example, if the Characteristic's `samm:dataType`
 is `xsd:int`, a value with the type `xsd:short` is also acceptable. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
@@ -179,7 +178,7 @@ Example with Literal type:
 include::example$aspect-sample.ttl[tags=property-declaration]
 ----
 
-Example with entity-based type:
+Example with value reference type:
 
 [source,turtle,subs="attributes+"]
 ----
@@ -322,13 +321,13 @@ or external reference—for a specific value.
 
 There are several ways to define values in an Enumeration:
 
-- Single Global Instance:
+- Value Reference example:
 [source,turtle,subs="attributes+"]
 ----
-include::example$aspect-sample.ttl[tags=enumeration-value-type-in-value-single-instance]
+include::example$aspect-sample.ttl[tags=enumeration-value-type-is-value-reference]
 ----
 
-- Mixed Value Definitions:
+- Multiple (anonymous described scalar value and value reference) Value Definitions:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=enumeration-value-type-in-value-mixed-instance]

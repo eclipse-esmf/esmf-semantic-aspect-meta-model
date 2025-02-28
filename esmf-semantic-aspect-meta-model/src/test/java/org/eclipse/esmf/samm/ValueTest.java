@@ -25,13 +25,13 @@ class ValueTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_2_0" )
-   void valueWithProperty ( final KnownVersion metaModelVersion ) {
-      checkValidity( "value-shape", "ValueWithProperty", metaModelVersion );
+   void referenceValueWithProperty ( final KnownVersion metaModelVersion ) {
+      checkValidity( "value-shape", "ReferenceValueWithProperty", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_2_0" )
-   void valueWithExampleValue ( final KnownVersion metaModelVersion ) {
-      checkValidity( "value-shape", "ValueWithExampleValue", metaModelVersion );
+   void anonymousDescribedValueInExampleValue ( final KnownVersion metaModelVersion ) {
+      checkValidity( "value-shape", "AnonymousDescribedValueInExampleValue", metaModelVersion );
    }
 }
