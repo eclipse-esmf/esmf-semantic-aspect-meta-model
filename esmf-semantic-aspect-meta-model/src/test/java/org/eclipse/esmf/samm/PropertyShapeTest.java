@@ -18,19 +18,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import org.eclipse.esmf.samm.validation.SemanticError;
 
-public class PropertyShapeTest extends AbstractShapeTest {
+class PropertyShapeTest extends AbstractShapeTest {
    private final String FOCUS_NODE = testNamespacePrefix + "testProperty";
    private final String PROPERTY_TO_BE_REFINED_URN = testNamespacePrefix + "propertyToBeRefined";
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testPropertyValidationExpectSuccess( final KnownVersion metaModelVersion ) {
+   void testPropertyValidationExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "property-shape", "TestProperty", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testMissingRequiredPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
+   void testMissingRequiredPropertiesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( messageMissingRequiredProperty,
@@ -41,13 +41,13 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testRecursivePropertyWithOptionalExpectSuccess( final KnownVersion metaModelVersion ) {
+   void testRecursivePropertyWithOptionalExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "property-shape", "TestPropertyWithRecursivePropertyWithOptional", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testEmptyPropertiesExpectFailureSamm_1_0_0( final KnownVersion metaModelVersion ) {
+   void testEmptyPropertiesExpectFailureSamm_1_0_0( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( messageEmptyProperty,
@@ -62,7 +62,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
-   public void testEmptyPropertiesExpectFailureSamm_2_0_0( final KnownVersion metaModelVersion ) {
+   void testEmptyPropertiesExpectFailureSamm_2_0_0( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForPreferredName = new SemanticError( messageEmptyProperty,
@@ -75,7 +75,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testLanguageStringNotUniqueExpectFailure( final KnownVersion metaModelVersion ) {
+   void testLanguageStringNotUniqueExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForPreferredName = new SemanticError( messageLangNotUnique,
@@ -88,7 +88,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testInvalidLanguageStringsExpectFailure( final KnownVersion metaModelVersion ) {
+   void testInvalidLanguageStringsExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForPreferredName = new SemanticError(
@@ -102,14 +102,14 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_2_0" )
-   public void testExampleValueOnPropertyWithValidLangStringValueExpectFailure(
+   void testExampleValueOnPropertyWithValidLangStringValueExpectFailure(
          final KnownVersion metaModelVersion ) {
       checkValidity("property-shape", "TestPropertyWithValidLangStringExampleValue", metaModelVersion);
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testMultipleExampleValuesExpectFailure( final KnownVersion metaModelVersion ) {
+   void testMultipleExampleValuesExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForExampleValue = new SemanticError(
@@ -122,7 +122,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testExampleValueOnPropertyWithUndefinedCharacteristicExpectFailure(
+   void testExampleValueOnPropertyWithUndefinedCharacteristicExpectFailure(
          final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
@@ -135,7 +135,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_2_0" )
-   public void testExampleValueOnPropertyWithInvalidBooleanFormatExpectFailure(
+   void testExampleValueOnPropertyWithInvalidBooleanFormatExpectFailure(
          final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final SemanticError resultForExampleValue = new SemanticError( messageWrongBooleanValues,
@@ -147,13 +147,13 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testRefinePropertyWithoutCharacteristicExpectSuccess( final KnownVersion metaModelVersion ) {
+   void testRefinePropertyWithoutCharacteristicExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "property-shape", "TestPropertyRefiningPropertyWithoutCharacteristic", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testRefinePropertyWithCharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
+   void testRefinePropertyWithCharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError result = new SemanticError(
@@ -165,7 +165,7 @@ public class PropertyShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "versionsUpToIncluding1_0_0" )
-   public void testUnrefinedPropertyWithoutCharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
+   void testUnrefinedPropertyWithoutCharacteristicExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError result = new SemanticError(
@@ -176,8 +176,8 @@ public class PropertyShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   public void testNonScalarExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
+   @MethodSource( value = "versionsUpToIncluding2_1_0" )
+   void testNonScalarExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( messageNoLiteral, FOCUS_NODE, sammUrns.exampleValueUrn, violationUrn,
@@ -185,9 +185,19 @@ public class PropertyShapeTest extends AbstractShapeTest {
       expectSemanticValidationErrors( "property-shape", "TestPropertyWithEntityExampleValue", metaModelVersion, resultForName );
    }
 
+   /**
+    * This test method verifies that the changes related to non-scalar example values,
+    * introduced in meta-model versions starting from 2_2_0, are correctly handled.
+    */
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_2_0" )
+   void testNonScalarExampleValueExpectSuccess( final KnownVersion metaModelVersion ) {
+      checkValidity( "property-shape", "TestPropertyWithEntityExampleValue", metaModelVersion );
+   }
+
    @ParameterizedTest
    @MethodSource( value = "versionsStartingWith2_0_0" )
-   public void testInvalidScalarExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
+   void testInvalidScalarExampleValueExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final SemanticError resultForName = new SemanticError( messageWrongExampleValueType, FOCUS_NODE, sammUrns.exampleValueUrn,

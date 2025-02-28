@@ -162,21 +162,29 @@ that all model elements have], Properties have the following attributes:
 | Attributes | Description | Required
 | `samm:characteristic` | The xref:characteristics.adoc#characteristics[Characteristic] describing
   this Property. | {ok}
-| `samm:exampleValue` | An exemplary value the Property can take on that helps to understand the
-intended meaning of the property better. This can only be set for Properties with scalar data types
-(e.g., `xsd:string` or `xsd:float`, but not Entities). The data type of the `samm:exampleValue` must
-be convertible to the effective data type of the Property's Characteristic. For example, if the
-Characteristic's `samm:dataType` is `xsd:int`, `xsd:short` is also a valid type for the
-`samm:exampleValue`. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
+| `samm:exampleValue` | An exemplary value that the Property can take, helping to clarify the intended meaning of the Property.
+This attribute supports both scalar literal values (e.g., xsd:string, xsd:float), an anonymous described scalar value,
+and value references that point to example values (i.e., references to instances of xref:modeling-guidelines.adoc#value-type[samm:Value]).
+In either case, the data type of the `samm:exampleValue` must be convertible to the effective data type defined by the Property's Characteristic.
+For example, if the Characteristic's `samm:dataType`
+is `xsd:int`, a value with the type `xsd:short` is also acceptable. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
 for more details. | {nok}
 |===
 
-Example:
+Example with Literal type:
 
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=property-declaration]
 ----
+
+Example with value reference type:
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=value-in-example-value-additional]
+----
+
 
 [[declaring-characteristics]]
 === Declaring Characteristics
@@ -303,6 +311,28 @@ Example with literal `xsd:date` values:
 ----
 include::example$aspect-sample.ttl[tags=enumeration-simple-declaration-date]
 ----
+
+[[enumeration-with-value-type-in-value]]
+Example Using Value in an Enumeration:
+
+An Enumeration can include complex values to enrich the semantic description of the enumeration items.
+This is especially useful when you want to provide additional metadata—such as a preferred name, description,
+or external reference—for a specific value.
+
+There are several ways to define values in an Enumeration:
+
+- Value Reference example:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-value-type-is-value-reference]
+----
+
+- Multiple (anonymous described scalar value and value reference) Value Definitions:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=enumeration-value-type-in-value-mixed-instance]
+----
+
 
 [[enumeration-with-complex-value]]
 Example with complex values:
@@ -741,6 +771,34 @@ for example:
 ----
 include::example$aspect-sample.ttl[tags=see-dontuse]
 ----
+
+[[value-type]]
+=== Declaring Value
+
+The `samm:Value` type is designed to represent a value enriched with semantic metadata.
+It encapsulates the actual data (which can be a literal or a reference) along with additional descriptive information.
+This type is used to enhance clarity in Enumerations and Properties by allowing you to attach a human-readable label,
+a detailed description, and an external reference to the value.
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=value-declaration]
+----
+
+Also, as an ExampleValue in Property:
+
+ - Additional Value:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=value-in-example-value-additional]
+----
+
+ - Anonymous ExampleValue:
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=value-in-example-value-anonymous]
+----
+
 
 [[optional-properties]]
 === Optional Properties
