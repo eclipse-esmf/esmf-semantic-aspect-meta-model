@@ -1032,7 +1032,7 @@ samm:ValueShape
   sh:targetClass samm:Value ;
   sh:property [
     sh:path samm:value ;
-    sh:minCount 0 ;
+    sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:name "value" ;
     sh:description "A single constant value or link to another resource." ;

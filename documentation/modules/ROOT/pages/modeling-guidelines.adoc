@@ -165,8 +165,8 @@ that all model elements have], Properties have the following attributes:
 | `samm:exampleValue` | An exemplary value that the Property can take, helping to clarify the intended meaning of the Property.
 This attribute supports both scalar literal values (e.g., xsd:string, xsd:float), an anonymous described scalar value,
 and value references that point to example values (i.e., references to instances of xref:modeling-guidelines.adoc#value-type[samm:Value]).
-enriched with semantic metadata). In either case, the data type of the `samm:exampleValue` must be convertible to
-the effective data type defined by the Property's Characteristic. For example, if the Characteristic's `samm:dataType`
+In either case, the data type of the `samm:exampleValue` must be convertible to the effective data type defined by the Property's Characteristic.
+For example, if the Characteristic's `samm:dataType`
 is `xsd:int`, a value with the type `xsd:short` is also acceptable. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
 for more details. | {nok}
 |===
