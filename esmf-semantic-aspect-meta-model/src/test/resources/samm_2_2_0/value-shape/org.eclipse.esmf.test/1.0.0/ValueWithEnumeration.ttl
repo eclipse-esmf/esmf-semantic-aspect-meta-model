@@ -15,15 +15,15 @@
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:SomeValueEnum a samm-c:Enumeration ;
-  samm:name "SomeValueEnum" ;
-  samm:preferredName "Some Value Enum"@en ;
-  samm:description "An enumeration of integers"@en ;
-  samm:dataType xsd:integer ;
-  samm-c:values ( :ValueOne ) .
+:TrafficLight a samm-c:Enumeration ;
+   samm:name "TrafficLight" ;
+   samm:preferredName "Warning Level"@en ;
+   samm:description "Represents if speed of position change is within specification (green), within tolerance (yellow), or outside specification (red)."@en ;
+   samm:dataType xsd:string ;
+   samm-c:values ( :GreenLight ) .
 
-:ValueOne a samm:Value ;
-  samm:value 1;
-  samm:preferredName "ValueOne Preferred Name"@en ;
-  samm:description "The value one description"@en ;
-  samm:see <https://en.wikipedia.org/wiki/One> .
+:GreenLight a samm:Value ;
+   samm:value "green" ;
+   samm:preferredName "Normal"@en ;
+   samm:description "Indicates that the speed of position change is within specification."@en ;
+   samm:see <https://en.wikipedia.org/wiki/Traffic_light> .

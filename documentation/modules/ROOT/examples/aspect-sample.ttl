@@ -110,11 +110,11 @@
 # end::enumeration-simple-declaration-date[]
 
 # tag::value-declaration[]
-:ValueOne a samm:Value ;
-   samm:value 1;
-   samm:preferredName "ValueOne Preferred Name"@en ;
-   samm:description "The value one description"@en ;
-   samm:see <https://en.wikipedia.org/wiki/One> .
+:GreenLight a samm:Value ;
+   samm:value "green" ;
+   samm:preferredName "Normal"@en ;
+   samm:description "Indicates that the speed of position change is within specification."@en ;
+   samm:see <https://en.wikipedia.org/wiki/Traffic_light> .
 # end::value-declaration[]
 
 # tag::value-in-example-value-additional[]
@@ -167,10 +167,10 @@
    samm:description "Represents if speed of position change is within specification (green), within tolerance (yellow), or outside specification (red)."@en ;
    samm:dataType xsd:string ;
    samm-c:values (
-      :GreenLight        # A reference to a globally defined samm:Value
+      :GreenLight        # A reference to named described scalar value
       "yellow"           # A direct literal value
       [
-         a samm:Value ;  # An inline complex value with additional metadata
+         a samm:Value ;  # An anonymous described scalar value with additional metadata
          samm:value "red" ;
          samm:preferredName "Critical Warning"@en ;
          samm:description "Indicates that the position change is outside the specification."@en
