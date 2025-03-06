@@ -314,6 +314,15 @@
     samm:characteristic samm-c:Text .
 # end::see-oid-declaration[]
 
+# tag::see-irdi-declaration[]
+:drillDiameter a samm:Property ;
+    # Reference to IRDI 0173-1#02-AAC895#009
+    samm:see <urn:irdi:0173-1#02-AAC895%23009> ;
+    samm:characteristic :Diameter .
+# end::see-irdi-declaration[]
+
+:Diameter a samm:Characteristic .
+
 # tag::see-dontuse[]
 :organizationPerson a samm:Property ;
     samm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
