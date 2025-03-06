@@ -105,7 +105,7 @@ descriptions to it.
 
 [source,turtle,subs="attributes+,+quotes"]
 ----
-@prefix : urn:samm:{example-ns}.myapplication:1.0.0# .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
 @prefix samm: <{samm}> .
 
 # The colon denotes the namespace as defined in the first @prefix declaration above.
