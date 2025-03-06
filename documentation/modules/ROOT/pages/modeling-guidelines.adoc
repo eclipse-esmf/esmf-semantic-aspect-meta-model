@@ -798,20 +798,18 @@ a detailed description, and an external reference to the value.
 include::example$aspect-sample.ttl[tags=value-declaration]
 ----
 
-Also, as an ExampleValue in Property:
+A value can also be used as `samm:exampleValue` for a Property, either by referencing the value or
+by declaration of an anonymous value:
 
- - Additional Value:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=value-in-example-value-additional]
 ----
 
- - Anonymous ExampleValue:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=value-in-example-value-anonymous]
 ----
-
 
 [[optional-properties]]
 === Optional Properties
