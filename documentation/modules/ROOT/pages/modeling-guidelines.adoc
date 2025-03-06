@@ -763,6 +763,19 @@ xref:samm-specification:appendix:bibliography.adoc#rfc3061[[rfc3061\]], so for e
 include::example$aspect-sample.ttl[tags=see-oid-declaration]
 ----
 
+Another example for a type of unique identifier that is not a URI is the International Registration
+Data Identifier
+(https://eclass.eu/support/technical-specification/structure-and-elements/irdi[IRDI]) as used for
+example by the https://eclass.eu/[ECLASS] classification system. Referencing IRDIs is also done
+using a synthetic URN structure by prefixing them with `urn:irdi:`. However, since a valid IRDI
+always contains two `\#` signs, this alone does not make it a valid URI, which is why the second sign
+needs to be URL-encoded (`#` replaced with `%23`):
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=see-irdi-declaration]
+----
+
 If an external element should be referenced that has no unique identifier, `samm:see` should not be
 used. In this case, refer to the external element in the current model element's `samm:description`,
 for example:
