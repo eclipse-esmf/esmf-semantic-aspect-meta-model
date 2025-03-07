@@ -13,6 +13,126 @@ SPDX-License-Identifier: MPL-2.0
 [[release-notes]]
 = Release Notes - {meta-model-full-name}
 
+[[samm-2.2.0]]
+== Release 2.2.0
+
+[[samm-2.2.0-modeling-features]]
+=== Modeling features and elements
+
+* It is now possible to add `samm:preferredName`, `samm:description` and `samm:see` descriptive
+attributes to namespaces using the `samm:Namespace` pseudo-element declaration. A corresponding
+section xref:ROOT:modeling-guidelines#declaring-namespaces[Declaring Namespaces] was added.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/246[Issue on Github.]
+
+* Introduce new xref:ROOT:entities.adoc#quantity-entity[samm-e:Quantity] Abstract Entity to enable
+xref:ROOT:modeling-guidelines.adoc#declaring-quantities[declaring] explicit relationships between
+values and their units in runtime data.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/316[Issue on Github.]
+
+* Allow declaration and description of scalar values by introducing
+xref:ROOT:modeling-guidelines.adoc#value-type[samm:Value].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/52[Issue on Github.]
+
+[[samm-2.2.0-validation]]
+=== Validation
+
+* xref:ROOT:characteristics.adoc#regular-expression-constraint[samm-c:RegularExpressionConstraint]s
+are now validated for `samm:exampleValue`. https://github.com/eclipse-esmf/esmf-sdk/issues/384[Issue
+on Github.]
+
+* Validate that xref:ROOT:characteristics.adoc#constraint[samm:Constraint] base Constraint can not
+directly be used. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/274[Issue
+on Github.]
+
+* Validate lexical values for `xsd:boolean` and language tags for `rdfs:langString`.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/268[Issue on Github.]
+
+* Validate xref:ROOT:namespaces.adoc[structure of URNs].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/285[Issue on Github.]
+
+[[samm-2.2.0-documentation]]
+=== Documentation
+
+* Clarification of terms and sections
+
+** Consistent use of terms "must" and "should" in the documentation.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/249[Issue on Github.]
+
+** Clarify usage of
+  xref:ROOT:modeling-guidelines.adoc#declaring-abstract-entities[samm:AbstractEntity] as a data
+  type. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/187[Issue on Github.]
+
+** Update documentation on contradicting
+xref:ROOT:characteristics.adoc#length-constraints[samm-c:LengthConstraint]s.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/267[Issue on Github.]
+
+** Clarify validity of models where
+xref:ROOT:characteristics.adoc#length-constraints[samm-c:LengthConstraint]s are combined with
+xref:ROOT:characteristics.adoc#collection-characteristic[samm-c:Collection]s.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/288[Issue on Github.]
+
+** Clarify terms "scale" and "integer" for
+xref:ROOT:characteristics.adoc#fixed-point-constraint[samm-c:FixedPointConstraint].
+https://github.com/eclipse-esmf/esmf-sdk/issues/217[Issue on Github.]
+
+** Specify in detail how prefixes are interpreted in `samm:curie`
+xref:ROOT:datatypes.adoc#samm-curie[values].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/252[Issue on Github.]
+
+** Fix xref:ROOT:datatypes.adoc[example value] for `xsd:int`.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/283[Issue on Github.]
+
+** Fix xref:ROOT:modeling-guidelines#declaring-time-series[samm-c:TimeSeries] example.
+   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/313[Issue on Github.]
+
+** Clarify usage of `xsd` and `rdfs` RDF xref:ROOT:namespaces.adoc#prefixes[prefixes].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/275[Issue on Github.]
+
+** Clarify use of `samm:see` for IRDIs in section
+xref:ROOT:modeling-guidelines.adoc#adding-external-references[Adding external references].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/320[Issue on Github.]
+
+* Improvements of xref:ROOT:payloads.adoc[JSON payload mapping] section
+
+** Provide example for xref:ROOT:payloads.adoc#example[JSON payload mapping].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/121[Issue on Github.]
+
+** Document xref:ROOT:payloads.adoc#characteristics-payload-mappings[mapping] of
+xref:ROOT:characteristics.adoc#either-characteristic[samm-c:Either] Characteristic to JSON payloads.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/271[Issue on Github.]
+
+* Improvements of xref:appendix:best-practices.adoc[Best Practices]
+
+** Greatly improved best practices section on the topics of naming elements, choosing appropriate
+   `samm:preferredName`&#8203;s and writing good `samm:description`&#8203;s. The best practices for
+   descriptions now also state which https://commonmark.org/[CommonMark] Markdown constructs can be
+   used for structuring documentation.
+   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/309[Issue on Github.]
+
+** Add a best practices section on SI vs. imperial units.
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/273[Issue on Github.]
+
+** Explain xref:appendix:best-practices.adoc#reusing-elements[Reusing Elements] in
+   best practices. https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/328[Issue
+   on Github.]
+
+* Architecture decision records
+
+** Define mapping of namespaces and model elements to files:
+   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0007-model-resolution.md[0007 - Model Resolution].
+   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/181[Issue on Github.]
+
+** Specify how copyright and license information is stored in Aspect Models:
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0008-copyright-and-license-information.md[0008 - Storage of copyright and license information in Aspect Models].
+https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/300[Issue on Github.]
+
+[[samm-2.2.0-others]]
+=== Others
+
+* The xref:ROOT:meta-model-elements.adoc[Meta Model Elements] diagram is now colored.
+  https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/290[Issue on Github.]
+
+
 [[samm-2.1.0]]
 == Release 2.1.0
 
@@ -41,14 +161,14 @@ https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/issues/161[Issue
 
 * Architecture decision records were added to properly document important past design decisions.
   https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/pull/243[Issue on Github].
-** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0001-formalism-for-aspect-models.md[Formalism for the definition of Aspect Models: RDF with Turtle syntax]
-** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0002-aspect-model-file-extension.md[Aspect
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0001-formalism-for-aspect-models.md[0001 - Formalism for the definition of Aspect Models: RDF with Turtle syntax]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0002-aspect-model-file-extension.md[0002 - Aspect
     Model File Extension: Use .ttl]
-** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0003-meta-model-specification.md[Formal and informal Meta Model Specification: Specify via SHACL]
-** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0004-urn-as-identifiers.md[Usage
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0003-meta-model-specification.md[0003 - Formal and informal Meta Model Specification: Specify via SHACL]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0004-urn-as-identifiers.md[0004 - Usage
     of URNs as identifiers for model elements]
-** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0005-rdf-vocabulary.md[Aspect Meta Model RDF Vocabulary]
-** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0006-unit-catalog.md[Unit Catalog: Use UNECE Recommendation 20]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0005-rdf-vocabulary.md[0005 - Aspect Meta Model RDF Vocabulary]
+** https://github.com/eclipse-esmf/esmf-semantic-aspect-meta-model/blob/main/documentation/decisions/0006-unit-catalog.md[0006 - Unit Catalog: Use UNECE Recommendation 20]
 
 * Section on xref:ROOT:modeling-guidelines.adoc#declaring-events[Declaring
   Events] was added; wrong edges in the xref:ROOT:meta-model-elements.adoc[Meta
