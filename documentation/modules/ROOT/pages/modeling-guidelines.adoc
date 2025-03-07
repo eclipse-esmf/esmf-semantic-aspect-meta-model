@@ -105,7 +105,7 @@ descriptions to it.
 
 [source,turtle,subs="attributes+,+quotes"]
 ----
-@prefix : urn:samm:{example-ns}.myapplication:1.0.0# .
+@prefix : <urn:samm:{example-ns}.myapplication:1.0.0#> .
 @prefix samm: <{samm}> .
 
 # The colon denotes the namespace as defined in the first @prefix declaration above.
@@ -641,7 +641,7 @@ include::example$extending-entity-declaration-inheritance.ttl[tags=extending-ent
 ----
 
 [[declaring-abstract-entities]]
-==== Declaring Abstract Entities
+=== Declaring Abstract Entities
 
 In contrast to Entities, Abstract Entities cannot directly be instantiated. A Characteristic class may have a type `samm:entity` or `samm:AbstractEntity`. But a Characteristic instance cannot have a type `samm:AbstractEntity`. If there is an instance created from a Characteristic that uses an Abstract Entity as its type, this Characteristic instance's dataType must be a sub-Entity of the Abstract Entity.
 The main use case for Abstract Entities is to share Properties across multiple Entities. This can be achieved through inheritance: Abstract Entities can extend other Entities and Abstract Entities and can themselves be extended in a manner not dissimilar to how abstract classes are used in many programming languages.
@@ -655,7 +655,7 @@ include::example$aspect-sample.ttl[tags=abstract-entity-declaration]
 ----
 
 [[abstract-entities-with-abstract-properties]]
-==== Abstract Entities with Abstract Properties
+=== Abstract Entities with Abstract Properties
 
 When an Abstract Entity needs to be defined with a certain Property, but the modeler using the
 Abstract Entity (i.e., extending it) should be able to decide the Property's Characteristic, the
@@ -763,6 +763,19 @@ xref:samm-specification:appendix:bibliography.adoc#rfc3061[[rfc3061\]], so for e
 include::example$aspect-sample.ttl[tags=see-oid-declaration]
 ----
 
+Another example for a type of unique identifier that is not a URI is the International Registration
+Data Identifier
+(https://eclass.eu/support/technical-specification/structure-and-elements/irdi[IRDI]) as used for
+example by the https://eclass.eu/[ECLASS] classification system. Referencing IRDIs is also done
+using a synthetic URN structure by prefixing them with `urn:irdi:`. However, since a valid IRDI
+always contains two `\#` signs, this alone does not make it a valid URI, which is why the second sign
+needs to be URL-encoded (`#` replaced with `%23`):
+
+[source,turtle,subs="attributes+"]
+----
+include::example$aspect-sample.ttl[tags=see-irdi-declaration]
+----
+
 If an external element should be referenced that has no unique identifier, `samm:see` should not be
 used. In this case, refer to the external element in the current model element's `samm:description`,
 for example:
@@ -785,20 +798,18 @@ a detailed description, and an external reference to the value.
 include::example$aspect-sample.ttl[tags=value-declaration]
 ----
 
-Also, as an ExampleValue in Property:
+A value can also be used as `samm:exampleValue` for a Property, either by referencing the value or
+by declaration of an anonymous value:
 
- - Additional Value:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=value-in-example-value-additional]
 ----
 
- - Anonymous ExampleValue:
 [source,turtle,subs="attributes+"]
 ----
 include::example$aspect-sample.ttl[tags=value-in-example-value-anonymous]
 ----
-
 
 [[optional-properties]]
 === Optional Properties

@@ -91,6 +91,8 @@ xref:samm-specification:appendix:bibliography.adoc#sparql[[sparql\]]):
 * The prefix "samm-c" _must_ be used for the URN `{samm-c}`
 * The prefix "samm-e" _must_ be used for the URN `{samm-e}`
 * The prefix "unit" _must_ be used for the URN `{unit}`
+* The prefix "xsd" _must_ be used for the URL `http://www.w3.org/2001/XMLSchema#`
+* The prefix "rdfs" _must_ be used for the URL `http://www.w3.org/2000/01/rdf-schema#`
 * The empty prefix (":" in RDF/Turtle) _must_ be used for the URN prefix of the current model scope, i.e.
   everything up to and including the `#` of the model elements that are being defined
 * For other elements, use prefixes that _must not_ contain the string `samm`.
