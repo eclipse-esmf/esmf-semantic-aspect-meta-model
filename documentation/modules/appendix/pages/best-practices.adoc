@@ -478,7 +478,7 @@ For example:
 //SOURCE: https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.generic.digital_product_passport/5.0.0/DigitalProductPassport.ttl
 |Entity `Identification`
 |[.underline]#Entity# with identification information of the product with part type information, local identifiers, other codes, and the data carrier.
-|Identification information about the product with part-type information, local identifiers, other codes and the data carrier.
+|Identification information about the product with part-type information, local identifiers, other codes, and the data carrier.
 
 |===
 
