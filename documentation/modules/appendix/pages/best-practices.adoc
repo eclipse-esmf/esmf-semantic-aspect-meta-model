@@ -525,8 +525,7 @@ Avoid starting the Description with an article (where possible).
 Use the TTL triple quotes operator to mark the Description as a section with line breaks.
 
 This avoids having long Descriptions sitting on just one line.
-
-Description sections with line breaks are easier to be grasped for human readers when skimming through TTL files.
+Description sections with line breaks are easier to grasp for human readers when skimming through TTL files.
 
 See also: <<new-line>>.
 
@@ -553,7 +552,7 @@ See also <<triple-quotes>>.
 
 Use the three-blank indentation of SAMM Turtle (TTL) files.
 
-.Example: Stick to the three-blank indentation
+.Example: Stick to SAMM's three-blank indentation
 [source,turtle,subs="attributes+,+quotes"]
 ----
 :TrafficLight a samm-c:Enumeration ;
