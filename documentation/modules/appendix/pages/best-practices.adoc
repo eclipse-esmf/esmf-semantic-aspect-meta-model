@@ -116,7 +116,7 @@ Complete identifier of such a Property: +
 `urn:samm:foo.myapplication:1.0.0#count`
 |===
 
-NOTE: The complete identifier of a Property is the versioned namespace concatenated with the element's `name`, for example, `urn:samm:foo.myapplication:1.0.0#count`.
+NOTE: The complete identifier of a Property is the versioned namespace combined with the element's `name`, for example, `urn:samm:foo.myapplication:1.0.0#count`.
 So, the `foo` context (namespace) is already part of `count`&#8203;'s identifier.
 
 [[no-redundant-suffix]]
@@ -340,7 +340,7 @@ For example, in German:
 |`erlaube Duplikate`
 |===
 
-*Rationale* By using words the same way they would be listed in a dictionary, the `preferredName` attribute is flexible to be used in further applications, for example:
+*Rationale:* By using words the same way they would be listed in a dictionary, the `preferredName` attribute is flexible to be used in further applications, for example:
 
 * To complete an orthographically correct sentence, e.g., in a pop-up message within a user interface. +
 (The Preferred Name can be *used as-is*.)
@@ -468,7 +468,7 @@ SAMM model element terms like Entity, Property, Aspect, etc. do not belong in th
 
 NOTE: Descriptions must be understandable without knowledge of SAMM.
 
-*Rationale* An Aspect Model may be converted to a different output format or modeling language in which SAMM model elements are unknown.
+*Rationale:* An Aspect Model may be converted to a different output format or modeling language in which SAMM model elements are unknown.
 Users unfamiliar with SAMM might find the SAMM terminology confusing.
 
 For example:
@@ -522,10 +522,11 @@ Avoid starting the Description with an article (where possible).
 [[triple-quotes]]
 === Triple quotes in TTL file
 
-For those working with Aspect Models as Turtle (TTL) files, reading Descriptions along one long line does not help to grasp a Description's meaning.
-In addition, long lines hide content far beyond the screen width, which makes it difficult to skim through TTL files.
+Use the TTL triple quotes operator to mark the Description as a section with line breaks.
 
-Therefore, use the TTL triple quotes operator to mark the Description as a section with line breaks.
+This avoids having long Descriptions sitting on just one line.
+
+Description sections with line breaks are easier to be grasped for human readers when skimming through TTL files.
 
 See also: <<new-line>>.
 
@@ -550,9 +551,9 @@ See also: <<new-line>>.
 Indent the Description content given within the triple quotes.
 See also <<triple-quotes>>.
 
-Use the three-blank indentation of Turtle (TTL) files.
+Use the three-blank indentation of SAMM Turtle (TTL) files.
 
-.Example: Keep the indentation
+.Example: Stick to the three-blank indentation
 [source,turtle,subs="attributes+,+quotes"]
 ----
 :TrafficLight a samm-c:Enumeration ;
