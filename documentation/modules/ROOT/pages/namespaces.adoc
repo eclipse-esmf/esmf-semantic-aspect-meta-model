@@ -50,16 +50,16 @@ Identifiers of elements that are defined on the model level -- i.e., Aspects, Pr
 Operations, Characteristics, Events, Units -- _must_ use the following schema:
 
 ....
-urn:samm:<namespace>:<version>#<element-name>
+urn:samm:<namespace-main-part>:<version>#<element-name>
 ....
 
 where the variable parts are interpreted as follows:
 
-* *namespace* -- Defines the hierarchical namespace in which the element resides. This is given in
+* *namespace-main-part* -- Defines the hierarchical namespace part in which the element resides. This is given in
    https://en.wikipedia.org/wiki/Reverse_domain_name_notation[Reverse Domain Name Notation]. To
    avoid confusion with the {meta-model-full-name}, this _should not_ start with
    `org.eclipse.esmf` (unless for the model elements defined by the ESMF
-   project, such as those that are part of SAMM). A namespace shall always be in lowercase.
+   project, such as those that are part of SAMM). A namespace main part shall always be in lowercase.
    It should also contain at least two ASCII letters and should have at least two parts. So a minimal example of a namespace would be 'io.om'.
 * *version* -- The version of the respective namespace, must be given in the form "X.Y.Z", with X, Y
    and Z being integers.
