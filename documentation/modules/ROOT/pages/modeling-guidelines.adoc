@@ -321,16 +321,27 @@ or external reference—for a specific value.
 
 There are several ways to define values in an Enumeration:
 
-- Value Reference example:
+Value references can be used as values:
+
 [source,turtle,subs="attributes+"]
 ----
+include::example$aspect-sample.ttl[tags=enumeration-value-type-common-start]
 include::example$aspect-sample.ttl[tags=enumeration-value-type-is-value-reference]
+include::example$aspect-sample.ttl[tags=enumeration-value-type-common-end]
+
+include::example$aspect-sample.ttl[tags=enumeration-value-green-light]
 ----
 
-- Multiple (anonymous described scalar value and value reference) Value Definitions:
+It's also possible to combine value references, anoymous described scalar values
+and named described scalar values:
+
 [source,turtle,subs="attributes+"]
 ----
+include::example$aspect-sample.ttl[tags=enumeration-value-type-common-start]
 include::example$aspect-sample.ttl[tags=enumeration-value-type-in-value-mixed-instance]
+include::example$aspect-sample.ttl[tags=enumeration-value-type-common-end]
+
+include::example$aspect-sample.ttl[tags=enumeration-value-green-light]
 ----
 
 
