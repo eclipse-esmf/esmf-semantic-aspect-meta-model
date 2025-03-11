@@ -77,12 +77,12 @@
 
 # tag::quantity-declaration[]
 :Parameter a samm:Entity ;
-  samm:extends samm-e:Quantity ;
-  samm:properties (
-    [ samm:extends samm-e:value ; samm:characteristic :ParameterValueCharacteristic ]
-  ) .
+   samm:extends samm-e:Quantity ;
+   samm:properties (
+      [ samm:extends samm-e:value ; samm:characteristic :ParameterValueCharacteristic ]
+   ) .
 :ParameterValueCharacteristic a samm:Characteristic ;
-  samm:dataType xsd:integer .
+   samm:dataType xsd:integer .
 # end::quantity-declaration[]
 
 # tag::enumeration-simple-declaration-string[]
@@ -145,28 +145,17 @@
    ] .
 # end::value-in-example-value-anonymous[]
 
-# tag::enumeration-value-type-is-value-reference[]
+# tag::enumeration-value-type-common-start[]
 :TrafficLight a samm-c:Enumeration ;
-   samm:name "TrafficLight" ;
-   samm:preferredName "Warning Level"@en ;
-   samm:description "Represents if speed of position change is within specification (green), within tolerance (yellow), or outside specification (red)."@en ;
-   samm:dataType xsd:string ;
-   samm-c:values ( :GreenLight ) .
-
-:GreenLight a samm:Value ;
-   samm:value "green" ;
-   samm:preferredName "Normal"@en ;
-   samm:description "Indicates that the speed of position change is within specification."@en ;
-   samm:see <https://en.wikipedia.org/wiki/Traffic_light> .
-# end::enumeration-value-type-is-value-reference[]
-
-# tag::enumeration-value-type-in-value-mixed-instance[]
-:TrafficLight a samm-c:Enumeration ;
-   samm:name "TrafficLight" ;
    samm:preferredName "Warning Level"@en ;
    samm:description "Represents if speed of position change is within specification (green), within tolerance (yellow), or outside specification (red)."@en ;
    samm:dataType xsd:string ;
    samm-c:values (
+# end::enumeration-value-type-common-start[]
+# tag::enumeration-value-type-is-value-reference[]
+      :GreenLight
+# end::enumeration-value-type-is-value-reference[]
+# tag::enumeration-value-type-in-value-mixed-instance[]
       :GreenLight        # A reference to named described scalar value
       "yellow"           # A direct literal value
       [
@@ -175,15 +164,18 @@
          samm:preferredName "Critical Warning"@en ;
          samm:description "Indicates that the position change is outside the specification."@en
       ]
+# end::enumeration-value-type-in-value-mixed-instance[]
+# tag::enumeration-value-type-common-end[]
    ) .
+# end::enumeration-value-type-common-end[]
 
+# tag::enumeration-value-green-light[]
 :GreenLight a samm:Value ;
    samm:value "green" ;
    samm:preferredName "Normal"@en ;
    samm:description "Indicates that the speed of position change is within specification."@en ;
    samm:see <https://en.wikipedia.org/wiki/Traffic_light> .
-
-# end::enumeration-value-type-in-value-mixed-instance[]
+# end::enumeration-value-green-light[]
 
 # tag::enumeration-complex-declaration[]
 :Results a samm-c:Enumeration ;
@@ -191,7 +183,10 @@
    samm-c:values ( :Success :Failed ) .
 
 :Result a samm:Entity ;
-   samm:properties ( :status [ samm:property :description; samm:notInPayload "true"^^xsd:boolean ] ) .
+   samm:properties (
+      :status
+      [ samm:property :description; samm:notInPayload "true"^^xsd:boolean ]
+   ) .
 
 :Success a :Result ;
    :status "SUCCESS" ;
@@ -229,32 +224,32 @@
 
 # tag::extending-entity-declaration[]
 :Student a samm:Entity ;
-    samm:extends :Person ;
-    samm:properties ( :studentNumber ) .
+   samm:extends :Person ;
+   samm:properties ( :studentNumber ) .
 
 :Teacher a samm:Entity ;
-    samm:extends :Person ;
-    samm:properties ( :employeeNumber ) .
+   samm:extends :Person ;
+   samm:properties ( :employeeNumber ) .
 
 :Person a samm:Entity ;
-    samm:properties ( :name :surname ) .
+   samm:properties ( :name :surname ) .
 # end::extending-entity-declaration[]
 
 :studentNumber a samm:Property ;
-    samm:characteristic samm-c:Text .
+   samm:characteristic samm-c:Text .
 
 :employeeNumber a samm:Property ;
-    samm:characteristic samm-c:Text .
+   samm:characteristic samm-c:Text .
 
 :name a samm:Property ;
-    samm:characteristic samm-c:Text .
+   samm:characteristic samm-c:Text .
 
 :surname a samm:Property ;
-    samm:characteristic samm-c:Text .
+   samm:characteristic samm-c:Text .
 
 # tag::abstract-entity-declaration[]
 :VehicleComponent a samm:AbstractEntity ;
-    samm:properties ( :typeNumber :manufacturer ) .
+   samm:properties ( :typeNumber :manufacturer ) .
 
 :Steeringwheel a samm:Entity ;
    samm:extends :VehicleComponent ;
@@ -269,7 +264,7 @@
    samm:characteristic samm-c:Boolean .
 
 :material a samm:Property ;
-    samm:characteristic samm-c:Text .
+   samm:characteristic samm-c:Text .
 
 # tag::operation-declaration[]
 :toggle a samm:Operation ;
@@ -303,30 +298,31 @@
 
 # tag::see-url-declaration[]
 :lastName a samm:Property ;
-    samm:see <https://schema.org/familyName> ;
-    samm:see <http://xmlns.com/foaf/0.1/lastName> ;
-    samm:characteristic samm-c:Text .
+   samm:see <https://schema.org/familyName> ;
+   samm:see <http://xmlns.com/foaf/0.1/lastName> ;
+   samm:characteristic samm-c:Text .
 # end::see-url-declaration[]
 
 # tag::see-oid-declaration[]
 :filterName a samm:Property ;
-    samm:see <urn:oid:1.3.6.1.4.1.1919.1.1.2> ;
-    samm:characteristic samm-c:Text .
+   samm:see <urn:oid:1.3.6.1.4.1.1919.1.1.2> ;
+   samm:characteristic samm-c:Text .
 # end::see-oid-declaration[]
 
 # tag::see-irdi-declaration[]
 :drillDiameter a samm:Property ;
-    # Reference to IRDI 0173-1#02-AAC895#009
-    samm:see <urn:irdi:0173-1#02-AAC895%23009> ;
-    samm:characteristic :Diameter .
+   # Reference to IRDI 0173-1#02-AAC895#009
+   samm:see <urn:irdi:0173-1#02-AAC895%23009> ;
+   samm:characteristic :Diameter .
 # end::see-irdi-declaration[]
 
-:Diameter a samm:Characteristic .
+:Diameter a samm:Characteristic ;
+   samm:dataType xsd:int .
 
 # tag::see-dontuse[]
 :organizationPerson a samm:Property ;
-    samm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
-    samm:characteristic samm-c:Text .
+   samm:description "See ISO/IEC 11179-6:2015(E), section 3.35"@en ;
+   samm:characteristic samm-c:Text .
 # end::see-dontuse[]
 
 # tag::measurement-declaration[]
