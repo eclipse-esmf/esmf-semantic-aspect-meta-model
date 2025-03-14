@@ -17,10 +17,13 @@ SPDX-License-Identifier: MPL-2.0
 
 The following best practices, while not mandatory, are highly recommended for optimal performance and to mitigate potential issues, especially when working with Aspect Models at scale.
 
-[[the-name-attribute]]
-== The `name` attribute
+[[model-element-names]]
+== Model element names
 
-The `name` attribute is mandatory for all model elements.
+This section refers to model element names as described in
+xref:ROOT:namespaces.adoc#aspect-model-element-identifiers-definition[Aspect Model Element
+Identifiers Definition], i.e., the part of a model element's identifier after the `\#` sign of a
+model element URN or after the `:` in the CURIE syntax, respectively.
 
 Use camel-case capitalization, as detailed in the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules].
 
@@ -42,7 +45,8 @@ In addition to that, there are also best practices for:
 [[camel-case-for-acronyms]]
 === Camel case for acronyms
 
-For every part of a `name`, also for acronyms, strictly apply camel-case capitalization as detailed in the  xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules].
+For every part of a model element name, also for acronyms, strictly apply camel-case capitalization
+as detailed in the xref:ROOT:modeling-guidelines.adoc#naming-rules[naming rules].
 
 For example:
 
@@ -57,12 +61,12 @@ For example:
 |`documentUrl`
 |===
 
-Create `name` attributes where each capital letter can be trusted to trigger the start of a new name part.
+Create model element names where each capital letter can be trusted to trigger the start of a new name part.
 
 That way, for example, automated case conversion will produce meaningful names (e.g., when generating code based on an Aspect Model):
 
 |===
-|SAMM `name` |Resulting name in generated code (automated case conversion)
+|Model element name |Resulting name in generated code (automated case conversion)
 
 |{nok-small} `documentURL`
 |`DOCUMENT_U_R_L` {nok-small}
@@ -116,7 +120,7 @@ Complete identifier of such a Property: +
 `urn:samm:foo.myapplication:1.0.0#count`
 |===
 
-NOTE: The complete identifier of a Property is the versioned namespace combined with the element's `name`, for example, `urn:samm:foo.myapplication:1.0.0#count`.
+NOTE: The complete identifier of a Property is the versioned namespace combined with the element's name, for example, `urn:samm:foo.myapplication:1.0.0#count`.
 So, the `foo` context (namespace) is already part of `count`&#8203;'s identifier.
 
 [[no-redundant-suffix]]
@@ -160,7 +164,7 @@ Regarding meaningfulness, see also the details given for the `description` attri
 [[add-payload-names-for-properties]]
 === Payload names for Properties
 
-An expressive Property `name` can be long.
+An expressive Property name can be long.
 
 If you consider a Property's name too long for the runtime payload, xref:ROOT:modeling-guidelines.adoc#payload-names[add a payload name].
 
@@ -215,7 +219,7 @@ For optimal results, consider the following best practices:
 
 In addition to that, there are also best practices for:
 
-* <<the-name-attribute>>
+* <<model-element-names>>
 * <<the-description-attribute>>
 
 [[precise-and-understandable]]
@@ -236,17 +240,17 @@ People might encounter the Preferred Name, for example:
 [[separate-words]]
 === Separate words
 
-Should you copy and paste an element's `name` to use it as the `preferredName`, adapt it accordingly.
+Should you copy and paste an element's name to use it as the `preferredName`, adapt it accordingly.
 
-For example, if the `name` consists of more than one word, written in camel case, separate it into the respective words.
+For example, if the name consists of more than one word, written in camel case, separate it into the respective words.
 
-.Examples of Preferred Names derived from the `name` attributes of the model elements
+.Examples of Preferred Names derived from the model element names of the model elements
 [source,turtle,subs="attributes+,+quotes"]
 ----
 :plantId a samm:Property ;
    samm:preferredName "plant ID"@en ;
 
-:machineTmperature a samm:Property ;
+:machineTemperature a samm:Property ;
    samm:preferredName "machine temperature"@en ;
 
 :euTaxonomyDisclosureStatement a samm:Property ;
@@ -380,7 +384,7 @@ For optimal results, consider the following best practices:
 
 In addition to that, there are also best practices for:
 
-* <<the-name-attribute>>
+* <<model-element-names>>
 * <<the-preferredname-attribute>>
 
 [[capitalization-start-uppercase]]
@@ -443,7 +447,7 @@ It can consist of only a sentence fragment, or it may be longer—but do not jus
 |Set of products sharing similar features.
 |===
 
-Regarding meaningfulness, see also the details given for the `name` attribute at <<meaningful-names>>.
+Regarding meaningfulness, see also the details given for the model element name at <<meaningful-names>>.
 
 [[abbreviations-in-descriptions]]
 === Unmistakable abbreviations
@@ -451,7 +455,7 @@ Regarding meaningfulness, see also the details given for the `name` attribute at
 Use abbreviations sparingly.
 
 Only use very common standard abbreviations; ensure they are not misleading.
-See also the details provided for the `name` attribute: <<unmistakable-abbreviations>>.
+See also the details provided for the model element name: <<unmistakable-abbreviations>>.
 
 It is acceptable to use editorial abbreviations such as `e.g.` ("for example") or `i.e.` ("that is") or `etc.` ("and so forth").
 
