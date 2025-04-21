@@ -14,6 +14,7 @@
 package org.eclipse.esmf.samm;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,10 +22,22 @@ import java.util.Optional;
  * The known versions of the Aspect Meta Model
  */
 public enum KnownVersion {
-   SAMM_1_0_0,
-   SAMM_2_0_0,
-   SAMM_2_1_0,
-   SAMM_2_2_0;
+   SAMM_1_0_0( 1, 0, 0 ),
+   SAMM_2_0_0( 2, 0, 0 ),
+   SAMM_2_1_0( 2, 1, 0 ),
+   SAMM_2_2_0( 2, 2, 0 );
+
+   private final int major;
+   private final int minor;
+   private final int patch;
+   private final String versionString;
+
+   KnownVersion( int major, int minor, int patch ) {
+      this.major = major;
+      this.minor = minor;
+      this.patch = patch;
+      this.versionString = String.format( "%d.%d.%d", major, minor, patch );
+   }
 
    /**
     * Returns this version as a standard version string, e.g. 1.2.3
@@ -32,28 +45,34 @@ public enum KnownVersion {
     * @return version string representation
     */
    public String toVersionString() {
-      return toString().replaceFirst( "SAMM_(\\d+)_(\\d+)_(\\d+)", "$1.$2.$3" );
+      return versionString;
    }
 
    public static Optional<KnownVersion> fromVersionString( final String version ) {
-      return Arrays.stream( KnownVersion.values() )
-            .filter( value -> value.toVersionString().equals( version ) )
+      return Arrays.stream( values() )
+            .filter( v -> v.versionString.equals( version ) )
             .findAny();
    }
 
    public static KnownVersion getLatest() {
-      return Arrays.asList( KnownVersion.values() ).get( KnownVersion.values().length - 1 );
+      return Arrays.stream( values() )
+            .max( Comparator.comparingInt( KnownVersion::versionCode ) )
+            .orElseThrow(); // Should never be empty
    }
 
    public static List<KnownVersion> getVersions() {
-      return Arrays.asList( values() );
+      return List.of( values() );
    }
 
-   public boolean isNewerThan( final KnownVersion otherVersion ) {
-      return toVersionString().compareTo( otherVersion.toVersionString() ) > 0;
+   public boolean isNewerThan( final KnownVersion other ) {
+      return this.versionCode() > other.versionCode();
    }
 
-   public boolean isOlderThan( final KnownVersion otherVersion ) {
-      return toVersionString().compareTo( otherVersion.toVersionString() ) < 0;
+   public boolean isOlderThan( final KnownVersion other ) {
+      return this.versionCode() < other.versionCode();
+   }
+
+   private int versionCode() {
+      return major * 1_000_000 + minor * 1_000 + patch;
    }
 }
