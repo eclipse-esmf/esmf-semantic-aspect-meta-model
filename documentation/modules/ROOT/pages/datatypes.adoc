@@ -13,6 +13,10 @@ SPDX-License-Identifier: MPL-2.0
 [[data-types]]
 = Data Types
 
+This page details *scalar* data types. Such a scalar data type gets used by a Characteristic to further define a Property. 
+
+For modeling Properties that require non-scalar data types, use xref:entities.adoc[Entities].
+
 == Type Hierarchy
 
 The system of types used in the {meta-model-full-name} (and subsequently in the models conforming to
