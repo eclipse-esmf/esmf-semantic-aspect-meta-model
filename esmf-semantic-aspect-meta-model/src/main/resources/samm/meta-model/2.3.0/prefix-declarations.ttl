@@ -59,7 +59,7 @@ samm:prefixDeclarations
 
 samm:jsValidations
    a sh:JSLibrary ;
-   sh:jsLibraryURL "samm://characteristic/2.2.0/characteristic-validations.js"^^xsd:anyURL ;
+   sh:jsLibraryURL "samm://characteristic/2.3.0/characteristic-validations.js"^^xsd:anyURL ;
    sh:jsLibrary samm:languageRegistry .
 
 samm:languageRegistry
