@@ -64,6 +64,10 @@ public abstract class AbstractShapeTest {
       return versionsStartingWith( KnownVersion.SAMM_2_2_0 );
    }
 
+   protected static Stream<KnownVersion> versionsStartingWith2_3_0() {
+      return versionsStartingWith( KnownVersion.SAMM_2_3_0 );
+   }
+
    protected static Stream<KnownVersion> versionsUpToIncluding1_0_0() {
       return versionsUpToIncluding( KnownVersion.SAMM_1_0_0 );
    }

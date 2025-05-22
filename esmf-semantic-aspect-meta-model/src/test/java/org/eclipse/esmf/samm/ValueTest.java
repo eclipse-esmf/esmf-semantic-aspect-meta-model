@@ -17,7 +17,8 @@ class ValueTest extends AbstractShapeTest {
    @MethodSource( "versionsStartingWith2_2_0" )
    void invalidValueDeclarationExpectedFailure( KnownVersion metaModelVersion ) {
       final SemanticError expectedError = new SemanticError( "Property needs to have at least 1 values, but found 0",
-            testNamespacePrefix + "GreenLight", "urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#value", violationUrn, "" );
+            testNamespacePrefix + "GreenLight",
+            "urn:samm:org.eclipse.esmf.samm:meta-model:" + metaModelVersion.toVersionString() + "#value", violationUrn, "" );
 
       expectSemanticValidationErrors( "value-shape", "InvalidValueDeclaration", metaModelVersion, expectedError );
    }
