@@ -542,7 +542,7 @@ samm-c:EnumerationShape
      ] ;
      sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "EnumerationShape '{$this}' contains value: '{?value}' (count: {?count})" ;
+        sh:message "Enumeration '{$this}' contains duplicate value: '{?value}'" ;
         sh:prefixes samm:prefixDeclarations ;
         sh:select """
            select distinct $this ?value ?count
@@ -551,7 +551,7 @@ samm-c:EnumerationShape
                select $this ?value (count(?value) AS ?count)
                where {
                  $this samm-c:values ?list .
-                 ?list rdf:rest*/rdf:first ?value .
+                 ?list rdf:rest*/rdf:first/samm:value? ?value .
                }
                group by $this ?value
                having (?count > 1)
@@ -559,27 +559,6 @@ samm-c:EnumerationShape
            }
         """
      ] ;
-     sh:sparql [
-        a sh:SPARQLConstraint ;
-        sh:message "EnumerationShape '{$this}' contains samm:Value: '{?value}' (count: {?count})" ;
-        sh:prefixes samm:prefixDeclarations ;
-        sh:select """
-          select distinct $this ?value ?count
-          where {
-            {
-              select $this ?value (count(?value) AS ?count)
-              where {
-                $this samm-c:values ?list .
-                ?list rdf:rest*/rdf:first ?node .
-                ?node a samm:Value ;
-                      samm:value ?value .
-              }
-              group by $this ?value
-              having (?count > 1)
-            }
-          }
-        """
-      ] ;
    ] .
 
 samm-c:SingleEntityShape

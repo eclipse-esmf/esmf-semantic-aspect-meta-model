@@ -75,7 +75,7 @@ class EnumerationShapeTest extends AbstractShapeTest {
       final String focusNode = testNamespacePrefix + "TestEnumerationWithDuplicatedValues";
 
       final SemanticError resultForDuplicate = new SemanticError(
-            "EnumerationShape ':TestEnumerationWithDuplicatedValues' contains value: 'OK' (count: 2)",
+            "Enumeration ':TestEnumerationWithDuplicatedValues' contains duplicate value: 'OK'",
             focusNode,
             sammUrns.valuesUrn,
             violationUrn,
@@ -97,7 +97,7 @@ class EnumerationShapeTest extends AbstractShapeTest {
       final String focusNode = testNamespacePrefix + "TestEnumerationWithDuplicatedValueTypes";
 
       final SemanticError resultForDuplicateValue = new SemanticError(
-            "EnumerationShape ':TestEnumerationWithDuplicatedValueTypes' contains samm:Value: 'OK' (count: 2)",
+            "Enumeration ':TestEnumerationWithDuplicatedValueTypes' contains duplicate value: 'OK'",
             focusNode,
             sammUrns.valuesUrn,
             violationUrn,
