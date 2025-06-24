@@ -35,30 +35,38 @@
    <packaging>pom</packaging>
 
    <properties>
-      <java-target-version>11</java-target-version>
-      <java-source-version>11</java-source-version>
+      <java-target-version>21</java-target-version>
+      <java-source-version>21</java-source-version>
    </properties>
 
    <build>
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.14.0</version>
+            <configuration>
+               <source>${java-source-version}</source>
+               <target>${java-target-version}</target>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-enforcer-plugin</artifactId>
             <executions>
                <execution>
-                  <id>esmf-enforce-java11</id>
+                  <id>esmf-enforce-java21</id>
                   <goals>
                      <goal>enforce</goal>
                   </goals>
                   <configuration>
                      <rules>
-                        <requireProperty>
-                           <property>java.vm.version</property>
-                           <message>Could not determine JDK vendor (java.vm.version property)</message>
-                           <regex>^11\..*</regex>
-                           <regexMessage>Java 11 is required to build this project</regexMessage>
-                        </requireProperty>
+                        <requireJavaVersion>
+                           <version>[21,22)</version>
+                        </requireJavaVersion>
                      </rules>
+                     <fail>true</fail>
                   </configuration>
                </execution>
             </executions>

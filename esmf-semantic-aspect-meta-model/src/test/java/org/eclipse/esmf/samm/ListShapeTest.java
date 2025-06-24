@@ -19,7 +19,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.jena.ext.com.google.common.collect.ImmutableList;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
@@ -38,8 +37,9 @@ public class ListShapeTest extends AbstractShapeTest {
 
       final Model shapesModel = validator.loadShapes( metaModelVersion );
       final Model definitionsModel = loadMetaModelDefinitions( metaModelVersion );
-      final List<Statement> shapes = ImmutableList
-            .copyOf( shapesModel.listStatements( null, RDF.type, SH.NodeShape ) );
+      final List<Statement> shapes = List.copyOf(
+            shapesModel.listStatements( null, RDF.type, SH.NodeShape ).toList()
+      );
       shapes.stream().map( Statement::getSubject )
             .map( shapeResource -> shapeResource.listProperties( SH.property ).toList() )
             .flatMap( Collection::stream )
@@ -57,8 +57,9 @@ public class ListShapeTest extends AbstractShapeTest {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
 
       final Model shapesModel = validator.loadShapes( metaModelVersion );
-      final List<Statement> shapes = ImmutableList
-            .copyOf( shapesModel.listStatements( null, RDF.type, SH.NodeShape ) );
+      final List<Statement> shapes = List.copyOf(
+            shapesModel.listStatements( null, RDF.type, SH.NodeShape ).toList()
+      );
       shapes.stream().map( Statement::getSubject )
             .map( shapeResource -> shapeResource.listProperties( SH.property ).toList() )
             .flatMap( Collection::stream )
