@@ -63,6 +63,27 @@
                </execution>
             </executions>
          </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>${maven-deploy-plugin-version}</version>
+            <configuration>
+               <skip>true</skip>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+               <publishingServerId>central</publishingServerId>
+               <autoPublish>false</autoPublish>
+               <skipPublishing>true</skipPublishing>
+               <outputFilename>central-bundle.zip</outputFilename>
+            </configuration>
+         </plugin>
       </plugins>
    </build>
 </project>
