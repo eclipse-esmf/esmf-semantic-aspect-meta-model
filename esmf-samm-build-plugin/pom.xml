@@ -108,6 +108,7 @@
                </execution>
             </executions>
             <configuration>
+               <goalPrefix>esmf-samm</goalPrefix>
                <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
             </configuration>
          </plugin>
