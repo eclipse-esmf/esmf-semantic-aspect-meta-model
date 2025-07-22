@@ -65,13 +65,11 @@ samm:Event rdfs:subClassOf mmm:NamedConcept ;
    rdfs:label "Event" ;
    rdfs:comment "An Event is a model element that represents a single occurence where the timing is important. Assets can for instance emit events to notify other assets in case of special occurences." .
 
-samm:Unit a rdfs:Class ;
-   rdfs:subClassOf mmm:NamedConcept ;
+samm:Unit rdfs:subClassOf mmm:NamedConcept ;
    rdfs:label "Unit" ;
    rdfs:comment "A Unit refers to a physical unit, such as metre or degree celsius." .
 
-samm:QuantityKind a rdfs:Class ;
-   rdfs:subClassOf mmm:NamedConcept ;
+samm:QuantityKind rdfs:subClassOf mmm:NamedConcept ;
    rdfs:label "QuantityKind" ;
    rdfs:comment "A Quantity Kind describes the kind a Unit refers to, such as length or temperature.".
 
