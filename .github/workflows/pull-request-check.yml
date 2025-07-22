@@ -62,12 +62,14 @@ jobs:
 
       - name: Build
         if: env.ONLY_MD != 'true'
-        env:
-          JAVA_HOME: ${{ steps.setup-java.outputs.path }}
         run: |
+          export JAVA_HOME=${{ steps.setup-java.outputs.path }}
+          export PATH=$JAVA_HOME/bin:$PATH
           echo "Using Java version:"
           java -version
           echo "JAVA_HOME: $JAVA_HOME"
+          echo "Maven Java version:"
+          ./mvnw --version
           ./mvnw -B generate-resources -pl documentation -Pantora
           ./mvnw -B clean install -pl esmf-samm-build-plugin
           ./mvnw -B clean package -pl esmf-semantic-aspect-meta-model
