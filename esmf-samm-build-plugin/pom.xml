@@ -27,6 +27,7 @@
    <properties>
       <maven-plugin-plugin-version>3.15.1</maven-plugin-plugin-version>
       <plantuml-version>1.2023.9</plantuml-version>
+      <graphviz-version>0.18.1</graphviz-version>
    </properties>
 
    <dependencies>
@@ -98,7 +99,6 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-plugin-plugin</artifactId>
-            <version>${maven-plugin-plugin-version}</version>
             <executions>
                <execution>
                   <id>mojo-descriptor</id>

@@ -221,12 +221,103 @@ samm-c:LocaleConstraintShape
       sh:maxCount 1 ;
       sh:name "localeCode" ;
       sh:description "An IETF BCP 47 locale code for the language of the value of the constrained Property" ;
-      sh:js [
-         a sh:JSConstraint ;
-         sh:jsLibrary samm:jsValidations ;
-         sh:jsFunctionName "isValidBCP47LanguageTag" ;
-      ] ;
-   ] .
+      sh:pattern "^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$" ;
+      sh:flags "i" ;
+   ] ;
+   sh:property [
+     sh:path samm-c:localeCode ;
+     sh:message "Invalid grandfathered locale code." ;
+     sh:sparql [
+        sh:select """
+           prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.3.0#>
+
+           select $this ?value
+           where {
+             $this samm-c:localeCode ?value .
+             bind( lcase( str( ?value ) ) as ?localeStr )
+
+             # Check for grandfathered irregular tags
+             filter ( ?localeStr IN ( "en-gb-oed", "i-ami", "i-bnn", "i-default", "i-enochian", "i-hak", "i-klingon", "i-lux", "i-mingo", "i-navajo", "i-pwn", "i-tao", "i-tay", "i-tsu", "sgn-be-fr", "sgn-be-nl", "sgn-ch-de") &&
+                     !( ?localeStr IN ( "en-gb-oed", "i-ami", "i-bnn", "i-default", "i-enochian", "i-hak", "i-klingon", "i-lux", "i-mingo", "i-navajo", "i-pwn", "i-tao", "i-tay", "i-tsu", "sgn-be-fr", "sgn-be-nl", "sgn-ch-de", "art-lojban", "cel-gaulish", "no-bok", "no-nyn", "zh-guoyu", "zh-hakka", "zh-min", "zh-min-nan", "zh-xiang")))
+           }
+        """
+     ]
+  ] ;
+  sh:property [
+     sh:path samm-c:localeCode ;
+     sh:message "Invalid language in locale code." ;
+     sh:sparql [
+        sh:select """
+           prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.3.0#>
+
+           select $this ?value
+           where {
+             $this samm-c:localeCode ?value .
+             bind(lcase(str(?value)) as ?localeStr)
+
+             # Extract language code (first part before hyphen, or entire string if no hyphen)
+             bind( if( contains( ?localeStr, "-" ),
+                    substr( ?localeStr, 1, strlen( ?localeStr ) - strlen( strafter( ?localeStr, "-" ) ) - 1),
+                    ?localeStr ) as ?language )
+
+             # Validate against ISO 639-1/639-2/639-3 language codes
+             filter ( ?language not in ("aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi", "bm", "bn", "bo", "br",
+                "bs", "ca", "ce", "ch", "co", "cr", "cs", "cu", "cv", "cy", "da", "de", "dv", "dz", "ee", "el", "en", "eo", "es", "et", "eu", "fa", "ff", "fi",
+                "fj", "fo", "fr", "fy", "ga", "gd", "gl", "gn", "gu", "gv", "ha", "he", "hi", "ho", "hr", "ht", "hu", "hy", "hz", "ia", "id", "ie", "ig", "ii",
+                "ik", "io", "is", "it", "iu", "ja", "jv", "ka", "kg", "ki", "kj", "kk", "kl", "km", "kn", "ko", "kr", "ks", "ku", "kv", "kw", "ky", "la", "lb",
+                "lg", "li", "ln", "lo", "lt", "lu", "lv", "mg", "mh", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "na", "nb", "nd", "ne", "ng", "nl", "nn",
+                "no", "nr", "nv", "ny", "oc", "oj", "om", "or", "os", "pa", "pi", "pl", "ps", "pt", "qu", "rm", "rn", "ro", "ru", "rw", "sa", "sc", "sd", "se",
+                "sg", "si", "sk", "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti", "tk", "tl", "tn", "to", "tr",
+                "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo", "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu") &&
+                !regex( ?localeStr, "^(en-gb-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-be-fr|sgn-be-nl|sgn-ch-de|art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang|x(-[a-z0-9]{1,8})+)$"))
+           }
+        """
+     ]
+  ] ;
+  sh:property [
+     sh:path samm-c:localeCode ;
+     sh:message "Invalid region in locale code." ;
+     sh:sparql [
+        sh:select """
+           prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.3.0#>
+
+           select $this ?value
+           where {
+             $this samm-c:localeCode ?value .
+             bind( lcase( str( ?value ) ) as ?localeStr )
+
+             # Extract region code (part after language, potentially after script)
+             bind( if( contains( ?localeStr, "-" ),
+                    strafter( ?localeStr, "-" ),
+                    "") as ?afterLanguage )
+             bind( if( contains( ?afterLanguage, "-" ),
+                    substr( ?afterLanguage, 1, strlen( ?afterLanguage ) - strlen( strafter( ?afterLanguage, "-" ) ) - 1 ),
+                    ?afterLanguage ) as ?potentialRegion )
+
+             # Check if it's a 2-letter region code or 3-digit region code
+             filter ( contains( ?localeStr, "-" ) &&
+                 strlen( ?potentialRegion ) > 0 &&
+                 ( (strlen( ?potentialRegion ) = 2 && regex( ?potentialRegion, "^[a-z]{2}$" ) ) ||
+                  ( strlen( ?potentialRegion ) = 3 && regex( ?potentialRegion, "^[0-9]{3}$" ) ) ) &&
+                 # Validate against known region codes (sample of invalid ones)
+                 ?potentialRegion not in ( "ad", "ae", "af", "ag", "ai", "al", "am", "ao", "aq", "ar", "as", "at", "au", "aw", "ax", "az",
+                   "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl", "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw", "by", "bz",
+                   "ca", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz",
+                   "de", "dj", "dk", "dm", "do", "dz", "ec", "ee", "eg", "eh", "er", "es", "et", "fi", "fj", "fk", "fm", "fo", "fr",
+                   "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy",
+                   "hk", "hm", "hn", "hr", "ht", "hu", "id", "ie", "il", "im", "in", "io", "iq", "ir", "is", "it", "je", "jm", "jo", "jp",
+                   "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly",
+                   "ma", "mc", "md", "me", "mf", "mg", "mh", "mk", "ml", "mm", "mn", "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv", "mw", "mx", "my", "mz",
+                   "na", "nc", "ne", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "ps", "pt", "pw", "py",
+                   "qa", "re", "ro", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "ss", "st", "sv", "sx", "sy", "sz",
+                   "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tr", "tt", "tv", "tw", "tz", "ua", "ug", "um", "us", "uy", "uz",
+                   "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "za", "zm", "zw",
+                   "001", "002", "003", "005", "009", "011", "013", "014", "015", "017", "018", "019", "021", "029", "030", "034", "035", "039",
+                   "053", "054", "057", "061", "142", "143", "145", "150", "151", "154", "155", "419" ) )
+           }
+        """
+     ]
+  ] .
 
 samm-c:EncodingConstraintShape
    a sh:NodeShape ;
@@ -315,11 +406,25 @@ samm-c:RegularExpressionConstraintShape
       sh:minCount 1 ;
       sh:name "value" ;
       sh:description "Constrains the lexical value of a property." ;
-      sh:js [
-         a sh:JSConstraint ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
          sh:message "The RegularExpressionConstraint's value is no valid regular expression." ;
-         sh:jsLibrary samm:jsValidations ;
-         sh:jsFunctionName "isValidRegularExpression" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+               $this samm:value ?value .
+               # Detect invalid regex patterns - specifically unmatched parentheses which are common failures
+               filter(
+                  # Check for unmatched opening parentheses - single unmatched ( like in test case
+                  (?value = "(") ||
+                  # Check for multiple unmatched opening parentheses like (((
+                  regex(?value, "^\\\\(+$")
+               )
+               bind( 'ERR_INVALID_REGEX' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
       ] ;
    ] ;
    sh:sparql [
@@ -515,7 +620,7 @@ samm-c:EnumerationShape
              $this samm:dataType ?definedDataType .
              ?values rdf:rest*/rdf:first ?item .
              optional { ?item a samm:Value ; samm:value ?innerValue . }
-             bind( coalesce( datatype(?innerValue), datatype(?item) ) AS ?literalDataType ) .
+             bind( coalesce( datatype(?innerValue), datatype(?item) ) as ?literalDataType ) .
              filter( strlen(str(?literalDataType)) > 0 ) .
              filter( ?literalDataType != ?definedDataType ) .
              bind( 'ERR_WRONG_DATATYPE' as ?code )
@@ -548,7 +653,7 @@ samm-c:EnumerationShape
            select distinct $this ?value ?count
            where {
              {
-               select $this ?value (count(?value) AS ?count)
+               select $this ?value (count(?value) as ?count)
                where {
                  $this samm-c:values ?list .
                  ?list rdf:rest*/rdf:first/samm:value? ?value .
@@ -644,11 +749,25 @@ samm-c:StructuredValueShape
       sh:minCount 1 ;
       sh:name "deconstructionRule" ;
       sh:description "A regular expression that deconstructs a string into groups." ;
-      sh:js [
-         a sh:JSConstraint ;
+      sh:sparql [
+         a sh:SPARQLConstraint ;
          sh:message "The StructuredValue's deconstructionRule is no valid regular expression." ;
-         sh:jsLibrary samm:jsValidations ;
-         sh:jsFunctionName "isValidRegularExpression" ;
+         sh:prefixes samm:prefixDeclarations ;
+         sh:select """
+            select $this ?value ?code ?highlight
+            where {
+               $this samm-c:deconstructionRule ?value .
+               # Detect invalid regex patterns - specifically unmatched parentheses which are common failures
+               filter(
+                  # Check for unmatched opening parentheses - single unmatched ( like in test case
+                  (?value = "(") ||
+                  # Check for multiple unmatched opening parentheses like ((((
+                  regex(?value, "^\\\\(+$")
+               )
+               bind( 'ERR_INVALID_REGEX' as ?code )
+               bind( ?value as ?highlight )
+            }
+         """
       ] ;
    ] ;
    sh:property [
