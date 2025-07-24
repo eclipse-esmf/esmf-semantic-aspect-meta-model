@@ -19,7 +19,7 @@
    <parent>
       <groupId>org.eclipse.esmf</groupId>
       <artifactId>esmf-parent</artifactId>
-      <version>2</version>
+      <version>21</version>
    </parent>
    <artifactId>esmf-semantic-aspect-meta-model-parent</artifactId>
    <name>Semantic Aspect Meta Model Parent</name>
