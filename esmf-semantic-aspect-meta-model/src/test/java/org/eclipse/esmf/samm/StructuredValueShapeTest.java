@@ -21,17 +21,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import org.eclipse.esmf.samm.validation.SemanticError;
 
-public class StructuredValueShapeTest extends AbstractShapeTest {
+class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testValidStructuredValueExpectSuccess( final KnownVersion metaModelVersion ) {
+   void testValidStructuredValueExpectSuccess( final KnownVersion metaModelVersion ) {
       checkValidity( "structured-value-shape", "TestStructuredValue", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
+   void testMissingRequiredPropertiesExpectFailure2( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueMissingRequiredProperties";
 
@@ -47,7 +47,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testStructuredValueValidationWithInvalidRegularExpressionExpectFailure(
+   void testStructuredValueValidationWithInvalidRegularExpressionExpectFailure(
          final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidRegularExpression";
@@ -61,7 +61,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testElementsContainInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
+   void testElementsContainInvalidElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError result = getSingleSemanticValidationError(
             "structured-value-shape", "TestStructuredValueWithInvalidElements", metaModelVersion );
       assertThat( result.getResultMessage() ).isEqualTo( resolveValidationMessage(
@@ -73,7 +73,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testEmptyElementsExpectFailure( final KnownVersion metaModelVersion ) {
+   void testEmptyElementsExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueWithEmptyElements";
 
@@ -88,7 +88,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testStructuredValueWithInvalidTypeExpectFailure( final KnownVersion metaModelVersion ) {
+   void testStructuredValueWithInvalidTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidDatatype";
 
@@ -103,7 +103,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testInvalidDeconstructionExpectFailure( final KnownVersion metaModelVersion ) {
+   void testInvalidDeconstructionExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidDeconstruction";
 
       final SemanticError resultForElements = new SemanticError(
@@ -114,7 +114,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testInvalidMatchingGroupsExpectFailure( final KnownVersion metaModelVersion ) {
+   void testInvalidMatchingGroupsExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = testNamespacePrefix + "TestStructuredValueWithInvalidMatchingGroups";
 
       final SemanticError resultForElements = new SemanticError(
@@ -125,7 +125,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testNonMatchingGroupsExpectFailure( final KnownVersion metaModelVersion ) {
+   void testNonMatchingGroupsExpectFailure( final KnownVersion metaModelVersion ) {
       final String focusNode = testNamespacePrefix + "TestStructuredValueWithNonMatchingGroups";
 
       final SemanticError resultForElements = new SemanticError(
@@ -136,7 +136,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testElementsContainsNoProperty( final KnownVersion metaModelVersion ) {
+   void testElementsContainsNoProperty( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueElementsWithoutProperties";
 
@@ -149,7 +149,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testElementsWithNonScalarDatatype( final KnownVersion metaModelVersion ) {
+   void testElementsWithNonScalarDatatype( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueElementsWithNonScalarDatatype";
 
@@ -164,7 +164,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testElementsWithListCharacteristic( final KnownVersion metaModelVersion ) {
+   void testElementsWithListCharacteristic( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestStructuredValueElementsWithListCharacteristic";
 
@@ -179,7 +179,7 @@ public class StructuredValueShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testElementsWithStructuredValueCharacteristic( final KnownVersion metaModelVersion ) {
+   void testElementsWithStructuredValueCharacteristic( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode =
             testNamespacePrefix + "TestStructuredValueElementsWithStructuredValueCharacteristic";
