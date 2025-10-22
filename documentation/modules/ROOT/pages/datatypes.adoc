@@ -89,7 +89,9 @@ definition in the respective standards and an informative description of their v
 .3+| Miscellaneous types
 | `https://www.w3.org/TR/xmlschema11-2/#anyURI[xsd:anyURI]` | Absolute or relative https://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI]s and https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier[IRI]s | 'http://example.org/', 'urn:samm:{example-ns}.myapplication:1.0.0#errorState' | {ok}
 | `https://www.w3.org/TR/curie/[samm:curie]` | Compact URI/IRI (well-known prefix + element name) | 'xsd:string', 'unit:hectopascal' | {ok}
-| `https://www.w3.org/TR/rdf11-concepts/#section-Graph-Literal[rdf:langString]` | Strings with language tags | "Hello"@en, "Hallo"@de. Note that this is written in RDF/Turtle syntax, and that only "Hello" and "Hallo" are the actual values. | {ok}
+| `https://www.w3.org/TR/rdf11-concepts/#section-Graph-Literal[rdf:langString]` | Strings with language tags | "Hello"@en, "Hallo"@de. When using `rdf:langString`, a language tag *must always* be provided using the `@` syntax (e.g., `"Hello"@en`).
+
+Using a typed literal form such as `"Hello"^^rdf:langString` is *invalid* and *should cause* the model loading or validation to fail. | {ok}
 |===
 
 The following types defined by the XSD and RDF specifications, respectively, are considered
