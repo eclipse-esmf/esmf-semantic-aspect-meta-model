@@ -168,15 +168,14 @@ and value references that point to example values (i.e., references to instances
 In either case, the data type of the `samm:exampleValue` must be convertible to the effective data type defined by the Property's Characteristic.
 For example, if the Characteristic's `samm:dataType`
 is `xsd:int`, a value with the type `xsd:short` is also acceptable. Refer to section xref:datatypes.adoc#implicit-conversions[Implicit Conversions]
-for more details.
+for more details. | {nok}
+|===
 
 When using `rdf:langString`, a language tag *must always* be provided using the `@` syntax, for example:
 
-:x samm:exampleValue "Hello"@en ✔️
-:x samm:exampleValue "Hallo"@de ✔️
-:x samm:exampleValue "Hello"^^rdf:langString ❌ (invalid — missing language tag)
-| {nok}
-|===
+* `:x samm:exampleValue "Hello"@en` ✔️
+* `:x samm:exampleValue "Hallo"@de` ✔️
+* `:x samm:exampleValue "Hello"^^rdf:langString` ❌ (invalid — missing language tag)
 
 Example with Literal type:
 
