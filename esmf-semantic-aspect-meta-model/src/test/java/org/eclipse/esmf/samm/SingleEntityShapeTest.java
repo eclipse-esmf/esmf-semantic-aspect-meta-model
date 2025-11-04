@@ -18,18 +18,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import org.eclipse.esmf.samm.validation.SemanticError;
 
-public class SingleEntityShapeTest extends AbstractShapeTest {
+class SingleEntityShapeTest extends AbstractShapeTest {
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testCharacteristicInstanceWithEntityDataTypeValidationExpectSuccess(
+   void testCharacteristicInstanceWithEntityDataTypeValidationExpectSuccess(
          final KnownVersion metaModelVersion ) {
       checkValidity( "single-entity-shape", "TestSingleEntityWithEntityDataType", metaModelVersion );
    }
 
    @ParameterizedTest
    @MethodSource( value = "allVersions" )
-   public void testSingleEntityWithXsdDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
+   void testSingleEntityWithXsdDataTypeExpectFailure( final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestSingleEntityWithXSDDataType";
       final String expectedMessage = validator.getMessageText( "samm-c:SingleEntityShape", "samm:dataType", "ERR_WRONG_DATATYPE",
@@ -40,4 +40,5 @@ public class SingleEntityShapeTest extends AbstractShapeTest {
       expectSemanticValidationErrors( "single-entity-shape", "TestSingleEntityWithXSDDataType",
             metaModelVersion, resultForDataType );
    }
+
 }

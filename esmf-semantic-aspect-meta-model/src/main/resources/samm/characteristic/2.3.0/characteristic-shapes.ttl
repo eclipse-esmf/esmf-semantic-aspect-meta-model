@@ -683,7 +683,13 @@ samm-c:SingleEntityShape
             select $this $value ?code ?highlight
             where {
                $this samm:dataType ?value .
-               filter( not exists { ?value rdf:type* samm:Entity } && not exists { ?value rdf:type* samm:AbstractEntity } )
+               filter( isLiteral( ?value )
+                        || strstarts( str( ?value ), str( xsd: ) )
+                        || ( isIRI( ?value )
+                            && not exists { ?value rdf:type* samm:Entity }
+                            && not exists { ?value rdf:type* samm:AbstractEntity }
+                           )
+                      )
                bind( 'ERR_WRONG_DATATYPE' as ?code )
                bind( ?value as ?highlight )
             }
