@@ -13,7 +13,7 @@ SPDX-License-Identifier: MPL-2.0
 [[data-types]]
 = Data Types
 
-This page details *scalar* data types. Such a scalar data type gets used by a Characteristic to further define a Property. 
+This page details *scalar* data types. Such a scalar data type gets used by a Characteristic to further define a Property.
 
 For modeling Properties that require non-scalar data types, use xref:entities.adoc[Entities].
 
@@ -91,6 +91,9 @@ definition in the respective standards and an informative description of their v
 | `https://www.w3.org/TR/curie/[samm:curie]` | Compact URI/IRI (well-known prefix + element name) | 'xsd:string', 'unit:hectopascal' | {ok}
 | `https://www.w3.org/TR/rdf11-concepts/#section-Graph-Literal[rdf:langString]` | Strings with language tags | "Hello"@en, "Hallo"@de. Note that this is written in RDF/Turtle syntax, and that only "Hello" and "Hallo" are the actual values. | {ok}
 |===
+
+NOTE: When using `rdf:langString`, a language tag *must always* be provided using the `@` syntax (e.g., `"Hello"@en`).
+Using a typed literal form such as `"Hello"^^rdf:langString` is *invalid* and *should cause* the model loading or validation to fail.
 
 The following types defined by the XSD and RDF specifications, respectively, are considered
 unsuitable in Aspect Models and _should not_ be used:
