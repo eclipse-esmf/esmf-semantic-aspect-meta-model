@@ -101,7 +101,9 @@ definitions. I.e., it is readable from top to bottom without encountering undefi
   _models_root_/_namespace_main_part_/_namespace_version_part_/AspectModelFile.ttl.
 * In filesystem-based model storage, the namespace file containing an Aspect model element
   definition should have the same name as the Aspect's local name suffixed with ".ttl".
-  
+* In filesystem-based model storage, there may not be two files with the same names that only differ in casing
+  (e.g., FileName.ttl and filename.ttl) in the same namespace directory.
+
 ### Resolution of files
 
 ![Model structure for loaded models](0007-model-resolution.svg)

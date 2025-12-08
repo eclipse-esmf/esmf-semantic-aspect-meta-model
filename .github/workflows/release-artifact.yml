@@ -11,46 +11,69 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
       with:
-        distribution: 'adopt'
-        java-version: '11'
-        server-id: ossrh
-        server-username: OSSRH_USERNAME
-        server-password: OSSRH_TOKEN
+        distribution: 'temurin'
+        java-version: '21'
+        server-id: central
+        server-username: CENTRAL_SONATYPE_TOKEN_USERNAME
+        server-password: CENTRAL_SONATYPE_TOKEN_PASSWORD
         gpg-private-key: ${{ secrets.PGP_KEY }}
         gpg-passphrase: PGP_KEY_PASSWORD
-        overwrite-settings: true
+        overwrite-settings: false
 
     - name: Set release version in antora.yml
       uses: mikefarah/yq@master
       with:
         cmd: yq eval -i '.version = "${{ github.event.inputs.release_version }}"' documentation/antora.yml
 
-    - name: Build SAMM artifact and release to OSSRH
+    - name: Build SAMM artifact and create Maven Central bundle
       run: |
         set -x
+        
+        export MAVEN_OPTS="-Xmx4096m"
+        export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
+        release_version=${{ github.event.inputs.release_version }}
+        
         rm -rf ~/.m2/repository/org/eclipse/esmf
-        ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }}
+        ./mvnw -B versions:set -DnewVersion=${ release_version }
         ./mvnw -B versions:commit
         # Since the meta model project itself does not inherit from the parent, we must set its version separately
-        ./mvnw -B versions:set -DnewVersion=${{ github.event.inputs.release_version }} -pl esmf-semantic-aspect-meta-model
+        ./mvnw -B versions:set -DnewVersion=${ release_version } -pl esmf-semantic-aspect-meta-model
         ./mvnw -B versions:commit -pl esmf-semantic-aspect-meta-model
         ./mvnw -B clean generate-resources -pl documentation -Pantora
         ./mvnw -B -U clean install -pl esmf-samm-build-plugin
-        ./mvnw -B -U clean deploy -pl esmf-semantic-aspect-meta-model -Psign,release-build
+        ./mvnw -B -U clean deploy -pl esmf-semantic-aspect-meta-model -Psign,release-build -Dmaven.wagon.httpconnectionManager.ttlSeconds=60
+        
+        echo "Contents of target/central-staging:"
+        ls -lR target/central-staging
+        
+        pushd target/central-staging
+        zip -r -9 ../central-bundle.zip .
+        popd
+    
         cd build/
-        mv site SAMM-${{ github.event.inputs.release_version }}
-        zip -r ../SAMM-${{ github.event.inputs.release_version }}-specification.zip SAMM-${{ github.event.inputs.release_version }}
+        mv site SAMM-${ release_version }
+        zip -r ../SAMM-${ release_version }-specification.zip SAMM-${ release_version }
       env:
-        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
         PGP_KEY_PASSWORD: ${{ secrets.PGP_KEY_PASSWORD }}
 
-    # If the deployment to OSSRH went through, the following steps will
+    - name: Release to Maven Central
+      if: ${{ !contains( github.event.inputs.release_version, '-M' ) }}
+      run: |
+        token_header=$(printf "$CENTRAL_USERNAME:$CENTRAL_TOKEN" | base64)
+        curl --request POST \
+        --header "Authorization: Bearer $token_header" \
+        --form bundle=@central-bundle.zip \
+        https://central.sonatype.com/api/v1/publisher/upload
+      env:
+        CENTRAL_USERNAME: ${{ secrets.CENTRAL_SONATYPE_TOKEN_USERNAME }}
+        CENTRAL_TOKEN: ${{ secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD }}
+
+    # If the deployment to Maven Central went through, the following steps will
     # - Commit updated version to release branch
     # - Create Github release
 

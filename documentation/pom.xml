@@ -69,14 +69,6 @@
          </plugin>
 
          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <configuration>
-               <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
-            </configuration>
-         </plugin>
-
-         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>${maven-gpg-plugin-version}</version>
@@ -175,17 +167,7 @@
                            <goal>npm</goal>
                         </goals>
                         <configuration>
-                           <arguments>install @antora/cli</arguments>
-                        </configuration>
-                     </execution>
-                     <execution>
-                        <id>install-antora-site-generator-lunr</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                           <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                           <arguments>install antora-site-generator-lunr</arguments>
+                           <arguments>ci --ignore-scripts</arguments>
                         </configuration>
                      </execution>
                   </executions>
