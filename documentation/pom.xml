@@ -167,17 +167,7 @@
                            <goal>npm</goal>
                         </goals>
                         <configuration>
-                           <arguments>install @antora/cli</arguments>
-                        </configuration>
-                     </execution>
-                     <execution>
-                        <id>install-antora-site-generator-lunr</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                           <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                           <arguments>install antora-site-generator-lunr</arguments>
+                           <arguments>ci --ignore-scripts</arguments>
                         </configuration>
                      </execution>
                   </executions>
