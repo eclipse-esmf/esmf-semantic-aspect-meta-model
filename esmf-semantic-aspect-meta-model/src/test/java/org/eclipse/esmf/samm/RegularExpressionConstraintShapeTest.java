@@ -15,11 +15,11 @@ package org.eclipse.esmf.samm;
 
 import java.util.Map;
 
+import org.eclipse.esmf.samm.validation.SemanticError;
+
 import org.apache.jena.vocabulary.XSD;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import org.eclipse.esmf.samm.validation.SemanticError;
 
 class RegularExpressionConstraintShapeTest extends AbstractShapeTest {
 
@@ -32,8 +32,8 @@ class RegularExpressionConstraintShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
-   @MethodSource( value = "allVersions" )
-   void testRegularExpressionConstraintValidationWithInvalidReqularExpressionExpectFailure(
+   @MethodSource( value = "versionsUpToIncluding2_2_0" )
+   void testRegularExpressionConstraintValidationWithInvalidRegularExpressionExpectFailure(
          final KnownVersion metaModelVersion ) {
       final SammUrns sammUrns = new SammUrns( metaModelVersion );
       final String focusNode = testNamespacePrefix + "TestRegularExpressionConstraintWithInvalidRegularExpression";
@@ -43,6 +43,28 @@ class RegularExpressionConstraintShapeTest extends AbstractShapeTest {
       expectSemanticValidationErrors( SPEC_PATH,
             "TestRegularExpressionConstraintWithInvalidRegularExpression",
             metaModelVersion, resultForRegularExpression );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_3_0" )
+   void testRegularExpressionConstraintValidationWithInvalidRegularExpressionExpectFailureAfter2_3_0(
+         final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+
+      final String focusNode = testNamespacePrefix + "TestRegularExpressionConstraintWithInvalidRegularExpression";
+      final String focusNode1 = focusNode + "2";
+      final String focusNode2 = focusNode + "3";
+
+      final SemanticError resultForRegularExpression = new SemanticError(
+            messageInvalidRegularExpression, focusNode, sammUrns.valueUrn, violationUrn, "(" );
+      final SemanticError resultForRegularExpression2 = new SemanticError(
+            messageInvalidRegularExpression, focusNode1, sammUrns.valueUrn, violationUrn, "*abc" );
+      final SemanticError resultForRegularExpression3 = new SemanticError(
+            messageInvalidRegularExpression, focusNode2, sammUrns.valueUrn, violationUrn, "x(?<named>[a-z])y" );
+
+      expectSemanticValidationErrors( SPEC_PATH,
+            "TestRegularExpressionConstraintWithInvalidRegularExpression",
+            metaModelVersion, resultForRegularExpression, resultForRegularExpression2, resultForRegularExpression3 );
    }
 
    @ParameterizedTest

@@ -76,6 +76,10 @@ public abstract class AbstractShapeTest {
       return versionsUpToIncluding( KnownVersion.SAMM_2_1_0 );
    }
 
+   protected static Stream<KnownVersion> versionsUpToIncluding2_2_0() {
+      return versionsUpToIncluding( KnownVersion.SAMM_2_2_0 );
+   }
+
    final String violationUrn = "http://www.w3.org/ns/shacl#Violation";
    final String warningUrn = "http://www.w3.org/ns/shacl#Warning";
 
@@ -190,7 +194,7 @@ public abstract class AbstractShapeTest {
       final ValidationReport validationReport = validator.apply( model, testedVersion );
       assertThat( validationReport.conforms() ).describedAs( "Model %s should contain violations but does not", path ).isFalse();
       assertThat( validationReport.getValidationErrors() ).hasSize( numberOfValidationResults );
-      assertThat( validationReport.getValidationErrors() ).contains( errors );
+      assertThat( validationReport.getValidationErrors() ).containsExactlyInAnyOrder( errors );
    }
 
    protected Model loadModel( final String path, final String ttlDefinition, final KnownVersion knownVersion ) {

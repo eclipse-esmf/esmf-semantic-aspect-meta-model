@@ -10,6 +10,26 @@
 
  SPDX-License-Identifier: MPL-2.0
 */
+/**
+ * Checks if a given value is a regular expression.
+ *
+ * @param $this The context of the Constraint, i.e. the focus node
+ * @param $value The value that can be reached from the focus node following the Shape's sh:path
+ */
+function isValidRegularExpression($this, $value) {
+    if (!$value.isLiteral()) {
+        return false;
+    }
+
+    var isValid = true;
+    try {
+        new RegExp($value.lex);
+    } catch (e) {
+        isValid = false;
+    }
+
+    return isValid;
+}
 
 function testStructuredValueConstruction($this) {
     var samm = "urn:samm:org.eclipse.esmf.samm:meta-model:2.3.0#";
