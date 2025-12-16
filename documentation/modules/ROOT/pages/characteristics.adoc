@@ -277,6 +277,8 @@ a `samm:dataType`, this must therefore be done when instantiating the Characteri
 Describes a Property whose value can have one of two possible types (a disjoint union).
 This Characteristic does not have one explicit `samm:dataType`, as it can be the datatype of either the left or the right.
 
+Important: A Property that uses an Either characteristic must not define an `exampleValue`. This is because the value type is ambiguous and depends on which side of the Either is used.
+
 See xref:modeling-guidelines.adoc#declaring-either[declaring either] for usage in an Aspect Model.
 
 [width="100%", options="header", cols="30,60,10"]

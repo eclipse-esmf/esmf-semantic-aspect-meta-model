@@ -738,6 +738,18 @@ samm-c:EitherShape
       sh:maxCount 0 ;
       sh:name "dataType" ;
       sh:description "An Either Characteristic may not define a data type. The data type is set by the Characteristics for the left and right side of the disjoint union." ;
+   ] ;
+   sh:sparql [
+     a sh:SPARQLConstraint ;
+     sh:message "Property '{?property}' uses an Either characteristic and must not define an exampleValue." ;
+     sh:prefixes samm:prefixDeclarations ;
+     sh:select """
+       select $this ?property 
+       where {
+         ?property samm:characteristic $this .
+         ?property samm:exampleValue ?exampleValue
+       }
+     """
    ] .
 
 samm-c:StructuredValueShape
