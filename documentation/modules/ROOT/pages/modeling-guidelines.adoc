@@ -809,6 +809,10 @@ a detailed description, and an external reference to the value.
 include::example$aspect-sample.ttl[tags=value-declaration]
 ----
 
+The `samm:dataType` of a `samm:Value` is implicitly defined by the type of the literal or reference assigned to `samm:value`.
+For example, in the case above where `samm:value "green"` is used, the data type is `xsd:string`.
+If the value is an integer (e.g., `samm:value 42`), the data type will be `xsd:integer`.
+
 A value can also be used as `samm:exampleValue` for a Property, either by referencing the value or
 by declaration of an anonymous value:
 
