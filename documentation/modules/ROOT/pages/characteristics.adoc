@@ -277,9 +277,9 @@ a `samm:dataType`, this must therefore be done when instantiating the Characteri
 Describes a Property whose value can have one of two possible types (a disjoint union).
 This Characteristic does not have one explicit `samm:dataType`, as it can be the datatype of either the left or the right.
 
-IMPORTANT: A Property that uses an `Either` Characteristic **must not define an `exampleValue`**.
+IMPORTANT: A Property that uses an `Either` Characteristic must not define an `exampleValue`.
 
-An `xref:modeling-guidelines.adoc#declaring-properties[exampleValue].` represents a concrete example payload.
+An `xref:modeling-guidelines.adoc#declaring-properties[exampleValue]` represents a concrete example payload.
 For an `Either`, the concrete value shape depends on whether the *left* or the *right*
 Characteristic is used. Since `Either` itself does not define a single, well-defined
 `samm:dataType`, an `exampleValue` defined at the Property level would be ambiguous
