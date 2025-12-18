@@ -406,26 +406,12 @@ samm-c:RegularExpressionConstraintShape
       sh:minCount 1 ;
       sh:name "value" ;
       sh:description "Constrains the lexical value of a property." ;
-      sh:sparql [
-         a sh:SPARQLConstraint ;
-         sh:message "The RegularExpressionConstraint's value is no valid regular expression." ;
-         sh:prefixes samm:prefixDeclarations ;
-         sh:select """
-            select $this ?value ?code ?highlight
-            where {
-               $this samm:value ?value .
-               # Detect invalid regex patterns - specifically unmatched parentheses which are common failures
-               filter(
-                  # Check for unmatched opening parentheses - single unmatched ( like in test case
-                  (?value = "(") ||
-                  # Check for multiple unmatched opening parentheses like (((
-                  regex(?value, "^\\\\(+$")
-               )
-               bind( 'ERR_INVALID_REGEX' as ?code )
-               bind( ?value as ?highlight )
-            }
-         """
-      ] ;
+      sh:js [
+          a sh:JSConstraint ;
+          sh:message "The RegularExpressionConstraint's value is no valid regular expression." ;
+          sh:jsLibrary samm:jsValidations ;
+          sh:jsFunctionName "isValidRegularExpression" ;
+       ] ;
    ] ;
    sh:sparql [
       a sh:SPARQLConstraint ;
@@ -738,6 +724,18 @@ samm-c:EitherShape
       sh:maxCount 0 ;
       sh:name "dataType" ;
       sh:description "An Either Characteristic may not define a data type. The data type is set by the Characteristics for the left and right side of the disjoint union." ;
+   ] ;
+   sh:sparql [
+     a sh:SPARQLConstraint ;
+     sh:message "Property '{?property}' uses an Either characteristic and must not define an exampleValue." ;
+     sh:prefixes samm:prefixDeclarations ;
+     sh:select """
+       select $this ?property 
+       where {
+         ?property samm:characteristic $this .
+         ?property samm:exampleValue ?exampleValue
+       }
+     """
    ] .
 
 samm-c:StructuredValueShape
