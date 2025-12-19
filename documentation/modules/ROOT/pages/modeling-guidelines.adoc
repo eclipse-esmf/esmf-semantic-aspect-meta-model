@@ -584,16 +584,11 @@ combined with two Constraints: an xref:characteristics.adoc#encoding-constraint[
 that restricts the value space to US-ASCII and a xref:characteristics.adoc#length-constraint[Length
 Constraint] that limits the string to 80 characters.
 
-When multiple Constraints are defined in a single `samm-c:Trait`, **all Constraints MUST be
-fulfilled simultaneously**.
-
-In other words, Constraints within a Trait are combined using logical AND.
+In other words, Constraints within a Trait are combined using logical `AND`.
 The value of a Property is valid only if it satisfies **every** Constraint declared in the Trait.
 
-The specification does not support OR semantics between Constraints within a Trait.
 If alternative constraint sets are required, they must be modeled explicitly, for example
-by using separate Properties or an `Either` Characteristic.
-
+by using separate xref:modeling-guidelines.adoc#declaring-properties[Properties] or an xref:characteristics.adoc#either-characteristic[Either] Characteristic.
 
 :attribute-missing: skip
 [source,turtle,subs="attributes+"]
