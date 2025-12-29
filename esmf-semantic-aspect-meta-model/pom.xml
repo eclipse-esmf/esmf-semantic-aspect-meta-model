@@ -52,8 +52,8 @@
 
    <properties>
       <!-- General project settings -->
-      <java-target-version>11</java-target-version>
-      <java-source-version>11</java-source-version>
+      <java-target-version>21</java-target-version>
+      <java-source-version>21</java-source-version>
       <!-- This is the meta model version (as included in the URNs).
            Note that this can differ from the project.version: The project.version could for example be the
            version of a milestone release such as 2.0.0-M1, while the meta-model-version would still be 2.0.0. -->
@@ -89,17 +89,22 @@
          <artifactId>commons-codec</artifactId>
          <scope>test</scope>
       </dependency>
+      <dependency>
+         <groupId>org.openjdk.nashorn</groupId>
+         <artifactId>nashorn-core</artifactId>
+         <version>15.6</version>
+      </dependency>
    </dependencies>
 
    <distributionManagement>
-       <snapshotRepository>
-           <id>ossrh</id>
-           <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-       </snapshotRepository>
-       <repository>
-           <id>ossrh</id>
-           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-       </repository>
+      <snapshotRepository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
    </distributionManagement>
 
    <build>
@@ -109,19 +114,17 @@
             <artifactId>maven-enforcer-plugin</artifactId>
             <executions>
                <execution>
-                  <id>esmf-enforce-java11</id>
+                  <id>enforce-java21</id>
                   <goals>
                      <goal>enforce</goal>
                   </goals>
                   <configuration>
                      <rules>
-                        <requireProperty>
-                           <property>java.vm.version</property>
-                           <message>Could not determine JDK vendor (java.vm.version property)</message>
-                           <regex>^11\..*</regex>
-                           <regexMessage>Java 11 is required to build this project</regexMessage>
-                        </requireProperty>
+                        <requireJavaVersion>
+                           <version>[21,22)</version>
+                        </requireJavaVersion>
                      </rules>
+                     <fail>true</fail>
                   </configuration>
                </execution>
             </executions>

@@ -25,7 +25,8 @@ public enum KnownVersion {
    SAMM_1_0_0( 1, 0, 0 ),
    SAMM_2_0_0( 2, 0, 0 ),
    SAMM_2_1_0( 2, 1, 0 ),
-   SAMM_2_2_0( 2, 2, 0 );
+   SAMM_2_2_0( 2, 2, 0 ),
+   SAMM_2_3_0( 2, 3, 0 );
 
    private final int major;
    private final int minor;

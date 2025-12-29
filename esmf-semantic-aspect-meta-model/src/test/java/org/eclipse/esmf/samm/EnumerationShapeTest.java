@@ -13,10 +13,10 @@
 
 package org.eclipse.esmf.samm;
 
+import org.eclipse.esmf.samm.validation.SemanticError;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import org.eclipse.esmf.samm.validation.SemanticError;
 
 class EnumerationShapeTest extends AbstractShapeTest {
 
@@ -66,5 +66,49 @@ class EnumerationShapeTest extends AbstractShapeTest {
             focusNode, sammUrns.valuesUrn, violationUrn, "" );
       expectSemanticValidationErrors( "enumeration-shape", "TestEnumerationValueIsNotALiteralType",
             metaModelVersion, resultForName );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_3_0" )
+   void testDuplicateValuesInEnumerationExpectFailure( final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestEnumerationWithDuplicatedValues";
+
+      final SemanticError resultForDuplicate = new SemanticError(
+            "Enumeration ':TestEnumerationWithDuplicatedValues' contains duplicate value: 'OK'",
+            focusNode,
+            sammUrns.valuesUrn,
+            violationUrn,
+            "OK"
+      );
+
+      expectSemanticValidationErrors(
+            "enumeration-shape",
+            "TestEnumerationWithDuplicatedValues",
+            metaModelVersion,
+            resultForDuplicate
+      );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_3_0" )
+   void testDuplicatedValueTypesEntriesExpectFailure( final KnownVersion metaModelVersion ) {
+      final SammUrns sammUrns = new SammUrns( metaModelVersion );
+      final String focusNode = testNamespacePrefix + "TestEnumerationWithDuplicatedValueTypes";
+
+      final SemanticError resultForDuplicateValue = new SemanticError(
+            "Enumeration ':TestEnumerationWithDuplicatedValueTypes' contains duplicate value: 'OK'",
+            focusNode,
+            sammUrns.valuesUrn,
+            violationUrn,
+            "OK"
+      );
+
+      expectSemanticValidationErrors(
+            "enumeration-shape",
+            "TestEnumerationWithDuplicatedValueTypes",
+            metaModelVersion,
+            resultForDuplicateValue
+      );
    }
 }

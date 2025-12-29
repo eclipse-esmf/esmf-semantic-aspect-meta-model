@@ -18,10 +18,10 @@ SPDX-License-Identifier: MPL-2.0
 === Notes
 
 * As mentioned in the xref:index.adoc[Introduction], Aspect Models are described in RDF Turtle
-  xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]]. The aspect specification will
-  therefore assume basic familiarity with Turtle.
+xref:samm-specification:appendix:bibliography.adoc#turtle[[turtle\]]. The aspect specification will
+therefore assume basic familiarity with Turtle.
 * For the definition of the different Model elements please refer to the
-  xref:meta-model-elements.adoc[Meta Model Elements].
+xref:meta-model-elements.adoc[Meta Model Elements].
 
 
 [[naming-rules]]
@@ -32,9 +32,9 @@ https://en.wikipedia.org/wiki/Naming_convention_(programming)#Java[Java naming c
 classes, properties and methods.
 
 * The names of Aspects, Entities, Events, Constraints and Characteristics follow the naming conventions for
-  Java classes, i.e. UpperCamelCase.
+Java classes, i.e. UpperCamelCase.
 * The names of Properties, Operations and Units follow the naming conventions of Java methods, i.e.
-  lowerCamelCase.
+lowerCamelCase.
 
 [[rdf-turtle-formatting-rules]]
 === RDF/Turtle formatting rules
@@ -42,12 +42,12 @@ classes, properties and methods.
 * Each Aspect Model is defined in a separate TTL (Turtle) file.
 * The Turtle file containing an Aspect Model must have the same name as the Aspect.
 * Aspect Model files must be UTF-8 encoded and should not contain a
-  https://en.wikipedia.org/wiki/Byte_order_mark[byte order mark].
+https://en.wikipedia.org/wiki/Byte_order_mark[byte order mark].
 * There should be one empty line between model element definitions.
 * Indentation should be done with three spaces.
 * There should be a space before every separating semicolon.
 * There should be padding spaces inside RDF lists and anonymous nodes (i.e. inside brackets and
-  square brackets)
+square brackets)
 
 [[attributes-that-all-model-elements-have]]
 === Attributes that all model elements have
@@ -59,13 +59,13 @@ attributes:
 |===
 | Attributes | Description | Required
 | `samm:preferredName` | Human readable name in a specific language. This attribute may be defined
-  multiple times for different languages but only once for a specific language. There should be at
-  least one preferredName defined with an "en" language tag. | {nok}
+multiple times for different languages but only once for a specific language. There should be at
+least one preferredName defined with an "en" language tag. | {nok}
 | `samm:description` | Human readable description in a specific language. This attribute may be
-  defined multiple times for different languages but only once for a specific language. There should
-  be at least one description defined with an "en" language tag. | {nok}
+defined multiple times for different languages but only once for a specific language. There should
+be at least one description defined with an "en" language tag. | {nok}
 | `samm:see` | A reference to a related element in an external taxonomy, ontology or other standards
-  document. The datatype is `xsd:anyURI`. This attribute may be defined multiple times. | {nok}
+document. The datatype is `xsd:anyURI`. This attribute may be defined multiple times. | {nok}
 |===
 
 NOTE: Although both `samm:preferredName` and `samm:description` should be set at least once in every
@@ -125,15 +125,15 @@ addition to the general attributes, every Aspect Model element has the following
 |===
 | Attributes | Description | Required
 | `samm:properties` | The list of Properties of this Aspect. Leaving out this
-  attribute completely is equivalent to having it present with an empty list as value. | {nok}
+attribute completely is equivalent to having it present with an empty list as value. | {nok}
 | `samm:operations` | The list of Operations of this Aspect. Leaving out this
-  attribute completely is equivalent to having it present with an empty list as value. | {nok}
+attribute completely is equivalent to having it present with an empty list as value. | {nok}
 | `samm:events` | The list of Events of this Aspect. | {nok}
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
 * Each Aspect Model must be defined in its own file. The file name must be the same as the Aspect's
-  name.
+name.
 * The hierarchical namespace part in the Aspect's URN can be freely chosen.
 
 The definition of an Aspect should therefore have the following structure in TTL syntax; note though
@@ -161,7 +161,7 @@ that all model elements have], Properties have the following attributes:
 |===
 | Attributes | Description | Required
 | `samm:characteristic` | The xref:characteristics.adoc#characteristics[Characteristic] describing
-  this Property. | {ok}
+this Property. | {ok}
 | `samm:exampleValue` | An exemplary value that the Property can take, helping to clarify the intended meaning of the Property.
 This attribute supports both scalar literal values (e.g., xsd:string, xsd:float), an anonymous described scalar value,
 and value references that point to example values (i.e., references to instances of xref:modeling-guidelines.adoc#value-type[samm:Value]).
@@ -474,7 +474,7 @@ for Properties when all of the following conditions are met:
 * The value has a well-known structure consisting of different, separate parts
 * The parts can and should be described in more detail
 * The Property should not be decomposed/deconstructed into an Entity with separate Properties for
-  each part
+each part
 
 One of the main use cases is complex identifiers that encode context information such as provenance
 information, version numbers, locations codes and so on. It is unreasonable to split such a value up
@@ -493,10 +493,10 @@ Characteristic, and after that a complete concrete example is given.
 |===
 | Name | Example Value | Deconstruction Rule | Elements
 | ISO 8601 date | "2019-09-27"^^`xsd:date` | `(\d\{4})-(\d\{2})-(\d\{2})` | ( `:year` "-" `:month`
-  "-" `:day` )
+"-" `:day` )
 | Email Address | "\user4711@example.com" | `([\w\.-]+)@([\w\.-]+\.\w{2,4})` | ( `:username` "@" `:host` )
 | Hex-encoded color | "0xAC03BE" | `0x([0-9A-Fa-f]\{2})([0-9A-Fa-f]\{2})([0-9A-Fa-f]\{2})` | ( "0x"
-  `:red` `:green` `:blue` )
+`:red` `:green` `:blue` )
 |===
 
 The following code shows the Aspect Model for the first example from the table. Note that when
@@ -538,7 +538,7 @@ include::example$reference-declaration.ttl[tags=content]
 
 As explained in the section xref:modeling-guidelines.adoc#declaring-quantifiable-values-and-measurements[Declaring Quantifiables and Measurements], some values only make sense when they also have a unit assigned to them.
 This unit definition is in many cases fixed at design time, does not change thereafter and therefore at runtime (in the JSON payload for example), only the actual value is transported. +
- There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
+There may be scenarios, however, where this permanent fixation on a specific unit might not be sufficient because the unit can only be determined dynamically
 at runtime, or is a kind of configuration parameter which must be set when the system is being deployed/starting up. In cases like this, a xref:characteristics.adoc#unit-reference-characteristic[UnitReference] characteristic instance can be used to include a dynamic reference to the desired unit from the xref:appendix:unitcatalog.adoc[Unit catalog] and this information is then always included in the payload. The runtime payload refers to the unit using its `samm:curie`, i.e., the unit's URN's element name prefixed with `unit:`.
 
 For example an Aspect with the following model:
@@ -554,7 +554,7 @@ can produce a JSON payload that could look something like this:
 ----
 {
   "value" : 2.25,
-  "unit" : "unit:hectopascal" 
+  "unit" : "unit:hectopascal"
 }
 ----
 
@@ -611,7 +611,7 @@ Entities have the following attributes:
 |===
 | Attributes | Description | Required
 | `samm:properties` | The list of Properties which make up the Entity. Leaving out this
-  attribute completely is equivalent to having it present with an empty list as value.| {nok}
+attribute completely is equivalent to having it present with an empty list as value.| {nok}
 | `samm:extends` | The Entity which is extended by this Entity | {nok}
 |===
 
@@ -707,7 +707,7 @@ Operations have the following attributes:
 |===
 | Attributes | Description | Required
 | `samm:input` | A list of references to Properties that describe the input to the operation. The
-  attribute must be present, but the list may be empty. | {ok}
+attribute must be present, but the list may be empty. | {ok}
 | `samm:output` | A single reference to a Property that describes the output of the operation. |
   {nok}
 |===

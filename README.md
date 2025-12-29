@@ -99,7 +99,7 @@ To build the Semantic Aspect Meta Model Java artifact, run
 ```
 
 This will compile the code and run all tests. The resulting JAR file can be found under
-esmf-semantic-aspect-meta-model > target. Please be aware, that you need JDK 11 to run build and
+esmf-semantic-aspect-meta-model > target. Please be aware, that you need JDK 21 to run build and
 tests.
 
 Before making a contribution, please take a look at the [contribution guidelines](CONTRIBUTING.md).

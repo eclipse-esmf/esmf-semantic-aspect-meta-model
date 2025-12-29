@@ -19,7 +19,7 @@
    <parent>
       <groupId>org.eclipse.esmf</groupId>
       <artifactId>esmf-parent</artifactId>
-      <version>2</version>
+      <version>21</version>
    </parent>
    <artifactId>esmf-semantic-aspect-meta-model-parent</artifactId>
    <name>Semantic Aspect Meta Model Parent</name>
@@ -35,8 +35,8 @@
    <packaging>pom</packaging>
 
    <properties>
-      <java-target-version>11</java-target-version>
-      <java-source-version>11</java-source-version>
+      <java-target-version>21</java-target-version>
+      <java-source-version>21</java-source-version>
    </properties>
 
    <build>
@@ -46,22 +46,41 @@
             <artifactId>maven-enforcer-plugin</artifactId>
             <executions>
                <execution>
-                  <id>esmf-enforce-java11</id>
+                  <id>esmf-enforce-java21</id>
                   <goals>
                      <goal>enforce</goal>
                   </goals>
                   <configuration>
                      <rules>
-                        <requireProperty>
-                           <property>java.vm.version</property>
-                           <message>Could not determine JDK vendor (java.vm.version property)</message>
-                           <regex>^11\..*</regex>
-                           <regexMessage>Java 11 is required to build this project</regexMessage>
-                        </requireProperty>
+                        <requireJavaVersion>
+                           <version>[21,22)</version>
+                        </requireJavaVersion>
                      </rules>
+                     <fail>true</fail>
                   </configuration>
                </execution>
             </executions>
+         </plugin>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>${maven-deploy-plugin-version}</version>
+            <configuration>
+               <skip>true</skip>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+               <publishingServerId>central</publishingServerId>
+               <autoPublish>false</autoPublish>
+               <skipPublishing>true</skipPublishing>
+               <outputFilename>central-bundle.zip</outputFilename>
+            </configuration>
          </plugin>
       </plugins>
    </build>
