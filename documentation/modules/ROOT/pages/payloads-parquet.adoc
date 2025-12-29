@@ -154,7 +154,7 @@ The following table describes how Aspect Model data types are mapped to Apache P
 :ExampleAspect a samm:Aspect ;
    samm:preferredName "ExampleAspect"@en ;
    samm:description "Example Aspect for Apache Parquet file generation"@en ;
-   samm:properties ( :unsignedLongProperty :unsignedIntProperty :negativeIntegerProperty :nonPositiveIntegerProperty :nonNegativeIntegerProperty :unsignedByteProperty :unsignedShortProperty :longProperty :byteProperty :shortProperty :integerProperty :intProperty :decimalProperty :doubleProperty :floatProperty :booleanProperty :exampleProperty ) ;
+   samm:properties ( :unsignedLongProperty :unsignedIntProperty :negativeIntegerProperty :nonPositiveIntegerProperty :nonNegativeIntegerProperty :unsignedByteProperty :unsignedShortProperty :longProperty :byteProperty :shortProperty :integerProperty :intProperty :decimalProperty :doubleProperty :floatProperty :booleanProperty :exampleProperty :lengthConstraintExampleProperty ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -253,6 +253,10 @@ The following table describes how Aspect Model data types are mapped to Apache P
 :exampleProperty a samm:Property ;
    samm:characteristic :ExampleCharacteristicList .
 
+:lengthConstraintExampleProperty a samm:Property ;
+   samm:description "Example property has length constraint"@en ;
+   samm:characteristic :LengthTrait .
+
 :UnsignedLongCharacteristic a samm:Characteristic ;
    samm:preferredName "UnsignedLongCharacteristic"@en ;
    samm:description "UnsignedLongCharacteristic"@en ;
@@ -329,9 +333,24 @@ The following table describes how Aspect Model data types are mapped to Apache P
 :ExampleCharacteristicList a samm-c:List ;
    samm:dataType :ExampleEntity .
 
+:LengthTrait a samm-c:Trait ;
+   samm:preferredName "LengthTrait"@en ;
+   samm:description "Length Trait to ensure correct lebgth"@en ;
+   samm-c:baseCharacteristic :TextLengthCharacteristic ;
+   samm-c:constraint :TextLengthConstraint .
+
 :ExampleEntity a samm:Entity ;
    samm:preferredName "ExampleEntity"@en ;
    samm:properties ( :booleanProperty :anyURIProperty :base64BinaryProperty :hexBinaryProperty :gMonthDayProperty :gYearMonthProperty :gYearProperty :gMonthProperty :gDayProperty :dayTimeDurationProperty :yearMonthDurationProperty :durationProperty :dateTimeStampProperty :dateTimeProperty :timeProperty :dateProperty :stringProperty :dateTimePropertyWithTimeZone :langStringProperty ) .
+
+:TextLengthCharacteristic a samm:Characteristic ;
+   samm:preferredName "TextLengthCharacteristic"@en ;
+   samm:dataType xsd:string .
+
+:TextLengthConstraint a samm-c:LengthConstraint ;
+   samm:preferredName "TextLengthConstraint"@en ;
+   samm:description "TextLengthConstraint"@en ;
+   samm-c:maxValue "100"^^xsd:nonNegativeInteger .
 
 :anyURIProperty a samm:Property ;
    samm:preferredName "anyURIProperty"@en ;
