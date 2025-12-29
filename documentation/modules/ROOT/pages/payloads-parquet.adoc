@@ -255,7 +255,8 @@ The following table describes how Aspect Model data types are mapped to Apache P
 
 :lengthConstraintExampleProperty a samm:Property ;
    samm:description "Example property has length constraint"@en ;
-   samm:characteristic :LengthTrait .
+   samm:characteristic :LengthTrait ;
+   samm:exampleValue "sampleString" .
 
 :UnsignedLongCharacteristic a samm:Characteristic ;
    samm:preferredName "UnsignedLongCharacteristic"@en ;
