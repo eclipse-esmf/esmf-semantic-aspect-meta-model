@@ -85,7 +85,7 @@ The following table describes how Aspect Model data types are mapped to Apache P
 | | Aspect Model data type | Corresponding https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type]
 
 .4+| Core Types
-| `xsd:string` | `BYTE_ARRAY`
+| `xsd:string` | `BYTE_ARRAY` \ `FIXED_LEN_BYTE_ARRAY` (if LengthConstraint Trait max value is available)
 | `xsd:boolean` | `BOOLEAN`
 | `xsd:decimal` | `DOUBLE`
 | `xsd:integer` | `INT32`
@@ -558,10 +558,7 @@ The above Aspect Model would result in the Parquet schema structure link:../../e
 == Limitations and Considerations
 
 * **String Max Size**: We need the max size of String properties in order to represent as Apache Parquet FIXED_LEN_BYTE_ARRAY .
-But we could not find the correct functionality for all the types in the ESMF project to determine the maximum size of a String property.
-It might indicate a ESMF bug, which causes an issue where loading a certain model with a Property + Trait + LengthConstraint does not return the Constraints defined for the given Trait.
-We need to analyze this issue in detail and create a bug report in the ESMF project.
-In the meantime, we will represent String as BYTE_ARRAY until this ESMF issue is resolved.
+String will be represented as FIXED_LEN_BYTE_ARRAY only if there is a LengthConstraint Trait max value defined for the given Property or else it will be represented as BYTE_ARRAY.
 
 * **Order of collection data**: Order of collection data is not relevant when creating the Apache Parquet file.
 This is because, once the data is flattened, no order-related information is retained since only one element per collection will be created when generating the Apache Parquet file from an Aspect model.
