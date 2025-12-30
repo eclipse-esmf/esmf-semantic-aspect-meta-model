@@ -557,8 +557,7 @@ The above Aspect Model would result in the Parquet schema structure link:../../e
 
 == Limitations and Considerations
 
-* **String Max Size**: We need the max size of String properties in order to represent as Apache Parquet FIXED_LEN_BYTE_ARRAY .
-String will be represented as FIXED_LEN_BYTE_ARRAY only if there is a LengthConstraint Trait max value defined for the given Property or else it will be represented as BYTE_ARRAY.
+* **Aspect Model data String data type To Apache Parquet FIXED_LEN_BYTE_ARRAY / BYTE_ARRAY **: Aspect Model data String data type will be represented as Apache Parquet FIXED_LEN_BYTE_ARRAY only if there is a LengthConstraint Trait max value defined for the given Property or else it will be represented as Apache Parquet BYTE_ARRAY.
 
 * **Order of collection data**: Order of collection data is not relevant when creating the Apache Parquet file.
 This is because, once the data is flattened, no order-related information is retained since only one element per collection will be created when generating the Apache Parquet file from an Aspect model.
