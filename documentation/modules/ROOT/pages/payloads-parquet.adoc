@@ -57,10 +57,9 @@ For each Property:
 ** For collections of scalar types and complex types (Entities): Each element is represented with the `${collectionName}__${propertyName}` (underscore-separated).
 ** Example: `items__name`, `items__price`, `items__name`, `items__price`.
 
-* **Either Characteristic**: If the Property's Characteristic is `samm-c:Either`:
+* ** Characteristic**: If the Property's Characteristic is `samm-c:Either`:
 ** Both left and right alternatives are represented as separate columns.
 ** Column naming follows `${propertyName}__left` and `${propertyName}__right`.
-** Only one of these columns will contain a value; the other will be `null`.
 
 * **License information**: No license headers available when generating example Apache Parquet files from an Aspect model
 
@@ -96,19 +95,19 @@ The following table describes how Aspect Model data types are mapped to Apache P
 
 .4+| Time and Date
 | `xsd:date` | `INT32`
-| `xsd:time` | `BYTE_ARRAY`
+| `xsd:time` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 | `xsd:dateTime` | `INT64`
 | `xsd:dateTimeStamp` | `INT64`
 
 .8+| Recurring and Partial Dates
-| `xsd:gYear` | `BYTE_ARRAY`
-| `xsd:gMonth` | `BYTE_ARRAY`
-| `xsd:gDay` | `BYTE_ARRAY`
-| `xsd:gYearMonth` | `BYTE_ARRAY`
-| `xsd:gMonthDay` | `BYTE_ARRAY`
-| `xsd:duration` | `BYTE_ARRAY`
-| `xsd:yearMonthDuration` | `BYTE_ARRAY`
-| `xsd:dayTimeDuration` | `BYTE_ARRAY`
+| `xsd:gYear` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonth` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gDay` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gYearMonth` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonthDay` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:duration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:yearMonthDuration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:dayTimeDuration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 
 .12+| Limited-Range Integer Numbers
 | `xsd:byte` | `INT32`
@@ -125,13 +124,12 @@ The following table describes how Aspect Model data types are mapped to Apache P
 | `xsd:nonPositiveInteger` | `INT32`
 
 .2+| Encoded Binary Data
-| `xsd:hexBinary` | `BYTE_ARRAY`
-| `xsd:base64Binary` | `BYTE_ARRAY`
+| `xsd:hexBinary` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:base64Binary` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 
 .3+| Miscellaneous Types
-| `xsd:anyURI` | `BYTE_ARRAY`
-| `samm:curie` | `BYTE_ARRAY`
-| `rdf:langString` | `BYTE_ARRAY`
+| `xsd:anyURI` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `rdf:langString` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 |===
 
 == Example
@@ -154,7 +152,7 @@ The following table describes how Aspect Model data types are mapped to Apache P
 :ExampleAspect a samm:Aspect ;
    samm:preferredName "ExampleAspect"@en ;
    samm:description "Example Aspect for Apache Parquet file generation"@en ;
-   samm:properties ( :unsignedLongProperty :unsignedIntProperty :negativeIntegerProperty :nonPositiveIntegerProperty :nonNegativeIntegerProperty :unsignedByteProperty :unsignedShortProperty :longProperty :byteProperty :shortProperty :integerProperty :intProperty :decimalProperty :doubleProperty :floatProperty :booleanProperty :exampleProperty :lengthConstraintExampleProperty ) ;
+   samm:properties ( :unsignedLongProperty :unsignedIntProperty :negativeIntegerProperty :nonPositiveIntegerProperty :nonNegativeIntegerProperty :unsignedByteProperty :unsignedShortProperty :longProperty :byteProperty :shortProperty :integerProperty :intProperty :decimalProperty :doubleProperty :floatProperty :booleanProperty :exampleProperty :eitherProperty :lengthConstraintProperty ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -253,10 +251,13 @@ The following table describes how Aspect Model data types are mapped to Apache P
 :exampleProperty a samm:Property ;
    samm:characteristic :ExampleCharacteristicList .
 
-:lengthConstraintExampleProperty a samm:Property ;
-   samm:description "Example property has length constraint"@en ;
-   samm:characteristic :LengthTrait ;
-   samm:exampleValue "sampleString" .
+:eitherProperty a samm:Property ;
+   samm:characteristic :EitherCharacteristic .
+
+:lengthConstraintProperty a samm:Property ;
+   samm:preferredName "lengthConstraintProperty"@en ;
+   samm:characteristic :LengthTrait1 ;
+   samm:exampleValue "testing" .
 
 :UnsignedLongCharacteristic a samm:Characteristic ;
    samm:preferredName "UnsignedLongCharacteristic"@en ;
@@ -334,24 +335,32 @@ The following table describes how Aspect Model data types are mapped to Apache P
 :ExampleCharacteristicList a samm-c:List ;
    samm:dataType :ExampleEntity .
 
-:LengthTrait a samm-c:Trait ;
-   samm:preferredName "LengthTrait"@en ;
-   samm:description "Length Trait to ensure correct lebgth"@en ;
-   samm-c:baseCharacteristic :TextLengthCharacteristic ;
-   samm-c:constraint :TextLengthConstraint .
+:EitherCharacteristic a samm-c:Either ;
+   samm-c:left :LeftCharacteristicExample ;
+   samm-c:right :RightCharacteristicExample .
+
+:LengthTrait1 a samm-c:Trait ;
+   samm:preferredName "LengthTrait1"@en ;
+   samm-c:baseCharacteristic :ExampleLengthCharacteristic ;
+   samm-c:constraint :LengthConstraintExample .
 
 :ExampleEntity a samm:Entity ;
    samm:preferredName "ExampleEntity"@en ;
    samm:properties ( :booleanProperty :anyURIProperty :base64BinaryProperty :hexBinaryProperty :gMonthDayProperty :gYearMonthProperty :gYearProperty :gMonthProperty :gDayProperty :dayTimeDurationProperty :yearMonthDurationProperty :durationProperty :dateTimeStampProperty :dateTimeProperty :timeProperty :dateProperty :stringProperty :dateTimePropertyWithTimeZone :langStringProperty ) .
 
-:TextLengthCharacteristic a samm:Characteristic ;
-   samm:preferredName "TextLengthCharacteristic"@en ;
+:LeftCharacteristicExample a samm:Characteristic ;
    samm:dataType xsd:string .
 
-:TextLengthConstraint a samm-c:LengthConstraint ;
-   samm:preferredName "TextLengthConstraint"@en ;
-   samm:description "TextLengthConstraint"@en ;
-   samm-c:maxValue "100"^^xsd:nonNegativeInteger .
+:RightCharacteristicExample a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:ExampleLengthCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:LengthConstraintExample a samm-c:LengthConstraint ;
+   samm:preferredName "LengthConstraintExample"@en ;
+   samm-c:minValue "1"^^xsd:nonNegativeInteger ;
+   samm-c:maxValue "10"^^xsd:nonNegativeInteger .
 
 :anyURIProperty a samm:Property ;
    samm:preferredName "anyURIProperty"@en ;
@@ -547,8 +556,6 @@ The following table describes how Aspect Model data types are mapped to Apache P
    samm:dataType rdf:langString .
 
 
-
-
 ----
 
 === Parquet Schema
@@ -560,7 +567,7 @@ The above Aspect Model would result in the Parquet schema structure link:../../e
 * **Aspect Model data String data type To Apache Parquet FIXED_LEN_BYTE_ARRAY / BYTE_ARRAY **: Aspect Model data String data type will be represented as Apache Parquet FIXED_LEN_BYTE_ARRAY only if there is a LengthConstraint Trait max value defined for the given Property or else it will be represented as Apache Parquet BYTE_ARRAY.
 
 * **Order of collection data**: Order of collection data is not relevant when creating the Apache Parquet file.
-This is because, once the data is flattened, no order-related information is retained since only one element per collection will be created when generating the Apache Parquet file from an Aspect model.
+This is because, once the data is flattened, no order-related information is retained since only one element per collection will be created when generating a sample Apache Parquet file from an Aspect model.
 
 * **Timezone Handling**: For `xsd:dateTime` and `xsd:dateTimeStamp`:
 ** When timezone information is present, timestamps are normalized to UTC.
