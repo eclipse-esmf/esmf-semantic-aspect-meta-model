@@ -5,6 +5,8 @@ on:
       release_version:
         description: 'Version number of the release'
         required: true
+env:
+  RELEASE_VERSION: ${{ github.event.inputs.release_version }}
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -28,7 +30,7 @@ jobs:
     - name: Set release version in antora.yml
       uses: mikefarah/yq@master
       with:
-        cmd: yq eval -i '.version = "${{ github.event.inputs.release_version }}"' documentation/antora.yml
+        cmd: yq eval -i '.version = "${RELEASE_VERSION}"' documentation/antora.yml
 
     - name: Build SAMM artifact and create Maven Central bundle
       run: |
@@ -36,13 +38,12 @@ jobs:
         
         export MAVEN_OPTS="-Xmx4096m"
         export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
-        release_version=${{ github.event.inputs.release_version }}
         
         rm -rf ~/.m2/repository/org/eclipse/esmf
-        ./mvnw -B versions:set -DnewVersion=${ release_version }
+        ./mvnw -B versions:set -DnewVersion=${RELEASE_VERSION}
         ./mvnw -B versions:commit
         # Since the meta model project itself does not inherit from the parent, we must set its version separately
-        ./mvnw -B versions:set -DnewVersion=${ release_version } -pl esmf-semantic-aspect-meta-model
+        ./mvnw -B versions:set -DnewVersion=${RELEASE_VERSION} -pl esmf-semantic-aspect-meta-model
         ./mvnw -B versions:commit -pl esmf-semantic-aspect-meta-model
         ./mvnw -B clean generate-resources -pl documentation -Pantora
         ./mvnw -B -U clean install -pl esmf-samm-build-plugin
@@ -56,13 +57,13 @@ jobs:
         popd
     
         cd build/
-        mv site SAMM-${ release_version }
-        zip -r ../SAMM-${ release_version }-specification.zip SAMM-${ release_version }
+        mv site SAMM-${RELEASE_VERSION}
+        zip -r ../SAMM-${RELEASE_VERSION}-specification.zip SAMM-${RELEASE_VERSION}
       env:
         PGP_KEY_PASSWORD: ${{ secrets.PGP_KEY_PASSWORD }}
 
     - name: Release to Maven Central
-      if: ${{ !contains( github.event.inputs.release_version, '-M' ) }}
+      if: ${{ !contains( env.RELEASE_VERSION, '-M' ) }}
       run: |
         token_header=$(printf "$CENTRAL_USERNAME:$CENTRAL_TOKEN" | base64)
         curl --request POST \
@@ -89,7 +90,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         body: "Create Github release"
-        tag_name: v${{ github.event.inputs.release_version }}
+        tag_name: v${{ env.RELEASE_VERSION }}
         target_commitish: ${{ env.release_branch_name }}
         draft: false
         prerelease: false
