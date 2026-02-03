@@ -7,6 +7,7 @@ on:
         required: true
 env:
   RELEASE_VERSION: ${{ github.event.inputs.release_version }}
+permissions: {}
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -33,7 +34,7 @@ jobs:
         overwrite-settings: false
 
     - name: Set release version in antora.yml
-      uses: mikefarah/yq@master
+      uses: mikefarah/yq@2be0094729a1006f61e8339ce9934bfb3cbb549f # v4.52.2
       with:
         cmd: yq eval -i '.version = "${RELEASE_VERSION}"' documentation/antora.yml
 
