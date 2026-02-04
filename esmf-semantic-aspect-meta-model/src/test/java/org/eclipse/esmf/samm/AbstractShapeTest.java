@@ -124,6 +124,7 @@ public abstract class AbstractShapeTest {
    final String messageValueDoesNotHaveNodeKindIri = "Value does not have node kind IRI";
    final String messageValueMustBeCharacteristic = "Value must be an instance of samm:Characteristic";
    final String messageMoreThanZeroValues = "Property may only have 0 values, but found 1";
+   final String messageCharacteristicMustNotDefineExampleValue = "Property ':speedProperty' uses an Either characteristic and must not define an exampleValue.";
    final String messageInvalidLowerBoundDefinitionValue = "Value must be exactly one of [samm-c:AT_LEAST, samm-c:GREATER_THAN]";
    final String messageInvalidUpperBoundDefinitionValue = "Value must be exactly one of [samm-c:LESS_THAN, samm-c:AT_MOST]";
    final String messageInvalidDeconstruction = "Deconstruction rule did not match Properties in elements";
@@ -190,7 +191,7 @@ public abstract class AbstractShapeTest {
       final ValidationReport validationReport = validator.apply( model, testedVersion );
       assertThat( validationReport.conforms() ).describedAs( "Model %s should contain violations but does not", path ).isFalse();
       assertThat( validationReport.getValidationErrors() ).hasSize( numberOfValidationResults );
-      assertThat( validationReport.getValidationErrors() ).contains( errors );
+      assertThat( validationReport.getValidationErrors() ).containsExactlyInAnyOrder( errors );
    }
 
    protected Model loadModel( final String path, final String ttlDefinition, final KnownVersion knownVersion ) {

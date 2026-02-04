@@ -1,0 +1,33 @@
+#
+# Copyright (c) 2026 Robert Bosch Manufacturing Solutions GmbH, Germany. All rights reserved.
+#
+name: GitHub Actions SAST (zizmor)
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+permissions: {}
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 #v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor (PR annotations)
+        uses: zizmorcore/zizmor-action@e639db99335bc9038abc0e066dfcd72e23d26fb4 # v0.3.0
+        with:
+          advanced-security: false
+          version: v1.22.0
+          annotations: true
+          persona: auditor
+          min-severity: medium

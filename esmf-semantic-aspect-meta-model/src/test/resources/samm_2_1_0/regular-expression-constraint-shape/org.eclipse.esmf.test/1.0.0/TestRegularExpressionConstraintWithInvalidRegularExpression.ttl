@@ -15,7 +15,18 @@
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+
 :TestRegularExpressionConstraintWithInvalidRegularExpression a samm-c:RegularExpressionConstraint ;
    samm:preferredName "Test Regular Expression Constraint"@en ;
    samm:description "Test Regular Expression Constraint"@en ;
    samm:value "(" .
+
+:TestRegularExpressionConstraintWithInvalidRegularExpression2 a samm-c:RegularExpressionConstraint ;
+   samm:preferredName "Test Regular Expression Constraint"@en ;
+   samm:description "Test Regular Expression Constraint"@en ;
+   samm:value "*abc" .
+
+:TestRegularExpressionConstraintWithInvalidRegularExpression3 a samm-c:RegularExpressionConstraint ;
+   samm:preferredName "Test Regular Expression Constraint"@en ;
+   samm:description "Test Regular Expression Constraint"@en ;
+   samm:value "x(?<named>[a-z])y" .
