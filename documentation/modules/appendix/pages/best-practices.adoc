@@ -433,10 +433,12 @@ Also, be *concise*.
 To get an idea, think of definitions in an IEC/ISO glossary.
 
 [[no-repeated-preferredname]]
-=== Meaningful: do not just repeat the `preferredName`
+=== Write a meaningful description
 
-Write a meaningful Description.
-It can consist of only a sentence fragment, or it may be longer—but do not just repeat the Preferred Name for the Description.
+All properties need to have meaningful descriptions that allow persons and AI-agents with no prior knowledge to understand them. This includes relevant usage scenarios, e.g.:
+"This is the default property when grouping x by y."
+If two properties are similar (e.g. "plantCode" and "plantId") the descriptions must be clear on when to use one or the other.
+Do not just repeat the Preferred Name for the Description.
 
 |===
 |Example model element |{nok-small} DON'T |{ok-small} DO
@@ -865,6 +867,14 @@ TIP: All Markdown blockquote elements--notes, examples, and sources--can contain
 
 Go back to the <<markdown-where-needed>> overview.
 
+[[the-exampleValue-attribute]]
+== The `exampleValue` attribute
+
+The `exampleValue` attribute is available for all model elements.
+ This attribute allows persons and AI-agents to quickly evaluate what correct values look like.
+
+Properties always need to include an example value, ideally examples for all expected patterns are included (e.g. serialNumber might have values like "0123456" and also "000012ABCDE345678F").
+
 [[choosing-a-numeric-type]]
 == Choosing a Numeric Type
 
@@ -940,8 +950,12 @@ It is generally advisable to reuse definitions of existing model elements that d
 and maintainability but, more importantly, it explicitly expresses that the model builds upon a set of agreed-upon abstractions.
 The reuse of existing model element definitions makes it clear that your model talks about _the same thing_. On the other hand,
 introducing another definition of an allegedly already existing concept is equivalent to stating that the deliberately newly created definition
-does indeed mean something different. This is particularly useful when model elements are created for terminology that can have many different
-meanings in various contexts, such as the term "process".
+does indeed mean something different.
+
+Do not introduce Properties with the same local name and the same meaning in multiple namespaces.
+For example, a Property "serialNumber" with a specific meaning must only be defined in exactly one namespace
+(it can appear in multiple versions, though). Concepts with different meanings may be declared with the same local name in different namespaces,
+for example an "operating system process" and an "organizational process" might both be called "process".
 
 `xref:ROOT:entities.adoc#entities[Entities]`,
 `xref:ROOT:characteristics.adoc#characteristics[Characteristics]`,
