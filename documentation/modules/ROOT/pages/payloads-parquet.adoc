@@ -1,0 +1,587 @@
+////
+Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+
+[[mapping-to-apache-parquet]]
+= Mapping to Apache Parquet
+
+== Overview
+
+Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval.
+It provides high performance compression and encoding schemes to handle complex data in bulk and is supported in many programming languages and analytics tools.
+
+This document describes how Aspect Models are converted into Apache Parquet files, including the mapping of SAMM data types to Parquet types and the flattening strategy for nested structures.
+
+== Rules for the construction of Apache Parquet files matching an Aspect Model
+
+In order to create Apache Parquet files that correspond to an Aspect Model, the following rules are applied:
+
+=== Flattening Strategy
+
+* An Aspect Model is serialized into a flattened columnar structure where nested Properties are represented using a double underscore (`__`) separator.
+* Property names in the Aspect Model should use single underscores (`_`) to avoid ambiguity with the flattening separator - https://github.com/eclipse-tractusx/sldt-semantic-models/issues/885[Limit Aspect model 'payloadName's with single underscore ('_')].
+
+=== Property Serialization Rules
+
+For each Property:
+
+* **Optional Properties**: If a Property is marked as optional and not included, its column value will be `null`.
+
+* **Scalar Properties**: If the Property's effective data type is scalar:
+** The Property is serialized as a column with the name `${propertyName}`.
+** The column type is determined by the data type mapping (see <<parquet-data-type-mappings>>).
+** The value must adhere to the value range defined by the Property's effective data type and possible Constraints.
+
+* **Multi-language Properties** (`rdf:langString`):
+** Each language variant is serialized as a separate column.
+** Column naming follows the pattern `${propertyName}-${language}` (hyphen-separated).
+** Example: `description-en`, `description-de`, `description-zh`.
+
+* **Entity Properties**: If the Property's effective data type is an Entity:
+** The Entity's Properties are flattened using the double underscore separator.
+** Example: Property `address` with nested Properties `street` and `city` becomes `address__street` and `address__city`.
+
+* **Entity Inheritance**: If an Entity extends another Entity:
+** All Properties from the Entity and its parent Entities are included.
+** Properties are resolved from `?thisEntity samm:extends* []`.
+
+* **Collection Properties**: If the Property's Characteristic is a Collection, List, Set, or Sorted Set:
+** For collections of scalar types and complex types (Entities): Each element is represented with the `${collectionName}__${propertyName}` (underscore-separated).
+** Example: `items__name`, `items__price`, `items__name`, `items__price`.
+
+* ** Characteristic**: If the Property's Characteristic is `samm-c:Either`:
+** Both left and right alternatives are represented as separate columns.
+** Column naming follows `${propertyName}__left` and `${propertyName}__right`.
+
+* **License information**: No license headers available when generating example Apache Parquet files from an Aspect model
+
+=== Denormalization for Collections
+
+When an Aspect contains Properties with Collections:
+
+* Each collection element may result in a separate row in the Parquet file to maintain a denormalized structure.
+* This approach is suitable for analytical workloads where columnar storage and denormalization improve query performance.
+
+=== Characteristics Not Subject to Serialization
+
+* Operations defined in the Aspect Model are not subject to serialization.
+* Events defined in the Aspect Model are not subject to serialization.
+
+[[parquet-data-type-mappings]]
+== Data Type Mappings
+
+The following table describes how Aspect Model data types are mapped to Apache Parquet primitive types with their logical type annotations where applicable.
+
+|===
+| | Aspect Model data type | Corresponding https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type]
+
+.4+| Core Types
+| `xsd:string` | `BYTE_ARRAY` \ `FIXED_LEN_BYTE_ARRAY` (if LengthConstraint Trait max value is available)
+| `xsd:boolean` | `BOOLEAN`
+| `xsd:decimal` | `DOUBLE`
+| `xsd:integer` | `INT32`
+
+.2+| IEEE Floating-Point Numbers
+| `xsd:double` | `DOUBLE`
+| `xsd:float` | `FLOAT`
+
+.4+| Time and Date
+| `xsd:date` | `INT32`
+| `xsd:time` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:dateTime` | `INT64`
+| `xsd:dateTimeStamp` | `INT64`
+
+.8+| Recurring and Partial Dates
+| `xsd:gYear` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonth` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gDay` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gYearMonth` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonthDay` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:duration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:yearMonthDuration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:dayTimeDuration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+
+.12+| Limited-Range Integer Numbers
+| `xsd:byte` | `INT32`
+| `xsd:short` | `INT32`
+| `xsd:int` | `INT32`
+| `xsd:long` | `INT64`
+| `xsd:unsignedByte` | `INT32`
+| `xsd:unsignedShort` | `INT32`
+| `xsd:unsignedInt` | `INT64`
+| `xsd:unsignedLong` | `INT64`
+| `xsd:positiveInteger` | `INT32`
+| `xsd:nonNegativeInteger` | `INT32`
+| `xsd:negativeInteger` | `INT32`
+| `xsd:nonPositiveInteger` | `INT32`
+
+.2+| Encoded Binary Data
+| `xsd:hexBinary` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:base64Binary` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+
+.3+| Miscellaneous Types
+| `xsd:anyURI` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `rdf:langString` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+|===
+
+== Example
+
+=== Aspect Model
+
+[source,turtle,subs="attributes+,+quotes"]
+----
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:org.eclipse.esmf:1.0.0#> .
+@prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+
+:ExampleAspect a samm:Aspect ;
+   samm:preferredName "ExampleAspect"@en ;
+   samm:description "Example Aspect for Apache Parquet file generation"@en ;
+   samm:properties ( :unsignedLongProperty :unsignedIntProperty :negativeIntegerProperty :nonPositiveIntegerProperty :nonNegativeIntegerProperty :unsignedByteProperty :unsignedShortProperty :longProperty :byteProperty :shortProperty :integerProperty :intProperty :decimalProperty :doubleProperty :floatProperty :booleanProperty :exampleProperty :eitherProperty :lengthConstraintProperty ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:unsignedLongProperty a samm:Property ;
+   samm:preferredName "unsignedLongProperty"@en ;
+   samm:description "unsignedLongProperty"@en ;
+   samm:characteristic :UnsignedLongCharacteristic ;
+   samm:exampleValue "1000"^^xsd:unsignedLong .
+
+:unsignedIntProperty a samm:Property ;
+   samm:preferredName "unsignedIntProperty"@en ;
+   samm:description "unsignedIntProperty"@en ;
+   samm:characteristic :UnsignedIntPropertyCharacteristic ;
+   samm:exampleValue "4"^^xsd:unsignedInt .
+
+:negativeIntegerProperty a samm:Property ;
+   samm:preferredName "negativeIntegerProperty"@en ;
+   samm:description "negativeIntegerProperty"@en ;
+   samm:characteristic :NegativeIntegerCharacteristic ;
+   samm:exampleValue "-10"^^xsd:negativeInteger .
+
+:nonPositiveIntegerProperty a samm:Property ;
+   samm:preferredName "nonPositiveIntegerProperty"@en ;
+   samm:description "nonPositiveIntegerProperty"@en ;
+   samm:characteristic :NonPositiveIntegerCharacteristic ;
+   samm:exampleValue "0"^^xsd:nonPositiveInteger .
+
+:nonNegativeIntegerProperty a samm:Property ;
+   samm:preferredName "nonNegativeIntegerProperty"@en ;
+   samm:description "nonNegativeIntegerProperty"@en ;
+   samm:characteristic :NonNegativeIntegerCharacteristic ;
+   samm:exampleValue "0"^^xsd:nonNegativeInteger .
+
+:unsignedByteProperty a samm:Property ;
+   samm:preferredName "unsignedByteProperty"@en ;
+   samm:description "unsignedByteProperty"@en ;
+   samm:characteristic :UnsignedByteCharacteristic ;
+   samm:exampleValue "42"^^xsd:unsignedByte .
+
+:unsignedShortProperty a samm:Property ;
+   samm:preferredName "unsignedShortProperty"@en ;
+   samm:description "unsignedShortProperty"@en ;
+   samm:characteristic :UnsignedShortCharacteristic ;
+   samm:exampleValue "255"^^xsd:unsignedShort .
+
+:longProperty a samm:Property ;
+   samm:preferredName "longProperty"@en ;
+   samm:description "longProperty"@en ;
+   samm:characteristic :LongCharacteristic ;
+   samm:exampleValue "1122334455"^^xsd:long .
+
+:byteProperty a samm:Property ;
+   samm:preferredName "byteProperty"@en ;
+   samm:description "byteProperty"@en ;
+   samm:characteristic :ByteCharacteristic ;
+   samm:exampleValue "-1"^^xsd:byte .
+
+:shortProperty a samm:Property ;
+   samm:preferredName "shortProperty"@en ;
+   samm:description "shortProperty"@en ;
+   samm:characteristic :ShortCharacteristic ;
+   samm:exampleValue "2"^^xsd:short .
+
+:integerProperty a samm:Property ;
+   samm:preferredName "integerProperty"@en ;
+   samm:description "integerProperty"@en ;
+   samm:characteristic :IntegerCharacteristic ;
+   samm:exampleValue 10 .
+
+:intProperty a samm:Property ;
+   samm:preferredName "intProperty"@en ;
+   samm:description "intProperty"@en ;
+   samm:characteristic :IntCharacteristic ;
+   samm:exampleValue "5"^^xsd:int .
+
+:decimalProperty a samm:Property ;
+   samm:preferredName "decimalProperty"@en ;
+   samm:characteristic :DecimalCharacteristic ;
+   samm:exampleValue "0.5"^^xsd:decimal .
+
+:doubleProperty a samm:Property ;
+   samm:preferredName "doubleProperty"@en ;
+   samm:characteristic :DoubleCharacteristic ;
+   samm:exampleValue "22.189"^^xsd:double .
+
+:floatProperty a samm:Property ;
+   samm:preferredName "floatProperty"@en ;
+   samm:characteristic :FloatCharacteristic ;
+   samm:exampleValue "1.9"^^xsd:float .
+
+:booleanProperty a samm:Property ;
+   samm:preferredName "boolean Property"@en ;
+   samm:characteristic :BooleanCharacteristic ;
+   samm:exampleValue true .
+
+:exampleProperty a samm:Property ;
+   samm:characteristic :ExampleCharacteristicList .
+
+:eitherProperty a samm:Property ;
+   samm:characteristic :EitherCharacteristic .
+
+:lengthConstraintProperty a samm:Property ;
+   samm:preferredName "lengthConstraintProperty"@en ;
+   samm:characteristic :LengthTrait1 ;
+   samm:exampleValue "testing" .
+
+:UnsignedLongCharacteristic a samm:Characteristic ;
+   samm:preferredName "UnsignedLongCharacteristic"@en ;
+   samm:description "UnsignedLongCharacteristic"@en ;
+   samm:dataType xsd:unsignedLong .
+
+:UnsignedIntPropertyCharacteristic a samm:Characteristic ;
+   samm:preferredName "UnsignedIntPropertyCharacteristic"@en ;
+   samm:description "UnsignedIntPropertyCharacteristic"@en ;
+   samm:dataType xsd:unsignedInt .
+
+:NegativeIntegerCharacteristic a samm:Characteristic ;
+   samm:preferredName "NegativeIntegerCharacteristic"@en ;
+   samm:description "NegativeIntegerCharacteristic"@en ;
+   samm:dataType xsd:negativeInteger .
+
+:NonPositiveIntegerCharacteristic a samm:Characteristic ;
+   samm:preferredName "NonPositiveIntegerCharacteristic"@en ;
+   samm:description "NonPositiveIntegerCharacteristic"@en ;
+   samm:dataType xsd:nonPositiveInteger .
+
+:NonNegativeIntegerCharacteristic a samm:Characteristic ;
+   samm:preferredName "NonNegativeIntegerCharacteristic"@en ;
+   samm:description "NonNegativeIntegerCharacteristic"@en ;
+   samm:dataType xsd:nonNegativeInteger .
+
+:UnsignedByteCharacteristic a samm:Characteristic ;
+   samm:preferredName "UnsignedByteCharacteristic"@en ;
+   samm:description "UnsignedByteCharacteristic"@en ;
+   samm:dataType xsd:unsignedByte .
+
+:UnsignedShortCharacteristic a samm:Characteristic ;
+   samm:preferredName "UnsignedShortCharacteristic"@en ;
+   samm:description "UnsignedShortCharacteristic"@en ;
+   samm:dataType xsd:unsignedShort .
+
+:LongCharacteristic a samm:Characteristic ;
+   samm:preferredName "LongCharacteristic"@en ;
+   samm:description "LongCharacteristic"@en ;
+   samm:dataType xsd:long .
+
+:ByteCharacteristic a samm:Characteristic ;
+   samm:preferredName "ByteCharacteristic"@en ;
+   samm:description "ByteCharacteristic"@en ;
+   samm:dataType xsd:byte .
+
+:ShortCharacteristic a samm:Characteristic ;
+   samm:preferredName "ShortCharacteristic"@en ;
+   samm:description "ShortCharacteristic"@en ;
+   samm:dataType xsd:short .
+
+:IntegerCharacteristic a samm:Characteristic ;
+   samm:preferredName "integerProperty"@en ;
+   samm:dataType xsd:integer .
+
+:IntCharacteristic a samm:Characteristic ;
+   samm:preferredName "IntCharacteristic"@en ;
+   samm:dataType xsd:int .
+
+:DecimalCharacteristic a samm:Characteristic ;
+   samm:preferredName "Decimal Characteristic"@en ;
+   samm:dataType xsd:decimal .
+
+:DoubleCharacteristic a samm:Characteristic ;
+   samm:preferredName "DoubleCharacteristic"@en ;
+   samm:dataType xsd:double .
+
+:FloatCharacteristic a samm:Characteristic ;
+   samm:preferredName "FloatCharacteristic"@en ;
+   samm:dataType xsd:float .
+
+:BooleanCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:boolean .
+
+:ExampleCharacteristicList a samm-c:List ;
+   samm:dataType :ExampleEntity .
+
+:EitherCharacteristic a samm-c:Either ;
+   samm-c:left :LeftCharacteristicExample ;
+   samm-c:right :RightCharacteristicExample .
+
+:LengthTrait1 a samm-c:Trait ;
+   samm:preferredName "LengthTrait1"@en ;
+   samm-c:baseCharacteristic :ExampleLengthCharacteristic ;
+   samm-c:constraint :LengthConstraintExample .
+
+:ExampleEntity a samm:Entity ;
+   samm:preferredName "ExampleEntity"@en ;
+   samm:properties ( :booleanProperty :anyURIProperty :base64BinaryProperty :hexBinaryProperty :gMonthDayProperty :gYearMonthProperty :gYearProperty :gMonthProperty :gDayProperty :dayTimeDurationProperty :yearMonthDurationProperty :durationProperty :dateTimeStampProperty :dateTimeProperty :timeProperty :dateProperty :stringProperty :dateTimePropertyWithTimeZone :langStringProperty ) .
+
+:LeftCharacteristicExample a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:RightCharacteristicExample a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:ExampleLengthCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:LengthConstraintExample a samm-c:LengthConstraint ;
+   samm:preferredName "LengthConstraintExample"@en ;
+   samm-c:minValue "1"^^xsd:nonNegativeInteger ;
+   samm-c:maxValue "10"^^xsd:nonNegativeInteger .
+
+:anyURIProperty a samm:Property ;
+   samm:preferredName "anyURIProperty"@en ;
+   samm:description "anyURIProperty"@en ;
+   samm:characteristic :AnyURICharacteristic ;
+   samm:exampleValue "http://www.example.com"^^xsd:anyURI .
+
+:base64BinaryProperty a samm:Property ;
+   samm:preferredName "base64BinaryProperty"@en ;
+   samm:description "base64BinaryProperty"@en ;
+   samm:characteristic :Base64BinaryCharacteristic ;
+   samm:exampleValue "VGhpcyBpcyBhIHRlc3Q="^^xsd:base64Binary .
+
+:hexBinaryProperty a samm:Property ;
+   samm:preferredName "hexBinaryProperty"@en ;
+   samm:description "hexBinaryProperty"@en ;
+   samm:characteristic :HexBinaryCharacteristic ;
+   samm:exampleValue "4A3B"^^xsd:hexBinary .
+
+:gMonthDayProperty a samm:Property ;
+   samm:preferredName "gMonthDayProperty"@en ;
+   samm:description "gMonthDayProperty"@en ;
+   samm:characteristic :GMonthDayCharacteristic ;
+   samm:exampleValue "--11-21"^^xsd:gMonthDay .
+
+:gYearMonthProperty a samm:Property ;
+   samm:preferredName "gYearMonthProperty"@en ;
+   samm:description "gYearMonthProperty"@en ;
+   samm:characteristic :GYearMonthCharacteristic ;
+   samm:exampleValue "2025-11"^^xsd:gYearMonth .
+
+:gYearProperty a samm:Property ;
+   samm:preferredName "gYearProperty"@en ;
+   samm:description "gYearProperty"@en ;
+   samm:characteristic :GYearCharacteristic ;
+   samm:exampleValue "2025"^^xsd:gYear .
+
+:gMonthProperty a samm:Property ;
+   samm:preferredName "gMonthProperty"@en ;
+   samm:description "gMonthProperty"@en ;
+   samm:characteristic :GMonthCharacteristic ;
+   samm:exampleValue "--07"^^xsd:gMonth .
+
+:gDayProperty a samm:Property ;
+   samm:preferredName "gDayProperty"@en ;
+   samm:description "gDayProperty"@en ;
+   samm:characteristic :GDayCharacteristic ;
+   samm:exampleValue "---05"^^xsd:gDay .
+
+:dayTimeDurationProperty a samm:Property ;
+   samm:preferredName "dayTimeDurationProperty"@en ;
+   samm:description "dayTimeDurationProperty"@en ;
+   samm:characteristic :DayTimeDurationCharacteristic ;
+   samm:exampleValue "P10D"^^xsd:dayTimeDuration .
+
+:yearMonthDurationProperty a samm:Property ;
+   samm:preferredName "yearMonthDurationProperty"@en ;
+   samm:description "yearMonthDurationProperty"@en ;
+   samm:characteristic :YearMonthDurationCharacteristic ;
+   samm:exampleValue "P2Y"^^xsd:yearMonthDuration .
+
+:durationProperty a samm:Property ;
+   samm:preferredName "durationProperty"@en ;
+   samm:description "durationProperty"@en ;
+   samm:characteristic :DurationCharacteristic ;
+   samm:exampleValue "P10D"^^xsd:duration .
+
+:dateTimeStampProperty a samm:Property ;
+   samm:preferredName "dateTimeStampProperty"@en ;
+   samm:description "dateTimeStampProperty"@en ;
+   samm:characteristic :DateTimeStampCharacteristic ;
+   samm:exampleValue "2025-11-21T14:30:00Z"^^xsd:dateTimeStamp .
+
+:dateTimeProperty a samm:Property ;
+   samm:preferredName "dateTimeProperty"@en ;
+   samm:description "dateTimeProperty"@en ;
+   samm:characteristic :DateTimeCharacteristic ;
+   samm:exampleValue "2025-11-21T14:30:00"^^xsd:dateTime .
+
+:timeProperty a samm:Property ;
+   samm:preferredName "timeProperty"@en ;
+   samm:description "timeProperty"@en ;
+   samm:characteristic :TimeCharacteristic ;
+   samm:exampleValue "14:30:15.123"^^xsd:time .
+
+:dateProperty a samm:Property ;
+   samm:preferredName "dateProperty"@en ;
+   samm:description "dateProperty"@en ;
+   samm:characteristic :DateCharacteristic ;
+   samm:exampleValue "2025-10-14"^^xsd:date .
+
+:stringProperty a samm:Property ;
+   samm:preferredName "stringProperty"@en ;
+   samm:description "stringProperty"@en ;
+   samm:characteristic :StringCharacteristic ;
+   samm:exampleValue "exampleString" .
+
+:dateTimePropertyWithTimeZone a samm:Property ;
+   samm:preferredName "dateTimePropertyWithTimeZone"@en ;
+   samm:description "dateTimePropertyWithTimeZone"@en ;
+   samm:characteristic :DateTimeCharacteristic ;
+   samm:exampleValue "2025-10-14T09:37:33.098+05:30"^^xsd:dateTime .
+
+:langStringProperty a samm:Property ;
+   samm:preferredName "langStringProperty"@en ;
+   samm:description "langStringProperty"@en ;
+   samm:characteristic :LangStringCharacteristic ;
+   samm:exampleValue "sample lang string"@en .
+
+:AnyURICharacteristic a samm:Characteristic ;
+   samm:preferredName "AnyURICharacteristic"@en ;
+   samm:description "AnyURICharacteristic"@en ;
+   samm:dataType xsd:anyURI .
+
+:Base64BinaryCharacteristic a samm:Characteristic ;
+   samm:preferredName "Base64BinaryCharacteristic"@en ;
+   samm:description "Base64BinaryCharacteristic"@en ;
+   samm:dataType xsd:base64Binary .
+
+:HexBinaryCharacteristic a samm:Characteristic ;
+   samm:preferredName "HexBinaryCharacteristic"@en ;
+   samm:description "HexBinaryCharacteristic"@en ;
+   samm:dataType xsd:hexBinary .
+
+:GMonthDayCharacteristic a samm:Characteristic ;
+   samm:preferredName "GMonthDayCharacteristic"@en ;
+   samm:description "GMonthDayCharacteristic"@en ;
+   samm:dataType xsd:gMonthDay .
+
+:GYearMonthCharacteristic a samm:Characteristic ;
+   samm:preferredName "GYearMonthCharacteristic"@en ;
+   samm:description "GYearMonthCharacteristic"@en ;
+   samm:dataType xsd:gYearMonth .
+
+:GYearCharacteristic a samm:Characteristic ;
+   samm:preferredName "GYearCharacteristic"@en ;
+   samm:description "GYearCharacteristic"@en ;
+   samm:dataType xsd:gYear .
+
+:GMonthCharacteristic a samm:Characteristic ;
+   samm:preferredName "GMonthCharacteristic"@en ;
+   samm:description "GMonthCharacteristic"@en ;
+   samm:dataType xsd:gMonth .
+
+:GDayCharacteristic a samm:Characteristic ;
+   samm:preferredName "GDayCharacteristic"@en ;
+   samm:description "GDayCharacteristic"@en ;
+   samm:dataType xsd:gDay .
+
+:DayTimeDurationCharacteristic a samm:Characteristic ;
+   samm:preferredName "DayTimeDurationCharacteristic"@en ;
+   samm:description "DayTimeDurationCharacteristic"@en ;
+   samm:dataType xsd:dayTimeDuration .
+
+:YearMonthDurationCharacteristic a samm:Characteristic ;
+   samm:preferredName "YearMonthDurationCharacteristic"@en ;
+   samm:description "YearMonthDurationCharacteristic"@en ;
+   samm:dataType xsd:yearMonthDuration .
+
+:DurationCharacteristic a samm:Characteristic ;
+   samm:preferredName "DurationCharacteristic"@en ;
+   samm:description "DurationCharacteristic"@en ;
+   samm:dataType xsd:duration .
+
+:DateTimeStampCharacteristic a samm:Characteristic ;
+   samm:preferredName "DateTimeStampCharacteristic"@en ;
+   samm:description "DateTimeStampCharacteristic"@en ;
+   samm:dataType xsd:dateTimeStamp .
+
+:DateTimeCharacteristic a samm:Characteristic ;
+   samm:preferredName "DateTimeCharacteristic"@en ;
+   samm:description "DateTimeCharacteristic"@en ;
+   samm:dataType xsd:dateTime .
+
+:TimeCharacteristic a samm:Characteristic ;
+   samm:preferredName "TimeCharacteristic"@en ;
+   samm:description "TimeCharacteristic"@en ;
+   samm:dataType xsd:time .
+
+:DateCharacteristic a samm:Characteristic ;
+   samm:preferredName "DateCharacteristic"@en ;
+   samm:description "DateCharacteristic"@en ;
+   samm:dataType xsd:date .
+
+:StringCharacteristic a samm:Characteristic ;
+   samm:preferredName "StringCharacteristic"@en ;
+   samm:description "StringCharacteristic"@en ;
+   samm:dataType xsd:string .
+
+:LangStringCharacteristic a samm:Characteristic ;
+   samm:preferredName "LangStringCharacteristic"@en ;
+   samm:description "LangStringCharacteristic"@en ;
+   samm:dataType rdf:langString .
+
+
+----
+
+=== Parquet Schema
+
+The above Aspect Model would result in the Parquet schema structure link:../../examples/ExampleAspect.parquet[ExampleAspect.parquet]
+
+== Limitations and Considerations
+
+* **Aspect Model data String data type To Apache Parquet FIXED_LEN_BYTE_ARRAY / BYTE_ARRAY **: Aspect Model data String data type will be represented as Apache Parquet FIXED_LEN_BYTE_ARRAY only if there is a LengthConstraint Trait max value defined for the given Property or else it will be represented as Apache Parquet BYTE_ARRAY irrespective of the encoding type.
+
+* **Order of collection data**: Order of collection data is not relevant when creating the Apache Parquet file.
+This is because, once the data is flattened, no order-related information is retained since only one element per collection will be created when generating a sample Apache Parquet file from an Aspect model.
+
+* **Timezone Handling**: For `xsd:dateTime` and `xsd:dateTimeStamp`:
+** When timezone information is present, timestamps are normalized to UTC.
+** When no timezone information is present, timestamps are stored as-is.
+
+
+* **Property Naming**: To avoid ambiguity:
+** Use single underscores (`_`) in Property names.
+** The double underscore (`__`) is reserved for representing nested hierarchies.
+** Hyphens (`-`) are used to separate language codes in `rdf:langString` columns.
+
+== References
+
+* https://parquet.apache.org/[Apache Parquet Official Documentation]
+* https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type Documentation]
+* https://github.com/apache/parquet-format/blob/master/LogicalTypes.md[Apache Parquet Logical Types]
+* https://github.com/eclipse-tractusx/sldt-digital-twin-registry/issues/537[Creation of Parquet Example Files from SAMM Aspect Model]
