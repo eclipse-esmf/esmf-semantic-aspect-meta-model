@@ -867,7 +867,7 @@ TIP: All Markdown blockquote elements--notes, examples, and sources--can contain
 
 Go back to the <<markdown-where-needed>> overview.
 
-[[the-exampleValue-attribute]]
+[[the-examplevalue-attribute]]
 == The `exampleValue` attribute
 
 The `exampleValue` attribute is available for all model elements.
