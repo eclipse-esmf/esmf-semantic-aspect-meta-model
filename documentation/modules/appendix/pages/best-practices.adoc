@@ -870,8 +870,8 @@ Go back to the <<markdown-where-needed>> overview.
 [[the-examplevalue-attribute]]
 == The `exampleValue` attribute
 
-The `exampleValue` attribute is available for all model elements.
- This attribute allows persons and AI-agents to quickly evaluate what correct values look like.
+The `exampleValue` attribute is available for Properties (samm:Property).
+This attribute allows persons and AI-agents to quickly evaluate what correct values look like.
 
 Properties always need to include an example value, ideally examples for all expected patterns are included (e.g. serialNumber might have values like "0123456" and also "000012ABCDE345678F").
 
