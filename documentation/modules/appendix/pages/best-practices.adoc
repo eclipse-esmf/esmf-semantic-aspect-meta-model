@@ -435,7 +435,7 @@ To get an idea, think of definitions in an IEC/ISO glossary.
 [[no-repeated-preferredname]]
 === Write a meaningful description
 
-All properties need to have meaningful descriptions that allow persons and AI-agents with no prior knowledge to understand them. This includes relevant usage scenarios, e.g.:
+All properties need to have meaningful descriptions that allow persons and AI-agents to understand them. This includes relevant usage scenarios, e.g.:
 "This is the default property when grouping x by y."
 If two properties are similar (e.g. "plantCode" and "plantId") the descriptions must be clear on when to use one or the other.
 Do not just repeat the Preferred Name for the Description.
