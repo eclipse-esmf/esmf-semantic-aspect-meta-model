@@ -952,10 +952,12 @@ The reuse of existing model element definitions makes it clear that your model t
 introducing another definition of an allegedly already existing concept is equivalent to stating that the deliberately newly created definition
 does indeed mean something different.
 
-Do not introduce Properties with the same local name and the same meaning in multiple namespaces.
+In your area of responsibility, do not introduce Properties with the same local name and the same meaning in multiple namespaces.
 For example, a Property "serialNumber" with a specific meaning must only be defined in exactly one namespace
-(it can appear in multiple versions, though). Concepts with different meanings may be declared with the same local name in different namespaces,
-for example an "operating system process" and an "organizational process" might both be called "process".
+(it can appear in multiple versions, though).
+Concepts with different meanings may be declared with the same local name in different namespaces;
+for example, an "operating system process" and an "organizational process" might both be called "process".
+However, using more descriptive names than just "process", like in this example, is generally recommended.
 
 `xref:ROOT:entities.adoc#entities[Entities]`,
 `xref:ROOT:characteristics.adoc#characteristics[Characteristics]`,
