@@ -681,7 +681,7 @@ samm:ValidEntityInstances
          select $this ?value ?path ?code ?highlight
          where {
            $this a ?entityType .
-           ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first ?property .
+           ?entityType samm:extends*/samm:properties/rdf:rest*/rdf:first/samm:property* ?property .
            ?property samm:characteristic/samm-c:baseCharacteristic*/samm:dataType ?characteristicDataType .
            $this ?property ?instanceValue .
            bind( datatype( ?instanceValue ) as ?providedType )
