@@ -64,6 +64,15 @@ public class ValidEntityInstancesShapeTest extends AbstractShapeTest {
    }
 
    @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_3_0" )
+   public void testInvalidEntityInstanceWithInvalidPropertyLiteralExpectFailure( final KnownVersion metaModelVersion ) {
+      final SemanticError resultInvalidValueType = new SemanticError(
+            "The type of the value of the Property ':langTextProperty' of the Entity instance ':Instance' does not match the Property definition.",
+            focusNode, testNamespacePrefix + "langTextProperty", violationUrn, "undefined" );
+      expectSemanticValidationErrors( "valid-entity-instance-shape", "TestEntityInstanceInvalidPropertyLiteral", metaModelVersion , resultInvalidValueType);
+   }
+
+   @ParameterizedTest
    @MethodSource( value = "allVersions" )
    public void testMissingNotInPayloadPropertyExpectFailure( final KnownVersion metaModelVersion ) {
       final SemanticError validationError = getSingleSemanticValidationError(
