@@ -13,10 +13,10 @@
 
 package org.eclipse.esmf.samm;
 
+import org.eclipse.esmf.samm.validation.SemanticError;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import org.eclipse.esmf.samm.validation.SemanticError;
 
 public class EitherShapeTest extends AbstractShapeTest {
 
@@ -89,5 +89,14 @@ public class EitherShapeTest extends AbstractShapeTest {
             messageMoreThanZeroValues, focusNode, sammUrns.datatypeUrn, violationUrn, "" );
       expectSemanticValidationErrors( "either-shape", "TestEitherDefinesDataType",
             metaModelVersion, result );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "versionsStartingWith2_3_0" )
+   public void testTestEitherExampleValueFailure( final KnownVersion metaModelVersion ) {
+      final SemanticError result = new SemanticError(
+            messageCharacteristicMustNotDefineExampleValue, testNamespacePrefix + "Result", "", violationUrn,
+            testNamespacePrefix + "Result" );
+      expectSemanticValidationErrors( "either-shape", "TestEitherExampleValue", metaModelVersion, result );
    }
 }
