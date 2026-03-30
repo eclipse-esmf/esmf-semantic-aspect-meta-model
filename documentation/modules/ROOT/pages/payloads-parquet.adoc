@@ -1,5 +1,5 @@
 ////
-Copyright (c) 2024 Robert Bosch Manufacturing Solutions GmbH
+Copyright (c) 2026 Robert Bosch Manufacturing Solutions GmbH
 
 See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
@@ -560,7 +560,7 @@ The following table describes how Aspect Model data types are mapped to Apache P
 
 === Parquet Schema
 
-The above Aspect Model would result in the Parquet schema structure link:../../examples/ExampleAspect.parquet[ExampleAspect.parquet]
+The above Aspect Model would result in the Parquet schema structure link:../../parquet/ExampleAspect.parquet[ExampleAspect.parquet]
 
 == Limitations and Considerations
 
