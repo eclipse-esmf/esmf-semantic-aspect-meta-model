@@ -20,6 +20,7 @@ It provides high performance compression and encoding schemes to handle complex 
 
 This document describes how Aspect Models are converted into Apache Parquet files, including the mapping of SAMM data types to Parquet types and the flattening strategy for nested structures.
 
+[[parquet-construction-rules]]
 == Rules for the construction of Apache Parquet files matching an Aspect Model
 
 In order to create Apache Parquet files that correspond to an Aspect Model, the following rules are applied:
