@@ -85,7 +85,7 @@ The following table describes how Aspect Model data types are mapped to Apache P
 | | Aspect Model data type | Corresponding https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type]
 
 .4+| Core Types
-| `xsd:string` | `BYTE_ARRAY` \ `FIXED_LEN_BYTE_ARRAY` (if LengthConstraint Trait max value is available)
+| `xsd:string` | `BYTE_ARRAY` / `FIXED_LEN_BYTE_ARRAY` (if LengthConstraint Trait max value is available)
 | `xsd:boolean` | `BOOLEAN`
 | `xsd:decimal` | `DOUBLE`
 | `xsd:integer` | `INT32`
@@ -96,19 +96,19 @@ The following table describes how Aspect Model data types are mapped to Apache P
 
 .4+| Time and Date
 | `xsd:date` | `INT32`
-| `xsd:time` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:time` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 | `xsd:dateTime` | `INT64`
 | `xsd:dateTimeStamp` | `INT64`
 
 .8+| Recurring and Partial Dates
-| `xsd:gYear` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:gMonth` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:gDay` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:gYearMonth` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:gMonthDay` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:duration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:yearMonthDuration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:dayTimeDuration` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gYear` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonth` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gDay` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gYearMonth` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonthDay` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:duration` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:yearMonthDuration` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:dayTimeDuration` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 
 .12+| Limited-Range Integer Numbers
 | `xsd:byte` | `INT32`
@@ -125,12 +125,12 @@ The following table describes how Aspect Model data types are mapped to Apache P
 | `xsd:nonPositiveInteger` | `INT32`
 
 .2+| Encoded Binary Data
-| `xsd:hexBinary` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `xsd:base64Binary` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:hexBinary` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:base64Binary` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 
 .3+| Miscellaneous Types
-| `xsd:anyURI` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
-| `rdf:langString` | `BYTE_ARRAY \ FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:anyURI` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `rdf:langString` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
 |===
 
 == Example
