@@ -584,4 +584,3 @@ This is because, once the data is flattened, no order-related information is ret
 * https://parquet.apache.org/[Apache Parquet Official Documentation]
 * https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type Documentation]
 * https://github.com/apache/parquet-format/blob/master/LogicalTypes.md[Apache Parquet Logical Types]
-* https://github.com/eclipse-tractusx/sldt-digital-twin-registry/issues/537[Creation of Parquet Example Files from SAMM Aspect Model]
