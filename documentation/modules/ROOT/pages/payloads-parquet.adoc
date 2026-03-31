@@ -28,7 +28,7 @@ In order to create Apache Parquet files that correspond to an Aspect Model, the 
 === Flattening Strategy
 
 * An Aspect Model is serialized into a flattened columnar structure where nested Properties are represented using a double underscore (`__`) separator.
-* Property names in the Aspect Model should use single underscores (`_`) to avoid ambiguity with the flattening separator - https://github.com/eclipse-tractusx/sldt-semantic-models/issues/885[Limit Aspect model 'payloadName's with single underscore ('_')].
+* Property names in the Aspect Model should use single underscores (`_`) to avoid ambiguity with the flattening separator - see also the TractusX discussion: https://github.com/eclipse-tractusx/sldt-semantic-models/issues/885[Limit Aspect model payloadName's with single underscore].
 
 === Property Serialization Rules
 
