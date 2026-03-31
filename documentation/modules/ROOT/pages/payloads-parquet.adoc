@@ -1,0 +1,169 @@
+////
+Copyright (c) 2026 Robert Bosch Manufacturing Solutions GmbH
+
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
+SPDX-License-Identifier: MPL-2.0
+////
+
+:page-partial:
+
+[[mapping-to-apache-parquet]]
+= Mapping to Apache Parquet
+
+== Overview
+
+https://parquet.apache.org/[Apache Parquet] is an open source, column-oriented data file format designed for efficient data storage and retrieval.
+It provides high performance compression and encoding schemes to handle complex data in bulk and is supported in many programming languages and analytics tools.
+
+This document describes how Aspect Models are converted into Apache Parquet files, including the mapping of SAMM data types to Parquet types and the flattening strategy for nested structures.
+
+[[parquet-construction-rules]]
+== Rules for the construction of Apache Parquet files matching an Aspect Model
+
+In order to create Apache Parquet files that correspond to an Aspect Model, the following rules are applied:
+
+=== Flattening Strategy
+
+* An Aspect Model is serialized into a flattened columnar structure where nested Properties are represented using a double underscore (`__`) separator.
+* Property names in the Aspect Model should use single underscores (`_`) to avoid ambiguity with the flattening separator - see also the TractusX discussion: https://github.com/eclipse-tractusx/sldt-semantic-models/issues/885[Limit Aspect model payloadName's with single underscore].
+
+=== Property Serialization Rules
+
+For each Property:
+
+* **Optional Properties**: If a Property is marked as optional and not included, its column value will be `null`.
+
+* **Scalar Properties**: If the Property's effective data type is scalar:
+** The Property is serialized as a column with the name `${propertyName}`.
+** The column type is determined by the data type mapping (see <<parquet-data-type-mappings>>).
+** The value must adhere to the value range defined by the Property's effective data type and possible Constraints.
+
+* **Multi-language Properties** (`rdf:langString`):
+** Each language variant is serialized as a separate column.
+** Column naming follows the pattern `${propertyName}-${language}` (hyphen-separated).
+** Example: `description-en`, `description-de`, `description-zh`.
+
+* **Entity Properties**: If the Property's effective data type is an Entity:
+** The Entity's Properties are flattened using the double underscore separator.
+** Example: Property `address` with nested Properties `street` and `city` becomes `address__street` and `address__city`.
+
+* **Entity Inheritance**: If an Entity extends another Entity:
+** All Properties from the Entity and its parent Entities are included.
+** Properties are resolved from `?thisEntity samm:extends* []`.
+
+* **Collection Properties**: If the Property's Characteristic is a Collection, List, Set, or Sorted Set:
+** For collections of scalar types and complex types (Entities): Each element is represented with the `${collectionName}__${propertyName}` (underscore-separated).
+** Example: `items__name`, `items__price`, `items__name`, `items__price`.
+
+* ** Characteristic**: If the Property's Characteristic is `samm-c:Either`:
+** Both left and right alternatives are represented as separate columns.
+** Column naming follows `${propertyName}__left` and `${propertyName}__right`.
+
+* **License information**: No license headers available when generating example Apache Parquet files from an Aspect model
+
+=== Denormalization for Collections
+
+When an Aspect contains Properties with Collections:
+
+* Each collection element may result in a separate row in the Parquet file to maintain a denormalized structure.
+* This approach is suitable for analytical workloads where columnar storage and denormalization improve query performance.
+
+=== Characteristics Not Subject to Serialization
+
+* Operations defined in the Aspect Model are not subject to serialization.
+* Events defined in the Aspect Model are not subject to serialization.
+
+[[parquet-data-type-mappings]]
+== Data Type Mappings
+
+The following table describes how Aspect Model data types are mapped to Apache Parquet primitive types with their logical type annotations where applicable.
+
+|===
+| | Aspect Model data type | Corresponding https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type]
+
+.4+| Core Types
+| `xsd:string` | `BYTE_ARRAY` / `FIXED_LEN_BYTE_ARRAY` (if LengthConstraint Trait max value is available)
+| `xsd:boolean` | `BOOLEAN`
+| `xsd:decimal` | `DOUBLE`
+| `xsd:integer` | `INT32`
+
+.2+| IEEE Floating-Point Numbers
+| `xsd:double` | `DOUBLE`
+| `xsd:float` | `FLOAT`
+
+.4+| Time and Date
+| `xsd:date` | `INT32`
+| `xsd:time` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:dateTime` | `INT64`
+| `xsd:dateTimeStamp` | `INT64`
+
+.8+| Recurring and Partial Dates
+| `xsd:gYear` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonth` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gDay` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gYearMonth` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:gMonthDay` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:duration` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:yearMonthDuration` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:dayTimeDuration` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+
+.12+| Limited-Range Integer Numbers
+| `xsd:byte` | `INT32`
+| `xsd:short` | `INT32`
+| `xsd:int` | `INT32`
+| `xsd:long` | `INT64`
+| `xsd:unsignedByte` | `INT32`
+| `xsd:unsignedShort` | `INT32`
+| `xsd:unsignedInt` | `INT64`
+| `xsd:unsignedLong` | `INT64`
+| `xsd:positiveInteger` | `INT32`
+| `xsd:nonNegativeInteger` | `INT32`
+| `xsd:negativeInteger` | `INT32`
+| `xsd:nonPositiveInteger` | `INT32`
+
+.2+| Encoded Binary Data
+| `xsd:hexBinary` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `xsd:base64Binary` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+
+.3+| Miscellaneous Types
+| `xsd:anyURI` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+| `rdf:langString` | `BYTE_ARRAY / FIXED_LEN_BYTE_ARRAY (if LengthConstraint Trait max value is available)`
+|===
+
+== Example
+
+=== Aspect Model
+
+----
+include::example$apache-parquet-example-aspect.ttl[parquet-data-type-mapping-example]
+----
+
+=== Parquet Schema
+
+The above Aspect Model would result in the Parquet schema structure link:../../attachments/ExampleAspect.parquet[ExampleAspect.parquet]
+
+== Limitations and Considerations
+
+* **Aspect Model data String data type To Apache Parquet FIXED_LEN_BYTE_ARRAY / BYTE_ARRAY **: Aspect Model data String data type will be represented as Apache Parquet FIXED_LEN_BYTE_ARRAY only if there is a LengthConstraint Trait max value defined for the given Property or else it will be represented as Apache Parquet BYTE_ARRAY irrespective of the encoding type.
+
+* **Order of collection data**: Order of collection data is not relevant when creating the Apache Parquet file.
+This is because, once the data is flattened, no order-related information is retained since only one element per collection will be created when generating a sample Apache Parquet file from an Aspect model.
+
+* **Timezone Handling**: For `xsd:dateTime` and `xsd:dateTimeStamp`:
+** When timezone information is present, timestamps are normalized to UTC.
+** When no timezone information is present, timestamps are stored as-is.
+
+
+* **Property Naming**: To avoid ambiguity:
+** Use single underscores (`_`) in Property names.
+** The double underscore (`__`) is reserved for representing nested hierarchies.
+** Hyphens (`-`) are used to separate language codes in `rdf:langString` columns.
+
+== References
+
+* https://parquet.apache.org/[Apache Parquet Official Documentation]
+* https://parquet.apache.org/docs/file-format/types/[Apache Parquet Type Documentation]
+* https://github.com/apache/parquet-format/blob/master/LogicalTypes.md[Apache Parquet Logical Types]
