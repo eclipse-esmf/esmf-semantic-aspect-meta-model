@@ -148,7 +148,6 @@ The following table describes how Aspect Model data types are mapped to Apache P
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:org.eclipse.esmf:1.0.0#> .
-@prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
 :ExampleAspect a samm:Aspect ;
    samm:preferredName "ExampleAspect"@en ;
