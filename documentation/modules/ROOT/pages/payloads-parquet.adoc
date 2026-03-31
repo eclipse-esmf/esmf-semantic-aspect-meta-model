@@ -15,7 +15,7 @@ SPDX-License-Identifier: MPL-2.0
 
 == Overview
 
-Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval.
+https://parquet.apache.org/[Apache Parquet] is an open source, column-oriented data file format designed for efficient data storage and retrieval.
 It provides high performance compression and encoding schemes to handle complex data in bulk and is supported in many programming languages and analytics tools.
 
 This document describes how Aspect Models are converted into Apache Parquet files, including the mapping of SAMM data types to Parquet types and the flattening strategy for nested structures.
