@@ -560,7 +560,7 @@ The following table describes how Aspect Model data types are mapped to Apache P
 
 === Parquet Schema
 
-The above Aspect Model would result in the Parquet schema structure link:../../parquet/ExampleAspect.parquet[ExampleAspect.parquet]
+The above Aspect Model would result in the Parquet schema structure link:../../attachments/ExampleAspect.parquet[ExampleAspect.parquet]
 
 == Limitations and Considerations
 
