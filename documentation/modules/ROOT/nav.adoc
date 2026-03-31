@@ -18,5 +18,5 @@ SPDX-License-Identifier: MPL-2.0
 * xref:units.adoc[Units]
 * xref:modeling-guidelines.adoc[Aspects]
 * xref:payloads.adoc[Payloads]
+* xref:payloads-parquet.adoc[Apache Parquet]
 * xref:limits.adoc[Limits & Restrictions]
-* xref:payloads.adoc[Apache Parquet]
