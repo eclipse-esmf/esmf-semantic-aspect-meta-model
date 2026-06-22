@@ -193,7 +193,7 @@
                         </goals>
                         <configuration>
                            <executable>${antora-cli}</executable>
-                           <commandlineArgs>--generator antora-site-generator-lunr ../site.yml --stacktrace</commandlineArgs>
+                           <commandlineArgs>--extension @antora/lunr-extension ../site.yml --stacktrace</commandlineArgs>
                            <environmentVariables>
                               <DOCSEARCH_INDEX_VERSION>latest</DOCSEARCH_INDEX_VERSION>
                            </environmentVariables>

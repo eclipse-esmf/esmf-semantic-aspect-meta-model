@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@antora/cli": "^3.1.10",
-    "antora-site-generator-lunr": "^0.6.1",
+    "@antora/lunr-extension": "^1.0.0-alpha.13",
+    "@antora/site-generator": "^3.1.15",
     "asciidoctor-kroki": "^0.17.0",
     "asciidoctor-plantuml": "^1.5.0"
   }
