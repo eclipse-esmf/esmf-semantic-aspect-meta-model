@@ -52,8 +52,8 @@ square brackets)
 [[attributes-that-all-model-elements-have]]
 === Attributes that all model elements have
 
-Every model element (Aspects, Properties, Characteristics, Entities, Operations) has the following
-attributes:
+Every model element (Aspects, Properties, Characteristics, Entities, Operations, Events) can have
+the following common attributes:
 
 [width="100%", options="header", cols="30,60,10"]
 |===
@@ -68,8 +68,8 @@ be at least one description defined with an "en" language tag. | {nok}
 document. The datatype is `xsd:anyURI`. This attribute may be defined multiple times. | {nok}
 |===
 
-NOTE: Although both `samm:preferredName` and `samm:description` should be set at least once in every
-model element, in the following examples we will mostly leave them out to improve readability.
+NOTE: Although setting `samm:preferredName` and `samm:description` at least once in every model element
+is recommended as a best practice, in the following examples we will mostly leave them out to improve readability.
 
 [[declaring-model-elements]]
 == Declaring model elements
