@@ -71,6 +71,11 @@ document. The datatype is `xsd:anyURI`. This attribute may be defined multiple t
 NOTE: Although both `samm:preferredName` and `samm:description` should be set at least once in every
 model element, in the following examples we will mostly leave them out to improve readability.
 
+TIP: You can find a number of example Aspect Models that demonstrate various
+SAMM modeling features in the
+https://github.com/eclipse-esmf/esmf-examples[esmf-examples] repository on
+GitHub.
+
 [[declaring-model-elements]]
 == Declaring model elements
 

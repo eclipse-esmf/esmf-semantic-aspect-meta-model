@@ -1,7 +1,7 @@
 ////
 Copyright (c) 2023 Robert Bosch Manufacturing Solutions GmbH
 
-See the AUTHORS file(s) distributed with this work for additional information regarding authorship. 
+See the AUTHORS file(s) distributed with this work for additional information regarding authorship.
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/
@@ -146,6 +146,10 @@ Let's consider a simple Aspect Model `MachineOnlineStatus` that describes a Prop
 which represents the information about whether a machine is online, offline, starting up or
 undefined (if the current status can not be retrieved).
 
+TIP: You can find the full Aspect Models that are explained below in the
+https://github.com/eclipse-esmf/esmf-examples/tree/main/aspect-models/org.eclipse.esmf.examples.machine_online_status[esmf-examples]
+repository on GitHub.
+
 [cols="a,a"]
 |====
 |
@@ -231,4 +235,3 @@ Aspect entries for the `MachineOnlineStatus` Aspect could be associated with a D
 each of the versions 1.0.0, 1.0.1 and 1.0.2) with the _same_ Aspect endpoint that only actually
 implements model version 1.0.2, because payloads are compatible. For model version 1.1.0, a separate
 endpoint needs to be provided by the Aspect implementation.
-
