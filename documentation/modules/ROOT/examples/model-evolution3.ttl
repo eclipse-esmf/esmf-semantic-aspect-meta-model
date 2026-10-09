@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 # tag::content[]
-@prefix : <urn:samm:com.mycompany.myapplication:1.0.2#> .
+@prefix : <urn:samm:org.eclipse.esmf.examples.machine_online_status:1.0.2#> .
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
