@@ -71,6 +71,11 @@ document. The datatype is `xsd:anyURI`. This attribute may be defined multiple t
 NOTE: Although setting `samm:preferredName` and `samm:description` at least once in every model element
 is recommended as a best practice, in the following examples we will mostly leave them out to improve readability.
 
+TIP: You can find a number of example Aspect Models that demonstrate various
+SAMM modeling features in the
+https://github.com/eclipse-esmf/esmf-examples[esmf-examples] repository on
+GitHub.
+
 [[declaring-model-elements]]
 == Declaring model elements
 
@@ -128,7 +133,8 @@ addition to the general attributes, every Aspect Model element has the following
 attribute completely is equivalent to having it present with an empty list as value. | {nok}
 | `samm:operations` | The list of Operations of this Aspect. Leaving out this
 attribute completely is equivalent to having it present with an empty list as value. | {nok}
-| `samm:events` | The list of Events of this Aspect. | {nok}
+| `samm:events` | The list of Events of this Aspect. Leaving out this
+attribute completely is equivalent to having it present with an empty list as value. | {nok}
 |===
 
 * Aspects follow the naming conventions for Java classes, i.e. UpperCamelCase.
