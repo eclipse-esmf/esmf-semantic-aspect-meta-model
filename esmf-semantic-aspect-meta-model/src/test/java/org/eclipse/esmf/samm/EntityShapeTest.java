@@ -236,4 +236,25 @@ public class EntityShapeTest extends AbstractShapeTest {
       assertThat( result.getResultSeverity() ).isEqualTo( violationUrn );
       assertThat( result.getValue() ).isEqualTo( "urn:samm:org.eclipse.esmf.samm.test:1.0.0#testPropertyTwo" );
    }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
+   public void testDuplicateEffectivePropertyNamesExpectFailure( final KnownVersion metaModelVersion ) {
+      final var model = loadModel( "entity-shape", "TestEntityDuplicateEffectiveNames", metaModelVersion );
+      final var report = validator.apply( model, metaModelVersion );
+      assertThat( report.getValidationErrors() ).hasSize( 5 );
+      assertThat( report.getValidationErrors() ).allSatisfy( error -> {
+         assertThat( error.getResultSeverity() ).isEqualTo( violationUrn );
+         assertThat( error.getResultMessage() ).contains( "effective Property name" );
+      } );
+      assertThat( report.getValidationErrors() ).extracting( SemanticError::getValue )
+            .containsExactlyInAnyOrder( "a", "same", "a", "a", "a" );
+   }
+
+   @ParameterizedTest
+   @MethodSource( value = "allVersions" )
+   public void testDistinctEffectivePropertyNamesExpectSuccess( final KnownVersion metaModelVersion ) {
+      checkValidity( "entity-shape", "TestEntityDistinctEffectiveNames", metaModelVersion );
+   }
+
 }

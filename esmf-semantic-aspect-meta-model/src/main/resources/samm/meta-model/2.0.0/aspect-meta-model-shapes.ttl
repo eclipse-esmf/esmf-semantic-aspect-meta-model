@@ -52,6 +52,46 @@ samm:NamedConceptShape
    sh:targetClass mmm:NamedConcept ;
    sh:nodeKind sh:IRI .
 
+samm:UniqueEffectivePropertyNameShape
+   a sh:NodeShape ;
+   sh:target [
+      a sh:SPARQLTarget ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select $this where {
+            $this rdf:type/rdfs:subClassOf* ?type .
+            filter( ?type in ( samm:Aspect, samm:Entity, samm:AbstractEntity ) )
+         }
+      """
+   ] ;
+   sh:sparql [
+      a sh:SPARQLConstraint ;
+      sh:message "The effective Property name '{?value}' is used more than once in '{$this}'." ;
+      sh:prefixes samm:prefixDeclarations ;
+      sh:select """
+         select distinct $this ?value ?code ?highlight where {
+            $this samm:properties/rdf:rest* ?firstCell .
+            ?firstCell rdf:first ?firstNode ; rdf:rest+ ?secondCell .
+            ?secondCell rdf:first ?secondNode .
+            ?firstNode samm:property? ?firstProperty .
+            ?secondNode samm:property? ?secondProperty .
+            ?firstProperty rdf:type/rdfs:subClassOf* ?firstType .
+            ?secondProperty rdf:type/rdfs:subClassOf* ?secondType .
+            filter( ?firstType in ( samm:Property, samm:AbstractProperty ) )
+            filter( ?secondType in ( samm:Property, samm:AbstractProperty ) )
+            filter( isIRI( ?firstProperty ) && isIRI( ?secondProperty ) )
+            optional { ?firstNode samm:payloadName ?firstPayloadName }
+            optional { ?secondNode samm:payloadName ?secondPayloadName }
+            bind( coalesce( ?firstPayloadName, strafter( str( ?firstProperty ), "#" ) ) as ?firstName )
+            bind( coalesce( ?secondPayloadName, strafter( str( ?secondProperty ), "#" ) ) as ?secondName )
+            filter( ?firstName = ?secondName )
+            bind( ?firstName as ?value )
+            bind( 'ERR_AMBIGUOUS_PROPERTY' as ?code )
+            bind( ?value as ?highlight )
+         }
+      """
+   ] .
+
 samm:AspectShape
    a sh:NodeShape ;
    sh:targetClass samm:Aspect ;

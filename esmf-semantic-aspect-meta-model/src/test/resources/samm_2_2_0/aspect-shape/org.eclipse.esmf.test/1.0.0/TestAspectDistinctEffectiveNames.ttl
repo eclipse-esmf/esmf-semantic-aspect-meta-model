@@ -1,0 +1,32 @@
+#
+# Copyright (c) 2026 Contributors to the Eclipse Foundation
+#
+# See the AUTHORS file(s) distributed with this work for additional
+# information regarding authorship.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+@prefix : <urn:samm:org.eclipse.esmf.samm.test:1.0.0#> .
+@prefix other: <urn:samm:org.eclipse.esmf.other:1.0.0#> .
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#> .
+
+:TestAspectDistinctEffectiveNames a samm:Aspect ;
+   samm:properties ( :a [ samm:property :b ; samm:payloadName "different" ] [ samm:property :c ; samm:optional true ] [ samm:property :a ; samm:payloadName "renamed" ] ) .
+
+:a a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:b a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:c a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+other:a a samm:Property ;
+   samm:characteristic samm-c:Text .
+
